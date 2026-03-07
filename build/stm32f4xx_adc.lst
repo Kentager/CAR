@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccbGwUah.s 			page 1
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
   28:Lib/StdPeriphs/src/stm32f4xx_adc.c ****          (++) Enable the clock for the ADC GPIOs using the following function:
   29:Lib/StdPeriphs/src/stm32f4xx_adc.c ****              RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOx, ENABLE);   
   30:Lib/StdPeriphs/src/stm32f4xx_adc.c ****          (++) Configure these ADC pins in analog mode using GPIO_Init();  
-ARM GAS  /tmp/ccbGwUah.s 			page 2
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 2
 
 
   31:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
   85:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   ******************************************************************************
   86:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @attention
   87:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *
-ARM GAS  /tmp/ccbGwUah.s 			page 3
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 3
 
 
   88:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * Copyright (c) 2016 STMicroelectronics.
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  142:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
  143:Lib/StdPeriphs/src/stm32f4xx_adc.c **** /* ADC L Mask */
  144:Lib/StdPeriphs/src/stm32f4xx_adc.c **** #define SQR1_L_RESET              ((uint32_t)0xFF0FFFFF) 
-ARM GAS  /tmp/ccbGwUah.s 			page 4
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 4
 
 
  145:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  199:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
  200:Lib/StdPeriphs/src/stm32f4xx_adc.c **** /**
  201:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @brief  Deinitializes all ADCs peripherals registers to their default reset 
-ARM GAS  /tmp/ccbGwUah.s 			page 5
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 5
 
 
  202:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *         values.
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  224:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @param  ADC_InitStruct: pointer to an ADC_InitTypeDef structure that contains
  225:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *         the configuration information for the specified ADC peripheral.
  226:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @retval None
-ARM GAS  /tmp/ccbGwUah.s 			page 6
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 6
 
 
  227:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  249:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Configure ADCx: scan conversion mode and resolution */
  250:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Set SCAN bit according to ADC_ScanConvMode value */
  251:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Set RES bit according to ADC_Resolution value */ 
-ARM GAS  /tmp/ccbGwUah.s 			page 7
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 7
 
 
  252:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   tmpreg1 |= (uint32_t)(((uint32_t)ADC_InitStruct->ADC_ScanConvMode << 8) | \
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  126              		.loc 1 272 50 view .LVU36
  127 002a 91F805C0 		ldrb	ip, [r1, #5]	@ zero_extendqisi2
  269:Lib/StdPeriphs/src/stm32f4xx_adc.c ****                         ADC_InitStruct->ADC_ExternalTrigConv | 
-ARM GAS  /tmp/ccbGwUah.s 			page 8
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 8
 
 
  128              		.loc 1 269 14 view .LVU37
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  163 004c 7047     		bx	lr
  164              	.L6:
  165 004e 00BF     		.align	2
-ARM GAS  /tmp/ccbGwUah.s 			page 9
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 9
 
 
  166              	.L5:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  197              		.loc 1 315 44 is_stmt 0 view .LVU61
  198 0008 8360     		str	r3, [r0, #8]
  316:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
-ARM GAS  /tmp/ccbGwUah.s 			page 10
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 10
 
 
  317:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Initialize the ADC_ExternalTrigConv member */
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  235              	.LVL17:
  337:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Check the parameters */
  338:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   assert_param(IS_ADC_MODE(ADC_CommonInitStruct->ADC_Mode));
-ARM GAS  /tmp/ccbGwUah.s 			page 11
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 11
 
 
  236              		.loc 1 338 3 view .LVU72
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  360:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Write to ADC CCR */
  361:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   ADC->CCR = tmpreg1;
  267              		.loc 1 361 3 is_stmt 1 view .LVU87
-ARM GAS  /tmp/ccbGwUah.s 			page 12
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 12
 
 
  268              		.loc 1 361 12 is_stmt 0 view .LVU88
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  306              		.loc 1 379 3 is_stmt 1 view .LVU95
  307              		.loc 1 379 43 is_stmt 0 view .LVU96
  308 0006 8360     		str	r3, [r0, #8]
-ARM GAS  /tmp/ccbGwUah.s 			page 13
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 13
 
 
  380:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  344              	.L14:
  401:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   }
  402:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   else
-ARM GAS  /tmp/ccbGwUah.s 			page 14
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 14
 
 
  403:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   {
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  438:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *         This parameter can be one of the following values:
  439:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_AnalogWatchdog_SingleRegEnable: Analog watchdog on a single regular channel
  440:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_AnalogWatchdog_SingleInjecEnable: Analog watchdog on a single injected chan
-ARM GAS  /tmp/ccbGwUah.s 			page 15
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 15
 
 
  441:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_AnalogWatchdog_SingleRegOrInjecEnable: Analog watchdog on a single regular 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  394              		.cfi_endproc
  395              	.LFE129:
  397              		.section	.text.ADC_AnalogWatchdogThresholdsConfig,"ax",%progbits
-ARM GAS  /tmp/ccbGwUah.s 			page 16
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 16
 
 
  398              		.align	1
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  430              		.thumb
  431              		.thumb_func
  433              	ADC_AnalogWatchdogSingleChannelConfig:
-ARM GAS  /tmp/ccbGwUah.s 			page 17
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 17
 
 
  434              	.LVL30:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  449              		.loc 1 529 10 is_stmt 0 view .LVU142
  450 0002 23F01F03 		bic	r3, r3, #31
  451              	.LVL32:
-ARM GAS  /tmp/ccbGwUah.s 			page 18
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 18
 
 
  530:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  564:Lib/StdPeriphs/src/stm32f4xx_adc.c ****       (#) Enable the internal connection of VBAT source with the ADC channel using 
  565:Lib/StdPeriphs/src/stm32f4xx_adc.c ****           ADC_VBATCmd() function. 
  566:Lib/StdPeriphs/src/stm32f4xx_adc.c ****       (#) Select the ADC_Channel_Vbat using ADC_RegularChannelConfig() or  
-ARM GAS  /tmp/ccbGwUah.s 			page 19
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 19
 
 
  567:Lib/StdPeriphs/src/stm32f4xx_adc.c ****           ADC_InjectedChannelConfig() functions 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  596:Lib/StdPeriphs/src/stm32f4xx_adc.c **** }
  499              		.loc 1 596 1 view .LVU158
  500 0018 7047     		bx	lr
-ARM GAS  /tmp/ccbGwUah.s 			page 20
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 20
 
 
  501              	.L23:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  618:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   {
  619:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Disable the VBAT channel*/
  620:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     ADC->CCR &= (uint32_t)(~ADC_CCR_VBATE);
-ARM GAS  /tmp/ccbGwUah.s 			page 21
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 21
 
 
  536              		.loc 1 620 5 is_stmt 1 view .LVU166
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  651:Lib/StdPeriphs/src/stm32f4xx_adc.c ****            (+@@) External trigger source  
  652:Lib/StdPeriphs/src/stm32f4xx_adc.c ****            (+@@) External trigger edge 
  653:Lib/StdPeriphs/src/stm32f4xx_adc.c ****            (+@@) number of conversion in the regular channels group sequencer.
-ARM GAS  /tmp/ccbGwUah.s 			page 22
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 22
 
 
  654:Lib/StdPeriphs/src/stm32f4xx_adc.c ****      
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  708:Lib/StdPeriphs/src/stm32f4xx_adc.c **** void ADC_RegularChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_Sam
  709:Lib/StdPeriphs/src/stm32f4xx_adc.c **** {
  562              		.loc 1 709 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccbGwUah.s 			page 23
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 23
 
 
  563              		.cfi_startproc
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  728:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     
  729:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Calculate the mask to set */
  730:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     tmpreg2 = (uint32_t)ADC_SampleTime << (3 * (ADC_Channel - 10));
-ARM GAS  /tmp/ccbGwUah.s 			page 24
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 24
 
 
  599              		.loc 1 730 5 is_stmt 1 view .LVU187
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  764:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Calculate the mask to clear */
  765:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     tmpreg2 = SQR3_SQ_SET << (5 * (Rank - 1));
  620              		.loc 1 765 5 is_stmt 1 view .LVU197
-ARM GAS  /tmp/ccbGwUah.s 			page 25
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 25
 
 
  621              		.loc 1 765 41 is_stmt 0 view .LVU198
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  794:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Set the SQx bits for the selected rank */
  795:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     tmpreg1 |= tmpreg2;
  796:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     
-ARM GAS  /tmp/ccbGwUah.s 			page 26
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 26
 
 
  797:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Store the new register value */
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  667              		.loc 1 750 13 is_stmt 0 view .LVU218
  668 0056 03FA0EF3 		lsl	r3, r3, lr
  669              	.LVL55:
-ARM GAS  /tmp/ccbGwUah.s 			page 27
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 27
 
 
  753:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  795:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     
  707              		.loc 1 795 13 is_stmt 0 view .LVU236
  708 007a 1343     		orrs	r3, r3, r2
-ARM GAS  /tmp/ccbGwUah.s 			page 28
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 28
 
 
  709              	.LVL63:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  747              		.cfi_endproc
  748              	.LFE134:
  750              		.section	.text.ADC_SoftwareStartConv,"ax",%progbits
-ARM GAS  /tmp/ccbGwUah.s 			page 29
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 29
 
 
  751              		.align	1
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  843:Lib/StdPeriphs/src/stm32f4xx_adc.c **** {
  787              		.loc 1 843 1 is_stmt 1 view -0
  788              		.cfi_startproc
-ARM GAS  /tmp/ccbGwUah.s 			page 30
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 30
 
 
  789              		@ args = 0, pretend = 0, frame = 0
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  863:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
  864:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
  865:Lib/StdPeriphs/src/stm32f4xx_adc.c **** /**
-ARM GAS  /tmp/ccbGwUah.s 			page 31
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 31
 
 
  866:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @brief  Enables or disables the EOC on each regular channel conversion
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  858              		.syntax unified
  859              		.thumb
  860              		.thumb_func
-ARM GAS  /tmp/ccbGwUah.s 			page 32
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 32
 
 
  862              	ADC_ContinuousModeCmd:
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  891              		.cfi_endproc
  892              	.LFE138:
  894              		.section	.text.ADC_DiscModeChannelCountConfig,"ax",%progbits
-ARM GAS  /tmp/ccbGwUah.s 			page 33
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 33
 
 
  895              		.align	1
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  924              	.LVL81:
  940:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   tmpreg1 |= tmpreg2 << 13;
  925              		.loc 1 940 3 is_stmt 1 view .LVU306
-ARM GAS  /tmp/ccbGwUah.s 			page 34
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 34
 
 
  926              		.loc 1 940 11 is_stmt 0 view .LVU307
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  958              		.loc 1 964 9 is_stmt 0 view .LVU317
  959 0002 4368     		ldr	r3, [r0, #4]
  960              		.loc 1 964 15 view .LVU318
-ARM GAS  /tmp/ccbGwUah.s 			page 35
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 35
 
 
  961 0004 43F40063 		orr	r3, r3, #2048
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  996              		.loc 1 985 1 view .LVU327
  997 0002 80B2     		uxth	r0, r0
  998 0004 7047     		bx	lr
-ARM GAS  /tmp/ccbGwUah.s 			page 36
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 36
 
 
  999              		.cfi_endproc
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1004:Lib/StdPeriphs/src/stm32f4xx_adc.c **** /**
 1005:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @}
 1006:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   */
-ARM GAS  /tmp/ccbGwUah.s 			page 37
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 37
 
 
 1007:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1051:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   {
 1052:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Enable the selected ADC DMA request */
 1053:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     ADCx->CR2 |= (uint32_t)ADC_CR2_DMA;
-ARM GAS  /tmp/ccbGwUah.s 			page 38
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 38
 
 
  1049              		.loc 1 1053 5 is_stmt 1 view .LVU337
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1074:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   if (NewState != DISABLE)
  1085              		.loc 1 1074 3 view .LVU347
  1086              		.loc 1 1074 6 is_stmt 0 view .LVU348
-ARM GAS  /tmp/ccbGwUah.s 			page 39
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 39
 
 
  1087 0000 21B1     		cbz	r1, .L58
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1120              		@ frame_needed = 0, uses_anonymous_args = 0
  1121              		@ link register save eliminated.
 1098:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccbGwUah.s 			page 40
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 40
 
 
 1099:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1116:Lib/StdPeriphs/src/stm32f4xx_adc.c ****  *  @brief   Injected channels Configuration functions 
 1117:Lib/StdPeriphs/src/stm32f4xx_adc.c ****  *
 1118:Lib/StdPeriphs/src/stm32f4xx_adc.c **** @verbatim   
-ARM GAS  /tmp/ccbGwUah.s 			page 41
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 41
 
 
 1119:Lib/StdPeriphs/src/stm32f4xx_adc.c ****  ===============================================================================
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1173:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_SampleTime_3Cycles: Sample time equal to 3 cycles
 1174:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_SampleTime_15Cycles: Sample time equal to 15 cycles
 1175:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_SampleTime_28Cycles: Sample time equal to 28 cycles
-ARM GAS  /tmp/ccbGwUah.s 			page 42
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 42
 
 
 1176:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_SampleTime_56Cycles: Sample time equal to 56 cycles	
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1193 0014 0CFA04FC 		lsl	ip, ip, r4
  1194              	.LVL92:
 1198:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Clear the old sample time */
-ARM GAS  /tmp/ccbGwUah.s 			page 43
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 43
 
 
 1199:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     tmpreg1 &= ~tmpreg2;
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1228:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   tmpreg2 = JSQR_JSQ_SET << (5 * (uint8_t)((Rank + 3) - (tmpreg3 + 1)));
  1220              		.loc 1 1228 3 is_stmt 1 view .LVU394
  1221              		.loc 1 1228 55 is_stmt 0 view .LVU395
-ARM GAS  /tmp/ccbGwUah.s 			page 44
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 44
 
 
  1222 002c D31A     		subs	r3, r2, r3
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1266              		.loc 1 1210 5 is_stmt 1 view .LVU411
 1210:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     /* Calculate the mask to clear */
  1267              		.loc 1 1210 13 is_stmt 0 view .LVU412
-ARM GAS  /tmp/ccbGwUah.s 			page 45
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 45
 
 
  1268 004a 0469     		ldr	r4, [r0, #16]
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1245:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   */
 1246:Lib/StdPeriphs/src/stm32f4xx_adc.c **** void ADC_InjectedSequencerLengthConfig(ADC_TypeDef* ADCx, uint8_t Length)
 1247:Lib/StdPeriphs/src/stm32f4xx_adc.c **** {
-ARM GAS  /tmp/ccbGwUah.s 			page 46
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 46
 
 
  1306              		.loc 1 1247 1 is_stmt 1 view -0
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1342              		.syntax unified
  1343              		.thumb
  1344              		.thumb_func
-ARM GAS  /tmp/ccbGwUah.s 			page 47
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 47
 
 
  1346              	ADC_SetInjectedOffset:
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1292:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Set the selected injected channel data offset */
 1293:Lib/StdPeriphs/src/stm32f4xx_adc.c ****  *(__IO uint32_t *) tmp = (uint32_t)Offset;
  1375              		.loc 1 1293 2 is_stmt 1 view .LVU452
-ARM GAS  /tmp/ccbGwUah.s 			page 48
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 48
 
 
  1376              		.loc 1 1293 3 is_stmt 0 view .LVU453
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1404              		.loc 1 1321 3 view .LVU457
 1322:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Check the parameters */
 1323:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   assert_param(IS_ADC_ALL_PERIPH(ADCx));
-ARM GAS  /tmp/ccbGwUah.s 			page 49
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 49
 
 
  1405              		.loc 1 1323 3 view .LVU458
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1348:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_ExternalTrigInjecConvEdge_Falling: detection on falling edge
 1349:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_ExternalTrigInjecConvEdge_RisingFalling: detection on both rising 
 1350:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *                                                               and falling edge
-ARM GAS  /tmp/ccbGwUah.s 			page 50
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 50
 
 
 1351:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @retval None
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1369:Lib/StdPeriphs/src/stm32f4xx_adc.c **** /**
 1370:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @brief  Enables the selected ADC software start conversion of the injected channels.
 1371:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @param  ADCx: where x can be 1, 2 or 3 to select the ADC peripheral.
-ARM GAS  /tmp/ccbGwUah.s 			page 51
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 51
 
 
 1372:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @retval None
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1394:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   if ((ADCx->CR2 & ADC_CR2_JSWSTART) != (uint32_t)RESET)
  1509              		.loc 1 1394 3 view .LVU491
  1510              		.loc 1 1394 12 is_stmt 0 view .LVU492
-ARM GAS  /tmp/ccbGwUah.s 			page 52
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 52
 
 
  1511 0000 8368     		ldr	r3, [r0, #8]
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1544              		@ frame_needed = 0, uses_anonymous_args = 0
  1545              		@ link register save eliminated.
 1418:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Check the parameters */
-ARM GAS  /tmp/ccbGwUah.s 			page 53
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 53
 
 
 1419:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   assert_param(IS_ADC_ALL_PERIPH(ADCx));
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1441:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   */
 1442:Lib/StdPeriphs/src/stm32f4xx_adc.c **** void ADC_InjectedDiscModeCmd(ADC_TypeDef* ADCx, FunctionalState NewState)
 1443:Lib/StdPeriphs/src/stm32f4xx_adc.c **** {
-ARM GAS  /tmp/ccbGwUah.s 			page 54
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 54
 
 
  1580              		.loc 1 1443 1 is_stmt 1 view -0
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1461:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @param  ADCx: where x can be 1, 2 or 3 to select the ADC peripheral.
 1462:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   * @param  ADC_InjectedChannel: the converted ADC injected channel.
 1463:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *          This parameter can be one of the following values:
-ARM GAS  /tmp/ccbGwUah.s 			page 55
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 55
 
 
 1464:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   *            @arg ADC_InjectedChannel_1: Injected Channel1 selected
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1653 0016 02B0     		add	sp, sp, #8
  1654              	.LCFI12:
  1655              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccbGwUah.s 			page 56
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 56
 
 
  1656              		@ sp needed
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1525:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   ======================================================
 1526:Lib/StdPeriphs/src/stm32f4xx_adc.c ****     [..]
 1527:Lib/StdPeriphs/src/stm32f4xx_adc.c ****       (+) Flags :
-ARM GAS  /tmp/ccbGwUah.s 			page 57
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 57
 
 
 1528:Lib/StdPeriphs/src/stm32f4xx_adc.c ****         (##) ADC_FLAG_JEOC : Injected channel end of conversion ==> to indicate 
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1674              		@ frame_needed = 0, uses_anonymous_args = 0
  1675              		@ link register save eliminated.
 1579:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   uint32_t itmask = 0;
-ARM GAS  /tmp/ccbGwUah.s 			page 58
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 58
 
 
  1676              		.loc 1 1579 3 view .LVU539
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1712 0016 4360     		str	r3, [r0, #4]
 1598:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   }
 1599:Lib/StdPeriphs/src/stm32f4xx_adc.c **** }
-ARM GAS  /tmp/ccbGwUah.s 			page 59
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 59
 
 
  1713              		.loc 1 1599 1 view .LVU557
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1743 0006 0120     		movs	r0, #1
  1744              	.LVL146:
  1745              		.loc 1 1625 15 view .LVU566
-ARM GAS  /tmp/ccbGwUah.s 			page 60
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 60
 
 
  1746 0008 7047     		bx	lr
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1774              		.loc 1 1653 3 view .LVU572
 1654:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
 1655:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Clear the selected ADC flags */
-ARM GAS  /tmp/ccbGwUah.s 			page 61
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 61
 
 
 1656:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   ADCx->SR = ~(uint32_t)ADC_FLAG;
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
 1681:Lib/StdPeriphs/src/stm32f4xx_adc.c **** 
 1682:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   /* Get the ADC_IT enable bit status */
 1683:Lib/StdPeriphs/src/stm32f4xx_adc.c ****   enablestatus = (ADCx->CR1 & ((uint32_t)0x01 << (uint8_t)ADC_IT)) ;
-ARM GAS  /tmp/ccbGwUah.s 			page 62
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 62
 
 
  1806              		.loc 1 1683 3 view .LVU583
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1844 0022 7047     		bx	lr
  1845              		.cfi_endproc
  1846              	.LFE159:
-ARM GAS  /tmp/ccbGwUah.s 			page 63
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 63
 
 
  1848              		.section	.text.ADC_ClearITPendingBit,"ax",%progbits
@@ -3778,99 +3778,99 @@ ARM GAS  /tmp/ccbGwUah.s 			page 1
  1881              		.file 3 "CMSIS/stm32f4xx.h"
  1882              		.file 4 "Lib/StdPeriphs/inc/stm32f4xx_adc.h"
  1883              		.file 5 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
-ARM GAS  /tmp/ccbGwUah.s 			page 64
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 64
 
 
-ARM GAS  /tmp/ccbGwUah.s 			page 65
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 65
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_adc.c
-     /tmp/ccbGwUah.s:21     .text.ADC_DeInit:00000000 $t
-     /tmp/ccbGwUah.s:27     .text.ADC_DeInit:00000000 ADC_DeInit
-     /tmp/ccbGwUah.s:54     .text.ADC_Init:00000000 $t
-     /tmp/ccbGwUah.s:60     .text.ADC_Init:00000000 ADC_Init
-     /tmp/ccbGwUah.s:167    .text.ADC_Init:00000050 $d
-     /tmp/ccbGwUah.s:172    .text.ADC_StructInit:00000000 $t
-     /tmp/ccbGwUah.s:178    .text.ADC_StructInit:00000000 ADC_StructInit
-     /tmp/ccbGwUah.s:215    .text.ADC_CommonInit:00000000 $t
-     /tmp/ccbGwUah.s:221    .text.ADC_CommonInit:00000000 ADC_CommonInit
-     /tmp/ccbGwUah.s:279    .text.ADC_CommonInit:00000024 $d
-     /tmp/ccbGwUah.s:285    .text.ADC_CommonStructInit:00000000 $t
-     /tmp/ccbGwUah.s:291    .text.ADC_CommonStructInit:00000000 ADC_CommonStructInit
-     /tmp/ccbGwUah.s:318    .text.ADC_Cmd:00000000 $t
-     /tmp/ccbGwUah.s:324    .text.ADC_Cmd:00000000 ADC_Cmd
-     /tmp/ccbGwUah.s:357    .text.ADC_AnalogWatchdogCmd:00000000 $t
-     /tmp/ccbGwUah.s:363    .text.ADC_AnalogWatchdogCmd:00000000 ADC_AnalogWatchdogCmd
-     /tmp/ccbGwUah.s:398    .text.ADC_AnalogWatchdogThresholdsConfig:00000000 $t
-     /tmp/ccbGwUah.s:404    .text.ADC_AnalogWatchdogThresholdsConfig:00000000 ADC_AnalogWatchdogThresholdsConfig
-     /tmp/ccbGwUah.s:427    .text.ADC_AnalogWatchdogSingleChannelConfig:00000000 $t
-     /tmp/ccbGwUah.s:433    .text.ADC_AnalogWatchdogSingleChannelConfig:00000000 ADC_AnalogWatchdogSingleChannelConfig
-     /tmp/ccbGwUah.s:465    .text.ADC_TempSensorVrefintCmd:00000000 $t
-     /tmp/ccbGwUah.s:471    .text.ADC_TempSensorVrefintCmd:00000000 ADC_TempSensorVrefintCmd
-     /tmp/ccbGwUah.s:504    .text.ADC_TempSensorVrefintCmd:0000001c $d
-     /tmp/ccbGwUah.s:509    .text.ADC_VBATCmd:00000000 $t
-     /tmp/ccbGwUah.s:515    .text.ADC_VBATCmd:00000000 ADC_VBATCmd
-     /tmp/ccbGwUah.s:548    .text.ADC_VBATCmd:0000001c $d
-     /tmp/ccbGwUah.s:553    .text.ADC_RegularChannelConfig:00000000 $t
-     /tmp/ccbGwUah.s:559    .text.ADC_RegularChannelConfig:00000000 ADC_RegularChannelConfig
-     /tmp/ccbGwUah.s:751    .text.ADC_SoftwareStartConv:00000000 $t
-     /tmp/ccbGwUah.s:757    .text.ADC_SoftwareStartConv:00000000 ADC_SoftwareStartConv
-     /tmp/ccbGwUah.s:778    .text.ADC_GetSoftwareStartConvStatus:00000000 $t
-     /tmp/ccbGwUah.s:784    .text.ADC_GetSoftwareStartConvStatus:00000000 ADC_GetSoftwareStartConvStatus
-     /tmp/ccbGwUah.s:817    .text.ADC_EOCOnEachRegularChannelCmd:00000000 $t
-     /tmp/ccbGwUah.s:823    .text.ADC_EOCOnEachRegularChannelCmd:00000000 ADC_EOCOnEachRegularChannelCmd
-     /tmp/ccbGwUah.s:856    .text.ADC_ContinuousModeCmd:00000000 $t
-     /tmp/ccbGwUah.s:862    .text.ADC_ContinuousModeCmd:00000000 ADC_ContinuousModeCmd
-     /tmp/ccbGwUah.s:895    .text.ADC_DiscModeChannelCountConfig:00000000 $t
-     /tmp/ccbGwUah.s:901    .text.ADC_DiscModeChannelCountConfig:00000000 ADC_DiscModeChannelCountConfig
-     /tmp/ccbGwUah.s:938    .text.ADC_DiscModeCmd:00000000 $t
-     /tmp/ccbGwUah.s:944    .text.ADC_DiscModeCmd:00000000 ADC_DiscModeCmd
-     /tmp/ccbGwUah.s:977    .text.ADC_GetConversionValue:00000000 $t
-     /tmp/ccbGwUah.s:983    .text.ADC_GetConversionValue:00000000 ADC_GetConversionValue
-     /tmp/ccbGwUah.s:1003   .text.ADC_GetMultiModeConversionValue:00000000 $t
-     /tmp/ccbGwUah.s:1009   .text.ADC_GetMultiModeConversionValue:00000000 ADC_GetMultiModeConversionValue
-     /tmp/ccbGwUah.s:1025   .text.ADC_GetMultiModeConversionValue:00000008 $d
-     /tmp/ccbGwUah.s:1030   .text.ADC_DMACmd:00000000 $t
-     /tmp/ccbGwUah.s:1036   .text.ADC_DMACmd:00000000 ADC_DMACmd
-     /tmp/ccbGwUah.s:1069   .text.ADC_DMARequestAfterLastTransferCmd:00000000 $t
-     /tmp/ccbGwUah.s:1075   .text.ADC_DMARequestAfterLastTransferCmd:00000000 ADC_DMARequestAfterLastTransferCmd
-     /tmp/ccbGwUah.s:1108   .text.ADC_MultiModeDMARequestAfterLastTransferCmd:00000000 $t
-     /tmp/ccbGwUah.s:1114   .text.ADC_MultiModeDMARequestAfterLastTransferCmd:00000000 ADC_MultiModeDMARequestAfterLastTransferCmd
-     /tmp/ccbGwUah.s:1147   .text.ADC_MultiModeDMARequestAfterLastTransferCmd:0000001c $d
-     /tmp/ccbGwUah.s:1152   .text.ADC_InjectedChannelConfig:00000000 $t
-     /tmp/ccbGwUah.s:1158   .text.ADC_InjectedChannelConfig:00000000 ADC_InjectedChannelConfig
-     /tmp/ccbGwUah.s:1297   .text.ADC_InjectedSequencerLengthConfig:00000000 $t
-ARM GAS  /tmp/ccbGwUah.s 			page 66
+     /tmp/ccoQ9cIJ.s:21     .text.ADC_DeInit:00000000 $t
+     /tmp/ccoQ9cIJ.s:27     .text.ADC_DeInit:00000000 ADC_DeInit
+     /tmp/ccoQ9cIJ.s:54     .text.ADC_Init:00000000 $t
+     /tmp/ccoQ9cIJ.s:60     .text.ADC_Init:00000000 ADC_Init
+     /tmp/ccoQ9cIJ.s:167    .text.ADC_Init:00000050 $d
+     /tmp/ccoQ9cIJ.s:172    .text.ADC_StructInit:00000000 $t
+     /tmp/ccoQ9cIJ.s:178    .text.ADC_StructInit:00000000 ADC_StructInit
+     /tmp/ccoQ9cIJ.s:215    .text.ADC_CommonInit:00000000 $t
+     /tmp/ccoQ9cIJ.s:221    .text.ADC_CommonInit:00000000 ADC_CommonInit
+     /tmp/ccoQ9cIJ.s:279    .text.ADC_CommonInit:00000024 $d
+     /tmp/ccoQ9cIJ.s:285    .text.ADC_CommonStructInit:00000000 $t
+     /tmp/ccoQ9cIJ.s:291    .text.ADC_CommonStructInit:00000000 ADC_CommonStructInit
+     /tmp/ccoQ9cIJ.s:318    .text.ADC_Cmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:324    .text.ADC_Cmd:00000000 ADC_Cmd
+     /tmp/ccoQ9cIJ.s:357    .text.ADC_AnalogWatchdogCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:363    .text.ADC_AnalogWatchdogCmd:00000000 ADC_AnalogWatchdogCmd
+     /tmp/ccoQ9cIJ.s:398    .text.ADC_AnalogWatchdogThresholdsConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:404    .text.ADC_AnalogWatchdogThresholdsConfig:00000000 ADC_AnalogWatchdogThresholdsConfig
+     /tmp/ccoQ9cIJ.s:427    .text.ADC_AnalogWatchdogSingleChannelConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:433    .text.ADC_AnalogWatchdogSingleChannelConfig:00000000 ADC_AnalogWatchdogSingleChannelConfig
+     /tmp/ccoQ9cIJ.s:465    .text.ADC_TempSensorVrefintCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:471    .text.ADC_TempSensorVrefintCmd:00000000 ADC_TempSensorVrefintCmd
+     /tmp/ccoQ9cIJ.s:504    .text.ADC_TempSensorVrefintCmd:0000001c $d
+     /tmp/ccoQ9cIJ.s:509    .text.ADC_VBATCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:515    .text.ADC_VBATCmd:00000000 ADC_VBATCmd
+     /tmp/ccoQ9cIJ.s:548    .text.ADC_VBATCmd:0000001c $d
+     /tmp/ccoQ9cIJ.s:553    .text.ADC_RegularChannelConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:559    .text.ADC_RegularChannelConfig:00000000 ADC_RegularChannelConfig
+     /tmp/ccoQ9cIJ.s:751    .text.ADC_SoftwareStartConv:00000000 $t
+     /tmp/ccoQ9cIJ.s:757    .text.ADC_SoftwareStartConv:00000000 ADC_SoftwareStartConv
+     /tmp/ccoQ9cIJ.s:778    .text.ADC_GetSoftwareStartConvStatus:00000000 $t
+     /tmp/ccoQ9cIJ.s:784    .text.ADC_GetSoftwareStartConvStatus:00000000 ADC_GetSoftwareStartConvStatus
+     /tmp/ccoQ9cIJ.s:817    .text.ADC_EOCOnEachRegularChannelCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:823    .text.ADC_EOCOnEachRegularChannelCmd:00000000 ADC_EOCOnEachRegularChannelCmd
+     /tmp/ccoQ9cIJ.s:856    .text.ADC_ContinuousModeCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:862    .text.ADC_ContinuousModeCmd:00000000 ADC_ContinuousModeCmd
+     /tmp/ccoQ9cIJ.s:895    .text.ADC_DiscModeChannelCountConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:901    .text.ADC_DiscModeChannelCountConfig:00000000 ADC_DiscModeChannelCountConfig
+     /tmp/ccoQ9cIJ.s:938    .text.ADC_DiscModeCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:944    .text.ADC_DiscModeCmd:00000000 ADC_DiscModeCmd
+     /tmp/ccoQ9cIJ.s:977    .text.ADC_GetConversionValue:00000000 $t
+     /tmp/ccoQ9cIJ.s:983    .text.ADC_GetConversionValue:00000000 ADC_GetConversionValue
+     /tmp/ccoQ9cIJ.s:1003   .text.ADC_GetMultiModeConversionValue:00000000 $t
+     /tmp/ccoQ9cIJ.s:1009   .text.ADC_GetMultiModeConversionValue:00000000 ADC_GetMultiModeConversionValue
+     /tmp/ccoQ9cIJ.s:1025   .text.ADC_GetMultiModeConversionValue:00000008 $d
+     /tmp/ccoQ9cIJ.s:1030   .text.ADC_DMACmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:1036   .text.ADC_DMACmd:00000000 ADC_DMACmd
+     /tmp/ccoQ9cIJ.s:1069   .text.ADC_DMARequestAfterLastTransferCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:1075   .text.ADC_DMARequestAfterLastTransferCmd:00000000 ADC_DMARequestAfterLastTransferCmd
+     /tmp/ccoQ9cIJ.s:1108   .text.ADC_MultiModeDMARequestAfterLastTransferCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:1114   .text.ADC_MultiModeDMARequestAfterLastTransferCmd:00000000 ADC_MultiModeDMARequestAfterLastTransferCmd
+     /tmp/ccoQ9cIJ.s:1147   .text.ADC_MultiModeDMARequestAfterLastTransferCmd:0000001c $d
+     /tmp/ccoQ9cIJ.s:1152   .text.ADC_InjectedChannelConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:1158   .text.ADC_InjectedChannelConfig:00000000 ADC_InjectedChannelConfig
+     /tmp/ccoQ9cIJ.s:1297   .text.ADC_InjectedSequencerLengthConfig:00000000 $t
+ARM GAS  /tmp/ccoQ9cIJ.s 			page 66
 
 
-     /tmp/ccbGwUah.s:1303   .text.ADC_InjectedSequencerLengthConfig:00000000 ADC_InjectedSequencerLengthConfig
-     /tmp/ccbGwUah.s:1340   .text.ADC_SetInjectedOffset:00000000 $t
-     /tmp/ccbGwUah.s:1346   .text.ADC_SetInjectedOffset:00000000 ADC_SetInjectedOffset
-     /tmp/ccbGwUah.s:1390   .text.ADC_ExternalTrigInjectedConvConfig:00000000 $t
-     /tmp/ccbGwUah.s:1396   .text.ADC_ExternalTrigInjectedConvConfig:00000000 ADC_ExternalTrigInjectedConvConfig
-     /tmp/ccbGwUah.s:1428   .text.ADC_ExternalTrigInjectedConvEdgeConfig:00000000 $t
-     /tmp/ccbGwUah.s:1434   .text.ADC_ExternalTrigInjectedConvEdgeConfig:00000000 ADC_ExternalTrigInjectedConvEdgeConfig
-     /tmp/ccbGwUah.s:1466   .text.ADC_SoftwareStartInjectedConv:00000000 $t
-     /tmp/ccbGwUah.s:1472   .text.ADC_SoftwareStartInjectedConv:00000000 ADC_SoftwareStartInjectedConv
-     /tmp/ccbGwUah.s:1493   .text.ADC_GetSoftwareStartInjectedConvCmdStatus:00000000 $t
-     /tmp/ccbGwUah.s:1499   .text.ADC_GetSoftwareStartInjectedConvCmdStatus:00000000 ADC_GetSoftwareStartInjectedConvCmdStatus
-     /tmp/ccbGwUah.s:1532   .text.ADC_AutoInjectedConvCmd:00000000 $t
-     /tmp/ccbGwUah.s:1538   .text.ADC_AutoInjectedConvCmd:00000000 ADC_AutoInjectedConvCmd
-     /tmp/ccbGwUah.s:1571   .text.ADC_InjectedDiscModeCmd:00000000 $t
-     /tmp/ccbGwUah.s:1577   .text.ADC_InjectedDiscModeCmd:00000000 ADC_InjectedDiscModeCmd
-     /tmp/ccbGwUah.s:1610   .text.ADC_GetInjectedConversionValue:00000000 $t
-     /tmp/ccbGwUah.s:1616   .text.ADC_GetInjectedConversionValue:00000000 ADC_GetInjectedConversionValue
-     /tmp/ccbGwUah.s:1662   .text.ADC_ITConfig:00000000 $t
-     /tmp/ccbGwUah.s:1668   .text.ADC_ITConfig:00000000 ADC_ITConfig
-     /tmp/ccbGwUah.s:1719   .text.ADC_GetFlagStatus:00000000 $t
-     /tmp/ccbGwUah.s:1725   .text.ADC_GetFlagStatus:00000000 ADC_GetFlagStatus
-     /tmp/ccbGwUah.s:1759   .text.ADC_ClearFlag:00000000 $t
-     /tmp/ccbGwUah.s:1765   .text.ADC_ClearFlag:00000000 ADC_ClearFlag
-     /tmp/ccbGwUah.s:1787   .text.ADC_GetITStatus:00000000 $t
-     /tmp/ccbGwUah.s:1793   .text.ADC_GetITStatus:00000000 ADC_GetITStatus
-     /tmp/ccbGwUah.s:1849   .text.ADC_ClearITPendingBit:00000000 $t
-     /tmp/ccbGwUah.s:1855   .text.ADC_ClearITPendingBit:00000000 ADC_ClearITPendingBit
+     /tmp/ccoQ9cIJ.s:1303   .text.ADC_InjectedSequencerLengthConfig:00000000 ADC_InjectedSequencerLengthConfig
+     /tmp/ccoQ9cIJ.s:1340   .text.ADC_SetInjectedOffset:00000000 $t
+     /tmp/ccoQ9cIJ.s:1346   .text.ADC_SetInjectedOffset:00000000 ADC_SetInjectedOffset
+     /tmp/ccoQ9cIJ.s:1390   .text.ADC_ExternalTrigInjectedConvConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:1396   .text.ADC_ExternalTrigInjectedConvConfig:00000000 ADC_ExternalTrigInjectedConvConfig
+     /tmp/ccoQ9cIJ.s:1428   .text.ADC_ExternalTrigInjectedConvEdgeConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:1434   .text.ADC_ExternalTrigInjectedConvEdgeConfig:00000000 ADC_ExternalTrigInjectedConvEdgeConfig
+     /tmp/ccoQ9cIJ.s:1466   .text.ADC_SoftwareStartInjectedConv:00000000 $t
+     /tmp/ccoQ9cIJ.s:1472   .text.ADC_SoftwareStartInjectedConv:00000000 ADC_SoftwareStartInjectedConv
+     /tmp/ccoQ9cIJ.s:1493   .text.ADC_GetSoftwareStartInjectedConvCmdStatus:00000000 $t
+     /tmp/ccoQ9cIJ.s:1499   .text.ADC_GetSoftwareStartInjectedConvCmdStatus:00000000 ADC_GetSoftwareStartInjectedConvCmdStatus
+     /tmp/ccoQ9cIJ.s:1532   .text.ADC_AutoInjectedConvCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:1538   .text.ADC_AutoInjectedConvCmd:00000000 ADC_AutoInjectedConvCmd
+     /tmp/ccoQ9cIJ.s:1571   .text.ADC_InjectedDiscModeCmd:00000000 $t
+     /tmp/ccoQ9cIJ.s:1577   .text.ADC_InjectedDiscModeCmd:00000000 ADC_InjectedDiscModeCmd
+     /tmp/ccoQ9cIJ.s:1610   .text.ADC_GetInjectedConversionValue:00000000 $t
+     /tmp/ccoQ9cIJ.s:1616   .text.ADC_GetInjectedConversionValue:00000000 ADC_GetInjectedConversionValue
+     /tmp/ccoQ9cIJ.s:1662   .text.ADC_ITConfig:00000000 $t
+     /tmp/ccoQ9cIJ.s:1668   .text.ADC_ITConfig:00000000 ADC_ITConfig
+     /tmp/ccoQ9cIJ.s:1719   .text.ADC_GetFlagStatus:00000000 $t
+     /tmp/ccoQ9cIJ.s:1725   .text.ADC_GetFlagStatus:00000000 ADC_GetFlagStatus
+     /tmp/ccoQ9cIJ.s:1759   .text.ADC_ClearFlag:00000000 $t
+     /tmp/ccoQ9cIJ.s:1765   .text.ADC_ClearFlag:00000000 ADC_ClearFlag
+     /tmp/ccoQ9cIJ.s:1787   .text.ADC_GetITStatus:00000000 $t
+     /tmp/ccoQ9cIJ.s:1793   .text.ADC_GetITStatus:00000000 ADC_GetITStatus
+     /tmp/ccoQ9cIJ.s:1849   .text.ADC_ClearITPendingBit:00000000 $t
+     /tmp/ccoQ9cIJ.s:1855   .text.ADC_ClearITPendingBit:00000000 ADC_ClearITPendingBit
 
 UNDEFINED SYMBOLS
 RCC_APB2PeriphResetCmd

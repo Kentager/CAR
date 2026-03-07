@@ -10,7 +10,7 @@ void remove_task(uint8_t task_id);
 void start_task(uint8_t task_id);
 void stop_task(uint8_t task_id);
 void Task_Handler(void);
-uint32_t GetTick(void);
+uint32_t GetSysTick(void);
 void tdelay_ms(uint32_t ms);
 
 #endif /* __TASK_H */

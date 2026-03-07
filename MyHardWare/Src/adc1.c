@@ -9,6 +9,7 @@
 #include "usart.h"
 #include <stdint.h>
 /*
+使用TIM3
 采样频率100KHz
 采样间隔10us
 adc转换时间1.9us（adcclk:21mhz,adc采样周期28,转换时间12）

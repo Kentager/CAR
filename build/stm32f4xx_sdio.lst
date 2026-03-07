@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccGFKMzm.s 			page 1
+ARM GAS  /tmp/ccYaVwG3.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
   28:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****        (++) SDIO adapter clock (SDIOCLK = 48 MHz)
   29:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****        (++) APB2 bus clock (PCLK2)
   30:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****        
-ARM GAS  /tmp/ccGFKMzm.s 			page 2
+ARM GAS  /tmp/ccYaVwG3.s 			page 2
 
 
   31:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****        -@@- PCLK2 and SDIO_CK clock frequencies must respect the following condition:
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
   85:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****            SDIO_GetResponse() function.
   86:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   
   87:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****    (#) To control the DPSM (Data Path State Machine) and send/receive 
-ARM GAS  /tmp/ccGFKMzm.s 			page 3
+ARM GAS  /tmp/ccYaVwG3.s 			page 3
 
 
   88:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****        data to/from the card use the SDIO_DataConfig(), SDIO_GetDataCounter(), 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  142:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * in the root directory of this software component.
  143:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
  144:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *
-ARM GAS  /tmp/ccGFKMzm.s 			page 4
+ARM GAS  /tmp/ccYaVwG3.s 			page 4
 
 
  145:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   ******************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  199:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** #define DCTRL_RWSTART_BB          (PERIPH_BB_BASE + (DCTRL_OFFSET * 32) + (RWSTART_BitNumber * 4))
  200:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** 
  201:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** /* Alias word address of RWSTOP bit */
-ARM GAS  /tmp/ccGFKMzm.s 			page 5
+ARM GAS  /tmp/ccYaVwG3.s 			page 5
 
 
  202:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** #define RWSTOP_BitNumber          0x09
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  256:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @param  None
  257:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @retval None
  258:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   */
-ARM GAS  /tmp/ccGFKMzm.s 			page 6
+ARM GAS  /tmp/ccYaVwG3.s 			page 6
 
 
  259:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** void SDIO_DeInit(void)
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
   70              	.LCFI1:
   71              		.cfi_def_cfa_offset 4
   72              		.cfi_offset 4, -4
-ARM GAS  /tmp/ccGFKMzm.s 			page 7
+ARM GAS  /tmp/ccYaVwG3.s 			page 7
 
 
  274:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   uint32_t tmpreg = 0;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  103 001a 2343     		orrs	r3, r3, r4
  104              		.loc 1 297 80 view .LVU22
  105 001c 0468     		ldr	r4, [r0]
-ARM GAS  /tmp/ccGFKMzm.s 			page 8
+ARM GAS  /tmp/ccYaVwG3.s 			page 8
 
 
  106 001e 2343     		orrs	r3, r3, r4
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  313:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   SDIO_InitStruct->SDIO_ClockDiv = 0x00;
  146              		.loc 1 313 3 view .LVU30
  147              		.loc 1 313 34 is_stmt 0 view .LVU31
-ARM GAS  /tmp/ccGFKMzm.s 			page 9
+ARM GAS  /tmp/ccYaVwG3.s 			page 9
 
 
  148 0000 0023     		movs	r3, #0
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  332:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *(__IO uint32_t *) CLKCR_CLKEN_BB = (uint32_t)NewState;
  186              		.loc 1 332 3 view .LVU45
  187              		.loc 1 332 37 is_stmt 0 view .LVU46
-ARM GAS  /tmp/ccGFKMzm.s 			page 10
+ARM GAS  /tmp/ccYaVwG3.s 			page 10
 
 
  188 0000 014B     		ldr	r3, .L9
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  228              		.section	.text.SDIO_GetPowerState,"ax",%progbits
  229              		.align	1
  230              		.global	SDIO_GetPowerState
-ARM GAS  /tmp/ccGFKMzm.s 			page 11
+ARM GAS  /tmp/ccYaVwG3.s 			page 11
 
 
  231              		.syntax unified
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  372:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** @verbatim   
  373:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****  ===============================================================================
  374:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****         ##### Command path state machine (CPSM) management functions #####
-ARM GAS  /tmp/ccGFKMzm.s 			page 12
+ARM GAS  /tmp/ccYaVwG3.s 			page 12
 
 
  375:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****  ===============================================================================  
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  407:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   /* Get the SDIO CMD value */
  408:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   tmpreg = SDIO->CMD;
  288              		.loc 1 408 3 is_stmt 1 view .LVU67
-ARM GAS  /tmp/ccGFKMzm.s 			page 13
+ARM GAS  /tmp/ccYaVwG3.s 			page 13
 
 
  289              		.loc 1 408 10 is_stmt 0 view .LVU68
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  331              		.global	SDIO_CmdStructInit
  332              		.syntax unified
  333              		.thumb
-ARM GAS  /tmp/ccGFKMzm.s 			page 14
+ARM GAS  /tmp/ccYaVwG3.s 			page 14
 
 
  334              		.thumb_func
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  438:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** /**
  439:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @brief  Returns command index of last command for which response received.
  440:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @param  None
-ARM GAS  /tmp/ccGFKMzm.s 			page 15
+ARM GAS  /tmp/ccYaVwG3.s 			page 15
 
 
  441:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @retval Returns the command index of the last command response received.
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  411              		.cfi_def_cfa_offset 8
  460:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   __IO uint32_t tmp = 0;
  412              		.loc 1 460 3 is_stmt 1 view .LVU99
-ARM GAS  /tmp/ccGFKMzm.s 			page 16
+ARM GAS  /tmp/ccYaVwG3.s 			page 16
 
 
  413              		.loc 1 460 17 is_stmt 0 view .LVU100
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  478:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****  ===============================================================================
  479:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****          ##### Data path state machine (DPSM) management functions #####
  480:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****  ===============================================================================  
-ARM GAS  /tmp/ccGFKMzm.s 			page 17
+ARM GAS  /tmp/ccYaVwG3.s 			page 17
 
 
  481:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  512:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   /* Set the SDIO DataLength value */
  513:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   SDIO->DLEN = SDIO_DataInitStruct->SDIO_DataLength;
  475              		.loc 1 513 3 is_stmt 1 view .LVU120
-ARM GAS  /tmp/ccGFKMzm.s 			page 18
+ARM GAS  /tmp/ccYaVwG3.s 			page 18
 
 
  476              		.loc 1 513 35 is_stmt 0 view .LVU121
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  513 0028 7047     		bx	lr
  514              	.L32:
  515 002a 00BF     		.align	2
-ARM GAS  /tmp/ccGFKMzm.s 			page 19
+ARM GAS  /tmp/ccYaVwG3.s 			page 19
 
 
  516              	.L31:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  546:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** }
  556              		.loc 1 546 1 view .LVU150
  557 0012 7047     		bx	lr
-ARM GAS  /tmp/ccGFKMzm.s 			page 20
+ARM GAS  /tmp/ccYaVwG3.s 			page 20
 
 
  558              		.cfi_endproc
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  598              		.cfi_startproc
  599              		@ args = 0, pretend = 0, frame = 0
  600              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccGFKMzm.s 			page 21
+ARM GAS  /tmp/ccYaVwG3.s 			page 21
 
 
  601              		@ link register save eliminated.
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  646              		.syntax unified
  647              		.thumb
  648              		.thumb_func
-ARM GAS  /tmp/ccGFKMzm.s 			page 22
+ARM GAS  /tmp/ccYaVwG3.s 			page 22
 
 
  650              	SDIO_GetFIFOCount:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  603:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @{
  604:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   */
  605:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** 
-ARM GAS  /tmp/ccGFKMzm.s 			page 23
+ARM GAS  /tmp/ccYaVwG3.s 			page 23
 
 
  606:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** /**
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  628:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   /* Check the parameters */
  629:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   assert_param(IS_FUNCTIONAL_STATE(NewState));
  714              		.loc 1 629 3 view .LVU173
-ARM GAS  /tmp/ccGFKMzm.s 			page 24
+ARM GAS  /tmp/ccYaVwG3.s 			page 24
 
 
  630:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  752              	.L53:
  753 0008 00802542 		.word	1109753856
  754              		.cfi_endproc
-ARM GAS  /tmp/ccGFKMzm.s 			page 25
+ARM GAS  /tmp/ccYaVwG3.s 			page 25
 
 
  755              	.LFE141:
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  666:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @param  NewState: new state of the SD I/O Mode suspend command.
  667:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *         This parameter can be: ENABLE or DISABLE.
  668:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @retval None
-ARM GAS  /tmp/ccGFKMzm.s 			page 26
+ARM GAS  /tmp/ccYaVwG3.s 			page 26
 
 
  669:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   */
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  696:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** /**
  697:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @brief  Enables or disables the command completion signal.
  698:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   * @param  NewState: new state of command completion signal. 
-ARM GAS  /tmp/ccGFKMzm.s 			page 27
+ARM GAS  /tmp/ccYaVwG3.s 			page 27
 
 
  699:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *         This parameter can be: ENABLE or DISABLE.
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  720:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   
  721:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *(__IO uint32_t *) CMD_NIEN_BB = (uint32_t)((~((uint32_t)NewState)) & ((uint32_t)0x1));
  860              		.loc 1 721 3 view .LVU199
-ARM GAS  /tmp/ccGFKMzm.s 			page 28
+ARM GAS  /tmp/ccYaVwG3.s 			page 28
 
 
  861              		.loc 1 721 36 is_stmt 0 view .LVU200
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  902              		.align	2
  903              	.L68:
  904 0008 00802542 		.word	1109753856
-ARM GAS  /tmp/ccGFKMzm.s 			page 29
+ARM GAS  /tmp/ccYaVwG3.s 			page 29
 
 
  905              		.cfi_endproc
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  929 0006 7047     		bx	lr
  930              	.L72:
  931              		.align	2
-ARM GAS  /tmp/ccGFKMzm.s 			page 30
+ARM GAS  /tmp/ccYaVwG3.s 			page 30
 
 
  932              	.L71:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  810:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_TXFIFOE:  Transmit FIFO empty interrupt
  811:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_RXFIFOE:  Receive FIFO empty interrupt
  812:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_TXDAVL:   Data available in transmit FIFO interrupt
-ARM GAS  /tmp/ccGFKMzm.s 			page 31
+ARM GAS  /tmp/ccYaVwG3.s 			page 31
 
 
  813:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_RXDAVL:   Data available in receive FIFO interrupt
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  977              	.L76:
  978 0018 002C0140 		.word	1073818624
  979              		.cfi_endproc
-ARM GAS  /tmp/ccGFKMzm.s 			page 32
+ARM GAS  /tmp/ccYaVwG3.s 			page 32
 
 
  980              	.LFE148:
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  874:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   
  875:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   if ((SDIO->STA & SDIO_FLAG) != (uint32_t)RESET)
  999              		.loc 1 875 3 view .LVU229
-ARM GAS  /tmp/ccGFKMzm.s 			page 33
+ARM GAS  /tmp/ccYaVwG3.s 			page 33
 
 
  1000              		.loc 1 875 12 is_stmt 0 view .LVU230
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  896:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_FLAG_CMDREND:  Command response received (CRC check passed)
  897:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_FLAG_CMDSENT:  Command sent (no response required)
  898:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_FLAG_DATAEND:  Data end (data counter, SDIDCOUNT, is zero)
-ARM GAS  /tmp/ccGFKMzm.s 			page 34
+ARM GAS  /tmp/ccYaVwG3.s 			page 34
 
 
  899:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_FLAG_STBITERR: Start bit not detected on all data signals in wide bus mode
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  926:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_STBITERR: Start bit not detected on all data signals in wide 
  927:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *                                   bus mode interrupt
  928:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_DBCKEND:  Data block sent/received (CRC check passed) interrupt
-ARM GAS  /tmp/ccGFKMzm.s 			page 35
+ARM GAS  /tmp/ccYaVwG3.s 			page 35
 
 
  929:Lib/StdPeriphs/src/stm32f4xx_sdio.c ****   *            @arg SDIO_IT_CMDACT:   Command transfer in progress interrupt
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  1089              		.loc 1 958 3 is_stmt 1 view .LVU251
  959:Lib/StdPeriphs/src/stm32f4xx_sdio.c **** }
  1090              		.loc 1 959 1 is_stmt 0 view .LVU252
-ARM GAS  /tmp/ccGFKMzm.s 			page 36
+ARM GAS  /tmp/ccYaVwG3.s 			page 36
 
 
  1091 000e 7047     		bx	lr
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  1120 0004 7047     		bx	lr
  1121              	.L93:
  1122 0006 00BF     		.align	2
-ARM GAS  /tmp/ccGFKMzm.s 			page 37
+ARM GAS  /tmp/ccYaVwG3.s 			page 37
 
 
  1123              	.L92:
@@ -2171,100 +2171,100 @@ ARM GAS  /tmp/ccGFKMzm.s 			page 1
  1131              		.file 3 "CMSIS/stm32f4xx.h"
  1132              		.file 4 "Lib/StdPeriphs/inc/stm32f4xx_sdio.h"
  1133              		.file 5 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
-ARM GAS  /tmp/ccGFKMzm.s 			page 38
+ARM GAS  /tmp/ccYaVwG3.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_sdio.c
-     /tmp/ccGFKMzm.s:21     .text.SDIO_DeInit:00000000 $t
-     /tmp/ccGFKMzm.s:27     .text.SDIO_DeInit:00000000 SDIO_DeInit
-     /tmp/ccGFKMzm.s:54     .text.SDIO_Init:00000000 $t
-     /tmp/ccGFKMzm.s:60     .text.SDIO_Init:00000000 SDIO_Init
-     /tmp/ccGFKMzm.s:127    .text.SDIO_Init:00000030 $d
-     /tmp/ccGFKMzm.s:132    .text.SDIO_StructInit:00000000 $t
-     /tmp/ccGFKMzm.s:138    .text.SDIO_StructInit:00000000 SDIO_StructInit
-     /tmp/ccGFKMzm.s:171    .text.SDIO_ClockCmd:00000000 $t
-     /tmp/ccGFKMzm.s:177    .text.SDIO_ClockCmd:00000000 SDIO_ClockCmd
-     /tmp/ccGFKMzm.s:195    .text.SDIO_ClockCmd:00000008 $d
-     /tmp/ccGFKMzm.s:200    .text.SDIO_SetPowerState:00000000 $t
-     /tmp/ccGFKMzm.s:206    .text.SDIO_SetPowerState:00000000 SDIO_SetPowerState
-     /tmp/ccGFKMzm.s:224    .text.SDIO_SetPowerState:00000008 $d
-     /tmp/ccGFKMzm.s:229    .text.SDIO_GetPowerState:00000000 $t
-     /tmp/ccGFKMzm.s:235    .text.SDIO_GetPowerState:00000000 SDIO_GetPowerState
-     /tmp/ccGFKMzm.s:252    .text.SDIO_GetPowerState:0000000c $d
-     /tmp/ccGFKMzm.s:257    .text.SDIO_SendCommand:00000000 $t
-     /tmp/ccGFKMzm.s:263    .text.SDIO_SendCommand:00000000 SDIO_SendCommand
-     /tmp/ccGFKMzm.s:325    .text.SDIO_SendCommand:00000028 $d
-     /tmp/ccGFKMzm.s:330    .text.SDIO_CmdStructInit:00000000 $t
-     /tmp/ccGFKMzm.s:336    .text.SDIO_CmdStructInit:00000000 SDIO_CmdStructInit
-     /tmp/ccGFKMzm.s:366    .text.SDIO_GetCommandResponse:00000000 $t
-     /tmp/ccGFKMzm.s:372    .text.SDIO_GetCommandResponse:00000000 SDIO_GetCommandResponse
-     /tmp/ccGFKMzm.s:389    .text.SDIO_GetCommandResponse:00000008 $d
-     /tmp/ccGFKMzm.s:394    .text.SDIO_GetResponse:00000000 $t
-     /tmp/ccGFKMzm.s:400    .text.SDIO_GetResponse:00000000 SDIO_GetResponse
-     /tmp/ccGFKMzm.s:438    .text.SDIO_GetResponse:00000014 $d
-     /tmp/ccGFKMzm.s:443    .text.SDIO_DataConfig:00000000 $t
-     /tmp/ccGFKMzm.s:449    .text.SDIO_DataConfig:00000000 SDIO_DataConfig
-     /tmp/ccGFKMzm.s:517    .text.SDIO_DataConfig:0000002c $d
-     /tmp/ccGFKMzm.s:522    .text.SDIO_DataStructInit:00000000 $t
-     /tmp/ccGFKMzm.s:528    .text.SDIO_DataStructInit:00000000 SDIO_DataStructInit
-     /tmp/ccGFKMzm.s:562    .text.SDIO_GetDataCounter:00000000 $t
-     /tmp/ccGFKMzm.s:568    .text.SDIO_GetDataCounter:00000000 SDIO_GetDataCounter
-     /tmp/ccGFKMzm.s:584    .text.SDIO_GetDataCounter:00000008 $d
-     /tmp/ccGFKMzm.s:589    .text.SDIO_ReadData:00000000 $t
-     /tmp/ccGFKMzm.s:595    .text.SDIO_ReadData:00000000 SDIO_ReadData
-     /tmp/ccGFKMzm.s:611    .text.SDIO_ReadData:00000008 $d
-     /tmp/ccGFKMzm.s:616    .text.SDIO_WriteData:00000000 $t
-     /tmp/ccGFKMzm.s:622    .text.SDIO_WriteData:00000000 SDIO_WriteData
-     /tmp/ccGFKMzm.s:639    .text.SDIO_WriteData:00000008 $d
-     /tmp/ccGFKMzm.s:644    .text.SDIO_GetFIFOCount:00000000 $t
-     /tmp/ccGFKMzm.s:650    .text.SDIO_GetFIFOCount:00000000 SDIO_GetFIFOCount
-     /tmp/ccGFKMzm.s:666    .text.SDIO_GetFIFOCount:00000008 $d
-     /tmp/ccGFKMzm.s:671    .text.SDIO_StartSDIOReadWait:00000000 $t
-     /tmp/ccGFKMzm.s:677    .text.SDIO_StartSDIOReadWait:00000000 SDIO_StartSDIOReadWait
-     /tmp/ccGFKMzm.s:695    .text.SDIO_StartSDIOReadWait:00000008 $d
-     /tmp/ccGFKMzm.s:700    .text.SDIO_StopSDIOReadWait:00000000 $t
-     /tmp/ccGFKMzm.s:706    .text.SDIO_StopSDIOReadWait:00000000 SDIO_StopSDIOReadWait
-     /tmp/ccGFKMzm.s:724    .text.SDIO_StopSDIOReadWait:00000008 $d
-     /tmp/ccGFKMzm.s:729    .text.SDIO_SetSDIOReadWaitMode:00000000 $t
-     /tmp/ccGFKMzm.s:735    .text.SDIO_SetSDIOReadWaitMode:00000000 SDIO_SetSDIOReadWaitMode
-     /tmp/ccGFKMzm.s:753    .text.SDIO_SetSDIOReadWaitMode:00000008 $d
-     /tmp/ccGFKMzm.s:758    .text.SDIO_SetSDIOOperation:00000000 $t
-     /tmp/ccGFKMzm.s:764    .text.SDIO_SetSDIOOperation:00000000 SDIO_SetSDIOOperation
-ARM GAS  /tmp/ccGFKMzm.s 			page 39
+     /tmp/ccYaVwG3.s:21     .text.SDIO_DeInit:00000000 $t
+     /tmp/ccYaVwG3.s:27     .text.SDIO_DeInit:00000000 SDIO_DeInit
+     /tmp/ccYaVwG3.s:54     .text.SDIO_Init:00000000 $t
+     /tmp/ccYaVwG3.s:60     .text.SDIO_Init:00000000 SDIO_Init
+     /tmp/ccYaVwG3.s:127    .text.SDIO_Init:00000030 $d
+     /tmp/ccYaVwG3.s:132    .text.SDIO_StructInit:00000000 $t
+     /tmp/ccYaVwG3.s:138    .text.SDIO_StructInit:00000000 SDIO_StructInit
+     /tmp/ccYaVwG3.s:171    .text.SDIO_ClockCmd:00000000 $t
+     /tmp/ccYaVwG3.s:177    .text.SDIO_ClockCmd:00000000 SDIO_ClockCmd
+     /tmp/ccYaVwG3.s:195    .text.SDIO_ClockCmd:00000008 $d
+     /tmp/ccYaVwG3.s:200    .text.SDIO_SetPowerState:00000000 $t
+     /tmp/ccYaVwG3.s:206    .text.SDIO_SetPowerState:00000000 SDIO_SetPowerState
+     /tmp/ccYaVwG3.s:224    .text.SDIO_SetPowerState:00000008 $d
+     /tmp/ccYaVwG3.s:229    .text.SDIO_GetPowerState:00000000 $t
+     /tmp/ccYaVwG3.s:235    .text.SDIO_GetPowerState:00000000 SDIO_GetPowerState
+     /tmp/ccYaVwG3.s:252    .text.SDIO_GetPowerState:0000000c $d
+     /tmp/ccYaVwG3.s:257    .text.SDIO_SendCommand:00000000 $t
+     /tmp/ccYaVwG3.s:263    .text.SDIO_SendCommand:00000000 SDIO_SendCommand
+     /tmp/ccYaVwG3.s:325    .text.SDIO_SendCommand:00000028 $d
+     /tmp/ccYaVwG3.s:330    .text.SDIO_CmdStructInit:00000000 $t
+     /tmp/ccYaVwG3.s:336    .text.SDIO_CmdStructInit:00000000 SDIO_CmdStructInit
+     /tmp/ccYaVwG3.s:366    .text.SDIO_GetCommandResponse:00000000 $t
+     /tmp/ccYaVwG3.s:372    .text.SDIO_GetCommandResponse:00000000 SDIO_GetCommandResponse
+     /tmp/ccYaVwG3.s:389    .text.SDIO_GetCommandResponse:00000008 $d
+     /tmp/ccYaVwG3.s:394    .text.SDIO_GetResponse:00000000 $t
+     /tmp/ccYaVwG3.s:400    .text.SDIO_GetResponse:00000000 SDIO_GetResponse
+     /tmp/ccYaVwG3.s:438    .text.SDIO_GetResponse:00000014 $d
+     /tmp/ccYaVwG3.s:443    .text.SDIO_DataConfig:00000000 $t
+     /tmp/ccYaVwG3.s:449    .text.SDIO_DataConfig:00000000 SDIO_DataConfig
+     /tmp/ccYaVwG3.s:517    .text.SDIO_DataConfig:0000002c $d
+     /tmp/ccYaVwG3.s:522    .text.SDIO_DataStructInit:00000000 $t
+     /tmp/ccYaVwG3.s:528    .text.SDIO_DataStructInit:00000000 SDIO_DataStructInit
+     /tmp/ccYaVwG3.s:562    .text.SDIO_GetDataCounter:00000000 $t
+     /tmp/ccYaVwG3.s:568    .text.SDIO_GetDataCounter:00000000 SDIO_GetDataCounter
+     /tmp/ccYaVwG3.s:584    .text.SDIO_GetDataCounter:00000008 $d
+     /tmp/ccYaVwG3.s:589    .text.SDIO_ReadData:00000000 $t
+     /tmp/ccYaVwG3.s:595    .text.SDIO_ReadData:00000000 SDIO_ReadData
+     /tmp/ccYaVwG3.s:611    .text.SDIO_ReadData:00000008 $d
+     /tmp/ccYaVwG3.s:616    .text.SDIO_WriteData:00000000 $t
+     /tmp/ccYaVwG3.s:622    .text.SDIO_WriteData:00000000 SDIO_WriteData
+     /tmp/ccYaVwG3.s:639    .text.SDIO_WriteData:00000008 $d
+     /tmp/ccYaVwG3.s:644    .text.SDIO_GetFIFOCount:00000000 $t
+     /tmp/ccYaVwG3.s:650    .text.SDIO_GetFIFOCount:00000000 SDIO_GetFIFOCount
+     /tmp/ccYaVwG3.s:666    .text.SDIO_GetFIFOCount:00000008 $d
+     /tmp/ccYaVwG3.s:671    .text.SDIO_StartSDIOReadWait:00000000 $t
+     /tmp/ccYaVwG3.s:677    .text.SDIO_StartSDIOReadWait:00000000 SDIO_StartSDIOReadWait
+     /tmp/ccYaVwG3.s:695    .text.SDIO_StartSDIOReadWait:00000008 $d
+     /tmp/ccYaVwG3.s:700    .text.SDIO_StopSDIOReadWait:00000000 $t
+     /tmp/ccYaVwG3.s:706    .text.SDIO_StopSDIOReadWait:00000000 SDIO_StopSDIOReadWait
+     /tmp/ccYaVwG3.s:724    .text.SDIO_StopSDIOReadWait:00000008 $d
+     /tmp/ccYaVwG3.s:729    .text.SDIO_SetSDIOReadWaitMode:00000000 $t
+     /tmp/ccYaVwG3.s:735    .text.SDIO_SetSDIOReadWaitMode:00000000 SDIO_SetSDIOReadWaitMode
+     /tmp/ccYaVwG3.s:753    .text.SDIO_SetSDIOReadWaitMode:00000008 $d
+     /tmp/ccYaVwG3.s:758    .text.SDIO_SetSDIOOperation:00000000 $t
+     /tmp/ccYaVwG3.s:764    .text.SDIO_SetSDIOOperation:00000000 SDIO_SetSDIOOperation
+ARM GAS  /tmp/ccYaVwG3.s 			page 39
 
 
-     /tmp/ccGFKMzm.s:782    .text.SDIO_SetSDIOOperation:00000008 $d
-     /tmp/ccGFKMzm.s:787    .text.SDIO_SendSDIOSuspendCmd:00000000 $t
-     /tmp/ccGFKMzm.s:793    .text.SDIO_SendSDIOSuspendCmd:00000000 SDIO_SendSDIOSuspendCmd
-     /tmp/ccGFKMzm.s:811    .text.SDIO_SendSDIOSuspendCmd:00000008 $d
-     /tmp/ccGFKMzm.s:816    .text.SDIO_CommandCompletionCmd:00000000 $t
-     /tmp/ccGFKMzm.s:822    .text.SDIO_CommandCompletionCmd:00000000 SDIO_CommandCompletionCmd
-     /tmp/ccGFKMzm.s:840    .text.SDIO_CommandCompletionCmd:00000008 $d
-     /tmp/ccGFKMzm.s:845    .text.SDIO_CEATAITCmd:00000000 $t
-     /tmp/ccGFKMzm.s:851    .text.SDIO_CEATAITCmd:00000000 SDIO_CEATAITCmd
-     /tmp/ccGFKMzm.s:875    .text.SDIO_CEATAITCmd:00000010 $d
-     /tmp/ccGFKMzm.s:880    .text.SDIO_SendCEATACmd:00000000 $t
-     /tmp/ccGFKMzm.s:886    .text.SDIO_SendCEATACmd:00000000 SDIO_SendCEATACmd
-     /tmp/ccGFKMzm.s:904    .text.SDIO_SendCEATACmd:00000008 $d
-     /tmp/ccGFKMzm.s:909    .text.SDIO_DMACmd:00000000 $t
-     /tmp/ccGFKMzm.s:915    .text.SDIO_DMACmd:00000000 SDIO_DMACmd
-     /tmp/ccGFKMzm.s:933    .text.SDIO_DMACmd:00000008 $d
-     /tmp/ccGFKMzm.s:938    .text.SDIO_ITConfig:00000000 $t
-     /tmp/ccGFKMzm.s:944    .text.SDIO_ITConfig:00000000 SDIO_ITConfig
-     /tmp/ccGFKMzm.s:978    .text.SDIO_ITConfig:00000018 $d
-     /tmp/ccGFKMzm.s:983    .text.SDIO_GetFlagStatus:00000000 $t
-     /tmp/ccGFKMzm.s:989    .text.SDIO_GetFlagStatus:00000000 SDIO_GetFlagStatus
-     /tmp/ccGFKMzm.s:1022   .text.SDIO_GetFlagStatus:00000010 $d
-     /tmp/ccGFKMzm.s:1027   .text.SDIO_ClearFlag:00000000 $t
-     /tmp/ccGFKMzm.s:1033   .text.SDIO_ClearFlag:00000000 SDIO_ClearFlag
-     /tmp/ccGFKMzm.s:1051   .text.SDIO_ClearFlag:00000008 $d
-     /tmp/ccGFKMzm.s:1056   .text.SDIO_GetITStatus:00000000 $t
-     /tmp/ccGFKMzm.s:1062   .text.SDIO_GetITStatus:00000000 SDIO_GetITStatus
-     /tmp/ccGFKMzm.s:1095   .text.SDIO_GetITStatus:00000010 $d
-     /tmp/ccGFKMzm.s:1100   .text.SDIO_ClearITPendingBit:00000000 $t
-     /tmp/ccGFKMzm.s:1106   .text.SDIO_ClearITPendingBit:00000000 SDIO_ClearITPendingBit
-     /tmp/ccGFKMzm.s:1124   .text.SDIO_ClearITPendingBit:00000008 $d
+     /tmp/ccYaVwG3.s:782    .text.SDIO_SetSDIOOperation:00000008 $d
+     /tmp/ccYaVwG3.s:787    .text.SDIO_SendSDIOSuspendCmd:00000000 $t
+     /tmp/ccYaVwG3.s:793    .text.SDIO_SendSDIOSuspendCmd:00000000 SDIO_SendSDIOSuspendCmd
+     /tmp/ccYaVwG3.s:811    .text.SDIO_SendSDIOSuspendCmd:00000008 $d
+     /tmp/ccYaVwG3.s:816    .text.SDIO_CommandCompletionCmd:00000000 $t
+     /tmp/ccYaVwG3.s:822    .text.SDIO_CommandCompletionCmd:00000000 SDIO_CommandCompletionCmd
+     /tmp/ccYaVwG3.s:840    .text.SDIO_CommandCompletionCmd:00000008 $d
+     /tmp/ccYaVwG3.s:845    .text.SDIO_CEATAITCmd:00000000 $t
+     /tmp/ccYaVwG3.s:851    .text.SDIO_CEATAITCmd:00000000 SDIO_CEATAITCmd
+     /tmp/ccYaVwG3.s:875    .text.SDIO_CEATAITCmd:00000010 $d
+     /tmp/ccYaVwG3.s:880    .text.SDIO_SendCEATACmd:00000000 $t
+     /tmp/ccYaVwG3.s:886    .text.SDIO_SendCEATACmd:00000000 SDIO_SendCEATACmd
+     /tmp/ccYaVwG3.s:904    .text.SDIO_SendCEATACmd:00000008 $d
+     /tmp/ccYaVwG3.s:909    .text.SDIO_DMACmd:00000000 $t
+     /tmp/ccYaVwG3.s:915    .text.SDIO_DMACmd:00000000 SDIO_DMACmd
+     /tmp/ccYaVwG3.s:933    .text.SDIO_DMACmd:00000008 $d
+     /tmp/ccYaVwG3.s:938    .text.SDIO_ITConfig:00000000 $t
+     /tmp/ccYaVwG3.s:944    .text.SDIO_ITConfig:00000000 SDIO_ITConfig
+     /tmp/ccYaVwG3.s:978    .text.SDIO_ITConfig:00000018 $d
+     /tmp/ccYaVwG3.s:983    .text.SDIO_GetFlagStatus:00000000 $t
+     /tmp/ccYaVwG3.s:989    .text.SDIO_GetFlagStatus:00000000 SDIO_GetFlagStatus
+     /tmp/ccYaVwG3.s:1022   .text.SDIO_GetFlagStatus:00000010 $d
+     /tmp/ccYaVwG3.s:1027   .text.SDIO_ClearFlag:00000000 $t
+     /tmp/ccYaVwG3.s:1033   .text.SDIO_ClearFlag:00000000 SDIO_ClearFlag
+     /tmp/ccYaVwG3.s:1051   .text.SDIO_ClearFlag:00000008 $d
+     /tmp/ccYaVwG3.s:1056   .text.SDIO_GetITStatus:00000000 $t
+     /tmp/ccYaVwG3.s:1062   .text.SDIO_GetITStatus:00000000 SDIO_GetITStatus
+     /tmp/ccYaVwG3.s:1095   .text.SDIO_GetITStatus:00000010 $d
+     /tmp/ccYaVwG3.s:1100   .text.SDIO_ClearITPendingBit:00000000 $t
+     /tmp/ccYaVwG3.s:1106   .text.SDIO_ClearITPendingBit:00000000 SDIO_ClearITPendingBit
+     /tmp/ccYaVwG3.s:1124   .text.SDIO_ClearITPendingBit:00000008 $d
 
 UNDEFINED SYMBOLS
 RCC_APB2PeriphResetCmd

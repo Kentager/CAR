@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cccX7lTn.s 			page 1
+ARM GAS  /tmp/ccZKwEQ1.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -35,10 +35,10 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
    5:MyHardWare/Src/task.c **** 
    6:MyHardWare/Src/task.c **** // 任务结构体定义
    7:MyHardWare/Src/task.c **** typedef struct {
-   8:MyHardWare/Src/task.c ****     void (*task_func)(void);     // 任务函数指针
-   9:MyHardWare/Src/task.c ****     uint32_t period_ms;          // 任务执行周期（毫秒）
-  10:MyHardWare/Src/task.c ****     uint32_t last_run_tick;      // 上次运行时的tick值
-  11:MyHardWare/Src/task.c ****     uint8_t active;              // 任务是否激活
+   8:MyHardWare/Src/task.c ****   void (*task_func)(void); // 任务函数指针
+   9:MyHardWare/Src/task.c ****   uint32_t period_ms;      // 任务执行周期（毫秒）
+  10:MyHardWare/Src/task.c ****   uint32_t last_run_tick;  // 上次运行时的tick值
+  11:MyHardWare/Src/task.c ****   uint8_t active;          // 任务是否激活
   12:MyHardWare/Src/task.c **** } task_item_t;
   13:MyHardWare/Src/task.c **** 
   14:MyHardWare/Src/task.c **** // 定义最大任务数量
@@ -55,60 +55,60 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
   31              		@ args = 0, pretend = 0, frame = 0
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
-  23:MyHardWare/Src/task.c ****     // 初始化任务池
-  24:MyHardWare/Src/task.c ****     for(int i = 0; i < MAX_TASKS; i++) {
-  34              		.loc 1 24 5 view .LVU1
-ARM GAS  /tmp/cccX7lTn.s 			page 2
+  23:MyHardWare/Src/task.c ****   // 初始化任务池
+  24:MyHardWare/Src/task.c ****   for (int i = 0; i < MAX_TASKS; i++) {
+  34              		.loc 1 24 3 view .LVU1
+ARM GAS  /tmp/ccZKwEQ1.s 			page 2
 
 
   35              	.LBB13:
-  36              		.loc 1 24 9 view .LVU2
+  36              		.loc 1 24 8 view .LVU2
   37              	.LVL0:
-  38              		.loc 1 24 13 is_stmt 0 view .LVU3
+  38              		.loc 1 24 12 is_stmt 0 view .LVU3
   39 0000 0023     		movs	r3, #0
-  40              		.loc 1 24 5 view .LVU4
+  40              		.loc 1 24 3 view .LVU4
   41 0002 0BE0     		b	.L2
   42              	.LVL1:
   43              	.L3:
-  25:MyHardWare/Src/task.c ****         task_pool[i].task_func = NULL;
-  44              		.loc 1 25 9 is_stmt 1 view .LVU5
-  45              		.loc 1 25 32 is_stmt 0 view .LVU6
+  25:MyHardWare/Src/task.c ****     task_pool[i].task_func = NULL;
+  44              		.loc 1 25 5 is_stmt 1 view .LVU5
+  45              		.loc 1 25 28 is_stmt 0 view .LVU6
   46 0004 1248     		ldr	r0, .L6
   47 0006 4FEA031C 		lsl	ip, r3, #4
   48 000a 00EB0311 		add	r1, r0, r3, lsl #4
   49 000e 0022     		movs	r2, #0
   50 0010 40F80C20 		str	r2, [r0, ip]
-  26:MyHardWare/Src/task.c ****         task_pool[i].period_ms = 0;
-  51              		.loc 1 26 9 is_stmt 1 view .LVU7
-  52              		.loc 1 26 32 is_stmt 0 view .LVU8
+  26:MyHardWare/Src/task.c ****     task_pool[i].period_ms = 0;
+  51              		.loc 1 26 5 is_stmt 1 view .LVU7
+  52              		.loc 1 26 28 is_stmt 0 view .LVU8
   53 0014 4A60     		str	r2, [r1, #4]
-  27:MyHardWare/Src/task.c ****         task_pool[i].last_run_tick = 0;
-  54              		.loc 1 27 9 is_stmt 1 view .LVU9
-  55              		.loc 1 27 36 is_stmt 0 view .LVU10
+  27:MyHardWare/Src/task.c ****     task_pool[i].last_run_tick = 0;
+  54              		.loc 1 27 5 is_stmt 1 view .LVU9
+  55              		.loc 1 27 32 is_stmt 0 view .LVU10
   56 0016 8A60     		str	r2, [r1, #8]
-  28:MyHardWare/Src/task.c ****         task_pool[i].active = 0;
-  57              		.loc 1 28 9 is_stmt 1 view .LVU11
-  58              		.loc 1 28 29 is_stmt 0 view .LVU12
+  28:MyHardWare/Src/task.c ****     task_pool[i].active = 0;
+  57              		.loc 1 28 5 is_stmt 1 view .LVU11
+  58              		.loc 1 28 25 is_stmt 0 view .LVU12
   59 0018 0A73     		strb	r2, [r1, #12]
-  24:MyHardWare/Src/task.c ****         task_pool[i].task_func = NULL;
-  60              		.loc 1 24 36 is_stmt 1 discriminator 3 view .LVU13
+  24:MyHardWare/Src/task.c ****     task_pool[i].task_func = NULL;
+  60              		.loc 1 24 35 is_stmt 1 discriminator 3 view .LVU13
   61 001a 0133     		adds	r3, r3, #1
   62              	.LVL2:
   63              	.L2:
-  24:MyHardWare/Src/task.c ****         task_pool[i].task_func = NULL;
-  64              		.loc 1 24 22 discriminator 1 view .LVU14
+  24:MyHardWare/Src/task.c ****     task_pool[i].task_func = NULL;
+  64              		.loc 1 24 21 discriminator 1 view .LVU14
   65 001c 092B     		cmp	r3, #9
   66 001e F1DD     		ble	.L3
   67              	.LBE13:
-  29:MyHardWare/Src/task.c ****     }
-  30:MyHardWare/Src/task.c ****     
-  31:MyHardWare/Src/task.c ****     // 配置SysTick为1ms中断（基于系统时钟频率）
-  32:MyHardWare/Src/task.c ****     if (SysTick_Config(SystemCoreClock / 1000)) {
-  68              		.loc 1 32 5 view .LVU15
-  69              		.loc 1 32 9 is_stmt 0 view .LVU16
+  29:MyHardWare/Src/task.c ****   }
+  30:MyHardWare/Src/task.c **** 
+  31:MyHardWare/Src/task.c ****   // 配置SysTick为1ms中断（基于系统时钟频率）
+  32:MyHardWare/Src/task.c ****   if (SysTick_Config(SystemCoreClock / 1000)) {
+  68              		.loc 1 32 3 view .LVU15
+  69              		.loc 1 32 7 is_stmt 0 view .LVU16
   70 0020 0C4B     		ldr	r3, .L6+4
   71              	.LVL3:
-  72              		.loc 1 32 9 view .LVU17
+  72              		.loc 1 32 7 view .LVU17
   73 0022 1B68     		ldr	r3, [r3]
   74 0024 0C4A     		ldr	r2, .L6+8
   75 0026 A2FB0323 		umull	r2, r3, r2, r3
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
   79              	.LBI14:
   80              		.file 2 "CMSIS/core_cm4.h"
    1:CMSIS/core_cm4.h **** /**************************************************************************//**
-ARM GAS  /tmp/cccX7lTn.s 			page 3
+ARM GAS  /tmp/ccZKwEQ1.s 			page 3
 
 
    2:CMSIS/core_cm4.h ****  * @file     core_cm4.h
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
   56:CMSIS/core_cm4.h ****      Unions are used for effective representation of core registers.
   57:CMSIS/core_cm4.h **** 
   58:CMSIS/core_cm4.h ****    \li Advisory Rule 19.7, Function-like macro defined.<br>
-ARM GAS  /tmp/cccX7lTn.s 			page 4
+ARM GAS  /tmp/ccZKwEQ1.s 			page 4
 
 
   59:CMSIS/core_cm4.h ****      Function-like macros are used to allow more efficient code.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  113:CMSIS/core_cm4.h **** */
  114:CMSIS/core_cm4.h **** #if defined ( __CC_ARM )
  115:CMSIS/core_cm4.h ****   #if defined __TARGET_FPU_VFP
-ARM GAS  /tmp/cccX7lTn.s 			page 5
+ARM GAS  /tmp/ccZKwEQ1.s 			page 5
 
 
  116:CMSIS/core_cm4.h ****     #if (__FPU_PRESENT == 1)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  170:CMSIS/core_cm4.h ****   #else
  171:CMSIS/core_cm4.h ****     #define __FPU_USED         0
  172:CMSIS/core_cm4.h ****   #endif
-ARM GAS  /tmp/cccX7lTn.s 			page 6
+ARM GAS  /tmp/ccZKwEQ1.s 			page 6
 
 
  173:CMSIS/core_cm4.h **** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  227:CMSIS/core_cm4.h ****   #endif
  228:CMSIS/core_cm4.h **** 
  229:CMSIS/core_cm4.h ****   #ifndef __Vendor_SysTickConfig
-ARM GAS  /tmp/cccX7lTn.s 			page 7
+ARM GAS  /tmp/ccZKwEQ1.s 			page 7
 
 
  230:CMSIS/core_cm4.h ****     #define __Vendor_SysTickConfig    0
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  284:CMSIS/core_cm4.h ****     uint32_t _reserved1:7;               /*!< bit: 20..26  Reserved                           */
  285:CMSIS/core_cm4.h ****     uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag          */
  286:CMSIS/core_cm4.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag       */
-ARM GAS  /tmp/cccX7lTn.s 			page 8
+ARM GAS  /tmp/ccZKwEQ1.s 			page 8
 
 
  287:CMSIS/core_cm4.h ****     uint32_t C:1;                        /*!< bit:     29  Carry condition code flag          */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  341:CMSIS/core_cm4.h ****     uint32_t T:1;                        /*!< bit:     24  Thumb bit        (read 0)          */
  342:CMSIS/core_cm4.h ****     uint32_t IT:2;                       /*!< bit: 25..26  saved IT state   (read 0)          */
  343:CMSIS/core_cm4.h ****     uint32_t Q:1;                        /*!< bit:     27  Saturation condition flag          */
-ARM GAS  /tmp/cccX7lTn.s 			page 9
+ARM GAS  /tmp/ccZKwEQ1.s 			page 9
 
 
  344:CMSIS/core_cm4.h ****     uint32_t V:1;                        /*!< bit:     28  Overflow condition code flag       */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  398:CMSIS/core_cm4.h **** 
  399:CMSIS/core_cm4.h **** #define CONTROL_SPSEL_Pos                   1                                             /*!< CONT
  400:CMSIS/core_cm4.h **** #define CONTROL_SPSEL_Msk                  (1UL << CONTROL_SPSEL_Pos)                     /*!< CONT
-ARM GAS  /tmp/cccX7lTn.s 			page 10
+ARM GAS  /tmp/ccZKwEQ1.s 			page 10
 
 
  401:CMSIS/core_cm4.h **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  455:CMSIS/core_cm4.h ****   __IO uint32_t CCR;                     /*!< Offset: 0x014 (R/W)  Configuration Control Register  
  456:CMSIS/core_cm4.h ****   __IO uint8_t  SHP[12];                 /*!< Offset: 0x018 (R/W)  System Handlers Priority Registe
  457:CMSIS/core_cm4.h ****   __IO uint32_t SHCSR;                   /*!< Offset: 0x024 (R/W)  System Handler Control and State
-ARM GAS  /tmp/cccX7lTn.s 			page 11
+ARM GAS  /tmp/ccZKwEQ1.s 			page 11
 
 
  458:CMSIS/core_cm4.h ****   __IO uint32_t CFSR;                    /*!< Offset: 0x028 (R/W)  Configurable Fault Status Regist
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  512:CMSIS/core_cm4.h **** #define SCB_ICSR_VECTPENDING_Msk           (0x1FFUL << SCB_ICSR_VECTPENDING_Pos)          /*!< SCB 
  513:CMSIS/core_cm4.h **** 
  514:CMSIS/core_cm4.h **** #define SCB_ICSR_RETTOBASE_Pos             11                                             /*!< SCB 
-ARM GAS  /tmp/cccX7lTn.s 			page 12
+ARM GAS  /tmp/ccZKwEQ1.s 			page 12
 
 
  515:CMSIS/core_cm4.h **** #define SCB_ICSR_RETTOBASE_Msk             (1UL << SCB_ICSR_RETTOBASE_Pos)                /*!< SCB 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  569:CMSIS/core_cm4.h **** #define SCB_CCR_USERSETMPEND_Pos            1                                             /*!< SCB 
  570:CMSIS/core_cm4.h **** #define SCB_CCR_USERSETMPEND_Msk           (1UL << SCB_CCR_USERSETMPEND_Pos)              /*!< SCB 
  571:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 13
+ARM GAS  /tmp/ccZKwEQ1.s 			page 13
 
 
  572:CMSIS/core_cm4.h **** #define SCB_CCR_NONBASETHRDENA_Pos          0                                             /*!< SCB 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  626:CMSIS/core_cm4.h **** #define SCB_CFSR_MEMFAULTSR_Msk            (0xFFUL /*<< SCB_CFSR_MEMFAULTSR_Pos*/)        /*!< SCB 
  627:CMSIS/core_cm4.h **** 
  628:CMSIS/core_cm4.h **** /* SCB Hard Fault Status Registers Definitions */
-ARM GAS  /tmp/cccX7lTn.s 			page 14
+ARM GAS  /tmp/ccZKwEQ1.s 			page 14
 
 
  629:CMSIS/core_cm4.h **** #define SCB_HFSR_DEBUGEVT_Pos              31                                             /*!< SCB 
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  683:CMSIS/core_cm4.h **** #define SCnSCB_ACTLR_DISFOLD_Pos            2                                          /*!< ACTLR: 
  684:CMSIS/core_cm4.h **** #define SCnSCB_ACTLR_DISFOLD_Msk           (1UL << SCnSCB_ACTLR_DISFOLD_Pos)           /*!< ACTLR: 
  685:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 15
+ARM GAS  /tmp/ccZKwEQ1.s 			page 15
 
 
  686:CMSIS/core_cm4.h **** #define SCnSCB_ACTLR_DISDEFWBUF_Pos         1                                          /*!< ACTLR: 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  740:CMSIS/core_cm4.h **** #define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL /*<< SysTick_CALIB_TENMS_Pos*/)    /*!< SysT
  741:CMSIS/core_cm4.h **** 
  742:CMSIS/core_cm4.h **** /*@} end of group CMSIS_SysTick */
-ARM GAS  /tmp/cccX7lTn.s 			page 16
+ARM GAS  /tmp/ccZKwEQ1.s 			page 16
 
 
  743:CMSIS/core_cm4.h **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  797:CMSIS/core_cm4.h **** #define ITM_TCR_TraceBusID_Pos             16                                             /*!< ITM 
  798:CMSIS/core_cm4.h **** #define ITM_TCR_TraceBusID_Msk             (0x7FUL << ITM_TCR_TraceBusID_Pos)             /*!< ITM 
  799:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 17
+ARM GAS  /tmp/ccZKwEQ1.s 			page 17
 
 
  800:CMSIS/core_cm4.h **** #define ITM_TCR_GTSFREQ_Pos                10                                             /*!< ITM 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  854:CMSIS/core_cm4.h **** typedef struct
  855:CMSIS/core_cm4.h **** {
  856:CMSIS/core_cm4.h ****   __IO uint32_t CTRL;                    /*!< Offset: 0x000 (R/W)  Control Register                
-ARM GAS  /tmp/cccX7lTn.s 			page 18
+ARM GAS  /tmp/ccZKwEQ1.s 			page 18
 
 
  857:CMSIS/core_cm4.h ****   __IO uint32_t CYCCNT;                  /*!< Offset: 0x004 (R/W)  Cycle Count Register            
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  911:CMSIS/core_cm4.h **** 
  912:CMSIS/core_cm4.h **** #define DWT_CTRL_CPIEVTENA_Pos             17                                          /*!< DWT CTR
  913:CMSIS/core_cm4.h **** #define DWT_CTRL_CPIEVTENA_Msk             (0x1UL << DWT_CTRL_CPIEVTENA_Pos)           /*!< DWT CTR
-ARM GAS  /tmp/cccX7lTn.s 			page 19
+ARM GAS  /tmp/ccZKwEQ1.s 			page 19
 
 
  914:CMSIS/core_cm4.h **** 
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  968:CMSIS/core_cm4.h **** #define DWT_FUNCTION_DATAVADDR0_Msk        (0xFUL << DWT_FUNCTION_DATAVADDR0_Pos)      /*!< DWT FUN
  969:CMSIS/core_cm4.h **** 
  970:CMSIS/core_cm4.h **** #define DWT_FUNCTION_DATAVSIZE_Pos         10                                          /*!< DWT FUN
-ARM GAS  /tmp/cccX7lTn.s 			page 20
+ARM GAS  /tmp/ccZKwEQ1.s 			page 20
 
 
  971:CMSIS/core_cm4.h **** #define DWT_FUNCTION_DATAVSIZE_Msk         (0x3UL << DWT_FUNCTION_DATAVSIZE_Pos)       /*!< DWT FUN
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1025:CMSIS/core_cm4.h **** } TPI_Type;
 1026:CMSIS/core_cm4.h **** 
 1027:CMSIS/core_cm4.h **** /* TPI Asynchronous Clock Prescaler Register Definitions */
-ARM GAS  /tmp/cccX7lTn.s 			page 21
+ARM GAS  /tmp/ccZKwEQ1.s 			page 21
 
 
 1028:CMSIS/core_cm4.h **** #define TPI_ACPR_PRESCALER_Pos              0                                          /*!< TPI ACP
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1082:CMSIS/core_cm4.h **** #define TPI_ITATBCTR2_ATREADY_Pos           0                                          /*!< TPI ITA
 1083:CMSIS/core_cm4.h **** #define TPI_ITATBCTR2_ATREADY_Msk          (0x1UL /*<< TPI_ITATBCTR2_ATREADY_Pos*/)    /*!< TPI ITA
 1084:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 22
+ARM GAS  /tmp/ccZKwEQ1.s 			page 22
 
 
 1085:CMSIS/core_cm4.h **** /* TPI Integration ITM Data Register Definitions (FIFO1) */
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1139:CMSIS/core_cm4.h **** #define TPI_DEVTYPE_SubType_Msk            (0xFUL /*<< TPI_DEVTYPE_SubType_Pos*/)      /*!< TPI DEV
 1140:CMSIS/core_cm4.h **** 
 1141:CMSIS/core_cm4.h **** /*@}*/ /* end of group CMSIS_TPI */
-ARM GAS  /tmp/cccX7lTn.s 			page 23
+ARM GAS  /tmp/ccZKwEQ1.s 			page 23
 
 
 1142:CMSIS/core_cm4.h **** 
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1196:CMSIS/core_cm4.h **** #define MPU_RBAR_VALID_Pos                  4                                             /*!< MPU 
 1197:CMSIS/core_cm4.h **** #define MPU_RBAR_VALID_Msk                 (1UL << MPU_RBAR_VALID_Pos)                    /*!< MPU 
 1198:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 24
+ARM GAS  /tmp/ccZKwEQ1.s 			page 24
 
 
 1199:CMSIS/core_cm4.h **** #define MPU_RBAR_REGION_Pos                 0                                             /*!< MPU 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1253:CMSIS/core_cm4.h ****   __I  uint32_t MVFR1;                   /*!< Offset: 0x014 (R/ )  Media and FP Feature Register 1 
 1254:CMSIS/core_cm4.h **** } FPU_Type;
 1255:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 25
+ARM GAS  /tmp/ccZKwEQ1.s 			page 25
 
 
 1256:CMSIS/core_cm4.h **** /* Floating-Point Context Control Register */
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1310:CMSIS/core_cm4.h **** 
 1311:CMSIS/core_cm4.h **** #define FPU_MVFR0_Divide_Pos               16                                             /*!< MVFR
 1312:CMSIS/core_cm4.h **** #define FPU_MVFR0_Divide_Msk               (0xFUL << FPU_MVFR0_Divide_Pos)                /*!< MVFR
-ARM GAS  /tmp/cccX7lTn.s 			page 26
+ARM GAS  /tmp/ccZKwEQ1.s 			page 26
 
 
 1313:CMSIS/core_cm4.h **** 
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1367:CMSIS/core_cm4.h **** #define CoreDebug_DHCSR_S_RETIRE_ST_Msk    (1UL << CoreDebug_DHCSR_S_RETIRE_ST_Pos)       /*!< Core
 1368:CMSIS/core_cm4.h **** 
 1369:CMSIS/core_cm4.h **** #define CoreDebug_DHCSR_S_LOCKUP_Pos       19                                             /*!< Core
-ARM GAS  /tmp/cccX7lTn.s 			page 27
+ARM GAS  /tmp/ccZKwEQ1.s 			page 27
 
 
 1370:CMSIS/core_cm4.h **** #define CoreDebug_DHCSR_S_LOCKUP_Msk       (1UL << CoreDebug_DHCSR_S_LOCKUP_Pos)          /*!< Core
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1424:CMSIS/core_cm4.h **** 
 1425:CMSIS/core_cm4.h **** #define CoreDebug_DEMCR_VC_BUSERR_Pos       8                                             /*!< Core
 1426:CMSIS/core_cm4.h **** #define CoreDebug_DEMCR_VC_BUSERR_Msk      (1UL << CoreDebug_DEMCR_VC_BUSERR_Pos)         /*!< Core
-ARM GAS  /tmp/cccX7lTn.s 			page 28
+ARM GAS  /tmp/ccZKwEQ1.s 			page 28
 
 
 1427:CMSIS/core_cm4.h **** 
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1481:CMSIS/core_cm4.h **** /*@} */
 1482:CMSIS/core_cm4.h **** 
 1483:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 29
+ARM GAS  /tmp/ccZKwEQ1.s 			page 29
 
 
 1484:CMSIS/core_cm4.h **** 
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1538:CMSIS/core_cm4.h **** }
 1539:CMSIS/core_cm4.h **** 
 1540:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 30
+ARM GAS  /tmp/ccZKwEQ1.s 			page 30
 
 
 1541:CMSIS/core_cm4.h **** /** \brief  Enable External Interrupt
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1595:CMSIS/core_cm4.h ****     The function clears the pending bit of an external interrupt.
 1596:CMSIS/core_cm4.h **** 
 1597:CMSIS/core_cm4.h ****     \param [in]      IRQn  External interrupt number. Value cannot be negative.
-ARM GAS  /tmp/cccX7lTn.s 			page 31
+ARM GAS  /tmp/ccZKwEQ1.s 			page 31
 
 
 1598:CMSIS/core_cm4.h ****  */
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1652:CMSIS/core_cm4.h **** {
 1653:CMSIS/core_cm4.h **** 
 1654:CMSIS/core_cm4.h ****   if((int32_t)IRQn < 0) {
-ARM GAS  /tmp/cccX7lTn.s 			page 32
+ARM GAS  /tmp/ccZKwEQ1.s 			page 32
 
 
 1655:CMSIS/core_cm4.h ****     return(((uint32_t)SCB->SHP[(((uint32_t)(int32_t)IRQn) & 0xFUL)-4UL] >> (8 - __NVIC_PRIO_BITS)))
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
 1709:CMSIS/core_cm4.h ****   PreemptPriorityBits = ((7UL - PriorityGroupTmp) > (uint32_t)(__NVIC_PRIO_BITS)) ? (uint32_t)(__NV
 1710:CMSIS/core_cm4.h ****   SubPriorityBits     = ((PriorityGroupTmp + (uint32_t)(__NVIC_PRIO_BITS)) < (uint32_t)7UL) ? (uint
 1711:CMSIS/core_cm4.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 33
+ARM GAS  /tmp/ccZKwEQ1.s 			page 33
 
 
 1712:CMSIS/core_cm4.h ****   *pPreemptPriority = (Priority >> SubPriorityBits) & (uint32_t)((1UL << (PreemptPriorityBits)) - 1
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
   84              		.loc 2 1762 14 is_stmt 0 view .LVU20
   85 002c 013B     		subs	r3, r3, #1
   86              	.LVL5:
-ARM GAS  /tmp/cccX7lTn.s 			page 34
+ARM GAS  /tmp/ccZKwEQ1.s 			page 34
 
 
   87              		.loc 2 1762 6 view .LVU21
@@ -2033,19 +2033,20 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  122              		.loc 2 1770 3 is_stmt 0 view .LVU36
  123              	.LBE15:
  124              	.LBE14:
-  33:MyHardWare/Src/task.c ****         while (1); // 初始化失败处理
-  34:MyHardWare/Src/task.c ****     }
-  35:MyHardWare/Src/task.c **** }
- 125              		.loc 1 35 1 view .LVU37
+  33:MyHardWare/Src/task.c ****     while (1)
+  34:MyHardWare/Src/task.c ****       ; // 初始化失败处理
+  35:MyHardWare/Src/task.c ****   }
+  36:MyHardWare/Src/task.c **** }
+ 125              		.loc 1 36 1 view .LVU37
+ARM GAS  /tmp/ccZKwEQ1.s 			page 35
+
+
  126 004a 7047     		bx	lr
-ARM GAS  /tmp/cccX7lTn.s 			page 35
-
-
  127              	.L4:
-  33:MyHardWare/Src/task.c ****         while (1); // 初始化失败处理
- 128              		.loc 1 33 9 is_stmt 1 view .LVU38
-  33:MyHardWare/Src/task.c ****         while (1); // 初始化失败处理
- 129              		.loc 1 33 15 view .LVU39
+  33:MyHardWare/Src/task.c ****     while (1)
+ 128              		.loc 1 33 5 is_stmt 1 view .LVU38
+  33:MyHardWare/Src/task.c ****     while (1)
+ 129              		.loc 1 33 11 view .LVU39
  130 004c FEE7     		b	.L4
  131              	.L7:
  132 004e 00BF     		.align	2
@@ -2065,73 +2066,73 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  148              	add_task:
  149              	.LVL10:
  150              	.LFB124:
-  36:MyHardWare/Src/task.c **** 
-  37:MyHardWare/Src/task.c **** // 添加任务到调度器
-  38:MyHardWare/Src/task.c **** int add_task(void (*task_func)(void), uint32_t period_ms) {
- 151              		.loc 1 38 59 view -0
+  37:MyHardWare/Src/task.c **** 
+  38:MyHardWare/Src/task.c **** // 添加任务到调度器
+  39:MyHardWare/Src/task.c **** int add_task(void (*task_func)(void), uint32_t period_ms) {
+ 151              		.loc 1 39 59 view -0
  152              		.cfi_startproc
  153              		@ args = 0, pretend = 0, frame = 0
  154              		@ frame_needed = 0, uses_anonymous_args = 0
  155              		@ link register save eliminated.
-  39:MyHardWare/Src/task.c ****     if(task_count >= MAX_TASKS) {
- 156              		.loc 1 39 5 view .LVU41
- 157              		.loc 1 39 19 is_stmt 0 view .LVU42
+  40:MyHardWare/Src/task.c ****   if (task_count >= MAX_TASKS) {
+ 156              		.loc 1 40 3 view .LVU41
+ 157              		.loc 1 40 18 is_stmt 0 view .LVU42
  158 0000 0D4B     		ldr	r3, .L15
  159 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 160              		.loc 1 39 7 view .LVU43
+ 160              		.loc 1 40 6 view .LVU43
  161 0004 092B     		cmp	r3, #9
  162 0006 14D8     		bhi	.L10
-  38:MyHardWare/Src/task.c ****     if(task_count >= MAX_TASKS) {
- 163              		.loc 1 38 59 view .LVU44
+  39:MyHardWare/Src/task.c ****   if (task_count >= MAX_TASKS) {
+ 163              		.loc 1 39 59 view .LVU44
  164 0008 10B4     		push	{r4}
  165              	.LCFI0:
  166              		.cfi_def_cfa_offset 4
  167              		.cfi_offset 4, -4
-  40:MyHardWare/Src/task.c ****         return -1; // 任务池已满
-  41:MyHardWare/Src/task.c ****     }
-  42:MyHardWare/Src/task.c ****     
-  43:MyHardWare/Src/task.c ****     task_pool[task_count].task_func = task_func;
- 168              		.loc 1 43 5 is_stmt 1 view .LVU45
- 169              		.loc 1 43 37 is_stmt 0 view .LVU46
+  41:MyHardWare/Src/task.c ****     return -1; // 任务池已满
+  42:MyHardWare/Src/task.c ****   }
+  43:MyHardWare/Src/task.c **** 
+  44:MyHardWare/Src/task.c ****   task_pool[task_count].task_func = task_func;
+ 168              		.loc 1 44 3 is_stmt 1 view .LVU45
+ 169              		.loc 1 44 35 is_stmt 0 view .LVU46
  170 000a 0C4C     		ldr	r4, .L15+4
  171 000c 4FEA031C 		lsl	ip, r3, #4
  172 0010 04EB0312 		add	r2, r4, r3, lsl #4
  173 0014 44F80C00 		str	r0, [r4, ip]
-  44:MyHardWare/Src/task.c ****     task_pool[task_count].period_ms = period_ms;
-ARM GAS  /tmp/cccX7lTn.s 			page 36
+ARM GAS  /tmp/ccZKwEQ1.s 			page 36
 
 
- 174              		.loc 1 44 5 is_stmt 1 view .LVU47
- 175              		.loc 1 44 37 is_stmt 0 view .LVU48
+  45:MyHardWare/Src/task.c ****   task_pool[task_count].period_ms = period_ms;
+ 174              		.loc 1 45 3 is_stmt 1 view .LVU47
+ 175              		.loc 1 45 35 is_stmt 0 view .LVU48
  176 0018 5160     		str	r1, [r2, #4]
-  45:MyHardWare/Src/task.c ****     task_pool[task_count].last_run_tick = 0;
- 177              		.loc 1 45 5 is_stmt 1 view .LVU49
- 178              		.loc 1 45 41 is_stmt 0 view .LVU50
+  46:MyHardWare/Src/task.c ****   task_pool[task_count].last_run_tick = 0;
+ 177              		.loc 1 46 3 is_stmt 1 view .LVU49
+ 178              		.loc 1 46 39 is_stmt 0 view .LVU50
  179 001a 0021     		movs	r1, #0
  180              	.LVL11:
- 181              		.loc 1 45 41 view .LVU51
+ 181              		.loc 1 46 39 view .LVU51
  182 001c 9160     		str	r1, [r2, #8]
-  46:MyHardWare/Src/task.c ****     task_pool[task_count].active = 1;
- 183              		.loc 1 46 5 is_stmt 1 view .LVU52
- 184              		.loc 1 46 34 is_stmt 0 view .LVU53
+  47:MyHardWare/Src/task.c ****   task_pool[task_count].active = 1;
+ 183              		.loc 1 47 3 is_stmt 1 view .LVU52
+ 184              		.loc 1 47 32 is_stmt 0 view .LVU53
  185 001e 0121     		movs	r1, #1
  186 0020 1173     		strb	r1, [r2, #12]
-  47:MyHardWare/Src/task.c ****     task_count++;
- 187              		.loc 1 47 5 is_stmt 1 view .LVU54
- 188              		.loc 1 47 15 is_stmt 0 view .LVU55
+  48:MyHardWare/Src/task.c ****   task_count++;
+ 187              		.loc 1 48 3 is_stmt 1 view .LVU54
+ 188              		.loc 1 48 13 is_stmt 0 view .LVU55
  189 0022 5818     		adds	r0, r3, r1
  190              	.LVL12:
- 191              		.loc 1 47 15 view .LVU56
+ 191              		.loc 1 48 13 view .LVU56
  192 0024 C0B2     		uxtb	r0, r0
  193 0026 044B     		ldr	r3, .L15
  194 0028 1870     		strb	r0, [r3]
-  48:MyHardWare/Src/task.c ****     
-  49:MyHardWare/Src/task.c ****     return task_count - 1; // 返回任务ID
- 195              		.loc 1 49 5 is_stmt 1 view .LVU57
- 196              		.loc 1 49 23 is_stmt 0 view .LVU58
+  49:MyHardWare/Src/task.c **** 
+  50:MyHardWare/Src/task.c ****   return task_count - 1; // 返回任务ID
+ 195              		.loc 1 50 3 is_stmt 1 view .LVU57
+ 196              		.loc 1 50 21 is_stmt 0 view .LVU58
  197 002a 0138     		subs	r0, r0, #1
-  50:MyHardWare/Src/task.c **** }
- 198              		.loc 1 50 1 view .LVU59
+  51:MyHardWare/Src/task.c **** }
+ 198              		.loc 1 51 1 view .LVU59
  199 002c 5DF8044B 		ldr	r4, [sp], #4
  200              	.LCFI1:
  201              		.cfi_restore 4
@@ -2139,11 +2140,11 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  203 0030 7047     		bx	lr
  204              	.LVL13:
  205              	.L10:
-  40:MyHardWare/Src/task.c ****     }
- 206              		.loc 1 40 16 view .LVU60
+  41:MyHardWare/Src/task.c ****   }
+ 206              		.loc 1 41 12 view .LVU60
  207 0032 4FF0FF30 		mov	r0, #-1
  208              	.LVL14:
- 209              		.loc 1 50 1 view .LVU61
+ 209              		.loc 1 51 1 view .LVU61
  210 0036 7047     		bx	lr
  211              	.L16:
  212              		.align	2
@@ -2157,53 +2158,53 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  221              		.global	remove_task
  222              		.syntax unified
  223              		.thumb
+ARM GAS  /tmp/ccZKwEQ1.s 			page 37
+
+
  224              		.thumb_func
-ARM GAS  /tmp/cccX7lTn.s 			page 37
-
-
  226              	remove_task:
  227              	.LVL15:
  228              	.LFB125:
-  51:MyHardWare/Src/task.c **** 
-  52:MyHardWare/Src/task.c **** // 移除任务
-  53:MyHardWare/Src/task.c **** void remove_task(uint8_t task_id) {
- 229              		.loc 1 53 35 is_stmt 1 view -0
+  52:MyHardWare/Src/task.c **** 
+  53:MyHardWare/Src/task.c **** // 移除任务
+  54:MyHardWare/Src/task.c **** void remove_task(uint8_t task_id) {
+ 229              		.loc 1 54 35 is_stmt 1 view -0
  230              		.cfi_startproc
  231              		@ args = 0, pretend = 0, frame = 0
  232              		@ frame_needed = 0, uses_anonymous_args = 0
  233              		@ link register save eliminated.
-  54:MyHardWare/Src/task.c ****     if(task_id < task_count && task_pool[task_id].active) {
- 234              		.loc 1 54 5 view .LVU63
- 235              		.loc 1 54 16 is_stmt 0 view .LVU64
+  55:MyHardWare/Src/task.c ****   if (task_id < task_count && task_pool[task_id].active) {
+ 234              		.loc 1 55 3 view .LVU63
+ 235              		.loc 1 55 15 is_stmt 0 view .LVU64
  236 0000 084B     		ldr	r3, .L19
  237 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 238              		.loc 1 54 7 view .LVU65
+ 238              		.loc 1 55 6 view .LVU65
  239 0004 8342     		cmp	r3, r0
  240 0006 0BD9     		bls	.L17
- 241              		.loc 1 54 50 discriminator 1 view .LVU66
+ 241              		.loc 1 55 49 discriminator 1 view .LVU66
  242 0008 074B     		ldr	r3, .L19+4
  243 000a 03EB0013 		add	r3, r3, r0, lsl #4
  244 000e 1B7B     		ldrb	r3, [r3, #12]	@ zero_extendqisi2
- 245              		.loc 1 54 29 discriminator 1 view .LVU67
+ 245              		.loc 1 55 28 discriminator 1 view .LVU67
  246 0010 33B1     		cbz	r3, .L17
-  55:MyHardWare/Src/task.c ****         task_pool[task_id].active = 0;
- 247              		.loc 1 55 9 is_stmt 1 view .LVU68
- 248              		.loc 1 55 35 is_stmt 0 view .LVU69
+  56:MyHardWare/Src/task.c ****     task_pool[task_id].active = 0;
+ 247              		.loc 1 56 5 is_stmt 1 view .LVU68
+ 248              		.loc 1 56 31 is_stmt 0 view .LVU69
  249 0012 054B     		ldr	r3, .L19+4
  250 0014 0101     		lsls	r1, r0, #4
  251 0016 03EB0010 		add	r0, r3, r0, lsl #4
  252              	.LVL16:
- 253              		.loc 1 55 35 view .LVU70
+ 253              		.loc 1 56 31 view .LVU70
  254 001a 0022     		movs	r2, #0
  255 001c 0273     		strb	r2, [r0, #12]
-  56:MyHardWare/Src/task.c ****         task_pool[task_id].task_func = NULL;
- 256              		.loc 1 56 9 is_stmt 1 view .LVU71
- 257              		.loc 1 56 38 is_stmt 0 view .LVU72
+  57:MyHardWare/Src/task.c ****     task_pool[task_id].task_func = NULL;
+ 256              		.loc 1 57 5 is_stmt 1 view .LVU71
+ 257              		.loc 1 57 34 is_stmt 0 view .LVU72
  258 001e 5A50     		str	r2, [r3, r1]
  259              	.L17:
-  57:MyHardWare/Src/task.c ****     }
-  58:MyHardWare/Src/task.c **** }
- 260              		.loc 1 58 1 view .LVU73
+  58:MyHardWare/Src/task.c ****   }
+  59:MyHardWare/Src/task.c **** }
+ 260              		.loc 1 59 1 view .LVU73
  261 0020 7047     		bx	lr
  262              	.L20:
  263 0022 00BF     		.align	2
@@ -2217,40 +2218,40 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  272              		.global	start_task
  273              		.syntax unified
  274              		.thumb
+ARM GAS  /tmp/ccZKwEQ1.s 			page 38
+
+
  275              		.thumb_func
-ARM GAS  /tmp/cccX7lTn.s 			page 38
-
-
  277              	start_task:
  278              	.LVL17:
  279              	.LFB126:
-  59:MyHardWare/Src/task.c **** 
-  60:MyHardWare/Src/task.c **** // 启动任务
-  61:MyHardWare/Src/task.c **** void start_task(uint8_t task_id) {
- 280              		.loc 1 61 34 is_stmt 1 view -0
+  60:MyHardWare/Src/task.c **** 
+  61:MyHardWare/Src/task.c **** // 启动任务
+  62:MyHardWare/Src/task.c **** void start_task(uint8_t task_id) {
+ 280              		.loc 1 62 34 is_stmt 1 view -0
  281              		.cfi_startproc
  282              		@ args = 0, pretend = 0, frame = 0
  283              		@ frame_needed = 0, uses_anonymous_args = 0
  284              		@ link register save eliminated.
-  62:MyHardWare/Src/task.c ****     if(task_id < task_count) {
- 285              		.loc 1 62 5 view .LVU75
- 286              		.loc 1 62 16 is_stmt 0 view .LVU76
+  63:MyHardWare/Src/task.c ****   if (task_id < task_count) {
+ 285              		.loc 1 63 3 view .LVU75
+ 286              		.loc 1 63 15 is_stmt 0 view .LVU76
  287 0000 044B     		ldr	r3, .L23
  288 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 289              		.loc 1 62 7 view .LVU77
+ 289              		.loc 1 63 6 view .LVU77
  290 0004 8342     		cmp	r3, r0
  291 0006 04D9     		bls	.L21
-  63:MyHardWare/Src/task.c ****         task_pool[task_id].active = 1;
- 292              		.loc 1 63 9 is_stmt 1 view .LVU78
- 293              		.loc 1 63 35 is_stmt 0 view .LVU79
+  64:MyHardWare/Src/task.c ****     task_pool[task_id].active = 1;
+ 292              		.loc 1 64 5 is_stmt 1 view .LVU78
+ 293              		.loc 1 64 31 is_stmt 0 view .LVU79
  294 0008 034B     		ldr	r3, .L23+4
  295 000a 03EB0013 		add	r3, r3, r0, lsl #4
  296 000e 0122     		movs	r2, #1
  297 0010 1A73     		strb	r2, [r3, #12]
  298              	.L21:
-  64:MyHardWare/Src/task.c ****     }
-  65:MyHardWare/Src/task.c **** }
- 299              		.loc 1 65 1 view .LVU80
+  65:MyHardWare/Src/task.c ****   }
+  66:MyHardWare/Src/task.c **** }
+ 299              		.loc 1 66 1 view .LVU80
  300 0012 7047     		bx	lr
  301              	.L24:
  302              		.align	2
@@ -2268,36 +2269,36 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  316              	stop_task:
  317              	.LVL18:
  318              	.LFB127:
-  66:MyHardWare/Src/task.c **** 
-  67:MyHardWare/Src/task.c **** // 停止任务
-  68:MyHardWare/Src/task.c **** void stop_task(uint8_t task_id) {
- 319              		.loc 1 68 33 is_stmt 1 view -0
+  67:MyHardWare/Src/task.c **** 
+  68:MyHardWare/Src/task.c **** // 停止任务
+  69:MyHardWare/Src/task.c **** void stop_task(uint8_t task_id) {
+ 319              		.loc 1 69 33 is_stmt 1 view -0
  320              		.cfi_startproc
  321              		@ args = 0, pretend = 0, frame = 0
  322              		@ frame_needed = 0, uses_anonymous_args = 0
  323              		@ link register save eliminated.
-  69:MyHardWare/Src/task.c ****     if(task_id < task_count) {
- 324              		.loc 1 69 5 view .LVU82
-ARM GAS  /tmp/cccX7lTn.s 			page 39
+  70:MyHardWare/Src/task.c ****   if (task_id < task_count) {
+ARM GAS  /tmp/ccZKwEQ1.s 			page 39
 
 
- 325              		.loc 1 69 16 is_stmt 0 view .LVU83
+ 324              		.loc 1 70 3 view .LVU82
+ 325              		.loc 1 70 15 is_stmt 0 view .LVU83
  326 0000 044B     		ldr	r3, .L27
  327 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 328              		.loc 1 69 7 view .LVU84
+ 328              		.loc 1 70 6 view .LVU84
  329 0004 8342     		cmp	r3, r0
  330 0006 04D9     		bls	.L25
-  70:MyHardWare/Src/task.c ****         task_pool[task_id].active = 0;
- 331              		.loc 1 70 9 is_stmt 1 view .LVU85
- 332              		.loc 1 70 35 is_stmt 0 view .LVU86
+  71:MyHardWare/Src/task.c ****     task_pool[task_id].active = 0;
+ 331              		.loc 1 71 5 is_stmt 1 view .LVU85
+ 332              		.loc 1 71 31 is_stmt 0 view .LVU86
  333 0008 034B     		ldr	r3, .L27+4
  334 000a 03EB0013 		add	r3, r3, r0, lsl #4
  335 000e 0022     		movs	r2, #0
  336 0010 1A73     		strb	r2, [r3, #12]
  337              	.L25:
-  71:MyHardWare/Src/task.c ****     }
-  72:MyHardWare/Src/task.c **** }
- 338              		.loc 1 72 1 view .LVU87
+  72:MyHardWare/Src/task.c ****   }
+  73:MyHardWare/Src/task.c **** }
+ 338              		.loc 1 73 1 view .LVU87
  339 0012 7047     		bx	lr
  340              	.L28:
  341              		.align	2
@@ -2314,10 +2315,10 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  353              		.thumb_func
  355              	Task_Handler:
  356              	.LFB128:
-  73:MyHardWare/Src/task.c **** 
-  74:MyHardWare/Src/task.c **** // SysTick中断服务函数 - 实际上是系统节拍处理函数
-  75:MyHardWare/Src/task.c **** void Task_Handler(void) {
- 357              		.loc 1 75 25 is_stmt 1 view -0
+  74:MyHardWare/Src/task.c **** 
+  75:MyHardWare/Src/task.c **** // SysTick中断服务函数 - 实际上是系统节拍处理函数
+  76:MyHardWare/Src/task.c **** void Task_Handler(void) {
+ 357              		.loc 1 76 25 is_stmt 1 view -0
  358              		.cfi_startproc
  359              		@ args = 0, pretend = 0, frame = 0
  360              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2326,82 +2327,81 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  363              		.cfi_def_cfa_offset 8
  364              		.cfi_offset 4, -8
  365              		.cfi_offset 14, -4
-  76:MyHardWare/Src/task.c ****     sysTickCounter++; // 每毫秒递增计数器
- 366              		.loc 1 76 5 view .LVU89
- 367              		.loc 1 76 19 is_stmt 0 view .LVU90
+  77:MyHardWare/Src/task.c ****   sysTickCounter++; // 每毫秒递增计数器
+ 366              		.loc 1 77 3 view .LVU89
+ 367              		.loc 1 77 17 is_stmt 0 view .LVU90
  368 0002 144A     		ldr	r2, .L35
  369 0004 1368     		ldr	r3, [r2]
  370 0006 0133     		adds	r3, r3, #1
  371 0008 1360     		str	r3, [r2]
-  77:MyHardWare/Src/task.c ****     
-  78:MyHardWare/Src/task.c ****     // 检查并执行到期的任务
-  79:MyHardWare/Src/task.c ****     for(int i = 0; i < task_count; i++) {
- 372              		.loc 1 79 5 is_stmt 1 view .LVU91
+  78:MyHardWare/Src/task.c **** 
+  79:MyHardWare/Src/task.c ****   // 检查并执行到期的任务
+  80:MyHardWare/Src/task.c ****   for (int i = 0; i < task_count; i++) {
+ 372              		.loc 1 80 3 is_stmt 1 view .LVU91
+ARM GAS  /tmp/ccZKwEQ1.s 			page 40
+
+
  373              	.LBB18:
-ARM GAS  /tmp/cccX7lTn.s 			page 40
-
-
- 374              		.loc 1 79 9 view .LVU92
+ 374              		.loc 1 80 8 view .LVU92
  375              	.LVL19:
- 376              		.loc 1 79 13 is_stmt 0 view .LVU93
+ 376              		.loc 1 80 12 is_stmt 0 view .LVU93
  377 000a 0024     		movs	r4, #0
- 378              		.loc 1 79 5 view .LVU94
+ 378              		.loc 1 80 3 view .LVU94
  379 000c 00E0     		b	.L30
  380              	.LVL20:
  381              	.L31:
- 382              		.loc 1 79 37 is_stmt 1 discriminator 2 view .LVU95
+ 382              		.loc 1 80 36 is_stmt 1 discriminator 2 view .LVU95
  383 000e 0134     		adds	r4, r4, #1
  384              	.LVL21:
  385              	.L30:
- 386              		.loc 1 79 22 discriminator 1 view .LVU96
+ 386              		.loc 1 80 21 discriminator 1 view .LVU96
  387 0010 114B     		ldr	r3, .L35+4
  388 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  389 0014 A342     		cmp	r3, r4
  390 0016 1CDD     		ble	.L34
-  80:MyHardWare/Src/task.c ****         if(task_pool[i].active && 
- 391              		.loc 1 80 9 view .LVU97
- 392              		.loc 1 80 24 is_stmt 0 view .LVU98
+  81:MyHardWare/Src/task.c ****     if (task_pool[i].active && task_pool[i].task_func != NULL &&
+ 391              		.loc 1 81 5 view .LVU97
+ 392              		.loc 1 81 21 is_stmt 0 view .LVU98
  393 0018 104B     		ldr	r3, .L35+8
  394 001a 03EB0413 		add	r3, r3, r4, lsl #4
  395 001e 1B7B     		ldrb	r3, [r3, #12]	@ zero_extendqisi2
- 396              		.loc 1 80 11 view .LVU99
+ 396              		.loc 1 81 8 view .LVU99
  397 0020 002B     		cmp	r3, #0
  398 0022 F4D0     		beq	.L31
-  81:MyHardWare/Src/task.c ****            task_pool[i].task_func != NULL &&
- 399              		.loc 1 81 24 view .LVU100
+ 399              		.loc 1 81 44 discriminator 1 view .LVU100
  400 0024 2301     		lsls	r3, r4, #4
  401 0026 0D4A     		ldr	r2, .L35+8
  402 0028 D158     		ldr	r1, [r2, r3]
-  80:MyHardWare/Src/task.c ****         if(task_pool[i].active && 
- 403              		.loc 1 80 32 discriminator 1 view .LVU101
+ 403              		.loc 1 81 29 discriminator 1 view .LVU101
  404 002a 0029     		cmp	r1, #0
  405 002c EFD0     		beq	.L31
-  82:MyHardWare/Src/task.c ****            (sysTickCounter - task_pool[i].last_run_tick >= task_pool[i].period_ms)) {
- 406              		.loc 1 82 28 view .LVU102
+  82:MyHardWare/Src/task.c ****         (sysTickCounter - task_pool[i].last_run_tick >=
+ 406              		.loc 1 82 25 view .LVU102
  407 002e 094B     		ldr	r3, .L35
  408 0030 1A68     		ldr	r2, [r3]
- 409              		.loc 1 82 42 view .LVU103
+ 409              		.loc 1 82 39 view .LVU103
  410 0032 0A4B     		ldr	r3, .L35+8
  411 0034 03EB0413 		add	r3, r3, r4, lsl #4
  412 0038 9868     		ldr	r0, [r3, #8]
- 413              		.loc 1 82 28 view .LVU104
+ 413              		.loc 1 82 25 view .LVU104
  414 003a 121A     		subs	r2, r2, r0
- 415              		.loc 1 82 72 view .LVU105
+  83:MyHardWare/Src/task.c ****          task_pool[i].period_ms)) {
+ 415              		.loc 1 83 22 view .LVU105
  416 003c 5B68     		ldr	r3, [r3, #4]
-  81:MyHardWare/Src/task.c ****            task_pool[i].task_func != NULL &&
- 417              		.loc 1 81 43 view .LVU106
+  81:MyHardWare/Src/task.c ****     if (task_pool[i].active && task_pool[i].task_func != NULL &&
+ 417              		.loc 1 81 63 discriminator 2 view .LVU106
  418 003e 9A42     		cmp	r2, r3
  419 0040 E5D3     		bcc	.L31
-  83:MyHardWare/Src/task.c ****             task_pool[i].task_func(); // 执行任务
- 420              		.loc 1 83 13 is_stmt 1 view .LVU107
+  84:MyHardWare/Src/task.c ****       task_pool[i].task_func();                    // 执行任务
+ 420              		.loc 1 84 7 is_stmt 1 view .LVU107
  421 0042 8847     		blx	r1
  422              	.LVL22:
-  84:MyHardWare/Src/task.c ****             task_pool[i].last_run_tick = sysTickCounter; // 更新最后执行时间
- 423              		.loc 1 84 13 view .LVU108
-ARM GAS  /tmp/cccX7lTn.s 			page 41
+  85:MyHardWare/Src/task.c ****       task_pool[i].last_run_tick = sysTickCounter; // 更新最后执行时间
+ 423              		.loc 1 85 7 view .LVU108
+ARM GAS  /tmp/ccZKwEQ1.s 			page 41
 
 
- 424              		.loc 1 84 40 is_stmt 0 view .LVU109
+ 424              		.loc 1 85 34 is_stmt 0 view .LVU109
  425 0044 034B     		ldr	r3, .L35
  426 0046 1A68     		ldr	r2, [r3]
  427 0048 044B     		ldr	r3, .L35+8
@@ -2410,14 +2410,14 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  430 0050 DDE7     		b	.L31
  431              	.L34:
  432              	.LBE18:
-  85:MyHardWare/Src/task.c ****         }
   86:MyHardWare/Src/task.c ****     }
-  87:MyHardWare/Src/task.c **** }
- 433              		.loc 1 87 1 view .LVU110
+  87:MyHardWare/Src/task.c ****   }
+  88:MyHardWare/Src/task.c **** }
+ 433              		.loc 1 88 1 view .LVU110
  434 0052 10BD     		pop	{r4, pc}
  435              	.LVL23:
  436              	.L36:
- 437              		.loc 1 87 1 view .LVU111
+ 437              		.loc 1 88 1 view .LVU111
  438              		.align	2
  439              	.L35:
  440 0054 00000000 		.word	sysTickCounter
@@ -2425,26 +2425,26 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  442 005c 00000000 		.word	task_pool
  443              		.cfi_endproc
  444              	.LFE128:
- 446              		.section	.text.GetTick,"ax",%progbits
+ 446              		.section	.text.GetSysTick,"ax",%progbits
  447              		.align	1
- 448              		.global	GetTick
+ 448              		.global	GetSysTick
  449              		.syntax unified
  450              		.thumb
  451              		.thumb_func
- 453              	GetTick:
+ 453              	GetSysTick:
  454              	.LFB129:
-  88:MyHardWare/Src/task.c **** 
-  89:MyHardWare/Src/task.c **** // 获取系统节拍值
-  90:MyHardWare/Src/task.c **** uint32_t GetTick(void) {
- 455              		.loc 1 90 24 is_stmt 1 view -0
+  89:MyHardWare/Src/task.c **** 
+  90:MyHardWare/Src/task.c **** // 获取系统节拍值
+  91:MyHardWare/Src/task.c **** uint32_t GetSysTick(void) {
+ 455              		.loc 1 91 27 is_stmt 1 view -0
  456              		.cfi_startproc
  457              		@ args = 0, pretend = 0, frame = 0
  458              		@ frame_needed = 0, uses_anonymous_args = 0
  459              		@ link register save eliminated.
-  91:MyHardWare/Src/task.c ****     uint32_t tick;
- 460              		.loc 1 91 5 view .LVU113
-  92:MyHardWare/Src/task.c ****     __disable_irq();       // 禁止中断以确保原子操作
- 461              		.loc 1 92 5 view .LVU114
+  92:MyHardWare/Src/task.c ****   uint32_t tick;
+ 460              		.loc 1 92 3 view .LVU113
+  93:MyHardWare/Src/task.c ****   __disable_irq();       // 禁止中断以确保原子操作
+ 461              		.loc 1 93 3 view .LVU114
  462              	.LBB19:
  463              	.LBI19:
  464              		.file 3 "CMSIS/core_cmFunc.h"
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
    8:CMSIS/core_cmFunc.h ****  *
    9:CMSIS/core_cmFunc.h ****  ******************************************************************************/
   10:CMSIS/core_cmFunc.h **** /* Copyright (c) 2009 - 2015 ARM LIMITED
-ARM GAS  /tmp/cccX7lTn.s 			page 42
+ARM GAS  /tmp/ccZKwEQ1.s 			page 42
 
 
   11:CMSIS/core_cmFunc.h **** 
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
   65:CMSIS/core_cmFunc.h **** {
   66:CMSIS/core_cmFunc.h ****   register uint32_t __regControl         __ASM("control");
   67:CMSIS/core_cmFunc.h ****   return(__regControl);
-ARM GAS  /tmp/cccX7lTn.s 			page 43
+ARM GAS  /tmp/ccZKwEQ1.s 			page 43
 
 
   68:CMSIS/core_cmFunc.h **** }
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  122:CMSIS/core_cmFunc.h **** 
  123:CMSIS/core_cmFunc.h **** /** \brief  Get Process Stack Pointer
  124:CMSIS/core_cmFunc.h **** 
-ARM GAS  /tmp/cccX7lTn.s 			page 44
+ARM GAS  /tmp/ccZKwEQ1.s 			page 44
 
 
  125:CMSIS/core_cmFunc.h ****     This function returns the current value of the Process Stack Pointer (PSP).
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  179:CMSIS/core_cmFunc.h ****     \return               Priority Mask value
  180:CMSIS/core_cmFunc.h ****  */
  181:CMSIS/core_cmFunc.h **** __STATIC_INLINE uint32_t __get_PRIMASK(void)
-ARM GAS  /tmp/cccX7lTn.s 			page 45
+ARM GAS  /tmp/ccZKwEQ1.s 			page 45
 
 
  182:CMSIS/core_cmFunc.h **** {
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  236:CMSIS/core_cmFunc.h ****     \param [in]    basePri  Base Priority value to set
  237:CMSIS/core_cmFunc.h ****  */
  238:CMSIS/core_cmFunc.h **** __STATIC_INLINE void __set_BASEPRI(uint32_t basePri)
-ARM GAS  /tmp/cccX7lTn.s 			page 46
+ARM GAS  /tmp/ccZKwEQ1.s 			page 46
 
 
  239:CMSIS/core_cmFunc.h **** {
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  293:CMSIS/core_cmFunc.h ****     \return               Floating Point Status/Control register value
  294:CMSIS/core_cmFunc.h ****  */
  295:CMSIS/core_cmFunc.h **** __STATIC_INLINE uint32_t __get_FPSCR(void)
-ARM GAS  /tmp/cccX7lTn.s 			page 47
+ARM GAS  /tmp/ccZKwEQ1.s 			page 47
 
 
  296:CMSIS/core_cmFunc.h **** {
@@ -2818,20 +2818,20 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  470 0000 72B6     		cpsid i
  471              	@ 0 "" 2
  472              		.thumb
-ARM GAS  /tmp/cccX7lTn.s 			page 48
+ARM GAS  /tmp/ccZKwEQ1.s 			page 48
 
 
  473              		.syntax unified
  474              	.LBE20:
  475              	.LBE19:
-  93:MyHardWare/Src/task.c ****     tick = sysTickCounter; // 读取当前计数值
- 476              		.loc 1 93 5 view .LVU117
- 477              		.loc 1 93 10 is_stmt 0 view .LVU118
+  94:MyHardWare/Src/task.c ****   tick = sysTickCounter; // 读取当前计数值
+ 476              		.loc 1 94 3 view .LVU117
+ 477              		.loc 1 94 8 is_stmt 0 view .LVU118
  478 0002 024B     		ldr	r3, .L38
  479 0004 1868     		ldr	r0, [r3]
  480              	.LVL24:
-  94:MyHardWare/Src/task.c ****     __enable_irq();        // 恢复中断
- 481              		.loc 1 94 5 is_stmt 1 view .LVU119
+  95:MyHardWare/Src/task.c ****   __enable_irq();        // 恢复中断
+ 481              		.loc 1 95 3 is_stmt 1 view .LVU119
  482              	.LBB21:
  483              	.LBI21:
  331:CMSIS/core_cmFunc.h **** {
@@ -2847,10 +2847,10 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  492              		.syntax unified
  493              	.LBE22:
  494              	.LBE21:
-  95:MyHardWare/Src/task.c ****     return tick;
- 495              		.loc 1 95 5 view .LVU122
-  96:MyHardWare/Src/task.c **** }
- 496              		.loc 1 96 1 is_stmt 0 view .LVU123
+  96:MyHardWare/Src/task.c ****   return tick;
+ 495              		.loc 1 96 3 view .LVU122
+  97:MyHardWare/Src/task.c **** }
+ 496              		.loc 1 97 1 is_stmt 0 view .LVU123
  497 0008 7047     		bx	lr
  498              	.L39:
  499 000a 00BF     		.align	2
@@ -2867,42 +2867,42 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  512              	tdelay_ms:
  513              	.LVL25:
  514              	.LFB130:
-  97:MyHardWare/Src/task.c **** 
-  98:MyHardWare/Src/task.c **** // 简单延时函数（基于系统节拍）
-  99:MyHardWare/Src/task.c **** void tdelay_ms(uint32_t ms) {
- 515              		.loc 1 99 29 is_stmt 1 view -0
+  98:MyHardWare/Src/task.c **** 
+  99:MyHardWare/Src/task.c **** // 简单延时函数（基于系统节拍）
+ 100:MyHardWare/Src/task.c **** void tdelay_ms(uint32_t ms) {
+ 515              		.loc 1 100 29 is_stmt 1 view -0
  516              		.cfi_startproc
  517              		@ args = 0, pretend = 0, frame = 0
  518              		@ frame_needed = 0, uses_anonymous_args = 0
  519              		@ link register save eliminated.
- 100:MyHardWare/Src/task.c ****     uint32_t start_tick = sysTickCounter;
- 520              		.loc 1 100 5 view .LVU125
- 521              		.loc 1 100 14 is_stmt 0 view .LVU126
-ARM GAS  /tmp/cccX7lTn.s 			page 49
+ 101:MyHardWare/Src/task.c ****   uint32_t start_tick = sysTickCounter;
+ 520              		.loc 1 101 3 view .LVU125
+ 521              		.loc 1 101 12 is_stmt 0 view .LVU126
+ARM GAS  /tmp/ccZKwEQ1.s 			page 49
 
 
  522 0000 034B     		ldr	r3, .L42
  523 0002 1A68     		ldr	r2, [r3]
  524              	.LVL26:
- 101:MyHardWare/Src/task.c ****     while((sysTickCounter - start_tick) < ms) {
- 525              		.loc 1 101 5 is_stmt 1 view .LVU127
+ 102:MyHardWare/Src/task.c ****   while ((sysTickCounter - start_tick) < ms) {
+ 525              		.loc 1 102 3 is_stmt 1 view .LVU127
  526              	.L41:
- 102:MyHardWare/Src/task.c ****         // 可以在此处添加低功耗模式以节省能源
- 103:MyHardWare/Src/task.c ****     }
- 527              		.loc 1 103 5 view .LVU128
- 101:MyHardWare/Src/task.c ****     while((sysTickCounter - start_tick) < ms) {
- 528              		.loc 1 101 41 discriminator 1 view .LVU129
- 101:MyHardWare/Src/task.c ****     while((sysTickCounter - start_tick) < ms) {
- 529              		.loc 1 101 27 is_stmt 0 discriminator 1 view .LVU130
+ 103:MyHardWare/Src/task.c ****     // 可以在此处添加低功耗模式以节省能源
+ 104:MyHardWare/Src/task.c ****   }
+ 527              		.loc 1 104 3 view .LVU128
+ 102:MyHardWare/Src/task.c ****   while ((sysTickCounter - start_tick) < ms) {
+ 528              		.loc 1 102 40 discriminator 1 view .LVU129
+ 102:MyHardWare/Src/task.c ****   while ((sysTickCounter - start_tick) < ms) {
+ 529              		.loc 1 102 26 is_stmt 0 discriminator 1 view .LVU130
  530 0004 024B     		ldr	r3, .L42
  531 0006 1B68     		ldr	r3, [r3]
  532 0008 9B1A     		subs	r3, r3, r2
- 101:MyHardWare/Src/task.c ****     while((sysTickCounter - start_tick) < ms) {
- 533              		.loc 1 101 41 discriminator 1 view .LVU131
+ 102:MyHardWare/Src/task.c ****   while ((sysTickCounter - start_tick) < ms) {
+ 533              		.loc 1 102 40 discriminator 1 view .LVU131
  534 000a 8342     		cmp	r3, r0
  535 000c FAD3     		bcc	.L41
- 104:MyHardWare/Src/task.c **** }...
- 536              		.loc 1 104 1 view .LVU132
+ 105:MyHardWare/Src/task.c **** }...
+ 536              		.loc 1 105 1 view .LVU132
  537 000e 7047     		bx	lr
  538              	.L43:
  539              		.align	2
@@ -2930,41 +2930,41 @@ ARM GAS  /tmp/cccX7lTn.s 			page 1
  564              		.file 4 "CMSIS/stm32f4xx.h"
  565              		.file 5 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
  566              		.file 6 "CMSIS/system_stm32f4xx.h"
-ARM GAS  /tmp/cccX7lTn.s 			page 50
+ARM GAS  /tmp/ccZKwEQ1.s 			page 50
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 task.c
-     /tmp/cccX7lTn.s:21     .text.Task_Init:00000000 $t
-     /tmp/cccX7lTn.s:27     .text.Task_Init:00000000 Task_Init
-     /tmp/cccX7lTn.s:134    .text.Task_Init:00000050 $d
-     /tmp/cccX7lTn.s:554    .bss.task_pool:00000000 task_pool
-     /tmp/cccX7lTn.s:142    .text.add_task:00000000 $t
-     /tmp/cccX7lTn.s:148    .text.add_task:00000000 add_task
-     /tmp/cccX7lTn.s:214    .text.add_task:00000038 $d
-     /tmp/cccX7lTn.s:548    .bss.task_count:00000000 task_count
-     /tmp/cccX7lTn.s:220    .text.remove_task:00000000 $t
-     /tmp/cccX7lTn.s:226    .text.remove_task:00000000 remove_task
-     /tmp/cccX7lTn.s:265    .text.remove_task:00000024 $d
-     /tmp/cccX7lTn.s:271    .text.start_task:00000000 $t
-     /tmp/cccX7lTn.s:277    .text.start_task:00000000 start_task
-     /tmp/cccX7lTn.s:304    .text.start_task:00000014 $d
-     /tmp/cccX7lTn.s:310    .text.stop_task:00000000 $t
-     /tmp/cccX7lTn.s:316    .text.stop_task:00000000 stop_task
-     /tmp/cccX7lTn.s:343    .text.stop_task:00000014 $d
-     /tmp/cccX7lTn.s:349    .text.Task_Handler:00000000 $t
-     /tmp/cccX7lTn.s:355    .text.Task_Handler:00000000 Task_Handler
-     /tmp/cccX7lTn.s:440    .text.Task_Handler:00000054 $d
-     /tmp/cccX7lTn.s:560    .bss.sysTickCounter:00000000 sysTickCounter
-     /tmp/cccX7lTn.s:447    .text.GetTick:00000000 $t
-     /tmp/cccX7lTn.s:453    .text.GetTick:00000000 GetTick
-     /tmp/cccX7lTn.s:501    .text.GetTick:0000000c $d
-     /tmp/cccX7lTn.s:506    .text.tdelay_ms:00000000 $t
-     /tmp/cccX7lTn.s:512    .text.tdelay_ms:00000000 tdelay_ms
-     /tmp/cccX7lTn.s:541    .text.tdelay_ms:00000010 $d
-     /tmp/cccX7lTn.s:549    .bss.task_count:00000000 $d
-     /tmp/cccX7lTn.s:551    .bss.task_pool:00000000 $d
-     /tmp/cccX7lTn.s:557    .bss.sysTickCounter:00000000 $d
+     /tmp/ccZKwEQ1.s:21     .text.Task_Init:00000000 $t
+     /tmp/ccZKwEQ1.s:27     .text.Task_Init:00000000 Task_Init
+     /tmp/ccZKwEQ1.s:134    .text.Task_Init:00000050 $d
+     /tmp/ccZKwEQ1.s:554    .bss.task_pool:00000000 task_pool
+     /tmp/ccZKwEQ1.s:142    .text.add_task:00000000 $t
+     /tmp/ccZKwEQ1.s:148    .text.add_task:00000000 add_task
+     /tmp/ccZKwEQ1.s:214    .text.add_task:00000038 $d
+     /tmp/ccZKwEQ1.s:548    .bss.task_count:00000000 task_count
+     /tmp/ccZKwEQ1.s:220    .text.remove_task:00000000 $t
+     /tmp/ccZKwEQ1.s:226    .text.remove_task:00000000 remove_task
+     /tmp/ccZKwEQ1.s:265    .text.remove_task:00000024 $d
+     /tmp/ccZKwEQ1.s:271    .text.start_task:00000000 $t
+     /tmp/ccZKwEQ1.s:277    .text.start_task:00000000 start_task
+     /tmp/ccZKwEQ1.s:304    .text.start_task:00000014 $d
+     /tmp/ccZKwEQ1.s:310    .text.stop_task:00000000 $t
+     /tmp/ccZKwEQ1.s:316    .text.stop_task:00000000 stop_task
+     /tmp/ccZKwEQ1.s:343    .text.stop_task:00000014 $d
+     /tmp/ccZKwEQ1.s:349    .text.Task_Handler:00000000 $t
+     /tmp/ccZKwEQ1.s:355    .text.Task_Handler:00000000 Task_Handler
+     /tmp/ccZKwEQ1.s:440    .text.Task_Handler:00000054 $d
+     /tmp/ccZKwEQ1.s:560    .bss.sysTickCounter:00000000 sysTickCounter
+     /tmp/ccZKwEQ1.s:447    .text.GetSysTick:00000000 $t
+     /tmp/ccZKwEQ1.s:453    .text.GetSysTick:00000000 GetSysTick
+     /tmp/ccZKwEQ1.s:501    .text.GetSysTick:0000000c $d
+     /tmp/ccZKwEQ1.s:506    .text.tdelay_ms:00000000 $t
+     /tmp/ccZKwEQ1.s:512    .text.tdelay_ms:00000000 tdelay_ms
+     /tmp/ccZKwEQ1.s:541    .text.tdelay_ms:00000010 $d
+     /tmp/ccZKwEQ1.s:549    .bss.task_count:00000000 $d
+     /tmp/ccZKwEQ1.s:551    .bss.task_pool:00000000 $d
+     /tmp/ccZKwEQ1.s:557    .bss.sysTickCounter:00000000 $d
 
 UNDEFINED SYMBOLS
 SystemCoreClock

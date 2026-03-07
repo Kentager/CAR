@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccs1piim.s 			page 1
+ARM GAS  /tmp/ccvZvrAV.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
   28:MyHardWare/eMPL/inv_mpu.c **** #include "delay.h"
   29:MyHardWare/eMPL/inv_mpu.c **** #include "usart.h"
   30:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 2
+ARM GAS  /tmp/ccvZvrAV.s 			page 2
 
 
   31:MyHardWare/eMPL/inv_mpu.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
   85:MyHardWare/eMPL/inv_mpu.c **** /* labs is already defined by TI's toolchain. */
   86:MyHardWare/eMPL/inv_mpu.c **** /* fabs is for doubles. fabsf is for floats. */
   87:MyHardWare/eMPL/inv_mpu.c **** #define fabs        fabsf
-ARM GAS  /tmp/ccs1piim.s 			page 3
+ARM GAS  /tmp/ccvZvrAV.s 			page 3
 
 
   88:MyHardWare/eMPL/inv_mpu.c **** #define min(a,b) ((a<b)?a:b)
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  142:MyHardWare/eMPL/inv_mpu.c **** #ifndef MPU6500
  143:MyHardWare/eMPL/inv_mpu.c **** #define MPU6500
  144:MyHardWare/eMPL/inv_mpu.c **** #endif                          /* #ifndef MPU6500 */
-ARM GAS  /tmp/ccs1piim.s 			page 4
+ARM GAS  /tmp/ccvZvrAV.s 			page 4
 
 
  145:MyHardWare/eMPL/inv_mpu.c **** #if defined AK8975_SECONDARY
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  199:MyHardWare/eMPL/inv_mpu.c ****     unsigned char s4_ctrl;
  200:MyHardWare/eMPL/inv_mpu.c ****     unsigned char s0_do;
  201:MyHardWare/eMPL/inv_mpu.c ****     unsigned char s1_do;
-ARM GAS  /tmp/ccs1piim.s 			page 5
+ARM GAS  /tmp/ccvZvrAV.s 			page 5
 
 
  202:MyHardWare/eMPL/inv_mpu.c ****     unsigned char i2c_delay_ctrl;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  256:MyHardWare/eMPL/inv_mpu.c ****     unsigned char bypass_mode;
  257:MyHardWare/eMPL/inv_mpu.c ****     /* 1 if half-sensitivity.
  258:MyHardWare/eMPL/inv_mpu.c ****      * NOTE: This doesn't belong here, but everything else in hw_s is const,
-ARM GAS  /tmp/ccs1piim.s 			page 6
+ARM GAS  /tmp/ccvZvrAV.s 			page 6
 
 
  259:MyHardWare/eMPL/inv_mpu.c ****      * and this allows us to save some precious RAM.
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  313:MyHardWare/eMPL/inv_mpu.c ****     INV_FILTER_256HZ_NOLPF2 = 0,
  314:MyHardWare/eMPL/inv_mpu.c ****     INV_FILTER_188HZ,
  315:MyHardWare/eMPL/inv_mpu.c ****     INV_FILTER_98HZ,
-ARM GAS  /tmp/ccs1piim.s 			page 7
+ARM GAS  /tmp/ccvZvrAV.s 			page 7
 
 
  316:MyHardWare/eMPL/inv_mpu.c ****     INV_FILTER_42HZ,
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  370:MyHardWare/eMPL/inv_mpu.c **** };
  371:MyHardWare/eMPL/inv_mpu.c **** 
  372:MyHardWare/eMPL/inv_mpu.c **** #define BIT_I2C_MST_VDDIO   (0x80)
-ARM GAS  /tmp/ccs1piim.s 			page 8
+ARM GAS  /tmp/ccvZvrAV.s 			page 8
 
 
  373:MyHardWare/eMPL/inv_mpu.c **** #define BIT_FIFO_EN         (0x40)
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  427:MyHardWare/eMPL/inv_mpu.c **** #define AKM_REG_ST2         (0x09)
  428:MyHardWare/eMPL/inv_mpu.c **** 
  429:MyHardWare/eMPL/inv_mpu.c **** #define AKM_REG_CNTL        (0x0A)
-ARM GAS  /tmp/ccs1piim.s 			page 9
+ARM GAS  /tmp/ccvZvrAV.s 			page 9
 
 
  430:MyHardWare/eMPL/inv_mpu.c **** #define AKM_REG_ASTC        (0x0C)
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  484:MyHardWare/eMPL/inv_mpu.c **** //    .s0_ctrl        = 0x27,
  485:MyHardWare/eMPL/inv_mpu.c **** //    .s1_addr        = 0x28,
  486:MyHardWare/eMPL/inv_mpu.c **** //    .s1_reg         = 0x29,
-ARM GAS  /tmp/ccs1piim.s 			page 10
+ARM GAS  /tmp/ccvZvrAV.s 			page 10
 
 
  487:MyHardWare/eMPL/inv_mpu.c **** //    .s1_ctrl        = 0x2A,
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  541:MyHardWare/eMPL/inv_mpu.c ****   256	 //bank_size
  542:MyHardWare/eMPL/inv_mpu.c **** };
  543:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 11
+ARM GAS  /tmp/ccvZvrAV.s 			page 11
 
 
  544:MyHardWare/eMPL/inv_mpu.c **** //const struct test_s test = {
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  598:MyHardWare/eMPL/inv_mpu.c ****     .gyro_cfg       = 0x1B,
  599:MyHardWare/eMPL/inv_mpu.c ****     .accel_cfg      = 0x1C,
  600:MyHardWare/eMPL/inv_mpu.c ****     .accel_cfg2     = 0x1D,
-ARM GAS  /tmp/ccs1piim.s 			page 12
+ARM GAS  /tmp/ccvZvrAV.s 			page 12
 
 
  601:MyHardWare/eMPL/inv_mpu.c ****     .lp_accel_odr   = 0x1E,
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  655:MyHardWare/eMPL/inv_mpu.c ****     .wait_ms        = 50,
  656:MyHardWare/eMPL/inv_mpu.c ****     .packet_thresh  = 5,    /* 5% */
  657:MyHardWare/eMPL/inv_mpu.c ****     .min_dps        = 10.f,
-ARM GAS  /tmp/ccs1piim.s 			page 13
+ARM GAS  /tmp/ccvZvrAV.s 			page 13
 
 
  658:MyHardWare/eMPL/inv_mpu.c ****     .max_dps        = 105.f,
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  712:MyHardWare/eMPL/inv_mpu.c **** }
  713:MyHardWare/eMPL/inv_mpu.c **** 
  714:MyHardWare/eMPL/inv_mpu.c **** /**
-ARM GAS  /tmp/ccs1piim.s 			page 14
+ARM GAS  /tmp/ccvZvrAV.s 			page 14
 
 
  715:MyHardWare/eMPL/inv_mpu.c ****  *  @brief      Register dump for testing.
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  769:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  770:MyHardWare/eMPL/inv_mpu.c ****     delay_ms(100);
  771:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 15
+ARM GAS  /tmp/ccvZvrAV.s 			page 15
 
 
  772:MyHardWare/eMPL/inv_mpu.c ****     /* Wake up chip. */
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  826:MyHardWare/eMPL/inv_mpu.c **** 
  827:MyHardWare/eMPL/inv_mpu.c ****     /* Set to invalid values to ensure no I2C writes are skipped. */
  828:MyHardWare/eMPL/inv_mpu.c ****     st.chip_cfg.sensors = 0xFF;
-ARM GAS  /tmp/ccs1piim.s 			page 16
+ARM GAS  /tmp/ccvZvrAV.s 			page 16
 
 
  829:MyHardWare/eMPL/inv_mpu.c ****     st.chip_cfg.gyro_fsr = 0xFF;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  883:MyHardWare/eMPL/inv_mpu.c ****  *  \n MPU6500: 1.25Hz, 2.5Hz, 5Hz, 10Hz, 20Hz, 40Hz, 80Hz, 160Hz, 320Hz, 640Hz
  884:MyHardWare/eMPL/inv_mpu.c ****  *  \n If the requested rate is not one listed above, the device will be set to
  885:MyHardWare/eMPL/inv_mpu.c ****  *  the next highest rate. Requesting a rate above the maximum supported
-ARM GAS  /tmp/ccs1piim.s 			page 17
+ARM GAS  /tmp/ccvZvrAV.s 			page 17
 
 
  886:MyHardWare/eMPL/inv_mpu.c ****  *  frequency will result in an error.
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  940:MyHardWare/eMPL/inv_mpu.c ****         tmp[0] = INV_LPA_2_5HZ;
  941:MyHardWare/eMPL/inv_mpu.c ****     else if (rate <= 5)
  942:MyHardWare/eMPL/inv_mpu.c ****         tmp[0] = INV_LPA_5HZ;
-ARM GAS  /tmp/ccs1piim.s 			page 18
+ARM GAS  /tmp/ccvZvrAV.s 			page 18
 
 
  943:MyHardWare/eMPL/inv_mpu.c ****     else if (rate <= 10)
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  997:MyHardWare/eMPL/inv_mpu.c ****  *  @param[out] timestamp   Timestamp in milliseconds. Null if not needed.
  998:MyHardWare/eMPL/inv_mpu.c ****  *  @return     0 if successful.
  999:MyHardWare/eMPL/inv_mpu.c ****  */
-ARM GAS  /tmp/ccs1piim.s 			page 19
+ARM GAS  /tmp/ccvZvrAV.s 			page 19
 
 
 1000:MyHardWare/eMPL/inv_mpu.c **** int mpu_get_accel_reg(short *data, unsigned long *timestamp)
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1054:MyHardWare/eMPL/inv_mpu.c **** 
 1055:MyHardWare/eMPL/inv_mpu.c ****     if (!accel_bias)
 1056:MyHardWare/eMPL/inv_mpu.c ****         return -1;
-ARM GAS  /tmp/ccs1piim.s 			page 20
+ARM GAS  /tmp/ccvZvrAV.s 			page 20
 
 
 1057:MyHardWare/eMPL/inv_mpu.c ****     if (!accel_bias[0] && !accel_bias[1] && !accel_bias[2])
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1111:MyHardWare/eMPL/inv_mpu.c **** 
 1112:MyHardWare/eMPL/inv_mpu.c ****     if (st.chip_cfg.dmp_on) {
 1113:MyHardWare/eMPL/inv_mpu.c ****         data = BIT_FIFO_RST | BIT_DMP_RST;
-ARM GAS  /tmp/ccs1piim.s 			page 21
+ARM GAS  /tmp/ccvZvrAV.s 			page 21
 
 
 1114:MyHardWare/eMPL/inv_mpu.c ****         if (i2c_write(st.hw->addr, st.reg->user_ctrl, 1, &data))
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1168:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_1000DPS:
 1169:MyHardWare/eMPL/inv_mpu.c ****         fsr[0] = 1000;
 1170:MyHardWare/eMPL/inv_mpu.c ****         break;
-ARM GAS  /tmp/ccs1piim.s 			page 22
+ARM GAS  /tmp/ccvZvrAV.s 			page 22
 
 
 1171:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_2000DPS:
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1225:MyHardWare/eMPL/inv_mpu.c ****     switch (st.chip_cfg.accel_fsr) {
 1226:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_2G:
 1227:MyHardWare/eMPL/inv_mpu.c ****         fsr[0] = 2;
-ARM GAS  /tmp/ccs1piim.s 			page 23
+ARM GAS  /tmp/ccvZvrAV.s 			page 23
 
 
 1228:MyHardWare/eMPL/inv_mpu.c ****         break;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1282:MyHardWare/eMPL/inv_mpu.c **** 
 1283:MyHardWare/eMPL/inv_mpu.c **** /**
 1284:MyHardWare/eMPL/inv_mpu.c ****  *  @brief      Get the current DLPF setting.
-ARM GAS  /tmp/ccs1piim.s 			page 24
+ARM GAS  /tmp/ccvZvrAV.s 			page 24
 
 
 1285:MyHardWare/eMPL/inv_mpu.c ****  *  @param[out] lpf Current LPF setting.
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1339:MyHardWare/eMPL/inv_mpu.c ****     else if (lpf >= 10)
 1340:MyHardWare/eMPL/inv_mpu.c ****         data = INV_FILTER_10HZ;
 1341:MyHardWare/eMPL/inv_mpu.c ****     else
-ARM GAS  /tmp/ccs1piim.s 			page 25
+ARM GAS  /tmp/ccvZvrAV.s 			page 25
 
 
 1342:MyHardWare/eMPL/inv_mpu.c ****         data = INV_FILTER_5HZ;
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1396:MyHardWare/eMPL/inv_mpu.c ****             rate = 1000;
 1397:MyHardWare/eMPL/inv_mpu.c **** 
 1398:MyHardWare/eMPL/inv_mpu.c ****         data = 1000 / rate - 1;
-ARM GAS  /tmp/ccs1piim.s 			page 26
+ARM GAS  /tmp/ccvZvrAV.s 			page 26
 
 
 1399:MyHardWare/eMPL/inv_mpu.c ****         if (i2c_write(st.hw->addr, st.reg->rate_div, 1, &data))
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1453:MyHardWare/eMPL/inv_mpu.c **** #else
 1454:MyHardWare/eMPL/inv_mpu.c ****     return -1;
 1455:MyHardWare/eMPL/inv_mpu.c **** #endif
-ARM GAS  /tmp/ccs1piim.s 			page 27
+ARM GAS  /tmp/ccvZvrAV.s 			page 27
 
 
 1456:MyHardWare/eMPL/inv_mpu.c **** }
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1510:MyHardWare/eMPL/inv_mpu.c **** }
 1511:MyHardWare/eMPL/inv_mpu.c **** 
 1512:MyHardWare/eMPL/inv_mpu.c **** /**
-ARM GAS  /tmp/ccs1piim.s 			page 28
+ARM GAS  /tmp/ccvZvrAV.s 			page 28
 
 
 1513:MyHardWare/eMPL/inv_mpu.c ****  *  @brief      Get current FIFO configuration.
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1567:MyHardWare/eMPL/inv_mpu.c ****         }
 1568:MyHardWare/eMPL/inv_mpu.c ****     }
 1569:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 29
+ARM GAS  /tmp/ccvZvrAV.s 			page 29
 
 
 1570:MyHardWare/eMPL/inv_mpu.c ****     return result;
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1624:MyHardWare/eMPL/inv_mpu.c ****         data |= BIT_STBY_XYZA;
 1625:MyHardWare/eMPL/inv_mpu.c ****     if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_2, 1, &data)) {
 1626:MyHardWare/eMPL/inv_mpu.c ****         st.chip_cfg.sensors = 0;
-ARM GAS  /tmp/ccs1piim.s 			page 30
+ARM GAS  /tmp/ccvZvrAV.s 			page 30
 
 
 1627:MyHardWare/eMPL/inv_mpu.c ****         return -1;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1681:MyHardWare/eMPL/inv_mpu.c ****     status[0] = (tmp[0] << 8) | tmp[1];
 1682:MyHardWare/eMPL/inv_mpu.c ****     return 0;
 1683:MyHardWare/eMPL/inv_mpu.c **** }
-ARM GAS  /tmp/ccs1piim.s 			page 31
+ARM GAS  /tmp/ccvZvrAV.s 			page 31
 
 
 1684:MyHardWare/eMPL/inv_mpu.c **** 
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1738:MyHardWare/eMPL/inv_mpu.c ****             return -1;
 1739:MyHardWare/eMPL/inv_mpu.c ****         if (data[0] & BIT_FIFO_OVERFLOW) {
 1740:MyHardWare/eMPL/inv_mpu.c ****             mpu_reset_fifo();
-ARM GAS  /tmp/ccs1piim.s 			page 32
+ARM GAS  /tmp/ccvZvrAV.s 			page 32
 
 
 1741:MyHardWare/eMPL/inv_mpu.c ****             return -2;
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1795:MyHardWare/eMPL/inv_mpu.c ****         return -1;
 1796:MyHardWare/eMPL/inv_mpu.c ****     fifo_count = (tmp[0] << 8) | tmp[1];
 1797:MyHardWare/eMPL/inv_mpu.c ****     if (fifo_count < length) {
-ARM GAS  /tmp/ccs1piim.s 			page 33
+ARM GAS  /tmp/ccvZvrAV.s 			page 33
 
 
 1798:MyHardWare/eMPL/inv_mpu.c ****         more[0] = 0;
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1852:MyHardWare/eMPL/inv_mpu.c ****             return -1;
 1853:MyHardWare/eMPL/inv_mpu.c ****         delay_ms(3);
 1854:MyHardWare/eMPL/inv_mpu.c ****         if (st.chip_cfg.active_low_int)
-ARM GAS  /tmp/ccs1piim.s 			page 34
+ARM GAS  /tmp/ccvZvrAV.s 			page 34
 
 
 1855:MyHardWare/eMPL/inv_mpu.c ****             tmp = BIT_ACTL;
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
   31              		@ args = 0, pretend = 0, frame = 8
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		.loc 1 1906 1 is_stmt 0 view .LVU1
-ARM GAS  /tmp/ccs1piim.s 			page 35
+ARM GAS  /tmp/ccvZvrAV.s 			page 35
 
 
   34 0000 10B5     		push	{r4, lr}
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
   81 003e C3F38100 		ubfx	r0, r3, #2, #2
   82              		.loc 1 1913 44 view .LVU18
   83 0042 0243     		orrs	r2, r2, r0
-ARM GAS  /tmp/ccs1piim.s 			page 36
+ARM GAS  /tmp/ccvZvrAV.s 			page 36
 
 
   84              		.loc 1 1913 19 view .LVU19
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  124 007e 0DEB0302 		add	r2, sp, r3
  125 0082 12F8083C 		ldrb	r3, [r2, #-8]	@ zero_extendqisi2
 1924:MyHardWare/eMPL/inv_mpu.c ****         while (--shift_code[ii])
-ARM GAS  /tmp/ccs1piim.s 			page 37
+ARM GAS  /tmp/ccvZvrAV.s 			page 37
 
 
  126              		.loc 1 1924 16 view .LVU37
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  167              	.LCFI2:
  168              		.cfi_remember_state
  169              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccs1piim.s 			page 38
+ARM GAS  /tmp/ccvZvrAV.s 			page 38
 
 
  170              		@ sp needed
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  218              	.LVL11:
  219              		.loc 1 1935 5 is_stmt 0 view .LVU56
  220 000a FFF7FEFF 		bl	get_accel_prod_shift
-ARM GAS  /tmp/ccs1piim.s 			page 39
+ARM GAS  /tmp/ccvZvrAV.s 			page 39
 
 
  221              	.LVL12:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1937:MyHardWare/eMPL/inv_mpu.c ****         st_shift_cust = labs(bias_regular[jj] - bias_st[jj]) / 65536.f;
  261              		.loc 1 1937 56 view .LVU71
  262 0040 54F82210 		ldr	r1, [r4, r2, lsl #2]
-ARM GAS  /tmp/ccs1piim.s 			page 40
+ARM GAS  /tmp/ccvZvrAV.s 			page 40
 
 
 1937:MyHardWare/eMPL/inv_mpu.c ****         st_shift_cust = labs(bias_regular[jj] - bias_st[jj]) / 65536.f;
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  302 0084 F4EEC77A 		vcmpe.f32	s15, s14
  303 0088 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  304 008c D3DD     		ble	.L17
-ARM GAS  /tmp/ccs1piim.s 			page 41
+ARM GAS  /tmp/ccvZvrAV.s 			page 41
 
 
 1941:MyHardWare/eMPL/inv_mpu.c ****         } else if ((st_shift_cust < test.min_g) ||
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  350              	.LCFI7:
  351              		.cfi_def_cfa_offset 12
  352              		.cfi_offset 4, -12
-ARM GAS  /tmp/ccs1piim.s 			page 42
+ARM GAS  /tmp/ccvZvrAV.s 			page 42
 
 
  353              		.cfi_offset 5, -8
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  397 0038 03F01F03 		and	r3, r3, #31
  398 003c 8DF80630 		strb	r3, [sp, #6]
 1962:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 43
+ARM GAS  /tmp/ccvZvrAV.s 			page 43
 
 
 1963:MyHardWare/eMPL/inv_mpu.c ****     for (jj = 0; jj < 3; jj++) {
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  442 007c F1EE10FA 		vmrs	APSR_nzcv, FPSCR
  443 0080 09DD     		ble	.L33
 1971:MyHardWare/eMPL/inv_mpu.c ****                 result |= 1 << jj;
-ARM GAS  /tmp/ccs1piim.s 			page 44
+ARM GAS  /tmp/ccvZvrAV.s 			page 44
 
 
  444              		.loc 1 1971 17 is_stmt 1 view .LVU129
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  486 00ac 07EE903A 		vmov	s15, r3	@ int
  487 00b0 F8EEE77A 		vcvt.f32.s32	s15, s15
 1964:MyHardWare/eMPL/inv_mpu.c ****         if (tmp[jj]) {
-ARM GAS  /tmp/ccs1piim.s 			page 45
+ARM GAS  /tmp/ccvZvrAV.s 			page 45
 
 
  488              		.loc 1 1964 23 view .LVU145
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  532 00fc 00008037 		.word	931135488
  533 0100 0000D242 		.word	1121058816
  534              		.cfi_endproc
-ARM GAS  /tmp/ccs1piim.s 			page 46
+ARM GAS  /tmp/ccvZvrAV.s 			page 46
 
 
  535              	.LFE160:
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  578              		.loc 1 695 38 view .LVU167
  579 0018 1968     		ldr	r1, [r3]
  695:MyHardWare/eMPL/inv_mpu.c ****             return -1;
-ARM GAS  /tmp/ccs1piim.s 			page 47
+ARM GAS  /tmp/ccvZvrAV.s 			page 47
 
 
  580              		.loc 1 695 13 view .LVU168
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  622 0048 124B     		ldr	r3, .L58
  623 004a 5B7C     		ldrb	r3, [r3, #17]	@ zero_extendqisi2
  701:MyHardWare/eMPL/inv_mpu.c ****             return 0;
-ARM GAS  /tmp/ccs1piim.s 			page 48
+ARM GAS  /tmp/ccvZvrAV.s 			page 48
 
 
  624              		.loc 1 701 20 discriminator 1 view .LVU181
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  665              	.L54:
  700:MyHardWare/eMPL/inv_mpu.c ****         if (enable && st.chip_cfg.int_enable)
  666              		.loc 1 700 20 view .LVU195
-ARM GAS  /tmp/ccs1piim.s 			page 49
+ARM GAS  /tmp/ccvZvrAV.s 			page 49
 
 
  667 0082 4FF0FF30 		mov	r0, #-1
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1998:MyHardWare/eMPL/inv_mpu.c **** 
 1999:MyHardWare/eMPL/inv_mpu.c ****     do {
 2000:MyHardWare/eMPL/inv_mpu.c ****         delay_ms(10);
-ARM GAS  /tmp/ccs1piim.s 			page 50
+ARM GAS  /tmp/ccvZvrAV.s 			page 50
 
 
 2001:MyHardWare/eMPL/inv_mpu.c ****         if (i2c_read(st.chip_cfg.compass_addr, AKM_REG_ST1, 1, tmp))
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2036:MyHardWare/eMPL/inv_mpu.c ****     unsigned char data[MAX_PACKET_LENGTH];
  718              		.loc 1 2036 5 is_stmt 1 view .LVU202
 2037:MyHardWare/eMPL/inv_mpu.c ****     unsigned char packet_count, ii;
-ARM GAS  /tmp/ccs1piim.s 			page 51
+ARM GAS  /tmp/ccvZvrAV.s 			page 51
 
 
  719              		.loc 1 2037 5 view .LVU203
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  764 0040 05AB     		add	r3, sp, #20
  765 0042 0122     		movs	r2, #1
  766 0044 C97B     		ldrb	r1, [r1, #15]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 52
+ARM GAS  /tmp/ccvZvrAV.s 			page 52
 
 
  767 0046 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  815 008e 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
  816 0090 FFF7FEFF 		bl	MPU_Write_Len
  817              	.LVL63:
-ARM GAS  /tmp/ccs1piim.s 			page 53
+ARM GAS  /tmp/ccvZvrAV.s 			page 53
 
 
  818              		.loc 1 2052 8 discriminator 1 view .LVU237
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  864 00d8 9A6A     		ldr	r2, [r3, #40]
  865              		.loc 1 2060 22 view .LVU253
  866 00da 527A     		ldrb	r2, [r2, #9]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 54
+ARM GAS  /tmp/ccvZvrAV.s 			page 54
 
 
  867              		.loc 1 2060 13 view .LVU254
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  914 011c 9B6A     		ldr	r3, [r3, #40]
  915              		.loc 1 2067 26 view .LVU273
  916 011e 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 55
+ARM GAS  /tmp/ccvZvrAV.s 			page 55
 
 
  917              		.loc 1 2067 17 view .LVU274
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  961 015e 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
  962 0160 FFF7FEFF 		bl	MPU_Write_Len
  963              	.LVL70:
-ARM GAS  /tmp/ccs1piim.s 			page 56
+ARM GAS  /tmp/ccvZvrAV.s 			page 56
 
 
  964              		.loc 1 2077 8 discriminator 1 view .LVU290
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1007 01a0 FFF7FEFF 		bl	MPU_Write_Len
  1008              	.LVL72:
  1009              		.loc 1 2088 8 discriminator 1 view .LVU306
-ARM GAS  /tmp/ccs1piim.s 			page 57
+ARM GAS  /tmp/ccvZvrAV.s 			page 57
 
 
  1010 01a4 0028     		cmp	r0, #0
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2098:MyHardWare/eMPL/inv_mpu.c ****     fifo_count = (data[0] << 8) | data[1];
  1055              		.loc 1 2098 5 is_stmt 1 view .LVU321
  1056              		.loc 1 2098 23 is_stmt 0 view .LVU322
-ARM GAS  /tmp/ccs1piim.s 			page 58
+ARM GAS  /tmp/ccvZvrAV.s 			page 58
 
 
  1057 01e8 9DF81430 		ldrb	r3, [sp, #20]	@ zero_extendqisi2
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1102              	.L64:
 2076:MyHardWare/eMPL/inv_mpu.c ****     if (i2c_write(st.hw->addr, st.reg->accel_cfg, 1, data))
  1103              		.loc 1 2076 9 is_stmt 1 view .LVU342
-ARM GAS  /tmp/ccs1piim.s 			page 59
+ARM GAS  /tmp/ccvZvrAV.s 			page 59
 
 
 2076:MyHardWare/eMPL/inv_mpu.c ****     if (i2c_write(st.hw->addr, st.reg->accel_cfg, 1, data))
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1150              		.loc 1 2109 22 view .LVU359
  1151 0266 ADF80830 		strh	r3, [sp, #8]	@ movhi
 2110:MyHardWare/eMPL/inv_mpu.c ****         accel[0] += (long)accel_cur[0];
-ARM GAS  /tmp/ccs1piim.s 			page 60
+ARM GAS  /tmp/ccvZvrAV.s 			page 60
 
 
  1152              		.loc 1 2110 9 is_stmt 1 view .LVU360
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1200              		.loc 1 2116 9 is_stmt 1 view .LVU384
  1201              		.loc 1 2116 13 is_stmt 0 view .LVU385
  1202 02b2 2868     		ldr	r0, [r5]
-ARM GAS  /tmp/ccs1piim.s 			page 61
+ARM GAS  /tmp/ccvZvrAV.s 			page 61
 
 
  1203              		.loc 1 2116 17 view .LVU386
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1246 02e0 A8D0     		beq	.L68
 2106:MyHardWare/eMPL/inv_mpu.c ****         accel_cur[0] = ((short)data[0] << 8) | data[1];
  1247              		.loc 1 2106 13 is_stmt 1 view .LVU402
-ARM GAS  /tmp/ccs1piim.s 			page 62
+ARM GAS  /tmp/ccvZvrAV.s 			page 62
 
 
 2106:MyHardWare/eMPL/inv_mpu.c ****         accel_cur[0] = ((short)data[0] << 8) | data[1];
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1265              		.loc 1 2135 5 is_stmt 1 view .LVU406
 2135:MyHardWare/eMPL/inv_mpu.c ****     gyro[1] = (long)(((long long)gyro[1]<<16) / test.gyro_sens / packet_count);
  1266              		.loc 1 2135 38 is_stmt 0 view .LVU407
-ARM GAS  /tmp/ccs1piim.s 			page 63
+ARM GAS  /tmp/ccvZvrAV.s 			page 63
 
 
  1267 02ea 2968     		ldr	r1, [r5]
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1309 0324 0914     		asrs	r1, r1, #16
  1310 0326 FFF7FEFF 		bl	__aeabi_ldivmod
  1311              	.LVL95:
-ARM GAS  /tmp/ccs1piim.s 			page 64
+ARM GAS  /tmp/ccvZvrAV.s 			page 64
 
 
 2137:MyHardWare/eMPL/inv_mpu.c ****     accel[0] = (long)(((long long)accel[0]<<16) / test.accel_sens /
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1353 0360 3A46     		mov	r2, r7
  1354 0362 3346     		mov	r3, r6
  1355 0364 40EA4150 		orr	r0, r0, r1, lsl #21
-ARM GAS  /tmp/ccs1piim.s 			page 65
+ARM GAS  /tmp/ccvZvrAV.s 			page 65
 
 
  1356 0368 C912     		asrs	r1, r1, #11
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1397 03a2 43F10001 		adc	r1, r3, #0
  1398 03a6 CBE7     		b	.L70
  1399              	.L93:
-ARM GAS  /tmp/ccs1piim.s 			page 66
+ARM GAS  /tmp/ccvZvrAV.s 			page 66
 
 
 2140:MyHardWare/eMPL/inv_mpu.c ****         packet_count);
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1443 03ec 7BE7     		b	.L60
  1444              	.L80:
 2058:MyHardWare/eMPL/inv_mpu.c ****     delay_ms(15);
-ARM GAS  /tmp/ccs1piim.s 			page 67
+ARM GAS  /tmp/ccvZvrAV.s 			page 67
 
 
  1445              		.loc 1 2058 16 view .LVU457
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1490      35780D0A 
  1490      00
  1491              		.section	.text.mpu_reg_dump,"ax",%progbits
-ARM GAS  /tmp/ccs1piim.s 			page 68
+ARM GAS  /tmp/ccvZvrAV.s 			page 68
 
 
  1492              		.align	1
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1535              		.loc 1 723 21 discriminator 1 view .LVU477
  1536 0012 A342     		cmp	r3, r4
  1537 0014 16D9     		bls	.L106
-ARM GAS  /tmp/ccs1piim.s 			page 69
+ARM GAS  /tmp/ccvZvrAV.s 			page 69
 
 
  724:MyHardWare/eMPL/inv_mpu.c ****             continue;
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1580              	.LVL107:
  1581              	.L104:
  1582              	.LCFI21:
-ARM GAS  /tmp/ccs1piim.s 			page 70
+ARM GAS  /tmp/ccvZvrAV.s 			page 70
 
 
  1583              		.cfi_restore_state
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1629              		.cfi_def_cfa_offset 8
  1630              		.cfi_offset 4, -8
  1631              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccs1piim.s 			page 71
+ARM GAS  /tmp/ccvZvrAV.s 			page 71
 
 
  744:MyHardWare/eMPL/inv_mpu.c ****         return -1;
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1674              		.cfi_def_cfa_offset 8
  1675              		.cfi_offset 4, -8
  1676              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccs1piim.s 			page 72
+ARM GAS  /tmp/ccvZvrAV.s 			page 72
 
 
  745:MyHardWare/eMPL/inv_mpu.c ****     return i2c_read(st.hw->addr, reg, 1, data);
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1723 0010 134B     		ldr	r3, .L128
  1724 0012 5868     		ldr	r0, [r3, #4]
  1725              	.LVL119:
-ARM GAS  /tmp/ccs1piim.s 			page 73
+ARM GAS  /tmp/ccvZvrAV.s 			page 73
 
 
  984:MyHardWare/eMPL/inv_mpu.c ****         return -1;
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  988:MyHardWare/eMPL/inv_mpu.c ****     if (timestamp)
  1763              		.loc 1 988 13 view .LVU539
  1764 004c A380     		strh	r3, [r4, #4]	@ movhi
-ARM GAS  /tmp/ccs1piim.s 			page 74
+ARM GAS  /tmp/ccvZvrAV.s 			page 74
 
 
  989:MyHardWare/eMPL/inv_mpu.c ****         get_ms(timestamp);
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1814              		@ frame_needed = 0, uses_anonymous_args = 0
 1002:MyHardWare/eMPL/inv_mpu.c **** 
  1815              		.loc 1 1002 5 view .LVU547
-ARM GAS  /tmp/ccs1piim.s 			page 75
+ARM GAS  /tmp/ccvZvrAV.s 			page 75
 
 
 1004:MyHardWare/eMPL/inv_mpu.c ****         return -1;
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1009:MyHardWare/eMPL/inv_mpu.c ****     data[1] = (tmp[2] << 8) | tmp[3];
  1857              		.loc 1 1009 13 view .LVU561
  1858 0030 2380     		strh	r3, [r4]	@ movhi
-ARM GAS  /tmp/ccs1piim.s 			page 76
+ARM GAS  /tmp/ccvZvrAV.s 			page 76
 
 
 1010:MyHardWare/eMPL/inv_mpu.c ****     data[2] = (tmp[4] << 8) | tmp[5];
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1898              	.L133:
  1899              	.LCFI34:
  1900              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccs1piim.s 			page 77
+ARM GAS  /tmp/ccvZvrAV.s 			page 77
 
 
  1901              		.cfi_offset 4, -8
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1947 000c 1A4B     		ldr	r3, .L148
  1948 000e 5868     		ldr	r0, [r3, #4]
  1949              	.LVL133:
-ARM GAS  /tmp/ccs1piim.s 			page 78
+ARM GAS  /tmp/ccvZvrAV.s 			page 78
 
 
 1031:MyHardWare/eMPL/inv_mpu.c ****         return -1;
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  1988              		.loc 1 1037 34 view .LVU602
  1989 0046 77EEC77A 		vsub.f32	s15, s15, s14
 1037:MyHardWare/eMPL/inv_mpu.c ****     return 0;
-ARM GAS  /tmp/ccs1piim.s 			page 79
+ARM GAS  /tmp/ccvZvrAV.s 			page 79
 
 
  1990              		.loc 1 1037 70 view .LVU603
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2035 0078 00000000 		.word	st
  2036 007c 00000C42 		.word	1108082688
  2037              		.cfi_endproc
-ARM GAS  /tmp/ccs1piim.s 			page 80
+ARM GAS  /tmp/ccvZvrAV.s 			page 80
 
 
  2038              	.LFE133:
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2081              		.loc 1 1057 24 discriminator 1 view .LVU625
  2082 0012 1BB9     		cbnz	r3, .L152
 1057:MyHardWare/eMPL/inv_mpu.c ****         return 0;
-ARM GAS  /tmp/ccs1piim.s 			page 81
+ARM GAS  /tmp/ccvZvrAV.s 			page 81
 
 
  2083              		.loc 1 1057 56 discriminator 2 view .LVU626
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2122              		.loc 1 1063 11 view .LVU641
  2123 004e ADF80220 		strh	r2, [sp, #2]	@ movhi
 1064:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 82
+ARM GAS  /tmp/ccvZvrAV.s 			page 82
 
 
  2124              		.loc 1 1064 5 is_stmt 1 view .LVU642
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1068:MyHardWare/eMPL/inv_mpu.c **** 
  2160              		.loc 1 1068 41 view .LVU661
  2161 0080 6400     		lsls	r4, r4, #1
-ARM GAS  /tmp/ccs1piim.s 			page 83
+ARM GAS  /tmp/ccvZvrAV.s 			page 83
 
 
 1068:MyHardWare/eMPL/inv_mpu.c **** 
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1074:MyHardWare/eMPL/inv_mpu.c ****     got_accel[2] = ((short)data[4] << 8) | data[5];
  2200              		.loc 1 1074 18 view .LVU678
  2201 00c0 ADF80A20 		strh	r2, [sp, #10]	@ movhi
-ARM GAS  /tmp/ccs1piim.s 			page 84
+ARM GAS  /tmp/ccvZvrAV.s 			page 84
 
 
 1075:MyHardWare/eMPL/inv_mpu.c **** 
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2238              		.loc 1 1082 13 is_stmt 0 view .LVU696
  2239 0100 8DF81960 		strb	r6, [sp, #25]
 1083:MyHardWare/eMPL/inv_mpu.c ****     data[3] = (accel_hw[1]) & 0xff;
-ARM GAS  /tmp/ccs1piim.s 			page 85
+ARM GAS  /tmp/ccvZvrAV.s 			page 85
 
 
  2240              		.loc 1 1083 5 is_stmt 1 view .LVU697
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1056:MyHardWare/eMPL/inv_mpu.c ****     if (!accel_bias[0] && !accel_bias[1] && !accel_bias[2])
  2282              		.loc 1 1056 16 view .LVU710
  2283 012e 4FF0FF30 		mov	r0, #-1
-ARM GAS  /tmp/ccs1piim.s 			page 86
+ARM GAS  /tmp/ccvZvrAV.s 			page 86
 
 
  2284              	.LVL149:
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1101:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  2332              		.loc 1 1101 8 view .LVU719
  2333 0004 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccs1piim.s 			page 87
+ARM GAS  /tmp/ccvZvrAV.s 			page 87
 
 
  2334 0006 00F0D480 		beq	.L174
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1107:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  2376              		.loc 1 1107 8 discriminator 1 view .LVU732
  2377 0042 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccs1piim.s 			page 88
+ARM GAS  /tmp/ccvZvrAV.s 			page 88
 
 
  2378 0044 40F0BB80 		bne	.L176
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2418              	.LVL155:
 1114:MyHardWare/eMPL/inv_mpu.c ****             return -1;
  2419              		.loc 1 1114 12 discriminator 1 view .LVU747
-ARM GAS  /tmp/ccs1piim.s 			page 89
+ARM GAS  /tmp/ccvZvrAV.s 			page 89
 
 
  2420 0086 0028     		cmp	r0, #0
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2459              		.loc 1 1122 24 is_stmt 0 view .LVU762
  2460 00c2 4C4B     		ldr	r3, .L190
  2461 00c4 5B7C     		ldrb	r3, [r3, #17]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 90
+ARM GAS  /tmp/ccvZvrAV.s 			page 90
 
 
 1122:MyHardWare/eMPL/inv_mpu.c ****             data = BIT_DMP_INT_EN;
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1129:MyHardWare/eMPL/inv_mpu.c ****             return -1;
  2502              		.loc 1 1129 12 discriminator 1 view .LVU777
  2503 0100 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccs1piim.s 			page 91
+ARM GAS  /tmp/ccvZvrAV.s 			page 91
 
 
  2504 0102 6BD1     		bne	.L181
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1135:MyHardWare/eMPL/inv_mpu.c ****             data = BIT_FIFO_EN;
  2546              		.loc 1 1135 12 view .LVU790
  2547 0134 23B9     		cbnz	r3, .L169
-ARM GAS  /tmp/ccs1piim.s 			page 92
+ARM GAS  /tmp/ccvZvrAV.s 			page 92
 
 
 1135:MyHardWare/eMPL/inv_mpu.c ****             data = BIT_FIFO_EN;
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2587              		.loc 1 1143 18 is_stmt 0 view .LVU805
  2588 016a 0123     		movs	r3, #1
  2589 016c 8DF80730 		strb	r3, [sp, #7]
-ARM GAS  /tmp/ccs1piim.s 			page 93
+ARM GAS  /tmp/ccvZvrAV.s 			page 93
 
 
  2590              	.L173:
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1145:MyHardWare/eMPL/inv_mpu.c ****         if (i2c_write(st.hw->addr, st.reg->int_enable, 1, &data))
  2631              		.loc 1 1145 13 is_stmt 1 view .LVU819
 1145:MyHardWare/eMPL/inv_mpu.c ****         if (i2c_write(st.hw->addr, st.reg->int_enable, 1, &data))
-ARM GAS  /tmp/ccs1piim.s 			page 94
+ARM GAS  /tmp/ccvZvrAV.s 			page 94
 
 
  2632              		.loc 1 1145 18 is_stmt 0 view .LVU820
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2676              		.loc 1 1134 20 view .LVU830
  2677 01e2 4FF0FF30 		mov	r0, #-1
  2678 01e6 8DE7     		b	.L163
-ARM GAS  /tmp/ccs1piim.s 			page 95
+ARM GAS  /tmp/ccvZvrAV.s 			page 95
 
 
  2679              	.L183:
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2727 0012 0380     		strh	r3, [r0]	@ movhi
 1164:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_500DPS:
  2728              		.loc 1 1164 9 is_stmt 1 view .LVU839
-ARM GAS  /tmp/ccs1piim.s 			page 96
+ARM GAS  /tmp/ccvZvrAV.s 			page 96
 
 
  2729              	.L199:
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2768 0038 00000000 		.word	st
  2769              		.cfi_endproc
  2770              	.LFE136:
-ARM GAS  /tmp/ccs1piim.s 			page 97
+ARM GAS  /tmp/ccvZvrAV.s 			page 97
 
 
  2772              		.section	.text.mpu_set_gyro_fsr,"ax",%progbits
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1193:MyHardWare/eMPL/inv_mpu.c ****     case 250:
  2817              		.loc 1 1193 5 is_stmt 0 view .LVU865
  2818 0026 4FF0FF30 		mov	r0, #-1
-ARM GAS  /tmp/ccs1piim.s 			page 98
+ARM GAS  /tmp/ccvZvrAV.s 			page 98
 
 
  2819              	.LVL169:
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2857              		.loc 1 1212 21 is_stmt 0 view .LVU881
  2858 0054 0F4B     		ldr	r3, .L219
  2859 0056 5868     		ldr	r0, [r3, #4]
-ARM GAS  /tmp/ccs1piim.s 			page 99
+ARM GAS  /tmp/ccvZvrAV.s 			page 99
 
 
  2860              	.LVL173:
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2903              	.LVL176:
 1216:MyHardWare/eMPL/inv_mpu.c **** 
  2904              		.loc 1 1216 1 view .LVU893
-ARM GAS  /tmp/ccs1piim.s 			page 100
+ARM GAS  /tmp/ccvZvrAV.s 			page 100
 
 
  2905 0086 7047     		bx	lr
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2954 000f 12       		.byte	(.L223-.L224)/2
  2955              		.p2align 1
  2956              	.L227:
-ARM GAS  /tmp/ccs1piim.s 			page 101
+ARM GAS  /tmp/ccvZvrAV.s 			page 101
 
 
 1227:MyHardWare/eMPL/inv_mpu.c ****         break;
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  2994 002e F1E7     		b	.L228
  2995              	.L223:
 1236:MyHardWare/eMPL/inv_mpu.c ****         break;
-ARM GAS  /tmp/ccs1piim.s 			page 102
+ARM GAS  /tmp/ccvZvrAV.s 			page 102
 
 
  2996              		.loc 1 1236 9 view .LVU918
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3041              		.loc 1 1255 8 view .LVU929
  3042 0004 002B     		cmp	r3, #0
  3043 0006 35D0     		beq	.L241
-ARM GAS  /tmp/ccs1piim.s 			page 103
+ARM GAS  /tmp/ccvZvrAV.s 			page 103
 
 
 1252:MyHardWare/eMPL/inv_mpu.c ****     unsigned char data;
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1275:MyHardWare/eMPL/inv_mpu.c ****         return 0;
  3089              		.loc 1 1275 8 view .LVU939
  3090 0034 B3EBD20F 		cmp	r3, r2, lsr #3
-ARM GAS  /tmp/ccs1piim.s 			page 104
+ARM GAS  /tmp/ccvZvrAV.s 			page 104
 
 
  3091 0038 24D0     		beq	.L243
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3130 006a DFE7     		b	.L240
  3131              	.L235:
 1269:MyHardWare/eMPL/inv_mpu.c ****         break;
-ARM GAS  /tmp/ccs1piim.s 			page 105
+ARM GAS  /tmp/ccvZvrAV.s 			page 105
 
 
  3132              		.loc 1 1269 9 view .LVU955
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3179              		.section	.text.mpu_get_lpf,"ax",%progbits
  3180              		.align	1
  3181              		.global	mpu_get_lpf
-ARM GAS  /tmp/ccs1piim.s 			page 106
+ARM GAS  /tmp/ccvZvrAV.s 			page 106
 
 
  3182              		.syntax unified
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3226              		.loc 1 1295 9 is_stmt 1 view .LVU974
 1295:MyHardWare/eMPL/inv_mpu.c ****         break;
  3227              		.loc 1 1295 16 is_stmt 0 view .LVU975
-ARM GAS  /tmp/ccs1piim.s 			page 107
+ARM GAS  /tmp/ccvZvrAV.s 			page 107
 
 
  3228 001c 6223     		movs	r3, #98
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3266 003e EBE7     		b	.L260
  3267              	.L262:
  3268              		.align	2
-ARM GAS  /tmp/ccs1piim.s 			page 108
+ARM GAS  /tmp/ccvZvrAV.s 			page 108
 
 
  3269              	.L261:
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1344:MyHardWare/eMPL/inv_mpu.c ****         return 0;
  3314              		.loc 1 1344 20 is_stmt 0 view .LVU1003
  3315 0016 1E4B     		ldr	r3, .L278
-ARM GAS  /tmp/ccs1piim.s 			page 109
+ARM GAS  /tmp/ccvZvrAV.s 			page 109
 
 
  3316 0018 DA7A     		ldrb	r2, [r3, #11]	@ zero_extendqisi2
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3357              		.loc 1 1333 13 is_stmt 0 view .LVU1016
  3358 0046 6128     		cmp	r0, #97
  3359 0048 03D9     		bls	.L267
-ARM GAS  /tmp/ccs1piim.s 			page 110
+ARM GAS  /tmp/ccvZvrAV.s 			page 110
 
 
 1334:MyHardWare/eMPL/inv_mpu.c ****     else if (lpf >= 42)
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3398 0076 0623     		movs	r3, #6
  3399 0078 8DF80730 		strb	r3, [sp, #7]
  3400 007c CBE7     		b	.L266
-ARM GAS  /tmp/ccs1piim.s 			page 111
+ARM GAS  /tmp/ccvZvrAV.s 			page 111
 
 
  3401              	.L271:
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3449 0002 93F82430 		ldrb	r3, [r3, #36]	@ zero_extendqisi2
 1359:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  3450              		.loc 1 1359 8 view .LVU1041
-ARM GAS  /tmp/ccs1piim.s 			page 112
+ARM GAS  /tmp/ccvZvrAV.s 			page 112
 
 
  3451 0006 23B9     		cbnz	r3, .L282
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3496 0002 0380     		strh	r3, [r0]	@ movhi
 1426:MyHardWare/eMPL/inv_mpu.c **** #endif
  3497              		.loc 1 1426 5 is_stmt 1 view .LVU1053
-ARM GAS  /tmp/ccs1piim.s 			page 113
+ARM GAS  /tmp/ccvZvrAV.s 			page 113
 
 
 1428:MyHardWare/eMPL/inv_mpu.c **** 
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3547 0000 0D4B     		ldr	r3, .L295
  3548 0002 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
 1465:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_250DPS:
-ARM GAS  /tmp/ccs1piim.s 			page 114
+ARM GAS  /tmp/ccvZvrAV.s 			page 114
 
 
  3549              		.loc 1 1465 5 view .LVU1063
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3589              		.loc 1 1481 12 is_stmt 0 view .LVU1077
  3590 0024 0020     		movs	r0, #0
  3591              	.LVL214:
-ARM GAS  /tmp/ccs1piim.s 			page 115
+ARM GAS  /tmp/ccvZvrAV.s 			page 115
 
 
 1474:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_2000DPS:
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1491:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_2G:
  3639              		.loc 1 1491 5 view .LVU1087
 1491:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_2G:
-ARM GAS  /tmp/ccs1piim.s 			page 116
+ARM GAS  /tmp/ccvZvrAV.s 			page 116
 
 
  3640              		.loc 1 1491 24 is_stmt 0 view .LVU1088
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3680              		.loc 1 1496 17 is_stmt 0 view .LVU1102
  3681 0026 41F69C73 		movw	r3, #8092
  3682 002a 0380     		strh	r3, [r0]	@ movhi
-ARM GAS  /tmp/ccs1piim.s 			page 117
+ARM GAS  /tmp/ccvZvrAV.s 			page 117
 
 
 1497:MyHardWare/eMPL/inv_mpu.c ****     case INV_FSR_8G:
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3728              	.LFB148:
 1522:MyHardWare/eMPL/inv_mpu.c ****     sensors[0] = st.chip_cfg.fifo_enable;
  3729              		.loc 1 1522 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccs1piim.s 			page 118
+ARM GAS  /tmp/ccvZvrAV.s 			page 118
 
 
  3730              		.cfi_startproc
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3776              		.loc 1 1539 5 view .LVU1124
  3777              	.LVL228:
 1542:MyHardWare/eMPL/inv_mpu.c **** 
-ARM GAS  /tmp/ccs1piim.s 			page 119
+ARM GAS  /tmp/ccvZvrAV.s 			page 119
 
 
  3778              		.loc 1 1542 5 view .LVU1125
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3815              		.loc 1 1558 21 discriminator 1 view .LVU1142
  3816 002a 3BB1     		cbz	r3, .L316
  3817              	.L315:
-ARM GAS  /tmp/ccs1piim.s 			page 120
+ARM GAS  /tmp/ccvZvrAV.s 			page 120
 
 
 1559:MyHardWare/eMPL/inv_mpu.c ****         else
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1565:MyHardWare/eMPL/inv_mpu.c ****             }
  3859              		.loc 1 1565 24 view .LVU1156
  3860 0054 EEE7     		b	.L312
-ARM GAS  /tmp/ccs1piim.s 			page 121
+ARM GAS  /tmp/ccvZvrAV.s 			page 121
 
 
  3861              	.LVL238:
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1585:MyHardWare/eMPL/inv_mpu.c **** 
  3907              		.loc 1 1585 1 view .LVU1167
  3908 000c 7047     		bx	lr
-ARM GAS  /tmp/ccs1piim.s 			page 122
+ARM GAS  /tmp/ccvZvrAV.s 			page 122
 
 
  3909              	.LVL241:
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  3955              		.loc 1 1679 20 is_stmt 0 view .LVU1177
  3956 000c 0C4B     		ldr	r3, .L338
  3957 000e 5868     		ldr	r0, [r3, #4]
-ARM GAS  /tmp/ccs1piim.s 			page 123
+ARM GAS  /tmp/ccvZvrAV.s 			page 123
 
 
  3958              	.LVL243:
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4000              	.LCFI74:
  4001              		.cfi_def_cfa_offset 16
  4002              		.cfi_offset 4, -8
-ARM GAS  /tmp/ccs1piim.s 			page 124
+ARM GAS  /tmp/ccvZvrAV.s 			page 124
 
 
  4003              		.cfi_offset 14, -4
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1711:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  4051              		.loc 1 1711 20 view .LVU1198
  4052 000a 93F82430 		ldrb	r3, [r3, #36]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 125
+ARM GAS  /tmp/ccvZvrAV.s 			page 125
 
 
 1711:MyHardWare/eMPL/inv_mpu.c ****         return -1;
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4091              	.LVL253:
 1723:MyHardWare/eMPL/inv_mpu.c ****     if (st.chip_cfg.fifo_enable & INV_Z_GYRO)
  4092              		.loc 1 1723 21 view .LVU1215
-ARM GAS  /tmp/ccs1piim.s 			page 126
+ARM GAS  /tmp/ccvZvrAV.s 			page 126
 
 
  4093 003e E4B2     		uxtb	r4, r4
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4133 0062 FFF7FEFF 		bl	MPU_Read_Len
  4134              	.LVL261:
 1729:MyHardWare/eMPL/inv_mpu.c ****         return -1;
-ARM GAS  /tmp/ccs1piim.s 			page 127
+ARM GAS  /tmp/ccvZvrAV.s 			page 127
 
 
  4135              		.loc 1 1729 8 discriminator 1 view .LVU1230
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4174 009e 40F0A280 		bne	.L356
 1739:MyHardWare/eMPL/inv_mpu.c ****             mpu_reset_fifo();
  4175              		.loc 1 1739 9 is_stmt 1 view .LVU1246
-ARM GAS  /tmp/ccs1piim.s 			page 128
+ARM GAS  /tmp/ccvZvrAV.s 			page 128
 
 
 1739:MyHardWare/eMPL/inv_mpu.c ****             mpu_reset_fifo();
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4214 00d2 002C     		cmp	r4, #0
  4215 00d4 43D0     		beq	.L358
 1751:MyHardWare/eMPL/inv_mpu.c ****         accel[0] = (data[index+0] << 8) | data[index+1];
-ARM GAS  /tmp/ccs1piim.s 			page 129
+ARM GAS  /tmp/ccvZvrAV.s 			page 129
 
 
  4216              		.loc 1 1751 46 discriminator 1 view .LVU1263
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1755:MyHardWare/eMPL/inv_mpu.c ****         index += 6;
  4252              		.loc 1 1755 20 view .LVU1282
  4253 0112 43F00803 		orr	r3, r3, #8
-ARM GAS  /tmp/ccs1piim.s 			page 130
+ARM GAS  /tmp/ccvZvrAV.s 			page 130
 
 
  4254 0116 3370     		strb	r3, [r6]
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4294              		.loc 1 1759 40 view .LVU1296
  4295 014a 42EA0122 		orr	r2, r2, r1, lsl #8
 1759:MyHardWare/eMPL/inv_mpu.c ****         sensors[0] |= INV_X_GYRO;
-ARM GAS  /tmp/ccs1piim.s 			page 131
+ARM GAS  /tmp/ccvZvrAV.s 			page 131
 
 
  4296              		.loc 1 1759 17 view .LVU1297
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4335 017c 6A44     		add	r2, sp, r2
  4336 017e 12F80C2C 		ldrb	r2, [r2, #-12]	@ zero_extendqisi2
 1764:MyHardWare/eMPL/inv_mpu.c ****         sensors[0] |= INV_Y_GYRO;
-ARM GAS  /tmp/ccs1piim.s 			page 132
+ARM GAS  /tmp/ccvZvrAV.s 			page 132
 
 
  4337              		.loc 1 1764 40 view .LVU1313
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1769:MyHardWare/eMPL/inv_mpu.c ****         sensors[0] |= INV_Z_GYRO;
  4376              		.loc 1 1769 17 view .LVU1329
  4377 01b8 BB80     		strh	r3, [r7, #4]	@ movhi
-ARM GAS  /tmp/ccs1piim.s 			page 133
+ARM GAS  /tmp/ccvZvrAV.s 			page 133
 
 
 1770:MyHardWare/eMPL/inv_mpu.c ****         index += 2;
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4419              	.L340:
 1775:MyHardWare/eMPL/inv_mpu.c **** 
  4420              		.loc 1 1775 1 view .LVU1343
-ARM GAS  /tmp/ccs1piim.s 			page 134
+ARM GAS  /tmp/ccvZvrAV.s 			page 134
 
 
  4421 01e0 05B0     		add	sp, sp, #20
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1789:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  4470              		.loc 1 1789 21 is_stmt 0 view .LVU1351
  4471 0000 2E4B     		ldr	r3, .L381
-ARM GAS  /tmp/ccs1piim.s 			page 135
+ARM GAS  /tmp/ccvZvrAV.s 			page 135
 
 
  4472 0002 93F82430 		ldrb	r3, [r3, #36]	@ zero_extendqisi2
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4515              		.loc 1 1794 8 discriminator 1 view .LVU1362
  4516 002e 0028     		cmp	r0, #0
  4517 0030 3BD1     		bne	.L372
-ARM GAS  /tmp/ccs1piim.s 			page 136
+ARM GAS  /tmp/ccvZvrAV.s 			page 136
 
 
 1796:MyHardWare/eMPL/inv_mpu.c ****     if (fifo_count < length) {
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4555              		.loc 1 1805 12 view .LVU1379
  4556 0064 13F0100F 		tst	r3, #16
  4557 0068 14D1     		bne	.L380
-ARM GAS  /tmp/ccs1piim.s 			page 137
+ARM GAS  /tmp/ccvZvrAV.s 			page 137
 
 
  4558              	.L369:
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4599 008c 3370     		strb	r3, [r6]
 1799:MyHardWare/eMPL/inv_mpu.c ****     }
  4600              		.loc 1 1799 9 is_stmt 1 view .LVU1393
-ARM GAS  /tmp/ccs1piim.s 			page 138
+ARM GAS  /tmp/ccvZvrAV.s 			page 138
 
 
 1799:MyHardWare/eMPL/inv_mpu.c ****     }
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4646              	.L373:
 1804:MyHardWare/eMPL/inv_mpu.c ****         if (tmp[0] & BIT_FIFO_OVERFLOW) {
  4647              		.loc 1 1804 20 view .LVU1403
-ARM GAS  /tmp/ccs1piim.s 			page 139
+ARM GAS  /tmp/ccvZvrAV.s 			page 139
 
 
  4648 00b0 4FF0FF30 		mov	r0, #-1
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4695 0010 0028     		cmp	r0, #0
  4696 0012 44D0     		beq	.L385
 1830:MyHardWare/eMPL/inv_mpu.c ****             return -1;
-ARM GAS  /tmp/ccs1piim.s 			page 140
+ARM GAS  /tmp/ccvZvrAV.s 			page 140
 
 
  4697              		.loc 1 1830 9 is_stmt 1 view .LVU1413
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1836:MyHardWare/eMPL/inv_mpu.c ****         if (st.chip_cfg.active_low_int)
  4739              		.loc 1 1836 9 view .LVU1426
 1836:MyHardWare/eMPL/inv_mpu.c ****         if (st.chip_cfg.active_low_int)
-ARM GAS  /tmp/ccs1piim.s 			page 141
+ARM GAS  /tmp/ccvZvrAV.s 			page 141
 
 
  4740              		.loc 1 1836 13 is_stmt 0 view .LVU1427
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4779              		.loc 1 1841 12 discriminator 1 view .LVU1442
  4780 0094 0028     		cmp	r0, #0
  4781 0096 44D0     		beq	.L388
-ARM GAS  /tmp/ccs1piim.s 			page 142
+ARM GAS  /tmp/ccvZvrAV.s 			page 142
 
 
 1842:MyHardWare/eMPL/inv_mpu.c ****     } else {
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4822 00d0 1968     		ldr	r1, [r3]
 1851:MyHardWare/eMPL/inv_mpu.c ****             return -1;
  4823              		.loc 1 1851 13 view .LVU1457
-ARM GAS  /tmp/ccs1piim.s 			page 143
+ARM GAS  /tmp/ccvZvrAV.s 			page 143
 
 
  4824 00d2 0DF10703 		add	r3, sp, #7
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1860:MyHardWare/eMPL/inv_mpu.c ****             return -1;
  4864              		.loc 1 1860 38 view .LVU1472
  4865 0110 1968     		ldr	r1, [r3]
-ARM GAS  /tmp/ccs1piim.s 			page 144
+ARM GAS  /tmp/ccvZvrAV.s 			page 144
 
 
 1860:MyHardWare/eMPL/inv_mpu.c ****             return -1;
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4909              	.LCFI89:
  4910              		.cfi_def_cfa_offset 0
  4911              		.cfi_restore 4
-ARM GAS  /tmp/ccs1piim.s 			page 145
+ARM GAS  /tmp/ccvZvrAV.s 			page 145
 
 
  4912              		.cfi_restore 14
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  4960              		.cfi_startproc
  4961              		@ args = 0, pretend = 0, frame = 0
  4962              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccs1piim.s 			page 146
+ARM GAS  /tmp/ccvZvrAV.s 			page 146
 
 
  4963              		@ link register save eliminated.
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5008              		.cfi_offset 14, -4
  5009 000c 82B0     		sub	sp, sp, #8
  5010              	.LCFI92:
-ARM GAS  /tmp/ccs1piim.s 			page 147
+ARM GAS  /tmp/ccvZvrAV.s 			page 147
 
 
  5011              		.cfi_def_cfa_offset 16
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5049              	.LVL323:
 1898:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  5050              		.loc 1 1898 34 view .LVU1519
-ARM GAS  /tmp/ccs1piim.s 			page 148
+ARM GAS  /tmp/ccvZvrAV.s 			page 148
 
 
  5051 0042 1968     		ldr	r1, [r3]
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5095              		.cfi_def_cfa_offset 16
  5096              		.cfi_offset 4, -8
  5097              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccs1piim.s 			page 149
+ARM GAS  /tmp/ccvZvrAV.s 			page 149
 
 
 1899:MyHardWare/eMPL/inv_mpu.c ****     st.chip_cfg.latched_int = enable;
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5144 000e FFF7FEFF 		bl	mpu_set_int_latched
  5145              	.LVL329:
  902:MyHardWare/eMPL/inv_mpu.c ****         tmp[1] = BIT_STBY_XYZG;
-ARM GAS  /tmp/ccs1piim.s 			page 150
+ARM GAS  /tmp/ccvZvrAV.s 			page 150
 
 
  5146              		.loc 1 902 9 is_stmt 1 view .LVU1540
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  916:MyHardWare/eMPL/inv_mpu.c **** #if defined MPU6050
  5188              		.loc 1 916 5 is_stmt 1 view .LVU1553
  5189 003c 0120     		movs	r0, #1
-ARM GAS  /tmp/ccs1piim.s 			page 151
+ARM GAS  /tmp/ccvZvrAV.s 			page 151
 
 
  5190              	.LVL333:
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5227              		.loc 1 933 5 is_stmt 1 view .LVU1570
  933:MyHardWare/eMPL/inv_mpu.c ****         return -1;
  5228              		.loc 1 933 21 is_stmt 0 view .LVU1571
-ARM GAS  /tmp/ccs1piim.s 			page 152
+ARM GAS  /tmp/ccvZvrAV.s 			page 152
 
 
  5229 006e 1A4B     		ldr	r3, .L440
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5268 009a 0023     		movs	r3, #0
  5269 009c 8DF80530 		strb	r3, [sp, #5]
  921:MyHardWare/eMPL/inv_mpu.c ****     } else if (rate <= 5) {
-ARM GAS  /tmp/ccs1piim.s 			page 153
+ARM GAS  /tmp/ccvZvrAV.s 			page 153
 
 
  5270              		.loc 1 921 9 is_stmt 1 view .LVU1587
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  934:MyHardWare/eMPL/inv_mpu.c **** #elif defined MPU6500
  5315              		.loc 1 934 16 view .LVU1597
  5316 00d0 4FF0FF30 		mov	r0, #-1
-ARM GAS  /tmp/ccs1piim.s 			page 154
+ARM GAS  /tmp/ccvZvrAV.s 			page 154
 
 
  5317 00d4 B0E7     		b	.L424
@@ -9238,7 +9238,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1382:MyHardWare/eMPL/inv_mpu.c ****             if (rate && (rate <= 40)) {
  5364              		.loc 1 1382 9 is_stmt 1 view .LVU1607
 1382:MyHardWare/eMPL/inv_mpu.c ****             if (rate && (rate <= 40)) {
-ARM GAS  /tmp/ccs1piim.s 			page 155
+ARM GAS  /tmp/ccvZvrAV.s 			page 155
 
 
  5365              		.loc 1 1382 24 is_stmt 0 view .LVU1608
@@ -9298,7 +9298,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1386:MyHardWare/eMPL/inv_mpu.c ****             }
  5405              		.loc 1 1386 17 is_stmt 1 view .LVU1623
 1386:MyHardWare/eMPL/inv_mpu.c ****             }
-ARM GAS  /tmp/ccs1piim.s 			page 156
+ARM GAS  /tmp/ccvZvrAV.s 			page 156
 
 
  5406              		.loc 1 1386 24 is_stmt 0 view .LVU1624
@@ -9358,7 +9358,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5446              		.loc 1 1409 9 is_stmt 1 view .LVU1638
  5447 007e 4008     		lsrs	r0, r0, #1
  5448 0080 FFF7FEFF 		bl	mpu_set_lpf
-ARM GAS  /tmp/ccs1piim.s 			page 157
+ARM GAS  /tmp/ccvZvrAV.s 			page 157
 
 
  5449              	.LVL353:
@@ -9418,7 +9418,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5496              		.global	mpu_set_sensors
  5497              		.syntax unified
  5498              		.thumb
-ARM GAS  /tmp/ccs1piim.s 			page 158
+ARM GAS  /tmp/ccvZvrAV.s 			page 158
 
 
  5499              		.thumb_func
@@ -9478,7 +9478,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5542              		.loc 1 1610 8 discriminator 1 view .LVU1658
  5543 0026 0028     		cmp	r0, #0
  5544 0028 4AD1     		bne	.L472
-ARM GAS  /tmp/ccs1piim.s 			page 159
+ARM GAS  /tmp/ccvZvrAV.s 			page 159
 
 
 1614:MyHardWare/eMPL/inv_mpu.c **** 
@@ -9538,7 +9538,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5582 0064 43F00103 		orr	r3, r3, #1
  5583 0068 8DF80730 		strb	r3, [sp, #7]
  5584              	.L467:
-ARM GAS  /tmp/ccs1piim.s 			page 160
+ARM GAS  /tmp/ccvZvrAV.s 			page 160
 
 
 1623:MyHardWare/eMPL/inv_mpu.c ****         data |= BIT_STBY_XYZA;
@@ -9598,7 +9598,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5623 009e 0024     		movs	r4, #0
  5624              	.LVL363:
 1664:MyHardWare/eMPL/inv_mpu.c ****     delay_ms(50);
-ARM GAS  /tmp/ccs1piim.s 			page 161
+ARM GAS  /tmp/ccvZvrAV.s 			page 161
 
 
  5625              		.loc 1 1664 31 view .LVU1692
@@ -9658,7 +9658,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 1612:MyHardWare/eMPL/inv_mpu.c ****     }
  5667              		.loc 1 1612 9 is_stmt 1 view .LVU1705
 1612:MyHardWare/eMPL/inv_mpu.c ****     }
-ARM GAS  /tmp/ccs1piim.s 			page 162
+ARM GAS  /tmp/ccvZvrAV.s 			page 162
 
 
  5668              		.loc 1 1612 16 is_stmt 0 view .LVU1706
@@ -9718,7 +9718,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5704      73697469 
  5704      76697479 
  5704      20706172 
-ARM GAS  /tmp/ccs1piim.s 			page 163
+ARM GAS  /tmp/ccvZvrAV.s 			page 163
 
 
  5705              		.section	.text.mpu_init,"ax",%progbits
@@ -9778,7 +9778,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5750              	.LVL369:
  773:MyHardWare/eMPL/inv_mpu.c ****     if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_1, 1, data))
  5751              		.loc 1 773 5 view .LVU1722
-ARM GAS  /tmp/ccs1piim.s 			page 164
+ARM GAS  /tmp/ccvZvrAV.s 			page 164
 
 
  773:MyHardWare/eMPL/inv_mpu.c ****     if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_1, 1, data))
@@ -9838,7 +9838,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5792 0064 03F00403 		and	r3, r3, #4
  781:MyHardWare/eMPL/inv_mpu.c ****         (data[1] & 0x01);
  5793              		.loc 1 781 43 view .LVU1737
-ARM GAS  /tmp/ccs1piim.s 			page 165
+ARM GAS  /tmp/ccvZvrAV.s 			page 165
 
 
  5794 0068 9DF80320 		ldrb	r2, [sp, #3]	@ zero_extendqisi2
@@ -9898,7 +9898,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  829:MyHardWare/eMPL/inv_mpu.c ****     st.chip_cfg.accel_fsr = 0xFF;
  5832              		.loc 1 829 26 is_stmt 0 view .LVU1754
  5833 0094 1A72     		strb	r2, [r3, #8]
-ARM GAS  /tmp/ccs1piim.s 			page 166
+ARM GAS  /tmp/ccvZvrAV.s 			page 166
 
 
  830:MyHardWare/eMPL/inv_mpu.c ****     st.chip_cfg.lpf = 0xFF;
@@ -9958,7 +9958,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5867              		.loc 1 845 5 is_stmt 1 view .LVU1775
  5868 00b6 C3F81620 		str	r2, [r3, #22]	@ unaligned
  5869 00ba C3F81A20 		str	r2, [r3, #26]	@ unaligned
-ARM GAS  /tmp/ccs1piim.s 			page 167
+ARM GAS  /tmp/ccvZvrAV.s 			page 167
 
 
  5870 00be C3F81E20 		str	r2, [r3, #30]	@ unaligned
@@ -10018,7 +10018,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5907 00ee FFF7FEFF 		bl	mpu_set_sample_rate
  5908              	.LVL378:
  856:MyHardWare/eMPL/inv_mpu.c ****         return -1;
-ARM GAS  /tmp/ccs1piim.s 			page 168
+ARM GAS  /tmp/ccvZvrAV.s 			page 168
 
 
  5909              		.loc 1 856 8 discriminator 1 view .LVU1793
@@ -10078,7 +10078,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  5951              		.loc 1 791 13 is_stmt 1 view .LVU1805
  5952 011a 2448     		ldr	r0, .L499+4
  5953 011c FFF7FEFF 		bl	printf
-ARM GAS  /tmp/ccs1piim.s 			page 169
+ARM GAS  /tmp/ccvZvrAV.s 			page 169
 
 
  5954              	.LVL383:
@@ -10138,7 +10138,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  806:MyHardWare/eMPL/inv_mpu.c ****     }
  5993              		.loc 1 806 13 is_stmt 1 view .LVU1821
  806:MyHardWare/eMPL/inv_mpu.c ****     }
-ARM GAS  /tmp/ccs1piim.s 			page 170
+ARM GAS  /tmp/ccvZvrAV.s 			page 170
 
 
  5994              		.loc 1 806 36 is_stmt 0 view .LVU1822
@@ -10198,7 +10198,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6038              	.LVL395:
  6039              	.L489:
  851:MyHardWare/eMPL/inv_mpu.c ****     if (mpu_set_accel_fsr(2))
-ARM GAS  /tmp/ccs1piim.s 			page 171
+ARM GAS  /tmp/ccvZvrAV.s 			page 171
 
 
  6040              		.loc 1 851 16 view .LVU1833
@@ -10258,7 +10258,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2161:MyHardWare/eMPL/inv_mpu.c ****  *  \n Bit 0:   Gyro.
 2162:MyHardWare/eMPL/inv_mpu.c ****  *  \n Bit 1:   Accel.
 2163:MyHardWare/eMPL/inv_mpu.c ****  *  \n Bit 2:   Compass.
-ARM GAS  /tmp/ccs1piim.s 			page 172
+ARM GAS  /tmp/ccvZvrAV.s 			page 172
 
 
 2164:MyHardWare/eMPL/inv_mpu.c ****  *
@@ -10318,7 +10318,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2218:MyHardWare/eMPL/inv_mpu.c ****             break;
 2219:MyHardWare/eMPL/inv_mpu.c ****     if (ii == tries) {
 2220:MyHardWare/eMPL/inv_mpu.c ****         /* Again, probably an I2C error. */
-ARM GAS  /tmp/ccs1piim.s 			page 173
+ARM GAS  /tmp/ccvZvrAV.s 			page 173
 
 
 2221:MyHardWare/eMPL/inv_mpu.c ****         result = 0;
@@ -10378,7 +10378,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2275:MyHardWare/eMPL/inv_mpu.c ****  */
 2276:MyHardWare/eMPL/inv_mpu.c **** int mpu_write_mem(unsigned short mem_addr, unsigned short length,
 2277:MyHardWare/eMPL/inv_mpu.c ****         unsigned char *data)
-ARM GAS  /tmp/ccs1piim.s 			page 174
+ARM GAS  /tmp/ccvZvrAV.s 			page 174
 
 
 2278:MyHardWare/eMPL/inv_mpu.c **** {
@@ -10438,7 +10438,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6123 001c 0844     		add	r0, r0, r1
  6124              		.loc 1 2290 29 view .LVU1855
  6125 001e 144B     		ldr	r3, .L512
-ARM GAS  /tmp/ccs1piim.s 			page 175
+ARM GAS  /tmp/ccvZvrAV.s 			page 175
 
 
  6126 0020 5D68     		ldr	r5, [r3, #4]
@@ -10498,7 +10498,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6172              	.LCFI119:
  6173              		.cfi_def_cfa_offset 0
  6174              		.cfi_restore 4
-ARM GAS  /tmp/ccs1piim.s 			page 176
+ARM GAS  /tmp/ccvZvrAV.s 			page 176
 
 
  6175              		.cfi_restore 5
@@ -10558,7 +10558,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6225              	.LFB164:
 2299:MyHardWare/eMPL/inv_mpu.c **** 
 2300:MyHardWare/eMPL/inv_mpu.c **** /**
-ARM GAS  /tmp/ccs1piim.s 			page 177
+ARM GAS  /tmp/ccvZvrAV.s 			page 177
 
 
 2301:MyHardWare/eMPL/inv_mpu.c ****  *  @brief      Read from the DMP memory.
@@ -10618,7 +10618,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6259              		.loc 1 2320 14 is_stmt 0 view .LVU1888
  6260 0016 C0B2     		uxtb	r0, r0
  6261              	.LVL408:
-ARM GAS  /tmp/ccs1piim.s 			page 178
+ARM GAS  /tmp/ccvZvrAV.s 			page 178
 
 
  6262              		.loc 1 2320 12 view .LVU1889
@@ -10678,7 +10678,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2330:MyHardWare/eMPL/inv_mpu.c ****     return 0;
 2331:MyHardWare/eMPL/inv_mpu.c **** }
  6307              		.loc 1 2331 1 view .LVU1905
-ARM GAS  /tmp/ccs1piim.s 			page 179
+ARM GAS  /tmp/ccvZvrAV.s 			page 179
 
 
  6308 004e 02B0     		add	sp, sp, #8
@@ -10738,7 +10738,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6356              		.cfi_endproc
  6357              	.LFE164:
  6359              		.section	.text.mpu_load_firmware,"ax",%progbits
-ARM GAS  /tmp/ccs1piim.s 			page 180
+ARM GAS  /tmp/ccvZvrAV.s 			page 180
 
 
  6360              		.align	1
@@ -10798,7 +10798,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6396              	.LVL419:
  6397              		.loc 1 2350 20 view .LVU1920
  6398 000a 93F82530 		ldrb	r3, [r3, #37]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 181
+ARM GAS  /tmp/ccvZvrAV.s 			page 181
 
 
  6399              		.loc 1 2350 8 view .LVU1921
@@ -10858,7 +10858,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6443              		.loc 1 2360 12 discriminator 1 view .LVU1935
  6444 0046 50BB     		cbnz	r0, .L534
 2361:MyHardWare/eMPL/inv_mpu.c ****             return -1;
-ARM GAS  /tmp/ccs1piim.s 			page 182
+ARM GAS  /tmp/ccvZvrAV.s 			page 182
 
 
 2362:MyHardWare/eMPL/inv_mpu.c ****         if (memcmp(firmware+ii, cur, this_write))
@@ -10918,7 +10918,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2372:MyHardWare/eMPL/inv_mpu.c ****     st.chip_cfg.dmp_loaded = 1;
  6486              		.loc 1 2372 5 is_stmt 1 view .LVU1951
  6487              		.loc 1 2372 28 is_stmt 0 view .LVU1952
-ARM GAS  /tmp/ccs1piim.s 			page 183
+ARM GAS  /tmp/ccvZvrAV.s 			page 183
 
 
  6488 007a 0D4B     		ldr	r3, .L539
@@ -10978,7 +10978,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6532 00a8 EDE7     		b	.L527
  6533              	.LVL435:
  6534              	.L536:
-ARM GAS  /tmp/ccs1piim.s 			page 184
+ARM GAS  /tmp/ccvZvrAV.s 			page 184
 
 
 2370:MyHardWare/eMPL/inv_mpu.c **** 
@@ -11038,7 +11038,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2388:MyHardWare/eMPL/inv_mpu.c ****     if (enable) {
  6577              		.loc 1 2388 5 is_stmt 1 view .LVU1971
  6578              		.loc 1 2388 8 is_stmt 0 view .LVU1972
-ARM GAS  /tmp/ccs1piim.s 			page 185
+ARM GAS  /tmp/ccvZvrAV.s 			page 185
 
 
  6579 000e 18B3     		cbz	r0, .L543
@@ -11098,7 +11098,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2402:MyHardWare/eMPL/inv_mpu.c ****         set_int_enable(1);
  6620              		.loc 1 2402 9 is_stmt 1 view .LVU1987
  6621 004a FFF7FEFF 		bl	set_int_enable
-ARM GAS  /tmp/ccs1piim.s 			page 186
+ARM GAS  /tmp/ccvZvrAV.s 			page 186
 
 
  6622              	.LVL442:
@@ -11158,7 +11158,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6656 0068 0DF10703 		add	r3, sp, #7
  6657 006c 0122     		movs	r2, #1
  6658 006e 2321     		movs	r1, #35
-ARM GAS  /tmp/ccs1piim.s 			page 187
+ARM GAS  /tmp/ccvZvrAV.s 			page 187
 
 
  6659 0070 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
@@ -11218,7 +11218,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6707              		.thumb
  6708              		.thumb_func
  6710              	mpu_run_self_test:
-ARM GAS  /tmp/ccs1piim.s 			page 188
+ARM GAS  /tmp/ccvZvrAV.s 			page 188
 
 
  6711              	.LVL453:
@@ -11278,7 +11278,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6751 0014 FFF7FEFF 		bl	mpu_get_gyro_fsr
  6752              	.LVL456:
 2198:MyHardWare/eMPL/inv_mpu.c ****     mpu_get_lpf(&lpf);
-ARM GAS  /tmp/ccs1piim.s 			page 189
+ARM GAS  /tmp/ccvZvrAV.s 			page 189
 
 
  6753              		.loc 1 2198 5 view .LVU2021
@@ -11338,7 +11338,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6794              		.loc 1 2206 32 is_stmt 0 discriminator 2 view .LVU2034
  6795 0050 F5E7     		b	.L554
  6796              	.LVL465:
-ARM GAS  /tmp/ccs1piim.s 			page 190
+ARM GAS  /tmp/ccvZvrAV.s 			page 190
 
 
  6797              	.L567:
@@ -11398,7 +11398,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2219:MyHardWare/eMPL/inv_mpu.c ****         /* Again, probably an I2C error. */
  6837              		.loc 1 2219 8 is_stmt 0 view .LVU2049
  6838 0076 022C     		cmp	r4, #2
-ARM GAS  /tmp/ccs1piim.s 			page 191
+ARM GAS  /tmp/ccvZvrAV.s 			page 191
 
 
  6839 0078 14D0     		beq	.L564
@@ -11458,7 +11458,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2229:MyHardWare/eMPL/inv_mpu.c ****     if (!accel_result)
  6878              		.loc 1 2229 16 view .LVU2065
  6879 009e F9E7     		b	.L561
-ARM GAS  /tmp/ccs1piim.s 			page 192
+ARM GAS  /tmp/ccvZvrAV.s 			page 192
 
 
  6880              	.LVL479:
@@ -11518,7 +11518,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  6917 00bc 1A73     		strb	r2, [r3, #12]
 2254:MyHardWare/eMPL/inv_mpu.c ****     mpu_set_accel_fsr(accel_fsr);
  6918              		.loc 1 2254 5 is_stmt 1 view .LVU2083
-ARM GAS  /tmp/ccs1piim.s 			page 193
+ARM GAS  /tmp/ccvZvrAV.s 			page 193
 
 
  6919 00be BDF80400 		ldrh	r0, [sp, #4]
@@ -11578,7 +11578,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2264:MyHardWare/eMPL/inv_mpu.c **** }
  6963              		.loc 1 2264 12 is_stmt 0 view .LVU2094
  6964 00fc F7E7     		b	.L552
-ARM GAS  /tmp/ccs1piim.s 			page 194
+ARM GAS  /tmp/ccvZvrAV.s 			page 194
 
 
  6965              	.L570:
@@ -11638,7 +11638,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7011              		.thumb_func
  7013              	setup_compass:
  7014              	.LFB168:
-ARM GAS  /tmp/ccs1piim.s 			page 195
+ARM GAS  /tmp/ccvZvrAV.s 			page 195
 
 
 2426:MyHardWare/eMPL/inv_mpu.c **** 
@@ -11698,7 +11698,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2475:MyHardWare/eMPL/inv_mpu.c **** 
 2476:MyHardWare/eMPL/inv_mpu.c ****     /* Set up master mode, master clock, and ES bit. */
 2477:MyHardWare/eMPL/inv_mpu.c ****     data[0] = 0x40;
-ARM GAS  /tmp/ccs1piim.s 			page 196
+ARM GAS  /tmp/ccvZvrAV.s 			page 196
 
 
 2478:MyHardWare/eMPL/inv_mpu.c ****     if (i2c_write(st.hw->addr, st.reg->i2c_mst, 1, data))
@@ -11758,7 +11758,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2531:MyHardWare/eMPL/inv_mpu.c **** #endif
 2532:MyHardWare/eMPL/inv_mpu.c **** }
  7021              		.loc 1 2532 1 is_stmt 0 view .LVU2104
-ARM GAS  /tmp/ccs1piim.s 			page 197
+ARM GAS  /tmp/ccvZvrAV.s 			page 197
 
 
  7022 0000 4FF0FF30 		mov	r0, #-1
@@ -11818,7 +11818,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2569:MyHardWare/eMPL/inv_mpu.c ****     if (tmp[7] & AKM_OVERFLOW)
 2570:MyHardWare/eMPL/inv_mpu.c ****         return -3;
 2571:MyHardWare/eMPL/inv_mpu.c **** #endif
-ARM GAS  /tmp/ccs1piim.s 			page 198
+ARM GAS  /tmp/ccvZvrAV.s 			page 198
 
 
 2572:MyHardWare/eMPL/inv_mpu.c ****     data[0] = (tmp[2] << 8) | tmp[1];
@@ -11878,7 +11878,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7068 0000 4FF0FF30 		mov	r0, #-1
  7069              	.LVL496:
  7070              		.loc 1 2601 1 view .LVU2112
-ARM GAS  /tmp/ccs1piim.s 			page 199
+ARM GAS  /tmp/ccvZvrAV.s 			page 199
 
 
  7071 0004 7047     		bx	lr
@@ -11938,7 +11938,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2644:MyHardWare/eMPL/inv_mpu.c ****  *  @param[in]  lpa_freq    Minimum sampling rate, or zero to disable.
 2645:MyHardWare/eMPL/inv_mpu.c ****  *  @return     0 if successful.
 2646:MyHardWare/eMPL/inv_mpu.c ****  */
-ARM GAS  /tmp/ccs1piim.s 			page 200
+ARM GAS  /tmp/ccvZvrAV.s 			page 200
 
 
 2647:MyHardWare/eMPL/inv_mpu.c **** int mpu_lp_motion_interrupt(unsigned short thresh, unsigned char time,
@@ -11998,7 +11998,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7122              		.loc 1 2663 23 view .LVU2125
  7123 001c 00E0     		b	.L579
  7124              	.LVL499:
-ARM GAS  /tmp/ccs1piim.s 			page 201
+ARM GAS  /tmp/ccvZvrAV.s 			page 201
 
 
  7125              	.L593:
@@ -12058,7 +12058,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7151              		.loc 1 2690 16 view .LVU2137
  7152 0036 002B     		cmp	r3, #0
  7153 0038 62D1     		bne	.L599
-ARM GAS  /tmp/ccs1piim.s 			page 202
+ARM GAS  /tmp/ccvZvrAV.s 			page 202
 
 
 2691:MyHardWare/eMPL/inv_mpu.c ****                 mpu_set_dmp_state(0);
@@ -12118,7 +12118,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7193              	.LVL509:
 2706:MyHardWare/eMPL/inv_mpu.c **** 
 2707:MyHardWare/eMPL/inv_mpu.c ****         /* Enter full-power accel-only mode. */
-ARM GAS  /tmp/ccs1piim.s 			page 203
+ARM GAS  /tmp/ccvZvrAV.s 			page 203
 
 
 2708:MyHardWare/eMPL/inv_mpu.c ****         mpu_lp_accel_mode(0);
@@ -12178,7 +12178,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7230 00a2 0122     		movs	r2, #1
  7231 00a4 C97B     		ldrb	r1, [r1, #15]	@ zero_extendqisi2
  7232 00a6 0078     		ldrb	r0, [r0]	@ zero_extendqisi2
-ARM GAS  /tmp/ccs1piim.s 			page 204
+ARM GAS  /tmp/ccvZvrAV.s 			page 204
 
 
  7233 00a8 FFF7FEFF 		bl	MPU_Write_Len
@@ -12238,7 +12238,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2772:MyHardWare/eMPL/inv_mpu.c ****         /* Set wake frequency. */
 2773:MyHardWare/eMPL/inv_mpu.c ****         if (lpa_freq == 1)
 2774:MyHardWare/eMPL/inv_mpu.c ****             data[0] = INV_LPA_1_25HZ;
-ARM GAS  /tmp/ccs1piim.s 			page 205
+ARM GAS  /tmp/ccvZvrAV.s 			page 205
 
 
 2775:MyHardWare/eMPL/inv_mpu.c ****         else if (lpa_freq == 2)
@@ -12298,7 +12298,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7242              		.loc 1 2827 26 is_stmt 0 view .LVU2167
  7243 00ae 4C4C     		ldr	r4, .L604
  7244 00b0 FF23     		movs	r3, #255
-ARM GAS  /tmp/ccs1piim.s 			page 206
+ARM GAS  /tmp/ccvZvrAV.s 			page 206
 
 
  7245 00b2 2372     		strb	r3, [r4, #8]
@@ -12358,7 +12358,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7287 00e4 E07F     		ldrb	r0, [r4, #31]	@ zero_extendqisi2
  7288 00e6 FFF7FEFF 		bl	mpu_configure_fifo
  7289              	.LVL519:
-ARM GAS  /tmp/ccs1piim.s 			page 207
+ARM GAS  /tmp/ccvZvrAV.s 			page 207
 
 
 2840:MyHardWare/eMPL/inv_mpu.c **** 
@@ -12418,7 +12418,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2692:MyHardWare/eMPL/inv_mpu.c ****             } else
  7327              		.loc 1 2692 17 is_stmt 1 view .LVU2196
 2692:MyHardWare/eMPL/inv_mpu.c ****             } else
-ARM GAS  /tmp/ccs1piim.s 			page 208
+ARM GAS  /tmp/ccvZvrAV.s 			page 208
 
 
  7328              		.loc 1 2692 42 is_stmt 0 view .LVU2197
@@ -12478,7 +12478,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7368 013e 8DF80430 		strb	r3, [sp, #4]
 2737:MyHardWare/eMPL/inv_mpu.c ****             goto lp_int_restore;
  7369              		.loc 1 2737 9 is_stmt 1 view .LVU2212
-ARM GAS  /tmp/ccs1piim.s 			page 209
+ARM GAS  /tmp/ccvZvrAV.s 			page 209
 
 
 2737:MyHardWare/eMPL/inv_mpu.c ****             goto lp_int_restore;
@@ -12538,7 +12538,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7408              		.loc 1 2750 24 is_stmt 0 view .LVU2228
  7409 0172 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
 2750:MyHardWare/eMPL/inv_mpu.c ****         if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_1, 2, data))
-ARM GAS  /tmp/ccs1piim.s 			page 210
+ARM GAS  /tmp/ccvZvrAV.s 			page 210
 
 
  7410              		.loc 1 2750 34 view .LVU2229
@@ -12598,7 +12598,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2749:MyHardWare/eMPL/inv_mpu.c ****         data[1] = (data[1] << 6) | BIT_STBY_XYZG;
  7450              		.loc 1 2749 13 is_stmt 1 view .LVU2244
 2749:MyHardWare/eMPL/inv_mpu.c ****         data[1] = (data[1] << 6) | BIT_STBY_XYZG;
-ARM GAS  /tmp/ccs1piim.s 			page 211
+ARM GAS  /tmp/ccvZvrAV.s 			page 211
 
 
  7451              		.loc 1 2749 21 is_stmt 0 view .LVU2245
@@ -12658,7 +12658,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7493 01d2 8EE7     		b	.L591
  7494              	.LVL534:
  7495              	.L596:
-ARM GAS  /tmp/ccs1piim.s 			page 212
+ARM GAS  /tmp/ccvZvrAV.s 			page 212
 
 
  7496              	.LBB7:
@@ -12718,7 +12718,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2878:MyHardWare/eMPL/inv_mpu.c **** {
  7525              		.loc 1 2878 1 is_stmt 1 view -0
  7526              		.cfi_startproc
-ARM GAS  /tmp/ccs1piim.s 			page 213
+ARM GAS  /tmp/ccvZvrAV.s 			page 213
 
 
  7527              		@ args = 0, pretend = 0, frame = 32
@@ -12778,7 +12778,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7557              		@ sp needed
  7558 0014 5DF804FB 		ldr	pc, [sp], #4
  7559              	.LVL539:
-ARM GAS  /tmp/ccs1piim.s 			page 214
+ARM GAS  /tmp/ccvZvrAV.s 			page 214
 
 
  7560              	.L610:
@@ -12838,7 +12838,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7598              		.loc 1 2893 11 view .LVU2285
  7599 005a CDED077A 		vstr.32	s15, [sp, #28]	@ int
 2894:MyHardWare/eMPL/inv_mpu.c **** 		mpu_get_accel_sens(&accel_sens);
-ARM GAS  /tmp/ccs1piim.s 			page 215
+ARM GAS  /tmp/ccvZvrAV.s 			page 215
 
 
  7600              		.loc 1 2894 3 is_stmt 1 view .LVU2286
@@ -12898,7 +12898,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7643              		.thumb_func
  7645              	inv_row_2_scale:
  7646              	.LVL545:
-ARM GAS  /tmp/ccs1piim.s 			page 216
+ARM GAS  /tmp/ccvZvrAV.s 			page 216
 
 
  7647              	.LFB174:
@@ -12958,7 +12958,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7670              		.loc 1 2933 10 is_stmt 1 view .LVU2308
  7671              		.loc 1 2933 17 is_stmt 0 view .LVU2309
  7672 000e 90F90130 		ldrsb	r3, [r0, #1]
-ARM GAS  /tmp/ccs1piim.s 			page 217
+ARM GAS  /tmp/ccvZvrAV.s 			page 217
 
 
  7673              		.loc 1 2933 13 view .LVU2310
@@ -13018,7 +13018,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2932:MyHardWare/eMPL/inv_mpu.c ****     else if (row[1] > 0)
  7713              		.loc 1 2932 11 view .LVU2326
  7714 0030 7047     		bx	lr
-ARM GAS  /tmp/ccs1piim.s 			page 218
+ARM GAS  /tmp/ccvZvrAV.s 			page 218
 
 
  7715              	.LVL555:
@@ -13078,7 +13078,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7761 0008 0446     		mov	r4, r0
  7762              	.LVL561:
 2918:MyHardWare/eMPL/inv_mpu.c ****     scalar |= inv_row_2_scale(mtx + 6) << 6;
-ARM GAS  /tmp/ccs1piim.s 			page 219
+ARM GAS  /tmp/ccvZvrAV.s 			page 219
 
 
  7763              		.loc 1 2918 5 is_stmt 1 view .LVU2337
@@ -13138,7 +13138,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2948:MyHardWare/eMPL/inv_mpu.c **** 
 2949:MyHardWare/eMPL/inv_mpu.c **** }
  7806              		.loc 1 2949 1 view .LVU2349
-ARM GAS  /tmp/ccs1piim.s 			page 220
+ARM GAS  /tmp/ccvZvrAV.s 			page 220
 
 
  7807 0000 7047     		bx	lr
@@ -13198,7 +13198,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2973:MyHardWare/eMPL/inv_mpu.c **** 		res=dmp_set_fifo_rate(DEFAULT_MPU_HZ);	//设置DMP输出速率(最大不超过200Hz)
 2974:MyHardWare/eMPL/inv_mpu.c **** 		if(res)return 7;   
 2975:MyHardWare/eMPL/inv_mpu.c **** 		res=run_self_test();		//自检
-ARM GAS  /tmp/ccs1piim.s 			page 221
+ARM GAS  /tmp/ccvZvrAV.s 			page 221
 
 
 2976:MyHardWare/eMPL/inv_mpu.c **** 		if(res)return 8;    
@@ -13258,7 +13258,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2963:MyHardWare/eMPL/inv_mpu.c **** 		if(res)return 3; 
  7876              		.loc 1 2963 7 is_stmt 0 view .LVU2370
  7877 002c 6420     		movs	r0, #100
-ARM GAS  /tmp/ccs1piim.s 			page 222
+ARM GAS  /tmp/ccvZvrAV.s 			page 222
 
 
  7878              	.LVL578:
@@ -13318,7 +13318,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7915              		.loc 1 2972 3 is_stmt 1 view .LVU2387
 2972:MyHardWare/eMPL/inv_mpu.c **** 		res=dmp_set_fifo_rate(DEFAULT_MPU_HZ);	//设置DMP输出速率(最大不超过200Hz)
  7916              		.loc 1 2972 5 is_stmt 0 view .LVU2388
-ARM GAS  /tmp/ccs1piim.s 			page 223
+ARM GAS  /tmp/ccvZvrAV.s 			page 223
 
 
  7917 005a 10F0FF0F 		tst	r0, #255
@@ -13378,7 +13378,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
 2962:MyHardWare/eMPL/inv_mpu.c **** 		res=mpu_set_sample_rate(DEFAULT_MPU_HZ);	//设置采样率
  7955              		.loc 1 2962 17 discriminator 1 view .LVU2405
  7956 0082 0220     		movs	r0, #2
-ARM GAS  /tmp/ccs1piim.s 			page 224
+ARM GAS  /tmp/ccvZvrAV.s 			page 224
 
 
  7957              	.LVL593:
@@ -13438,7 +13438,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  7999              	.LVL605:
 2976:MyHardWare/eMPL/inv_mpu.c **** 		res=mpu_set_dmp_state(1);	//使能DMP
  8000              		.loc 1 2976 17 discriminator 1 view .LVU2418
-ARM GAS  /tmp/ccs1piim.s 			page 225
+ARM GAS  /tmp/ccvZvrAV.s 			page 225
 
 
  8001 009c B7E7     		b	.L626
@@ -13498,7 +13498,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8049 000a 0D46     		mov	r5, r1
  8050 000c 1446     		mov	r4, r2
 2990:MyHardWare/eMPL/inv_mpu.c **** 	float q0=1.0f,q1=0.0f,q2=0.0f,q3=0.0f;
-ARM GAS  /tmp/ccs1piim.s 			page 226
+ARM GAS  /tmp/ccvZvrAV.s 			page 226
 
 
  8051              		.loc 1 2990 2 is_stmt 1 view .LVU2421
@@ -13558,7 +13558,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8087 003c B8EEE78A 		vcvt.f32.s32	s16, s15
  8088              		.loc 1 3008 6 view .LVU2437
  8089 0040 DFED517A 		vldr.32	s15, .L647+8
-ARM GAS  /tmp/ccs1piim.s 			page 227
+ARM GAS  /tmp/ccvZvrAV.s 			page 227
 
 
  8090 0044 28EE278A 		vmul.f32	s16, s16, s15
@@ -13618,7 +13618,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8139              		.loc 1 3013 10 discriminator 1 view .LVU2454
  8140 00a6 3060     		str	r0, [r6]	@ float
 3014:MyHardWare/eMPL/inv_mpu.c **** 		*roll  = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2* q2 + 1)* 57.3;	// roll
-ARM GAS  /tmp/ccs1piim.s 			page 228
+ARM GAS  /tmp/ccvZvrAV.s 			page 228
 
 
  8141              		.loc 1 3014 3 is_stmt 1 view .LVU2455
@@ -13678,7 +13678,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8194 0118 29EE099A 		vmul.f32	s18, s18, s18
  8195              	.LVL626:
  8196              		.loc 1 3015 41 view .LVU2473
-ARM GAS  /tmp/ccs1piim.s 			page 229
+ARM GAS  /tmp/ccvZvrAV.s 			page 229
 
 
  8197 011c 38EE098A 		vadd.f32	s16, s16, s18
@@ -13738,7 +13738,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8248              		.cfi_restore 83
  8249              		.cfi_restore 80
  8250              		.cfi_restore 81
-ARM GAS  /tmp/ccs1piim.s 			page 230
+ARM GAS  /tmp/ccvZvrAV.s 			page 230
 
 
  8251              		.cfi_def_cfa_offset 16
@@ -13798,7 +13798,7 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8303 000f 00       		.space	1
  8304 0010 00002041 		.word	1092616192
  8305 0014 0000D242 		.word	1121058816
-ARM GAS  /tmp/ccs1piim.s 			page 231
+ARM GAS  /tmp/ccvZvrAV.s 			page 231
 
 
  8306 0018 295C0F3E 		.word	1041194025
@@ -13858,200 +13858,200 @@ ARM GAS  /tmp/ccs1piim.s 			page 1
  8364              		.file 7 "MyHardWare/Inc/mpu6050.h"
  8365              		.file 8 "/usr/include/newlib/stdio.h"
  8366              		.file 9 "CMSIS/stm32f4xx.h"
-ARM GAS  /tmp/ccs1piim.s 			page 232
+ARM GAS  /tmp/ccvZvrAV.s 			page 232
 
 
  8367              		.file 10 "MyHardWare/Inc/myiic.h"
  8368              		.file 11 "MyHardWare/Inc/delay.h"
  8369              		.file 12 "<built-in>"
-ARM GAS  /tmp/ccs1piim.s 			page 233
+ARM GAS  /tmp/ccvZvrAV.s 			page 233
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 inv_mpu.c
-     /tmp/ccs1piim.s:21     .text.get_accel_prod_shift:00000000 $t
-     /tmp/ccs1piim.s:26     .text.get_accel_prod_shift:00000000 get_accel_prod_shift
-     /tmp/ccs1piim.s:182    .text.get_accel_prod_shift:000000c0 $d
-     /tmp/ccs1piim.s:8283   .data.st:00000000 st
-     /tmp/ccs1piim.s:189    .text.accel_self_test:00000000 $t
-     /tmp/ccs1piim.s:194    .text.accel_self_test:00000000 accel_self_test
-     /tmp/ccs1piim.s:328    .text.accel_self_test:0000009c $d
-     /tmp/ccs1piim.s:336    .text.gyro_self_test:00000000 $t
-     /tmp/ccs1piim.s:341    .text.gyro_self_test:00000000 gyro_self_test
-     /tmp/ccs1piim.s:529    .text.gyro_self_test:000000f0 $d
-     /tmp/ccs1piim.s:538    .text.set_int_enable:00000000 $t
-     /tmp/ccs1piim.s:543    .text.set_int_enable:00000000 set_int_enable
-     /tmp/ccs1piim.s:685    .text.set_int_enable:00000094 $d
-     /tmp/ccs1piim.s:691    .text.get_st_biases:00000000 $t
-     /tmp/ccs1piim.s:696    .text.get_st_biases:00000000 get_st_biases
-     /tmp/ccs1piim.s:1117   .text.get_st_biases:0000022c $d
-     /tmp/ccs1piim.s:1124   .text.get_st_biases:00000234 $t
-     /tmp/ccs1piim.s:1483   .text.get_st_biases:00000424 $d
-     /tmp/ccs1piim.s:1488   .rodata.mpu_reg_dump.str1.4:00000000 $d
-     /tmp/ccs1piim.s:1492   .text.mpu_reg_dump:00000000 $t
-     /tmp/ccs1piim.s:1498   .text.mpu_reg_dump:00000000 mpu_reg_dump
-     /tmp/ccs1piim.s:1590   .text.mpu_reg_dump:00000050 $d
-     /tmp/ccs1piim.s:1596   .text.mpu_read_reg:00000000 $t
-     /tmp/ccs1piim.s:1602   .text.mpu_read_reg:00000000 mpu_read_reg
-     /tmp/ccs1piim.s:1685   .text.mpu_read_reg:0000003c $d
-     /tmp/ccs1piim.s:1690   .text.mpu_get_gyro_reg:00000000 $t
-     /tmp/ccs1piim.s:1696   .text.mpu_get_gyro_reg:00000000 mpu_get_gyro_reg
-     /tmp/ccs1piim.s:1797   .text.mpu_get_gyro_reg:00000060 $d
-     /tmp/ccs1piim.s:1802   .text.mpu_get_accel_reg:00000000 $t
-     /tmp/ccs1piim.s:1808   .text.mpu_get_accel_reg:00000000 mpu_get_accel_reg
-     /tmp/ccs1piim.s:1909   .text.mpu_get_accel_reg:00000060 $d
-     /tmp/ccs1piim.s:1914   .text.mpu_get_temperature:00000000 $t
-     /tmp/ccs1piim.s:1920   .text.mpu_get_temperature:00000000 mpu_get_temperature
-     /tmp/ccs1piim.s:2035   .text.mpu_get_temperature:00000078 $d
-     /tmp/ccs1piim.s:2041   .text.mpu_set_accel_bias:00000000 $t
-     /tmp/ccs1piim.s:2047   .text.mpu_set_accel_bias:00000000 mpu_set_accel_bias
-     /tmp/ccs1piim.s:2310   .text.mpu_set_accel_bias:00000148 $d
-     /tmp/ccs1piim.s:2315   .text.mpu_reset_fifo:00000000 $t
-     /tmp/ccs1piim.s:2321   .text.mpu_reset_fifo:00000000 mpu_reset_fifo
-     /tmp/ccs1piim.s:2690   .text.mpu_reset_fifo:000001f4 $d
-     /tmp/ccs1piim.s:2695   .text.mpu_get_gyro_fsr:00000000 $t
-     /tmp/ccs1piim.s:2701   .text.mpu_get_gyro_fsr:00000000 mpu_get_gyro_fsr
-     /tmp/ccs1piim.s:2718   .text.mpu_get_gyro_fsr:0000000c $d
-     /tmp/ccs1piim.s:2722   .text.mpu_get_gyro_fsr:00000010 $t
-     /tmp/ccs1piim.s:2768   .text.mpu_get_gyro_fsr:00000038 $d
-     /tmp/ccs1piim.s:2773   .text.mpu_set_gyro_fsr:00000000 $t
-     /tmp/ccs1piim.s:2779   .text.mpu_set_gyro_fsr:00000000 mpu_set_gyro_fsr
-     /tmp/ccs1piim.s:2923   .text.mpu_set_gyro_fsr:00000094 $d
-     /tmp/ccs1piim.s:2928   .text.mpu_get_accel_fsr:00000000 $t
-     /tmp/ccs1piim.s:2934   .text.mpu_get_accel_fsr:00000000 mpu_get_accel_fsr
-     /tmp/ccs1piim.s:2951   .text.mpu_get_accel_fsr:0000000c $d
-     /tmp/ccs1piim.s:2955   .text.mpu_get_accel_fsr:00000010 $t
-     /tmp/ccs1piim.s:3018   .text.mpu_get_accel_fsr:00000040 $d
-     /tmp/ccs1piim.s:3023   .text.mpu_set_accel_fsr:00000000 $t
-     /tmp/ccs1piim.s:3029   .text.mpu_set_accel_fsr:00000000 mpu_set_accel_fsr
-ARM GAS  /tmp/ccs1piim.s 			page 234
+     /tmp/ccvZvrAV.s:21     .text.get_accel_prod_shift:00000000 $t
+     /tmp/ccvZvrAV.s:26     .text.get_accel_prod_shift:00000000 get_accel_prod_shift
+     /tmp/ccvZvrAV.s:182    .text.get_accel_prod_shift:000000c0 $d
+     /tmp/ccvZvrAV.s:8283   .data.st:00000000 st
+     /tmp/ccvZvrAV.s:189    .text.accel_self_test:00000000 $t
+     /tmp/ccvZvrAV.s:194    .text.accel_self_test:00000000 accel_self_test
+     /tmp/ccvZvrAV.s:328    .text.accel_self_test:0000009c $d
+     /tmp/ccvZvrAV.s:336    .text.gyro_self_test:00000000 $t
+     /tmp/ccvZvrAV.s:341    .text.gyro_self_test:00000000 gyro_self_test
+     /tmp/ccvZvrAV.s:529    .text.gyro_self_test:000000f0 $d
+     /tmp/ccvZvrAV.s:538    .text.set_int_enable:00000000 $t
+     /tmp/ccvZvrAV.s:543    .text.set_int_enable:00000000 set_int_enable
+     /tmp/ccvZvrAV.s:685    .text.set_int_enable:00000094 $d
+     /tmp/ccvZvrAV.s:691    .text.get_st_biases:00000000 $t
+     /tmp/ccvZvrAV.s:696    .text.get_st_biases:00000000 get_st_biases
+     /tmp/ccvZvrAV.s:1117   .text.get_st_biases:0000022c $d
+     /tmp/ccvZvrAV.s:1124   .text.get_st_biases:00000234 $t
+     /tmp/ccvZvrAV.s:1483   .text.get_st_biases:00000424 $d
+     /tmp/ccvZvrAV.s:1488   .rodata.mpu_reg_dump.str1.4:00000000 $d
+     /tmp/ccvZvrAV.s:1492   .text.mpu_reg_dump:00000000 $t
+     /tmp/ccvZvrAV.s:1498   .text.mpu_reg_dump:00000000 mpu_reg_dump
+     /tmp/ccvZvrAV.s:1590   .text.mpu_reg_dump:00000050 $d
+     /tmp/ccvZvrAV.s:1596   .text.mpu_read_reg:00000000 $t
+     /tmp/ccvZvrAV.s:1602   .text.mpu_read_reg:00000000 mpu_read_reg
+     /tmp/ccvZvrAV.s:1685   .text.mpu_read_reg:0000003c $d
+     /tmp/ccvZvrAV.s:1690   .text.mpu_get_gyro_reg:00000000 $t
+     /tmp/ccvZvrAV.s:1696   .text.mpu_get_gyro_reg:00000000 mpu_get_gyro_reg
+     /tmp/ccvZvrAV.s:1797   .text.mpu_get_gyro_reg:00000060 $d
+     /tmp/ccvZvrAV.s:1802   .text.mpu_get_accel_reg:00000000 $t
+     /tmp/ccvZvrAV.s:1808   .text.mpu_get_accel_reg:00000000 mpu_get_accel_reg
+     /tmp/ccvZvrAV.s:1909   .text.mpu_get_accel_reg:00000060 $d
+     /tmp/ccvZvrAV.s:1914   .text.mpu_get_temperature:00000000 $t
+     /tmp/ccvZvrAV.s:1920   .text.mpu_get_temperature:00000000 mpu_get_temperature
+     /tmp/ccvZvrAV.s:2035   .text.mpu_get_temperature:00000078 $d
+     /tmp/ccvZvrAV.s:2041   .text.mpu_set_accel_bias:00000000 $t
+     /tmp/ccvZvrAV.s:2047   .text.mpu_set_accel_bias:00000000 mpu_set_accel_bias
+     /tmp/ccvZvrAV.s:2310   .text.mpu_set_accel_bias:00000148 $d
+     /tmp/ccvZvrAV.s:2315   .text.mpu_reset_fifo:00000000 $t
+     /tmp/ccvZvrAV.s:2321   .text.mpu_reset_fifo:00000000 mpu_reset_fifo
+     /tmp/ccvZvrAV.s:2690   .text.mpu_reset_fifo:000001f4 $d
+     /tmp/ccvZvrAV.s:2695   .text.mpu_get_gyro_fsr:00000000 $t
+     /tmp/ccvZvrAV.s:2701   .text.mpu_get_gyro_fsr:00000000 mpu_get_gyro_fsr
+     /tmp/ccvZvrAV.s:2718   .text.mpu_get_gyro_fsr:0000000c $d
+     /tmp/ccvZvrAV.s:2722   .text.mpu_get_gyro_fsr:00000010 $t
+     /tmp/ccvZvrAV.s:2768   .text.mpu_get_gyro_fsr:00000038 $d
+     /tmp/ccvZvrAV.s:2773   .text.mpu_set_gyro_fsr:00000000 $t
+     /tmp/ccvZvrAV.s:2779   .text.mpu_set_gyro_fsr:00000000 mpu_set_gyro_fsr
+     /tmp/ccvZvrAV.s:2923   .text.mpu_set_gyro_fsr:00000094 $d
+     /tmp/ccvZvrAV.s:2928   .text.mpu_get_accel_fsr:00000000 $t
+     /tmp/ccvZvrAV.s:2934   .text.mpu_get_accel_fsr:00000000 mpu_get_accel_fsr
+     /tmp/ccvZvrAV.s:2951   .text.mpu_get_accel_fsr:0000000c $d
+     /tmp/ccvZvrAV.s:2955   .text.mpu_get_accel_fsr:00000010 $t
+     /tmp/ccvZvrAV.s:3018   .text.mpu_get_accel_fsr:00000040 $d
+     /tmp/ccvZvrAV.s:3023   .text.mpu_set_accel_fsr:00000000 $t
+     /tmp/ccvZvrAV.s:3029   .text.mpu_set_accel_fsr:00000000 mpu_set_accel_fsr
+ARM GAS  /tmp/ccvZvrAV.s 			page 234
 
 
-     /tmp/ccs1piim.s:3060   .text.mpu_set_accel_fsr:00000016 $d
-     /tmp/ccs1piim.s:3175   .text.mpu_set_accel_fsr:00000090 $d
-     /tmp/ccs1piim.s:3180   .text.mpu_get_lpf:00000000 $t
-     /tmp/ccs1piim.s:3186   .text.mpu_get_lpf:00000000 mpu_get_lpf
-     /tmp/ccs1piim.s:3204   .text.mpu_get_lpf:0000000e $d
-     /tmp/ccs1piim.s:3210   .text.mpu_get_lpf:00000014 $t
-     /tmp/ccs1piim.s:3270   .text.mpu_get_lpf:00000040 $d
-     /tmp/ccs1piim.s:3275   .text.mpu_set_lpf:00000000 $t
-     /tmp/ccs1piim.s:3281   .text.mpu_set_lpf:00000000 mpu_set_lpf
-     /tmp/ccs1piim.s:3427   .text.mpu_set_lpf:00000090 $d
-     /tmp/ccs1piim.s:3432   .text.mpu_get_sample_rate:00000000 $t
-     /tmp/ccs1piim.s:3438   .text.mpu_get_sample_rate:00000000 mpu_get_sample_rate
-     /tmp/ccs1piim.s:3474   .text.mpu_get_sample_rate:00000018 $d
-     /tmp/ccs1piim.s:3479   .text.mpu_get_compass_sample_rate:00000000 $t
-     /tmp/ccs1piim.s:3485   .text.mpu_get_compass_sample_rate:00000000 mpu_get_compass_sample_rate
-     /tmp/ccs1piim.s:3507   .text.mpu_set_compass_sample_rate:00000000 $t
-     /tmp/ccs1piim.s:3513   .text.mpu_set_compass_sample_rate:00000000 mpu_set_compass_sample_rate
-     /tmp/ccs1piim.s:3531   .text.mpu_get_gyro_sens:00000000 $t
-     /tmp/ccs1piim.s:3537   .text.mpu_get_gyro_sens:00000000 mpu_get_gyro_sens
-     /tmp/ccs1piim.s:3554   .text.mpu_get_gyro_sens:0000000c $d
-     /tmp/ccs1piim.s:3558   .text.mpu_get_gyro_sens:00000010 $t
-     /tmp/ccs1piim.s:3616   .text.mpu_get_gyro_sens:00000038 $d
-     /tmp/ccs1piim.s:3625   .text.mpu_get_accel_sens:00000000 $t
-     /tmp/ccs1piim.s:3631   .text.mpu_get_accel_sens:00000000 mpu_get_accel_sens
-     /tmp/ccs1piim.s:3648   .text.mpu_get_accel_sens:0000000c $d
-     /tmp/ccs1piim.s:3652   .text.mpu_get_accel_sens:00000010 $t
-     /tmp/ccs1piim.s:3715   .text.mpu_get_accel_sens:00000048 $d
-     /tmp/ccs1piim.s:3720   .text.mpu_get_fifo_config:00000000 $t
-     /tmp/ccs1piim.s:3726   .text.mpu_get_fifo_config:00000000 mpu_get_fifo_config
-     /tmp/ccs1piim.s:3749   .text.mpu_get_fifo_config:0000000c $d
-     /tmp/ccs1piim.s:3754   .text.mpu_configure_fifo:00000000 $t
-     /tmp/ccs1piim.s:3760   .text.mpu_configure_fifo:00000000 mpu_configure_fifo
-     /tmp/ccs1piim.s:3873   .text.mpu_configure_fifo:00000060 $d
-     /tmp/ccs1piim.s:3878   .text.mpu_get_power_state:00000000 $t
-     /tmp/ccs1piim.s:3884   .text.mpu_get_power_state:00000000 mpu_get_power_state
-     /tmp/ccs1piim.s:3919   .text.mpu_get_power_state:00000014 $d
-     /tmp/ccs1piim.s:3924   .text.mpu_get_int_status:00000000 $t
-     /tmp/ccs1piim.s:3930   .text.mpu_get_int_status:00000000 mpu_get_int_status
-     /tmp/ccs1piim.s:4010   .text.mpu_get_int_status:00000040 $d
-     /tmp/ccs1piim.s:4015   .text.mpu_read_fifo:00000000 $t
-     /tmp/ccs1piim.s:4021   .text.mpu_read_fifo:00000000 mpu_read_fifo
-     /tmp/ccs1piim.s:4449   .text.mpu_read_fifo:000001fc $d
-     /tmp/ccs1piim.s:4454   .text.mpu_read_fifo_stream:00000000 $t
-     /tmp/ccs1piim.s:4460   .text.mpu_read_fifo_stream:00000000 mpu_read_fifo_stream
-     /tmp/ccs1piim.s:4657   .text.mpu_read_fifo_stream:000000bc $d
-     /tmp/ccs1piim.s:4662   .text.mpu_set_bypass:00000000 $t
-     /tmp/ccs1piim.s:4668   .text.mpu_set_bypass:00000000 mpu_set_bypass
-     /tmp/ccs1piim.s:4945   .text.mpu_set_bypass:00000164 $d
-     /tmp/ccs1piim.s:4950   .text.mpu_set_int_level:00000000 $t
-     /tmp/ccs1piim.s:4956   .text.mpu_set_int_level:00000000 mpu_set_int_level
-     /tmp/ccs1piim.s:4977   .text.mpu_set_int_level:0000000c $d
-     /tmp/ccs1piim.s:4982   .text.mpu_set_int_latched:00000000 $t
-     /tmp/ccs1piim.s:4988   .text.mpu_set_int_latched:00000000 mpu_set_int_latched
-     /tmp/ccs1piim.s:5104   .text.mpu_set_int_latched:00000070 $d
-     /tmp/ccs1piim.s:5109   .text.mpu_lp_accel_mode:00000000 $t
-     /tmp/ccs1piim.s:5115   .text.mpu_lp_accel_mode:00000000 mpu_lp_accel_mode
-     /tmp/ccs1piim.s:5321   .text.mpu_lp_accel_mode:000000d8 $d
-ARM GAS  /tmp/ccs1piim.s 			page 235
+     /tmp/ccvZvrAV.s:3060   .text.mpu_set_accel_fsr:00000016 $d
+     /tmp/ccvZvrAV.s:3175   .text.mpu_set_accel_fsr:00000090 $d
+     /tmp/ccvZvrAV.s:3180   .text.mpu_get_lpf:00000000 $t
+     /tmp/ccvZvrAV.s:3186   .text.mpu_get_lpf:00000000 mpu_get_lpf
+     /tmp/ccvZvrAV.s:3204   .text.mpu_get_lpf:0000000e $d
+     /tmp/ccvZvrAV.s:3210   .text.mpu_get_lpf:00000014 $t
+     /tmp/ccvZvrAV.s:3270   .text.mpu_get_lpf:00000040 $d
+     /tmp/ccvZvrAV.s:3275   .text.mpu_set_lpf:00000000 $t
+     /tmp/ccvZvrAV.s:3281   .text.mpu_set_lpf:00000000 mpu_set_lpf
+     /tmp/ccvZvrAV.s:3427   .text.mpu_set_lpf:00000090 $d
+     /tmp/ccvZvrAV.s:3432   .text.mpu_get_sample_rate:00000000 $t
+     /tmp/ccvZvrAV.s:3438   .text.mpu_get_sample_rate:00000000 mpu_get_sample_rate
+     /tmp/ccvZvrAV.s:3474   .text.mpu_get_sample_rate:00000018 $d
+     /tmp/ccvZvrAV.s:3479   .text.mpu_get_compass_sample_rate:00000000 $t
+     /tmp/ccvZvrAV.s:3485   .text.mpu_get_compass_sample_rate:00000000 mpu_get_compass_sample_rate
+     /tmp/ccvZvrAV.s:3507   .text.mpu_set_compass_sample_rate:00000000 $t
+     /tmp/ccvZvrAV.s:3513   .text.mpu_set_compass_sample_rate:00000000 mpu_set_compass_sample_rate
+     /tmp/ccvZvrAV.s:3531   .text.mpu_get_gyro_sens:00000000 $t
+     /tmp/ccvZvrAV.s:3537   .text.mpu_get_gyro_sens:00000000 mpu_get_gyro_sens
+     /tmp/ccvZvrAV.s:3554   .text.mpu_get_gyro_sens:0000000c $d
+     /tmp/ccvZvrAV.s:3558   .text.mpu_get_gyro_sens:00000010 $t
+     /tmp/ccvZvrAV.s:3616   .text.mpu_get_gyro_sens:00000038 $d
+     /tmp/ccvZvrAV.s:3625   .text.mpu_get_accel_sens:00000000 $t
+     /tmp/ccvZvrAV.s:3631   .text.mpu_get_accel_sens:00000000 mpu_get_accel_sens
+     /tmp/ccvZvrAV.s:3648   .text.mpu_get_accel_sens:0000000c $d
+     /tmp/ccvZvrAV.s:3652   .text.mpu_get_accel_sens:00000010 $t
+     /tmp/ccvZvrAV.s:3715   .text.mpu_get_accel_sens:00000048 $d
+     /tmp/ccvZvrAV.s:3720   .text.mpu_get_fifo_config:00000000 $t
+     /tmp/ccvZvrAV.s:3726   .text.mpu_get_fifo_config:00000000 mpu_get_fifo_config
+     /tmp/ccvZvrAV.s:3749   .text.mpu_get_fifo_config:0000000c $d
+     /tmp/ccvZvrAV.s:3754   .text.mpu_configure_fifo:00000000 $t
+     /tmp/ccvZvrAV.s:3760   .text.mpu_configure_fifo:00000000 mpu_configure_fifo
+     /tmp/ccvZvrAV.s:3873   .text.mpu_configure_fifo:00000060 $d
+     /tmp/ccvZvrAV.s:3878   .text.mpu_get_power_state:00000000 $t
+     /tmp/ccvZvrAV.s:3884   .text.mpu_get_power_state:00000000 mpu_get_power_state
+     /tmp/ccvZvrAV.s:3919   .text.mpu_get_power_state:00000014 $d
+     /tmp/ccvZvrAV.s:3924   .text.mpu_get_int_status:00000000 $t
+     /tmp/ccvZvrAV.s:3930   .text.mpu_get_int_status:00000000 mpu_get_int_status
+     /tmp/ccvZvrAV.s:4010   .text.mpu_get_int_status:00000040 $d
+     /tmp/ccvZvrAV.s:4015   .text.mpu_read_fifo:00000000 $t
+     /tmp/ccvZvrAV.s:4021   .text.mpu_read_fifo:00000000 mpu_read_fifo
+     /tmp/ccvZvrAV.s:4449   .text.mpu_read_fifo:000001fc $d
+     /tmp/ccvZvrAV.s:4454   .text.mpu_read_fifo_stream:00000000 $t
+     /tmp/ccvZvrAV.s:4460   .text.mpu_read_fifo_stream:00000000 mpu_read_fifo_stream
+     /tmp/ccvZvrAV.s:4657   .text.mpu_read_fifo_stream:000000bc $d
+     /tmp/ccvZvrAV.s:4662   .text.mpu_set_bypass:00000000 $t
+     /tmp/ccvZvrAV.s:4668   .text.mpu_set_bypass:00000000 mpu_set_bypass
+     /tmp/ccvZvrAV.s:4945   .text.mpu_set_bypass:00000164 $d
+     /tmp/ccvZvrAV.s:4950   .text.mpu_set_int_level:00000000 $t
+     /tmp/ccvZvrAV.s:4956   .text.mpu_set_int_level:00000000 mpu_set_int_level
+     /tmp/ccvZvrAV.s:4977   .text.mpu_set_int_level:0000000c $d
+     /tmp/ccvZvrAV.s:4982   .text.mpu_set_int_latched:00000000 $t
+     /tmp/ccvZvrAV.s:4988   .text.mpu_set_int_latched:00000000 mpu_set_int_latched
+     /tmp/ccvZvrAV.s:5104   .text.mpu_set_int_latched:00000070 $d
+     /tmp/ccvZvrAV.s:5109   .text.mpu_lp_accel_mode:00000000 $t
+     /tmp/ccvZvrAV.s:5115   .text.mpu_lp_accel_mode:00000000 mpu_lp_accel_mode
+     /tmp/ccvZvrAV.s:5321   .text.mpu_lp_accel_mode:000000d8 $d
+ARM GAS  /tmp/ccvZvrAV.s 			page 235
 
 
-     /tmp/ccs1piim.s:5326   .text.mpu_set_sample_rate:00000000 $t
-     /tmp/ccs1piim.s:5332   .text.mpu_set_sample_rate:00000000 mpu_set_sample_rate
-     /tmp/ccs1piim.s:5490   .text.mpu_set_sample_rate:0000009c $d
-     /tmp/ccs1piim.s:5495   .text.mpu_set_sensors:00000000 $t
-     /tmp/ccs1piim.s:5501   .text.mpu_set_sensors:00000000 mpu_set_sensors
-     /tmp/ccs1piim.s:5690   .text.mpu_set_sensors:000000e0 $d
-     /tmp/ccs1piim.s:5695   .rodata.mpu_init.str1.4:00000000 $d
-     /tmp/ccs1piim.s:5706   .text.mpu_init:00000000 $t
-     /tmp/ccs1piim.s:5712   .text.mpu_init:00000000 mpu_init
-     /tmp/ccs1piim.s:6066   .text.mpu_init:000001a8 $d
-     /tmp/ccs1piim.s:6074   .text.mpu_write_mem:00000000 $t
-     /tmp/ccs1piim.s:6080   .text.mpu_write_mem:00000000 mpu_write_mem
-     /tmp/ccs1piim.s:6212   .text.mpu_write_mem:00000070 $d
-     /tmp/ccs1piim.s:6217   .text.mpu_read_mem:00000000 $t
-     /tmp/ccs1piim.s:6223   .text.mpu_read_mem:00000000 mpu_read_mem
-     /tmp/ccs1piim.s:6355   .text.mpu_read_mem:00000070 $d
-     /tmp/ccs1piim.s:6360   .text.mpu_load_firmware:00000000 $t
-     /tmp/ccs1piim.s:6366   .text.mpu_load_firmware:00000000 mpu_load_firmware
-     /tmp/ccs1piim.s:6541   .text.mpu_load_firmware:000000b0 $d
-     /tmp/ccs1piim.s:6546   .text.mpu_set_dmp_state:00000000 $t
-     /tmp/ccs1piim.s:6552   .text.mpu_set_dmp_state:00000000 mpu_set_dmp_state
-     /tmp/ccs1piim.s:6699   .text.mpu_set_dmp_state:00000090 $d
-     /tmp/ccs1piim.s:6704   .text.mpu_run_self_test:00000000 $t
-     /tmp/ccs1piim.s:6710   .text.mpu_run_self_test:00000000 mpu_run_self_test
-     /tmp/ccs1piim.s:6968   .text.mpu_run_self_test:00000100 $d
-     /tmp/ccs1piim.s:6973   .text.mpu_get_dmp_state:00000000 $t
-     /tmp/ccs1piim.s:6979   .text.mpu_get_dmp_state:00000000 mpu_get_dmp_state
-     /tmp/ccs1piim.s:7002   .text.mpu_get_dmp_state:0000000c $d
-     /tmp/ccs1piim.s:7007   .text.setup_compass:00000000 $t
-     /tmp/ccs1piim.s:7013   .text.setup_compass:00000000 setup_compass
-     /tmp/ccs1piim.s:7028   .text.mpu_get_compass_reg:00000000 $t
-     /tmp/ccs1piim.s:7034   .text.mpu_get_compass_reg:00000000 mpu_get_compass_reg
-     /tmp/ccs1piim.s:7052   .text.mpu_get_compass_fsr:00000000 $t
-     /tmp/ccs1piim.s:7058   .text.mpu_get_compass_fsr:00000000 mpu_get_compass_fsr
-     /tmp/ccs1piim.s:7076   .text.mpu_lp_motion_interrupt:00000000 $t
-     /tmp/ccs1piim.s:7082   .text.mpu_lp_motion_interrupt:00000000 mpu_lp_motion_interrupt
-     /tmp/ccs1piim.s:7510   .text.mpu_lp_motion_interrupt:000001e0 $d
-     /tmp/ccs1piim.s:7517   .text.run_self_test:00000000 $t
-     /tmp/ccs1piim.s:7523   .text.run_self_test:00000000 run_self_test
-     /tmp/ccs1piim.s:7639   .text.inv_row_2_scale:00000000 $t
-     /tmp/ccs1piim.s:7645   .text.inv_row_2_scale:00000000 inv_row_2_scale
-     /tmp/ccs1piim.s:7733   .text.inv_orientation_matrix_to_scalar:00000000 $t
-     /tmp/ccs1piim.s:7739   .text.inv_orientation_matrix_to_scalar:00000000 inv_orientation_matrix_to_scalar
-     /tmp/ccs1piim.s:7792   .text.mget_ms:00000000 $t
-     /tmp/ccs1piim.s:7798   .text.mget_ms:00000000 mget_ms
-     /tmp/ccs1piim.s:7812   .text.mpu_dmp_init:00000000 $t
-     /tmp/ccs1piim.s:7818   .text.mpu_dmp_init:00000000 mpu_dmp_init
-     /tmp/ccs1piim.s:8005   .text.mpu_dmp_init:000000a0 $d
-     /tmp/ccs1piim.s:8277   .data.gyro_orientation:00000000 gyro_orientation
-     /tmp/ccs1piim.s:8013   .text.mpu_dmp_get_data:00000000 $t
-     /tmp/ccs1piim.s:8019   .text.mpu_dmp_get_data:00000000 mpu_dmp_get_data
-     /tmp/ccs1piim.s:8267   .text.mpu_dmp_get_data:00000180 $d
-     /tmp/ccs1piim.s:8274   .data.gyro_orientation:00000000 $d
-     /tmp/ccs1piim.s:8280   .data.st:00000000 $d
-     /tmp/ccs1piim.s:8329   .rodata.reg:00000000 reg
-     /tmp/ccs1piim.s:8315   .rodata.hw:00000000 hw
-     /tmp/ccs1piim.s:8294   .rodata.test:00000000 test
-ARM GAS  /tmp/ccs1piim.s 			page 236
+     /tmp/ccvZvrAV.s:5326   .text.mpu_set_sample_rate:00000000 $t
+     /tmp/ccvZvrAV.s:5332   .text.mpu_set_sample_rate:00000000 mpu_set_sample_rate
+     /tmp/ccvZvrAV.s:5490   .text.mpu_set_sample_rate:0000009c $d
+     /tmp/ccvZvrAV.s:5495   .text.mpu_set_sensors:00000000 $t
+     /tmp/ccvZvrAV.s:5501   .text.mpu_set_sensors:00000000 mpu_set_sensors
+     /tmp/ccvZvrAV.s:5690   .text.mpu_set_sensors:000000e0 $d
+     /tmp/ccvZvrAV.s:5695   .rodata.mpu_init.str1.4:00000000 $d
+     /tmp/ccvZvrAV.s:5706   .text.mpu_init:00000000 $t
+     /tmp/ccvZvrAV.s:5712   .text.mpu_init:00000000 mpu_init
+     /tmp/ccvZvrAV.s:6066   .text.mpu_init:000001a8 $d
+     /tmp/ccvZvrAV.s:6074   .text.mpu_write_mem:00000000 $t
+     /tmp/ccvZvrAV.s:6080   .text.mpu_write_mem:00000000 mpu_write_mem
+     /tmp/ccvZvrAV.s:6212   .text.mpu_write_mem:00000070 $d
+     /tmp/ccvZvrAV.s:6217   .text.mpu_read_mem:00000000 $t
+     /tmp/ccvZvrAV.s:6223   .text.mpu_read_mem:00000000 mpu_read_mem
+     /tmp/ccvZvrAV.s:6355   .text.mpu_read_mem:00000070 $d
+     /tmp/ccvZvrAV.s:6360   .text.mpu_load_firmware:00000000 $t
+     /tmp/ccvZvrAV.s:6366   .text.mpu_load_firmware:00000000 mpu_load_firmware
+     /tmp/ccvZvrAV.s:6541   .text.mpu_load_firmware:000000b0 $d
+     /tmp/ccvZvrAV.s:6546   .text.mpu_set_dmp_state:00000000 $t
+     /tmp/ccvZvrAV.s:6552   .text.mpu_set_dmp_state:00000000 mpu_set_dmp_state
+     /tmp/ccvZvrAV.s:6699   .text.mpu_set_dmp_state:00000090 $d
+     /tmp/ccvZvrAV.s:6704   .text.mpu_run_self_test:00000000 $t
+     /tmp/ccvZvrAV.s:6710   .text.mpu_run_self_test:00000000 mpu_run_self_test
+     /tmp/ccvZvrAV.s:6968   .text.mpu_run_self_test:00000100 $d
+     /tmp/ccvZvrAV.s:6973   .text.mpu_get_dmp_state:00000000 $t
+     /tmp/ccvZvrAV.s:6979   .text.mpu_get_dmp_state:00000000 mpu_get_dmp_state
+     /tmp/ccvZvrAV.s:7002   .text.mpu_get_dmp_state:0000000c $d
+     /tmp/ccvZvrAV.s:7007   .text.setup_compass:00000000 $t
+     /tmp/ccvZvrAV.s:7013   .text.setup_compass:00000000 setup_compass
+     /tmp/ccvZvrAV.s:7028   .text.mpu_get_compass_reg:00000000 $t
+     /tmp/ccvZvrAV.s:7034   .text.mpu_get_compass_reg:00000000 mpu_get_compass_reg
+     /tmp/ccvZvrAV.s:7052   .text.mpu_get_compass_fsr:00000000 $t
+     /tmp/ccvZvrAV.s:7058   .text.mpu_get_compass_fsr:00000000 mpu_get_compass_fsr
+     /tmp/ccvZvrAV.s:7076   .text.mpu_lp_motion_interrupt:00000000 $t
+     /tmp/ccvZvrAV.s:7082   .text.mpu_lp_motion_interrupt:00000000 mpu_lp_motion_interrupt
+     /tmp/ccvZvrAV.s:7510   .text.mpu_lp_motion_interrupt:000001e0 $d
+     /tmp/ccvZvrAV.s:7517   .text.run_self_test:00000000 $t
+     /tmp/ccvZvrAV.s:7523   .text.run_self_test:00000000 run_self_test
+     /tmp/ccvZvrAV.s:7639   .text.inv_row_2_scale:00000000 $t
+     /tmp/ccvZvrAV.s:7645   .text.inv_row_2_scale:00000000 inv_row_2_scale
+     /tmp/ccvZvrAV.s:7733   .text.inv_orientation_matrix_to_scalar:00000000 $t
+     /tmp/ccvZvrAV.s:7739   .text.inv_orientation_matrix_to_scalar:00000000 inv_orientation_matrix_to_scalar
+     /tmp/ccvZvrAV.s:7792   .text.mget_ms:00000000 $t
+     /tmp/ccvZvrAV.s:7798   .text.mget_ms:00000000 mget_ms
+     /tmp/ccvZvrAV.s:7812   .text.mpu_dmp_init:00000000 $t
+     /tmp/ccvZvrAV.s:7818   .text.mpu_dmp_init:00000000 mpu_dmp_init
+     /tmp/ccvZvrAV.s:8005   .text.mpu_dmp_init:000000a0 $d
+     /tmp/ccvZvrAV.s:8277   .data.gyro_orientation:00000000 gyro_orientation
+     /tmp/ccvZvrAV.s:8013   .text.mpu_dmp_get_data:00000000 $t
+     /tmp/ccvZvrAV.s:8019   .text.mpu_dmp_get_data:00000000 mpu_dmp_get_data
+     /tmp/ccvZvrAV.s:8267   .text.mpu_dmp_get_data:00000180 $d
+     /tmp/ccvZvrAV.s:8274   .data.gyro_orientation:00000000 $d
+     /tmp/ccvZvrAV.s:8280   .data.st:00000000 $d
+     /tmp/ccvZvrAV.s:8329   .rodata.reg:00000000 reg
+     /tmp/ccvZvrAV.s:8315   .rodata.hw:00000000 hw
+     /tmp/ccvZvrAV.s:8294   .rodata.test:00000000 test
+ARM GAS  /tmp/ccvZvrAV.s 			page 236
 
 
-     /tmp/ccs1piim.s:8291   .rodata.test:00000000 $d
-     /tmp/ccs1piim.s:8312   .rodata.hw:00000000 $d
-     /tmp/ccs1piim.s:8326   .rodata.reg:00000000 $d
-     /tmp/ccs1piim.s:3075   .text.mpu_set_accel_fsr:00000025 $d
-     /tmp/ccs1piim.s:3075   .text.mpu_set_accel_fsr:00000026 $t
+     /tmp/ccvZvrAV.s:8291   .rodata.test:00000000 $d
+     /tmp/ccvZvrAV.s:8312   .rodata.hw:00000000 $d
+     /tmp/ccvZvrAV.s:8326   .rodata.reg:00000000 $d
+     /tmp/ccvZvrAV.s:3075   .text.mpu_set_accel_fsr:00000025 $d
+     /tmp/ccvZvrAV.s:3075   .text.mpu_set_accel_fsr:00000026 $t
 
 UNDEFINED SYMBOLS
 MPU_Read_Len

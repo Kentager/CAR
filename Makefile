@@ -43,6 +43,8 @@ USER/Src/sysmem.c \
 Lib/StdPeriphs/src/misc.c \
 Lib/StdPeriphs/src/stm32f4xx_gpio.c \
 Lib/StdPeriphs/src/stm32f4xx_rcc.c \
+Lib/StdPeriphs/src/stm32f4xx_rtc.c \
+Lib/StdPeriphs/src/stm32f4xx_pwr.c \
 Lib/StdPeriphs/src/stm32f4xx_usart.c \
 Lib/StdPeriphs/src/stm32f4xx_adc.c \
 Lib/StdPeriphs/src/stm32f4xx_dac.c \
@@ -109,6 +111,7 @@ AS_DEFS =
 
 # C defines
 C_DEFS =  \
+-DULOG_ENABLED \
 -DUSE_STDPERIPH_DRIVER \
 -DSTM32F40_41xxx 
 

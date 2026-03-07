@@ -1,43 +1,46 @@
 #include "delay.h"
 #include "led.h"
-#include "mpu6050.h"
-#include "oled.h"
-#include "task.h"
+#include "rtc.h"
+#include "stm32f4xx_gpio.h"
+#include "ulog.h"
 #include "usart.h"
-#include <stdint.h>
 #include <stdio.h>
 #include <stm32f4xx.h>
 
-/**
- * @brief 系统初始化函数
- */
-void System_Init(void) {
+// To use uLog, you must define a function to process logging messages. It can
+// write the messages to a console, to a file, to an in-memory buffer: the
+// choice is yours.  And you get to choose the format of the message.
+//
+// The following example prints to the console.
+//
+// One caveat: msg is a static string and will be over-written at the next call
+// to ULOG.  This means you may print it or copy it, but saving a pointer to it
+// will lead to confusion and astonishment.
+//
+void my_console_logger(ulog_level_t severity, const char *msg) {
+  printf("%s [%s]: %s",
+         RTC_GetNowTime(), // user defined function
+         ulog_level_name(severity), msg);
+}
 
-  // 初始化延时函数
+int main() {
+  int arg = 42;
+  led_Init();
 
-  delay_init();
-  // 初始化串口
   Usart_Config();
-  printf("Start MPU Init\r\n");
+  ULOG_INIT();
+  delay_init();
 
-  MPU_Init();
-  Task_Init();
-}
-static void USART1_Pro(void) {
-  // printf("%6.2f,%6.2f,%6.2f\r\n", MPU_Attitude.pitch, MPU_Attitude.roll,
-  //        MPU_Attitude.yaw);
-  Get_RawData();
-}
-/**
- * @brief 主函数
- */
+  // log messages with a severity of WARNING or higher to the console.  The
+  // user must supply a method for my_console_logger, e.g. along the lines
+  // of what is shown above.
+  ULOG_SUBSCRIBE(my_console_logger, ULOG_WARNING_LEVEL);
 
-int main(void) {
-  System_Init();
-  printf("Stm32 is ready\r\n");
-  u8 usart_id = add_task(USART1_Pro, 10);
-  u8 MPU_id = add_task(MPU_Proc, 5);
-  MPU_Proc();
+  ULOG_CRITICAL("Critical,arg=100\r\n");
+  ULOG_WARNING("Critical, arg=%d\r\n", arg); // logs to file and console
   while (1) {
+
+    GPIO_ToggleBits(GPIOC, 13);
+    delay_ms(100);
   }
 }

@@ -78,17 +78,17 @@
 // #endif
 
 /* ==================== 编码器编号枚举（根据模式调整） ==================== */
-#ifdef QUAD_MOTOR_DRIVE
-// 四驱模式
-#define ENCODER_FR 0 // 前右编码器
-#define ENCODER_FL 1 // 前左编码器
-#define ENCODER_BR 2 // 后右编码器
-#define ENCODER_BL 3 // 后左编码器
-#else
-// 双驱模式
-#define ENCODER_RIGHT 0 // 右编码器
-#define ENCODER_LEFT 1  // 左编码器
-#endif
+// #ifdef QUAD_MOTOR_DRIVE
+// // 四驱模式
+// #define ENCODER_FR 0 // 前右编码器
+// #define ENCODER_FL 1 // 前左编码器
+// #define ENCODER_BR 2 // 后右编码器
+// #define ENCODER_BL 3 // 后左编码器
+// #else
+// // 双驱模式
+// #define ENCODER_RIGHT 0 // 右编码器
+// #define ENCODER_LEFT 1  // 左编码器
+// #endif
 
 /* ==================== 调试信息宏 ==================== */
 #ifdef QUAD_MOTOR_DRIVE

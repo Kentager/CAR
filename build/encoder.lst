@@ -1,0 +1,1225 @@
+ARM GAS  /tmp/ccwB8VdR.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"encoder.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "MyHardWare/Src/encoder.c"
+  20              		.section	.text.Encoder_GPIO_Init,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	Encoder_GPIO_Init:
+  27              	.LFB123:
+   1:MyHardWare/Src/encoder.c **** 
+   2:MyHardWare/Src/encoder.c **** /**
+   3:MyHardWare/Src/encoder.c ****  * @file encoder.c
+   4:MyHardWare/Src/encoder.c ****  * @brief 编码器驱动实现文件 - 智能车专用（面向对象风格）
+   5:MyHardWare/Src/encoder.c ****  * @version 2.0
+   6:MyHardWare/Src/encoder.c ****  * @date 2026-03-04
+   7:MyHardWare/Src/encoder.c ****  */
+   8:MyHardWare/Src/encoder.c **** 
+   9:MyHardWare/Src/encoder.c **** #include "encoder.h"
+  10:MyHardWare/Src/encoder.c **** #include "stm32f4xx_gpio.h"
+  11:MyHardWare/Src/encoder.c **** #include "stm32f4xx_rcc.h"
+  12:MyHardWare/Src/encoder.c **** #include "stm32f4xx_tim.h"
+  13:MyHardWare/Src/encoder.c **** 
+  14:MyHardWare/Src/encoder.c **** /* ==================== 全局编码器实例定义 ==================== */
+  15:MyHardWare/Src/encoder.c **** // 四驱模式编码器实例
+  16:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+  17:MyHardWare/Src/encoder.c **** Encoder_Class_t Encoder_FR = {0};
+  18:MyHardWare/Src/encoder.c **** Encoder_Class_t Encoder_FL = {0};
+  19:MyHardWare/Src/encoder.c **** Encoder_Class_t Encoder_BR = {0};
+  20:MyHardWare/Src/encoder.c **** Encoder_Class_t Encoder_BL = {0};
+  21:MyHardWare/Src/encoder.c **** #else
+  22:MyHardWare/Src/encoder.c **** // 双驱模式编码器实例
+  23:MyHardWare/Src/encoder.c **** static Encoder_Class_t Encoder_Right = {
+  24:MyHardWare/Src/encoder.c ****     ._data = {.count = 0,
+  25:MyHardWare/Src/encoder.c ****               .last_count = 0,
+  26:MyHardWare/Src/encoder.c ****               .delta_count = 0,
+  27:MyHardWare/Src/encoder.c ****               .speed_rpm = 0.0f,
+  28:MyHardWare/Src/encoder.c ****               .speed_rps = 0.0f,
+  29:MyHardWare/Src/encoder.c ****               .speed_rad_s = 0.0f,
+  30:MyHardWare/Src/encoder.c ****               .speed_m_s = 0.0f,
+  31:MyHardWare/Src/encoder.c ****               .total_count = 0,
+ARM GAS  /tmp/ccwB8VdR.s 			page 2
+
+
+  32:MyHardWare/Src/encoder.c ****               .total_distance = 0.0f,
+  33:MyHardWare/Src/encoder.c ****               .direction = ENCODER_DIR_STOPPED,
+  34:MyHardWare/Src/encoder.c ****               .wheel_diameter = WHEEL_DIAMETER,
+  35:MyHardWare/Src/encoder.c ****               .gear_ratio = GEAR_RATIO,
+  36:MyHardWare/Src/encoder.c ****               .last_update_time = 0},
+  37:MyHardWare/Src/encoder.c ****     ._initialized = 0,
+  38:MyHardWare/Src/encoder.c ****     .id = ENCODER_RIGHT,
+  39:MyHardWare/Src/encoder.c ****     .tim = TIM2};
+  40:MyHardWare/Src/encoder.c **** 
+  41:MyHardWare/Src/encoder.c **** static Encoder_Class_t Encoder_Left = {
+  42:MyHardWare/Src/encoder.c ****     ._data = {.count = 0,
+  43:MyHardWare/Src/encoder.c ****               .last_count = 0,
+  44:MyHardWare/Src/encoder.c ****               .delta_count = 0,
+  45:MyHardWare/Src/encoder.c ****               .speed_rpm = 0.0f,
+  46:MyHardWare/Src/encoder.c ****               .speed_rps = 0.0f,
+  47:MyHardWare/Src/encoder.c ****               .speed_rad_s = 0.0f,
+  48:MyHardWare/Src/encoder.c ****               .speed_m_s = 0.0f,
+  49:MyHardWare/Src/encoder.c ****               .total_count = 0,
+  50:MyHardWare/Src/encoder.c ****               .total_distance = 0.0f,
+  51:MyHardWare/Src/encoder.c ****               .direction = ENCODER_DIR_STOPPED,
+  52:MyHardWare/Src/encoder.c ****               .wheel_diameter = WHEEL_DIAMETER,
+  53:MyHardWare/Src/encoder.c ****               .gear_ratio = GEAR_RATIO,
+  54:MyHardWare/Src/encoder.c ****               .last_update_time = 0},
+  55:MyHardWare/Src/encoder.c ****     ._initialized = 0,
+  56:MyHardWare/Src/encoder.c ****     .id = ENCODER_LEFT,
+  57:MyHardWare/Src/encoder.c ****     .tim = TIM3};
+  58:MyHardWare/Src/encoder.c **** #endif
+  59:MyHardWare/Src/encoder.c **** 
+  60:MyHardWare/Src/encoder.c **** /* ==================== 私有函数：硬件初始化 ==================== */
+  61:MyHardWare/Src/encoder.c **** 
+  62:MyHardWare/Src/encoder.c **** static void Encoder_GPIO_Init(void);
+  63:MyHardWare/Src/encoder.c **** static void Encoder_TIM_Init(void);
+  64:MyHardWare/Src/encoder.c **** /**
+  65:MyHardWare/Src/encoder.c ****  * @brief 初始化单个编码器的GPIO引脚
+  66:MyHardWare/Src/encoder.c ****  * @param encoder 编码器ID
+  67:MyHardWare/Src/encoder.c ****  */
+  68:MyHardWare/Src/encoder.c **** static void Encoder_GPIO_Init(void) {
+  28              		.loc 1 68 37 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 20
+  35              		.cfi_offset 4, -20
+  36              		.cfi_offset 5, -16
+  37              		.cfi_offset 6, -12
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 83B0     		sub	sp, sp, #12
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 32
+  69:MyHardWare/Src/encoder.c ****   GPIO_InitTypeDef GPIO_InitStructure;
+  43              		.loc 1 69 3 view .LVU1
+  70:MyHardWare/Src/encoder.c **** 
+  71:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+  72:MyHardWare/Src/encoder.c ****   // 四驱模式：直接初始化所有4个编码器的GPIO
+ARM GAS  /tmp/ccwB8VdR.s 			page 3
+
+
+  73:MyHardWare/Src/encoder.c ****   // 前右编码器
+  74:MyHardWare/Src/encoder.c ****   RCC_AHB1PeriphClockCmd(ENCODER_FR_GPIO_CLK, ENABLE);
+  75:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_FR_CH1_PIN | ENCODER_FR_CH2_PIN;
+  76:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  77:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+  78:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  79:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  80:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FR_CH1_PORT, &GPIO_InitStructure);
+  81:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FR_CH2_PORT, &GPIO_InitStructure);
+  82:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FR_CH1_PORT, GPIO_PinSource0, ENCODER_FR_AF);
+  83:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FR_CH2_PORT, GPIO_PinSource1, ENCODER_FR_AF);
+  84:MyHardWare/Src/encoder.c **** 
+  85:MyHardWare/Src/encoder.c ****   // 前左编码器
+  86:MyHardWare/Src/encoder.c ****   RCC_AHB1PeriphClockCmd(ENCODER_FL_GPIO_CLK, ENABLE);
+  87:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_FL_CH1_PIN | ENCODER_FL_CH2_PIN;
+  88:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FL_CH1_PORT, &GPIO_InitStructure);
+  89:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FL_CH2_PORT, &GPIO_InitStructure);
+  90:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FL_CH1_PORT, GPIO_PinSource6, ENCODER_FL_AF);
+  91:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FL_CH2_PORT, GPIO_PinSource7, ENCODER_FL_AF);
+  92:MyHardWare/Src/encoder.c **** 
+  93:MyHardWare/Src/encoder.c ****   // 后右编码器
+  94:MyHardWare/Src/encoder.c ****   RCC_AHB1PeriphClockCmd(ENCODER_BR_GPIO_CLK, ENABLE);
+  95:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_BR_CH1_PIN | ENCODER_BR_CH2_PIN;
+  96:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_BR_CH1_PORT, &GPIO_InitStructure);
+  97:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_BR_CH2_PORT, &GPIO_InitStructure);
+  98:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_BR_CH1_PORT, GPIO_PinSource12, ENCODER_BR_AF);
+  99:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_BR_CH2_PORT, GPIO_PinSource13, ENCODER_BR_AF);
+ 100:MyHardWare/Src/encoder.c **** 
+ 101:MyHardWare/Src/encoder.c ****   // 后左编码器
+ 102:MyHardWare/Src/encoder.c ****   RCC_AHB1PeriphClockCmd(ENCODER_BL_GPIO_CLK, ENABLE);
+ 103:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_BL_CH1_PIN | ENCODER_BL_CH2_PIN;
+ 104:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_BL_CH1_PORT, &GPIO_InitStructure);
+ 105:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_BL_CH2_PORT, &GPIO_InitStructure);
+ 106:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_BL_CH1_PORT, GPIO_PinSource0, ENCODER_BL_AF);
+ 107:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_BL_CH2_PORT, GPIO_PinSource1, ENCODER_BL_AF);
+ 108:MyHardWare/Src/encoder.c **** 
+ 109:MyHardWare/Src/encoder.c **** #else
+ 110:MyHardWare/Src/encoder.c ****   // 双驱模式：只初始化前轮2个编码器的GPIO
+ 111:MyHardWare/Src/encoder.c ****   // 前右编码器
+ 112:MyHardWare/Src/encoder.c ****   RCC_AHB1PeriphClockCmd(ENCODER_FR_GPIO_CLK, ENABLE);
+  44              		.loc 1 112 3 view .LVU2
+  45 0004 0121     		movs	r1, #1
+  46 0006 0846     		mov	r0, r1
+  47 0008 FFF7FEFF 		bl	RCC_AHB1PeriphClockCmd
+  48              	.LVL0:
+ 113:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_FR_CH1_PIN | ENCODER_FR_CH2_PIN;
+  49              		.loc 1 113 3 view .LVU3
+  50              		.loc 1 113 31 is_stmt 0 view .LVU4
+  51 000c 0323     		movs	r3, #3
+  52 000e 0093     		str	r3, [sp]
+ 114:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  53              		.loc 1 114 3 is_stmt 1 view .LVU5
+  54              		.loc 1 114 32 is_stmt 0 view .LVU6
+  55 0010 0226     		movs	r6, #2
+  56 0012 8DF80460 		strb	r6, [sp, #4]
+ 115:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+  57              		.loc 1 115 3 is_stmt 1 view .LVU7
+ARM GAS  /tmp/ccwB8VdR.s 			page 4
+
+
+  58              		.loc 1 115 33 is_stmt 0 view .LVU8
+  59 0016 8DF80530 		strb	r3, [sp, #5]
+ 116:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  60              		.loc 1 116 3 is_stmt 1 view .LVU9
+  61              		.loc 1 116 33 is_stmt 0 view .LVU10
+  62 001a 0027     		movs	r7, #0
+  63 001c 8DF80670 		strb	r7, [sp, #6]
+ 117:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+  64              		.loc 1 117 3 is_stmt 1 view .LVU11
+  65              		.loc 1 117 32 is_stmt 0 view .LVU12
+  66 0020 0125     		movs	r5, #1
+  67 0022 8DF80750 		strb	r5, [sp, #7]
+ 118:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FR_CH1_PORT, &GPIO_InitStructure);
+  68              		.loc 1 118 3 is_stmt 1 view .LVU13
+  69 0026 164C     		ldr	r4, .L3
+  70 0028 6946     		mov	r1, sp
+  71 002a 2046     		mov	r0, r4
+  72 002c FFF7FEFF 		bl	GPIO_Init
+  73              	.LVL1:
+ 119:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FR_CH2_PORT, &GPIO_InitStructure);
+  74              		.loc 1 119 3 view .LVU14
+  75 0030 6946     		mov	r1, sp
+  76 0032 2046     		mov	r0, r4
+  77 0034 FFF7FEFF 		bl	GPIO_Init
+  78              	.LVL2:
+ 120:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FR_CH1_PORT, GPIO_PinSource0, ENCODER_FR_AF);
+  79              		.loc 1 120 3 view .LVU15
+  80 0038 2A46     		mov	r2, r5
+  81 003a 3946     		mov	r1, r7
+  82 003c 2046     		mov	r0, r4
+  83 003e FFF7FEFF 		bl	GPIO_PinAFConfig
+  84              	.LVL3:
+ 121:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FR_CH2_PORT, GPIO_PinSource1, ENCODER_FR_AF);
+  85              		.loc 1 121 3 view .LVU16
+  86 0042 2A46     		mov	r2, r5
+  87 0044 2946     		mov	r1, r5
+  88 0046 2046     		mov	r0, r4
+  89 0048 FFF7FEFF 		bl	GPIO_PinAFConfig
+  90              	.LVL4:
+ 122:MyHardWare/Src/encoder.c **** 
+ 123:MyHardWare/Src/encoder.c ****   // 前左编码器
+ 124:MyHardWare/Src/encoder.c ****   RCC_AHB1PeriphClockCmd(ENCODER_FL_GPIO_CLK, ENABLE);
+  91              		.loc 1 124 3 view .LVU17
+  92 004c 2946     		mov	r1, r5
+  93 004e 2846     		mov	r0, r5
+  94 0050 FFF7FEFF 		bl	RCC_AHB1PeriphClockCmd
+  95              	.LVL5:
+ 125:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_FL_CH1_PIN | ENCODER_FL_CH2_PIN;
+  96              		.loc 1 125 3 view .LVU18
+  97              		.loc 1 125 31 is_stmt 0 view .LVU19
+  98 0054 C023     		movs	r3, #192
+  99 0056 0093     		str	r3, [sp]
+ 126:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FL_CH1_PORT, &GPIO_InitStructure);
+ 100              		.loc 1 126 3 is_stmt 1 view .LVU20
+ 101 0058 6946     		mov	r1, sp
+ 102 005a 2046     		mov	r0, r4
+ 103 005c FFF7FEFF 		bl	GPIO_Init
+ARM GAS  /tmp/ccwB8VdR.s 			page 5
+
+
+ 104              	.LVL6:
+ 127:MyHardWare/Src/encoder.c ****   GPIO_Init(ENCODER_FL_CH2_PORT, &GPIO_InitStructure);
+ 105              		.loc 1 127 3 view .LVU21
+ 106 0060 6946     		mov	r1, sp
+ 107 0062 2046     		mov	r0, r4
+ 108 0064 FFF7FEFF 		bl	GPIO_Init
+ 109              	.LVL7:
+ 128:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FL_CH1_PORT, GPIO_PinSource6, ENCODER_FL_AF);
+ 110              		.loc 1 128 3 view .LVU22
+ 111 0068 3246     		mov	r2, r6
+ 112 006a 0621     		movs	r1, #6
+ 113 006c 2046     		mov	r0, r4
+ 114 006e FFF7FEFF 		bl	GPIO_PinAFConfig
+ 115              	.LVL8:
+ 129:MyHardWare/Src/encoder.c ****   GPIO_PinAFConfig(ENCODER_FL_CH2_PORT, GPIO_PinSource7, ENCODER_FL_AF);
+ 116              		.loc 1 129 3 view .LVU23
+ 117 0072 3246     		mov	r2, r6
+ 118 0074 0721     		movs	r1, #7
+ 119 0076 2046     		mov	r0, r4
+ 120 0078 FFF7FEFF 		bl	GPIO_PinAFConfig
+ 121              	.LVL9:
+ 130:MyHardWare/Src/encoder.c **** 
+ 131:MyHardWare/Src/encoder.c **** #endif
+ 132:MyHardWare/Src/encoder.c **** }
+ 122              		.loc 1 132 1 is_stmt 0 view .LVU24
+ 123 007c 03B0     		add	sp, sp, #12
+ 124              	.LCFI2:
+ 125              		.cfi_def_cfa_offset 20
+ 126              		@ sp needed
+ 127 007e F0BD     		pop	{r4, r5, r6, r7, pc}
+ 128              	.L4:
+ 129              		.align	2
+ 130              	.L3:
+ 131 0080 00000240 		.word	1073872896
+ 132              		.cfi_endproc
+ 133              	.LFE123:
+ 135              		.section	.text.Encoder_Update,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	Encoder_Update
+ 138              		.syntax unified
+ 139              		.thumb
+ 140              		.thumb_func
+ 142              	Encoder_Update:
+ 143              	.LFB126:
+ 133:MyHardWare/Src/encoder.c **** 
+ 134:MyHardWare/Src/encoder.c **** /**
+ 135:MyHardWare/Src/encoder.c ****  * @brief 编码器定时器初始化（根据硬件配置直接初始化）
+ 136:MyHardWare/Src/encoder.c ****  * @note  通过条件编译直接初始化对应的定时器，无需运行时判断
+ 137:MyHardWare/Src/encoder.c ****  */
+ 138:MyHardWare/Src/encoder.c **** static void Encoder_TIM_Init(void) {
+ 139:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+ 140:MyHardWare/Src/encoder.c ****   // 四驱模式：初始化 TIM2, TIM3, TIM4, TIM5
+ 141:MyHardWare/Src/encoder.c **** 
+ 142:MyHardWare/Src/encoder.c ****   // 使能定时器时钟
+ 143:MyHardWare/Src/encoder.c ****   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM3 |
+ 144:MyHardWare/Src/encoder.c ****                              RCC_APB1Periph_TIM4 | RCC_APB1Periph_TIM5,
+ 145:MyHardWare/Src/encoder.c ****                          ENABLE);
+ARM GAS  /tmp/ccwB8VdR.s 			page 6
+
+
+ 146:MyHardWare/Src/encoder.c **** 
+ 147:MyHardWare/Src/encoder.c ****   // TIM2 配置 (前右编码器)
+ 148:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+ 149:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Period = 65535;
+ 150:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
+ 151:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+ 152:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 153:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+ 154:MyHardWare/Src/encoder.c **** 
+ 155:MyHardWare/Src/encoder.c ****   // 输入捕获初始化结构体
+ 156:MyHardWare/Src/encoder.c ****   TIM_ICInitTypeDef TIM_IC_InitStructure;
+ 157:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 158:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+ 159:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSC_DIRECT;
+ 160:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_IC_PSC_DIV1;
+ 161:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
+ 162:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM2, &TIM_IC_InitStructure);
+ 163:MyHardWare/Src/encoder.c **** 
+ 164:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
+ 165:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM2, &TIM_IC_InitStructure);
+ 166:MyHardWare/Src/encoder.c **** 
+ 167:MyHardWare/Src/encoder.c ****   // 配置编码器接口
+ 168:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM2, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising,
+ 169:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 170:MyHardWare/Src/encoder.c ****   TIM_Cmd(TIM2, ENABLE);
+ 171:MyHardWare/Src/encoder.c **** 
+ 172:MyHardWare/Src/encoder.c ****   // TIM3 配置 (前左编码器)
+ 173:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+ 174:MyHardWare/Src/encoder.c **** 
+ 175:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 176:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM3, &TIM_IC_InitStructure);
+ 177:MyHardWare/Src/encoder.c **** 
+ 178:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
+ 179:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM3, &TIM_IC_InitStructure);
+ 180:MyHardWare/Src/encoder.c **** 
+ 181:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising,
+ 182:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 183:MyHardWare/Src/encoder.c ****   TIM_Cmd(TIM3, ENABLE);
+ 184:MyHardWare/Src/encoder.c **** 
+ 185:MyHardWare/Src/encoder.c ****   // TIM4 配置 (后右编码器)
+ 186:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+ 187:MyHardWare/Src/encoder.c **** 
+ 188:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 189:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM4, &TIM_IC_InitStructure);
+ 190:MyHardWare/Src/encoder.c **** 
+ 191:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
+ 192:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM4, &TIM_IC_InitStructure);
+ 193:MyHardWare/Src/encoder.c **** 
+ 194:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM4, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising,
+ 195:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 196:MyHardWare/Src/encoder.c ****   TIM_Cmd(TIM4, ENABLE);
+ 197:MyHardWare/Src/encoder.c **** 
+ 198:MyHardWare/Src/encoder.c ****   // TIM5 配置 (后左编码器)
+ 199:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
+ 200:MyHardWare/Src/encoder.c **** 
+ 201:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 202:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM5, &TIM_IC_InitStructure);
+ARM GAS  /tmp/ccwB8VdR.s 			page 7
+
+
+ 203:MyHardWare/Src/encoder.c **** 
+ 204:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
+ 205:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM5, &TIM_IC_InitStructure);
+ 206:MyHardWare/Src/encoder.c **** 
+ 207:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM5, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising,
+ 208:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 209:MyHardWare/Src/encoder.c ****   TIM_Cmd(TIM5, ENABLE);
+ 210:MyHardWare/Src/encoder.c **** 
+ 211:MyHardWare/Src/encoder.c **** #else
+ 212:MyHardWare/Src/encoder.c ****   // 双驱模式：只初始化 TIM2, TIM3
+ 213:MyHardWare/Src/encoder.c **** 
+ 214:MyHardWare/Src/encoder.c ****   // 使能定时器时钟
+ 215:MyHardWare/Src/encoder.c ****   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM3, ENABLE);
+ 216:MyHardWare/Src/encoder.c **** 
+ 217:MyHardWare/Src/encoder.c ****   // TIM2 配置 (右编码器)
+ 218:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+ 219:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Period = 65535;
+ 220:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
+ 221:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+ 222:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 223:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+ 224:MyHardWare/Src/encoder.c **** 
+ 225:MyHardWare/Src/encoder.c ****   // 输入捕获初始化结构体
+ 226:MyHardWare/Src/encoder.c ****   TIM_ICInitTypeDef TIM_IC_InitStructure;
+ 227:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 228:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+ 229:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+ 230:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+ 231:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
+ 232:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 233:MyHardWare/Src/encoder.c **** 
+ 234:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
+ 235:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 236:MyHardWare/Src/encoder.c **** 
+ 237:MyHardWare/Src/encoder.c ****   // 配置编码器接口
+ 238:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM2, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
+ 239:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 240:MyHardWare/Src/encoder.c ****   TIM_Cmd(TIM2, ENABLE);
+ 241:MyHardWare/Src/encoder.c **** 
+ 242:MyHardWare/Src/encoder.c ****   // TIM3 配置 (左编码器)
+ 243:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+ 244:MyHardWare/Src/encoder.c **** 
+ 245:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 246:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+ 247:MyHardWare/Src/encoder.c **** 
+ 248:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
+ 249:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+ 250:MyHardWare/Src/encoder.c **** 
+ 251:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
+ 252:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 253:MyHardWare/Src/encoder.c ****   TIM_Cmd(TIM3, ENABLE);
+ 254:MyHardWare/Src/encoder.c **** #endif
+ 255:MyHardWare/Src/encoder.c ****   Encoder_Update();
+ 256:MyHardWare/Src/encoder.c **** }
+ 257:MyHardWare/Src/encoder.c **** 
+ 258:MyHardWare/Src/encoder.c **** void Encoder_Driver_Init(void) {
+ 259:MyHardWare/Src/encoder.c ****   Encoder_GPIO_Init();
+ARM GAS  /tmp/ccwB8VdR.s 			page 8
+
+
+ 260:MyHardWare/Src/encoder.c ****   Encoder_TIM_Init();
+ 261:MyHardWare/Src/encoder.c **** }
+ 262:MyHardWare/Src/encoder.c **** 
+ 263:MyHardWare/Src/encoder.c **** /**
+ 264:MyHardWare/Src/encoder.c ****  * @brief 更新所有编码器的数据
+ 265:MyHardWare/Src/encoder.c ****  * @note  根据QUAD_MOTOR_DRIVE宏定义自动适配四驱/双驱模式
+ 266:MyHardWare/Src/encoder.c ****  *        在10ms控制循环中调用，实现所有编码器数据同步更新
+ 267:MyHardWare/Src/encoder.c ****  */
+ 268:MyHardWare/Src/encoder.c **** void Encoder_Update(void) {
+ 144              		.loc 1 268 27 is_stmt 1 view -0
+ 145              		.cfi_startproc
+ 146              		@ args = 0, pretend = 0, frame = 8
+ 147              		@ frame_needed = 0, uses_anonymous_args = 0
+ 148 0000 70B5     		push	{r4, r5, r6, lr}
+ 149              	.LCFI3:
+ 150              		.cfi_def_cfa_offset 16
+ 151              		.cfi_offset 4, -16
+ 152              		.cfi_offset 5, -12
+ 153              		.cfi_offset 6, -8
+ 154              		.cfi_offset 14, -4
+ 155 0002 82B0     		sub	sp, sp, #8
+ 156              	.LCFI4:
+ 157              		.cfi_def_cfa_offset 24
+ 269:MyHardWare/Src/encoder.c ****   // 获取当前时间戳（用于计算时间间隔）
+ 270:MyHardWare/Src/encoder.c ****   float dt_seconds = ENCODER_SAMPLE_PERIOD_MS / 1000.0f; // 转换为秒
+ 158              		.loc 1 270 3 view .LVU26
+ 159              	.LVL10:
+ 271:MyHardWare/Src/encoder.c **** 
+ 272:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+ 273:MyHardWare/Src/encoder.c ****   // 四驱模式：处理4个编码器
+ 274:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_FR, &Encoder_FL, &Encoder_BR,
+ 275:MyHardWare/Src/encoder.c ****                                  &Encoder_BL};
+ 276:MyHardWare/Src/encoder.c ****   for (int i = 0; i < 4; i++) {
+ 277:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
+ 278:MyHardWare/Src/encoder.c **** 
+ 279:MyHardWare/Src/encoder.c ****     // 读取当前计数值
+ 280:MyHardWare/Src/encoder.c ****     int16_t current_count = (int16_t)TIM_GetCounter(instance->tim);
+ 281:MyHardWare/Src/encoder.c **** 
+ 282:MyHardWare/Src/encoder.c ****     // 计算增量并处理溢出
+ 283:MyHardWare/Src/encoder.c ****     int16_t delta = current_count - instance->_data.last_count;
+ 284:MyHardWare/Src/encoder.c ****     if (delta > 32767) {
+ 285:MyHardWare/Src/encoder.c ****       delta -= 65536;
+ 286:MyHardWare/Src/encoder.c ****     } else if (delta < -32768) {
+ 287:MyHardWare/Src/encoder.c ****       delta += 65536;
+ 288:MyHardWare/Src/encoder.c ****     }
+ 289:MyHardWare/Src/encoder.c **** 
+ 290:MyHardWare/Src/encoder.c ****     // 更新数据结构
+ 291:MyHardWare/Src/encoder.c ****     instance->_data.count = current_count;
+ 292:MyHardWare/Src/encoder.c ****     instance->_data.delta_count = delta;
+ 293:MyHardWare/Src/encoder.c ****     instance->_data.last_count = current_count;
+ 294:MyHardWare/Src/encoder.c ****     instance->_data.total_count += delta;
+ 295:MyHardWare/Src/encoder.c **** 
+ 296:MyHardWare/Src/encoder.c ****     // 计算速度
+ 297:MyHardWare/Src/encoder.c ****     instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
+ 298:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 299:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 300:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
+ARM GAS  /tmp/ccwB8VdR.s 			page 9
+
+
+ 301:MyHardWare/Src/encoder.c ****         instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+ 302:MyHardWare/Src/encoder.c **** 
+ 303:MyHardWare/Src/encoder.c ****     // 更新总里程
+ 304:MyHardWare/Src/encoder.c ****     instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+ 305:MyHardWare/Src/encoder.c **** 
+ 306:MyHardWare/Src/encoder.c ****     // 判断方向
+ 307:MyHardWare/Src/encoder.c ****     if (delta > 0) {
+ 308:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_FORWARD;
+ 309:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
+ 310:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
+ 311:MyHardWare/Src/encoder.c ****     } else {
+ 312:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_STOPPED;
+ 313:MyHardWare/Src/encoder.c ****     }
+ 314:MyHardWare/Src/encoder.c **** 
+ 315:MyHardWare/Src/encoder.c ****     // 更新时间戳
+ 316:MyHardWare/Src/encoder.c ****     instance->_data.last_update_time = current_time;
+ 317:MyHardWare/Src/encoder.c ****   }
+ 318:MyHardWare/Src/encoder.c **** #else
+ 319:MyHardWare/Src/encoder.c ****   // 双驱模式：处理2个编码器
+ 320:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
+ 160              		.loc 1 320 3 view .LVU27
+ 161              		.loc 1 320 20 is_stmt 0 view .LVU28
+ 162 0004 2E4B     		ldr	r3, .L14
+ 163 0006 93E80300 		ldm	r3, {r0, r1}
+ 164 000a 02AB     		add	r3, sp, #8
+ 165 000c 03E90300 		stmdb	r3, {r0, r1}
+ 321:MyHardWare/Src/encoder.c ****   for (int i = 0; i < 2; i++) {
+ 166              		.loc 1 321 3 is_stmt 1 view .LVU29
+ 167              	.LBB2:
+ 168              		.loc 1 321 8 view .LVU30
+ 169              	.LVL11:
+ 170              		.loc 1 321 12 is_stmt 0 view .LVU31
+ 171 0010 0025     		movs	r5, #0
+ 172              		.loc 1 321 3 view .LVU32
+ 173 0012 06E0     		b	.L6
+ 174              	.LVL12:
+ 175              	.L7:
+ 176              	.LBB3:
+ 322:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
+ 323:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
+ 324:MyHardWare/Src/encoder.c **** 
+ 325:MyHardWare/Src/encoder.c ****     // 读取当前计数值
+ 326:MyHardWare/Src/encoder.c ****     int16_t current_count = (int16_t)TIM_GetCounter(instance->tim);
+ 327:MyHardWare/Src/encoder.c **** 
+ 328:MyHardWare/Src/encoder.c ****     // 计算增量并处理溢出
+ 329:MyHardWare/Src/encoder.c ****     int16_t delta = current_count - instance->_data.last_count;
+ 330:MyHardWare/Src/encoder.c ****     if (delta > 32767) {
+ 331:MyHardWare/Src/encoder.c ****       delta -= 65536;
+ 332:MyHardWare/Src/encoder.c ****     } else if (delta < -32768) {
+ 333:MyHardWare/Src/encoder.c ****       delta += 65536;
+ 334:MyHardWare/Src/encoder.c ****     }
+ 335:MyHardWare/Src/encoder.c **** 
+ 336:MyHardWare/Src/encoder.c ****     // 更新数据结构
+ 337:MyHardWare/Src/encoder.c ****     instance->_data.count = current_count;
+ 338:MyHardWare/Src/encoder.c ****     instance->_data.delta_count = delta;
+ 339:MyHardWare/Src/encoder.c ****     instance->_data.last_count = current_count;
+ 340:MyHardWare/Src/encoder.c ****     instance->_data.total_count += delta;
+ARM GAS  /tmp/ccwB8VdR.s 			page 10
+
+
+ 341:MyHardWare/Src/encoder.c **** 
+ 342:MyHardWare/Src/encoder.c ****     // 计算速度
+ 343:MyHardWare/Src/encoder.c ****     instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
+ 344:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 345:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 346:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
+ 347:MyHardWare/Src/encoder.c ****         instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+ 348:MyHardWare/Src/encoder.c **** 
+ 349:MyHardWare/Src/encoder.c ****     // 更新总里程
+ 350:MyHardWare/Src/encoder.c ****     instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+ 351:MyHardWare/Src/encoder.c **** 
+ 352:MyHardWare/Src/encoder.c ****     // 判断方向
+ 353:MyHardWare/Src/encoder.c ****     if (delta > 0) {
+ 354:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_FORWARD;
+ 355:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
+ 177              		.loc 1 355 12 is_stmt 1 view .LVU33
+ 178              		.loc 1 355 15 is_stmt 0 view .LVU34
+ 179 0014 002B     		cmp	r3, #0
+ 180 0016 4DDB     		blt	.L12
+ 356:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
+ 357:MyHardWare/Src/encoder.c ****     } else {
+ 358:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_STOPPED;
+ 181              		.loc 1 358 7 is_stmt 1 view .LVU35
+ 182              		.loc 1 358 33 is_stmt 0 view .LVU36
+ 183 0018 0023     		movs	r3, #0
+ 184              	.LVL13:
+ 185              		.loc 1 358 33 view .LVU37
+ 186 001a 84F82030 		strb	r3, [r4, #32]
+ 187              	.L8:
+ 359:MyHardWare/Src/encoder.c ****     }
+ 360:MyHardWare/Src/encoder.c **** 
+ 361:MyHardWare/Src/encoder.c ****     // 更新时间戳
+ 362:MyHardWare/Src/encoder.c ****     instance->_data.last_update_time = current_time;
+ 188              		.loc 1 362 5 is_stmt 1 view .LVU38
+ 189              		.loc 1 362 38 is_stmt 0 view .LVU39
+ 190 001e E662     		str	r6, [r4, #44]
+ 191              	.LBE3:
+ 321:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
+ 192              		.loc 1 321 27 is_stmt 1 discriminator 2 view .LVU40
+ 193 0020 0135     		adds	r5, r5, #1
+ 194              	.LVL14:
+ 195              	.L6:
+ 321:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
+ 196              		.loc 1 321 21 discriminator 1 view .LVU41
+ 197 0022 012D     		cmp	r5, #1
+ 198 0024 4ADC     		bgt	.L13
+ 199              	.LBB4:
+ 322:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
+ 200              		.loc 1 322 5 view .LVU42
+ 322:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
+ 201              		.loc 1 322 29 is_stmt 0 view .LVU43
+ 202 0026 FFF7FEFF 		bl	GetSysTick
+ 203              	.LVL15:
+ 204 002a 0646     		mov	r6, r0
+ 205              	.LVL16:
+ 323:MyHardWare/Src/encoder.c **** 
+ 206              		.loc 1 323 5 is_stmt 1 view .LVU44
+ARM GAS  /tmp/ccwB8VdR.s 			page 11
+
+
+ 323:MyHardWare/Src/encoder.c **** 
+ 207              		.loc 1 323 22 is_stmt 0 view .LVU45
+ 208 002c 02AB     		add	r3, sp, #8
+ 209 002e 03EB8503 		add	r3, r3, r5, lsl #2
+ 210 0032 53F8084C 		ldr	r4, [r3, #-8]
+ 211              	.LVL17:
+ 326:MyHardWare/Src/encoder.c **** 
+ 212              		.loc 1 326 5 is_stmt 1 view .LVU46
+ 326:MyHardWare/Src/encoder.c **** 
+ 213              		.loc 1 326 38 is_stmt 0 view .LVU47
+ 214 0036 606B     		ldr	r0, [r4, #52]
+ 215              	.LVL18:
+ 326:MyHardWare/Src/encoder.c **** 
+ 216              		.loc 1 326 38 view .LVU48
+ 217 0038 FFF7FEFF 		bl	TIM_GetCounter
+ 218              	.LVL19:
+ 326:MyHardWare/Src/encoder.c **** 
+ 219              		.loc 1 326 13 discriminator 1 view .LVU49
+ 220 003c 02B2     		sxth	r2, r0
+ 221              	.LVL20:
+ 329:MyHardWare/Src/encoder.c ****     if (delta > 32767) {
+ 222              		.loc 1 329 5 is_stmt 1 view .LVU50
+ 329:MyHardWare/Src/encoder.c ****     if (delta > 32767) {
+ 223              		.loc 1 329 52 is_stmt 0 view .LVU51
+ 224 003e 6388     		ldrh	r3, [r4, #2]
+ 329:MyHardWare/Src/encoder.c ****     if (delta > 32767) {
+ 225              		.loc 1 329 35 view .LVU52
+ 226 0040 C31A     		subs	r3, r0, r3
+ 329:MyHardWare/Src/encoder.c ****     if (delta > 32767) {
+ 227              		.loc 1 329 13 view .LVU53
+ 228 0042 1BB2     		sxth	r3, r3
+ 229              	.LVL21:
+ 330:MyHardWare/Src/encoder.c ****       delta -= 65536;
+ 230              		.loc 1 330 5 is_stmt 1 view .LVU54
+ 332:MyHardWare/Src/encoder.c ****       delta += 65536;
+ 231              		.loc 1 332 12 view .LVU55
+ 337:MyHardWare/Src/encoder.c ****     instance->_data.delta_count = delta;
+ 232              		.loc 1 337 5 view .LVU56
+ 337:MyHardWare/Src/encoder.c ****     instance->_data.delta_count = delta;
+ 233              		.loc 1 337 27 is_stmt 0 view .LVU57
+ 234 0044 2280     		strh	r2, [r4]	@ movhi
+ 338:MyHardWare/Src/encoder.c ****     instance->_data.last_count = current_count;
+ 235              		.loc 1 338 5 is_stmt 1 view .LVU58
+ 338:MyHardWare/Src/encoder.c ****     instance->_data.last_count = current_count;
+ 236              		.loc 1 338 33 is_stmt 0 view .LVU59
+ 237 0046 A380     		strh	r3, [r4, #4]	@ movhi
+ 339:MyHardWare/Src/encoder.c ****     instance->_data.total_count += delta;
+ 238              		.loc 1 339 5 is_stmt 1 view .LVU60
+ 339:MyHardWare/Src/encoder.c ****     instance->_data.total_count += delta;
+ 239              		.loc 1 339 32 is_stmt 0 view .LVU61
+ 240 0048 6280     		strh	r2, [r4, #2]	@ movhi
+ 340:MyHardWare/Src/encoder.c **** 
+ 241              		.loc 1 340 5 is_stmt 1 view .LVU62
+ 340:MyHardWare/Src/encoder.c **** 
+ 242              		.loc 1 340 20 is_stmt 0 view .LVU63
+ 243 004a A269     		ldr	r2, [r4, #24]
+ 244              	.LVL22:
+ARM GAS  /tmp/ccwB8VdR.s 			page 12
+
+
+ 340:MyHardWare/Src/encoder.c **** 
+ 245              		.loc 1 340 33 view .LVU64
+ 246 004c 1A44     		add	r2, r2, r3
+ 247 004e A261     		str	r2, [r4, #24]
+ 343:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 248              		.loc 1 343 5 is_stmt 1 view .LVU65
+ 343:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 249              		.loc 1 343 33 is_stmt 0 view .LVU66
+ 250 0050 07EE903A 		vmov	s15, r3	@ int
+ 251 0054 F8EEE76A 		vcvt.f32.s32	s13, s15
+ 343:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 252              		.loc 1 343 46 view .LVU67
+ 253 0058 DFED1A7A 		vldr.32	s15, .L14+4
+ 254 005c 86EEA77A 		vdiv.f32	s14, s13, s15
+ 343:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 255              		.loc 1 343 67 view .LVU68
+ 256 0060 DFED196A 		vldr.32	s13, .L14+8
+ 257 0064 C7EE267A 		vdiv.f32	s15, s14, s13
+ 343:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 258              		.loc 1 343 31 view .LVU69
+ 259 0068 C4ED037A 		vstr.32	s15, [r4, #12]
+ 344:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 260              		.loc 1 344 5 is_stmt 1 view .LVU70
+ 344:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 261              		.loc 1 344 59 is_stmt 0 view .LVU71
+ 262 006c 9FED176A 		vldr.32	s12, .L14+12
+ 263 0070 87EE867A 		vdiv.f32	s14, s15, s12
+ 344:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 264              		.loc 1 344 31 view .LVU72
+ 265 0074 84ED027A 		vstr.32	s14, [r4, #8]
+ 345:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
+ 266              		.loc 1 345 5 is_stmt 1 view .LVU73
+ 345:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
+ 267              		.loc 1 345 61 is_stmt 0 view .LVU74
+ 268 0078 9FED157A 		vldr.32	s14, .L14+16
+ 269 007c 67EE877A 		vmul.f32	s15, s15, s14
+ 345:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
+ 270              		.loc 1 345 33 view .LVU75
+ 271 0080 C4ED047A 		vstr.32	s15, [r4, #16]
+ 346:MyHardWare/Src/encoder.c ****         instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+ 272              		.loc 1 346 5 is_stmt 1 view .LVU76
+ 347:MyHardWare/Src/encoder.c **** 
+ 273              		.loc 1 347 55 is_stmt 0 view .LVU77
+ 274 0084 94ED097A 		vldr.32	s14, [r4, #36]
+ 347:MyHardWare/Src/encoder.c **** 
+ 275              		.loc 1 347 71 view .LVU78
+ 276 0088 B6EE006A 		vmov.f32	s12, #5.0e-1
+ 277 008c 27EE067A 		vmul.f32	s14, s14, s12
+ 347:MyHardWare/Src/encoder.c **** 
+ 278              		.loc 1 347 37 view .LVU79
+ 279 0090 67EE877A 		vmul.f32	s15, s15, s14
+ 346:MyHardWare/Src/encoder.c ****         instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+ 280              		.loc 1 346 31 view .LVU80
+ 281 0094 C4ED057A 		vstr.32	s15, [r4, #20]
+ 350:MyHardWare/Src/encoder.c **** 
+ 282              		.loc 1 350 5 is_stmt 1 view .LVU81
+ 350:MyHardWare/Src/encoder.c **** 
+ARM GAS  /tmp/ccwB8VdR.s 			page 13
+
+
+ 283              		.loc 1 350 20 is_stmt 0 view .LVU82
+ 284 0098 94ED077A 		vldr.32	s14, [r4, #28]
+ 350:MyHardWare/Src/encoder.c **** 
+ 285              		.loc 1 350 65 view .LVU83
+ 286 009c 67EEA67A 		vmul.f32	s15, s15, s13
+ 350:MyHardWare/Src/encoder.c **** 
+ 287              		.loc 1 350 36 view .LVU84
+ 288 00a0 77EE277A 		vadd.f32	s15, s14, s15
+ 289 00a4 C4ED077A 		vstr.32	s15, [r4, #28]
+ 353:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_FORWARD;
+ 290              		.loc 1 353 5 is_stmt 1 view .LVU85
+ 353:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_FORWARD;
+ 291              		.loc 1 353 8 is_stmt 0 view .LVU86
+ 292 00a8 002B     		cmp	r3, #0
+ 293 00aa B3DD     		ble	.L7
+ 354:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
+ 294              		.loc 1 354 7 is_stmt 1 view .LVU87
+ 354:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
+ 295              		.loc 1 354 33 is_stmt 0 view .LVU88
+ 296 00ac 0123     		movs	r3, #1
+ 297              	.LVL23:
+ 354:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
+ 298              		.loc 1 354 33 view .LVU89
+ 299 00ae 84F82030 		strb	r3, [r4, #32]
+ 300 00b2 B4E7     		b	.L8
+ 301              	.LVL24:
+ 302              	.L12:
+ 356:MyHardWare/Src/encoder.c ****     } else {
+ 303              		.loc 1 356 7 is_stmt 1 view .LVU90
+ 356:MyHardWare/Src/encoder.c ****     } else {
+ 304              		.loc 1 356 33 is_stmt 0 view .LVU91
+ 305 00b4 0223     		movs	r3, #2
+ 306              	.LVL25:
+ 356:MyHardWare/Src/encoder.c ****     } else {
+ 307              		.loc 1 356 33 view .LVU92
+ 308 00b6 84F82030 		strb	r3, [r4, #32]
+ 309 00ba B0E7     		b	.L8
+ 310              	.LVL26:
+ 311              	.L13:
+ 356:MyHardWare/Src/encoder.c ****     } else {
+ 312              		.loc 1 356 33 view .LVU93
+ 313              	.LBE4:
+ 314              	.LBE2:
+ 363:MyHardWare/Src/encoder.c ****   }
+ 364:MyHardWare/Src/encoder.c **** #endif
+ 365:MyHardWare/Src/encoder.c **** }
+ 315              		.loc 1 365 1 view .LVU94
+ 316 00bc 02B0     		add	sp, sp, #8
+ 317              	.LCFI5:
+ 318              		.cfi_def_cfa_offset 16
+ 319              		@ sp needed
+ 320 00be 70BD     		pop	{r4, r5, r6, pc}
+ 321              	.LVL27:
+ 322              	.L15:
+ 323              		.loc 1 365 1 view .LVU95
+ 324              		.align	2
+ 325              	.L14:
+ARM GAS  /tmp/ccwB8VdR.s 			page 14
+
+
+ 326 00c0 00000000 		.word	.LANCHOR0
+ 327 00c4 00606A47 		.word	1198153728
+ 328 00c8 6F12833A 		.word	981668463
+ 329 00cc 8988883C 		.word	1015580809
+ 330 00d0 D00FC940 		.word	1086918608
+ 331              		.cfi_endproc
+ 332              	.LFE126:
+ 334              		.section	.text.Encoder_TIM_Init,"ax",%progbits
+ 335              		.align	1
+ 336              		.syntax unified
+ 337              		.thumb
+ 338              		.thumb_func
+ 340              	Encoder_TIM_Init:
+ 341              	.LFB124:
+ 138:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+ 342              		.loc 1 138 36 is_stmt 1 view -0
+ 343              		.cfi_startproc
+ 344              		@ args = 0, pretend = 0, frame = 24
+ 345              		@ frame_needed = 0, uses_anonymous_args = 0
+ 346 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 347              	.LCFI6:
+ 348              		.cfi_def_cfa_offset 20
+ 349              		.cfi_offset 4, -20
+ 350              		.cfi_offset 5, -16
+ 351              		.cfi_offset 6, -12
+ 352              		.cfi_offset 7, -8
+ 353              		.cfi_offset 14, -4
+ 354 0002 87B0     		sub	sp, sp, #28
+ 355              	.LCFI7:
+ 356              		.cfi_def_cfa_offset 48
+ 215:MyHardWare/Src/encoder.c **** 
+ 357              		.loc 1 215 3 view .LVU97
+ 358 0004 0121     		movs	r1, #1
+ 359 0006 0320     		movs	r0, #3
+ 360 0008 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+ 361              	.LVL28:
+ 218:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Period = 65535;
+ 362              		.loc 1 218 3 view .LVU98
+ 219:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
+ 363              		.loc 1 219 3 view .LVU99
+ 219:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
+ 364              		.loc 1 219 36 is_stmt 0 view .LVU100
+ 365 000c 4FF6FF73 		movw	r3, #65535
+ 366 0010 0493     		str	r3, [sp, #16]
+ 220:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+ 367              		.loc 1 220 3 is_stmt 1 view .LVU101
+ 220:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+ 368              		.loc 1 220 39 is_stmt 0 view .LVU102
+ 369 0012 0024     		movs	r4, #0
+ 370 0014 ADF80C40 		strh	r4, [sp, #12]	@ movhi
+ 221:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 371              		.loc 1 221 3 is_stmt 1 view .LVU103
+ 221:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 372              		.loc 1 221 43 is_stmt 0 view .LVU104
+ 373 0018 ADF81440 		strh	r4, [sp, #20]	@ movhi
+ 222:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+ 374              		.loc 1 222 3 is_stmt 1 view .LVU105
+ARM GAS  /tmp/ccwB8VdR.s 			page 15
+
+
+ 222:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+ 375              		.loc 1 222 41 is_stmt 0 view .LVU106
+ 376 001c ADF80E40 		strh	r4, [sp, #14]	@ movhi
+ 223:MyHardWare/Src/encoder.c **** 
+ 377              		.loc 1 223 3 is_stmt 1 view .LVU107
+ 378 0020 03A9     		add	r1, sp, #12
+ 379 0022 4FF08040 		mov	r0, #1073741824
+ 380 0026 FFF7FEFF 		bl	TIM_TimeBaseInit
+ 381              	.LVL29:
+ 226:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 382              		.loc 1 226 3 view .LVU108
+ 227:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+ 383              		.loc 1 227 3 view .LVU109
+ 227:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+ 384              		.loc 1 227 36 is_stmt 0 view .LVU110
+ 385 002a ADF80040 		strh	r4, [sp]	@ movhi
+ 228:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+ 386              		.loc 1 228 3 is_stmt 1 view .LVU111
+ 228:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+ 387              		.loc 1 228 39 is_stmt 0 view .LVU112
+ 388 002e ADF80240 		strh	r4, [sp, #2]	@ movhi
+ 229:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+ 389              		.loc 1 229 3 is_stmt 1 view .LVU113
+ 229:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+ 390              		.loc 1 229 40 is_stmt 0 view .LVU114
+ 391 0032 0126     		movs	r6, #1
+ 392 0034 ADF80460 		strh	r6, [sp, #4]	@ movhi
+ 230:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
+ 393              		.loc 1 230 3 is_stmt 1 view .LVU115
+ 230:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
+ 394              		.loc 1 230 40 is_stmt 0 view .LVU116
+ 395 0038 ADF80640 		strh	r4, [sp, #6]	@ movhi
+ 231:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 396              		.loc 1 231 3 is_stmt 1 view .LVU117
+ 231:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 397              		.loc 1 231 37 is_stmt 0 view .LVU118
+ 398 003c 0523     		movs	r3, #5
+ 399 003e ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 232:MyHardWare/Src/encoder.c **** 
+ 400              		.loc 1 232 3 is_stmt 1 view .LVU119
+ 401 0042 6946     		mov	r1, sp
+ 402 0044 4FF08040 		mov	r0, #1073741824
+ 403 0048 FFF7FEFF 		bl	TIM_ICInit
+ 404              	.LVL30:
+ 234:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 405              		.loc 1 234 3 view .LVU120
+ 234:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 406              		.loc 1 234 36 is_stmt 0 view .LVU121
+ 407 004c 0427     		movs	r7, #4
+ 408 004e ADF80070 		strh	r7, [sp]	@ movhi
+ 235:MyHardWare/Src/encoder.c **** 
+ 409              		.loc 1 235 3 is_stmt 1 view .LVU122
+ 410 0052 6946     		mov	r1, sp
+ 411 0054 4FF08040 		mov	r0, #1073741824
+ 412 0058 FFF7FEFF 		bl	TIM_ICInit
+ 413              	.LVL31:
+ 238:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ARM GAS  /tmp/ccwB8VdR.s 			page 16
+
+
+ 414              		.loc 1 238 3 view .LVU123
+ 415 005c 2346     		mov	r3, r4
+ 416 005e 2246     		mov	r2, r4
+ 417 0060 3146     		mov	r1, r6
+ 418 0062 4FF08040 		mov	r0, #1073741824
+ 419 0066 FFF7FEFF 		bl	TIM_EncoderInterfaceConfig
+ 420              	.LVL32:
+ 240:MyHardWare/Src/encoder.c **** 
+ 421              		.loc 1 240 3 view .LVU124
+ 422 006a 3146     		mov	r1, r6
+ 423 006c 4FF08040 		mov	r0, #1073741824
+ 424 0070 FFF7FEFF 		bl	TIM_Cmd
+ 425              	.LVL33:
+ 243:MyHardWare/Src/encoder.c **** 
+ 426              		.loc 1 243 3 view .LVU125
+ 427 0074 0F4D     		ldr	r5, .L18
+ 428 0076 03A9     		add	r1, sp, #12
+ 429 0078 2846     		mov	r0, r5
+ 430 007a FFF7FEFF 		bl	TIM_TimeBaseInit
+ 431              	.LVL34:
+ 245:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+ 432              		.loc 1 245 3 view .LVU126
+ 245:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+ 433              		.loc 1 245 36 is_stmt 0 view .LVU127
+ 434 007e ADF80040 		strh	r4, [sp]	@ movhi
+ 246:MyHardWare/Src/encoder.c **** 
+ 435              		.loc 1 246 3 is_stmt 1 view .LVU128
+ 436 0082 6946     		mov	r1, sp
+ 437 0084 2846     		mov	r0, r5
+ 438 0086 FFF7FEFF 		bl	TIM_ICInit
+ 439              	.LVL35:
+ 248:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+ 440              		.loc 1 248 3 view .LVU129
+ 248:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+ 441              		.loc 1 248 36 is_stmt 0 view .LVU130
+ 442 008a ADF80070 		strh	r7, [sp]	@ movhi
+ 249:MyHardWare/Src/encoder.c **** 
+ 443              		.loc 1 249 3 is_stmt 1 view .LVU131
+ 444 008e 6946     		mov	r1, sp
+ 445 0090 2846     		mov	r0, r5
+ 446 0092 FFF7FEFF 		bl	TIM_ICInit
+ 447              	.LVL36:
+ 251:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 448              		.loc 1 251 3 view .LVU132
+ 449 0096 2346     		mov	r3, r4
+ 450 0098 2246     		mov	r2, r4
+ 451 009a 3146     		mov	r1, r6
+ 452 009c 2846     		mov	r0, r5
+ 453 009e FFF7FEFF 		bl	TIM_EncoderInterfaceConfig
+ 454              	.LVL37:
+ 253:MyHardWare/Src/encoder.c **** #endif
+ 455              		.loc 1 253 3 view .LVU133
+ 456 00a2 3146     		mov	r1, r6
+ 457 00a4 2846     		mov	r0, r5
+ 458 00a6 FFF7FEFF 		bl	TIM_Cmd
+ 459              	.LVL38:
+ 255:MyHardWare/Src/encoder.c **** }
+ARM GAS  /tmp/ccwB8VdR.s 			page 17
+
+
+ 460              		.loc 1 255 3 view .LVU134
+ 461 00aa FFF7FEFF 		bl	Encoder_Update
+ 462              	.LVL39:
+ 256:MyHardWare/Src/encoder.c **** 
+ 463              		.loc 1 256 1 is_stmt 0 view .LVU135
+ 464 00ae 07B0     		add	sp, sp, #28
+ 465              	.LCFI8:
+ 466              		.cfi_def_cfa_offset 20
+ 467              		@ sp needed
+ 468 00b0 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 469              	.L19:
+ 470 00b2 00BF     		.align	2
+ 471              	.L18:
+ 472 00b4 00040040 		.word	1073742848
+ 473              		.cfi_endproc
+ 474              	.LFE124:
+ 476              		.section	.text.Encoder_Driver_Init,"ax",%progbits
+ 477              		.align	1
+ 478              		.global	Encoder_Driver_Init
+ 479              		.syntax unified
+ 480              		.thumb
+ 481              		.thumb_func
+ 483              	Encoder_Driver_Init:
+ 484              	.LFB125:
+ 258:MyHardWare/Src/encoder.c ****   Encoder_GPIO_Init();
+ 485              		.loc 1 258 32 is_stmt 1 view -0
+ 486              		.cfi_startproc
+ 487              		@ args = 0, pretend = 0, frame = 0
+ 488              		@ frame_needed = 0, uses_anonymous_args = 0
+ 489 0000 08B5     		push	{r3, lr}
+ 490              	.LCFI9:
+ 491              		.cfi_def_cfa_offset 8
+ 492              		.cfi_offset 3, -8
+ 493              		.cfi_offset 14, -4
+ 259:MyHardWare/Src/encoder.c ****   Encoder_TIM_Init();
+ 494              		.loc 1 259 3 view .LVU137
+ 495 0002 FFF7FEFF 		bl	Encoder_GPIO_Init
+ 496              	.LVL40:
+ 260:MyHardWare/Src/encoder.c **** }
+ 497              		.loc 1 260 3 view .LVU138
+ 498 0006 FFF7FEFF 		bl	Encoder_TIM_Init
+ 499              	.LVL41:
+ 261:MyHardWare/Src/encoder.c **** 
+ 500              		.loc 1 261 1 is_stmt 0 view .LVU139
+ 501 000a 08BD     		pop	{r3, pc}
+ 502              		.cfi_endproc
+ 503              	.LFE125:
+ 505              		.section	.text.Encoder_GetData,"ax",%progbits
+ 506              		.align	1
+ 507              		.global	Encoder_GetData
+ 508              		.syntax unified
+ 509              		.thumb
+ 510              		.thumb_func
+ 512              	Encoder_GetData:
+ 513              	.LVL42:
+ 514              	.LFB127:
+ 366:MyHardWare/Src/encoder.c **** Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
+ARM GAS  /tmp/ccwB8VdR.s 			page 18
+
+
+ 515              		.loc 1 366 54 is_stmt 1 view -0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 56
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		.loc 1 366 54 is_stmt 0 view .LVU141
+ 520 0000 30B5     		push	{r4, r5, lr}
+ 521              	.LCFI10:
+ 522              		.cfi_def_cfa_offset 12
+ 523              		.cfi_offset 4, -12
+ 524              		.cfi_offset 5, -8
+ 525              		.cfi_offset 14, -4
+ 526 0002 8FB0     		sub	sp, sp, #60
+ 527              	.LCFI11:
+ 528              		.cfi_def_cfa_offset 72
+ 529 0004 0546     		mov	r5, r0
+ 530 0006 0C46     		mov	r4, r1
+ 367:MyHardWare/Src/encoder.c ****   Encoder_Data_t empty_data = {0};
+ 531              		.loc 1 367 3 is_stmt 1 view .LVU142
+ 532              		.loc 1 367 18 is_stmt 0 view .LVU143
+ 533 0008 3022     		movs	r2, #48
+ 534 000a 0021     		movs	r1, #0
+ 535              	.LVL43:
+ 536              		.loc 1 367 18 view .LVU144
+ 537 000c 02A8     		add	r0, sp, #8
+ 538              	.LVL44:
+ 539              		.loc 1 367 18 view .LVU145
+ 540 000e FFF7FEFF 		bl	memset
+ 541              	.LVL45:
+ 368:MyHardWare/Src/encoder.c **** 
+ 369:MyHardWare/Src/encoder.c ****   // 参数检查
+ 370:MyHardWare/Src/encoder.c ****   if (encoder >= ENCODER_MAX) {
+ 542              		.loc 1 370 3 is_stmt 1 view .LVU146
+ 543              		.loc 1 370 6 is_stmt 0 view .LVU147
+ 544 0012 012C     		cmp	r4, #1
+ 545 0014 18D8     		bhi	.L26
+ 371:MyHardWare/Src/encoder.c ****     return empty_data;
+ 372:MyHardWare/Src/encoder.c ****   }
+ 373:MyHardWare/Src/encoder.c **** 
+ 374:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+ 375:MyHardWare/Src/encoder.c ****   // 四驱模式：返回 4 个编码器的数据
+ 376:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_FR, &Encoder_FL, &Encoder_BR,
+ 377:MyHardWare/Src/encoder.c ****                                  &Encoder_BL};
+ 378:MyHardWare/Src/encoder.c **** #else
+ 379:MyHardWare/Src/encoder.c ****   // 双驱模式：返回 2 个编码器的数据
+ 380:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
+ 546              		.loc 1 380 3 is_stmt 1 view .LVU148
+ 547              		.loc 1 380 20 is_stmt 0 view .LVU149
+ 548 0016 0F4A     		ldr	r2, .L27
+ 549 0018 6B46     		mov	r3, sp
+ 550 001a 92E80300 		ldm	r2, {r0, r1}
+ 551 001e 83E80300 		stm	r3, {r0, r1}
+ 381:MyHardWare/Src/encoder.c **** #endif
+ 382:MyHardWare/Src/encoder.c **** 
+ 383:MyHardWare/Src/encoder.c ****   // 返回对应编码器的数据副本
+ 384:MyHardWare/Src/encoder.c ****   return encoders[encoder]->_data;
+ 552              		.loc 1 384 3 is_stmt 1 view .LVU150
+ 553              		.loc 1 384 18 is_stmt 0 view .LVU151
+ARM GAS  /tmp/ccwB8VdR.s 			page 19
+
+
+ 554 0022 0EAB     		add	r3, sp, #56
+ 555 0024 03EB8404 		add	r4, r3, r4, lsl #2
+ 556              	.LVL46:
+ 557              		.loc 1 384 27 view .LVU152
+ 558 0028 AC46     		mov	ip, r5
+ 559 002a 54F8384C 		ldr	r4, [r4, #-56]
+ 560 002e 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 561 0030 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 562 0034 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 563 0036 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 564 003a 94E80F00 		ldm	r4, {r0, r1, r2, r3}
+ 565 003e 8CE80F00 		stm	ip, {r0, r1, r2, r3}
+ 566              	.L22:
+ 385:MyHardWare/Src/encoder.c **** }
+ 567              		.loc 1 385 1 view .LVU153
+ 568 0042 2846     		mov	r0, r5
+ 569 0044 0FB0     		add	sp, sp, #60
+ 570              	.LCFI12:
+ 571              		.cfi_remember_state
+ 572              		.cfi_def_cfa_offset 12
+ 573              		@ sp needed
+ 574 0046 30BD     		pop	{r4, r5, pc}
+ 575              	.LVL47:
+ 576              	.L26:
+ 577              	.LCFI13:
+ 578              		.cfi_restore_state
+ 371:MyHardWare/Src/encoder.c ****     return empty_data;
+ 579              		.loc 1 371 5 is_stmt 1 view .LVU154
+ 371:MyHardWare/Src/encoder.c ****     return empty_data;
+ 580              		.loc 1 371 12 is_stmt 0 view .LVU155
+ 581 0048 3022     		movs	r2, #48
+ 582 004a 0021     		movs	r1, #0
+ 583 004c 2846     		mov	r0, r5
+ 584 004e FFF7FEFF 		bl	memset
+ 585              	.LVL48:
+ 586 0052 F6E7     		b	.L22
+ 587              	.L28:
+ 588              		.align	2
+ 589              	.L27:
+ 590 0054 00000000 		.word	.LANCHOR0
+ 591              		.cfi_endproc
+ 592              	.LFE127:
+ 594              		.section	.data.Encoder_Left,"aw"
+ 595              		.align	2
+ 598              	Encoder_Left:
+ 599 0000 0000     		.short	0
+ 600 0002 0000     		.short	0
+ 601 0004 0000     		.short	0
+ 602 0006 0000     		.space	2
+ 603 0008 00000000 		.word	0
+ 604 000c 00000000 		.word	0
+ 605 0010 00000000 		.word	0
+ 606 0014 00000000 		.word	0
+ 607 0018 00000000 		.word	0
+ 608 001c 00000000 		.word	0
+ 609 0020 00       		.byte	0
+ 610 0021 000000   		.space	3
+ARM GAS  /tmp/ccwB8VdR.s 			page 20
+
+
+ 611 0024 B81E853D 		.word	1032134328
+ 612 0028 0000803F 		.word	1065353216
+ 613 002c 00000000 		.word	0
+ 614 0030 00       		.byte	0
+ 615 0031 01       		.byte	1
+ 616 0032 0000     		.space	2
+ 617 0034 00040040 		.word	1073742848
+ 618              		.section	.data.Encoder_Right,"aw"
+ 619              		.align	2
+ 622              	Encoder_Right:
+ 623 0000 0000     		.short	0
+ 624 0002 0000     		.short	0
+ 625 0004 0000     		.short	0
+ 626 0006 0000     		.space	2
+ 627 0008 00000000 		.word	0
+ 628 000c 00000000 		.word	0
+ 629 0010 00000000 		.word	0
+ 630 0014 00000000 		.word	0
+ 631 0018 00000000 		.word	0
+ 632 001c 00000000 		.word	0
+ 633 0020 00       		.byte	0
+ 634 0021 000000   		.space	3
+ 635 0024 B81E853D 		.word	1032134328
+ 636 0028 0000803F 		.word	1065353216
+ 637 002c 00000000 		.word	0
+ 638 0030 00       		.byte	0
+ 639 0031 00       		.byte	0
+ 640 0032 0000     		.space	2
+ 641 0034 00000040 		.word	1073741824
+ 642              		.section	.rodata
+ 643              		.align	2
+ 644              		.set	.LANCHOR0,. + 0
+ 645              	.LC0:
+ 646 0000 00000000 		.word	Encoder_Right
+ 647 0004 00000000 		.word	Encoder_Left
+ 648              		.text
+ 649              	.Letext0:
+ 650              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 651              		.file 3 "CMSIS/stm32f4xx.h"
+ 652              		.file 4 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
+ 653              		.file 5 "Lib/StdPeriphs/inc/stm32f4xx_tim.h"
+ 654              		.file 6 "MyHardWare/Inc/encoder.h"
+ 655              		.file 7 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
+ 656              		.file 8 "MyHardWare/Inc/task.h"
+ 657              		.file 9 "<built-in>"
+ARM GAS  /tmp/ccwB8VdR.s 			page 21
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 encoder.c
+     /tmp/ccwB8VdR.s:21     .text.Encoder_GPIO_Init:00000000 $t
+     /tmp/ccwB8VdR.s:26     .text.Encoder_GPIO_Init:00000000 Encoder_GPIO_Init
+     /tmp/ccwB8VdR.s:131    .text.Encoder_GPIO_Init:00000080 $d
+     /tmp/ccwB8VdR.s:136    .text.Encoder_Update:00000000 $t
+     /tmp/ccwB8VdR.s:142    .text.Encoder_Update:00000000 Encoder_Update
+     /tmp/ccwB8VdR.s:326    .text.Encoder_Update:000000c0 $d
+     /tmp/ccwB8VdR.s:335    .text.Encoder_TIM_Init:00000000 $t
+     /tmp/ccwB8VdR.s:340    .text.Encoder_TIM_Init:00000000 Encoder_TIM_Init
+     /tmp/ccwB8VdR.s:472    .text.Encoder_TIM_Init:000000b4 $d
+     /tmp/ccwB8VdR.s:477    .text.Encoder_Driver_Init:00000000 $t
+     /tmp/ccwB8VdR.s:483    .text.Encoder_Driver_Init:00000000 Encoder_Driver_Init
+     /tmp/ccwB8VdR.s:506    .text.Encoder_GetData:00000000 $t
+     /tmp/ccwB8VdR.s:512    .text.Encoder_GetData:00000000 Encoder_GetData
+     /tmp/ccwB8VdR.s:590    .text.Encoder_GetData:00000054 $d
+     /tmp/ccwB8VdR.s:595    .data.Encoder_Left:00000000 $d
+     /tmp/ccwB8VdR.s:598    .data.Encoder_Left:00000000 Encoder_Left
+     /tmp/ccwB8VdR.s:619    .data.Encoder_Right:00000000 $d
+     /tmp/ccwB8VdR.s:622    .data.Encoder_Right:00000000 Encoder_Right
+     /tmp/ccwB8VdR.s:643    .rodata:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_AHB1PeriphClockCmd
+GPIO_Init
+GPIO_PinAFConfig
+GetSysTick
+TIM_GetCounter
+RCC_APB1PeriphClockCmd
+TIM_TimeBaseInit
+TIM_ICInit
+TIM_EncoderInterfaceConfig
+TIM_Cmd
+memset

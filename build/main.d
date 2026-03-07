@@ -14,8 +14,7 @@ build/main.o: USER/Src/main.c MyHardWare/Inc/delay.h CMSIS/stm32f4xx.h \
  Lib/StdPeriphs/inc/stm32f4xx_hash.h Lib/StdPeriphs/inc/stm32f4xx_rng.h \
  Lib/StdPeriphs/inc/stm32f4xx_can.h Lib/StdPeriphs/inc/stm32f4xx_dac.h \
  Lib/StdPeriphs/inc/stm32f4xx_dcmi.h Lib/StdPeriphs/inc/stm32f4xx_fsmc.h \
- MyHardWare/Inc/led.h MyHardWare/Inc/mpu6050.h MyHardWare/Inc/myiic.h \
- MyHardWare/Inc/sys.h MyHardWare/Inc/oled.h MyHardWare/Inc/task.h \
+ MyHardWare/Inc/led.h MyHardWare/Inc/rtc.h MyHardWare/Inc/ulog.h \
  MyHardWare/Inc/usart.h
 MyHardWare/Inc/delay.h:
 CMSIS/stm32f4xx.h:
@@ -52,9 +51,6 @@ Lib/StdPeriphs/inc/stm32f4xx_dac.h:
 Lib/StdPeriphs/inc/stm32f4xx_dcmi.h:
 Lib/StdPeriphs/inc/stm32f4xx_fsmc.h:
 MyHardWare/Inc/led.h:
-MyHardWare/Inc/mpu6050.h:
-MyHardWare/Inc/myiic.h:
-MyHardWare/Inc/sys.h:
-MyHardWare/Inc/oled.h:
-MyHardWare/Inc/task.h:
+MyHardWare/Inc/rtc.h:
+MyHardWare/Inc/ulog.h:
 MyHardWare/Inc/usart.h:

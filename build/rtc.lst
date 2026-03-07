@@ -1,0 +1,458 @@
+ARM GAS  /tmp/ccTFAI27.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"rtc.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "MyHardWare/Src/rtc.c"
+  20              		.section	.rodata.RTC_CLK_Config.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 0A0D2052 		.ascii	"\012\015 RTC \346\227\266\351\222\237\345\210\235\345"
+  23      544320E6 
+  23      97B6E992 
+  23      9FE5889D 
+  23      E5
+  24 0011 A78BE58C 		.ascii	"\247\213\345\214\226\345\244\261\350\264\245 \015\000"
+  24      96E5A4B1 
+  24      E8B4A520 
+  24      0D00
+  25              		.section	.text.RTC_CLK_Config,"ax",%progbits
+  26              		.align	1
+  27              		.global	RTC_CLK_Config
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  32              	RTC_CLK_Config:
+  33              	.LFB126:
+   1:MyHardWare/Src/rtc.c **** 
+   2:MyHardWare/Src/rtc.c **** #include "rtc.h"
+   3:MyHardWare/Src/rtc.c **** 
+   4:MyHardWare/Src/rtc.c **** // 定义一个静态字符数组来存储时间字符串
+   5:MyHardWare/Src/rtc.c **** static char timeBuffer[100];
+   6:MyHardWare/Src/rtc.c **** /**
+   7:MyHardWare/Src/rtc.c ****  * @brief  RTC配置：选择RTC时钟源，设置RTC_CLK的分频系数
+   8:MyHardWare/Src/rtc.c ****  * @param  无
+   9:MyHardWare/Src/rtc.c ****  * @retval 无
+  10:MyHardWare/Src/rtc.c ****  */
+  11:MyHardWare/Src/rtc.c **** void RTC_CLK_Config(void) {
+  34              		.loc 1 11 27 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 16
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38 0000 00B5     		push	{lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 4
+ARM GAS  /tmp/ccTFAI27.s 			page 2
+
+
+  41              		.cfi_offset 14, -4
+  42 0002 85B0     		sub	sp, sp, #20
+  43              	.LCFI1:
+  44              		.cfi_def_cfa_offset 24
+  12:MyHardWare/Src/rtc.c ****   RTC_InitTypeDef RTC_InitStructure;
+  45              		.loc 1 12 3 view .LVU1
+  13:MyHardWare/Src/rtc.c **** 
+  14:MyHardWare/Src/rtc.c ****   /*使能 PWR 时钟*/
+  15:MyHardWare/Src/rtc.c ****   RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+  46              		.loc 1 15 3 view .LVU2
+  47 0004 0121     		movs	r1, #1
+  48 0006 4FF08050 		mov	r0, #268435456
+  49 000a FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+  50              	.LVL0:
+  16:MyHardWare/Src/rtc.c ****   /* PWR_CR:DBF置1，使能RTC、RTC备份寄存器和备份SRAM的访问 */
+  17:MyHardWare/Src/rtc.c ****   PWR_BackupAccessCmd(ENABLE);
+  51              		.loc 1 17 3 view .LVU3
+  52 000e 0120     		movs	r0, #1
+  53 0010 FFF7FEFF 		bl	PWR_BackupAccessCmd
+  54              	.LVL1:
+  18:MyHardWare/Src/rtc.c **** 
+  19:MyHardWare/Src/rtc.c **** #if defined(RTC_CLOCK_SOURCE_LSI)
+  20:MyHardWare/Src/rtc.c ****   /* 使用LSI作为RTC时钟源会有误差,仅仅是为了实验方便 */
+  21:MyHardWare/Src/rtc.c **** 
+  22:MyHardWare/Src/rtc.c ****   /* 使能LSI */
+  23:MyHardWare/Src/rtc.c ****   RCC_LSICmd(ENABLE);
+  24:MyHardWare/Src/rtc.c ****   /* 等待LSI稳定 */
+  25:MyHardWare/Src/rtc.c ****   while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET) {
+  26:MyHardWare/Src/rtc.c ****   }
+  27:MyHardWare/Src/rtc.c ****   /* 选择LSI做为RTC的时钟源 */
+  28:MyHardWare/Src/rtc.c ****   RCC_RTCCLKConfig(RCC_RTCCLKSource_LSI);
+  29:MyHardWare/Src/rtc.c **** 
+  30:MyHardWare/Src/rtc.c **** #elif defined(RTC_CLOCK_SOURCE_LSE)
+  31:MyHardWare/Src/rtc.c **** 
+  32:MyHardWare/Src/rtc.c ****   /* 使能LSE */
+  33:MyHardWare/Src/rtc.c ****   RCC_LSEConfig(RCC_LSE_ON);
+  55              		.loc 1 33 3 view .LVU4
+  56 0014 0120     		movs	r0, #1
+  57 0016 FFF7FEFF 		bl	RCC_LSEConfig
+  58              	.LVL2:
+  34:MyHardWare/Src/rtc.c ****   /* 等待LSE稳定 */
+  35:MyHardWare/Src/rtc.c ****   while (RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET) {
+  59              		.loc 1 35 3 view .LVU5
+  60              	.L2:
+  36:MyHardWare/Src/rtc.c ****   }
+  61              		.loc 1 36 3 view .LVU6
+  35:MyHardWare/Src/rtc.c ****   }
+  62              		.loc 1 35 45 discriminator 1 view .LVU7
+  35:MyHardWare/Src/rtc.c ****   }
+  63              		.loc 1 35 10 is_stmt 0 discriminator 1 view .LVU8
+  64 001a 4120     		movs	r0, #65
+  65 001c FFF7FEFF 		bl	RCC_GetFlagStatus
+  66              	.LVL3:
+  35:MyHardWare/Src/rtc.c ****   }
+  67              		.loc 1 35 45 discriminator 1 view .LVU9
+  68 0020 0028     		cmp	r0, #0
+  69 0022 FAD0     		beq	.L2
+ARM GAS  /tmp/ccTFAI27.s 			page 3
+
+
+  37:MyHardWare/Src/rtc.c ****   /* 选择LSE做为RTC的时钟源 */
+  38:MyHardWare/Src/rtc.c ****   RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);
+  70              		.loc 1 38 3 is_stmt 1 view .LVU10
+  71 0024 4FF48070 		mov	r0, #256
+  72 0028 FFF7FEFF 		bl	RCC_RTCCLKConfig
+  73              	.LVL4:
+  39:MyHardWare/Src/rtc.c **** 
+  40:MyHardWare/Src/rtc.c **** #endif /* RTC_CLOCK_SOURCE_LSI */
+  41:MyHardWare/Src/rtc.c **** 
+  42:MyHardWare/Src/rtc.c ****   /* 使能RTC时钟 */
+  43:MyHardWare/Src/rtc.c ****   RCC_RTCCLKCmd(ENABLE);
+  74              		.loc 1 43 3 view .LVU11
+  75 002c 0120     		movs	r0, #1
+  76 002e FFF7FEFF 		bl	RCC_RTCCLKCmd
+  77              	.LVL5:
+  44:MyHardWare/Src/rtc.c **** 
+  45:MyHardWare/Src/rtc.c ****   /* 等待 RTC APB 寄存器同步 */
+  46:MyHardWare/Src/rtc.c ****   RTC_WaitForSynchro();
+  78              		.loc 1 46 3 view .LVU12
+  79 0032 FFF7FEFF 		bl	RTC_WaitForSynchro
+  80              	.LVL6:
+  47:MyHardWare/Src/rtc.c **** 
+  48:MyHardWare/Src/rtc.c ****   /*=====================初始化同步/异步预分频器的值======================*/
+  49:MyHardWare/Src/rtc.c ****   /* 驱动日历的时钟ck_spare = LSE/[(255+1)*(127+1)] = 1HZ */
+  50:MyHardWare/Src/rtc.c **** 
+  51:MyHardWare/Src/rtc.c ****   /* 设置异步预分频器的值*/
+  52:MyHardWare/Src/rtc.c ****   RTC_InitStructure.RTC_AsynchPrediv = ASYNCHPREDIV;
+  81              		.loc 1 52 3 view .LVU13
+  82              		.loc 1 52 38 is_stmt 0 view .LVU14
+  83 0036 7E23     		movs	r3, #126
+  84 0038 0293     		str	r3, [sp, #8]
+  53:MyHardWare/Src/rtc.c ****   /* 设置同步预分频器的值 */
+  54:MyHardWare/Src/rtc.c ****   RTC_InitStructure.RTC_SynchPrediv = SYNCHPREDIV;
+  85              		.loc 1 54 3 is_stmt 1 view .LVU15
+  86              		.loc 1 54 37 is_stmt 0 view .LVU16
+  87 003a FE23     		movs	r3, #254
+  88 003c 0393     		str	r3, [sp, #12]
+  55:MyHardWare/Src/rtc.c ****   RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
+  89              		.loc 1 55 3 is_stmt 1 view .LVU17
+  90              		.loc 1 55 36 is_stmt 0 view .LVU18
+  91 003e 0023     		movs	r3, #0
+  92 0040 0193     		str	r3, [sp, #4]
+  56:MyHardWare/Src/rtc.c ****   /* 用RTC_InitStructure的内容初始化RTC寄存器 */
+  57:MyHardWare/Src/rtc.c ****   if (RTC_Init(&RTC_InitStructure) == ERROR) {
+  93              		.loc 1 57 3 is_stmt 1 view .LVU19
+  94              		.loc 1 57 7 is_stmt 0 view .LVU20
+  95 0042 01A8     		add	r0, sp, #4
+  96 0044 FFF7FEFF 		bl	RTC_Init
+  97              	.LVL7:
+  98              		.loc 1 57 6 discriminator 1 view .LVU21
+  99 0048 10B1     		cbz	r0, .L5
+ 100              	.L1:
+  58:MyHardWare/Src/rtc.c ****     printf("\n\r RTC 时钟初始化失败 \r\n");
+  59:MyHardWare/Src/rtc.c ****   }
+  60:MyHardWare/Src/rtc.c **** }
+ 101              		.loc 1 60 1 view .LVU22
+ 102 004a 05B0     		add	sp, sp, #20
+ARM GAS  /tmp/ccTFAI27.s 			page 4
+
+
+ 103              	.LCFI2:
+ 104              		.cfi_remember_state
+ 105              		.cfi_def_cfa_offset 4
+ 106              		@ sp needed
+ 107 004c 5DF804FB 		ldr	pc, [sp], #4
+ 108              	.L5:
+ 109              	.LCFI3:
+ 110              		.cfi_restore_state
+  58:MyHardWare/Src/rtc.c ****     printf("\n\r RTC 时钟初始化失败 \r\n");
+ 111              		.loc 1 58 5 is_stmt 1 view .LVU23
+ 112 0050 0148     		ldr	r0, .L6
+ 113 0052 FFF7FEFF 		bl	puts
+ 114              	.LVL8:
+ 115              		.loc 1 60 1 is_stmt 0 view .LVU24
+ 116 0056 F8E7     		b	.L1
+ 117              	.L7:
+ 118              		.align	2
+ 119              	.L6:
+ 120 0058 00000000 		.word	.LC0
+ 121              		.cfi_endproc
+ 122              	.LFE126:
+ 124              		.section	.text.RTC_TimeAndDate_Set,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	RTC_TimeAndDate_Set
+ 127              		.syntax unified
+ 128              		.thumb
+ 129              		.thumb_func
+ 131              	RTC_TimeAndDate_Set:
+ 132              	.LFB127:
+  61:MyHardWare/Src/rtc.c **** 
+  62:MyHardWare/Src/rtc.c **** /**
+  63:MyHardWare/Src/rtc.c ****  * @brief  设置时间和日期
+  64:MyHardWare/Src/rtc.c ****  * @param  无
+  65:MyHardWare/Src/rtc.c ****  * @retval 无
+  66:MyHardWare/Src/rtc.c ****  */
+  67:MyHardWare/Src/rtc.c **** void RTC_TimeAndDate_Set(void) {
+ 133              		.loc 1 67 32 is_stmt 1 view -0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 8
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137 0000 10B5     		push	{r4, lr}
+ 138              	.LCFI4:
+ 139              		.cfi_def_cfa_offset 8
+ 140              		.cfi_offset 4, -8
+ 141              		.cfi_offset 14, -4
+ 142 0002 82B0     		sub	sp, sp, #8
+ 143              	.LCFI5:
+ 144              		.cfi_def_cfa_offset 16
+  68:MyHardWare/Src/rtc.c ****   RTC_TimeTypeDef RTC_TimeStructure;
+ 145              		.loc 1 68 3 view .LVU26
+  69:MyHardWare/Src/rtc.c ****   RTC_DateTypeDef RTC_DateStructure;
+ 146              		.loc 1 69 3 view .LVU27
+  70:MyHardWare/Src/rtc.c **** 
+  71:MyHardWare/Src/rtc.c ****   // 初始化时间
+  72:MyHardWare/Src/rtc.c ****   RTC_TimeStructure.RTC_H12 = RTC_H12_AMorPM;
+ 147              		.loc 1 72 3 view .LVU28
+ 148              		.loc 1 72 29 is_stmt 0 view .LVU29
+ARM GAS  /tmp/ccTFAI27.s 			page 5
+
+
+ 149 0004 0024     		movs	r4, #0
+ 150 0006 8DF80740 		strb	r4, [sp, #7]
+  73:MyHardWare/Src/rtc.c ****   RTC_TimeStructure.RTC_Hours = HOURS;
+ 151              		.loc 1 73 3 is_stmt 1 view .LVU30
+ 152              		.loc 1 73 31 is_stmt 0 view .LVU31
+ 153 000a 8DF80440 		strb	r4, [sp, #4]
+  74:MyHardWare/Src/rtc.c ****   RTC_TimeStructure.RTC_Minutes = MINUTES;
+ 154              		.loc 1 74 3 is_stmt 1 view .LVU32
+ 155              		.loc 1 74 33 is_stmt 0 view .LVU33
+ 156 000e 8DF80540 		strb	r4, [sp, #5]
+  75:MyHardWare/Src/rtc.c ****   RTC_TimeStructure.RTC_Seconds = SECONDS;
+ 157              		.loc 1 75 3 is_stmt 1 view .LVU34
+ 158              		.loc 1 75 33 is_stmt 0 view .LVU35
+ 159 0012 8DF80640 		strb	r4, [sp, #6]
+  76:MyHardWare/Src/rtc.c ****   RTC_SetTime(RTC_Format_BINorBCD, &RTC_TimeStructure);
+ 160              		.loc 1 76 3 is_stmt 1 view .LVU36
+ 161 0016 01A9     		add	r1, sp, #4
+ 162 0018 2046     		mov	r0, r4
+ 163 001a FFF7FEFF 		bl	RTC_SetTime
+ 164              	.LVL9:
+  77:MyHardWare/Src/rtc.c ****   RTC_WriteBackupRegister(RTC_BKP_DRX, RTC_BKP_DATA);
+ 165              		.loc 1 77 3 view .LVU37
+ 166 001e 43F2F121 		movw	r1, #13041
+ 167 0022 2046     		mov	r0, r4
+ 168 0024 FFF7FEFF 		bl	RTC_WriteBackupRegister
+ 169              	.LVL10:
+  78:MyHardWare/Src/rtc.c **** 
+  79:MyHardWare/Src/rtc.c ****   // 初始化日期
+  80:MyHardWare/Src/rtc.c ****   RTC_DateStructure.RTC_WeekDay = WEEKDAY;
+ 170              		.loc 1 80 3 view .LVU38
+ 171              		.loc 1 80 33 is_stmt 0 view .LVU39
+ 172 0028 8DF80040 		strb	r4, [sp]
+  81:MyHardWare/Src/rtc.c ****   RTC_DateStructure.RTC_Date = DATE;
+ 173              		.loc 1 81 3 is_stmt 1 view .LVU40
+ 174              		.loc 1 81 30 is_stmt 0 view .LVU41
+ 175 002c 8DF80240 		strb	r4, [sp, #2]
+  82:MyHardWare/Src/rtc.c ****   RTC_DateStructure.RTC_Month = MONTH;
+ 176              		.loc 1 82 3 is_stmt 1 view .LVU42
+ 177              		.loc 1 82 31 is_stmt 0 view .LVU43
+ 178 0030 8DF80140 		strb	r4, [sp, #1]
+  83:MyHardWare/Src/rtc.c ****   RTC_DateStructure.RTC_Year = YEAR;
+ 179              		.loc 1 83 3 is_stmt 1 view .LVU44
+ 180              		.loc 1 83 30 is_stmt 0 view .LVU45
+ 181 0034 8DF80340 		strb	r4, [sp, #3]
+  84:MyHardWare/Src/rtc.c ****   RTC_SetDate(RTC_Format_BINorBCD, &RTC_DateStructure);
+ 182              		.loc 1 84 3 is_stmt 1 view .LVU46
+ 183 0038 6946     		mov	r1, sp
+ 184 003a 2046     		mov	r0, r4
+ 185 003c FFF7FEFF 		bl	RTC_SetDate
+ 186              	.LVL11:
+  85:MyHardWare/Src/rtc.c ****   RTC_WriteBackupRegister(RTC_BKP_DRX, RTC_BKP_DATA);
+ 187              		.loc 1 85 3 view .LVU47
+ 188 0040 43F2F121 		movw	r1, #13041
+ 189 0044 2046     		mov	r0, r4
+ 190 0046 FFF7FEFF 		bl	RTC_WriteBackupRegister
+ 191              	.LVL12:
+  86:MyHardWare/Src/rtc.c **** }
+ARM GAS  /tmp/ccTFAI27.s 			page 6
+
+
+ 192              		.loc 1 86 1 is_stmt 0 view .LVU48
+ 193 004a 02B0     		add	sp, sp, #8
+ 194              	.LCFI6:
+ 195              		.cfi_def_cfa_offset 8
+ 196              		@ sp needed
+ 197 004c 10BD     		pop	{r4, pc}
+ 198              		.cfi_endproc
+ 199              	.LFE127:
+ 201              		.section	.rodata.RTC_GetNowTime.str1.4,"aMS",%progbits,1
+ 202              		.align	2
+ 203              	.LC1:
+ 204 0000 54686520 		.ascii	"The Date :  Y:20%0.2d - M:%0.2d - D:%0.2d - W:%0.2d"
+ 204      44617465 
+ 204      203A2020 
+ 204      593A3230 
+ 204      25302E32 
+ 205 0033 00       		.ascii	"\000"
+ 206              		.section	.text.RTC_GetNowTime,"ax",%progbits
+ 207              		.align	1
+ 208              		.global	RTC_GetNowTime
+ 209              		.syntax unified
+ 210              		.thumb
+ 211              		.thumb_func
+ 213              	RTC_GetNowTime:
+ 214              	.LFB128:
+  87:MyHardWare/Src/rtc.c **** /**
+  88:MyHardWare/Src/rtc.c ****  * @brief  显示时间和日期
+  89:MyHardWare/Src/rtc.c ****  * @param  无
+  90:MyHardWare/Src/rtc.c ****  * @retval 无
+  91:MyHardWare/Src/rtc.c ****  */
+  92:MyHardWare/Src/rtc.c **** char *RTC_GetNowTime(void) {
+ 215              		.loc 1 92 28 is_stmt 1 view -0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 8
+ 218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 219 0000 10B5     		push	{r4, lr}
+ 220              	.LCFI7:
+ 221              		.cfi_def_cfa_offset 8
+ 222              		.cfi_offset 4, -8
+ 223              		.cfi_offset 14, -4
+ 224 0002 84B0     		sub	sp, sp, #16
+ 225              	.LCFI8:
+ 226              		.cfi_def_cfa_offset 24
+  93:MyHardWare/Src/rtc.c ****   RTC_TimeTypeDef RTC_TimeStructure;
+ 227              		.loc 1 93 3 view .LVU50
+  94:MyHardWare/Src/rtc.c ****   RTC_DateTypeDef RTC_DateStructure;
+ 228              		.loc 1 94 3 view .LVU51
+  95:MyHardWare/Src/rtc.c ****   // 获取日历
+  96:MyHardWare/Src/rtc.c ****   RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
+ 229              		.loc 1 96 3 view .LVU52
+ 230 0004 03A9     		add	r1, sp, #12
+ 231 0006 0020     		movs	r0, #0
+ 232 0008 FFF7FEFF 		bl	RTC_GetTime
+ 233              	.LVL13:
+  97:MyHardWare/Src/rtc.c ****   RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
+ 234              		.loc 1 97 3 view .LVU53
+ 235 000c 02A9     		add	r1, sp, #8
+ARM GAS  /tmp/ccTFAI27.s 			page 7
+
+
+ 236 000e 0020     		movs	r0, #0
+ 237 0010 FFF7FEFF 		bl	RTC_GetDate
+ 238              	.LVL14:
+  98:MyHardWare/Src/rtc.c **** 
+  99:MyHardWare/Src/rtc.c ****   // 打印日期
+ 100:MyHardWare/Src/rtc.c ****   sprintf(timeBuffer, "The Date :  Y:20%0.2d - M:%0.2d - D:%0.2d - W:%0.2d",
+ 239              		.loc 1 100 3 view .LVU54
+ 101:MyHardWare/Src/rtc.c ****           RTC_DateStructure.RTC_Year, RTC_DateStructure.RTC_Month,
+ 102:MyHardWare/Src/rtc.c ****           RTC_DateStructure.RTC_Date, RTC_DateStructure.RTC_WeekDay);
+ 240              		.loc 1 102 28 is_stmt 0 view .LVU55
+ 241 0014 9DF80A30 		ldrb	r3, [sp, #10]	@ zero_extendqisi2
+ 242              		.loc 1 102 56 view .LVU56
+ 243 0018 9DF80820 		ldrb	r2, [sp, #8]	@ zero_extendqisi2
+ 100:MyHardWare/Src/rtc.c ****           RTC_DateStructure.RTC_Year, RTC_DateStructure.RTC_Month,
+ 244              		.loc 1 100 3 view .LVU57
+ 245 001c 064C     		ldr	r4, .L12
+ 246 001e 0192     		str	r2, [sp, #4]
+ 247 0020 0093     		str	r3, [sp]
+ 248 0022 9DF80930 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 249 0026 9DF80B20 		ldrb	r2, [sp, #11]	@ zero_extendqisi2
+ 250 002a 0449     		ldr	r1, .L12+4
+ 251 002c 2046     		mov	r0, r4
+ 252 002e FFF7FEFF 		bl	sprintf
+ 253              	.LVL15:
+ 103:MyHardWare/Src/rtc.c ****   return timeBuffer;
+ 254              		.loc 1 103 3 is_stmt 1 view .LVU58
+ 104:MyHardWare/Src/rtc.c **** }
+ 255              		.loc 1 104 1 is_stmt 0 view .LVU59
+ 256 0032 2046     		mov	r0, r4
+ 257 0034 04B0     		add	sp, sp, #16
+ 258              	.LCFI9:
+ 259              		.cfi_def_cfa_offset 8
+ 260              		@ sp needed
+ 261 0036 10BD     		pop	{r4, pc}
+ 262              	.L13:
+ 263              		.align	2
+ 264              	.L12:
+ 265 0038 00000000 		.word	timeBuffer
+ 266 003c 00000000 		.word	.LC1
+ 267              		.cfi_endproc
+ 268              	.LFE128:
+ 270              		.section	.bss.timeBuffer,"aw",%nobits
+ 271              		.align	2
+ 274              	timeBuffer:
+ 275 0000 00000000 		.space	100
+ 275      00000000 
+ 275      00000000 
+ 275      00000000 
+ 275      00000000 
+ 276              		.text
+ 277              	.Letext0:
+ 278              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 279              		.file 3 "CMSIS/stm32f4xx.h"
+ 280              		.file 4 "Lib/StdPeriphs/inc/stm32f4xx_rtc.h"
+ 281              		.file 5 "/usr/include/newlib/stdio.h"
+ 282              		.file 6 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
+ 283              		.file 7 "Lib/StdPeriphs/inc/stm32f4xx_pwr.h"
+ARM GAS  /tmp/ccTFAI27.s 			page 8
+
+
+ 284              		.file 8 "<built-in>"
+ARM GAS  /tmp/ccTFAI27.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 rtc.c
+     /tmp/ccTFAI27.s:21     .rodata.RTC_CLK_Config.str1.4:00000000 $d
+     /tmp/ccTFAI27.s:26     .text.RTC_CLK_Config:00000000 $t
+     /tmp/ccTFAI27.s:32     .text.RTC_CLK_Config:00000000 RTC_CLK_Config
+     /tmp/ccTFAI27.s:120    .text.RTC_CLK_Config:00000058 $d
+     /tmp/ccTFAI27.s:125    .text.RTC_TimeAndDate_Set:00000000 $t
+     /tmp/ccTFAI27.s:131    .text.RTC_TimeAndDate_Set:00000000 RTC_TimeAndDate_Set
+     /tmp/ccTFAI27.s:202    .rodata.RTC_GetNowTime.str1.4:00000000 $d
+     /tmp/ccTFAI27.s:207    .text.RTC_GetNowTime:00000000 $t
+     /tmp/ccTFAI27.s:213    .text.RTC_GetNowTime:00000000 RTC_GetNowTime
+     /tmp/ccTFAI27.s:265    .text.RTC_GetNowTime:00000038 $d
+     /tmp/ccTFAI27.s:274    .bss.timeBuffer:00000000 timeBuffer
+     /tmp/ccTFAI27.s:271    .bss.timeBuffer:00000000 $d
+
+UNDEFINED SYMBOLS
+RCC_APB1PeriphClockCmd
+PWR_BackupAccessCmd
+RCC_LSEConfig
+RCC_GetFlagStatus
+RCC_RTCCLKConfig
+RCC_RTCCLKCmd
+RTC_WaitForSynchro
+RTC_Init
+puts
+RTC_SetTime
+RTC_WriteBackupRegister
+RTC_SetDate
+RTC_GetTime
+RTC_GetDate
+sprintf

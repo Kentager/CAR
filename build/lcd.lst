@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccuJHCpP.s 			page 1
+ARM GAS  /tmp/ccesW9UQ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
   34              	.LCFI0:
   35              		.cfi_def_cfa_offset 12
   36              		.cfi_offset 4, -12
-ARM GAS  /tmp/ccuJHCpP.s 			page 2
+ARM GAS  /tmp/ccesW9UQ.s 			page 2
 
 
   37              		.cfi_offset 5, -8
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
   81              		.cfi_def_cfa_offset 12
   82              		@ sp needed
   83 003a 30BD     		pop	{r4, r5, pc}
-ARM GAS  /tmp/ccuJHCpP.s 			page 3
+ARM GAS  /tmp/ccesW9UQ.s 			page 3
 
 
   84              	.L4:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  128              	.L7:
   45:MyHardWare/Src/lcd.c **** 	{			  
   46:MyHardWare/Src/lcd.c **** 		LCD_SCLK_Clr();
-ARM GAS  /tmp/ccuJHCpP.s 			page 4
+ARM GAS  /tmp/ccesW9UQ.s 			page 4
 
 
   47:MyHardWare/Src/lcd.c **** 		if(dat&0x80)
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  166              		.loc 1 49 6 is_stmt 1 view .LVU35
  167 003a 0221     		movs	r1, #2
  168 003c 0448     		ldr	r0, .L12
-ARM GAS  /tmp/ccuJHCpP.s 			page 5
+ARM GAS  /tmp/ccesW9UQ.s 			page 5
 
 
  169 003e FFF7FEFF 		bl	GPIO_SetBits
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
   70:MyHardWare/Src/lcd.c **** }
  212              		.loc 1 70 1 is_stmt 0 view .LVU42
  213 0006 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccuJHCpP.s 			page 6
+ARM GAS  /tmp/ccesW9UQ.s 			page 6
 
 
  214              		.cfi_endproc
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  259              		.thumb_func
  261              	LCD_WR_REG:
  262              	.LVL23:
-ARM GAS  /tmp/ccuJHCpP.s 			page 7
+ARM GAS  /tmp/ccesW9UQ.s 			page 7
 
 
  263              	.LFB127:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  305              		.section	.text.LCD_Address_Set,"ax",%progbits
  306              		.align	1
  307              		.global	LCD_Address_Set
-ARM GAS  /tmp/ccuJHCpP.s 			page 8
+ARM GAS  /tmp/ccesW9UQ.s 			page 8
 
 
  308              		.syntax unified
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  342              		.loc 1 116 9 is_stmt 0 view .LVU64
  343 0012 012C     		cmp	r4, #1
  344 0014 3AD0     		beq	.L29
-ARM GAS  /tmp/ccuJHCpP.s 			page 9
+ARM GAS  /tmp/ccesW9UQ.s 			page 9
 
 
  117:MyHardWare/Src/lcd.c **** 	{
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  373              	.LVL35:
  143:MyHardWare/Src/lcd.c **** 		LCD_WR_DATA(y2+2);
  374              		.loc 1 143 3 view .LVU73
-ARM GAS  /tmp/ccuJHCpP.s 			page 10
+ARM GAS  /tmp/ccesW9UQ.s 			page 10
 
 
  375 0042 B01C     		adds	r0, r6, #2
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  418              		.loc 1 114 3 view .LVU83
  419 0084 2C20     		movs	r0, #44
  420 0086 FFF7FEFF 		bl	LCD_WR_REG
-ARM GAS  /tmp/ccuJHCpP.s 			page 11
+ARM GAS  /tmp/ccesW9UQ.s 			page 11
 
 
  421              	.LVL46:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  465              		.loc 1 128 3 is_stmt 0 view .LVU93
  466 00c6 FFF7FEFF 		bl	LCD_WR_REG
  467              	.LVL58:
-ARM GAS  /tmp/ccuJHCpP.s 			page 12
+ARM GAS  /tmp/ccesW9UQ.s 			page 12
 
 
  129:MyHardWare/Src/lcd.c **** 		LCD_WR_DATA(x2+1);
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  151:MyHardWare/Src/lcd.c ****       入口数据：direction 0/1为竖屏, 2/3为横屏
  152:MyHardWare/Src/lcd.c ****       返回值  ：无
  153:MyHardWare/Src/lcd.c **** ******************************************************************************/
-ARM GAS  /tmp/ccuJHCpP.s 			page 13
+ARM GAS  /tmp/ccesW9UQ.s 			page 13
 
 
  154:MyHardWare/Src/lcd.c **** void LCD_direction(u8 direction)
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  161:MyHardWare/Src/lcd.c **** 		LCD_H=160;
  552              		.loc 1 161 3 is_stmt 1 view .LVU115
  161:MyHardWare/Src/lcd.c **** 		LCD_H=160;
-ARM GAS  /tmp/ccuJHCpP.s 			page 14
+ARM GAS  /tmp/ccesW9UQ.s 			page 14
 
 
  553              		.loc 1 161 8 is_stmt 0 view .LVU116
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  600 0010 6420     		movs	r0, #100
  601 0012 FFF7FEFF 		bl	delay_ms
  602              	.LVL68:
-ARM GAS  /tmp/ccuJHCpP.s 			page 15
+ARM GAS  /tmp/ccesW9UQ.s 			page 15
 
 
  177:MyHardWare/Src/lcd.c **** 	LCD_RES_Set();
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  643 0052 FFF7FEFF 		bl	LCD_WR_DATA8
  644              	.LVL78:
  191:MyHardWare/Src/lcd.c **** 	LCD_WR_REG(0xB2); 
-ARM GAS  /tmp/ccuJHCpP.s 			page 16
+ARM GAS  /tmp/ccesW9UQ.s 			page 16
 
 
  645              		.loc 1 191 2 view .LVU133
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  202:MyHardWare/Src/lcd.c **** 	//------------------------------------End ST7735S Frame Rate---------------------------------// 
  203:MyHardWare/Src/lcd.c **** 	LCD_WR_REG(0xB4); //Dot inversion 
  689              		.loc 1 203 2 view .LVU144
-ARM GAS  /tmp/ccuJHCpP.s 			page 17
+ARM GAS  /tmp/ccesW9UQ.s 			page 17
 
 
  690 0098 B420     		movs	r0, #180
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  215:MyHardWare/Src/lcd.c **** 	LCD_WR_REG(0xC3); 
  733              		.loc 1 215 2 view .LVU155
  734 00da C320     		movs	r0, #195
-ARM GAS  /tmp/ccuJHCpP.s 			page 18
+ARM GAS  /tmp/ccesW9UQ.s 			page 18
 
 
  735 00dc FFF7FEFF 		bl	LCD_WR_REG
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  778 0118 012B     		cmp	r3, #1
  779 011a 78D0     		beq	.L47
  227:MyHardWare/Src/lcd.c **** 	else if(USE_HORIZONTAL==2)LCD_WR_DATA8(0x70);
-ARM GAS  /tmp/ccuJHCpP.s 			page 19
+ARM GAS  /tmp/ccesW9UQ.s 			page 19
 
 
  780              		.loc 1 227 7 is_stmt 1 view .LVU169
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  823 0158 FFF7FEFF 		bl	LCD_WR_DATA8
  824              	.LVL119:
  239:MyHardWare/Src/lcd.c **** 	LCD_WR_DATA8(0x28); 
-ARM GAS  /tmp/ccuJHCpP.s 			page 20
+ARM GAS  /tmp/ccesW9UQ.s 			page 20
 
 
  825              		.loc 1 239 2 view .LVU181
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  250:MyHardWare/Src/lcd.c **** 	LCD_WR_DATA8(0x06); 
  869              		.loc 1 250 2 view .LVU192
  870 019e 0620     		movs	r0, #6
-ARM GAS  /tmp/ccuJHCpP.s 			page 21
+ARM GAS  /tmp/ccesW9UQ.s 			page 21
 
 
  871 01a0 FFF7FEFF 		bl	LCD_WR_DATA8
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  914 01e0 0120     		movs	r0, #1
  915 01e2 FFF7FEFF 		bl	LCD_WR_DATA8
  916              	.LVL142:
-ARM GAS  /tmp/ccuJHCpP.s 			page 22
+ARM GAS  /tmp/ccesW9UQ.s 			page 22
 
 
  262:MyHardWare/Src/lcd.c **** 	LCD_WR_DATA8(0x04); 
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  961 0224 00000000 		.word	USE_HORIZONTAL
  962              		.cfi_endproc
  963              	.LFE130:
-ARM GAS  /tmp/ccuJHCpP.s 			page 23
+ARM GAS  /tmp/ccesW9UQ.s 			page 23
 
 
  965              		.section	.text.LCD_Fill,"ax",%progbits
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  292:MyHardWare/Src/lcd.c **** 	LCD_Address_Set(xsta,ysta,xend-1,yend-1);//设置显示范围
  997              		.loc 1 292 2 view .LVU216
  998 0010 013B     		subs	r3, r3, #1
-ARM GAS  /tmp/ccuJHCpP.s 			page 24
+ARM GAS  /tmp/ccesW9UQ.s 			page 24
 
 
  999              	.LVL152:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  298:MyHardWare/Src/lcd.c **** 		}
  299:MyHardWare/Src/lcd.c **** 	} 					  	    
  300:MyHardWare/Src/lcd.c **** }
-ARM GAS  /tmp/ccuJHCpP.s 			page 25
+ARM GAS  /tmp/ccesW9UQ.s 			page 25
 
 
  1041              		.loc 1 300 1 view .LVU229
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1092              		.cfi_endproc
  1093              	.LFE131:
  1095              		.section	.text.LCD_DrawPoint,"ax",%progbits
-ARM GAS  /tmp/ccuJHCpP.s 			page 26
+ARM GAS  /tmp/ccesW9UQ.s 			page 26
 
 
  1096              		.align	1
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1141              	.LVL168:
  1142              	.LFB134:
  313:MyHardWare/Src/lcd.c **** 
-ARM GAS  /tmp/ccuJHCpP.s 			page 27
+ARM GAS  /tmp/ccesW9UQ.s 			page 27
 
 
  314:MyHardWare/Src/lcd.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1182 0016 A3EB010A 		sub	r10, r3, r1
  1183              	.LVL172:
  329:MyHardWare/Src/lcd.c **** 	uRow=x1;
-ARM GAS  /tmp/ccuJHCpP.s 			page 28
+ARM GAS  /tmp/ccesW9UQ.s 			page 28
 
 
  1184              		.loc 1 329 2 is_stmt 1 view .LVU255
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1226              	.LVL179:
  1227              	.L78:
  332:MyHardWare/Src/lcd.c **** 	else {incx=-1;delta_x=-delta_x;}
-ARM GAS  /tmp/ccuJHCpP.s 			page 29
+ARM GAS  /tmp/ccesW9UQ.s 			page 29
 
 
  1228              		.loc 1 332 7 is_stmt 1 view .LVU273
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1268              	.L75:
  335:MyHardWare/Src/lcd.c **** 	else {incy=-1;delta_y=-delta_y;}
  1269              		.loc 1 335 26 discriminator 1 view .LVU288
-ARM GAS  /tmp/ccuJHCpP.s 			page 30
+ARM GAS  /tmp/ccesW9UQ.s 			page 30
 
 
  1270 0066 CDF80CA0 		str	r10, [sp, #12]
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1315              	.LVL197:
  1316              	.L69:
  348:MyHardWare/Src/lcd.c **** 		}
-ARM GAS  /tmp/ccuJHCpP.s 			page 31
+ARM GAS  /tmp/ccesW9UQ.s 			page 31
 
 
  349:MyHardWare/Src/lcd.c **** 		if(yerr>distance)
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1355              		@ args = 4, pretend = 0, frame = 0
  1356              		@ frame_needed = 0, uses_anonymous_args = 0
  1357              		.loc 1 366 1 is_stmt 0 view .LVU314
-ARM GAS  /tmp/ccuJHCpP.s 			page 32
+ARM GAS  /tmp/ccesW9UQ.s 			page 32
 
 
  1358 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1407 004c 02B0     		add	sp, sp, #8
  1408              	.LCFI19:
  1409              		.cfi_def_cfa_offset 24
-ARM GAS  /tmp/ccuJHCpP.s 			page 33
+ARM GAS  /tmp/ccesW9UQ.s 			page 33
 
 
  1410              		@ sp needed
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1453              		.loc 1 384 6 view .LVU326
  385:MyHardWare/Src/lcd.c **** 	while(a<=b)
  1454              		.loc 1 385 2 view .LVU327
-ARM GAS  /tmp/ccuJHCpP.s 			page 34
+ARM GAS  /tmp/ccesW9UQ.s 			page 34
 
 
  384:MyHardWare/Src/lcd.c **** 	a=0;b=r;	  
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1502 006c 2946     		mov	r1, r5
  1503 006e 5846     		mov	r0, fp
  1504 0070 FFF7FEFF 		bl	LCD_DrawPoint
-ARM GAS  /tmp/ccuJHCpP.s 			page 35
+ARM GAS  /tmp/ccesW9UQ.s 			page 35
 
 
  1505              	.LVL212:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1551              		.loc 1 398 5 is_stmt 0 view .LVU347
  1552 00be 08F1FF38 		add	r8, r8, #-1
  1553              	.LVL218:
-ARM GAS  /tmp/ccuJHCpP.s 			page 36
+ARM GAS  /tmp/ccesW9UQ.s 			page 36
 
 
  1554              		.loc 1 398 5 view .LVU348
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  430:MyHardWare/Src/lcd.c ****                 *s 要显示的汉字
  431:MyHardWare/Src/lcd.c ****                 fc 字的颜色
  432:MyHardWare/Src/lcd.c ****                 bc 字的背景色
-ARM GAS  /tmp/ccuJHCpP.s 			page 37
+ARM GAS  /tmp/ccesW9UQ.s 			page 37
 
 
  433:MyHardWare/Src/lcd.c ****                 sizey 字号
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1621              		.loc 1 444 13 view .LVU363
  1622 0026 03FB07F3 		mul	r3, r3, r7
  1623 002a 0493     		str	r3, [sp, #16]
-ARM GAS  /tmp/ccuJHCpP.s 			page 38
+ARM GAS  /tmp/ccesW9UQ.s 			page 38
 
 
  1624              	.LVL223:
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  454:MyHardWare/Src/lcd.c **** 				{	
  1660              		.loc 1 454 18 is_stmt 1 discriminator 2 view .LVU377
  1661 0052 0135     		adds	r5, r5, #1
-ARM GAS  /tmp/ccuJHCpP.s 			page 39
+ARM GAS  /tmp/ccesW9UQ.s 			page 39
 
 
  1662              	.LVL228:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1699 0084 2B41     		asrs	r3, r3, r5
  1700              		.loc 1 469 9 view .LVU390
  1701 0086 13F0010F 		tst	r3, #1
-ARM GAS  /tmp/ccuJHCpP.s 			page 40
+ARM GAS  /tmp/ccesW9UQ.s 			page 40
 
 
  1702 008a 15D1     		bne	.L106
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1745              		.loc 1 469 39 is_stmt 1 discriminator 1 view .LVU405
  1746 00b8 019A     		ldr	r2, [sp, #4]
  1747 00ba 0399     		ldr	r1, [sp, #12]
-ARM GAS  /tmp/ccuJHCpP.s 			page 41
+ARM GAS  /tmp/ccesW9UQ.s 			page 41
 
 
  1748 00bc 4046     		mov	r0, r8
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1786              		.loc 1 449 52 discriminator 1 view .LVU416
  1787 00ea 104B     		ldr	r3, .L109
  1788 00ec 1A22     		movs	r2, #26
-ARM GAS  /tmp/ccuJHCpP.s 			page 42
+ARM GAS  /tmp/ccesW9UQ.s 			page 42
 
 
  1789 00ee 02FB0533 		mla	r3, r2, r5, r3
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1832              	.L109:
  1833 012c 00000000 		.word	tfont12
  1834              		.cfi_endproc
-ARM GAS  /tmp/ccuJHCpP.s 			page 43
+ARM GAS  /tmp/ccesW9UQ.s 			page 43
 
 
  1835              	.LFE138:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1877              	.LVL248:
  498:MyHardWare/Src/lcd.c **** 	u16 k;
  1878              		.loc 1 498 2 view .LVU432
-ARM GAS  /tmp/ccuJHCpP.s 			page 44
+ARM GAS  /tmp/ccesW9UQ.s 			page 44
 
 
  499:MyHardWare/Src/lcd.c **** 	u16 HZnum;//汉字数目
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  1913              		.loc 1 517 8 is_stmt 0 view .LVU448
  1914 003e 0136     		adds	r6, r6, #1
  1915              	.LVL252:
-ARM GAS  /tmp/ccuJHCpP.s 			page 45
+ARM GAS  /tmp/ccesW9UQ.s 			page 45
 
 
  1916              		.loc 1 517 8 view .LVU449
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  520:MyHardWare/Src/lcd.c **** 							m=0;
  521:MyHardWare/Src/lcd.c **** 							break;
  522:MyHardWare/Src/lcd.c **** 						}
-ARM GAS  /tmp/ccuJHCpP.s 			page 46
+ARM GAS  /tmp/ccesW9UQ.s 			page 46
 
 
  523:MyHardWare/Src/lcd.c **** 					}
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2000 00a8 5FFA82FB 		uxtb	fp, r2
  2001              	.LVL262:
  2002              	.L114:
-ARM GAS  /tmp/ccuJHCpP.s 			page 47
+ARM GAS  /tmp/ccesW9UQ.s 			page 47
 
 
  509:MyHardWare/Src/lcd.c **** 			{
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  506:MyHardWare/Src/lcd.c **** 		{ 	
  2042              		.loc 1 506 24 is_stmt 0 view .LVU489
  2043 00d4 A246     		mov	r10, r4
-ARM GAS  /tmp/ccuJHCpP.s 			page 48
+ARM GAS  /tmp/ccesW9UQ.s 			page 48
 
 
  2044 00d6 04EB0413 		add	r3, r4, r4, lsl #4
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2086              	.LVL270:
  2087              	.L130:
  539:MyHardWare/Src/lcd.c **** 	}
-ARM GAS  /tmp/ccuJHCpP.s 			page 49
+ARM GAS  /tmp/ccesW9UQ.s 			page 49
 
 
  540:MyHardWare/Src/lcd.c **** } 
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2129              		.cfi_offset 14, -4
  2130 0004 89B0     		sub	sp, sp, #36
  2131              	.LCFI30:
-ARM GAS  /tmp/ccuJHCpP.s 			page 50
+ARM GAS  /tmp/ccesW9UQ.s 			page 50
 
 
  2132              		.cfi_def_cfa_offset 72
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  566:MyHardWare/Src/lcd.c **** 			LCD_Address_Set(x,y,x+sizey-1,y+sizey-1);
  567:MyHardWare/Src/lcd.c **** 			for(i=0;i<TypefaceNum;i++)
  568:MyHardWare/Src/lcd.c **** 			{
-ARM GAS  /tmp/ccuJHCpP.s 			page 51
+ARM GAS  /tmp/ccesW9UQ.s 			page 51
 
 
  569:MyHardWare/Src/lcd.c **** 				for(j=0;j<8;j++)
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2213 0066 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
  573:MyHardWare/Src/lcd.c **** 						else LCD_WR_DATA(bc);
  2214              		.loc 1 573 10 view .LVU536
-ARM GAS  /tmp/ccuJHCpP.s 			page 52
+ARM GAS  /tmp/ccesW9UQ.s 			page 52
 
 
  2215 0068 2B41     		asrs	r3, r3, r5
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2254              		.loc 1 589 9 is_stmt 0 view .LVU551
  2255 009c 039B     		ldr	r3, [sp, #12]
  2256 009e 0133     		adds	r3, r3, #1
-ARM GAS  /tmp/ccuJHCpP.s 			page 53
+ARM GAS  /tmp/ccesW9UQ.s 			page 53
 
 
  2257 00a0 9BB2     		uxth	r3, r3
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  594:MyHardWare/Src/lcd.c **** 			}
  595:MyHardWare/Src/lcd.c **** 		}				  	
  596:MyHardWare/Src/lcd.c **** 		continue;  //查找到对应点阵字库立即退出，防止多个汉字重复取模带来影响
-ARM GAS  /tmp/ccuJHCpP.s 			page 54
+ARM GAS  /tmp/ccesW9UQ.s 			page 54
 
 
  2299              		.loc 1 596 3 is_stmt 1 view .LVU561
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2340 010a 013A     		subs	r2, r2, #1
  2341 010c 9BB2     		uxth	r3, r3
  2342 010e 92B2     		uxth	r2, r2
-ARM GAS  /tmp/ccuJHCpP.s 			page 55
+ARM GAS  /tmp/ccesW9UQ.s 			page 55
 
 
  2343 0110 4046     		mov	r0, r8
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2381              		.loc 1 611 1 is_stmt 1 view -0
  2382              		.cfi_startproc
  2383              		@ args = 12, pretend = 0, frame = 32
-ARM GAS  /tmp/ccuJHCpP.s 			page 56
+ARM GAS  /tmp/ccesW9UQ.s 			page 56
 
 
  2384              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2430 002c 8046     		mov	r8, r0
  2431              		.loc 1 619 7 view .LVU595
  2432 002e 0024     		movs	r4, #0
-ARM GAS  /tmp/ccuJHCpP.s 			page 57
+ARM GAS  /tmp/ccesW9UQ.s 			page 57
 
 
  612:MyHardWare/Src/lcd.c **** 	u16 k;
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2469 0054 072C     		cmp	r4, #7
  2470 0056 27D8     		bhi	.L162
  628:MyHardWare/Src/lcd.c **** 					{
-ARM GAS  /tmp/ccuJHCpP.s 			page 58
+ARM GAS  /tmp/ccesW9UQ.s 			page 58
 
 
  2471              		.loc 1 628 6 view .LVU608
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2510 0092 1FFA88F8 		uxth	r8, r8
  2511              	.LVL310:
  643:MyHardWare/Src/lcd.c **** 						if((x-x0)==sizey)
-ARM GAS  /tmp/ccuJHCpP.s 			page 59
+ARM GAS  /tmp/ccesW9UQ.s 			page 59
 
 
  2512              		.loc 1 643 7 is_stmt 1 view .LVU622
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2556              	.LVL317:
  635:MyHardWare/Src/lcd.c **** 							break;
  2557              		.loc 1 635 9 view .LVU635
-ARM GAS  /tmp/ccuJHCpP.s 			page 60
+ARM GAS  /tmp/ccesW9UQ.s 			page 60
 
 
  2558 00c8 EEE7     		b	.L162
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  623:MyHardWare/Src/lcd.c **** 			for(i=0;i<TypefaceNum;i++)
  2596              		.loc 1 623 4 is_stmt 1 view .LVU647
  623:MyHardWare/Src/lcd.c **** 			for(i=0;i<TypefaceNum;i++)
-ARM GAS  /tmp/ccuJHCpP.s 			page 61
+ARM GAS  /tmp/ccesW9UQ.s 			page 61
 
 
  2597              		.loc 1 623 25 is_stmt 0 view .LVU648
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2646              	.LFB137:
  414:MyHardWare/Src/lcd.c **** 	while(*s!=0)
  2647              		.loc 1 414 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccuJHCpP.s 			page 62
+ARM GAS  /tmp/ccesW9UQ.s 			page 62
 
 
  2648              		.cfi_startproc
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2694              		.loc 1 423 4 is_stmt 0 view .LVU664
  2695 0034 3444     		add	r4, r4, r6
  2696              	.LVL328:
-ARM GAS  /tmp/ccuJHCpP.s 			page 63
+ARM GAS  /tmp/ccesW9UQ.s 			page 63
 
 
  423:MyHardWare/Src/lcd.c **** 	}
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2745 00b0 2046     		mov	r0, r4
  2746 00b2 FFF7FEFF 		bl	LCD_ShowChinese16x16
  2747              	.LVL330:
-ARM GAS  /tmp/ccuJHCpP.s 			page 64
+ARM GAS  /tmp/ccesW9UQ.s 			page 64
 
 
  2748 00b6 BCE7     		b	.L185
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  662:MyHardWare/Src/lcd.c ****                 fc 字的颜色
  663:MyHardWare/Src/lcd.c ****                 bc 字的背景色
  664:MyHardWare/Src/lcd.c ****                 sizey 字号
-ARM GAS  /tmp/ccuJHCpP.s 			page 65
+ARM GAS  /tmp/ccesW9UQ.s 			page 65
 
 
  665:MyHardWare/Src/lcd.c ****                 mode:  0非叠加模式  1叠加模式
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2838              		.loc 1 674 13 view .LVU686
  2839 002a 03FB0BF3 		mul	r3, r3, fp
  2840 002e 0293     		str	r3, [sp, #8]
-ARM GAS  /tmp/ccuJHCpP.s 			page 66
+ARM GAS  /tmp/ccesW9UQ.s 			page 66
 
 
  2841              	.LVL337:
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  683:MyHardWare/Src/lcd.c **** 		else return;
  684:MyHardWare/Src/lcd.c **** 		for(t=0;t<8;t++)
  2886              		.loc 1 684 3 is_stmt 1 view .LVU701
-ARM GAS  /tmp/ccuJHCpP.s 			page 67
+ARM GAS  /tmp/ccesW9UQ.s 			page 67
 
 
  2887              		.loc 1 684 8 is_stmt 0 view .LVU702
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  2927              		.loc 1 689 10 is_stmt 1 view .LVU713
  2928 009e 0198     		ldr	r0, [sp, #4]
  2929 00a0 FFF7FEFF 		bl	LCD_WR_DATA
-ARM GAS  /tmp/ccuJHCpP.s 			page 68
+ARM GAS  /tmp/ccesW9UQ.s 			page 68
 
 
  2930              	.LVL350:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  692:MyHardWare/Src/lcd.c **** 				{
  693:MyHardWare/Src/lcd.c **** 					m=0;
  694:MyHardWare/Src/lcd.c **** 					break;
-ARM GAS  /tmp/ccuJHCpP.s 			page 69
+ARM GAS  /tmp/ccesW9UQ.s 			page 69
 
 
  695:MyHardWare/Src/lcd.c **** 				}
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3013 00fe 029B     		ldr	r3, [sp, #8]
  3014 0100 9B45     		cmp	fp, r3
  3015 0102 39D2     		bcs	.L189
-ARM GAS  /tmp/ccuJHCpP.s 			page 70
+ARM GAS  /tmp/ccesW9UQ.s 			page 70
 
 
  679:MyHardWare/Src/lcd.c **** 		else if(sizey==16)temp=ascii_1608[num][i];		 //调用8x16字体
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  708:MyHardWare/Src/lcd.c **** 		}
  709:MyHardWare/Src/lcd.c **** 	}   	 	  
  710:MyHardWare/Src/lcd.c **** }
-ARM GAS  /tmp/ccuJHCpP.s 			page 71
+ARM GAS  /tmp/ccesW9UQ.s 			page 71
 
 
  3064              		.loc 1 710 1 view .LVU749
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3106              		.cfi_offset 8, -16
  3107              		.cfi_offset 9, -12
  3108              		.cfi_offset 10, -8
-ARM GAS  /tmp/ccuJHCpP.s 			page 72
+ARM GAS  /tmp/ccesW9UQ.s 			page 72
 
 
  3109              		.cfi_offset 14, -4
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3153 003e 04B0     		add	sp, sp, #16
  3154              	.LCFI43:
  3155              		.cfi_def_cfa_offset 32
-ARM GAS  /tmp/ccuJHCpP.s 			page 73
+ARM GAS  /tmp/ccesW9UQ.s 			page 73
 
 
  3156              		@ sp needed
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3200 000e DBB2     		uxtb	r3, r3
  3201              	.LVL380:
  3202              		.loc 1 742 8 discriminator 1 view .LVU778
-ARM GAS  /tmp/ccuJHCpP.s 			page 74
+ARM GAS  /tmp/ccesW9UQ.s 			page 74
 
 
  3203 0010 0029     		cmp	r1, #0
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3243 000a 9246     		mov	r10, r2
  3244 000c 1D46     		mov	r5, r3
  3245 000e BDF840B0 		ldrh	fp, [sp, #64]
-ARM GAS  /tmp/ccuJHCpP.s 			page 75
+ARM GAS  /tmp/ccesW9UQ.s 			page 75
 
 
  3246 0012 BDF84430 		ldrh	r3, [sp, #68]
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  772:MyHardWare/Src/lcd.c **** 		 	 
  773:MyHardWare/Src/lcd.c **** 		}
  774:MyHardWare/Src/lcd.c **** 	 	LCD_ShowChar(x+t*sizex,y,temp+48,fc,bc,sizey,0);
-ARM GAS  /tmp/ccuJHCpP.s 			page 76
+ARM GAS  /tmp/ccesW9UQ.s 			page 76
 
 
  3286              		.loc 1 774 4 view .LVU795
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3332 0084 A0EB4202 		sub	r2, r0, r2, lsl #1
  764:MyHardWare/Src/lcd.c **** 		if(enshow==0&&t<(len-1))
  3333              		.loc 1 764 7 discriminator 1 view .LVU806
-ARM GAS  /tmp/ccuJHCpP.s 			page 77
+ARM GAS  /tmp/ccesW9UQ.s 			page 77
 
 
  3334 0088 D2B2     		uxtb	r2, r2
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3380              	.LFB146:
  777:MyHardWare/Src/lcd.c **** 
  778:MyHardWare/Src/lcd.c **** 
-ARM GAS  /tmp/ccuJHCpP.s 			page 78
+ARM GAS  /tmp/ccesW9UQ.s 			page 78
 
 
  779:MyHardWare/Src/lcd.c **** /******************************************************************************
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3419 0022 BCEEC00A 		vcvt.u32.f32	s0, s0
  3420 0026 10EE103A 		vmov	r3, s0	@ int
  3421              	.LVL402:
-ARM GAS  /tmp/ccuJHCpP.s 			page 79
+ARM GAS  /tmp/ccesW9UQ.s 			page 79
 
 
  3422              		.loc 1 794 6 view .LVU826
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3461 005e 711B     		subs	r1, r6, r5
  3462 0060 C9B2     		uxtb	r1, r1
  797:MyHardWare/Src/lcd.c **** 		if(t==(len-2))
-ARM GAS  /tmp/ccuJHCpP.s 			page 80
+ARM GAS  /tmp/ccesW9UQ.s 			page 80
 
 
  3463              		.loc 1 797 14 view .LVU836
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3506              		.loc 1 802 4 is_stmt 1 view .LVU847
  802:MyHardWare/Src/lcd.c **** 		}
  3507              		.loc 1 802 7 is_stmt 0 view .LVU848
-ARM GAS  /tmp/ccuJHCpP.s 			page 81
+ARM GAS  /tmp/ccesW9UQ.s 			page 81
 
 
  3508 00a8 0136     		adds	r6, r6, #1
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3548 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
  3549              	.LCFI50:
  3550              		.cfi_def_cfa_offset 32
-ARM GAS  /tmp/ccuJHCpP.s 			page 82
+ARM GAS  /tmp/ccesW9UQ.s 			page 82
 
 
  3551              		.cfi_offset 4, -32
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3596 0026 17F81500 		ldrb	r0, [r7, r5, lsl #1]	@ zero_extendqisi2
  3597 002a FFF7FEFF 		bl	LCD_WR_DATA8
  3598              	.LVL423:
-ARM GAS  /tmp/ccuJHCpP.s 			page 83
+ARM GAS  /tmp/ccesW9UQ.s 			page 83
 
 
  827:MyHardWare/Src/lcd.c **** 			LCD_WR_DATA8(pic[k*2+1]);
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3642              		.align	1
  3645              	LCD_H:
  3646 0000 0000     		.space	2
-ARM GAS  /tmp/ccuJHCpP.s 			page 84
+ARM GAS  /tmp/ccesW9UQ.s 			page 84
 
 
  3647              		.global	LCD_W
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3678      00000000 
  3678      80000000 
  3678      80
-ARM GAS  /tmp/ccuJHCpP.s 			page 85
+ARM GAS  /tmp/ccesW9UQ.s 			page 85
 
 
  3679 0091 03000080 		.ascii	"\003\000\000\200\001\000\004\200\201\377\017\200\001"
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3696      00
  3697 004a BAC3     		.ascii	"\272\303"
  3698 004c 00000000 		.ascii	"\000\000\000\000\000\000`\000\000`\000\000`\370\037"
-ARM GAS  /tmp/ccuJHCpP.s 			page 86
+ARM GAS  /tmp/ccesW9UQ.s 			page 86
 
 
  3698      00006000 
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3719      88
  3720 0075 08F80F40 		.ascii	"\010\370\017@\0010\006,\032#b \002\020\002\020\002\010"
  3720      0130062C 
-ARM GAS  /tmp/ccuJHCpP.s 			page 87
+ARM GAS  /tmp/ccesW9UQ.s 			page 87
 
 
  3720      1A236220 
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3746      00
  3747 005a 80008000 		.ascii	"\200\000\200\000\200\000\200\000\200\000\200\000\000"
  3747      80008000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 88
+ARM GAS  /tmp/ccesW9UQ.s 			page 88
 
 
  3747      80008000 
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3761      01C0
  3762 011f 03800700 		.ascii	"\003\200\007\000\017\000\035\0009\0001\0341\0341\014"
  3762      0F001D00 
-ARM GAS  /tmp/ccuJHCpP.s 			page 89
+ARM GAS  /tmp/ccesW9UQ.s 			page 89
 
 
  3762      3900311C 
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3777      00000000 
  3777      00000000 
  3777      00
-ARM GAS  /tmp/ccuJHCpP.s 			page 90
+ARM GAS  /tmp/ccesW9UQ.s 			page 90
 
 
  3778 01f7 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000"
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3792      00000000 
  3792      00000000 
  3792      00
-ARM GAS  /tmp/ccuJHCpP.s 			page 91
+ARM GAS  /tmp/ccesW9UQ.s 			page 91
 
 
  3793 02bb 00000000 		.ascii	"\000\000\000\000\000"
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3807      00000000 
  3807      00
  3808 0374 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 92
+ARM GAS  /tmp/ccesW9UQ.s 			page 92
 
 
  3808      00000000 
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3822      00000000 
  3822      0000
  3823 0440 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 93
+ARM GAS  /tmp/ccesW9UQ.s 			page 93
 
 
  3823      00000000 
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3837      00
  3838 0500 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
  3838      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 94
+ARM GAS  /tmp/ccesW9UQ.s 			page 94
 
 
  3838      00000000 
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3852      00000000 
  3852      00000000 
  3852      F8
-ARM GAS  /tmp/ccuJHCpP.s 			page 95
+ARM GAS  /tmp/ccesW9UQ.s 			page 95
 
 
  3853 05cd 3FF83F1C 		.ascii	"?\370?\034\020\014\010\004\010\004\004\000\004\000\002"
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3867      00000000 
  3867      00
  3868 068d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 96
+ARM GAS  /tmp/ccesW9UQ.s 			page 96
 
 
  3868      00000000 
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3882      00
  3883 074d 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
  3883      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 97
+ARM GAS  /tmp/ccesW9UQ.s 			page 97
 
 
  3883      00000000 
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3898 080d 07601810 		.ascii	"\007`\030\0200\030 \014/\214M\206L\306L\306LfLfDfDf"
  3898      3018200C 
  3898      2F8C4D86 
-ARM GAS  /tmp/ccuJHCpP.s 			page 98
+ARM GAS  /tmp/ccesW9UQ.s 			page 98
 
 
  3898      4CC64CC6 
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3912      00060006 
  3912      0006
  3913 08df 00060006 		.ascii	"\000\006\000\006\000\006\000\006\000\006\000\014@\014"
-ARM GAS  /tmp/ccuJHCpP.s 			page 99
+ARM GAS  /tmp/ccesW9UQ.s 			page 99
 
 
  3913      00060006 
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3928 099c 1818F81F 		.ascii	"\030\030\370\037\030\030\030\020\030\020\030\000\030"
  3928      18181810 
  3928      18101800 
-ARM GAS  /tmp/ccuJHCpP.s 			page 100
+ARM GAS  /tmp/ccesW9UQ.s 			page 100
 
 
  3928      18
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3943      80018001 
  3943      80
  3944 0a67 01800180 		.ascii	"\001\200\001\200\001\200\001\200\001\200\001\200\001"
-ARM GAS  /tmp/ccuJHCpP.s 			page 101
+ARM GAS  /tmp/ccesW9UQ.s 			page 101
 
 
  3944      01800180 
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3958      00
  3959 0b28 18001800 		.ascii	"\030\000\030\000\030@\030@\030 \0300\376?\000\000\000"
  3959      18401840 
-ARM GAS  /tmp/ccuJHCpP.s 			page 102
+ARM GAS  /tmp/ccesW9UQ.s 			page 102
 
 
  3959      18201830 
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3973      00000000 
  3973      00000000 
  3973      0000
-ARM GAS  /tmp/ccuJHCpP.s 			page 103
+ARM GAS  /tmp/ccesW9UQ.s 			page 103
 
 
  3974 0c00 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\376"
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  3987      0000
  3988 0cc0 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\340"
  3988      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 104
+ARM GAS  /tmp/ccesW9UQ.s 			page 104
 
 
  3988      00000000 
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4002 0d80 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000>\370"
  4002      00000000 
  4002      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 105
+ARM GAS  /tmp/ccesW9UQ.s 			page 105
 
 
  4002      3EF8
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4017      00000000 
  4017      7E7C1C
  4018 0e4f 10181018 		.ascii	"\020\030\020\030\0100\0100\014p\004`\004`\002\300\002"
-ARM GAS  /tmp/ccuJHCpP.s 			page 106
+ARM GAS  /tmp/ccesW9UQ.s 			page 106
 
 
  4018      08300830 
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4032      00300020 
  4032      00600060 
  4032      004000C0 
-ARM GAS  /tmp/ccuJHCpP.s 			page 107
+ARM GAS  /tmp/ccesW9UQ.s 			page 107
 
 
  4032      00
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4047      00000000 
  4047      00000000 
  4047      00
-ARM GAS  /tmp/ccuJHCpP.s 			page 108
+ARM GAS  /tmp/ccesW9UQ.s 			page 108
 
 
  4048 0fda 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4062      00180018 
  4062      00180018 
  4062      00
-ARM GAS  /tmp/ccuJHCpP.s 			page 109
+ARM GAS  /tmp/ccesW9UQ.s 			page 109
 
 
  4063 109a 180FD818 		.ascii	"\030\017\330\030808`\030`\030`\030`\030`\030`\030`\030"
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4077      00000000 
  4077      00
  4078 115a C007300C 		.ascii	"\300\0070\014\030\030\010\020\0140\0140\374?\014\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 110
+ARM GAS  /tmp/ccesW9UQ.s 			page 110
 
 
  4078      18180810 
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4093 121a 980FD818 		.ascii	"\230\017\330\03080\0300\0300\0300\0300\0300\0300\030"
  4093      38301830 
  4093      18301830 
-ARM GAS  /tmp/ccuJHCpP.s 			page 111
+ARM GAS  /tmp/ccesW9UQ.s 			page 111
 
 
  4093      18301830 
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4108 12da 183E180C 		.ascii	"\030>\030\014\030\006\030\003\030\001\230\001\330\001"
  4108      18061803 
  4108      18019801 
-ARM GAS  /tmp/ccuJHCpP.s 			page 112
+ARM GAS  /tmp/ccesW9UQ.s 			page 112
 
 
  4108      D801
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4123 139a 1E0FD818 		.ascii	"\036\017\330\03080\0300\0300\0300\0300\0300\0300\030"
  4123      38301830 
  4123      18301830 
-ARM GAS  /tmp/ccuJHCpP.s 			page 113
+ARM GAS  /tmp/ccesW9UQ.s 			page 113
 
 
  4123      18301830 
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4137      0C300C30 
  4137      0C300C30 
  4137      0C300C30 
-ARM GAS  /tmp/ccuJHCpP.s 			page 114
+ARM GAS  /tmp/ccesW9UQ.s 			page 114
 
 
  4138 146f 30183830 		.ascii	"0\03080<\3403\0000\0000\0000\0000\000\374"
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4152 1527 00C000C0 		.ascii	"\000\300\000\300\000\300\000\300 \300 \200\021\000\017"
  4152      00C000C0 
  4152      20C02080 
-ARM GAS  /tmp/ccuJHCpP.s 			page 115
+ARM GAS  /tmp/ccesW9UQ.s 			page 115
 
 
  4152      11000F
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4167 15ec 700E700E 		.ascii	"p\016p\016p\016 \004 \004\000\000\000\000\000\000\000"
  4167      700E2004 
  4167      20040000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 116
+ARM GAS  /tmp/ccesW9UQ.s 			page 116
 
 
  4167      00000000 
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4182      00702030 
  4182      2038301C 
  4182      18FC1F00 
-ARM GAS  /tmp/ccuJHCpP.s 			page 117
+ARM GAS  /tmp/ccesW9UQ.s 			page 117
 
 
  4182      0000
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4196      20002000 
  4197 1777 00200010 		.ascii	"\000 \000\020\000\014\000\000\000"
  4197      000C0000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 118
+ARM GAS  /tmp/ccesW9UQ.s 			page 118
 
 
  4197      00
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4216      30039801 
  4216      88004400 
  4217 0070 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 119
+ARM GAS  /tmp/ccesW9UQ.s 			page 119
 
 
  4217      00000000 
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4232 0130 6C006C00 		.ascii	"l\000l\000,\000\230\007\034\001\032\0013\0013\001c\001"
  4232      2C009807 
  4232      1C011A01 
-ARM GAS  /tmp/ccuJHCpP.s 			page 120
+ARM GAS  /tmp/ccesW9UQ.s 			page 120
 
 
  4232      33013301 
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4245      5E0F460C 
  4245      4000
  4246 0200 40004000 		.ascii	"@\000@\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 121
+ARM GAS  /tmp/ccesW9UQ.s 			page 121
 
 
  4246      00000000 
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4261      00000000 
  4261      00
  4262 02ba 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\034\000\034"
-ARM GAS  /tmp/ccuJHCpP.s 			page 122
+ARM GAS  /tmp/ccesW9UQ.s 			page 122
 
 
  4262      00000000 
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4276      03000180 
  4276      01
  4277 037a C0006000 		.ascii	"\300\000`\000 \000\020\000\010\002\004\002\006\002\376"
-ARM GAS  /tmp/ccuJHCpP.s 			page 123
+ARM GAS  /tmp/ccesW9UQ.s 			page 123
 
 
  4277      20001000 
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4292      00040006 
  4292      00E60116 
  4292      03
-ARM GAS  /tmp/ccuJHCpP.s 			page 124
+ARM GAS  /tmp/ccesW9UQ.s 			page 124
 
 
  4293 043a 0E060606 		.ascii	"\016\006\006\006\006\006\006\006\004\006\014\002\030"
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4308 04ed 00000000 		.ascii	"\000\000\000\000\000\000\000\340\000\340\000\340\000"
  4308      000000E0 
  4308      00E000E0 
-ARM GAS  /tmp/ccuJHCpP.s 			page 125
+ARM GAS  /tmp/ccesW9UQ.s 			page 125
 
 
  4308      00
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4323      10
  4324 05ad 00200040 		.ascii	"\000 \000@\000\200\000\000\001\000\002\000\004\000\002"
  4324      00800000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 126
+ARM GAS  /tmp/ccesW9UQ.s 			page 126
 
 
  4324      01000200 
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4340 066d 030C030C 		.ascii	"\003\014\003\014\003\014\003\014\003\214\001\374\000"
  4340      030C030C 
  4340      038C01FC 
-ARM GAS  /tmp/ccuJHCpP.s 			page 127
+ARM GAS  /tmp/ccesW9UQ.s 			page 127
 
 
  4340      00
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4355      00000000 
  4355      0000FF03 
  4355      06
-ARM GAS  /tmp/ccuJHCpP.s 			page 128
+ARM GAS  /tmp/ccesW9UQ.s 			page 128
 
 
  4356 072d 03060406 		.ascii	"\003\006\004\006\004\006\000\206\000\206\000\376\000"
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4370 07e0 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\370\007\300"
  4370      00000000 
  4370      0000F807 
-ARM GAS  /tmp/ccuJHCpP.s 			page 129
+ARM GAS  /tmp/ccesW9UQ.s 			page 129
 
 
  4370      C0
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4385 089e 0000     		.ascii	"\000\000"
  4386 08a0 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\216\017\014"
  4386      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 130
+ARM GAS  /tmp/ccesW9UQ.s 			page 130
 
 
  4386      00008E0F 
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4400      9801F0
  4401 0959 00800700 		.ascii	"\000\200\007\000\003\000\000"
  4401      030000
-ARM GAS  /tmp/ccuJHCpP.s 			page 131
+ARM GAS  /tmp/ccesW9UQ.s 			page 131
 
 
  4402 0960 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\377\001\006"
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4416      00000000 
  4416      00
  4417 0a20 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\017\007\006"
-ARM GAS  /tmp/ccuJHCpP.s 			page 132
+ARM GAS  /tmp/ccesW9UQ.s 			page 132
 
 
  4417      00000000 
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4432 0adc 00000000 		.ascii	"\000\000\000\000"
  4433 0ae0 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\374\007\014"
  4433      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 133
+ARM GAS  /tmp/ccesW9UQ.s 			page 133
 
 
  4433      0000FC07 
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4447      00000000 
  4447      0000
  4448 0bae 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 134
+ARM GAS  /tmp/ccesW9UQ.s 			page 134
 
 
  4448      00000000 
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4463      00000000 
  4463      08000E00 
  4463      0C
-ARM GAS  /tmp/ccuJHCpP.s 			page 135
+ARM GAS  /tmp/ccesW9UQ.s 			page 135
 
 
  4464 0c6d 000C000C 		.ascii	"\000\014\000\014\000\014\000\314\001<\003\034\006\014"
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4479 0d20 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\300\003`\006"
  4479      00000000 
  4479      0000C003 
-ARM GAS  /tmp/ccuJHCpP.s 			page 136
+ARM GAS  /tmp/ccesW9UQ.s 			page 136
 
 
  4479      6006
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4493      00000000 
  4493      0000C001 
  4493      C0
-ARM GAS  /tmp/ccuJHCpP.s 			page 137
+ARM GAS  /tmp/ccesW9UQ.s 			page 137
 
 
  4494 0ded 01000000 		.ascii	"\001\000\000\000\000\000\001\360\001\200\001\200\001"
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4508      00
  4509 0ead 00000000 		.ascii	"\000\000\000\000\000\000\000\356\001\034\003\014\003"
  4509      000000EE 
-ARM GAS  /tmp/ccuJHCpP.s 			page 138
+ARM GAS  /tmp/ccesW9UQ.s 			page 138
 
 
  4509      011C030C 
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4524      00000000 
  4524      00000000 
  4524      00
-ARM GAS  /tmp/ccuJHCpP.s 			page 139
+ARM GAS  /tmp/ccesW9UQ.s 			page 139
 
 
  4525 0f6d 00000000 		.ascii	"\000\000\000\000\000\000\000\237\003X\0068\006\030\000"
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4539      00000000 
  4539      00
  4540 102d 00000000 		.ascii	"\000\000\000\000\000\000\000\036\007\014\002\010\001"
-ARM GAS  /tmp/ccuJHCpP.s 			page 140
+ARM GAS  /tmp/ccesW9UQ.s 			page 140
 
 
  4540      0000001E 
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4555      00
  4556 10ed 00000000 		.ascii	"\000\000\000\000\000\000\000\374\001\204\001\304\000"
  4556      000000FC 
-ARM GAS  /tmp/ccuJHCpP.s 			page 141
+ARM GAS  /tmp/ccesW9UQ.s 			page 141
 
 
  4556      018401C4 
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4571      00000000 
  4571      00
  4572 11bb 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 142
+ARM GAS  /tmp/ccesW9UQ.s 			page 142
 
 
  4572      00000000 
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4595 009d 040200   		.ascii	"\004\002\000"
  4596 00a0 00000000 		.ascii	"\000\000\000\000\010\010k\034\034k\010\010\000\000\000"
  4596      08086B1C 
-ARM GAS  /tmp/ccuJHCpP.s 			page 143
+ARM GAS  /tmp/ccesW9UQ.s 			page 143
 
 
  4596      1C6B0808 
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4614      26424242 
  4614      24180000 
  4615 0170 0000007E 		.ascii	"\000\000\000~\"\"\020\020\010\010\010\010\010\010\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 144
+ARM GAS  /tmp/ccesW9UQ.s 			page 144
 
 
  4615      22221010 
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4632      01010142 
  4632      221C0000 
  4633 0240 0000001F 		.ascii	"\000\000\000\037\"BBBBBBB\"\037\000\000"
-ARM GAS  /tmp/ccuJHCpP.s 			page 145
+ARM GAS  /tmp/ccesW9UQ.s 			page 145
 
 
  4633      22424242 
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4649      02070000 
  4650 0310 0000001C 		.ascii	"\000\000\000\034\"AAAAAMS2\034`\000"
  4650      22414141 
-ARM GAS  /tmp/ccuJHCpP.s 			page 146
+ARM GAS  /tmp/ccesW9UQ.s 			page 146
 
 
  4650      41414D53 
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4667 03e0 00384400 		.ascii	"\0008D\000\000\000\000\000\000\000\000\000\000\000\000"
  4667      00000000 
  4667      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 147
+ARM GAS  /tmp/ccesW9UQ.s 			page 147
 
 
  4667      000000
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4685 04b0 00000003 		.ascii	"\000\000\000\003\002\002\002r\022\012\026\022\"w\000"
  4685      02020272 
  4685      120A1612 
-ARM GAS  /tmp/ccuJHCpP.s 			page 148
+ARM GAS  /tmp/ccesW9UQ.s 			page 148
 
 
  4685      227700
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4703      22220000 
  4704 0580 00000000 		.ascii	"\000\000\000\000\000\000\000v$\030\030\030$n\000\000"
  4704      00000076 
-ARM GAS  /tmp/ccuJHCpP.s 			page 149
+ARM GAS  /tmp/ccesW9UQ.s 			page 149
 
 
  4704      24181818 
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4727      29160000 
  4728 0054 02020100 		.ascii	"\002\002\001\000\000\000\000\000\000\000\000\000"
  4728      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 150
+ARM GAS  /tmp/ccesW9UQ.s 			page 150
 
 
  4728      00000000 
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4746      09060000 
  4747 0138 00000000 		.ascii	"\000\000\000\000\004\000\000\000\000\004\000\000"
  4747      04000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 151
+ARM GAS  /tmp/ccesW9UQ.s 			page 151
 
 
  4747      00040000 
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4765      223F0000 
  4766 021c 00003B1B 		.ascii	"\000\000;\033\033\033\025\025\0255\000\000"
  4766      1B1B1515 
-ARM GAS  /tmp/ccuJHCpP.s 			page 152
+ARM GAS  /tmp/ccesW9UQ.s 			page 152
 
 
  4766      15350000 
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4784      0000003F 
  4785 0300 02040000 		.ascii	"\002\004\000\000\000\000\000\000\000\000\000\000"
  4785      00000000 
-ARM GAS  /tmp/ccuJHCpP.s 			page 153
+ARM GAS  /tmp/ccesW9UQ.s 			page 153
 
 
  4785      00000000 
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4803      02070000 
  4804 03e4 00000000 		.ascii	"\000\000\000\000\000\036\002\014\020\036\000\000"
  4804      001E020C 
-ARM GAS  /tmp/ccuJHCpP.s 			page 154
+ARM GAS  /tmp/ccesW9UQ.s 			page 154
 
 
  4804      101E0000 
@@ -9224,104 +9224,104 @@ ARM GAS  /tmp/ccuJHCpP.s 			page 1
  4822              		.file 6 "MyHardWare/Inc/lcdfont.h"
  4823              		.file 7 "MyHardWare/Inc/delay.h"
  4824              		.file 8 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
-ARM GAS  /tmp/ccuJHCpP.s 			page 155
+ARM GAS  /tmp/ccesW9UQ.s 			page 155
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 lcd.c
-     /tmp/ccuJHCpP.s:21     .text.LCD_GPIO_Init:00000000 $t
-     /tmp/ccuJHCpP.s:27     .text.LCD_GPIO_Init:00000000 LCD_GPIO_Init
-     /tmp/ccuJHCpP.s:87     .text.LCD_GPIO_Init:0000003c $d
-     /tmp/ccuJHCpP.s:92     .text.LCD_Writ_Bus:00000000 $t
-     /tmp/ccuJHCpP.s:98     .text.LCD_Writ_Bus:00000000 LCD_Writ_Bus
-     /tmp/ccuJHCpP.s:185    .text.LCD_Writ_Bus:00000050 $d
-     /tmp/ccuJHCpP.s:190    .text.LCD_WR_DATA8:00000000 $t
-     /tmp/ccuJHCpP.s:196    .text.LCD_WR_DATA8:00000000 LCD_WR_DATA8
-     /tmp/ccuJHCpP.s:218    .text.LCD_WR_DATA:00000000 $t
-     /tmp/ccuJHCpP.s:224    .text.LCD_WR_DATA:00000000 LCD_WR_DATA
-     /tmp/ccuJHCpP.s:255    .text.LCD_WR_REG:00000000 $t
-     /tmp/ccuJHCpP.s:261    .text.LCD_WR_REG:00000000 LCD_WR_REG
-     /tmp/ccuJHCpP.s:301    .text.LCD_WR_REG:00000020 $d
-     /tmp/ccuJHCpP.s:306    .text.LCD_Address_Set:00000000 $t
-     /tmp/ccuJHCpP.s:312    .text.LCD_Address_Set:00000000 LCD_Address_Set
-     /tmp/ccuJHCpP.s:500    .text.LCD_Address_Set:000000fc $d
-     /tmp/ccuJHCpP.s:3658   .bss.USE_HORIZONTAL:00000000 USE_HORIZONTAL
-     /tmp/ccuJHCpP.s:505    .text.LCD_direction:00000000 $t
-     /tmp/ccuJHCpP.s:511    .text.LCD_direction:00000000 LCD_direction
-     /tmp/ccuJHCpP.s:566    .text.LCD_direction:00000030 $d
-     /tmp/ccuJHCpP.s:3652   .bss.LCD_W:00000000 LCD_W
-     /tmp/ccuJHCpP.s:3645   .bss.LCD_H:00000000 LCD_H
-     /tmp/ccuJHCpP.s:573    .text.LCD_Init:00000000 $t
-     /tmp/ccuJHCpP.s:579    .text.LCD_Init:00000000 LCD_Init
-     /tmp/ccuJHCpP.s:960    .text.LCD_Init:00000220 $d
-     /tmp/ccuJHCpP.s:966    .text.LCD_Fill:00000000 $t
-     /tmp/ccuJHCpP.s:972    .text.LCD_Fill:00000000 LCD_Fill
-     /tmp/ccuJHCpP.s:1048   .text.LCD_clear:00000000 $t
-     /tmp/ccuJHCpP.s:1054   .text.LCD_clear:00000000 LCD_clear
-     /tmp/ccuJHCpP.s:1090   .text.LCD_clear:0000001c $d
-     /tmp/ccuJHCpP.s:1096   .text.LCD_DrawPoint:00000000 $t
-     /tmp/ccuJHCpP.s:1102   .text.LCD_DrawPoint:00000000 LCD_DrawPoint
-     /tmp/ccuJHCpP.s:1134   .text.LCD_DrawLine:00000000 $t
-     /tmp/ccuJHCpP.s:1140   .text.LCD_DrawLine:00000000 LCD_DrawLine
-     /tmp/ccuJHCpP.s:1344   .text.LCD_DrawRectangle:00000000 $t
-     /tmp/ccuJHCpP.s:1350   .text.LCD_DrawRectangle:00000000 LCD_DrawRectangle
-     /tmp/ccuJHCpP.s:1417   .text.Draw_Circle:00000000 $t
-     /tmp/ccuJHCpP.s:1423   .text.Draw_Circle:00000000 Draw_Circle
-     /tmp/ccuJHCpP.s:1570   .text.LCD_ShowChinese12x12:00000000 $t
-     /tmp/ccuJHCpP.s:1576   .text.LCD_ShowChinese12x12:00000000 LCD_ShowChinese12x12
-     /tmp/ccuJHCpP.s:1833   .text.LCD_ShowChinese12x12:0000012c $d
-     /tmp/ccuJHCpP.s:3727   .rodata.tfont12:00000000 tfont12
-     /tmp/ccuJHCpP.s:1838   .text.LCD_ShowChinese16x16:00000000 $t
-     /tmp/ccuJHCpP.s:1844   .text.LCD_ShowChinese16x16:00000000 LCD_ShowChinese16x16
-     /tmp/ccuJHCpP.s:2099   .text.LCD_ShowChinese16x16:00000130 $d
-     /tmp/ccuJHCpP.s:3708   .rodata.tfont16:00000000 tfont16
-     /tmp/ccuJHCpP.s:2104   .text.LCD_ShowChinese24x24:00000000 $t
-     /tmp/ccuJHCpP.s:2110   .text.LCD_ShowChinese24x24:00000000 LCD_ShowChinese24x24
-     /tmp/ccuJHCpP.s:2367   .text.LCD_ShowChinese24x24:0000012c $d
-     /tmp/ccuJHCpP.s:3691   .rodata.tfont24:00000000 tfont24
-     /tmp/ccuJHCpP.s:2372   .text.LCD_ShowChinese32x32:00000000 $t
-     /tmp/ccuJHCpP.s:2378   .text.LCD_ShowChinese32x32:00000000 LCD_ShowChinese32x32
-     /tmp/ccuJHCpP.s:2633   .text.LCD_ShowChinese32x32:00000130 $d
-     /tmp/ccuJHCpP.s:3665   .rodata.tfont32:00000000 tfont32
-     /tmp/ccuJHCpP.s:2638   .text.LCD_ShowChinese:00000000 $t
-ARM GAS  /tmp/ccuJHCpP.s 			page 156
+     /tmp/ccesW9UQ.s:21     .text.LCD_GPIO_Init:00000000 $t
+     /tmp/ccesW9UQ.s:27     .text.LCD_GPIO_Init:00000000 LCD_GPIO_Init
+     /tmp/ccesW9UQ.s:87     .text.LCD_GPIO_Init:0000003c $d
+     /tmp/ccesW9UQ.s:92     .text.LCD_Writ_Bus:00000000 $t
+     /tmp/ccesW9UQ.s:98     .text.LCD_Writ_Bus:00000000 LCD_Writ_Bus
+     /tmp/ccesW9UQ.s:185    .text.LCD_Writ_Bus:00000050 $d
+     /tmp/ccesW9UQ.s:190    .text.LCD_WR_DATA8:00000000 $t
+     /tmp/ccesW9UQ.s:196    .text.LCD_WR_DATA8:00000000 LCD_WR_DATA8
+     /tmp/ccesW9UQ.s:218    .text.LCD_WR_DATA:00000000 $t
+     /tmp/ccesW9UQ.s:224    .text.LCD_WR_DATA:00000000 LCD_WR_DATA
+     /tmp/ccesW9UQ.s:255    .text.LCD_WR_REG:00000000 $t
+     /tmp/ccesW9UQ.s:261    .text.LCD_WR_REG:00000000 LCD_WR_REG
+     /tmp/ccesW9UQ.s:301    .text.LCD_WR_REG:00000020 $d
+     /tmp/ccesW9UQ.s:306    .text.LCD_Address_Set:00000000 $t
+     /tmp/ccesW9UQ.s:312    .text.LCD_Address_Set:00000000 LCD_Address_Set
+     /tmp/ccesW9UQ.s:500    .text.LCD_Address_Set:000000fc $d
+     /tmp/ccesW9UQ.s:3658   .bss.USE_HORIZONTAL:00000000 USE_HORIZONTAL
+     /tmp/ccesW9UQ.s:505    .text.LCD_direction:00000000 $t
+     /tmp/ccesW9UQ.s:511    .text.LCD_direction:00000000 LCD_direction
+     /tmp/ccesW9UQ.s:566    .text.LCD_direction:00000030 $d
+     /tmp/ccesW9UQ.s:3652   .bss.LCD_W:00000000 LCD_W
+     /tmp/ccesW9UQ.s:3645   .bss.LCD_H:00000000 LCD_H
+     /tmp/ccesW9UQ.s:573    .text.LCD_Init:00000000 $t
+     /tmp/ccesW9UQ.s:579    .text.LCD_Init:00000000 LCD_Init
+     /tmp/ccesW9UQ.s:960    .text.LCD_Init:00000220 $d
+     /tmp/ccesW9UQ.s:966    .text.LCD_Fill:00000000 $t
+     /tmp/ccesW9UQ.s:972    .text.LCD_Fill:00000000 LCD_Fill
+     /tmp/ccesW9UQ.s:1048   .text.LCD_clear:00000000 $t
+     /tmp/ccesW9UQ.s:1054   .text.LCD_clear:00000000 LCD_clear
+     /tmp/ccesW9UQ.s:1090   .text.LCD_clear:0000001c $d
+     /tmp/ccesW9UQ.s:1096   .text.LCD_DrawPoint:00000000 $t
+     /tmp/ccesW9UQ.s:1102   .text.LCD_DrawPoint:00000000 LCD_DrawPoint
+     /tmp/ccesW9UQ.s:1134   .text.LCD_DrawLine:00000000 $t
+     /tmp/ccesW9UQ.s:1140   .text.LCD_DrawLine:00000000 LCD_DrawLine
+     /tmp/ccesW9UQ.s:1344   .text.LCD_DrawRectangle:00000000 $t
+     /tmp/ccesW9UQ.s:1350   .text.LCD_DrawRectangle:00000000 LCD_DrawRectangle
+     /tmp/ccesW9UQ.s:1417   .text.Draw_Circle:00000000 $t
+     /tmp/ccesW9UQ.s:1423   .text.Draw_Circle:00000000 Draw_Circle
+     /tmp/ccesW9UQ.s:1570   .text.LCD_ShowChinese12x12:00000000 $t
+     /tmp/ccesW9UQ.s:1576   .text.LCD_ShowChinese12x12:00000000 LCD_ShowChinese12x12
+     /tmp/ccesW9UQ.s:1833   .text.LCD_ShowChinese12x12:0000012c $d
+     /tmp/ccesW9UQ.s:3727   .rodata.tfont12:00000000 tfont12
+     /tmp/ccesW9UQ.s:1838   .text.LCD_ShowChinese16x16:00000000 $t
+     /tmp/ccesW9UQ.s:1844   .text.LCD_ShowChinese16x16:00000000 LCD_ShowChinese16x16
+     /tmp/ccesW9UQ.s:2099   .text.LCD_ShowChinese16x16:00000130 $d
+     /tmp/ccesW9UQ.s:3708   .rodata.tfont16:00000000 tfont16
+     /tmp/ccesW9UQ.s:2104   .text.LCD_ShowChinese24x24:00000000 $t
+     /tmp/ccesW9UQ.s:2110   .text.LCD_ShowChinese24x24:00000000 LCD_ShowChinese24x24
+     /tmp/ccesW9UQ.s:2367   .text.LCD_ShowChinese24x24:0000012c $d
+     /tmp/ccesW9UQ.s:3691   .rodata.tfont24:00000000 tfont24
+     /tmp/ccesW9UQ.s:2372   .text.LCD_ShowChinese32x32:00000000 $t
+     /tmp/ccesW9UQ.s:2378   .text.LCD_ShowChinese32x32:00000000 LCD_ShowChinese32x32
+     /tmp/ccesW9UQ.s:2633   .text.LCD_ShowChinese32x32:00000130 $d
+     /tmp/ccesW9UQ.s:3665   .rodata.tfont32:00000000 tfont32
+     /tmp/ccesW9UQ.s:2638   .text.LCD_ShowChinese:00000000 $t
+ARM GAS  /tmp/ccesW9UQ.s 			page 156
 
 
-     /tmp/ccuJHCpP.s:2644   .text.LCD_ShowChinese:00000000 LCD_ShowChinese
-     /tmp/ccuJHCpP.s:2715   .text.LCD_ShowChinese:0000004c $d
-     /tmp/ccuJHCpP.s:2736   .text.LCD_ShowChinese:000000a0 $t
-     /tmp/ccuJHCpP.s:2785   .text.LCD_ShowChar:00000000 $t
-     /tmp/ccuJHCpP.s:2791   .text.LCD_ShowChar:00000000 LCD_ShowChar
-     /tmp/ccuJHCpP.s:3025   .text.LCD_ShowChar:00000114 $d
-     /tmp/ccuJHCpP.s:3047   .text.LCD_ShowChar:00000168 $t
-     /tmp/ccuJHCpP.s:3077   .text.LCD_ShowChar:00000180 $d
-     /tmp/ccuJHCpP.s:4720   .rodata.ascii_1206:00000000 ascii_1206
-     /tmp/ccuJHCpP.s:4579   .rodata.ascii_1608:00000000 ascii_1608
-     /tmp/ccuJHCpP.s:4208   .rodata.ascii_2412:00000000 ascii_2412
-     /tmp/ccuJHCpP.s:3739   .rodata.ascii_3216:00000000 ascii_3216
-     /tmp/ccuJHCpP.s:3085   .text.LCD_ShowString:00000000 $t
-     /tmp/ccuJHCpP.s:3091   .text.LCD_ShowString:00000000 LCD_ShowString
-     /tmp/ccuJHCpP.s:3163   .text.mypow:00000000 $t
-     /tmp/ccuJHCpP.s:3169   .text.mypow:00000000 mypow
-     /tmp/ccuJHCpP.s:3212   .text.LCD_ShowIntNum:00000000 $t
-     /tmp/ccuJHCpP.s:3218   .text.LCD_ShowIntNum:00000000 LCD_ShowIntNum
-     /tmp/ccuJHCpP.s:3367   .text.LCD_ShowIntNum:000000a4 $d
-     /tmp/ccuJHCpP.s:3372   .text.LCD_ShowFloatNum1:00000000 $t
-     /tmp/ccuJHCpP.s:3378   .text.LCD_ShowFloatNum1:00000000 LCD_ShowFloatNum1
-     /tmp/ccuJHCpP.s:3528   .text.LCD_ShowFloatNum1:000000b4 $d
-     /tmp/ccuJHCpP.s:3534   .text.LCD_ShowPicture:00000000 $t
-     /tmp/ccuJHCpP.s:3540   .text.LCD_ShowPicture:00000000 LCD_ShowPicture
-     /tmp/ccuJHCpP.s:3642   .bss.LCD_H:00000000 $d
-     /tmp/ccuJHCpP.s:3649   .bss.LCD_W:00000000 $d
-     /tmp/ccuJHCpP.s:3659   .bss.USE_HORIZONTAL:00000000 $d
-     /tmp/ccuJHCpP.s:3662   .rodata.tfont32:00000000 $d
-     /tmp/ccuJHCpP.s:3688   .rodata.tfont24:00000000 $d
-     /tmp/ccuJHCpP.s:3705   .rodata.tfont16:00000000 $d
-     /tmp/ccuJHCpP.s:3724   .rodata.tfont12:00000000 $d
-     /tmp/ccuJHCpP.s:3736   .rodata.ascii_3216:00000000 $d
-     /tmp/ccuJHCpP.s:4205   .rodata.ascii_2412:00000000 $d
-     /tmp/ccuJHCpP.s:4576   .rodata.ascii_1608:00000000 $d
-     /tmp/ccuJHCpP.s:4717   .rodata.ascii_1206:00000000 $d
+     /tmp/ccesW9UQ.s:2644   .text.LCD_ShowChinese:00000000 LCD_ShowChinese
+     /tmp/ccesW9UQ.s:2715   .text.LCD_ShowChinese:0000004c $d
+     /tmp/ccesW9UQ.s:2736   .text.LCD_ShowChinese:000000a0 $t
+     /tmp/ccesW9UQ.s:2785   .text.LCD_ShowChar:00000000 $t
+     /tmp/ccesW9UQ.s:2791   .text.LCD_ShowChar:00000000 LCD_ShowChar
+     /tmp/ccesW9UQ.s:3025   .text.LCD_ShowChar:00000114 $d
+     /tmp/ccesW9UQ.s:3047   .text.LCD_ShowChar:00000168 $t
+     /tmp/ccesW9UQ.s:3077   .text.LCD_ShowChar:00000180 $d
+     /tmp/ccesW9UQ.s:4720   .rodata.ascii_1206:00000000 ascii_1206
+     /tmp/ccesW9UQ.s:4579   .rodata.ascii_1608:00000000 ascii_1608
+     /tmp/ccesW9UQ.s:4208   .rodata.ascii_2412:00000000 ascii_2412
+     /tmp/ccesW9UQ.s:3739   .rodata.ascii_3216:00000000 ascii_3216
+     /tmp/ccesW9UQ.s:3085   .text.LCD_ShowString:00000000 $t
+     /tmp/ccesW9UQ.s:3091   .text.LCD_ShowString:00000000 LCD_ShowString
+     /tmp/ccesW9UQ.s:3163   .text.mypow:00000000 $t
+     /tmp/ccesW9UQ.s:3169   .text.mypow:00000000 mypow
+     /tmp/ccesW9UQ.s:3212   .text.LCD_ShowIntNum:00000000 $t
+     /tmp/ccesW9UQ.s:3218   .text.LCD_ShowIntNum:00000000 LCD_ShowIntNum
+     /tmp/ccesW9UQ.s:3367   .text.LCD_ShowIntNum:000000a4 $d
+     /tmp/ccesW9UQ.s:3372   .text.LCD_ShowFloatNum1:00000000 $t
+     /tmp/ccesW9UQ.s:3378   .text.LCD_ShowFloatNum1:00000000 LCD_ShowFloatNum1
+     /tmp/ccesW9UQ.s:3528   .text.LCD_ShowFloatNum1:000000b4 $d
+     /tmp/ccesW9UQ.s:3534   .text.LCD_ShowPicture:00000000 $t
+     /tmp/ccesW9UQ.s:3540   .text.LCD_ShowPicture:00000000 LCD_ShowPicture
+     /tmp/ccesW9UQ.s:3642   .bss.LCD_H:00000000 $d
+     /tmp/ccesW9UQ.s:3649   .bss.LCD_W:00000000 $d
+     /tmp/ccesW9UQ.s:3659   .bss.USE_HORIZONTAL:00000000 $d
+     /tmp/ccesW9UQ.s:3662   .rodata.tfont32:00000000 $d
+     /tmp/ccesW9UQ.s:3688   .rodata.tfont24:00000000 $d
+     /tmp/ccesW9UQ.s:3705   .rodata.tfont16:00000000 $d
+     /tmp/ccesW9UQ.s:3724   .rodata.tfont12:00000000 $d
+     /tmp/ccesW9UQ.s:3736   .rodata.ascii_3216:00000000 $d
+     /tmp/ccesW9UQ.s:4205   .rodata.ascii_2412:00000000 $d
+     /tmp/ccesW9UQ.s:4576   .rodata.ascii_1608:00000000 $d
+     /tmp/ccesW9UQ.s:4717   .rodata.ascii_1206:00000000 $d
 
 UNDEFINED SYMBOLS
 RCC_AHB1PeriphClockCmd

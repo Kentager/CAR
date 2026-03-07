@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccnEebVj.s 			page 1
+ARM GAS  /tmp/ccSxrwSu.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
   28:Lib/StdPeriphs/src/stm32f4xx_dac.c ****     [..]
   29:Lib/StdPeriphs/src/stm32f4xx_dac.c ****     Digital to Analog conversion can be non-triggered using DAC_Trigger_None
   30:Lib/StdPeriphs/src/stm32f4xx_dac.c ****     and DAC_OUT1/DAC_OUT2 is available once writing to DHRx register 
-ARM GAS  /tmp/ccnEebVj.s 			page 2
+ARM GAS  /tmp/ccSxrwSu.s 			page 2
 
 
   31:Lib/StdPeriphs/src/stm32f4xx_dac.c ****     using DAC_SetChannel1Data() / DAC_SetChannel2Data() functions.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
   85:Lib/StdPeriphs/src/stm32f4xx_dac.c ****        =====================
   86:Lib/StdPeriphs/src/stm32f4xx_dac.c ****        [..]    
   87:Lib/StdPeriphs/src/stm32f4xx_dac.c ****        A DMA1 request can be generated when an external trigger (but not
-ARM GAS  /tmp/ccnEebVj.s 			page 3
+ARM GAS  /tmp/ccSxrwSu.s 			page 3
 
 
   88:Lib/StdPeriphs/src/stm32f4xx_dac.c ****        a software trigger) occurs if DMA1 requests are enabled using
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  142:Lib/StdPeriphs/src/stm32f4xx_dac.c **** /* DAC Dual Channels SWTRIG masks */
  143:Lib/StdPeriphs/src/stm32f4xx_dac.c **** #define DUAL_SWTRIG_SET            ((uint32_t)0x00000003)
  144:Lib/StdPeriphs/src/stm32f4xx_dac.c **** #define DUAL_SWTRIG_RESET          ((uint32_t)0xFFFFFFFC)
-ARM GAS  /tmp/ccnEebVj.s 			page 4
+ARM GAS  /tmp/ccSxrwSu.s 			page 4
 
 
  145:Lib/StdPeriphs/src/stm32f4xx_dac.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  185:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   RCC_APB1PeriphResetCmd(RCC_APB1Periph_DAC, DISABLE);
   43              		.loc 1 185 3 view .LVU2
   44 000c 0021     		movs	r1, #0
-ARM GAS  /tmp/ccnEebVj.s 			page 5
+ARM GAS  /tmp/ccSxrwSu.s 			page 5
 
 
   45 000e 4FF00050 		mov	r0, #536870912
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
   79              		.loc 1 207 3 view .LVU10
  208:Lib/StdPeriphs/src/stm32f4xx_dac.c **** 
  209:Lib/StdPeriphs/src/stm32f4xx_dac.c **** /*---------------------------- DAC CR Configuration --------------------------*/
-ARM GAS  /tmp/ccnEebVj.s 			page 6
+ARM GAS  /tmp/ccSxrwSu.s 			page 6
 
 
  210:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   /* Get the DAC CR value */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  116 0022 2360     		str	r3, [r4]
  117              	.LVL10:
  227:Lib/StdPeriphs/src/stm32f4xx_dac.c **** }
-ARM GAS  /tmp/ccnEebVj.s 			page 7
+ARM GAS  /tmp/ccSxrwSu.s 			page 7
 
 
  118              		.loc 1 227 1 view .LVU27
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  245:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   DAC_InitStruct->DAC_OutputBuffer = DAC_OutputBuffer_Enable;
  157              		.loc 1 245 3 is_stmt 1 view .LVU35
  158              		.loc 1 245 36 is_stmt 0 view .LVU36
-ARM GAS  /tmp/ccnEebVj.s 			page 8
+ARM GAS  /tmp/ccSxrwSu.s 			page 8
 
 
  159 0008 C360     		str	r3, [r0, #12]
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  192 0006 0122     		movs	r2, #1
  193 0008 8240     		lsls	r2, r2, r0
  194              		.loc 1 268 13 view .LVU47
-ARM GAS  /tmp/ccnEebVj.s 			page 9
+ARM GAS  /tmp/ccSxrwSu.s 			page 9
 
 
  195 000a 1343     		orrs	r3, r3, r2
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  231              		.loc 1 288 1 is_stmt 1 view -0
  232              		.cfi_startproc
  233              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccnEebVj.s 			page 10
+ARM GAS  /tmp/ccSxrwSu.s 			page 10
 
 
  234              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  303:Lib/StdPeriphs/src/stm32f4xx_dac.c **** }
  274              		.loc 1 303 1 view .LVU71
  275 0022 7047     		bx	lr
-ARM GAS  /tmp/ccnEebVj.s 			page 11
+ARM GAS  /tmp/ccSxrwSu.s 			page 11
 
 
  276              	.L17:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  311              		.loc 1 324 5 is_stmt 1 view .LVU79
  312              		.loc 1 324 8 is_stmt 0 view .LVU80
  313 000e 034A     		ldr	r2, .L21
-ARM GAS  /tmp/ccnEebVj.s 			page 12
+ARM GAS  /tmp/ccSxrwSu.s 			page 12
 
 
  314 0010 5368     		ldr	r3, [r2, #4]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  345              		.loc 1 349 3 view .LVU87
  346              		.loc 1 349 6 is_stmt 0 view .LVU88
  347 0000 2AB1     		cbz	r2, .L24
-ARM GAS  /tmp/ccnEebVj.s 			page 13
+ARM GAS  /tmp/ccSxrwSu.s 			page 13
 
 
  350:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   {
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  360:Lib/StdPeriphs/src/stm32f4xx_dac.c **** 
  361:Lib/StdPeriphs/src/stm32f4xx_dac.c **** /**
  362:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   * @brief  Set the specified data holding register value for DAC channel1.
-ARM GAS  /tmp/ccnEebVj.s 			page 14
+ARM GAS  /tmp/ccSxrwSu.s 			page 14
 
 
  363:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   * @param  DAC_Align: Specifies the data alignment for DAC channel1.
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  426              	.LCFI4:
  427              		.cfi_def_cfa_offset 0
  428              		@ sp needed
-ARM GAS  /tmp/ccnEebVj.s 			page 15
+ARM GAS  /tmp/ccSxrwSu.s 			page 15
 
 
  429 0018 7047     		bx	lr
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  465 0008 0193     		str	r3, [sp, #4]
  405:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   tmp += DHR12R2_OFFSET + DAC_Align;
  466              		.loc 1 405 3 is_stmt 1 view .LVU122
-ARM GAS  /tmp/ccnEebVj.s 			page 16
+ARM GAS  /tmp/ccSxrwSu.s 			page 16
 
 
  467              		.loc 1 405 7 is_stmt 0 view .LVU123
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  503              		@ frame_needed = 0, uses_anonymous_args = 0
  504              		@ link register save eliminated.
  426:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   uint32_t data = 0, tmp = 0;
-ARM GAS  /tmp/ccnEebVj.s 			page 17
+ARM GAS  /tmp/ccSxrwSu.s 			page 17
 
 
  505              		.loc 1 426 3 view .LVU129
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  534              		.loc 1 436 10 view .LVU145
  535 0012 F9E7     		b	.L38
  536              	.L41:
-ARM GAS  /tmp/ccnEebVj.s 			page 18
+ARM GAS  /tmp/ccSxrwSu.s 			page 18
 
 
  537              		.align	2
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  575 0010 2C33     		adds	r3, r3, #44
  576 0012 0193     		str	r3, [sp, #4]
  467:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   
-ARM GAS  /tmp/ccnEebVj.s 			page 19
+ARM GAS  /tmp/ccSxrwSu.s 			page 19
 
 
  468:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   /* Returns the DAC channel data output register value */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  494:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   *            @arg DAC_Channel_2: DAC Channel2 selected
  495:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   * @param  NewState: new state of the selected DAC channel DMA request.
  496:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   *          This parameter can be: ENABLE or DISABLE.
-ARM GAS  /tmp/ccnEebVj.s 			page 20
+ARM GAS  /tmp/ccSxrwSu.s 			page 20
 
 
  497:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   * @note   The DAC channel1 is mapped on DMA1 Stream 5 channel7 which must be
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  640 001a 8240     		lsls	r2, r2, r0
  641              		.loc 1 517 13 view .LVU173
  642 001c 23EA0203 		bic	r3, r3, r2
-ARM GAS  /tmp/ccnEebVj.s 			page 21
+ARM GAS  /tmp/ccSxrwSu.s 			page 21
 
 
  643 0020 0B60     		str	r3, [r1]
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  664              		.cfi_startproc
  665              		@ args = 0, pretend = 0, frame = 0
  666              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccnEebVj.s 			page 22
+ARM GAS  /tmp/ccSxrwSu.s 			page 22
 
 
  667              		@ link register save eliminated.
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  705              	.L54:
  706 001c 00740040 		.word	1073771520
  707              		.cfi_endproc
-ARM GAS  /tmp/ccnEebVj.s 			page 23
+ARM GAS  /tmp/ccSxrwSu.s 			page 23
 
 
  708              	.LFE135:
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  738              		.loc 1 594 15 view .LVU200
  739 000a 0120     		movs	r0, #1
  740              	.LVL50:
-ARM GAS  /tmp/ccnEebVj.s 			page 24
+ARM GAS  /tmp/ccSxrwSu.s 			page 24
 
 
  741              		.loc 1 594 15 view .LVU201
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  772              		@ link register save eliminated.
  620:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   /* Check the parameters */
  621:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   assert_param(IS_DAC_CHANNEL(DAC_Channel));
-ARM GAS  /tmp/ccnEebVj.s 			page 25
+ARM GAS  /tmp/ccSxrwSu.s 			page 25
 
 
  773              		.loc 1 621 3 view .LVU206
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  644:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   uint32_t enablestatus = 0;
  807              		.loc 1 644 3 view .LVU214
  645:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   
-ARM GAS  /tmp/ccnEebVj.s 			page 26
+ARM GAS  /tmp/ccSxrwSu.s 			page 26
 
 
  646:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   /* Check the parameters */
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  844              	.LVL62:
  663:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   }
  664:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   /* Return the DAC_IT status */
-ARM GAS  /tmp/ccnEebVj.s 			page 27
+ARM GAS  /tmp/ccSxrwSu.s 			page 27
 
 
  665:Lib/StdPeriphs/src/stm32f4xx_dac.c ****   return  bitstatus;
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  877 0002 014B     		ldr	r3, .L71
  878 0004 5963     		str	r1, [r3, #52]
  689:Lib/StdPeriphs/src/stm32f4xx_dac.c **** }
-ARM GAS  /tmp/ccnEebVj.s 			page 28
+ARM GAS  /tmp/ccSxrwSu.s 			page 28
 
 
  879              		.loc 1 689 1 view .LVU238
@@ -1635,60 +1635,60 @@ ARM GAS  /tmp/ccnEebVj.s 			page 1
  891              		.file 3 "CMSIS/stm32f4xx.h"
  892              		.file 4 "Lib/StdPeriphs/inc/stm32f4xx_dac.h"
  893              		.file 5 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
-ARM GAS  /tmp/ccnEebVj.s 			page 29
+ARM GAS  /tmp/ccSxrwSu.s 			page 29
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_dac.c
-     /tmp/ccnEebVj.s:21     .text.DAC_DeInit:00000000 $t
-     /tmp/ccnEebVj.s:27     .text.DAC_DeInit:00000000 DAC_DeInit
-     /tmp/ccnEebVj.s:54     .text.DAC_Init:00000000 $t
-     /tmp/ccnEebVj.s:60     .text.DAC_Init:00000000 DAC_Init
-     /tmp/ccnEebVj.s:128    .text.DAC_Init:00000028 $d
-     /tmp/ccnEebVj.s:133    .text.DAC_StructInit:00000000 $t
-     /tmp/ccnEebVj.s:139    .text.DAC_StructInit:00000000 DAC_StructInit
-     /tmp/ccnEebVj.s:166    .text.DAC_Cmd:00000000 $t
-     /tmp/ccnEebVj.s:172    .text.DAC_Cmd:00000000 DAC_Cmd
-     /tmp/ccnEebVj.s:217    .text.DAC_Cmd:00000020 $d
-     /tmp/ccnEebVj.s:222    .text.DAC_SoftwareTriggerCmd:00000000 $t
-     /tmp/ccnEebVj.s:228    .text.DAC_SoftwareTriggerCmd:00000000 DAC_SoftwareTriggerCmd
-     /tmp/ccnEebVj.s:279    .text.DAC_SoftwareTriggerCmd:00000024 $d
-     /tmp/ccnEebVj.s:284    .text.DAC_DualSoftwareTriggerCmd:00000000 $t
-     /tmp/ccnEebVj.s:290    .text.DAC_DualSoftwareTriggerCmd:00000000 DAC_DualSoftwareTriggerCmd
-     /tmp/ccnEebVj.s:323    .text.DAC_DualSoftwareTriggerCmd:0000001c $d
-     /tmp/ccnEebVj.s:328    .text.DAC_WaveGenerationCmd:00000000 $t
-     /tmp/ccnEebVj.s:334    .text.DAC_WaveGenerationCmd:00000000 DAC_WaveGenerationCmd
-     /tmp/ccnEebVj.s:380    .text.DAC_WaveGenerationCmd:0000001c $d
-     /tmp/ccnEebVj.s:385    .text.DAC_SetChannel1Data:00000000 $t
-     /tmp/ccnEebVj.s:391    .text.DAC_SetChannel1Data:00000000 DAC_SetChannel1Data
-     /tmp/ccnEebVj.s:433    .text.DAC_SetChannel1Data:0000001c $d
-     /tmp/ccnEebVj.s:438    .text.DAC_SetChannel2Data:00000000 $t
-     /tmp/ccnEebVj.s:444    .text.DAC_SetChannel2Data:00000000 DAC_SetChannel2Data
-     /tmp/ccnEebVj.s:486    .text.DAC_SetChannel2Data:0000001c $d
-     /tmp/ccnEebVj.s:491    .text.DAC_SetDualChannelData:00000000 $t
-     /tmp/ccnEebVj.s:497    .text.DAC_SetDualChannelData:00000000 DAC_SetDualChannelData
-     /tmp/ccnEebVj.s:539    .text.DAC_SetDualChannelData:00000014 $d
-     /tmp/ccnEebVj.s:544    .text.DAC_GetDataOutputValue:00000000 $t
-     /tmp/ccnEebVj.s:550    .text.DAC_GetDataOutputValue:00000000 DAC_GetDataOutputValue
-     /tmp/ccnEebVj.s:593    .text.DAC_GetDataOutputValue:00000020 $d
-     /tmp/ccnEebVj.s:598    .text.DAC_DMACmd:00000000 $t
-     /tmp/ccnEebVj.s:604    .text.DAC_DMACmd:00000000 DAC_DMACmd
-     /tmp/ccnEebVj.s:649    .text.DAC_DMACmd:00000024 $d
-     /tmp/ccnEebVj.s:654    .text.DAC_ITConfig:00000000 $t
-     /tmp/ccnEebVj.s:660    .text.DAC_ITConfig:00000000 DAC_ITConfig
-     /tmp/ccnEebVj.s:706    .text.DAC_ITConfig:0000001c $d
-     /tmp/ccnEebVj.s:711    .text.DAC_GetFlagStatus:00000000 $t
-     /tmp/ccnEebVj.s:717    .text.DAC_GetFlagStatus:00000000 DAC_GetFlagStatus
-     /tmp/ccnEebVj.s:754    .text.DAC_GetFlagStatus:00000014 $d
-     /tmp/ccnEebVj.s:759    .text.DAC_ClearFlag:00000000 $t
-     /tmp/ccnEebVj.s:765    .text.DAC_ClearFlag:00000000 DAC_ClearFlag
-     /tmp/ccnEebVj.s:787    .text.DAC_ClearFlag:00000008 $d
-     /tmp/ccnEebVj.s:792    .text.DAC_GetITStatus:00000000 $t
-     /tmp/ccnEebVj.s:798    .text.DAC_GetITStatus:00000000 DAC_GetITStatus
-     /tmp/ccnEebVj.s:851    .text.DAC_GetITStatus:0000001c $d
-     /tmp/ccnEebVj.s:856    .text.DAC_ClearITPendingBit:00000000 $t
-     /tmp/ccnEebVj.s:862    .text.DAC_ClearITPendingBit:00000000 DAC_ClearITPendingBit
-     /tmp/ccnEebVj.s:884    .text.DAC_ClearITPendingBit:00000008 $d
+     /tmp/ccSxrwSu.s:21     .text.DAC_DeInit:00000000 $t
+     /tmp/ccSxrwSu.s:27     .text.DAC_DeInit:00000000 DAC_DeInit
+     /tmp/ccSxrwSu.s:54     .text.DAC_Init:00000000 $t
+     /tmp/ccSxrwSu.s:60     .text.DAC_Init:00000000 DAC_Init
+     /tmp/ccSxrwSu.s:128    .text.DAC_Init:00000028 $d
+     /tmp/ccSxrwSu.s:133    .text.DAC_StructInit:00000000 $t
+     /tmp/ccSxrwSu.s:139    .text.DAC_StructInit:00000000 DAC_StructInit
+     /tmp/ccSxrwSu.s:166    .text.DAC_Cmd:00000000 $t
+     /tmp/ccSxrwSu.s:172    .text.DAC_Cmd:00000000 DAC_Cmd
+     /tmp/ccSxrwSu.s:217    .text.DAC_Cmd:00000020 $d
+     /tmp/ccSxrwSu.s:222    .text.DAC_SoftwareTriggerCmd:00000000 $t
+     /tmp/ccSxrwSu.s:228    .text.DAC_SoftwareTriggerCmd:00000000 DAC_SoftwareTriggerCmd
+     /tmp/ccSxrwSu.s:279    .text.DAC_SoftwareTriggerCmd:00000024 $d
+     /tmp/ccSxrwSu.s:284    .text.DAC_DualSoftwareTriggerCmd:00000000 $t
+     /tmp/ccSxrwSu.s:290    .text.DAC_DualSoftwareTriggerCmd:00000000 DAC_DualSoftwareTriggerCmd
+     /tmp/ccSxrwSu.s:323    .text.DAC_DualSoftwareTriggerCmd:0000001c $d
+     /tmp/ccSxrwSu.s:328    .text.DAC_WaveGenerationCmd:00000000 $t
+     /tmp/ccSxrwSu.s:334    .text.DAC_WaveGenerationCmd:00000000 DAC_WaveGenerationCmd
+     /tmp/ccSxrwSu.s:380    .text.DAC_WaveGenerationCmd:0000001c $d
+     /tmp/ccSxrwSu.s:385    .text.DAC_SetChannel1Data:00000000 $t
+     /tmp/ccSxrwSu.s:391    .text.DAC_SetChannel1Data:00000000 DAC_SetChannel1Data
+     /tmp/ccSxrwSu.s:433    .text.DAC_SetChannel1Data:0000001c $d
+     /tmp/ccSxrwSu.s:438    .text.DAC_SetChannel2Data:00000000 $t
+     /tmp/ccSxrwSu.s:444    .text.DAC_SetChannel2Data:00000000 DAC_SetChannel2Data
+     /tmp/ccSxrwSu.s:486    .text.DAC_SetChannel2Data:0000001c $d
+     /tmp/ccSxrwSu.s:491    .text.DAC_SetDualChannelData:00000000 $t
+     /tmp/ccSxrwSu.s:497    .text.DAC_SetDualChannelData:00000000 DAC_SetDualChannelData
+     /tmp/ccSxrwSu.s:539    .text.DAC_SetDualChannelData:00000014 $d
+     /tmp/ccSxrwSu.s:544    .text.DAC_GetDataOutputValue:00000000 $t
+     /tmp/ccSxrwSu.s:550    .text.DAC_GetDataOutputValue:00000000 DAC_GetDataOutputValue
+     /tmp/ccSxrwSu.s:593    .text.DAC_GetDataOutputValue:00000020 $d
+     /tmp/ccSxrwSu.s:598    .text.DAC_DMACmd:00000000 $t
+     /tmp/ccSxrwSu.s:604    .text.DAC_DMACmd:00000000 DAC_DMACmd
+     /tmp/ccSxrwSu.s:649    .text.DAC_DMACmd:00000024 $d
+     /tmp/ccSxrwSu.s:654    .text.DAC_ITConfig:00000000 $t
+     /tmp/ccSxrwSu.s:660    .text.DAC_ITConfig:00000000 DAC_ITConfig
+     /tmp/ccSxrwSu.s:706    .text.DAC_ITConfig:0000001c $d
+     /tmp/ccSxrwSu.s:711    .text.DAC_GetFlagStatus:00000000 $t
+     /tmp/ccSxrwSu.s:717    .text.DAC_GetFlagStatus:00000000 DAC_GetFlagStatus
+     /tmp/ccSxrwSu.s:754    .text.DAC_GetFlagStatus:00000014 $d
+     /tmp/ccSxrwSu.s:759    .text.DAC_ClearFlag:00000000 $t
+     /tmp/ccSxrwSu.s:765    .text.DAC_ClearFlag:00000000 DAC_ClearFlag
+     /tmp/ccSxrwSu.s:787    .text.DAC_ClearFlag:00000008 $d
+     /tmp/ccSxrwSu.s:792    .text.DAC_GetITStatus:00000000 $t
+     /tmp/ccSxrwSu.s:798    .text.DAC_GetITStatus:00000000 DAC_GetITStatus
+     /tmp/ccSxrwSu.s:851    .text.DAC_GetITStatus:0000001c $d
+     /tmp/ccSxrwSu.s:856    .text.DAC_ClearITPendingBit:00000000 $t
+     /tmp/ccSxrwSu.s:862    .text.DAC_ClearITPendingBit:00000000 DAC_ClearITPendingBit
+     /tmp/ccSxrwSu.s:884    .text.DAC_ClearITPendingBit:00000008 $d
 
 UNDEFINED SYMBOLS
 RCC_APB1PeriphResetCmd
