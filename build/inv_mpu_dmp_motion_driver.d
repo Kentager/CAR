@@ -17,7 +17,8 @@ build/inv_mpu_dmp_motion_driver.o: \
  Lib/StdPeriphs/inc/stm32f4xx_dac.h Lib/StdPeriphs/inc/stm32f4xx_dcmi.h \
  Lib/StdPeriphs/inc/stm32f4xx_fsmc.h \
  MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h MyHardWare/eMPL/dmpKey.h \
- MyHardWare/eMPL/dmpmap.h MyHardWare/Inc/usart.h MyHardWare/Inc/delay.h
+ MyHardWare/eMPL/dmpmap.h MyHardWare/Inc/usart.h \
+ MyHardWare/Inc/ring_buffer.h MyHardWare/Inc/delay.h
 MyHardWare/eMPL/inv_mpu.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
@@ -56,4 +57,5 @@ MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h:
 MyHardWare/eMPL/dmpKey.h:
 MyHardWare/eMPL/dmpmap.h:
 MyHardWare/Inc/usart.h:
+MyHardWare/Inc/ring_buffer.h:
 MyHardWare/Inc/delay.h:

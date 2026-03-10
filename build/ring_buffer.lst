@@ -1,0 +1,1121 @@
+ARM GAS  /tmp/ccvq0HJ5.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"ring_buffer.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "MyHardWare/Src/ring_buffer.c"
+  20              		.section	.text.RingBuffer_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	RingBuffer_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	RingBuffer_Init:
+  28              	.LVL0:
+  29              	.LFB0:
+   1:MyHardWare/Src/ring_buffer.c **** #include "ring_buffer.h"
+   2:MyHardWare/Src/ring_buffer.c **** #include <string.h>
+   3:MyHardWare/Src/ring_buffer.c **** 
+   4:MyHardWare/Src/ring_buffer.c **** /**
+   5:MyHardWare/Src/ring_buffer.c ****  * @brief  初始化环形缓冲区
+   6:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+   7:MyHardWare/Src/ring_buffer.c ****  * @param  buffer: 数据缓冲区指针
+   8:MyHardWare/Src/ring_buffer.c ****  * @param  size: 缓冲区大小
+   9:MyHardWare/Src/ring_buffer.c ****  * @retval 成功返回 1，失败返回 0
+  10:MyHardWare/Src/ring_buffer.c ****  */
+  11:MyHardWare/Src/ring_buffer.c **** uint8_t RingBuffer_Init(RingBuffer *rb, uint8_t *buffer, uint16_t size) {
+  30              		.loc 1 11 73 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  12:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL || buffer == NULL || size == 0) {
+  35              		.loc 1 12 3 view .LVU1
+  36              		.loc 1 12 6 is_stmt 0 view .LVU2
+  37 0000 48B1     		cbz	r0, .L3
+  38              		.loc 1 12 18 discriminator 1 view .LVU3
+  39 0002 51B1     		cbz	r1, .L4
+  40              		.loc 1 12 36 discriminator 2 view .LVU4
+  41 0004 5AB1     		cbz	r2, .L5
+  13:MyHardWare/Src/ring_buffer.c ****     return 0;
+  14:MyHardWare/Src/ring_buffer.c ****   }
+  15:MyHardWare/Src/ring_buffer.c ****   rb->buffer = buffer;
+  42              		.loc 1 15 3 is_stmt 1 view .LVU5
+  43              		.loc 1 15 14 is_stmt 0 view .LVU6
+ARM GAS  /tmp/ccvq0HJ5.s 			page 2
+
+
+  44 0006 0160     		str	r1, [r0]
+  16:MyHardWare/Src/ring_buffer.c ****   rb->size = size;
+  45              		.loc 1 16 3 is_stmt 1 view .LVU7
+  46              		.loc 1 16 12 is_stmt 0 view .LVU8
+  47 0008 8280     		strh	r2, [r0, #4]	@ movhi
+  17:MyHardWare/Src/ring_buffer.c ****   rb->head = 0;
+  48              		.loc 1 17 3 is_stmt 1 view .LVU9
+  49              		.loc 1 17 12 is_stmt 0 view .LVU10
+  50 000a 0022     		movs	r2, #0
+  51              	.LVL1:
+  52              		.loc 1 17 12 view .LVU11
+  53 000c C280     		strh	r2, [r0, #6]	@ movhi
+  18:MyHardWare/Src/ring_buffer.c ****   rb->tail = 0;
+  54              		.loc 1 18 3 is_stmt 1 view .LVU12
+  55              		.loc 1 18 12 is_stmt 0 view .LVU13
+  56 000e 0281     		strh	r2, [r0, #8]	@ movhi
+  19:MyHardWare/Src/ring_buffer.c ****   rb->is_dma_enabled = 0;
+  57              		.loc 1 19 3 is_stmt 1 view .LVU14
+  58              		.loc 1 19 22 is_stmt 0 view .LVU15
+  59 0010 8272     		strb	r2, [r0, #10]
+  20:MyHardWare/Src/ring_buffer.c ****   return 1;
+  60              		.loc 1 20 3 is_stmt 1 view .LVU16
+  61              		.loc 1 20 10 is_stmt 0 view .LVU17
+  62 0012 0120     		movs	r0, #1
+  63              	.LVL2:
+  64              		.loc 1 20 10 view .LVU18
+  65 0014 7047     		bx	lr
+  66              	.LVL3:
+  67              	.L3:
+  13:MyHardWare/Src/ring_buffer.c ****   }
+  68              		.loc 1 13 12 view .LVU19
+  69 0016 0020     		movs	r0, #0
+  70              	.LVL4:
+  13:MyHardWare/Src/ring_buffer.c ****   }
+  71              		.loc 1 13 12 view .LVU20
+  72 0018 7047     		bx	lr
+  73              	.LVL5:
+  74              	.L4:
+  13:MyHardWare/Src/ring_buffer.c ****   }
+  75              		.loc 1 13 12 view .LVU21
+  76 001a 0020     		movs	r0, #0
+  77              	.LVL6:
+  13:MyHardWare/Src/ring_buffer.c ****   }
+  78              		.loc 1 13 12 view .LVU22
+  79 001c 7047     		bx	lr
+  80              	.LVL7:
+  81              	.L5:
+  13:MyHardWare/Src/ring_buffer.c ****   }
+  82              		.loc 1 13 12 view .LVU23
+  83 001e 0020     		movs	r0, #0
+  84              	.LVL8:
+  21:MyHardWare/Src/ring_buffer.c **** }
+  85              		.loc 1 21 1 view .LVU24
+  86 0020 7047     		bx	lr
+  87              		.cfi_endproc
+  88              	.LFE0:
+  90              		.section	.text.RingBuffer_Push,"ax",%progbits
+ARM GAS  /tmp/ccvq0HJ5.s 			page 3
+
+
+  91              		.align	1
+  92              		.global	RingBuffer_Push
+  93              		.syntax unified
+  94              		.thumb
+  95              		.thumb_func
+  97              	RingBuffer_Push:
+  98              	.LVL9:
+  99              	.LFB1:
+  22:MyHardWare/Src/ring_buffer.c **** 
+  23:MyHardWare/Src/ring_buffer.c **** /**
+  24:MyHardWare/Src/ring_buffer.c ****  * @brief  向环形缓冲区写入一个字节
+  25:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+  26:MyHardWare/Src/ring_buffer.c ****  * @param  data: 要写入的数据
+  27:MyHardWare/Src/ring_buffer.c ****  * @retval 成功返回 1，失败返回 0（缓冲区满）
+  28:MyHardWare/Src/ring_buffer.c ****  */
+  29:MyHardWare/Src/ring_buffer.c **** uint8_t RingBuffer_Push(RingBuffer *rb, uint8_t data) {
+ 100              		.loc 1 29 55 is_stmt 1 view -0
+ 101              		.cfi_startproc
+ 102              		@ args = 0, pretend = 0, frame = 0
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+  30:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 104              		.loc 1 30 3 view .LVU26
+ 105              		.loc 1 30 6 is_stmt 0 view .LVU27
+ 106 0000 A8B1     		cbz	r0, .L8
+  29:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 107              		.loc 1 29 55 view .LVU28
+ 108 0002 00B5     		push	{lr}
+ 109              	.LCFI0:
+ 110              		.cfi_def_cfa_offset 4
+ 111              		.cfi_offset 14, -4
+ 112 0004 0246     		mov	r2, r0
+  31:MyHardWare/Src/ring_buffer.c ****     return 0;
+  32:MyHardWare/Src/ring_buffer.c ****   }
+  33:MyHardWare/Src/ring_buffer.c **** 
+  34:MyHardWare/Src/ring_buffer.c ****   uint16_t next_head = (rb->head + 1) % rb->size;
+ 113              		.loc 1 34 3 is_stmt 1 view .LVU29
+ 114              		.loc 1 34 27 is_stmt 0 view .LVU30
+ 115 0006 B0F806C0 		ldrh	ip, [r0, #6]
+ 116              		.loc 1 34 34 view .LVU31
+ 117 000a 0CF10103 		add	r3, ip, #1
+ 118              		.loc 1 34 43 view .LVU32
+ 119 000e 8088     		ldrh	r0, [r0, #4]
+ 120              	.LVL10:
+ 121              		.loc 1 34 39 view .LVU33
+ 122 0010 93FBF0FE 		sdiv	lr, r3, r0
+ 123 0014 00FB1E33 		mls	r3, r0, lr, r3
+ 124              		.loc 1 34 12 view .LVU34
+ 125 0018 9BB2     		uxth	r3, r3
+ 126              	.LVL11:
+  35:MyHardWare/Src/ring_buffer.c ****   if (next_head == rb->tail) {
+ 127              		.loc 1 35 3 is_stmt 1 view .LVU35
+ 128              		.loc 1 35 22 is_stmt 0 view .LVU36
+ 129 001a 1089     		ldrh	r0, [r2, #8]
+ 130              		.loc 1 35 6 view .LVU37
+ 131 001c 9842     		cmp	r0, r3
+ 132 001e 08D0     		beq	.L9
+  36:MyHardWare/Src/ring_buffer.c ****     return 0;
+ARM GAS  /tmp/ccvq0HJ5.s 			page 4
+
+
+  37:MyHardWare/Src/ring_buffer.c ****   }
+  38:MyHardWare/Src/ring_buffer.c **** 
+  39:MyHardWare/Src/ring_buffer.c ****   rb->buffer[rb->head] = data;
+ 133              		.loc 1 39 3 is_stmt 1 view .LVU38
+ 134              		.loc 1 39 5 is_stmt 0 view .LVU39
+ 135 0020 1068     		ldr	r0, [r2]
+ 136              		.loc 1 39 24 view .LVU40
+ 137 0022 00F80C10 		strb	r1, [r0, ip]
+  40:MyHardWare/Src/ring_buffer.c ****   rb->head = next_head;
+ 138              		.loc 1 40 3 is_stmt 1 view .LVU41
+ 139              		.loc 1 40 12 is_stmt 0 view .LVU42
+ 140 0026 D380     		strh	r3, [r2, #6]	@ movhi
+  41:MyHardWare/Src/ring_buffer.c ****   return 1;
+ 141              		.loc 1 41 3 is_stmt 1 view .LVU43
+ 142              		.loc 1 41 10 is_stmt 0 view .LVU44
+ 143 0028 0120     		movs	r0, #1
+ 144              	.L7:
+  42:MyHardWare/Src/ring_buffer.c **** }
+ 145              		.loc 1 42 1 view .LVU45
+ 146 002a 5DF804FB 		ldr	pc, [sp], #4
+ 147              	.LVL12:
+ 148              	.L8:
+ 149              	.LCFI1:
+ 150              		.cfi_def_cfa_offset 0
+ 151              		.cfi_restore 14
+  31:MyHardWare/Src/ring_buffer.c ****   }
+ 152              		.loc 1 31 12 view .LVU46
+ 153 002e 0020     		movs	r0, #0
+ 154              	.LVL13:
+ 155              		.loc 1 42 1 view .LVU47
+ 156 0030 7047     		bx	lr
+ 157              	.LVL14:
+ 158              	.L9:
+ 159              	.LCFI2:
+ 160              		.cfi_def_cfa_offset 4
+ 161              		.cfi_offset 14, -4
+  36:MyHardWare/Src/ring_buffer.c ****   }
+ 162              		.loc 1 36 12 view .LVU48
+ 163 0032 0020     		movs	r0, #0
+ 164 0034 F9E7     		b	.L7
+ 165              		.cfi_endproc
+ 166              	.LFE1:
+ 168              		.section	.text.RingBuffer_Pop,"ax",%progbits
+ 169              		.align	1
+ 170              		.global	RingBuffer_Pop
+ 171              		.syntax unified
+ 172              		.thumb
+ 173              		.thumb_func
+ 175              	RingBuffer_Pop:
+ 176              	.LVL15:
+ 177              	.LFB2:
+  43:MyHardWare/Src/ring_buffer.c **** 
+  44:MyHardWare/Src/ring_buffer.c **** /**
+  45:MyHardWare/Src/ring_buffer.c ****  * @brief  从环形缓冲区读取一个字节
+  46:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+  47:MyHardWare/Src/ring_buffer.c ****  * @param  data: 存储读取数据的指针
+  48:MyHardWare/Src/ring_buffer.c ****  * @retval 成功返回 1，失败返回 0（缓冲区空）
+ARM GAS  /tmp/ccvq0HJ5.s 			page 5
+
+
+  49:MyHardWare/Src/ring_buffer.c ****  */
+  50:MyHardWare/Src/ring_buffer.c **** uint8_t RingBuffer_Pop(RingBuffer *rb, uint8_t *data) {
+ 178              		.loc 1 50 55 is_stmt 1 view -0
+ 179              		.cfi_startproc
+ 180              		@ args = 0, pretend = 0, frame = 0
+ 181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 182              		@ link register save eliminated.
+  51:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL || data == NULL) {
+ 183              		.loc 1 51 3 view .LVU50
+ 184              		.loc 1 51 6 is_stmt 0 view .LVU51
+ 185 0000 0346     		mov	r3, r0
+ 186 0002 88B1     		cbz	r0, .L16
+ 187              		.loc 1 51 18 discriminator 1 view .LVU52
+ 188 0004 91B1     		cbz	r1, .L17
+  52:MyHardWare/Src/ring_buffer.c ****     return 0;
+  53:MyHardWare/Src/ring_buffer.c ****   }
+  54:MyHardWare/Src/ring_buffer.c **** 
+  55:MyHardWare/Src/ring_buffer.c ****   if (rb->tail == rb->head) {
+ 189              		.loc 1 55 3 is_stmt 1 view .LVU53
+ 190              		.loc 1 55 9 is_stmt 0 view .LVU54
+ 191 0006 0289     		ldrh	r2, [r0, #8]
+ 192              		.loc 1 55 21 view .LVU55
+ 193 0008 C088     		ldrh	r0, [r0, #6]
+ 194              	.LVL16:
+ 195              		.loc 1 55 6 view .LVU56
+ 196 000a 8242     		cmp	r2, r0
+ 197 000c 10D0     		beq	.L18
+  56:MyHardWare/Src/ring_buffer.c ****     return 0;
+  57:MyHardWare/Src/ring_buffer.c ****   }
+  58:MyHardWare/Src/ring_buffer.c **** 
+  59:MyHardWare/Src/ring_buffer.c ****   *data = rb->buffer[rb->tail];
+ 198              		.loc 1 59 3 is_stmt 1 view .LVU57
+ 199              		.loc 1 59 13 is_stmt 0 view .LVU58
+ 200 000e 1868     		ldr	r0, [r3]
+ 201              		.loc 1 59 21 view .LVU59
+ 202 0010 825C     		ldrb	r2, [r0, r2]	@ zero_extendqisi2
+ 203              		.loc 1 59 9 view .LVU60
+ 204 0012 0A70     		strb	r2, [r1]
+  60:MyHardWare/Src/ring_buffer.c ****   rb->tail = (rb->tail + 1) % rb->size;
+ 205              		.loc 1 60 3 is_stmt 1 view .LVU61
+ 206              		.loc 1 60 17 is_stmt 0 view .LVU62
+ 207 0014 1A89     		ldrh	r2, [r3, #8]
+ 208              		.loc 1 60 24 view .LVU63
+ 209 0016 0132     		adds	r2, r2, #1
+ 210              		.loc 1 60 33 view .LVU64
+ 211 0018 9988     		ldrh	r1, [r3, #4]
+ 212              	.LVL17:
+ 213              		.loc 1 60 29 view .LVU65
+ 214 001a 92FBF1F0 		sdiv	r0, r2, r1
+ 215 001e 01FB1022 		mls	r2, r1, r0, r2
+ 216              		.loc 1 60 12 view .LVU66
+ 217 0022 1A81     		strh	r2, [r3, #8]	@ movhi
+  61:MyHardWare/Src/ring_buffer.c ****   return 1;
+ 218              		.loc 1 61 3 is_stmt 1 view .LVU67
+ 219              		.loc 1 61 10 is_stmt 0 view .LVU68
+ 220 0024 0120     		movs	r0, #1
+ 221 0026 7047     		bx	lr
+ARM GAS  /tmp/ccvq0HJ5.s 			page 6
+
+
+ 222              	.LVL18:
+ 223              	.L16:
+  52:MyHardWare/Src/ring_buffer.c ****   }
+ 224              		.loc 1 52 12 view .LVU69
+ 225 0028 0020     		movs	r0, #0
+ 226              	.LVL19:
+  52:MyHardWare/Src/ring_buffer.c ****   }
+ 227              		.loc 1 52 12 view .LVU70
+ 228 002a 7047     		bx	lr
+ 229              	.LVL20:
+ 230              	.L17:
+  52:MyHardWare/Src/ring_buffer.c ****   }
+ 231              		.loc 1 52 12 view .LVU71
+ 232 002c 0020     		movs	r0, #0
+ 233              	.LVL21:
+  52:MyHardWare/Src/ring_buffer.c ****   }
+ 234              		.loc 1 52 12 view .LVU72
+ 235 002e 7047     		bx	lr
+ 236              	.L18:
+  56:MyHardWare/Src/ring_buffer.c ****   }
+ 237              		.loc 1 56 12 view .LVU73
+ 238 0030 0020     		movs	r0, #0
+  62:MyHardWare/Src/ring_buffer.c **** }
+ 239              		.loc 1 62 1 view .LVU74
+ 240 0032 7047     		bx	lr
+ 241              		.cfi_endproc
+ 242              	.LFE2:
+ 244              		.section	.text.RingBuffer_Available,"ax",%progbits
+ 245              		.align	1
+ 246              		.global	RingBuffer_Available
+ 247              		.syntax unified
+ 248              		.thumb
+ 249              		.thumb_func
+ 251              	RingBuffer_Available:
+ 252              	.LVL22:
+ 253              	.LFB3:
+  63:MyHardWare/Src/ring_buffer.c **** 
+  64:MyHardWare/Src/ring_buffer.c **** /**
+  65:MyHardWare/Src/ring_buffer.c ****  * @brief  获取环形缓冲区中已用空间大小
+  66:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+  67:MyHardWare/Src/ring_buffer.c ****  * @retval 已用空间大小（字节数）
+  68:MyHardWare/Src/ring_buffer.c ****  */
+  69:MyHardWare/Src/ring_buffer.c **** uint16_t RingBuffer_Available(RingBuffer *rb) {
+ 254              		.loc 1 69 47 is_stmt 1 view -0
+ 255              		.cfi_startproc
+ 256              		@ args = 0, pretend = 0, frame = 0
+ 257              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258              		@ link register save eliminated.
+  70:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 259              		.loc 1 70 3 view .LVU76
+ 260              		.loc 1 70 6 is_stmt 0 view .LVU77
+ 261 0000 60B1     		cbz	r0, .L22
+  71:MyHardWare/Src/ring_buffer.c ****     return 0;
+  72:MyHardWare/Src/ring_buffer.c ****   }
+  73:MyHardWare/Src/ring_buffer.c **** 
+  74:MyHardWare/Src/ring_buffer.c ****   if (rb->head >= rb->tail) {
+ 262              		.loc 1 74 3 is_stmt 1 view .LVU78
+ARM GAS  /tmp/ccvq0HJ5.s 			page 7
+
+
+ 263              		.loc 1 74 9 is_stmt 0 view .LVU79
+ 264 0002 C388     		ldrh	r3, [r0, #6]
+ 265              		.loc 1 74 21 view .LVU80
+ 266 0004 0189     		ldrh	r1, [r0, #8]
+ 267              		.loc 1 74 6 view .LVU81
+ 268 0006 8B42     		cmp	r3, r1
+ 269 0008 02D3     		bcc	.L21
+  75:MyHardWare/Src/ring_buffer.c ****     return rb->head - rb->tail;
+ 270              		.loc 1 75 5 is_stmt 1 view .LVU82
+ 271              		.loc 1 75 21 is_stmt 0 view .LVU83
+ 272 000a 5B1A     		subs	r3, r3, r1
+ 273 000c 98B2     		uxth	r0, r3
+ 274              	.LVL23:
+ 275              		.loc 1 75 21 view .LVU84
+ 276 000e 7047     		bx	lr
+ 277              	.LVL24:
+ 278              	.L21:
+  76:MyHardWare/Src/ring_buffer.c ****   } else {
+  77:MyHardWare/Src/ring_buffer.c ****     return rb->size - rb->tail + rb->head;
+ 279              		.loc 1 77 5 is_stmt 1 view .LVU85
+ 280              		.loc 1 77 14 is_stmt 0 view .LVU86
+ 281 0010 8088     		ldrh	r0, [r0, #4]
+ 282              	.LVL25:
+ 283              		.loc 1 77 21 view .LVU87
+ 284 0012 401A     		subs	r0, r0, r1
+ 285              		.loc 1 77 32 view .LVU88
+ 286 0014 13FA80F0 		uxtah	r0, r3, r0
+ 287 0018 80B2     		uxth	r0, r0
+ 288 001a 7047     		bx	lr
+ 289              	.LVL26:
+ 290              	.L22:
+  71:MyHardWare/Src/ring_buffer.c ****   }
+ 291              		.loc 1 71 12 view .LVU89
+ 292 001c 0020     		movs	r0, #0
+ 293              	.LVL27:
+  78:MyHardWare/Src/ring_buffer.c ****   }
+  79:MyHardWare/Src/ring_buffer.c **** }
+ 294              		.loc 1 79 1 view .LVU90
+ 295 001e 7047     		bx	lr
+ 296              		.cfi_endproc
+ 297              	.LFE3:
+ 299              		.section	.text.RingBuffer_SpaceAvailable,"ax",%progbits
+ 300              		.align	1
+ 301              		.global	RingBuffer_SpaceAvailable
+ 302              		.syntax unified
+ 303              		.thumb
+ 304              		.thumb_func
+ 306              	RingBuffer_SpaceAvailable:
+ 307              	.LVL28:
+ 308              	.LFB4:
+  80:MyHardWare/Src/ring_buffer.c **** 
+  81:MyHardWare/Src/ring_buffer.c **** /**
+  82:MyHardWare/Src/ring_buffer.c ****  * @brief  获取环形缓冲区中剩余可用空间大小
+  83:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+  84:MyHardWare/Src/ring_buffer.c ****  * @retval 剩余可用空间大小（字节数）
+  85:MyHardWare/Src/ring_buffer.c ****  */
+  86:MyHardWare/Src/ring_buffer.c **** uint16_t RingBuffer_SpaceAvailable(RingBuffer *rb) {
+ARM GAS  /tmp/ccvq0HJ5.s 			page 8
+
+
+ 309              		.loc 1 86 52 is_stmt 1 view -0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313              		@ link register save eliminated.
+  87:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 314              		.loc 1 87 3 view .LVU92
+ 315              		.loc 1 87 6 is_stmt 0 view .LVU93
+ 316 0000 0246     		mov	r2, r0
+ 317 0002 88B1     		cbz	r0, .L27
+  88:MyHardWare/Src/ring_buffer.c ****     return 0;
+  89:MyHardWare/Src/ring_buffer.c ****   }
+  90:MyHardWare/Src/ring_buffer.c **** 
+  91:MyHardWare/Src/ring_buffer.c ****   uint16_t used;
+ 318              		.loc 1 91 3 is_stmt 1 view .LVU94
+  92:MyHardWare/Src/ring_buffer.c ****   if (rb->head >= rb->tail) {
+ 319              		.loc 1 92 3 view .LVU95
+ 320              		.loc 1 92 9 is_stmt 0 view .LVU96
+ 321 0004 C188     		ldrh	r1, [r0, #6]
+ 322              		.loc 1 92 21 view .LVU97
+ 323 0006 0089     		ldrh	r0, [r0, #8]
+ 324              	.LVL29:
+ 325              		.loc 1 92 6 view .LVU98
+ 326 0008 8142     		cmp	r1, r0
+ 327 000a 07D3     		bcc	.L25
+  93:MyHardWare/Src/ring_buffer.c ****     used = rb->head - rb->tail;
+ 328              		.loc 1 93 5 is_stmt 1 view .LVU99
+ 329              		.loc 1 93 10 is_stmt 0 view .LVU100
+ 330 000c 091A     		subs	r1, r1, r0
+ 331 000e 8BB2     		uxth	r3, r1
+ 332              	.LVL30:
+ 333              	.L26:
+  94:MyHardWare/Src/ring_buffer.c ****   } else {
+  95:MyHardWare/Src/ring_buffer.c ****     used = rb->size - rb->tail + rb->head;
+  96:MyHardWare/Src/ring_buffer.c ****   }
+  97:MyHardWare/Src/ring_buffer.c ****   return rb->size - used - 1;
+ 334              		.loc 1 97 3 is_stmt 1 view .LVU101
+ 335              		.loc 1 97 12 is_stmt 0 view .LVU102
+ 336 0010 9088     		ldrh	r0, [r2, #4]
+ 337              		.loc 1 97 19 view .LVU103
+ 338 0012 C01A     		subs	r0, r0, r3
+ 339 0014 80B2     		uxth	r0, r0
+ 340              		.loc 1 97 26 view .LVU104
+ 341 0016 0138     		subs	r0, r0, #1
+ 342 0018 80B2     		uxth	r0, r0
+ 343 001a 7047     		bx	lr
+ 344              	.LVL31:
+ 345              	.L25:
+  95:MyHardWare/Src/ring_buffer.c ****   }
+ 346              		.loc 1 95 5 is_stmt 1 view .LVU105
+  95:MyHardWare/Src/ring_buffer.c ****   }
+ 347              		.loc 1 95 14 is_stmt 0 view .LVU106
+ 348 001c 9388     		ldrh	r3, [r2, #4]
+  95:MyHardWare/Src/ring_buffer.c ****   }
+ 349              		.loc 1 95 21 view .LVU107
+ 350 001e 1B1A     		subs	r3, r3, r0
+  95:MyHardWare/Src/ring_buffer.c ****   }
+ARM GAS  /tmp/ccvq0HJ5.s 			page 9
+
+
+ 351              		.loc 1 95 10 view .LVU108
+ 352 0020 11FA83F3 		uxtah	r3, r1, r3
+ 353 0024 9BB2     		uxth	r3, r3
+ 354              	.LVL32:
+  95:MyHardWare/Src/ring_buffer.c ****   }
+ 355              		.loc 1 95 10 view .LVU109
+ 356 0026 F3E7     		b	.L26
+ 357              	.LVL33:
+ 358              	.L27:
+  88:MyHardWare/Src/ring_buffer.c ****   }
+ 359              		.loc 1 88 12 view .LVU110
+ 360 0028 0020     		movs	r0, #0
+ 361              	.LVL34:
+  98:MyHardWare/Src/ring_buffer.c **** }
+ 362              		.loc 1 98 1 view .LVU111
+ 363 002a 7047     		bx	lr
+ 364              		.cfi_endproc
+ 365              	.LFE4:
+ 367              		.section	.text.RingBuffer_IsEmpty,"ax",%progbits
+ 368              		.align	1
+ 369              		.global	RingBuffer_IsEmpty
+ 370              		.syntax unified
+ 371              		.thumb
+ 372              		.thumb_func
+ 374              	RingBuffer_IsEmpty:
+ 375              	.LVL35:
+ 376              	.LFB5:
+  99:MyHardWare/Src/ring_buffer.c **** 
+ 100:MyHardWare/Src/ring_buffer.c **** /**
+ 101:MyHardWare/Src/ring_buffer.c ****  * @brief  判断环形缓冲区是否为空
+ 102:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 103:MyHardWare/Src/ring_buffer.c ****  * @retval 空返回 1，非空返回 0
+ 104:MyHardWare/Src/ring_buffer.c ****  */
+ 105:MyHardWare/Src/ring_buffer.c **** uint8_t RingBuffer_IsEmpty(RingBuffer *rb) {
+ 377              		.loc 1 105 44 is_stmt 1 view -0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 0
+ 380              		@ frame_needed = 0, uses_anonymous_args = 0
+ 381              		@ link register save eliminated.
+ 106:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 382              		.loc 1 106 3 view .LVU113
+ 383              		.loc 1 106 6 is_stmt 0 view .LVU114
+ 384 0000 0346     		mov	r3, r0
+ 385 0002 30B1     		cbz	r0, .L30
+ 107:MyHardWare/Src/ring_buffer.c ****     return 1;
+ 108:MyHardWare/Src/ring_buffer.c ****   }
+ 109:MyHardWare/Src/ring_buffer.c ****   return (rb->head == rb->tail) ? 1 : 0;
+ 386              		.loc 1 109 3 is_stmt 1 view .LVU115
+ 387              		.loc 1 109 13 is_stmt 0 view .LVU116
+ 388 0004 C088     		ldrh	r0, [r0, #6]
+ 389              	.LVL36:
+ 390              		.loc 1 109 25 view .LVU117
+ 391 0006 1B89     		ldrh	r3, [r3, #8]
+ 392              	.LVL37:
+ 393              		.loc 1 109 37 view .LVU118
+ 394 0008 9842     		cmp	r0, r3
+ 395 000a 14BF     		ite	ne
+ARM GAS  /tmp/ccvq0HJ5.s 			page 10
+
+
+ 396 000c 0020     		movne	r0, #0
+ 397 000e 0120     		moveq	r0, #1
+ 398 0010 7047     		bx	lr
+ 399              	.LVL38:
+ 400              	.L30:
+ 107:MyHardWare/Src/ring_buffer.c ****     return 1;
+ 401              		.loc 1 107 12 view .LVU119
+ 402 0012 0120     		movs	r0, #1
+ 403              	.LVL39:
+ 110:MyHardWare/Src/ring_buffer.c **** }
+ 404              		.loc 1 110 1 view .LVU120
+ 405 0014 7047     		bx	lr
+ 406              		.cfi_endproc
+ 407              	.LFE5:
+ 409              		.section	.text.RingBuffer_IsFull,"ax",%progbits
+ 410              		.align	1
+ 411              		.global	RingBuffer_IsFull
+ 412              		.syntax unified
+ 413              		.thumb
+ 414              		.thumb_func
+ 416              	RingBuffer_IsFull:
+ 417              	.LVL40:
+ 418              	.LFB6:
+ 111:MyHardWare/Src/ring_buffer.c **** 
+ 112:MyHardWare/Src/ring_buffer.c **** /**
+ 113:MyHardWare/Src/ring_buffer.c ****  * @brief  判断环形缓冲区是否已满
+ 114:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 115:MyHardWare/Src/ring_buffer.c ****  * @retval 满返回 1，未满返回 0
+ 116:MyHardWare/Src/ring_buffer.c ****  */
+ 117:MyHardWare/Src/ring_buffer.c **** uint8_t RingBuffer_IsFull(RingBuffer *rb) {
+ 419              		.loc 1 117 43 is_stmt 1 view -0
+ 420              		.cfi_startproc
+ 421              		@ args = 0, pretend = 0, frame = 0
+ 422              		@ frame_needed = 0, uses_anonymous_args = 0
+ 423              		@ link register save eliminated.
+ 118:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 424              		.loc 1 118 3 view .LVU122
+ 425              		.loc 1 118 6 is_stmt 0 view .LVU123
+ 426 0000 0346     		mov	r3, r0
+ 427 0002 60B1     		cbz	r0, .L33
+ 119:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 120:MyHardWare/Src/ring_buffer.c ****   }
+ 121:MyHardWare/Src/ring_buffer.c ****   return (((rb->head + 1) % rb->size) == rb->tail) ? 1 : 0;
+ 428              		.loc 1 121 3 is_stmt 1 view .LVU124
+ 429              		.loc 1 121 15 is_stmt 0 view .LVU125
+ 430 0004 C088     		ldrh	r0, [r0, #6]
+ 431              	.LVL41:
+ 432              		.loc 1 121 22 view .LVU126
+ 433 0006 0130     		adds	r0, r0, #1
+ 434              		.loc 1 121 31 view .LVU127
+ 435 0008 9A88     		ldrh	r2, [r3, #4]
+ 436              		.loc 1 121 27 view .LVU128
+ 437 000a 90FBF2F1 		sdiv	r1, r0, r2
+ 438 000e 02FB1100 		mls	r0, r2, r1, r0
+ 439              		.loc 1 121 44 view .LVU129
+ 440 0012 1B89     		ldrh	r3, [r3, #8]
+ 441              	.LVL42:
+ARM GAS  /tmp/ccvq0HJ5.s 			page 11
+
+
+ 442              		.loc 1 121 56 view .LVU130
+ 443 0014 9842     		cmp	r0, r3
+ 444 0016 14BF     		ite	ne
+ 445 0018 0020     		movne	r0, #0
+ 446 001a 0120     		moveq	r0, #1
+ 447 001c 7047     		bx	lr
+ 448              	.LVL43:
+ 449              	.L33:
+ 119:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 450              		.loc 1 119 12 view .LVU131
+ 451 001e 0020     		movs	r0, #0
+ 452              	.LVL44:
+ 122:MyHardWare/Src/ring_buffer.c **** }
+ 453              		.loc 1 122 1 view .LVU132
+ 454 0020 7047     		bx	lr
+ 455              		.cfi_endproc
+ 456              	.LFE6:
+ 458              		.section	.text.RingBuffer_Clear,"ax",%progbits
+ 459              		.align	1
+ 460              		.global	RingBuffer_Clear
+ 461              		.syntax unified
+ 462              		.thumb
+ 463              		.thumb_func
+ 465              	RingBuffer_Clear:
+ 466              	.LVL45:
+ 467              	.LFB7:
+ 123:MyHardWare/Src/ring_buffer.c **** 
+ 124:MyHardWare/Src/ring_buffer.c **** /**
+ 125:MyHardWare/Src/ring_buffer.c ****  * @brief  清空环形缓冲区
+ 126:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 127:MyHardWare/Src/ring_buffer.c ****  * @retval 无
+ 128:MyHardWare/Src/ring_buffer.c ****  */
+ 129:MyHardWare/Src/ring_buffer.c **** void RingBuffer_Clear(RingBuffer *rb) {
+ 468              		.loc 1 129 39 is_stmt 1 view -0
+ 469              		.cfi_startproc
+ 470              		@ args = 0, pretend = 0, frame = 0
+ 471              		@ frame_needed = 0, uses_anonymous_args = 0
+ 472              		@ link register save eliminated.
+ 130:MyHardWare/Src/ring_buffer.c ****   if (rb != NULL) {
+ 473              		.loc 1 130 3 view .LVU134
+ 474              		.loc 1 130 6 is_stmt 0 view .LVU135
+ 475 0000 18B1     		cbz	r0, .L34
+ 131:MyHardWare/Src/ring_buffer.c ****     rb->head = 0;
+ 476              		.loc 1 131 5 is_stmt 1 view .LVU136
+ 477              		.loc 1 131 14 is_stmt 0 view .LVU137
+ 478 0002 0022     		movs	r2, #0
+ 479 0004 C280     		strh	r2, [r0, #6]	@ movhi
+ 132:MyHardWare/Src/ring_buffer.c ****     rb->tail = 0;
+ 480              		.loc 1 132 5 is_stmt 1 view .LVU138
+ 481              		.loc 1 132 14 is_stmt 0 view .LVU139
+ 482 0006 0281     		strh	r2, [r0, #8]	@ movhi
+ 133:MyHardWare/Src/ring_buffer.c ****     rb->is_dma_enabled = 0;
+ 483              		.loc 1 133 5 is_stmt 1 view .LVU140
+ 484              		.loc 1 133 24 is_stmt 0 view .LVU141
+ 485 0008 8272     		strb	r2, [r0, #10]
+ 486              	.L34:
+ 134:MyHardWare/Src/ring_buffer.c ****   }
+ARM GAS  /tmp/ccvq0HJ5.s 			page 12
+
+
+ 135:MyHardWare/Src/ring_buffer.c **** }
+ 487              		.loc 1 135 1 view .LVU142
+ 488 000a 7047     		bx	lr
+ 489              		.cfi_endproc
+ 490              	.LFE7:
+ 492              		.section	.text.RingBuffer_ContiguousRead,"ax",%progbits
+ 493              		.align	1
+ 494              		.global	RingBuffer_ContiguousRead
+ 495              		.syntax unified
+ 496              		.thumb
+ 497              		.thumb_func
+ 499              	RingBuffer_ContiguousRead:
+ 500              	.LVL46:
+ 501              	.LFB8:
+ 136:MyHardWare/Src/ring_buffer.c **** 
+ 137:MyHardWare/Src/ring_buffer.c **** /**
+ 138:MyHardWare/Src/ring_buffer.c ****  * @brief  获取连续可读区域指针和长度
+ 139:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 140:MyHardWare/Src/ring_buffer.c ****  * @param  ptr: 输出参数，指向连续可读区域的指针
+ 141:MyHardWare/Src/ring_buffer.c ****  * @retval 连续可读区域的长度（字节数），无法读取返回 0
+ 142:MyHardWare/Src/ring_buffer.c ****  * @note   配合 RingBuffer_SkipRead() 使用，实现零拷贝读取
+ 143:MyHardWare/Src/ring_buffer.c ****  */
+ 144:MyHardWare/Src/ring_buffer.c **** uint16_t RingBuffer_ContiguousRead(RingBuffer *rb, uint8_t **ptr) {
+ 502              		.loc 1 144 67 is_stmt 1 view -0
+ 503              		.cfi_startproc
+ 504              		@ args = 0, pretend = 0, frame = 0
+ 505              		@ frame_needed = 0, uses_anonymous_args = 0
+ 506              		@ link register save eliminated.
+ 145:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL || ptr == NULL || rb->head == rb->tail) {
+ 507              		.loc 1 145 3 view .LVU144
+ 508              		.loc 1 145 6 is_stmt 0 view .LVU145
+ 509 0000 0346     		mov	r3, r0
+ 510 0002 70B1     		cbz	r0, .L37
+ 511              		.loc 1 145 18 discriminator 1 view .LVU146
+ 512 0004 69B1     		cbz	r1, .L37
+ 513              		.loc 1 145 38 discriminator 2 view .LVU147
+ 514 0006 C288     		ldrh	r2, [r0, #6]
+ 515              		.loc 1 145 50 discriminator 2 view .LVU148
+ 516 0008 0089     		ldrh	r0, [r0, #8]
+ 517              	.LVL47:
+ 518              		.loc 1 145 33 discriminator 2 view .LVU149
+ 519 000a 8242     		cmp	r2, r0
+ 520 000c 09D0     		beq	.L37
+ 146:MyHardWare/Src/ring_buffer.c ****     *ptr = NULL;
+ 147:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 148:MyHardWare/Src/ring_buffer.c ****   }
+ 149:MyHardWare/Src/ring_buffer.c **** 
+ 150:MyHardWare/Src/ring_buffer.c ****   *ptr = &rb->buffer[rb->tail];
+ 521              		.loc 1 150 3 is_stmt 1 view .LVU150
+ 522              		.loc 1 150 13 is_stmt 0 view .LVU151
+ 523 000e 1A68     		ldr	r2, [r3]
+ 524              		.loc 1 150 10 view .LVU152
+ 525 0010 0244     		add	r2, r2, r0
+ 526              		.loc 1 150 8 view .LVU153
+ 527 0012 0A60     		str	r2, [r1]
+ 151:MyHardWare/Src/ring_buffer.c **** 
+ 152:MyHardWare/Src/ring_buffer.c ****   if (rb->head > rb->tail) {
+ARM GAS  /tmp/ccvq0HJ5.s 			page 13
+
+
+ 528              		.loc 1 152 3 is_stmt 1 view .LVU154
+ 529              		.loc 1 152 9 is_stmt 0 view .LVU155
+ 530 0014 D888     		ldrh	r0, [r3, #6]
+ 531              		.loc 1 152 20 view .LVU156
+ 532 0016 1A89     		ldrh	r2, [r3, #8]
+ 533              		.loc 1 152 6 view .LVU157
+ 534 0018 9042     		cmp	r0, r2
+ 535 001a 05D9     		bls	.L40
+ 153:MyHardWare/Src/ring_buffer.c ****     return rb->head - rb->tail;
+ 536              		.loc 1 153 5 is_stmt 1 view .LVU158
+ 537              		.loc 1 153 21 is_stmt 0 view .LVU159
+ 538 001c 801A     		subs	r0, r0, r2
+ 539 001e 80B2     		uxth	r0, r0
+ 540 0020 7047     		bx	lr
+ 541              	.L37:
+ 146:MyHardWare/Src/ring_buffer.c ****     *ptr = NULL;
+ 542              		.loc 1 146 5 is_stmt 1 view .LVU160
+ 146:MyHardWare/Src/ring_buffer.c ****     *ptr = NULL;
+ 543              		.loc 1 146 10 is_stmt 0 view .LVU161
+ 544 0022 0020     		movs	r0, #0
+ 545 0024 0860     		str	r0, [r1]
+ 147:MyHardWare/Src/ring_buffer.c ****   }
+ 546              		.loc 1 147 5 is_stmt 1 view .LVU162
+ 147:MyHardWare/Src/ring_buffer.c ****   }
+ 547              		.loc 1 147 12 is_stmt 0 view .LVU163
+ 548 0026 7047     		bx	lr
+ 549              	.L40:
+ 154:MyHardWare/Src/ring_buffer.c ****   } else {
+ 155:MyHardWare/Src/ring_buffer.c ****     return rb->size - rb->tail;
+ 550              		.loc 1 155 5 is_stmt 1 view .LVU164
+ 551              		.loc 1 155 14 is_stmt 0 view .LVU165
+ 552 0028 9888     		ldrh	r0, [r3, #4]
+ 553              		.loc 1 155 21 view .LVU166
+ 554 002a 801A     		subs	r0, r0, r2
+ 555 002c 80B2     		uxth	r0, r0
+ 156:MyHardWare/Src/ring_buffer.c ****   }
+ 157:MyHardWare/Src/ring_buffer.c **** }
+ 556              		.loc 1 157 1 view .LVU167
+ 557 002e 7047     		bx	lr
+ 558              		.cfi_endproc
+ 559              	.LFE8:
+ 561              		.section	.text.RingBuffer_ContiguousWrite,"ax",%progbits
+ 562              		.align	1
+ 563              		.global	RingBuffer_ContiguousWrite
+ 564              		.syntax unified
+ 565              		.thumb
+ 566              		.thumb_func
+ 568              	RingBuffer_ContiguousWrite:
+ 569              	.LVL48:
+ 570              	.LFB9:
+ 158:MyHardWare/Src/ring_buffer.c **** 
+ 159:MyHardWare/Src/ring_buffer.c **** /**
+ 160:MyHardWare/Src/ring_buffer.c ****  * @brief  获取连续可写区域指针和长度
+ 161:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 162:MyHardWare/Src/ring_buffer.c ****  * @param  ptr: 输出参数，指向连续可写区域的指针
+ 163:MyHardWare/Src/ring_buffer.c ****  * @retval 连续可写区域的长度（字节数），无法写入返回 0
+ 164:MyHardWare/Src/ring_buffer.c ****  * @note   配合 RingBuffer_SkipWrite() 使用，实现零拷贝写入
+ARM GAS  /tmp/ccvq0HJ5.s 			page 14
+
+
+ 165:MyHardWare/Src/ring_buffer.c ****  */
+ 166:MyHardWare/Src/ring_buffer.c **** uint16_t RingBuffer_ContiguousWrite(RingBuffer *rb, uint8_t **ptr) {
+ 571              		.loc 1 166 68 is_stmt 1 view -0
+ 572              		.cfi_startproc
+ 573              		@ args = 0, pretend = 0, frame = 0
+ 574              		@ frame_needed = 0, uses_anonymous_args = 0
+ 575              		.loc 1 166 68 is_stmt 0 view .LVU169
+ 576 0000 38B5     		push	{r3, r4, r5, lr}
+ 577              	.LCFI3:
+ 578              		.cfi_def_cfa_offset 16
+ 579              		.cfi_offset 3, -16
+ 580              		.cfi_offset 4, -12
+ 581              		.cfi_offset 5, -8
+ 582              		.cfi_offset 14, -4
+ 583 0002 0C46     		mov	r4, r1
+ 167:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL || ptr == NULL) {
+ 584              		.loc 1 167 3 is_stmt 1 view .LVU170
+ 585              		.loc 1 167 6 is_stmt 0 view .LVU171
+ 586 0004 80B1     		cbz	r0, .L42
+ 587 0006 0546     		mov	r5, r0
+ 588              		.loc 1 167 18 discriminator 1 view .LVU172
+ 589 0008 71B1     		cbz	r1, .L42
+ 168:MyHardWare/Src/ring_buffer.c ****     *ptr = NULL;
+ 169:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 170:MyHardWare/Src/ring_buffer.c ****   }
+ 171:MyHardWare/Src/ring_buffer.c **** 
+ 172:MyHardWare/Src/ring_buffer.c ****   uint16_t space = RingBuffer_SpaceAvailable(rb);
+ 590              		.loc 1 172 3 is_stmt 1 view .LVU173
+ 591              		.loc 1 172 20 is_stmt 0 view .LVU174
+ 592 000a FFF7FEFF 		bl	RingBuffer_SpaceAvailable
+ 593              	.LVL49:
+ 173:MyHardWare/Src/ring_buffer.c ****   if (space == 0) {
+ 594              		.loc 1 173 3 is_stmt 1 view .LVU175
+ 595              		.loc 1 173 6 is_stmt 0 view .LVU176
+ 596 000e 70B1     		cbz	r0, .L48
+ 174:MyHardWare/Src/ring_buffer.c ****     *ptr = NULL;
+ 175:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 176:MyHardWare/Src/ring_buffer.c ****   }
+ 177:MyHardWare/Src/ring_buffer.c **** 
+ 178:MyHardWare/Src/ring_buffer.c ****   *ptr = &rb->buffer[rb->head];
+ 597              		.loc 1 178 3 is_stmt 1 view .LVU177
+ 598              		.loc 1 178 13 is_stmt 0 view .LVU178
+ 599 0010 2B68     		ldr	r3, [r5]
+ 600              		.loc 1 178 24 view .LVU179
+ 601 0012 EA88     		ldrh	r2, [r5, #6]
+ 602              		.loc 1 178 10 view .LVU180
+ 603 0014 1344     		add	r3, r3, r2
+ 604              		.loc 1 178 8 view .LVU181
+ 605 0016 2360     		str	r3, [r4]
+ 179:MyHardWare/Src/ring_buffer.c **** 
+ 180:MyHardWare/Src/ring_buffer.c ****   if (rb->head >= rb->tail) {
+ 606              		.loc 1 180 3 is_stmt 1 view .LVU182
+ 607              		.loc 1 180 9 is_stmt 0 view .LVU183
+ 608 0018 EA88     		ldrh	r2, [r5, #6]
+ 609              		.loc 1 180 21 view .LVU184
+ 610 001a 2B89     		ldrh	r3, [r5, #8]
+ 611              		.loc 1 180 6 view .LVU185
+ARM GAS  /tmp/ccvq0HJ5.s 			page 15
+
+
+ 612 001c 9A42     		cmp	r2, r3
+ 613 001e 08D3     		bcc	.L46
+ 181:MyHardWare/Src/ring_buffer.c ****     return rb->size - rb->head;
+ 614              		.loc 1 181 5 is_stmt 1 view .LVU186
+ 615              		.loc 1 181 14 is_stmt 0 view .LVU187
+ 616 0020 A888     		ldrh	r0, [r5, #4]
+ 617              	.LVL50:
+ 618              		.loc 1 181 21 view .LVU188
+ 619 0022 801A     		subs	r0, r0, r2
+ 620 0024 80B2     		uxth	r0, r0
+ 621 0026 01E0     		b	.L44
+ 622              	.LVL51:
+ 623              	.L42:
+ 168:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 624              		.loc 1 168 5 is_stmt 1 view .LVU189
+ 168:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 625              		.loc 1 168 10 is_stmt 0 view .LVU190
+ 626 0028 0020     		movs	r0, #0
+ 627              	.LVL52:
+ 168:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 628              		.loc 1 168 10 view .LVU191
+ 629 002a 2060     		str	r0, [r4]
+ 169:MyHardWare/Src/ring_buffer.c ****   }
+ 630              		.loc 1 169 5 is_stmt 1 view .LVU192
+ 631              	.LVL53:
+ 632              	.L44:
+ 182:MyHardWare/Src/ring_buffer.c ****   } else {
+ 183:MyHardWare/Src/ring_buffer.c ****     return rb->tail - rb->head - 1;
+ 184:MyHardWare/Src/ring_buffer.c ****   }
+ 185:MyHardWare/Src/ring_buffer.c **** }
+ 633              		.loc 1 185 1 is_stmt 0 view .LVU193
+ 634 002c 38BD     		pop	{r3, r4, r5, pc}
+ 635              	.LVL54:
+ 636              	.L48:
+ 174:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 637              		.loc 1 174 5 is_stmt 1 view .LVU194
+ 174:MyHardWare/Src/ring_buffer.c ****     return 0;
+ 638              		.loc 1 174 10 is_stmt 0 view .LVU195
+ 639 002e 2060     		str	r0, [r4]
+ 175:MyHardWare/Src/ring_buffer.c ****   }
+ 640              		.loc 1 175 5 is_stmt 1 view .LVU196
+ 175:MyHardWare/Src/ring_buffer.c ****   }
+ 641              		.loc 1 175 12 is_stmt 0 view .LVU197
+ 642 0030 FCE7     		b	.L44
+ 643              	.L46:
+ 183:MyHardWare/Src/ring_buffer.c ****   }
+ 644              		.loc 1 183 5 is_stmt 1 view .LVU198
+ 183:MyHardWare/Src/ring_buffer.c ****   }
+ 645              		.loc 1 183 21 is_stmt 0 view .LVU199
+ 646 0032 981A     		subs	r0, r3, r2
+ 647              	.LVL55:
+ 183:MyHardWare/Src/ring_buffer.c ****   }
+ 648              		.loc 1 183 21 view .LVU200
+ 649 0034 80B2     		uxth	r0, r0
+ 183:MyHardWare/Src/ring_buffer.c ****   }
+ 650              		.loc 1 183 32 view .LVU201
+ 651 0036 0138     		subs	r0, r0, #1
+ARM GAS  /tmp/ccvq0HJ5.s 			page 16
+
+
+ 652 0038 80B2     		uxth	r0, r0
+ 653 003a F7E7     		b	.L44
+ 654              		.cfi_endproc
+ 655              	.LFE9:
+ 657              		.section	.text.RingBuffer_SkipRead,"ax",%progbits
+ 658              		.align	1
+ 659              		.global	RingBuffer_SkipRead
+ 660              		.syntax unified
+ 661              		.thumb
+ 662              		.thumb_func
+ 664              	RingBuffer_SkipRead:
+ 665              	.LVL56:
+ 666              	.LFB10:
+ 186:MyHardWare/Src/ring_buffer.c **** 
+ 187:MyHardWare/Src/ring_buffer.c **** /**
+ 188:MyHardWare/Src/ring_buffer.c ****  * @brief  跳过已读取的数据（移动读指针）
+ 189:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 190:MyHardWare/Src/ring_buffer.c ****  * @param  len: 要跳过的字节数
+ 191:MyHardWare/Src/ring_buffer.c ****  * @retval 无
+ 192:MyHardWare/Src/ring_buffer.c ****  * @note   通常在 DMA 直接写入缓冲区后调用此函数更新读指针
+ 193:MyHardWare/Src/ring_buffer.c ****  */
+ 194:MyHardWare/Src/ring_buffer.c **** void RingBuffer_SkipRead(RingBuffer *rb, uint16_t len) {
+ 667              		.loc 1 194 56 is_stmt 1 view -0
+ 668              		.cfi_startproc
+ 669              		@ args = 0, pretend = 0, frame = 0
+ 670              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 671              		.loc 1 195 3 view .LVU203
+ 672              		.loc 1 195 6 is_stmt 0 view .LVU204
+ 673 0000 80B1     		cbz	r0, .L53
+ 194:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 674              		.loc 1 194 56 view .LVU205
+ 675 0002 38B5     		push	{r3, r4, r5, lr}
+ 676              	.LCFI4:
+ 677              		.cfi_def_cfa_offset 16
+ 678              		.cfi_offset 3, -16
+ 679              		.cfi_offset 4, -12
+ 680              		.cfi_offset 5, -8
+ 681              		.cfi_offset 14, -4
+ 682 0004 0D46     		mov	r5, r1
+ 683 0006 0446     		mov	r4, r0
+ 196:MyHardWare/Src/ring_buffer.c ****     return;
+ 197:MyHardWare/Src/ring_buffer.c ****   }
+ 198:MyHardWare/Src/ring_buffer.c **** 
+ 199:MyHardWare/Src/ring_buffer.c ****   uint16_t available = RingBuffer_Available(rb);
+ 684              		.loc 1 199 3 is_stmt 1 view .LVU206
+ 685              		.loc 1 199 24 is_stmt 0 view .LVU207
+ 686 0008 FFF7FEFF 		bl	RingBuffer_Available
+ 687              	.LVL57:
+ 200:MyHardWare/Src/ring_buffer.c ****   if (len > available) {
+ 688              		.loc 1 200 3 is_stmt 1 view .LVU208
+ 689              		.loc 1 200 6 is_stmt 0 view .LVU209
+ 690 000c A842     		cmp	r0, r5
+ 691 000e 00D3     		bcc	.L51
+ 692 0010 2846     		mov	r0, r5
+ 693              	.LVL58:
+ 694              	.L51:
+ARM GAS  /tmp/ccvq0HJ5.s 			page 17
+
+
+ 201:MyHardWare/Src/ring_buffer.c ****     len = available;
+ 202:MyHardWare/Src/ring_buffer.c ****   }
+ 203:MyHardWare/Src/ring_buffer.c **** 
+ 204:MyHardWare/Src/ring_buffer.c ****   rb->tail = (rb->tail + len) % rb->size;
+ 695              		.loc 1 204 3 is_stmt 1 view .LVU210
+ 696              		.loc 1 204 17 is_stmt 0 view .LVU211
+ 697 0012 2389     		ldrh	r3, [r4, #8]
+ 698              		.loc 1 204 24 view .LVU212
+ 699 0014 1844     		add	r0, r0, r3
+ 700              	.LVL59:
+ 701              		.loc 1 204 35 view .LVU213
+ 702 0016 A388     		ldrh	r3, [r4, #4]
+ 703              		.loc 1 204 31 view .LVU214
+ 704 0018 90FBF3F2 		sdiv	r2, r0, r3
+ 705 001c 03FB1200 		mls	r0, r3, r2, r0
+ 706              		.loc 1 204 12 view .LVU215
+ 707 0020 2081     		strh	r0, [r4, #8]	@ movhi
+ 205:MyHardWare/Src/ring_buffer.c **** }
+ 708              		.loc 1 205 1 view .LVU216
+ 709 0022 38BD     		pop	{r3, r4, r5, pc}
+ 710              	.LVL60:
+ 711              	.L53:
+ 712              	.LCFI5:
+ 713              		.cfi_def_cfa_offset 0
+ 714              		.cfi_restore 3
+ 715              		.cfi_restore 4
+ 716              		.cfi_restore 5
+ 717              		.cfi_restore 14
+ 718              		.loc 1 205 1 view .LVU217
+ 719 0024 7047     		bx	lr
+ 720              		.cfi_endproc
+ 721              	.LFE10:
+ 723              		.section	.text.RingBuffer_SkipWrite,"ax",%progbits
+ 724              		.align	1
+ 725              		.global	RingBuffer_SkipWrite
+ 726              		.syntax unified
+ 727              		.thumb
+ 728              		.thumb_func
+ 730              	RingBuffer_SkipWrite:
+ 731              	.LVL61:
+ 732              	.LFB11:
+ 206:MyHardWare/Src/ring_buffer.c **** 
+ 207:MyHardWare/Src/ring_buffer.c **** /**
+ 208:MyHardWare/Src/ring_buffer.c ****  * @brief  跳过已写入的数据（移动写指针）
+ 209:MyHardWare/Src/ring_buffer.c ****  * @param  rb: 环形缓冲区结构体指针
+ 210:MyHardWare/Src/ring_buffer.c ****  * @param  len: 要跳过的字节数
+ 211:MyHardWare/Src/ring_buffer.c ****  * @retval 无
+ 212:MyHardWare/Src/ring_buffer.c ****  * @note   通常在 CPU 直接写入缓冲区后调用此函数更新写指针
+ 213:MyHardWare/Src/ring_buffer.c ****  */
+ 214:MyHardWare/Src/ring_buffer.c **** void RingBuffer_SkipWrite(RingBuffer *rb, uint16_t len) {
+ 733              		.loc 1 214 57 is_stmt 1 view -0
+ 734              		.cfi_startproc
+ 735              		@ args = 0, pretend = 0, frame = 0
+ 736              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 737              		.loc 1 215 3 view .LVU219
+ 738              		.loc 1 215 6 is_stmt 0 view .LVU220
+ARM GAS  /tmp/ccvq0HJ5.s 			page 18
+
+
+ 739 0000 80B1     		cbz	r0, .L60
+ 214:MyHardWare/Src/ring_buffer.c ****   if (rb == NULL) {
+ 740              		.loc 1 214 57 view .LVU221
+ 741 0002 38B5     		push	{r3, r4, r5, lr}
+ 742              	.LCFI6:
+ 743              		.cfi_def_cfa_offset 16
+ 744              		.cfi_offset 3, -16
+ 745              		.cfi_offset 4, -12
+ 746              		.cfi_offset 5, -8
+ 747              		.cfi_offset 14, -4
+ 748 0004 0D46     		mov	r5, r1
+ 749 0006 0446     		mov	r4, r0
+ 216:MyHardWare/Src/ring_buffer.c ****     return;
+ 217:MyHardWare/Src/ring_buffer.c ****   }
+ 218:MyHardWare/Src/ring_buffer.c **** 
+ 219:MyHardWare/Src/ring_buffer.c ****   uint16_t space = RingBuffer_SpaceAvailable(rb);
+ 750              		.loc 1 219 3 is_stmt 1 view .LVU222
+ 751              		.loc 1 219 20 is_stmt 0 view .LVU223
+ 752 0008 FFF7FEFF 		bl	RingBuffer_SpaceAvailable
+ 753              	.LVL62:
+ 220:MyHardWare/Src/ring_buffer.c ****   if (len > space) {
+ 754              		.loc 1 220 3 is_stmt 1 view .LVU224
+ 755              		.loc 1 220 6 is_stmt 0 view .LVU225
+ 756 000c A842     		cmp	r0, r5
+ 757 000e 00D3     		bcc	.L58
+ 758 0010 2846     		mov	r0, r5
+ 759              	.LVL63:
+ 760              	.L58:
+ 221:MyHardWare/Src/ring_buffer.c ****     len = space;
+ 222:MyHardWare/Src/ring_buffer.c ****   }
+ 223:MyHardWare/Src/ring_buffer.c **** 
+ 224:MyHardWare/Src/ring_buffer.c ****   rb->head = (rb->head + len) % rb->size;
+ 761              		.loc 1 224 3 is_stmt 1 view .LVU226
+ 762              		.loc 1 224 17 is_stmt 0 view .LVU227
+ 763 0012 E388     		ldrh	r3, [r4, #6]
+ 764              		.loc 1 224 24 view .LVU228
+ 765 0014 1844     		add	r0, r0, r3
+ 766              	.LVL64:
+ 767              		.loc 1 224 35 view .LVU229
+ 768 0016 A388     		ldrh	r3, [r4, #4]
+ 769              		.loc 1 224 31 view .LVU230
+ 770 0018 90FBF3F2 		sdiv	r2, r0, r3
+ 771 001c 03FB1200 		mls	r0, r3, r2, r0
+ 772              		.loc 1 224 12 view .LVU231
+ 773 0020 E080     		strh	r0, [r4, #6]	@ movhi
+ 225:MyHardWare/Src/ring_buffer.c **** }...
+ 774              		.loc 1 225 1 view .LVU232
+ 775 0022 38BD     		pop	{r3, r4, r5, pc}
+ 776              	.LVL65:
+ 777              	.L60:
+ 778              	.LCFI7:
+ 779              		.cfi_def_cfa_offset 0
+ 780              		.cfi_restore 3
+ 781              		.cfi_restore 4
+ 782              		.cfi_restore 5
+ 783              		.cfi_restore 14
+ 784              		.loc 1 225 1 view .LVU233
+ARM GAS  /tmp/ccvq0HJ5.s 			page 19
+
+
+ 785 0024 7047     		bx	lr
+ 786              		.cfi_endproc
+ 787              	.LFE11:
+ 789              		.text
+ 790              	.Letext0:
+ 791              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 792              		.file 3 "MyHardWare/Inc/ring_buffer.h"
+ARM GAS  /tmp/ccvq0HJ5.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 ring_buffer.c
+     /tmp/ccvq0HJ5.s:21     .text.RingBuffer_Init:00000000 $t
+     /tmp/ccvq0HJ5.s:27     .text.RingBuffer_Init:00000000 RingBuffer_Init
+     /tmp/ccvq0HJ5.s:91     .text.RingBuffer_Push:00000000 $t
+     /tmp/ccvq0HJ5.s:97     .text.RingBuffer_Push:00000000 RingBuffer_Push
+     /tmp/ccvq0HJ5.s:169    .text.RingBuffer_Pop:00000000 $t
+     /tmp/ccvq0HJ5.s:175    .text.RingBuffer_Pop:00000000 RingBuffer_Pop
+     /tmp/ccvq0HJ5.s:245    .text.RingBuffer_Available:00000000 $t
+     /tmp/ccvq0HJ5.s:251    .text.RingBuffer_Available:00000000 RingBuffer_Available
+     /tmp/ccvq0HJ5.s:300    .text.RingBuffer_SpaceAvailable:00000000 $t
+     /tmp/ccvq0HJ5.s:306    .text.RingBuffer_SpaceAvailable:00000000 RingBuffer_SpaceAvailable
+     /tmp/ccvq0HJ5.s:368    .text.RingBuffer_IsEmpty:00000000 $t
+     /tmp/ccvq0HJ5.s:374    .text.RingBuffer_IsEmpty:00000000 RingBuffer_IsEmpty
+     /tmp/ccvq0HJ5.s:410    .text.RingBuffer_IsFull:00000000 $t
+     /tmp/ccvq0HJ5.s:416    .text.RingBuffer_IsFull:00000000 RingBuffer_IsFull
+     /tmp/ccvq0HJ5.s:459    .text.RingBuffer_Clear:00000000 $t
+     /tmp/ccvq0HJ5.s:465    .text.RingBuffer_Clear:00000000 RingBuffer_Clear
+     /tmp/ccvq0HJ5.s:493    .text.RingBuffer_ContiguousRead:00000000 $t
+     /tmp/ccvq0HJ5.s:499    .text.RingBuffer_ContiguousRead:00000000 RingBuffer_ContiguousRead
+     /tmp/ccvq0HJ5.s:562    .text.RingBuffer_ContiguousWrite:00000000 $t
+     /tmp/ccvq0HJ5.s:568    .text.RingBuffer_ContiguousWrite:00000000 RingBuffer_ContiguousWrite
+     /tmp/ccvq0HJ5.s:658    .text.RingBuffer_SkipRead:00000000 $t
+     /tmp/ccvq0HJ5.s:664    .text.RingBuffer_SkipRead:00000000 RingBuffer_SkipRead
+     /tmp/ccvq0HJ5.s:724    .text.RingBuffer_SkipWrite:00000000 $t
+     /tmp/ccvq0HJ5.s:730    .text.RingBuffer_SkipWrite:00000000 RingBuffer_SkipWrite
+
+NO UNDEFINED SYMBOLS

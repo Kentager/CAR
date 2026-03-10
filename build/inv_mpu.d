@@ -17,7 +17,7 @@ build/inv_mpu.o: MyHardWare/eMPL/inv_mpu.c MyHardWare/eMPL/inv_mpu.h \
  Lib/StdPeriphs/inc/stm32f4xx_fsmc.h \
  MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h MyHardWare/Inc/mpu6050.h \
  MyHardWare/Inc/myiic.h MyHardWare/Inc/sys.h MyHardWare/Inc/delay.h \
- MyHardWare/Inc/usart.h
+ MyHardWare/Inc/usart.h MyHardWare/Inc/ring_buffer.h
 MyHardWare/eMPL/inv_mpu.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
@@ -58,3 +58,4 @@ MyHardWare/Inc/myiic.h:
 MyHardWare/Inc/sys.h:
 MyHardWare/Inc/delay.h:
 MyHardWare/Inc/usart.h:
+MyHardWare/Inc/ring_buffer.h:

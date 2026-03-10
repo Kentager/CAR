@@ -15,7 +15,8 @@ build/stm32f4xx_it.o: USER/Src/stm32f4xx_it.c USER/Inc/stm32f4xx_it.h \
  Lib/StdPeriphs/inc/stm32f4xx_rng.h Lib/StdPeriphs/inc/stm32f4xx_can.h \
  Lib/StdPeriphs/inc/stm32f4xx_dac.h Lib/StdPeriphs/inc/stm32f4xx_dcmi.h \
  Lib/StdPeriphs/inc/stm32f4xx_fsmc.h MyHardWare/Inc/sdio_sd.h \
- MyHardWare/Inc/task.h MyHardWare/Inc/usart.h
+ MyHardWare/Inc/task.h MyHardWare/Inc/usart.h \
+ MyHardWare/Inc/ring_buffer.h
 USER/Inc/stm32f4xx_it.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
@@ -53,3 +54,4 @@ Lib/StdPeriphs/inc/stm32f4xx_fsmc.h:
 MyHardWare/Inc/sdio_sd.h:
 MyHardWare/Inc/task.h:
 MyHardWare/Inc/usart.h:
+MyHardWare/Inc/ring_buffer.h:
