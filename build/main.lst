@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cceW4WBu.s 			page 1
+ARM GAS  /tmp/ccASfCyB.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -37,235 +37,314 @@ ARM GAS  /tmp/cceW4WBu.s 			page 1
   33              	.LFB126:
    1:USER/Src/main.c **** #include "delay.h"
    2:USER/Src/main.c **** #include "led.h"
-   3:USER/Src/main.c **** #include "rtc.h"
-   4:USER/Src/main.c **** #include "stm32f4xx_gpio.h"
-   5:USER/Src/main.c **** #include "stm32f4xx_usart.h"
-   6:USER/Src/main.c **** #include "ulog.h"
-   7:USER/Src/main.c **** #include "usart.h"
-   8:USER/Src/main.c **** #include <stdio.h>
-   9:USER/Src/main.c **** #include <stm32f4xx.h>
-  10:USER/Src/main.c **** #include <string.h>
-  11:USER/Src/main.c **** 
-  12:USER/Src/main.c **** void my_console_logger(ulog_level_t severity, const char *msg) {
-  34              		.loc 1 12 64 view -0
+   3:USER/Src/main.c **** #include "motor.h"
+   4:USER/Src/main.c **** #include "rtc.h"
+   5:USER/Src/main.c **** #include "stm32f4xx_gpio.h"
+   6:USER/Src/main.c **** #include "stm32f4xx_usart.h"
+   7:USER/Src/main.c **** #include "ulog.h"
+   8:USER/Src/main.c **** #include "usart.h"
+   9:USER/Src/main.c **** #include <stdio.h>
+  10:USER/Src/main.c **** #include <stm32f4xx.h>
+  11:USER/Src/main.c **** #include <string.h>
+  12:USER/Src/main.c **** 
+  13:USER/Src/main.c **** void my_console_logger(ulog_level_t severity, const char *msg) {
+  34              		.loc 1 13 64 view -0
   35              		.cfi_startproc
   36              		@ args = 0, pretend = 0, frame = 0
   37              		@ frame_needed = 0, uses_anonymous_args = 0
-  38              		.loc 1 12 64 is_stmt 0 view .LVU1
+  38              		.loc 1 13 64 is_stmt 0 view .LVU1
   39 0000 70B5     		push	{r4, r5, r6, lr}
   40              	.LCFI0:
   41              		.cfi_def_cfa_offset 16
   42              		.cfi_offset 4, -16
   43              		.cfi_offset 5, -12
+ARM GAS  /tmp/ccASfCyB.s 			page 2
+
+
   44              		.cfi_offset 6, -8
-ARM GAS  /tmp/cceW4WBu.s 			page 2
-
-
   45              		.cfi_offset 14, -4
   46 0002 0646     		mov	r6, r0
   47 0004 0D46     		mov	r5, r1
-  13:USER/Src/main.c ****   printf("%s [%s]: %s",
-  48              		.loc 1 13 3 is_stmt 1 view .LVU2
+  14:USER/Src/main.c ****   printf("%s [%s]: %s",
+  48              		.loc 1 14 3 is_stmt 1 view .LVU2
   49 0006 FFF7FEFF 		bl	RTC_GetNowTime
   50              	.LVL1:
-  51              		.loc 1 13 3 is_stmt 0 view .LVU3
+  51              		.loc 1 14 3 is_stmt 0 view .LVU3
   52 000a 0446     		mov	r4, r0
-  53              		.loc 1 13 3 discriminator 1 view .LVU4
+  53              		.loc 1 14 3 discriminator 1 view .LVU4
   54 000c 3046     		mov	r0, r6
   55 000e FFF7FEFF 		bl	ulog_level_name
   56              	.LVL2:
   57 0012 0246     		mov	r2, r0
-  58              		.loc 1 13 3 discriminator 2 view .LVU5
+  58              		.loc 1 14 3 discriminator 2 view .LVU5
   59 0014 2B46     		mov	r3, r5
   60 0016 2146     		mov	r1, r4
   61 0018 0148     		ldr	r0, .L3
   62 001a FFF7FEFF 		bl	printf
   63              	.LVL3:
-  14:USER/Src/main.c ****          RTC_GetNowTime(), // user defined function
-  15:USER/Src/main.c ****          ulog_level_name(severity), msg);
-  16:USER/Src/main.c **** }
-  64              		.loc 1 16 1 view .LVU6
+  15:USER/Src/main.c ****          RTC_GetNowTime(), // user defined function
+  16:USER/Src/main.c ****          ulog_level_name(severity), msg);
+  17:USER/Src/main.c **** }
+  64              		.loc 1 17 1 view .LVU6
   65 001e 70BD     		pop	{r4, r5, r6, pc}
   66              	.LVL4:
   67              	.L4:
-  68              		.loc 1 16 1 view .LVU7
+  68              		.loc 1 17 1 view .LVU7
   69              		.align	2
   70              	.L3:
   71 0020 00000000 		.word	.LC0
   72              		.cfi_endproc
   73              	.LFE126:
-  75              		.section	.rodata.main.str1.4,"aMS",%progbits,1
-  76              		.align	2
-  77              	.LC1:
-  78 0000 68656C6C 		.ascii	"hello world\015\000"
-  78      6F20776F 
-  78      726C640D 
-  78      00
-  79 000d 000000   		.align	2
-  80              	.LC2:
-  81 0010 66647366 		.ascii	"fdsfd\015\000"
-  81      640D00
-  82 0017 00       		.align	2
-  83              	.LC3:
-  84 0018 43726974 		.ascii	"Critical,arg=100\015\012\000"
-  84      6963616C 
-  84      2C617267 
-  84      3D313030 
-  84      0D0A00
-  85 002b 00       		.align	2
-  86              	.LC4:
-  87 002c 43726974 		.ascii	"Critical, arg=%d\015\012\000"
-  87      6963616C 
-  87      2C206172 
-  87      673D2564 
-ARM GAS  /tmp/cceW4WBu.s 			page 3
+  75              		.section	.text.motor_test,"ax",%progbits
+  76              		.align	1
+  77              		.global	motor_test
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	motor_test:
+  83              	.LFB127:
+  18:USER/Src/main.c **** 
+  19:USER/Src/main.c **** void motor_test(void) {
+  84              		.loc 1 19 23 is_stmt 1 view -0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88 0000 08B5     		push	{r3, lr}
+  89              	.LCFI1:
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 3, -8
+  92              		.cfi_offset 14, -4
+  20:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
+  93              		.loc 1 20 3 view .LVU9
+  94 0002 4FF47A61 		mov	r1, #4000
+  95 0006 0120     		movs	r0, #1
+ARM GAS  /tmp/ccASfCyB.s 			page 3
 
 
-  87      0D0A00
-  88              		.section	.text.main,"ax",%progbits
-  89              		.align	1
-  90              		.global	main
-  91              		.syntax unified
-  92              		.thumb
-  93              		.thumb_func
-  95              	main:
-  96              	.LFB127:
-  17:USER/Src/main.c **** 
-  18:USER/Src/main.c **** int main() {
-  97              		.loc 1 18 12 is_stmt 1 view -0
-  98              		.cfi_startproc
-  99              		@ args = 0, pretend = 0, frame = 0
- 100              		@ frame_needed = 0, uses_anonymous_args = 0
- 101 0000 08B5     		push	{r3, lr}
- 102              	.LCFI1:
- 103              		.cfi_def_cfa_offset 8
- 104              		.cfi_offset 3, -8
- 105              		.cfi_offset 14, -4
-  19:USER/Src/main.c ****   int arg = 42;
- 106              		.loc 1 19 3 view .LVU9
- 107              	.LVL5:
-  20:USER/Src/main.c ****   led_Init();
- 108              		.loc 1 20 3 view .LVU10
- 109 0002 FFF7FEFF 		bl	led_Init
- 110              	.LVL6:
-  21:USER/Src/main.c ****   LED_Off();
- 111              		.loc 1 21 3 view .LVU11
- 112 0006 FFF7FEFF 		bl	LED_Off
- 113              	.LVL7:
-  22:USER/Src/main.c ****   USART1_Init();
- 114              		.loc 1 22 3 view .LVU12
- 115 000a FFF7FEFF 		bl	USART1_Init
- 116              	.LVL8:
-  23:USER/Src/main.c ****   printf("hello world\r\n");
- 117              		.loc 1 23 3 view .LVU13
- 118 000e 0F48     		ldr	r0, .L8
- 119 0010 FFF7FEFF 		bl	puts
- 120              	.LVL9:
-  24:USER/Src/main.c ****   printf("fdsfd\r\n");
- 121              		.loc 1 24 3 view .LVU14
- 122 0014 0E48     		ldr	r0, .L8+4
- 123 0016 FFF7FEFF 		bl	puts
- 124              	.LVL10:
-  25:USER/Src/main.c ****   ULOG_INIT();
- 125              		.loc 1 25 3 view .LVU15
- 126 001a FFF7FEFF 		bl	ulog_init
- 127              	.LVL11:
-  26:USER/Src/main.c ****   delay_init();
- 128              		.loc 1 26 3 view .LVU16
- 129 001e FFF7FEFF 		bl	delay_init
- 130              	.LVL12:
-  27:USER/Src/main.c **** 
-  28:USER/Src/main.c ****   // log messages with a severity of WARNING or higher to the console.  The
-  29:USER/Src/main.c ****   // user must supply a method for my_console_logger, e.g. along the lines
-  30:USER/Src/main.c ****   // of what is shown above.
-ARM GAS  /tmp/cceW4WBu.s 			page 4
+  96 0008 FFF7FEFF 		bl	Motor_SetSpeed
+  97              	.LVL5:
+  21:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
+  98              		.loc 1 21 3 view .LVU10
+  99 000c 4FF47A61 		mov	r1, #4000
+ 100 0010 0020     		movs	r0, #0
+ 101 0012 FFF7FEFF 		bl	Motor_SetSpeed
+ 102              	.LVL6:
+  22:USER/Src/main.c ****   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
+ 103              		.loc 1 22 3 view .LVU11
+ 104 0016 0121     		movs	r1, #1
+ 105 0018 0846     		mov	r0, r1
+ 106 001a FFF7FEFF 		bl	Motor_SetDirection
+ 107              	.LVL7:
+  23:USER/Src/main.c ****   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+ 108              		.loc 1 23 3 view .LVU12
+ 109 001e 0121     		movs	r1, #1
+ 110 0020 0020     		movs	r0, #0
+ 111 0022 FFF7FEFF 		bl	Motor_SetDirection
+ 112              	.LVL8:
+  24:USER/Src/main.c **** 
+  25:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
+  26:USER/Src/main.c ****   Motor_Update(MOTOR_LEFT);
+ 113              		.loc 1 26 3 view .LVU13
+ 114 0026 0120     		movs	r0, #1
+ 115 0028 FFF7FEFF 		bl	Motor_Update
+ 116              	.LVL9:
+  27:USER/Src/main.c ****   Motor_Update(MOTOR_RIGHT);
+ 117              		.loc 1 27 3 view .LVU14
+ 118 002c 0020     		movs	r0, #0
+ 119 002e FFF7FEFF 		bl	Motor_Update
+ 120              	.LVL10:
+  28:USER/Src/main.c **** }
+ 121              		.loc 1 28 1 is_stmt 0 view .LVU15
+ 122 0032 08BD     		pop	{r3, pc}
+ 123              		.cfi_endproc
+ 124              	.LFE127:
+ 126              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 127              		.align	2
+ 128              	.LC1:
+ 129 0000 68656C6C 		.ascii	"hello world\015\000"
+ 129      6F20776F 
+ 129      726C640D 
+ 129      00
+ 130 000d 000000   		.align	2
+ 131              	.LC2:
+ 132 0010 66647366 		.ascii	"fdsfd\015\000"
+ 132      640D00
+ 133 0017 00       		.align	2
+ 134              	.LC3:
+ 135 0018 43726974 		.ascii	"Critical,arg=100\015\012\000"
+ 135      6963616C 
+ 135      2C617267 
+ 135      3D313030 
+ 135      0D0A00
+ 136 002b 00       		.align	2
+ 137              	.LC4:
+ARM GAS  /tmp/ccASfCyB.s 			page 4
 
 
-  31:USER/Src/main.c **** 
-  32:USER/Src/main.c ****   ULOG_SUBSCRIBE(my_console_logger, ULOG_WARNING_LEVEL);
- 131              		.loc 1 32 3 view .LVU17
- 132 0022 6721     		movs	r1, #103
- 133 0024 0B48     		ldr	r0, .L8+8
- 134 0026 FFF7FEFF 		bl	ulog_subscribe
- 135              	.LVL13:
-  33:USER/Src/main.c **** 
-  34:USER/Src/main.c ****   ULOG_CRITICAL("Critical,arg=100\r\n");
- 136              		.loc 1 34 3 view .LVU18
- 137 002a 0B49     		ldr	r1, .L8+12
- 138 002c 6920     		movs	r0, #105
- 139 002e FFF7FEFF 		bl	ulog_message
- 140              	.LVL14:
-  35:USER/Src/main.c ****   ULOG_WARNING("Critical, arg=%d\r\n", arg); // logs to file and console
- 141              		.loc 1 35 3 view .LVU19
- 142 0032 2A22     		movs	r2, #42
- 143 0034 0949     		ldr	r1, .L8+16
- 144 0036 6720     		movs	r0, #103
- 145 0038 FFF7FEFF 		bl	ulog_message
- 146              	.LVL15:
- 147              	.L6:
-  36:USER/Src/main.c ****   while (1) {
- 148              		.loc 1 36 3 view .LVU20
-  37:USER/Src/main.c **** 
-  38:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
- 149              		.loc 1 38 5 view .LVU21
- 150 003c 0D21     		movs	r1, #13
- 151 003e 0848     		ldr	r0, .L8+20
- 152 0040 FFF7FEFF 		bl	GPIO_ToggleBits
- 153              	.LVL16:
-  39:USER/Src/main.c ****     delay_ms(100);
- 154              		.loc 1 39 5 discriminator 1 view .LVU22
- 155 0044 6420     		movs	r0, #100
- 156 0046 FFF7FEFF 		bl	delay_ms
- 157              	.LVL17:
-  36:USER/Src/main.c ****   while (1) {
- 158              		.loc 1 36 9 view .LVU23
- 159 004a F7E7     		b	.L6
- 160              	.L9:
- 161              		.align	2
- 162              	.L8:
- 163 004c 00000000 		.word	.LC1
- 164 0050 10000000 		.word	.LC2
- 165 0054 00000000 		.word	my_console_logger
- 166 0058 18000000 		.word	.LC3
- 167 005c 2C000000 		.word	.LC4
- 168 0060 00080240 		.word	1073874944
- 169              		.cfi_endproc
- 170              	.LFE127:
- 172              		.text
- 173              	.Letext0:
- 174              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
- 175              		.file 3 "CMSIS/stm32f4xx.h"
- 176              		.file 4 "MyHardWare/Inc/ulog.h"
- 177              		.file 5 "MyHardWare/Inc/delay.h"
- 178              		.file 6 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
-ARM GAS  /tmp/cceW4WBu.s 			page 5
+ 138 002c 43726974 		.ascii	"Critical, arg=%d\015\012\000"
+ 138      6963616C 
+ 138      2C206172 
+ 138      673D2564 
+ 138      0D0A00
+ 139              		.section	.text.main,"ax",%progbits
+ 140              		.align	1
+ 141              		.global	main
+ 142              		.syntax unified
+ 143              		.thumb
+ 144              		.thumb_func
+ 146              	main:
+ 147              	.LFB128:
+  29:USER/Src/main.c **** int main() {
+ 148              		.loc 1 29 12 is_stmt 1 view -0
+ 149              		.cfi_startproc
+ 150              		@ args = 0, pretend = 0, frame = 0
+ 151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 152 0000 08B5     		push	{r3, lr}
+ 153              	.LCFI2:
+ 154              		.cfi_def_cfa_offset 8
+ 155              		.cfi_offset 3, -8
+ 156              		.cfi_offset 14, -4
+  30:USER/Src/main.c ****   int arg = 42;
+ 157              		.loc 1 30 3 view .LVU17
+ 158              	.LVL11:
+  31:USER/Src/main.c ****   led_Init();
+ 159              		.loc 1 31 3 view .LVU18
+ 160 0002 FFF7FEFF 		bl	led_Init
+ 161              	.LVL12:
+  32:USER/Src/main.c ****   LED_Off();
+ 162              		.loc 1 32 3 view .LVU19
+ 163 0006 FFF7FEFF 		bl	LED_Off
+ 164              	.LVL13:
+  33:USER/Src/main.c ****   Motor_Driver_Init();
+ 165              		.loc 1 33 3 view .LVU20
+ 166 000a FFF7FEFF 		bl	Motor_Driver_Init
+ 167              	.LVL14:
+  34:USER/Src/main.c **** 
+  35:USER/Src/main.c ****   motor_test();
+ 168              		.loc 1 35 3 view .LVU21
+ 169 000e FFF7FEFF 		bl	motor_test
+ 170              	.LVL15:
+  36:USER/Src/main.c ****   USART1_Init();
+ 171              		.loc 1 36 3 view .LVU22
+ 172 0012 FFF7FEFF 		bl	USART1_Init
+ 173              	.LVL16:
+  37:USER/Src/main.c ****   printf("hello world\r\n");
+ 174              		.loc 1 37 3 view .LVU23
+ 175 0016 0F48     		ldr	r0, .L10
+ 176 0018 FFF7FEFF 		bl	puts
+ 177              	.LVL17:
+  38:USER/Src/main.c ****   printf("fdsfd\r\n");
+ 178              		.loc 1 38 3 view .LVU24
+ 179 001c 0E48     		ldr	r0, .L10+4
+ 180 001e FFF7FEFF 		bl	puts
+ 181              	.LVL18:
+ARM GAS  /tmp/ccASfCyB.s 			page 5
 
 
- 179              		.file 7 "MyHardWare/Inc/usart.h"
- 180              		.file 8 "MyHardWare/Inc/led.h"
- 181              		.file 9 "/usr/include/newlib/stdio.h"
- 182              		.file 10 "MyHardWare/Inc/rtc.h"
- 183              		.file 11 "<built-in>"
-ARM GAS  /tmp/cceW4WBu.s 			page 6
+  39:USER/Src/main.c ****   ULOG_INIT();
+ 182              		.loc 1 39 3 view .LVU25
+ 183 0022 FFF7FEFF 		bl	ulog_init
+ 184              	.LVL19:
+  40:USER/Src/main.c ****   delay_init();
+ 185              		.loc 1 40 3 view .LVU26
+ 186 0026 FFF7FEFF 		bl	delay_init
+ 187              	.LVL20:
+  41:USER/Src/main.c **** 
+  42:USER/Src/main.c ****   // log messages with a severity of WARNING or higher to the console.  The
+  43:USER/Src/main.c ****   // user must supply a method for my_console_logger, e.g. along the lines
+  44:USER/Src/main.c ****   // of what is shown above.
+  45:USER/Src/main.c **** 
+  46:USER/Src/main.c ****   ULOG_SUBSCRIBE(my_console_logger, ULOG_WARNING_LEVEL);
+ 188              		.loc 1 46 3 view .LVU27
+ 189 002a 6721     		movs	r1, #103
+ 190 002c 0B48     		ldr	r0, .L10+8
+ 191 002e FFF7FEFF 		bl	ulog_subscribe
+ 192              	.LVL21:
+  47:USER/Src/main.c **** 
+  48:USER/Src/main.c ****   ULOG_CRITICAL("Critical,arg=100\r\n");
+ 193              		.loc 1 48 3 view .LVU28
+ 194 0032 0B49     		ldr	r1, .L10+12
+ 195 0034 6920     		movs	r0, #105
+ 196 0036 FFF7FEFF 		bl	ulog_message
+ 197              	.LVL22:
+  49:USER/Src/main.c ****   ULOG_WARNING("Critical, arg=%d\r\n", arg); // logs to file and console
+ 198              		.loc 1 49 3 view .LVU29
+ 199 003a 2A22     		movs	r2, #42
+ 200 003c 0949     		ldr	r1, .L10+16
+ 201 003e 6720     		movs	r0, #103
+ 202 0040 FFF7FEFF 		bl	ulog_message
+ 203              	.LVL23:
+ 204              	.L8:
+  50:USER/Src/main.c ****   while (1) {
+ 205              		.loc 1 50 3 view .LVU30
+  51:USER/Src/main.c **** 
+  52:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
+ 206              		.loc 1 52 5 view .LVU31
+ 207 0044 0D21     		movs	r1, #13
+ 208 0046 0848     		ldr	r0, .L10+20
+ 209 0048 FFF7FEFF 		bl	GPIO_ToggleBits
+ 210              	.LVL24:
+  53:USER/Src/main.c ****     delay_ms(100);
+ 211              		.loc 1 53 5 discriminator 1 view .LVU32
+ 212 004c 6420     		movs	r0, #100
+ 213 004e FFF7FEFF 		bl	delay_ms
+ 214              	.LVL25:
+  50:USER/Src/main.c ****   while (1) {
+ 215              		.loc 1 50 9 view .LVU33
+ 216 0052 F7E7     		b	.L8
+ 217              	.L11:
+ 218              		.align	2
+ 219              	.L10:
+ 220 0054 00000000 		.word	.LC1
+ 221 0058 10000000 		.word	.LC2
+ 222 005c 00000000 		.word	my_console_logger
+ARM GAS  /tmp/ccASfCyB.s 			page 6
+
+
+ 223 0060 18000000 		.word	.LC3
+ 224 0064 2C000000 		.word	.LC4
+ 225 0068 00080240 		.word	1073874944
+ 226              		.cfi_endproc
+ 227              	.LFE128:
+ 229              		.text
+ 230              	.Letext0:
+ 231              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 232              		.file 3 "CMSIS/stm32f4xx.h"
+ 233              		.file 4 "MyHardWare/Inc/motor.h"
+ 234              		.file 5 "MyHardWare/Inc/ulog.h"
+ 235              		.file 6 "MyHardWare/Inc/delay.h"
+ 236              		.file 7 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
+ 237              		.file 8 "MyHardWare/Inc/usart.h"
+ 238              		.file 9 "MyHardWare/Inc/led.h"
+ 239              		.file 10 "/usr/include/newlib/stdio.h"
+ 240              		.file 11 "MyHardWare/Inc/rtc.h"
+ 241              		.file 12 "<built-in>"
+ARM GAS  /tmp/ccASfCyB.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/cceW4WBu.s:21     .rodata.my_console_logger.str1.4:00000000 $d
-     /tmp/cceW4WBu.s:25     .text.my_console_logger:00000000 $t
-     /tmp/cceW4WBu.s:31     .text.my_console_logger:00000000 my_console_logger
-     /tmp/cceW4WBu.s:71     .text.my_console_logger:00000020 $d
-     /tmp/cceW4WBu.s:76     .rodata.main.str1.4:00000000 $d
-     /tmp/cceW4WBu.s:89     .text.main:00000000 $t
-     /tmp/cceW4WBu.s:95     .text.main:00000000 main
-     /tmp/cceW4WBu.s:163    .text.main:0000004c $d
+     /tmp/ccASfCyB.s:21     .rodata.my_console_logger.str1.4:00000000 $d
+     /tmp/ccASfCyB.s:25     .text.my_console_logger:00000000 $t
+     /tmp/ccASfCyB.s:31     .text.my_console_logger:00000000 my_console_logger
+     /tmp/ccASfCyB.s:71     .text.my_console_logger:00000020 $d
+     /tmp/ccASfCyB.s:76     .text.motor_test:00000000 $t
+     /tmp/ccASfCyB.s:82     .text.motor_test:00000000 motor_test
+     /tmp/ccASfCyB.s:127    .rodata.main.str1.4:00000000 $d
+     /tmp/ccASfCyB.s:140    .text.main:00000000 $t
+     /tmp/ccASfCyB.s:146    .text.main:00000000 main
+     /tmp/ccASfCyB.s:220    .text.main:00000054 $d
 
 UNDEFINED SYMBOLS
 RTC_GetNowTime
 ulog_level_name
 printf
+Motor_SetSpeed
+Motor_SetDirection
+Motor_Update
 led_Init
 LED_Off
+Motor_Driver_Init
 USART1_Init
 puts
 ulog_init

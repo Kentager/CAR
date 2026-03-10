@@ -16,13 +16,23 @@ void my_console_logger(ulog_level_t severity, const char *msg) {
          ulog_level_name(severity), msg);
 }
 
-void motor_test(void) {}
+void motor_test(void) {
+  Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
+  Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
+  Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
+  Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+
+  // 更新电机状态，将配置应用到硬件
+  Motor_Update(MOTOR_LEFT);
+  Motor_Update(MOTOR_RIGHT);
+}
 int main() {
   int arg = 42;
   led_Init();
   LED_Off();
   Motor_Driver_Init();
 
+  motor_test();
   USART1_Init();
   printf("hello world\r\n");
   printf("fdsfd\r\n");

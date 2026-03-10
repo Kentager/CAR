@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccE9mEKn.s 			page 1
+ARM GAS  /tmp/cccihSA7.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
   29:MyHardWare/Src/ulog.c ****  * See ulog.h for sparse documentation.
   30:MyHardWare/Src/ulog.c ****  */
   31:MyHardWare/Src/ulog.c **** 
-ARM GAS  /tmp/ccE9mEKn.s 			page 2
+ARM GAS  /tmp/cccihSA7.s 			page 2
 
 
   32:MyHardWare/Src/ulog.c **** #include "ulog.h"
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
   86:MyHardWare/Src/ulog.c ****   s_subscribers[available_slot].threshold = threshold;
   87:MyHardWare/Src/ulog.c ****   s_lowest_log_level = ulog_lowest_log_level(); // Update lowest log level
   88:MyHardWare/Src/ulog.c **** 
-ARM GAS  /tmp/ccE9mEKn.s 			page 3
+ARM GAS  /tmp/cccihSA7.s 			page 3
 
 
   89:MyHardWare/Src/ulog.c ****   return ULOG_ERR_NONE;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
   28              		.loc 1 142 44 view -0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccE9mEKn.s 			page 4
+ARM GAS  /tmp/cccihSA7.s 			page 4
 
 
   31              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
   74              		.loc 1 152 3 is_stmt 1 view .LVU17
  153:MyHardWare/Src/ulog.c **** }
   75              		.loc 1 153 1 is_stmt 0 view .LVU18
-ARM GAS  /tmp/ccE9mEKn.s 			page 5
+ARM GAS  /tmp/cccihSA7.s 			page 5
 
 
   76 0026 7047     		bx	lr
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  127              		.global	ulog_subscribe
  128              		.syntax unified
  129              		.thumb
-ARM GAS  /tmp/ccE9mEKn.s 			page 6
+ARM GAS  /tmp/cccihSA7.s 			page 6
 
 
  130              		.thumb_func
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  171              	.L17:
   70:MyHardWare/Src/ulog.c ****     if (s_subscribers[i].fn == fn) {
  172              		.loc 1 70 38 is_stmt 1 discriminator 2 view .LVU39
-ARM GAS  /tmp/ccE9mEKn.s 			page 7
+ARM GAS  /tmp/cccihSA7.s 			page 7
 
 
  173 0016 0133     		adds	r3, r3, #1
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  211              		.loc 1 87 3 is_stmt 1 view .LVU55
   87:MyHardWare/Src/ulog.c **** 
  212              		.loc 1 87 24 is_stmt 0 view .LVU56
-ARM GAS  /tmp/ccE9mEKn.s 			page 8
+ARM GAS  /tmp/cccihSA7.s 			page 8
 
 
  213 0040 FFF7FEFF 		bl	ulog_lowest_log_level
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
   95:MyHardWare/Src/ulog.c ****     if (s_subscribers[i].fn == fn) {
  259              		.loc 1 95 14 is_stmt 1 discriminator 1 view .LVU67
  260 0002 052B     		cmp	r3, #5
-ARM GAS  /tmp/ccE9mEKn.s 			page 9
+ARM GAS  /tmp/cccihSA7.s 			page 9
 
 
  261 0004 11DC     		bgt	.L35
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  301              		.cfi_def_cfa_offset 0
  302              		.cfi_restore 4
  303              		.cfi_restore 14
-ARM GAS  /tmp/ccE9mEKn.s 			page 10
+ARM GAS  /tmp/cccihSA7.s 			page 10
 
 
  102:MyHardWare/Src/ulog.c **** }
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  349              	ulog_level_name:
  350              	.LVL26:
  351              	.LFB6:
-ARM GAS  /tmp/ccE9mEKn.s 			page 11
+ARM GAS  /tmp/cccihSA7.s 			page 11
 
 
  105:MyHardWare/Src/ulog.c ****   switch(severity) {
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  112:MyHardWare/Src/ulog.c ****    case ULOG_ALWAYS_LEVEL: return "ALWAYS";
  395              		.loc 1 112 37 is_stmt 0 view .LVU95
  396 0022 0848     		ldr	r0, .L50+16
-ARM GAS  /tmp/ccE9mEKn.s 			page 12
+ARM GAS  /tmp/cccihSA7.s 			page 12
 
 
  397 0024 7047     		bx	lr
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  445              		.cfi_offset 1, -12
  446              		.cfi_offset 2, -8
  447              		.cfi_offset 3, -4
-ARM GAS  /tmp/ccE9mEKn.s 			page 13
+ARM GAS  /tmp/cccihSA7.s 			page 13
 
 
  448 0002 30B5     		push	{r4, r5, lr}
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  494 001a 06AB     		add	r3, sp, #24
  495 001c 0193     		str	r3, [sp, #4]
  127:MyHardWare/Src/ulog.c ****   va_end(ap);
-ARM GAS  /tmp/ccE9mEKn.s 			page 14
+ARM GAS  /tmp/cccihSA7.s 			page 14
 
 
  496              		.loc 1 127 3 view .LVU112
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  536 004a 9047     		blx	r2
  537              	.LVL36:
  538 004c EEE7     		b	.L56
-ARM GAS  /tmp/ccE9mEKn.s 			page 15
+ARM GAS  /tmp/cccihSA7.s 			page 15
 
 
  539              	.L61:
@@ -876,39 +876,39 @@ ARM GAS  /tmp/ccE9mEKn.s 			page 1
  570              		.file 5 "/usr/include/newlib/stdio.h"
  571              		.file 6 "/usr/include/newlib/string.h"
  572              		.file 7 "<built-in>"
-ARM GAS  /tmp/ccE9mEKn.s 			page 16
+ARM GAS  /tmp/cccihSA7.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 ulog.c
-     /tmp/ccE9mEKn.s:21     .text.ulog_lowest_log_level:00000000 $t
-     /tmp/ccE9mEKn.s:26     .text.ulog_lowest_log_level:00000000 ulog_lowest_log_level
-     /tmp/ccE9mEKn.s:80     .text.ulog_lowest_log_level:00000028 $d
-     /tmp/ccE9mEKn.s:563    .bss.s_subscribers:00000000 s_subscribers
-     /tmp/ccE9mEKn.s:85     .text.ulog_init:00000000 $t
-     /tmp/ccE9mEKn.s:91     .text.ulog_init:00000000 ulog_init
-     /tmp/ccE9mEKn.s:120    .text.ulog_init:00000018 $d
-     /tmp/ccE9mEKn.s:551    .bss.s_lowest_log_level:00000000 s_lowest_log_level
-     /tmp/ccE9mEKn.s:126    .text.ulog_subscribe:00000000 $t
-     /tmp/ccE9mEKn.s:132    .text.ulog_subscribe:00000000 ulog_subscribe
-     /tmp/ccE9mEKn.s:234    .text.ulog_subscribe:00000050 $d
-     /tmp/ccE9mEKn.s:240    .text.ulog_unsubscribe:00000000 $t
-     /tmp/ccE9mEKn.s:246    .text.ulog_unsubscribe:00000000 ulog_unsubscribe
-     /tmp/ccE9mEKn.s:312    .text.ulog_unsubscribe:00000030 $d
-     /tmp/ccE9mEKn.s:318    .rodata.ulog_level_name.str1.4:00000000 $d
-     /tmp/ccE9mEKn.s:343    .text.ulog_level_name:00000000 $t
-     /tmp/ccE9mEKn.s:349    .text.ulog_level_name:00000000 ulog_level_name
-     /tmp/ccE9mEKn.s:365    .text.ulog_level_name:0000000a $d
-     /tmp/ccE9mEKn.s:416    .text.ulog_level_name:00000034 $d
-     /tmp/ccE9mEKn.s:428    .text.ulog_message:00000000 $t
-     /tmp/ccE9mEKn.s:434    .text.ulog_message:00000000 ulog_message
-     /tmp/ccE9mEKn.s:542    .text.ulog_message:00000050 $d
-     /tmp/ccE9mEKn.s:557    .bss.s_message:00000000 s_message
-     /tmp/ccE9mEKn.s:552    .bss.s_lowest_log_level:00000000 $d
-     /tmp/ccE9mEKn.s:554    .bss.s_message:00000000 $d
-     /tmp/ccE9mEKn.s:560    .bss.s_subscribers:00000000 $d
-     /tmp/ccE9mEKn.s:372    .text.ulog_level_name:00000011 $d
-     /tmp/ccE9mEKn.s:372    .text.ulog_level_name:00000012 $t
+     /tmp/cccihSA7.s:21     .text.ulog_lowest_log_level:00000000 $t
+     /tmp/cccihSA7.s:26     .text.ulog_lowest_log_level:00000000 ulog_lowest_log_level
+     /tmp/cccihSA7.s:80     .text.ulog_lowest_log_level:00000028 $d
+     /tmp/cccihSA7.s:563    .bss.s_subscribers:00000000 s_subscribers
+     /tmp/cccihSA7.s:85     .text.ulog_init:00000000 $t
+     /tmp/cccihSA7.s:91     .text.ulog_init:00000000 ulog_init
+     /tmp/cccihSA7.s:120    .text.ulog_init:00000018 $d
+     /tmp/cccihSA7.s:551    .bss.s_lowest_log_level:00000000 s_lowest_log_level
+     /tmp/cccihSA7.s:126    .text.ulog_subscribe:00000000 $t
+     /tmp/cccihSA7.s:132    .text.ulog_subscribe:00000000 ulog_subscribe
+     /tmp/cccihSA7.s:234    .text.ulog_subscribe:00000050 $d
+     /tmp/cccihSA7.s:240    .text.ulog_unsubscribe:00000000 $t
+     /tmp/cccihSA7.s:246    .text.ulog_unsubscribe:00000000 ulog_unsubscribe
+     /tmp/cccihSA7.s:312    .text.ulog_unsubscribe:00000030 $d
+     /tmp/cccihSA7.s:318    .rodata.ulog_level_name.str1.4:00000000 $d
+     /tmp/cccihSA7.s:343    .text.ulog_level_name:00000000 $t
+     /tmp/cccihSA7.s:349    .text.ulog_level_name:00000000 ulog_level_name
+     /tmp/cccihSA7.s:365    .text.ulog_level_name:0000000a $d
+     /tmp/cccihSA7.s:416    .text.ulog_level_name:00000034 $d
+     /tmp/cccihSA7.s:428    .text.ulog_message:00000000 $t
+     /tmp/cccihSA7.s:434    .text.ulog_message:00000000 ulog_message
+     /tmp/cccihSA7.s:542    .text.ulog_message:00000050 $d
+     /tmp/cccihSA7.s:557    .bss.s_message:00000000 s_message
+     /tmp/cccihSA7.s:552    .bss.s_lowest_log_level:00000000 $d
+     /tmp/cccihSA7.s:554    .bss.s_message:00000000 $d
+     /tmp/cccihSA7.s:560    .bss.s_subscribers:00000000 $d
+     /tmp/cccihSA7.s:372    .text.ulog_level_name:00000011 $d
+     /tmp/cccihSA7.s:372    .text.ulog_level_name:00000012 $t
 
 UNDEFINED SYMBOLS
 memset

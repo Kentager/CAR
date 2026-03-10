@@ -71,8 +71,8 @@ typedef enum {
 
 // 方向控制引脚
 #define MOTOR_FR_DIR_PORT GPIOE
-#define MOTOR_FR_DIR1_PIN GPIO_Pin_10 // IN1
-#define MOTOR_FR_DIR2_PIN GPIO_Pin_11 // IN2
+#define MOTOR_FR_DIR1_PIN GPIO_Pin_11 // IN1
+#define MOTOR_FR_DIR2_PIN GPIO_Pin_10 // IN2
 #define MOTOR_FR_DIR_CLK RCC_AHB1Periph_GPIOE
 
 /* ==================== 前左电机 (MOTOR_FL)同时也是双驱的左电机 - TIM1_CH2
