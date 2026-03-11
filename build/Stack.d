@@ -1,6 +1,5 @@
 build/Stack.o: MyHardWare/Src/Stack.c MyHardWare/Inc/Stack.h \
- MyHardWare/Inc/Stack.h MyHardWare/Inc/Sys.h MyHardWare/Inc/BitBand.h \
- MyHardWare/Inc/delay.h CMSIS/stm32f4xx.h CMSIS/core_cm4.h \
+ MyHardWare/Inc/sys.h CMSIS/stm32f4xx.h CMSIS/core_cm4.h \
  CMSIS/core_cmInstr.h CMSIS/core_cmFunc.h CMSIS/core_cmSimd.h \
  CMSIS/system_stm32f4xx.h USER/Inc/stm32f4xx_conf.h \
  Lib/StdPeriphs/inc/stm32f4xx_adc.h Lib/StdPeriphs/inc/stm32f4xx_crc.h \
@@ -17,10 +16,7 @@ build/Stack.o: MyHardWare/Src/Stack.c MyHardWare/Inc/Stack.h \
  Lib/StdPeriphs/inc/stm32f4xx_can.h Lib/StdPeriphs/inc/stm32f4xx_dac.h \
  Lib/StdPeriphs/inc/stm32f4xx_dcmi.h Lib/StdPeriphs/inc/stm32f4xx_fsmc.h
 MyHardWare/Inc/Stack.h:
-MyHardWare/Inc/Stack.h:
-MyHardWare/Inc/Sys.h:
-MyHardWare/Inc/BitBand.h:
-MyHardWare/Inc/delay.h:
+MyHardWare/Inc/sys.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
 CMSIS/core_cmInstr.h:

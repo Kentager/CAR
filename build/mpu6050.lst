@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccMNcKfD.s 			page 1
+ARM GAS  /tmp/cckZvbMk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -34,215 +34,214 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
    3:MyHardWare/Src/mpu6050.c **** #include "myiic.h"
    4:MyHardWare/Src/mpu6050.c **** #include "sys.h"
    5:MyHardWare/Src/mpu6050.c **** #include "task.h"
-   6:MyHardWare/Src/mpu6050.c **** #include "usart.h"
-   7:MyHardWare/Src/mpu6050.c **** #include <math.h>
-   8:MyHardWare/Src/mpu6050.c **** #include <stdint.h>
-   9:MyHardWare/Src/mpu6050.c **** #include <stdio.h>
-  10:MyHardWare/Src/mpu6050.c **** static int16_t ax, ay, az;
-  11:MyHardWare/Src/mpu6050.c **** static int16_t gx, gy, gz;
-  12:MyHardWare/Src/mpu6050.c **** static int16_t temperature;
-  13:MyHardWare/Src/mpu6050.c **** static float gx_dps, gy_dps, gz_dps;
-  14:MyHardWare/Src/mpu6050.c **** static float ax_dps, ay_dps, az_dps;
-  15:MyHardWare/Src/mpu6050.c **** EulerAngles MPU_Attitude;
-  16:MyHardWare/Src/mpu6050.c **** 
-  17:MyHardWare/Src/mpu6050.c **** // 初始化MPU6050
-  18:MyHardWare/Src/mpu6050.c **** // 返回值:0,成功
-  19:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
-  20:MyHardWare/Src/mpu6050.c **** u8 MPU_Init(void) {
-  21:MyHardWare/Src/mpu6050.c ****   u8 res;
-  22:MyHardWare/Src/mpu6050.c ****   IIC_Init();                              // 初始化IIC总线
-  23:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); // 复位MPU6050
-  24:MyHardWare/Src/mpu6050.c ****   delay_ms(100);
-  25:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X00); // 唤醒MPU6050
-  26:MyHardWare/Src/mpu6050.c ****   MPU_Set_Gyro_Fsr(3);                     // 陀螺仪传感器,±2000dps
-  27:MyHardWare/Src/mpu6050.c ****   MPU_Set_Accel_Fsr(0);                    // 加速度传感器,±2g
-  28:MyHardWare/Src/mpu6050.c ****   MPU_Set_Rate(200);                       // 设置采样率200Hz
-  29:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INT_EN_REG, 0X00);    // 关闭所有中断
-ARM GAS  /tmp/ccMNcKfD.s 			page 2
+   6:MyHardWare/Src/mpu6050.c **** #include <math.h>
+   7:MyHardWare/Src/mpu6050.c **** #include <stdint.h>
+   8:MyHardWare/Src/mpu6050.c **** #include <stdio.h>
+   9:MyHardWare/Src/mpu6050.c **** static int16_t ax, ay, az;
+  10:MyHardWare/Src/mpu6050.c **** static int16_t gx, gy, gz;
+  11:MyHardWare/Src/mpu6050.c **** static int16_t temperature;
+  12:MyHardWare/Src/mpu6050.c **** static float gx_dps, gy_dps, gz_dps;
+  13:MyHardWare/Src/mpu6050.c **** static float ax_dps, ay_dps, az_dps;
+  14:MyHardWare/Src/mpu6050.c **** EulerAngles MPU_Attitude;
+  15:MyHardWare/Src/mpu6050.c **** 
+  16:MyHardWare/Src/mpu6050.c **** // 初始化MPU6050
+  17:MyHardWare/Src/mpu6050.c **** // 返回值:0,成功
+  18:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
+  19:MyHardWare/Src/mpu6050.c **** u8 MPU_Init(void) {
+  20:MyHardWare/Src/mpu6050.c ****   u8 res;
+  21:MyHardWare/Src/mpu6050.c ****   IIC_Init();                              // 初始化IIC总线
+  22:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); // 复位MPU6050
+  23:MyHardWare/Src/mpu6050.c ****   delay_ms(100);
+  24:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X00); // 唤醒MPU6050
+  25:MyHardWare/Src/mpu6050.c ****   MPU_Set_Gyro_Fsr(3);                     // 陀螺仪传感器,±2000dps
+  26:MyHardWare/Src/mpu6050.c ****   MPU_Set_Accel_Fsr(0);                    // 加速度传感器,±2g
+  27:MyHardWare/Src/mpu6050.c ****   MPU_Set_Rate(200);                       // 设置采样率200Hz
+  28:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INT_EN_REG, 0X00);    // 关闭所有中断
+  29:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_USER_CTRL_REG, 0X00); // I2C主模式关闭
+ARM GAS  /tmp/cckZvbMk.s 			page 2
 
 
-  30:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_USER_CTRL_REG, 0X00); // I2C主模式关闭
-  31:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_FIFO_EN_REG, 0X00);   // 关闭FIFO
-  32:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INTBP_CFG_REG, 0X80); // INT引脚低电平有效
-  33:MyHardWare/Src/mpu6050.c ****   MPU_Read_Byte(MPU_DEVICE_ID_REG, &res);
-  34:MyHardWare/Src/mpu6050.c ****   printf("res is 0x%02x\r\n", res);
-  35:MyHardWare/Src/mpu6050.c ****   if (res == MPU_ADDR) // 器件ID正确
-  36:MyHardWare/Src/mpu6050.c ****   {
-  37:MyHardWare/Src/mpu6050.c ****     MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X01); // 设置CLKSEL,PLL X轴为参考
-  38:MyHardWare/Src/mpu6050.c ****     MPU_Write_Byte(MPU_PWR_MGMT2_REG, 0X00); // 加速度与陀螺仪都工作
-  39:MyHardWare/Src/mpu6050.c ****     MPU_Set_Rate(100);                       // 设置采样率为50Hz
-  40:MyHardWare/Src/mpu6050.c ****   } else
-  41:MyHardWare/Src/mpu6050.c ****     return 1;
-  42:MyHardWare/Src/mpu6050.c ****   return 0;
-  43:MyHardWare/Src/mpu6050.c **** }
-  44:MyHardWare/Src/mpu6050.c **** // 设置MPU6050陀螺仪传感器满量程范围
-  45:MyHardWare/Src/mpu6050.c **** // fsr:0,±250dps;1,±500dps;2,±1000dps;3,±2000dps
-  46:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
-  47:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
-  48:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_Gyro_Fsr(u8 fsr) {
-  49:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // 设置陀螺仪满量程范围
-  50:MyHardWare/Src/mpu6050.c **** }
-  51:MyHardWare/Src/mpu6050.c **** // 设置MPU6050加速度传感器满量程范围
-  52:MyHardWare/Src/mpu6050.c **** // fsr:0,±2g;1,±4g;2,±8g;3,±16g
-  53:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
-  54:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
-  55:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_Accel_Fsr(u8 fsr) {
-  56:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
-  57:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
-  58:MyHardWare/Src/mpu6050.c **** }
-  59:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的数字低通滤波器
-  60:MyHardWare/Src/mpu6050.c **** // lpf:数字低通滤波频率(Hz)
-  61:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
-  62:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
-  63:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_LPF(u16 lpf) {
-  64:MyHardWare/Src/mpu6050.c ****   u8 data = 0;
-  65:MyHardWare/Src/mpu6050.c ****   if (lpf >= 188)
-  66:MyHardWare/Src/mpu6050.c ****     data = 1;
-  67:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 98)
-  68:MyHardWare/Src/mpu6050.c ****     data = 2;
-  69:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 42)
-  70:MyHardWare/Src/mpu6050.c ****     data = 3;
-  71:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 20)
-  72:MyHardWare/Src/mpu6050.c ****     data = 4;
-  73:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 10)
-  74:MyHardWare/Src/mpu6050.c ****     data = 5;
-  75:MyHardWare/Src/mpu6050.c ****   else
-  76:MyHardWare/Src/mpu6050.c ****     data = 6;
-  77:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_CFG_REG, data); // 设置数字低通滤波器
-  78:MyHardWare/Src/mpu6050.c **** }
-  79:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的采样率(假定Fs=1KHz)
-  80:MyHardWare/Src/mpu6050.c **** // rate:4~1000(Hz)
-  81:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
-  82:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
-  83:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_Rate(u16 rate) {
-  84:MyHardWare/Src/mpu6050.c ****   u8 data;
-  85:MyHardWare/Src/mpu6050.c ****   if (rate > 1000)
-  86:MyHardWare/Src/mpu6050.c ****     rate = 1000;
-ARM GAS  /tmp/ccMNcKfD.s 			page 3
+  30:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_FIFO_EN_REG, 0X00);   // 关闭FIFO
+  31:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INTBP_CFG_REG, 0X80); // INT引脚低电平有效
+  32:MyHardWare/Src/mpu6050.c ****   MPU_Read_Byte(MPU_DEVICE_ID_REG, &res);
+  33:MyHardWare/Src/mpu6050.c ****   printf("res is 0x%02x\r\n", res);
+  34:MyHardWare/Src/mpu6050.c ****   if (res == MPU_ADDR) // 器件ID正确
+  35:MyHardWare/Src/mpu6050.c ****   {
+  36:MyHardWare/Src/mpu6050.c ****     MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X01); // 设置CLKSEL,PLL X轴为参考
+  37:MyHardWare/Src/mpu6050.c ****     MPU_Write_Byte(MPU_PWR_MGMT2_REG, 0X00); // 加速度与陀螺仪都工作
+  38:MyHardWare/Src/mpu6050.c ****     MPU_Set_Rate(100);                       // 设置采样率为50Hz
+  39:MyHardWare/Src/mpu6050.c ****   } else
+  40:MyHardWare/Src/mpu6050.c ****     return 1;
+  41:MyHardWare/Src/mpu6050.c ****   return 0;
+  42:MyHardWare/Src/mpu6050.c **** }
+  43:MyHardWare/Src/mpu6050.c **** // 设置MPU6050陀螺仪传感器满量程范围
+  44:MyHardWare/Src/mpu6050.c **** // fsr:0,±250dps;1,±500dps;2,±1000dps;3,±2000dps
+  45:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
+  46:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
+  47:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_Gyro_Fsr(u8 fsr) {
+  48:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // 设置陀螺仪满量程范围
+  49:MyHardWare/Src/mpu6050.c **** }
+  50:MyHardWare/Src/mpu6050.c **** // 设置MPU6050加速度传感器满量程范围
+  51:MyHardWare/Src/mpu6050.c **** // fsr:0,±2g;1,±4g;2,±8g;3,±16g
+  52:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
+  53:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
+  54:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_Accel_Fsr(u8 fsr) {
+  55:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
+  56:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
+  57:MyHardWare/Src/mpu6050.c **** }
+  58:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的数字低通滤波器
+  59:MyHardWare/Src/mpu6050.c **** // lpf:数字低通滤波频率(Hz)
+  60:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
+  61:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
+  62:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_LPF(u16 lpf) {
+  63:MyHardWare/Src/mpu6050.c ****   u8 data = 0;
+  64:MyHardWare/Src/mpu6050.c ****   if (lpf >= 188)
+  65:MyHardWare/Src/mpu6050.c ****     data = 1;
+  66:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 98)
+  67:MyHardWare/Src/mpu6050.c ****     data = 2;
+  68:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 42)
+  69:MyHardWare/Src/mpu6050.c ****     data = 3;
+  70:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 20)
+  71:MyHardWare/Src/mpu6050.c ****     data = 4;
+  72:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 10)
+  73:MyHardWare/Src/mpu6050.c ****     data = 5;
+  74:MyHardWare/Src/mpu6050.c ****   else
+  75:MyHardWare/Src/mpu6050.c ****     data = 6;
+  76:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_CFG_REG, data); // 设置数字低通滤波器
+  77:MyHardWare/Src/mpu6050.c **** }
+  78:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的采样率(假定Fs=1KHz)
+  79:MyHardWare/Src/mpu6050.c **** // rate:4~1000(Hz)
+  80:MyHardWare/Src/mpu6050.c **** // 返回值:0,设置成功
+  81:MyHardWare/Src/mpu6050.c **** //     其他,设置失败
+  82:MyHardWare/Src/mpu6050.c **** u8 MPU_Set_Rate(u16 rate) {
+  83:MyHardWare/Src/mpu6050.c ****   u8 data;
+  84:MyHardWare/Src/mpu6050.c ****   if (rate > 1000)
+  85:MyHardWare/Src/mpu6050.c ****     rate = 1000;
+  86:MyHardWare/Src/mpu6050.c ****   if (rate < 4)
+ARM GAS  /tmp/cckZvbMk.s 			page 3
 
 
-  87:MyHardWare/Src/mpu6050.c ****   if (rate < 4)
-  88:MyHardWare/Src/mpu6050.c ****     rate = 4;
-  89:MyHardWare/Src/mpu6050.c ****   data = 1000 / rate - 1;
-  90:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
-  91:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
-  92:MyHardWare/Src/mpu6050.c **** }
-  93:MyHardWare/Src/mpu6050.c **** 
-  94:MyHardWare/Src/mpu6050.c **** // 得到温度值
-  95:MyHardWare/Src/mpu6050.c **** // 返回值:温度值(扩大了100倍)
-  96:MyHardWare/Src/mpu6050.c **** u8 MPU_Get_Temperature(void) {
-  97:MyHardWare/Src/mpu6050.c ****   u8 res = 0, buf[2];
-  98:MyHardWare/Src/mpu6050.c ****   short raw;
-  99:MyHardWare/Src/mpu6050.c **** 
- 100:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_TEMP_OUTH_REG, 2, buf);
- 101:MyHardWare/Src/mpu6050.c ****   if (res) {
- 102:MyHardWare/Src/mpu6050.c ****     return res;
- 103:MyHardWare/Src/mpu6050.c ****   }
- 104:MyHardWare/Src/mpu6050.c ****   raw = ((u16)buf[0] << 8) | buf[1];
- 105:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
- 106:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 107:MyHardWare/Src/mpu6050.c ****   return 0;
- 108:MyHardWare/Src/mpu6050.c **** }
- 109:MyHardWare/Src/mpu6050.c **** // 得到陀螺仪值(原始值)
- 110:MyHardWare/Src/mpu6050.c **** // gx,gy,gz:陀螺仪x,y,z轴的原始读数(带符号)
- 111:MyHardWare/Src/mpu6050.c **** // 返回值:0,成功
- 112:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
- 113:MyHardWare/Src/mpu6050.c **** u8 MPU_Get_Gyroscope(void) {
- 114:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
- 115:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_GYRO_XOUTH_REG, 6, buf);
- 116:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
- 117:MyHardWare/Src/mpu6050.c ****     gx = ((u16)buf[0] << 8) | buf[1];
- 118:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
- 119:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
- 120:MyHardWare/Src/mpu6050.c ****   }
- 121:MyHardWare/Src/mpu6050.c ****   return res;
- 122:MyHardWare/Src/mpu6050.c ****   ;
- 123:MyHardWare/Src/mpu6050.c **** }
- 124:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
- 125:MyHardWare/Src/mpu6050.c **** // gx,gy,gz:陀螺仪x,y,z轴的原始读数(带符号)
- 126:MyHardWare/Src/mpu6050.c **** // 返回值:0,成功
- 127:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
- 128:MyHardWare/Src/mpu6050.c **** u8 MPU_Get_Accelerometer(void) {
- 129:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
- 130:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_ACCEL_XOUTH_REG, 6, buf);
- 131:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
- 132:MyHardWare/Src/mpu6050.c ****     ax = ((u16)buf[0] << 8) | buf[1];
- 133:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
- 134:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
- 135:MyHardWare/Src/mpu6050.c ****   }
- 136:MyHardWare/Src/mpu6050.c ****   return res;
- 137:MyHardWare/Src/mpu6050.c ****   ;
- 138:MyHardWare/Src/mpu6050.c **** }
- 139:MyHardWare/Src/mpu6050.c **** // return :0 success
- 140:MyHardWare/Src/mpu6050.c **** // other fail
- 141:MyHardWare/Src/mpu6050.c **** u8 MPU_Updata(void) {
- 142:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Accelerometer())
- 143:MyHardWare/Src/mpu6050.c ****     return 1;
-ARM GAS  /tmp/ccMNcKfD.s 			page 4
+  87:MyHardWare/Src/mpu6050.c ****     rate = 4;
+  88:MyHardWare/Src/mpu6050.c ****   data = 1000 / rate - 1;
+  89:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
+  90:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
+  91:MyHardWare/Src/mpu6050.c **** }
+  92:MyHardWare/Src/mpu6050.c **** 
+  93:MyHardWare/Src/mpu6050.c **** // 得到温度值
+  94:MyHardWare/Src/mpu6050.c **** // 返回值:温度值(扩大了100倍)
+  95:MyHardWare/Src/mpu6050.c **** u8 MPU_Get_Temperature(void) {
+  96:MyHardWare/Src/mpu6050.c ****   u8 res = 0, buf[2];
+  97:MyHardWare/Src/mpu6050.c ****   short raw;
+  98:MyHardWare/Src/mpu6050.c **** 
+  99:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_TEMP_OUTH_REG, 2, buf);
+ 100:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 101:MyHardWare/Src/mpu6050.c ****     return res;
+ 102:MyHardWare/Src/mpu6050.c ****   }
+ 103:MyHardWare/Src/mpu6050.c ****   raw = ((u16)buf[0] << 8) | buf[1];
+ 104:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
+ 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 106:MyHardWare/Src/mpu6050.c ****   return 0;
+ 107:MyHardWare/Src/mpu6050.c **** }
+ 108:MyHardWare/Src/mpu6050.c **** // 得到陀螺仪值(原始值)
+ 109:MyHardWare/Src/mpu6050.c **** // gx,gy,gz:陀螺仪x,y,z轴的原始读数(带符号)
+ 110:MyHardWare/Src/mpu6050.c **** // 返回值:0,成功
+ 111:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
+ 112:MyHardWare/Src/mpu6050.c **** u8 MPU_Get_Gyroscope(void) {
+ 113:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
+ 114:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_GYRO_XOUTH_REG, 6, buf);
+ 115:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
+ 116:MyHardWare/Src/mpu6050.c ****     gx = ((u16)buf[0] << 8) | buf[1];
+ 117:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
+ 118:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
+ 119:MyHardWare/Src/mpu6050.c ****   }
+ 120:MyHardWare/Src/mpu6050.c ****   return res;
+ 121:MyHardWare/Src/mpu6050.c ****   ;
+ 122:MyHardWare/Src/mpu6050.c **** }
+ 123:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
+ 124:MyHardWare/Src/mpu6050.c **** // gx,gy,gz:陀螺仪x,y,z轴的原始读数(带符号)
+ 125:MyHardWare/Src/mpu6050.c **** // 返回值:0,成功
+ 126:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
+ 127:MyHardWare/Src/mpu6050.c **** u8 MPU_Get_Accelerometer(void) {
+ 128:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
+ 129:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_ACCEL_XOUTH_REG, 6, buf);
+ 130:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
+ 131:MyHardWare/Src/mpu6050.c ****     ax = ((u16)buf[0] << 8) | buf[1];
+ 132:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
+ 133:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
+ 134:MyHardWare/Src/mpu6050.c ****   }
+ 135:MyHardWare/Src/mpu6050.c ****   return res;
+ 136:MyHardWare/Src/mpu6050.c ****   ;
+ 137:MyHardWare/Src/mpu6050.c **** }
+ 138:MyHardWare/Src/mpu6050.c **** // return :0 success
+ 139:MyHardWare/Src/mpu6050.c **** // other fail
+ 140:MyHardWare/Src/mpu6050.c **** u8 MPU_Updata(void) {
+ 141:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Accelerometer())
+ 142:MyHardWare/Src/mpu6050.c ****     return 1;
+ 143:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Gyroscope()) {
+ARM GAS  /tmp/cckZvbMk.s 			page 4
 
 
- 144:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Gyroscope()) {
- 145:MyHardWare/Src/mpu6050.c ****     return 2;
- 146:MyHardWare/Src/mpu6050.c ****   }
- 147:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Temperature()) {
- 148:MyHardWare/Src/mpu6050.c ****     return 3;
- 149:MyHardWare/Src/mpu6050.c ****   }
- 150:MyHardWare/Src/mpu6050.c ****   // 陀螺仪：±2000dps 对应 16.4 LSB/(°/s)
- 151:MyHardWare/Src/mpu6050.c ****   gx_dps = gx * (2000.0f / 32768.0f); // 或者 gx * 0.061035f
- 152:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
- 153:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
- 154:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
- 155:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
- 156:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
- 157:MyHardWare/Src/mpu6050.c ****   return 0;
- 158:MyHardWare/Src/mpu6050.c **** }
- 159:MyHardWare/Src/mpu6050.c **** void MPU_Proc(void) {
- 160:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
- 161:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
- 162:MyHardWare/Src/mpu6050.c ****   if (res) {
- 163:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
- 164:MyHardWare/Src/mpu6050.c ****     return;
- 165:MyHardWare/Src/mpu6050.c ****   }
- 166:MyHardWare/Src/mpu6050.c ****   // 积分计算欧拉角
- 167:MyHardWare/Src/mpu6050.c ****   float pitch_g = MPU_Attitude.pitch + gx_dps * 0.005;
- 168:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 169:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 170:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 171:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 172:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 173:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 174:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.roll = MPU_ALPHA * roll_g + (1.0f - MPU_ALPHA) * roll_a -
- 175:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 176:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.yaw = yaw_g - MPU_Attitude.Initial_Attitude[2];
- 177:MyHardWare/Src/mpu6050.c **** }
- 178:MyHardWare/Src/mpu6050.c **** void Get_RawData(void) {
- 179:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
- 180:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
- 181:MyHardWare/Src/mpu6050.c ****   if (res) {
- 182:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
- 183:MyHardWare/Src/mpu6050.c ****     return;
- 184:MyHardWare/Src/mpu6050.c ****   }
- 185:MyHardWare/Src/mpu6050.c ****   printf("ax:%6.2f,ay:%6.2f,az:%6.2f,gx_dps:%6.2f,gy_dps:%6.2f,gz_dps:%6.2f,"
- 186:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
- 187:MyHardWare/Src/mpu6050.c ****          ax_dps, ay_dps, az_dps, gx_dps, gy_dps, gz_dps, MPU_Attitude.pitch,
- 188:MyHardWare/Src/mpu6050.c ****          MPU_Attitude.roll, MPU_Attitude.yaw);
- 189:MyHardWare/Src/mpu6050.c **** }
- 190:MyHardWare/Src/mpu6050.c **** // IIC连续写
- 191:MyHardWare/Src/mpu6050.c **** // addr:器件地址
- 192:MyHardWare/Src/mpu6050.c **** // reg:寄存器地址
- 193:MyHardWare/Src/mpu6050.c **** // len:写入长度
- 194:MyHardWare/Src/mpu6050.c **** // buf:数据区
- 195:MyHardWare/Src/mpu6050.c **** // 返回值:0,正常
- 196:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
- 197:MyHardWare/Src/mpu6050.c **** u8 MPU_Write_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
-  30              		.loc 1 197 52 view -0
+ 144:MyHardWare/Src/mpu6050.c ****     return 2;
+ 145:MyHardWare/Src/mpu6050.c ****   }
+ 146:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Temperature()) {
+ 147:MyHardWare/Src/mpu6050.c ****     return 3;
+ 148:MyHardWare/Src/mpu6050.c ****   }
+ 149:MyHardWare/Src/mpu6050.c ****   // 陀螺仪：±2000dps 对应 16.4 LSB/(°/s)
+ 150:MyHardWare/Src/mpu6050.c ****   gx_dps = gx * (2000.0f / 32768.0f); // 或者 gx * 0.061035f
+ 151:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
+ 152:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
+ 153:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
+ 154:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
+ 155:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
+ 156:MyHardWare/Src/mpu6050.c ****   return 0;
+ 157:MyHardWare/Src/mpu6050.c **** }
+ 158:MyHardWare/Src/mpu6050.c **** void MPU_Proc(void) {
+ 159:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
+ 160:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
+ 161:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 162:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
+ 163:MyHardWare/Src/mpu6050.c ****     return;
+ 164:MyHardWare/Src/mpu6050.c ****   }
+ 165:MyHardWare/Src/mpu6050.c ****   // 积分计算欧拉角
+ 166:MyHardWare/Src/mpu6050.c ****   float pitch_g = MPU_Attitude.pitch + gx_dps * 0.005;
+ 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 173:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.roll = MPU_ALPHA * roll_g + (1.0f - MPU_ALPHA) * roll_a -
+ 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 175:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.yaw = yaw_g - MPU_Attitude.Initial_Attitude[2];
+ 176:MyHardWare/Src/mpu6050.c **** }
+ 177:MyHardWare/Src/mpu6050.c **** void Get_RawData(void) {
+ 178:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
+ 179:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
+ 180:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 181:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
+ 182:MyHardWare/Src/mpu6050.c ****     return;
+ 183:MyHardWare/Src/mpu6050.c ****   }
+ 184:MyHardWare/Src/mpu6050.c ****   printf("ax:%6.2f,ay:%6.2f,az:%6.2f,gx_dps:%6.2f,gy_dps:%6.2f,gz_dps:%6.2f,"
+ 185:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
+ 186:MyHardWare/Src/mpu6050.c ****          ax_dps, ay_dps, az_dps, gx_dps, gy_dps, gz_dps, MPU_Attitude.pitch,
+ 187:MyHardWare/Src/mpu6050.c ****          MPU_Attitude.roll, MPU_Attitude.yaw);
+ 188:MyHardWare/Src/mpu6050.c **** }
+ 189:MyHardWare/Src/mpu6050.c **** // IIC连续写
+ 190:MyHardWare/Src/mpu6050.c **** // addr:器件地址
+ 191:MyHardWare/Src/mpu6050.c **** // reg:寄存器地址
+ 192:MyHardWare/Src/mpu6050.c **** // len:写入长度
+ 193:MyHardWare/Src/mpu6050.c **** // buf:数据区
+ 194:MyHardWare/Src/mpu6050.c **** // 返回值:0,正常
+ 195:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
+ 196:MyHardWare/Src/mpu6050.c **** u8 MPU_Write_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
+  30              		.loc 1 196 52 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccMNcKfD.s 			page 5
-
-
   33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		.loc 1 197 52 is_stmt 0 view .LVU1
+ARM GAS  /tmp/cckZvbMk.s 			page 5
+
+
+  34              		.loc 1 196 52 is_stmt 0 view .LVU1
   35 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
   36              	.LCFI0:
   37              		.cfi_def_cfa_offset 24
@@ -256,121 +255,121 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
   45 0006 0F46     		mov	r7, r1
   46 0008 1546     		mov	r5, r2
   47 000a 1E46     		mov	r6, r3
- 198:MyHardWare/Src/mpu6050.c ****   u8 i;
-  48              		.loc 1 198 3 is_stmt 1 view .LVU2
- 199:MyHardWare/Src/mpu6050.c ****   IIC_Start();
-  49              		.loc 1 199 3 view .LVU3
+ 197:MyHardWare/Src/mpu6050.c ****   u8 i;
+  48              		.loc 1 197 3 is_stmt 1 view .LVU2
+ 198:MyHardWare/Src/mpu6050.c ****   IIC_Start();
+  49              		.loc 1 198 3 view .LVU3
   50 000c FFF7FEFF 		bl	IIC_Start
   51              	.LVL1:
- 200:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((addr << 1) | 0); // 发送器件地址+写命令
-  52              		.loc 1 200 3 view .LVU4
+ 199:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((addr << 1) | 0); // 发送器件地址+写命令
+  52              		.loc 1 199 3 view .LVU4
   53 0010 6000     		lsls	r0, r4, #1
   54 0012 00F0FE00 		and	r0, r0, #254
   55 0016 FFF7FEFF 		bl	IIC_Send_Byte
   56              	.LVL2:
- 201:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())             // 等待应答
-  57              		.loc 1 201 3 view .LVU5
-  58              		.loc 1 201 7 is_stmt 0 view .LVU6
+ 200:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())             // 等待应答
+  57              		.loc 1 200 3 view .LVU5
+  58              		.loc 1 200 7 is_stmt 0 view .LVU6
   59 001a FFF7FEFF 		bl	IIC_Wait_Ack
   60              	.LVL3:
-  61              		.loc 1 201 6 discriminator 1 view .LVU7
+  61              		.loc 1 200 6 discriminator 1 view .LVU7
   62 001e 88B9     		cbnz	r0, .L8
   63 0020 8046     		mov	r8, r0
- 202:MyHardWare/Src/mpu6050.c ****   {
- 203:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 204:MyHardWare/Src/mpu6050.c ****     return 1;
- 205:MyHardWare/Src/mpu6050.c ****   }
- 206:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg); // 写寄存器地址
-  64              		.loc 1 206 3 is_stmt 1 view .LVU8
+ 201:MyHardWare/Src/mpu6050.c ****   {
+ 202:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 203:MyHardWare/Src/mpu6050.c ****     return 1;
+ 204:MyHardWare/Src/mpu6050.c ****   }
+ 205:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg); // 写寄存器地址
+  64              		.loc 1 205 3 is_stmt 1 view .LVU8
   65 0022 3846     		mov	r0, r7
   66 0024 FFF7FEFF 		bl	IIC_Send_Byte
   67              	.LVL4:
- 207:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();     // 等待应答
-  68              		.loc 1 207 3 view .LVU9
+ 206:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();     // 等待应答
+  68              		.loc 1 206 3 view .LVU9
   69 0028 FFF7FEFF 		bl	IIC_Wait_Ack
   70              	.LVL5:
- 208:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
-  71              		.loc 1 208 3 view .LVU10
-  72              		.loc 1 208 10 is_stmt 0 view .LVU11
+ 207:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
+  71              		.loc 1 207 3 view .LVU10
+  72              		.loc 1 207 10 is_stmt 0 view .LVU11
   73 002c 4446     		mov	r4, r8
   74              	.LVL6:
   75              	.L4:
-  76              		.loc 1 208 17 is_stmt 1 discriminator 1 view .LVU12
+  76              		.loc 1 207 17 is_stmt 1 discriminator 1 view .LVU12
   77 002e AC42     		cmp	r4, r5
   78 0030 14D2     		bcs	.L9
-ARM GAS  /tmp/ccMNcKfD.s 			page 6
+ 208:MyHardWare/Src/mpu6050.c ****     IIC_Send_Byte(buf[i]); // 发送数据
+ARM GAS  /tmp/cckZvbMk.s 			page 6
 
 
- 209:MyHardWare/Src/mpu6050.c ****     IIC_Send_Byte(buf[i]); // 发送数据
-  79              		.loc 1 209 5 view .LVU13
+  79              		.loc 1 208 5 view .LVU13
   80 0032 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
   81 0034 FFF7FEFF 		bl	IIC_Send_Byte
   82              	.LVL7:
- 210:MyHardWare/Src/mpu6050.c ****     if (IIC_Wait_Ack())    // 等待ACK
-  83              		.loc 1 210 5 view .LVU14
-  84              		.loc 1 210 9 is_stmt 0 view .LVU15
+ 209:MyHardWare/Src/mpu6050.c ****     if (IIC_Wait_Ack())    // 等待ACK
+  83              		.loc 1 209 5 view .LVU14
+  84              		.loc 1 209 9 is_stmt 0 view .LVU15
   85 0038 FFF7FEFF 		bl	IIC_Wait_Ack
   86              	.LVL8:
-  87              		.loc 1 210 8 discriminator 1 view .LVU16
+  87              		.loc 1 209 8 discriminator 1 view .LVU16
   88 003c 48B9     		cbnz	r0, .L10
- 208:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
-  89              		.loc 1 208 25 is_stmt 1 discriminator 2 view .LVU17
+ 207:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
+  89              		.loc 1 207 25 is_stmt 1 discriminator 2 view .LVU17
   90 003e 0134     		adds	r4, r4, #1
   91              	.LVL9:
- 208:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
-  92              		.loc 1 208 25 is_stmt 0 discriminator 2 view .LVU18
+ 207:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
+  92              		.loc 1 207 25 is_stmt 0 discriminator 2 view .LVU18
   93 0040 E4B2     		uxtb	r4, r4
   94              	.LVL10:
- 208:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
-  95              		.loc 1 208 25 discriminator 2 view .LVU19
+ 207:MyHardWare/Src/mpu6050.c ****   for (i = 0; i < len; i++) {
+  95              		.loc 1 207 25 discriminator 2 view .LVU19
   96 0042 F4E7     		b	.L4
   97              	.LVL11:
   98              	.L8:
- 203:MyHardWare/Src/mpu6050.c ****     return 1;
-  99              		.loc 1 203 5 is_stmt 1 view .LVU20
+ 202:MyHardWare/Src/mpu6050.c ****     return 1;
+  99              		.loc 1 202 5 is_stmt 1 view .LVU20
  100 0044 FFF7FEFF 		bl	IIC_Stop
  101              	.LVL12:
- 204:MyHardWare/Src/mpu6050.c ****   }
- 102              		.loc 1 204 5 view .LVU21
- 204:MyHardWare/Src/mpu6050.c ****   }
- 103              		.loc 1 204 12 is_stmt 0 view .LVU22
+ 203:MyHardWare/Src/mpu6050.c ****   }
+ 102              		.loc 1 203 5 view .LVU21
+ 203:MyHardWare/Src/mpu6050.c ****   }
+ 103              		.loc 1 203 12 is_stmt 0 view .LVU22
  104 0048 4FF00108 		mov	r8, #1
  105              	.L3:
- 211:MyHardWare/Src/mpu6050.c ****     {
- 212:MyHardWare/Src/mpu6050.c ****       IIC_Stop();
- 213:MyHardWare/Src/mpu6050.c ****       return 1;
- 214:MyHardWare/Src/mpu6050.c ****     }
- 215:MyHardWare/Src/mpu6050.c ****   }
- 216:MyHardWare/Src/mpu6050.c ****   IIC_Stop();
- 217:MyHardWare/Src/mpu6050.c ****   return 0;
- 218:MyHardWare/Src/mpu6050.c **** }
- 106              		.loc 1 218 1 view .LVU23
+ 210:MyHardWare/Src/mpu6050.c ****     {
+ 211:MyHardWare/Src/mpu6050.c ****       IIC_Stop();
+ 212:MyHardWare/Src/mpu6050.c ****       return 1;
+ 213:MyHardWare/Src/mpu6050.c ****     }
+ 214:MyHardWare/Src/mpu6050.c ****   }
+ 215:MyHardWare/Src/mpu6050.c ****   IIC_Stop();
+ 216:MyHardWare/Src/mpu6050.c ****   return 0;
+ 217:MyHardWare/Src/mpu6050.c **** }
+ 106              		.loc 1 217 1 view .LVU23
  107 004c 4046     		mov	r0, r8
  108 004e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
  109              	.LVL13:
  110              	.L10:
- 212:MyHardWare/Src/mpu6050.c ****       return 1;
- 111              		.loc 1 212 7 is_stmt 1 view .LVU24
+ 211:MyHardWare/Src/mpu6050.c ****       return 1;
+ 111              		.loc 1 211 7 is_stmt 1 view .LVU24
  112 0052 FFF7FEFF 		bl	IIC_Stop
  113              	.LVL14:
- 213:MyHardWare/Src/mpu6050.c ****     }
- 114              		.loc 1 213 7 view .LVU25
- 213:MyHardWare/Src/mpu6050.c ****     }
- 115              		.loc 1 213 14 is_stmt 0 view .LVU26
+ 212:MyHardWare/Src/mpu6050.c ****     }
+ 114              		.loc 1 212 7 view .LVU25
+ 212:MyHardWare/Src/mpu6050.c ****     }
+ 115              		.loc 1 212 14 is_stmt 0 view .LVU26
  116 0056 4FF00108 		mov	r8, #1
-ARM GAS  /tmp/ccMNcKfD.s 			page 7
-
-
  117 005a F7E7     		b	.L3
+ARM GAS  /tmp/cckZvbMk.s 			page 7
+
+
  118              	.L9:
- 216:MyHardWare/Src/mpu6050.c ****   return 0;
- 119              		.loc 1 216 3 is_stmt 1 view .LVU27
+ 215:MyHardWare/Src/mpu6050.c ****   return 0;
+ 119              		.loc 1 215 3 is_stmt 1 view .LVU27
  120 005c FFF7FEFF 		bl	IIC_Stop
  121              	.LVL15:
- 217:MyHardWare/Src/mpu6050.c **** }
- 122              		.loc 1 217 3 view .LVU28
- 217:MyHardWare/Src/mpu6050.c **** }
- 123              		.loc 1 217 10 is_stmt 0 view .LVU29
+ 216:MyHardWare/Src/mpu6050.c **** }
+ 122              		.loc 1 216 3 view .LVU28
+ 216:MyHardWare/Src/mpu6050.c **** }
+ 123              		.loc 1 216 10 is_stmt 0 view .LVU29
  124 0060 F4E7     		b	.L3
  125              		.cfi_endproc
  126              	.LFE137:
@@ -383,19 +382,19 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  135              	MPU_Read_Len:
  136              	.LVL16:
  137              	.LFB138:
- 219:MyHardWare/Src/mpu6050.c **** // IIC连续读
- 220:MyHardWare/Src/mpu6050.c **** // addr:器件地址
- 221:MyHardWare/Src/mpu6050.c **** // reg:要读取的寄存器地址
- 222:MyHardWare/Src/mpu6050.c **** // len:要读取的长度
- 223:MyHardWare/Src/mpu6050.c **** // buf:读取到的数据存储区
- 224:MyHardWare/Src/mpu6050.c **** // 返回值:0,正常
- 225:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
- 226:MyHardWare/Src/mpu6050.c **** u8 MPU_Read_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
- 138              		.loc 1 226 51 is_stmt 1 view -0
+ 218:MyHardWare/Src/mpu6050.c **** // IIC连续读
+ 219:MyHardWare/Src/mpu6050.c **** // addr:器件地址
+ 220:MyHardWare/Src/mpu6050.c **** // reg:要读取的寄存器地址
+ 221:MyHardWare/Src/mpu6050.c **** // len:要读取的长度
+ 222:MyHardWare/Src/mpu6050.c **** // buf:读取到的数据存储区
+ 223:MyHardWare/Src/mpu6050.c **** // 返回值:0,正常
+ 224:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
+ 225:MyHardWare/Src/mpu6050.c **** u8 MPU_Read_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
+ 138              		.loc 1 225 51 is_stmt 1 view -0
  139              		.cfi_startproc
  140              		@ args = 0, pretend = 0, frame = 0
  141              		@ frame_needed = 0, uses_anonymous_args = 0
- 142              		.loc 1 226 51 is_stmt 0 view .LVU31
+ 142              		.loc 1 225 51 is_stmt 0 view .LVU31
  143 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
  144              	.LCFI1:
  145              		.cfi_def_cfa_offset 24
@@ -409,140 +408,140 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  153 0004 0F46     		mov	r7, r1
  154 0006 1446     		mov	r4, r2
  155 0008 1D46     		mov	r5, r3
- 227:MyHardWare/Src/mpu6050.c ****   IIC_Start();
- 156              		.loc 1 227 3 is_stmt 1 view .LVU32
+ 226:MyHardWare/Src/mpu6050.c ****   IIC_Start();
+ 156              		.loc 1 226 3 is_stmt 1 view .LVU32
  157 000a FFF7FEFF 		bl	IIC_Start
  158              	.LVL17:
- 228:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((addr << 1) | 0); // 发送器件地址+写命令
- 159              		.loc 1 228 3 view .LVU33
+ 227:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((addr << 1) | 0); // 发送器件地址+写命令
+ 159              		.loc 1 227 3 view .LVU33
  160 000e 7000     		lsls	r0, r6, #1
  161 0010 00F0FE00 		and	r0, r0, #254
  162 0014 FFF7FEFF 		bl	IIC_Send_Byte
-ARM GAS  /tmp/ccMNcKfD.s 			page 8
-
-
  163              	.LVL18:
- 229:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())             // 等待应答
- 164              		.loc 1 229 3 view .LVU34
- 165              		.loc 1 229 7 is_stmt 0 view .LVU35
+ARM GAS  /tmp/cckZvbMk.s 			page 8
+
+
+ 228:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())             // 等待应答
+ 164              		.loc 1 228 3 view .LVU34
+ 165              		.loc 1 228 7 is_stmt 0 view .LVU35
  166 0018 FFF7FEFF 		bl	IIC_Wait_Ack
  167              	.LVL19:
- 168              		.loc 1 229 6 discriminator 1 view .LVU36
+ 168              		.loc 1 228 6 discriminator 1 view .LVU36
  169 001c 78B9     		cbnz	r0, .L19
- 230:MyHardWare/Src/mpu6050.c ****   {
- 231:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 232:MyHardWare/Src/mpu6050.c ****     return 1;
- 233:MyHardWare/Src/mpu6050.c ****   }
- 234:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg); // 写寄存器地址
- 170              		.loc 1 234 3 is_stmt 1 view .LVU37
+ 229:MyHardWare/Src/mpu6050.c ****   {
+ 230:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 231:MyHardWare/Src/mpu6050.c ****     return 1;
+ 232:MyHardWare/Src/mpu6050.c ****   }
+ 233:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg); // 写寄存器地址
+ 170              		.loc 1 233 3 is_stmt 1 view .LVU37
  171 001e 3846     		mov	r0, r7
  172 0020 FFF7FEFF 		bl	IIC_Send_Byte
  173              	.LVL20:
- 235:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();     // 等待应答
- 174              		.loc 1 235 3 view .LVU38
+ 234:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();     // 等待应答
+ 174              		.loc 1 234 3 view .LVU38
  175 0024 FFF7FEFF 		bl	IIC_Wait_Ack
  176              	.LVL21:
- 236:MyHardWare/Src/mpu6050.c ****   IIC_Start();
- 177              		.loc 1 236 3 view .LVU39
+ 235:MyHardWare/Src/mpu6050.c ****   IIC_Start();
+ 177              		.loc 1 235 3 view .LVU39
  178 0028 FFF7FEFF 		bl	IIC_Start
  179              	.LVL22:
- 237:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((addr << 1) | 1); // 发送器件地址+读命令
- 180              		.loc 1 237 3 view .LVU40
- 181              		.loc 1 237 29 is_stmt 0 view .LVU41
+ 236:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((addr << 1) | 1); // 发送器件地址+读命令
+ 180              		.loc 1 236 3 view .LVU40
+ 181              		.loc 1 236 29 is_stmt 0 view .LVU41
  182 002c 7000     		lsls	r0, r6, #1
  183 002e 40F00100 		orr	r0, r0, #1
- 184              		.loc 1 237 3 view .LVU42
+ 184              		.loc 1 236 3 view .LVU42
  185 0032 C0B2     		uxtb	r0, r0
  186 0034 FFF7FEFF 		bl	IIC_Send_Byte
  187              	.LVL23:
- 238:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();                 // 等待应答
- 188              		.loc 1 238 3 is_stmt 1 view .LVU43
+ 237:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();                 // 等待应答
+ 188              		.loc 1 237 3 is_stmt 1 view .LVU43
  189 0038 FFF7FEFF 		bl	IIC_Wait_Ack
  190              	.LVL24:
- 239:MyHardWare/Src/mpu6050.c ****   while (len) {
- 191              		.loc 1 239 3 view .LVU44
- 192              		.loc 1 239 9 is_stmt 0 view .LVU45
+ 238:MyHardWare/Src/mpu6050.c ****   while (len) {
+ 191              		.loc 1 238 3 view .LVU44
+ 192              		.loc 1 238 9 is_stmt 0 view .LVU45
  193 003c 0AE0     		b	.L14
  194              	.L19:
- 231:MyHardWare/Src/mpu6050.c ****     return 1;
- 195              		.loc 1 231 5 is_stmt 1 view .LVU46
+ 230:MyHardWare/Src/mpu6050.c ****     return 1;
+ 195              		.loc 1 230 5 is_stmt 1 view .LVU46
  196 003e FFF7FEFF 		bl	IIC_Stop
  197              	.LVL25:
- 232:MyHardWare/Src/mpu6050.c ****   }
- 198              		.loc 1 232 5 view .LVU47
- 232:MyHardWare/Src/mpu6050.c ****   }
- 199              		.loc 1 232 12 is_stmt 0 view .LVU48
+ 231:MyHardWare/Src/mpu6050.c ****   }
+ 198              		.loc 1 231 5 view .LVU47
+ 231:MyHardWare/Src/mpu6050.c ****   }
+ 199              		.loc 1 231 12 is_stmt 0 view .LVU48
  200 0042 0120     		movs	r0, #1
  201 0044 11E0     		b	.L13
  202              	.L21:
- 240:MyHardWare/Src/mpu6050.c ****     if (len == 1)
- 241:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(0); // 读数据,发送nACK
- 203              		.loc 1 241 7 is_stmt 1 view .LVU49
-ARM GAS  /tmp/ccMNcKfD.s 			page 9
+ 239:MyHardWare/Src/mpu6050.c ****     if (len == 1)
+ 240:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(0); // 读数据,发送nACK
+ 203              		.loc 1 240 7 is_stmt 1 view .LVU49
+ 204              		.loc 1 240 14 is_stmt 0 view .LVU50
+ARM GAS  /tmp/cckZvbMk.s 			page 9
 
 
- 204              		.loc 1 241 14 is_stmt 0 view .LVU50
  205 0046 0020     		movs	r0, #0
  206 0048 FFF7FEFF 		bl	IIC_Read_Byte
  207              	.LVL26:
- 208              		.loc 1 241 12 discriminator 1 view .LVU51
+ 208              		.loc 1 240 12 discriminator 1 view .LVU51
  209 004c 2870     		strb	r0, [r5]
  210              	.L16:
- 242:MyHardWare/Src/mpu6050.c ****     else
- 243:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(1); // 读数据,发送ACK
- 244:MyHardWare/Src/mpu6050.c ****     len--;
- 211              		.loc 1 244 5 is_stmt 1 view .LVU52
- 212              		.loc 1 244 8 is_stmt 0 view .LVU53
+ 241:MyHardWare/Src/mpu6050.c ****     else
+ 242:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(1); // 读数据,发送ACK
+ 243:MyHardWare/Src/mpu6050.c ****     len--;
+ 211              		.loc 1 243 5 is_stmt 1 view .LVU52
+ 212              		.loc 1 243 8 is_stmt 0 view .LVU53
  213 004e 013C     		subs	r4, r4, #1
  214              	.LVL27:
- 215              		.loc 1 244 8 view .LVU54
+ 215              		.loc 1 243 8 view .LVU54
  216 0050 E4B2     		uxtb	r4, r4
  217              	.LVL28:
- 245:MyHardWare/Src/mpu6050.c ****     buf++;
- 218              		.loc 1 245 5 is_stmt 1 view .LVU55
- 219              		.loc 1 245 8 is_stmt 0 view .LVU56
+ 244:MyHardWare/Src/mpu6050.c ****     buf++;
+ 218              		.loc 1 244 5 is_stmt 1 view .LVU55
+ 219              		.loc 1 244 8 is_stmt 0 view .LVU56
  220 0052 0135     		adds	r5, r5, #1
  221              	.LVL29:
  222              	.L14:
- 239:MyHardWare/Src/mpu6050.c ****     if (len == 1)
- 223              		.loc 1 239 10 is_stmt 1 view .LVU57
+ 238:MyHardWare/Src/mpu6050.c ****     if (len == 1)
+ 223              		.loc 1 238 10 is_stmt 1 view .LVU57
  224 0054 34B1     		cbz	r4, .L20
- 240:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(0); // 读数据,发送nACK
- 225              		.loc 1 240 5 view .LVU58
- 240:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(0); // 读数据,发送nACK
- 226              		.loc 1 240 8 is_stmt 0 view .LVU59
+ 239:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(0); // 读数据,发送nACK
+ 225              		.loc 1 239 5 view .LVU58
+ 239:MyHardWare/Src/mpu6050.c ****       *buf = IIC_Read_Byte(0); // 读数据,发送nACK
+ 226              		.loc 1 239 8 is_stmt 0 view .LVU59
  227 0056 012C     		cmp	r4, #1
  228 0058 F5D0     		beq	.L21
- 243:MyHardWare/Src/mpu6050.c ****     len--;
- 229              		.loc 1 243 7 is_stmt 1 view .LVU60
- 243:MyHardWare/Src/mpu6050.c ****     len--;
- 230              		.loc 1 243 14 is_stmt 0 view .LVU61
+ 242:MyHardWare/Src/mpu6050.c ****     len--;
+ 229              		.loc 1 242 7 is_stmt 1 view .LVU60
+ 242:MyHardWare/Src/mpu6050.c ****     len--;
+ 230              		.loc 1 242 14 is_stmt 0 view .LVU61
  231 005a 0120     		movs	r0, #1
  232 005c FFF7FEFF 		bl	IIC_Read_Byte
  233              	.LVL30:
- 243:MyHardWare/Src/mpu6050.c ****     len--;
- 234              		.loc 1 243 12 discriminator 1 view .LVU62
+ 242:MyHardWare/Src/mpu6050.c ****     len--;
+ 234              		.loc 1 242 12 discriminator 1 view .LVU62
  235 0060 2870     		strb	r0, [r5]
  236 0062 F4E7     		b	.L16
  237              	.L20:
- 246:MyHardWare/Src/mpu6050.c ****   }
- 247:MyHardWare/Src/mpu6050.c ****   IIC_Stop(); // 产生一个停止条件
- 238              		.loc 1 247 3 is_stmt 1 view .LVU63
+ 245:MyHardWare/Src/mpu6050.c ****   }
+ 246:MyHardWare/Src/mpu6050.c ****   IIC_Stop(); // 产生一个停止条件
+ 238              		.loc 1 246 3 is_stmt 1 view .LVU63
  239 0064 FFF7FEFF 		bl	IIC_Stop
  240              	.LVL31:
- 248:MyHardWare/Src/mpu6050.c ****   return 0;
- 241              		.loc 1 248 3 view .LVU64
- 242              		.loc 1 248 10 is_stmt 0 view .LVU65
+ 247:MyHardWare/Src/mpu6050.c ****   return 0;
+ 241              		.loc 1 247 3 view .LVU64
+ 242              		.loc 1 247 10 is_stmt 0 view .LVU65
  243 0068 2046     		mov	r0, r4
  244              	.LVL32:
  245              	.L13:
- 249:MyHardWare/Src/mpu6050.c **** }
- 246              		.loc 1 249 1 view .LVU66
-ARM GAS  /tmp/ccMNcKfD.s 			page 10
-
-
+ 248:MyHardWare/Src/mpu6050.c **** }
+ 246              		.loc 1 248 1 view .LVU66
  247 006a F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 248              		.loc 1 249 1 view .LVU67
+ARM GAS  /tmp/cckZvbMk.s 			page 10
+
+
+ 248              		.loc 1 248 1 view .LVU67
  249              		.cfi_endproc
  250              	.LFE138:
  252              		.global	__aeabi_i2d
@@ -557,8 +556,8 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  261              		.thumb_func
  263              	MPU_Get_Temperature:
  264              	.LFB131:
-  96:MyHardWare/Src/mpu6050.c ****   u8 res = 0, buf[2];
- 265              		.loc 1 96 30 is_stmt 1 view -0
+  95:MyHardWare/Src/mpu6050.c ****   u8 res = 0, buf[2];
+ 265              		.loc 1 95 30 is_stmt 1 view -0
  266              		.cfi_startproc
  267              		@ args = 0, pretend = 0, frame = 8
  268              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -570,86 +569,86 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  274 0002 82B0     		sub	sp, sp, #8
  275              	.LCFI3:
  276              		.cfi_def_cfa_offset 16
-  97:MyHardWare/Src/mpu6050.c ****   short raw;
- 277              		.loc 1 97 3 view .LVU69
+  96:MyHardWare/Src/mpu6050.c ****   short raw;
+ 277              		.loc 1 96 3 view .LVU69
  278              	.LVL33:
-  98:MyHardWare/Src/mpu6050.c **** 
- 279              		.loc 1 98 3 view .LVU70
- 100:MyHardWare/Src/mpu6050.c ****   if (res) {
- 280              		.loc 1 100 3 view .LVU71
- 100:MyHardWare/Src/mpu6050.c ****   if (res) {
- 281              		.loc 1 100 9 is_stmt 0 view .LVU72
+  97:MyHardWare/Src/mpu6050.c **** 
+ 279              		.loc 1 97 3 view .LVU70
+  99:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 280              		.loc 1 99 3 view .LVU71
+  99:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 281              		.loc 1 99 9 is_stmt 0 view .LVU72
  282 0004 01AB     		add	r3, sp, #4
  283 0006 0222     		movs	r2, #2
  284 0008 4121     		movs	r1, #65
  285 000a 6820     		movs	r0, #104
  286 000c FFF7FEFF 		bl	MPU_Read_Len
  287              	.LVL34:
- 101:MyHardWare/Src/mpu6050.c ****     return res;
- 288              		.loc 1 101 3 is_stmt 1 view .LVU73
- 101:MyHardWare/Src/mpu6050.c ****     return res;
- 289              		.loc 1 101 6 is_stmt 0 view .LVU74
+ 100:MyHardWare/Src/mpu6050.c ****     return res;
+ 288              		.loc 1 100 3 is_stmt 1 view .LVU73
+ 100:MyHardWare/Src/mpu6050.c ****     return res;
+ 289              		.loc 1 100 6 is_stmt 0 view .LVU74
  290 0010 0446     		mov	r4, r0
  291 0012 E0B9     		cbnz	r0, .L23
- 104:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
- 292              		.loc 1 104 3 is_stmt 1 view .LVU75
- 104:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
- 293              		.loc 1 104 18 is_stmt 0 view .LVU76
+ 103:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
+ 292              		.loc 1 103 3 is_stmt 1 view .LVU75
+ 103:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
+ 293              		.loc 1 103 18 is_stmt 0 view .LVU76
  294 0014 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
- 104:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
- 295              		.loc 1 104 28 view .LVU77
-ARM GAS  /tmp/ccMNcKfD.s 			page 11
-
-
+ 103:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
+ 295              		.loc 1 103 28 view .LVU77
  296 0018 1B02     		lsls	r3, r3, #8
+ARM GAS  /tmp/cckZvbMk.s 			page 11
+
+
  297 001a 1BB2     		sxth	r3, r3
- 104:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
- 298              		.loc 1 104 33 view .LVU78
+ 103:MyHardWare/Src/mpu6050.c ****   temperature = 36.53 + ((double)raw) / 340;
+ 298              		.loc 1 103 33 view .LVU78
  299 001c 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
  300              	.LVL35:
- 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 301              		.loc 1 105 3 is_stmt 1 view .LVU79
- 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 302              		.loc 1 105 26 is_stmt 0 view .LVU80
+ 104:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 301              		.loc 1 104 3 is_stmt 1 view .LVU79
+ 104:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 302              		.loc 1 104 26 is_stmt 0 view .LVU80
  303 0020 1843     		orrs	r0, r0, r3
  304              	.LVL36:
- 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 305              		.loc 1 105 26 view .LVU81
+ 104:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 305              		.loc 1 104 26 view .LVU81
  306 0022 FFF7FEFF 		bl	__aeabi_i2d
  307              	.LVL37:
- 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 308              		.loc 1 105 39 view .LVU82
+ 104:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 308              		.loc 1 104 39 view .LVU82
  309 0026 0022     		movs	r2, #0
  310 0028 0D4B     		ldr	r3, .L25+8
  311 002a FFF7FEFF 		bl	__aeabi_ddiv
  312              	.LVL38:
- 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 313              		.loc 1 105 23 view .LVU83
+ 104:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 313              		.loc 1 104 23 view .LVU83
  314 002e 0AA3     		adr	r3, .L25
  315 0030 D3E90023 		ldrd	r2, [r3]
  316 0034 FFF7FEFF 		bl	__aeabi_dadd
  317              	.LVL39:
- 105:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
- 318              		.loc 1 105 15 view .LVU84
+ 104:MyHardWare/Src/mpu6050.c ****   temperature *= 100;
+ 318              		.loc 1 104 15 view .LVU84
  319 0038 FFF7FEFF 		bl	__aeabi_d2iz
  320              	.LVL40:
  321 003c 00B2     		sxth	r0, r0
  322 003e 094B     		ldr	r3, .L25+12
  323 0040 1880     		strh	r0, [r3]	@ movhi
- 106:MyHardWare/Src/mpu6050.c ****   return 0;
- 324              		.loc 1 106 3 is_stmt 1 view .LVU85
- 106:MyHardWare/Src/mpu6050.c ****   return 0;
- 325              		.loc 1 106 15 is_stmt 0 view .LVU86
+ 105:MyHardWare/Src/mpu6050.c ****   return 0;
+ 324              		.loc 1 105 3 is_stmt 1 view .LVU85
+ 105:MyHardWare/Src/mpu6050.c ****   return 0;
+ 325              		.loc 1 105 15 is_stmt 0 view .LVU86
  326 0042 00EB8000 		add	r0, r0, r0, lsl #2
  327 0046 00EB8000 		add	r0, r0, r0, lsl #2
  328 004a 8000     		lsls	r0, r0, #2
  329 004c 1880     		strh	r0, [r3]	@ movhi
- 107:MyHardWare/Src/mpu6050.c **** }
- 330              		.loc 1 107 3 is_stmt 1 view .LVU87
+ 106:MyHardWare/Src/mpu6050.c **** }
+ 330              		.loc 1 106 3 is_stmt 1 view .LVU87
  331              	.LVL41:
  332              	.L23:
- 108:MyHardWare/Src/mpu6050.c **** // 得到陀螺仪值(原始值)
- 333              		.loc 1 108 1 is_stmt 0 view .LVU88
+ 107:MyHardWare/Src/mpu6050.c **** // 得到陀螺仪值(原始值)
+ 333              		.loc 1 107 1 is_stmt 0 view .LVU88
  334 004e 2046     		mov	r0, r4
  335 0050 02B0     		add	sp, sp, #8
  336              	.LCFI4:
@@ -658,11 +657,11 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  339 0052 10BD     		pop	{r4, pc}
  340              	.LVL42:
  341              	.L26:
-ARM GAS  /tmp/ccMNcKfD.s 			page 12
+ 107:MyHardWare/Src/mpu6050.c **** // 得到陀螺仪值(原始值)
+ARM GAS  /tmp/cckZvbMk.s 			page 12
 
 
- 108:MyHardWare/Src/mpu6050.c **** // 得到陀螺仪值(原始值)
- 342              		.loc 1 108 1 view .LVU89
+ 342              		.loc 1 107 1 view .LVU89
  343 0054 AFF30080 		.align	3
  344              	.L25:
  345 0058 A4703D0A 		.word	171798692
@@ -679,8 +678,8 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  357              		.thumb_func
  359              	MPU_Get_Gyroscope:
  360              	.LFB132:
- 113:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
- 361              		.loc 1 113 28 is_stmt 1 view -0
+ 112:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
+ 361              		.loc 1 112 28 is_stmt 1 view -0
  362              		.cfi_startproc
  363              		@ args = 0, pretend = 0, frame = 8
  364              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -691,97 +690,97 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  369 0002 83B0     		sub	sp, sp, #12
  370              	.LCFI6:
  371              		.cfi_def_cfa_offset 16
- 114:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_GYRO_XOUTH_REG, 6, buf);
- 372              		.loc 1 114 3 view .LVU91
- 115:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
- 373              		.loc 1 115 3 view .LVU92
- 115:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
- 374              		.loc 1 115 9 is_stmt 0 view .LVU93
+ 113:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_GYRO_XOUTH_REG, 6, buf);
+ 372              		.loc 1 113 3 view .LVU91
+ 114:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
+ 373              		.loc 1 114 3 view .LVU92
+ 114:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
+ 374              		.loc 1 114 9 is_stmt 0 view .LVU93
  375 0004 6B46     		mov	r3, sp
  376 0006 0622     		movs	r2, #6
  377 0008 4321     		movs	r1, #67
  378 000a 6820     		movs	r0, #104
  379 000c FFF7FEFF 		bl	MPU_Read_Len
  380              	.LVL43:
- 116:MyHardWare/Src/mpu6050.c ****     gx = ((u16)buf[0] << 8) | buf[1];
- 381              		.loc 1 116 3 is_stmt 1 view .LVU94
- 116:MyHardWare/Src/mpu6050.c ****     gx = ((u16)buf[0] << 8) | buf[1];
- 382              		.loc 1 116 6 is_stmt 0 view .LVU95
+ 115:MyHardWare/Src/mpu6050.c ****     gx = ((u16)buf[0] << 8) | buf[1];
+ 381              		.loc 1 115 3 is_stmt 1 view .LVU94
+ 115:MyHardWare/Src/mpu6050.c ****     gx = ((u16)buf[0] << 8) | buf[1];
+ 382              		.loc 1 115 6 is_stmt 0 view .LVU95
  383 0010 B8B9     		cbnz	r0, .L28
- 117:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
- 384              		.loc 1 117 5 is_stmt 1 view .LVU96
- 117:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
- 385              		.loc 1 117 19 is_stmt 0 view .LVU97
+ 116:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
+ 384              		.loc 1 116 5 is_stmt 1 view .LVU96
+ 116:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
+ 385              		.loc 1 116 19 is_stmt 0 view .LVU97
  386 0012 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
- 117:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
- 387              		.loc 1 117 34 view .LVU98
+ 116:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
+ 387              		.loc 1 116 34 view .LVU98
  388 0016 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
- 117:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
- 389              		.loc 1 117 29 view .LVU99
-ARM GAS  /tmp/ccMNcKfD.s 			page 13
-
-
+ 116:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
+ 389              		.loc 1 116 29 view .LVU99
  390 001a 43EA0223 		orr	r3, r3, r2, lsl #8
- 117:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
- 391              		.loc 1 117 8 view .LVU100
+ARM GAS  /tmp/cckZvbMk.s 			page 13
+
+
+ 116:MyHardWare/Src/mpu6050.c ****     gy = ((u16)buf[2] << 8) | buf[3];
+ 391              		.loc 1 116 8 view .LVU100
  392 001e 0A4A     		ldr	r2, .L30
  393 0020 1380     		strh	r3, [r2]	@ movhi
- 118:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
- 394              		.loc 1 118 5 is_stmt 1 view .LVU101
- 118:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
- 395              		.loc 1 118 19 is_stmt 0 view .LVU102
+ 117:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
+ 394              		.loc 1 117 5 is_stmt 1 view .LVU101
+ 117:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
+ 395              		.loc 1 117 19 is_stmt 0 view .LVU102
  396 0022 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
- 118:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
- 397              		.loc 1 118 34 view .LVU103
+ 117:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
+ 397              		.loc 1 117 34 view .LVU103
  398 0026 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
- 118:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
- 399              		.loc 1 118 29 view .LVU104
+ 117:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
+ 399              		.loc 1 117 29 view .LVU104
  400 002a 43EA0223 		orr	r3, r3, r2, lsl #8
- 118:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
- 401              		.loc 1 118 8 view .LVU105
+ 117:MyHardWare/Src/mpu6050.c ****     gz = ((u16)buf[4] << 8) | buf[5];
+ 401              		.loc 1 117 8 view .LVU105
  402 002e 074A     		ldr	r2, .L30+4
  403 0030 1380     		strh	r3, [r2]	@ movhi
- 119:MyHardWare/Src/mpu6050.c ****   }
- 404              		.loc 1 119 5 is_stmt 1 view .LVU106
- 119:MyHardWare/Src/mpu6050.c ****   }
- 405              		.loc 1 119 19 is_stmt 0 view .LVU107
+ 118:MyHardWare/Src/mpu6050.c ****   }
+ 404              		.loc 1 118 5 is_stmt 1 view .LVU106
+ 118:MyHardWare/Src/mpu6050.c ****   }
+ 405              		.loc 1 118 19 is_stmt 0 view .LVU107
  406 0032 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
- 119:MyHardWare/Src/mpu6050.c ****   }
- 407              		.loc 1 119 34 view .LVU108
+ 118:MyHardWare/Src/mpu6050.c ****   }
+ 407              		.loc 1 118 34 view .LVU108
  408 0036 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
- 119:MyHardWare/Src/mpu6050.c ****   }
- 409              		.loc 1 119 29 view .LVU109
+ 118:MyHardWare/Src/mpu6050.c ****   }
+ 409              		.loc 1 118 29 view .LVU109
  410 003a 43EA0223 		orr	r3, r3, r2, lsl #8
- 119:MyHardWare/Src/mpu6050.c ****   }
- 411              		.loc 1 119 8 view .LVU110
+ 118:MyHardWare/Src/mpu6050.c ****   }
+ 411              		.loc 1 118 8 view .LVU110
  412 003e 044A     		ldr	r2, .L30+8
  413 0040 1380     		strh	r3, [r2]	@ movhi
  414              	.L28:
- 121:MyHardWare/Src/mpu6050.c ****   ;
- 415              		.loc 1 121 3 is_stmt 1 view .LVU111
- 122:MyHardWare/Src/mpu6050.c **** }
- 416              		.loc 1 122 3 view .LVU112
- 123:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
- 417              		.loc 1 123 1 is_stmt 0 view .LVU113
+ 120:MyHardWare/Src/mpu6050.c ****   ;
+ 415              		.loc 1 120 3 is_stmt 1 view .LVU111
+ 121:MyHardWare/Src/mpu6050.c **** }
+ 416              		.loc 1 121 3 view .LVU112
+ 122:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
+ 417              		.loc 1 122 1 is_stmt 0 view .LVU113
  418 0042 03B0     		add	sp, sp, #12
  419              	.LCFI7:
  420              		.cfi_def_cfa_offset 4
  421              	.LVL44:
- 123:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
- 422              		.loc 1 123 1 view .LVU114
+ 122:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
+ 422              		.loc 1 122 1 view .LVU114
  423              		@ sp needed
  424 0044 5DF804FB 		ldr	pc, [sp], #4
  425              	.LVL45:
  426              	.L31:
- 123:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
- 427              		.loc 1 123 1 view .LVU115
+ 122:MyHardWare/Src/mpu6050.c **** // 得到加速度值(原始值)
+ 427              		.loc 1 122 1 view .LVU115
  428              		.align	2
  429              	.L30:
  430 0048 00000000 		.word	gx
-ARM GAS  /tmp/ccMNcKfD.s 			page 14
-
-
  431 004c 00000000 		.word	gy
+ARM GAS  /tmp/cckZvbMk.s 			page 14
+
+
  432 0050 00000000 		.word	gz
  433              		.cfi_endproc
  434              	.LFE132:
@@ -793,8 +792,8 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  441              		.thumb_func
  443              	MPU_Get_Accelerometer:
  444              	.LFB133:
- 128:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
- 445              		.loc 1 128 32 is_stmt 1 view -0
+ 127:MyHardWare/Src/mpu6050.c ****   u8 buf[6], res;
+ 445              		.loc 1 127 32 is_stmt 1 view -0
  446              		.cfi_startproc
  447              		@ args = 0, pretend = 0, frame = 8
  448              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -805,90 +804,90 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  453 0002 83B0     		sub	sp, sp, #12
  454              	.LCFI9:
  455              		.cfi_def_cfa_offset 16
- 129:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_ACCEL_XOUTH_REG, 6, buf);
- 456              		.loc 1 129 3 view .LVU117
- 130:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
- 457              		.loc 1 130 3 view .LVU118
- 130:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
- 458              		.loc 1 130 9 is_stmt 0 view .LVU119
+ 128:MyHardWare/Src/mpu6050.c ****   res = MPU_Read_Len(MPU_ADDR, MPU_ACCEL_XOUTH_REG, 6, buf);
+ 456              		.loc 1 128 3 view .LVU117
+ 129:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
+ 457              		.loc 1 129 3 view .LVU118
+ 129:MyHardWare/Src/mpu6050.c ****   if (res == 0) {
+ 458              		.loc 1 129 9 is_stmt 0 view .LVU119
  459 0004 6B46     		mov	r3, sp
  460 0006 0622     		movs	r2, #6
  461 0008 3B21     		movs	r1, #59
  462 000a 6820     		movs	r0, #104
  463 000c FFF7FEFF 		bl	MPU_Read_Len
  464              	.LVL46:
- 131:MyHardWare/Src/mpu6050.c ****     ax = ((u16)buf[0] << 8) | buf[1];
- 465              		.loc 1 131 3 is_stmt 1 view .LVU120
- 131:MyHardWare/Src/mpu6050.c ****     ax = ((u16)buf[0] << 8) | buf[1];
- 466              		.loc 1 131 6 is_stmt 0 view .LVU121
+ 130:MyHardWare/Src/mpu6050.c ****     ax = ((u16)buf[0] << 8) | buf[1];
+ 465              		.loc 1 130 3 is_stmt 1 view .LVU120
+ 130:MyHardWare/Src/mpu6050.c ****     ax = ((u16)buf[0] << 8) | buf[1];
+ 466              		.loc 1 130 6 is_stmt 0 view .LVU121
  467 0010 B8B9     		cbnz	r0, .L33
- 132:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
- 468              		.loc 1 132 5 is_stmt 1 view .LVU122
- 132:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
- 469              		.loc 1 132 19 is_stmt 0 view .LVU123
+ 131:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
+ 468              		.loc 1 131 5 is_stmt 1 view .LVU122
+ 131:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
+ 469              		.loc 1 131 19 is_stmt 0 view .LVU123
  470 0012 9DF80020 		ldrb	r2, [sp]	@ zero_extendqisi2
- 132:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
- 471              		.loc 1 132 34 view .LVU124
+ 131:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
+ 471              		.loc 1 131 34 view .LVU124
  472 0016 9DF80130 		ldrb	r3, [sp, #1]	@ zero_extendqisi2
- 132:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
- 473              		.loc 1 132 29 view .LVU125
+ 131:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
+ 473              		.loc 1 131 29 view .LVU125
  474 001a 43EA0223 		orr	r3, r3, r2, lsl #8
- 132:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
- 475              		.loc 1 132 8 view .LVU126
+ 131:MyHardWare/Src/mpu6050.c ****     ay = ((u16)buf[2] << 8) | buf[3];
+ 475              		.loc 1 131 8 view .LVU126
  476 001e 0A4A     		ldr	r2, .L35
  477 0020 1380     		strh	r3, [r2]	@ movhi
- 133:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
-ARM GAS  /tmp/ccMNcKfD.s 			page 15
+ 132:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
+ 478              		.loc 1 132 5 is_stmt 1 view .LVU127
+ARM GAS  /tmp/cckZvbMk.s 			page 15
 
 
- 478              		.loc 1 133 5 is_stmt 1 view .LVU127
- 133:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
- 479              		.loc 1 133 19 is_stmt 0 view .LVU128
+ 132:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
+ 479              		.loc 1 132 19 is_stmt 0 view .LVU128
  480 0022 9DF80220 		ldrb	r2, [sp, #2]	@ zero_extendqisi2
- 133:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
- 481              		.loc 1 133 34 view .LVU129
+ 132:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
+ 481              		.loc 1 132 34 view .LVU129
  482 0026 9DF80330 		ldrb	r3, [sp, #3]	@ zero_extendqisi2
- 133:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
- 483              		.loc 1 133 29 view .LVU130
+ 132:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
+ 483              		.loc 1 132 29 view .LVU130
  484 002a 43EA0223 		orr	r3, r3, r2, lsl #8
- 133:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
- 485              		.loc 1 133 8 view .LVU131
+ 132:MyHardWare/Src/mpu6050.c ****     az = ((u16)buf[4] << 8) | buf[5];
+ 485              		.loc 1 132 8 view .LVU131
  486 002e 074A     		ldr	r2, .L35+4
  487 0030 1380     		strh	r3, [r2]	@ movhi
- 134:MyHardWare/Src/mpu6050.c ****   }
- 488              		.loc 1 134 5 is_stmt 1 view .LVU132
- 134:MyHardWare/Src/mpu6050.c ****   }
- 489              		.loc 1 134 19 is_stmt 0 view .LVU133
+ 133:MyHardWare/Src/mpu6050.c ****   }
+ 488              		.loc 1 133 5 is_stmt 1 view .LVU132
+ 133:MyHardWare/Src/mpu6050.c ****   }
+ 489              		.loc 1 133 19 is_stmt 0 view .LVU133
  490 0032 9DF80420 		ldrb	r2, [sp, #4]	@ zero_extendqisi2
- 134:MyHardWare/Src/mpu6050.c ****   }
- 491              		.loc 1 134 34 view .LVU134
+ 133:MyHardWare/Src/mpu6050.c ****   }
+ 491              		.loc 1 133 34 view .LVU134
  492 0036 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
- 134:MyHardWare/Src/mpu6050.c ****   }
- 493              		.loc 1 134 29 view .LVU135
+ 133:MyHardWare/Src/mpu6050.c ****   }
+ 493              		.loc 1 133 29 view .LVU135
  494 003a 43EA0223 		orr	r3, r3, r2, lsl #8
- 134:MyHardWare/Src/mpu6050.c ****   }
- 495              		.loc 1 134 8 view .LVU136
+ 133:MyHardWare/Src/mpu6050.c ****   }
+ 495              		.loc 1 133 8 view .LVU136
  496 003e 044A     		ldr	r2, .L35+8
  497 0040 1380     		strh	r3, [r2]	@ movhi
  498              	.L33:
- 136:MyHardWare/Src/mpu6050.c ****   ;
- 499              		.loc 1 136 3 is_stmt 1 view .LVU137
- 137:MyHardWare/Src/mpu6050.c **** }
- 500              		.loc 1 137 3 view .LVU138
- 138:MyHardWare/Src/mpu6050.c **** // return :0 success
- 501              		.loc 1 138 1 is_stmt 0 view .LVU139
+ 135:MyHardWare/Src/mpu6050.c ****   ;
+ 499              		.loc 1 135 3 is_stmt 1 view .LVU137
+ 136:MyHardWare/Src/mpu6050.c **** }
+ 500              		.loc 1 136 3 view .LVU138
+ 137:MyHardWare/Src/mpu6050.c **** // return :0 success
+ 501              		.loc 1 137 1 is_stmt 0 view .LVU139
  502 0042 03B0     		add	sp, sp, #12
  503              	.LCFI10:
  504              		.cfi_def_cfa_offset 4
  505              	.LVL47:
- 138:MyHardWare/Src/mpu6050.c **** // return :0 success
- 506              		.loc 1 138 1 view .LVU140
+ 137:MyHardWare/Src/mpu6050.c **** // return :0 success
+ 506              		.loc 1 137 1 view .LVU140
  507              		@ sp needed
  508 0044 5DF804FB 		ldr	pc, [sp], #4
  509              	.LVL48:
  510              	.L36:
- 138:MyHardWare/Src/mpu6050.c **** // return :0 success
- 511              		.loc 1 138 1 view .LVU141
+ 137:MyHardWare/Src/mpu6050.c **** // return :0 success
+ 511              		.loc 1 137 1 view .LVU141
  512              		.align	2
  513              	.L35:
  514 0048 00000000 		.word	ax
@@ -898,17 +897,17 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  518              	.LFE133:
  520              		.section	.text.MPU_Updata,"ax",%progbits
  521              		.align	1
-ARM GAS  /tmp/ccMNcKfD.s 			page 16
-
-
  522              		.global	MPU_Updata
+ARM GAS  /tmp/cckZvbMk.s 			page 16
+
+
  523              		.syntax unified
  524              		.thumb
  525              		.thumb_func
  527              	MPU_Updata:
  528              	.LFB134:
- 141:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Accelerometer())
- 529              		.loc 1 141 21 is_stmt 1 view -0
+ 140:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Accelerometer())
+ 529              		.loc 1 140 21 is_stmt 1 view -0
  530              		.cfi_startproc
  531              		@ args = 0, pretend = 0, frame = 0
  532              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -917,142 +916,142 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  535              		.cfi_def_cfa_offset 8
  536              		.cfi_offset 3, -8
  537              		.cfi_offset 14, -4
- 142:MyHardWare/Src/mpu6050.c ****     return 1;
- 538              		.loc 1 142 3 view .LVU143
- 142:MyHardWare/Src/mpu6050.c ****     return 1;
- 539              		.loc 1 142 7 is_stmt 0 view .LVU144
+ 141:MyHardWare/Src/mpu6050.c ****     return 1;
+ 538              		.loc 1 141 3 view .LVU143
+ 141:MyHardWare/Src/mpu6050.c ****     return 1;
+ 539              		.loc 1 141 7 is_stmt 0 view .LVU144
  540 0002 FFF7FEFF 		bl	MPU_Get_Accelerometer
  541              	.LVL49:
- 142:MyHardWare/Src/mpu6050.c ****     return 1;
- 542              		.loc 1 142 6 discriminator 1 view .LVU145
+ 141:MyHardWare/Src/mpu6050.c ****     return 1;
+ 542              		.loc 1 141 6 discriminator 1 view .LVU145
  543 0006 08B1     		cbz	r0, .L43
- 143:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Gyroscope()) {
- 544              		.loc 1 143 12 view .LVU146
+ 142:MyHardWare/Src/mpu6050.c ****   if (MPU_Get_Gyroscope()) {
+ 544              		.loc 1 142 12 view .LVU146
  545 0008 0120     		movs	r0, #1
  546              	.L38:
- 158:MyHardWare/Src/mpu6050.c **** void MPU_Proc(void) {
- 547              		.loc 1 158 1 view .LVU147
+ 157:MyHardWare/Src/mpu6050.c **** void MPU_Proc(void) {
+ 547              		.loc 1 157 1 view .LVU147
  548 000a 08BD     		pop	{r3, pc}
  549              	.L43:
- 144:MyHardWare/Src/mpu6050.c ****     return 2;
- 550              		.loc 1 144 3 is_stmt 1 view .LVU148
- 144:MyHardWare/Src/mpu6050.c ****     return 2;
- 551              		.loc 1 144 7 is_stmt 0 view .LVU149
+ 143:MyHardWare/Src/mpu6050.c ****     return 2;
+ 550              		.loc 1 143 3 is_stmt 1 view .LVU148
+ 143:MyHardWare/Src/mpu6050.c ****     return 2;
+ 551              		.loc 1 143 7 is_stmt 0 view .LVU149
  552 000c FFF7FEFF 		bl	MPU_Get_Gyroscope
  553              	.LVL50:
- 144:MyHardWare/Src/mpu6050.c ****     return 2;
- 554              		.loc 1 144 6 discriminator 1 view .LVU150
+ 143:MyHardWare/Src/mpu6050.c ****     return 2;
+ 554              		.loc 1 143 6 discriminator 1 view .LVU150
  555 0010 0028     		cmp	r0, #0
  556 0012 50D1     		bne	.L40
- 147:MyHardWare/Src/mpu6050.c ****     return 3;
- 557              		.loc 1 147 3 is_stmt 1 view .LVU151
- 147:MyHardWare/Src/mpu6050.c ****     return 3;
- 558              		.loc 1 147 7 is_stmt 0 view .LVU152
+ 146:MyHardWare/Src/mpu6050.c ****     return 3;
+ 557              		.loc 1 146 3 is_stmt 1 view .LVU151
+ 146:MyHardWare/Src/mpu6050.c ****     return 3;
+ 558              		.loc 1 146 7 is_stmt 0 view .LVU152
  559 0014 FFF7FEFF 		bl	MPU_Get_Temperature
  560              	.LVL51:
- 147:MyHardWare/Src/mpu6050.c ****     return 3;
- 561              		.loc 1 147 6 discriminator 1 view .LVU153
+ 146:MyHardWare/Src/mpu6050.c ****     return 3;
+ 561              		.loc 1 146 6 discriminator 1 view .LVU153
  562 0018 0028     		cmp	r0, #0
  563 001a 4ED1     		bne	.L41
- 151:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
- 564              		.loc 1 151 3 is_stmt 1 view .LVU154
- 151:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
- 565              		.loc 1 151 15 is_stmt 0 view .LVU155
-ARM GAS  /tmp/ccMNcKfD.s 			page 17
-
-
+ 150:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
+ 564              		.loc 1 150 3 is_stmt 1 view .LVU154
+ 150:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
+ 565              		.loc 1 150 15 is_stmt 0 view .LVU155
  566 001c 284B     		ldr	r3, .L44
+ARM GAS  /tmp/cckZvbMk.s 			page 17
+
+
  567 001e B3F90030 		ldrsh	r3, [r3]
  568 0022 07EE903A 		vmov	s15, r3	@ int
  569 0026 F8EEE77A 		vcvt.f32.s32	s15, s15
  570 002a 9FED267A 		vldr.32	s14, .L44+4
  571 002e 67EE877A 		vmul.f32	s15, s15, s14
- 151:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
- 572              		.loc 1 151 10 view .LVU156
+ 150:MyHardWare/Src/mpu6050.c ****   gy_dps = gy * (2000.0f / 32768.0f);
+ 572              		.loc 1 150 10 view .LVU156
  573 0032 254B     		ldr	r3, .L44+8
  574 0034 C3ED007A 		vstr.32	s15, [r3]
- 152:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
- 575              		.loc 1 152 3 is_stmt 1 view .LVU157
- 152:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
- 576              		.loc 1 152 15 is_stmt 0 view .LVU158
+ 151:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
+ 575              		.loc 1 151 3 is_stmt 1 view .LVU157
+ 151:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
+ 576              		.loc 1 151 15 is_stmt 0 view .LVU158
  577 0038 244B     		ldr	r3, .L44+12
  578 003a B3F90030 		ldrsh	r3, [r3]
  579 003e 07EE903A 		vmov	s15, r3	@ int
  580 0042 F8EEE77A 		vcvt.f32.s32	s15, s15
  581 0046 67EE877A 		vmul.f32	s15, s15, s14
- 152:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
- 582              		.loc 1 152 10 view .LVU159
+ 151:MyHardWare/Src/mpu6050.c ****   gz_dps = gz * (2000.0f / 32768.0f);
+ 582              		.loc 1 151 10 view .LVU159
  583 004a 214B     		ldr	r3, .L44+16
  584 004c C3ED007A 		vstr.32	s15, [r3]
- 153:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
- 585              		.loc 1 153 3 is_stmt 1 view .LVU160
- 153:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
- 586              		.loc 1 153 15 is_stmt 0 view .LVU161
+ 152:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
+ 585              		.loc 1 152 3 is_stmt 1 view .LVU160
+ 152:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
+ 586              		.loc 1 152 15 is_stmt 0 view .LVU161
  587 0050 204B     		ldr	r3, .L44+20
  588 0052 B3F90030 		ldrsh	r3, [r3]
  589 0056 07EE903A 		vmov	s15, r3	@ int
  590 005a F8EEE77A 		vcvt.f32.s32	s15, s15
  591 005e 67EE877A 		vmul.f32	s15, s15, s14
- 153:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
- 592              		.loc 1 153 10 view .LVU162
+ 152:MyHardWare/Src/mpu6050.c ****   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
+ 592              		.loc 1 152 10 view .LVU162
  593 0062 1D4B     		ldr	r3, .L44+24
  594 0064 C3ED007A 		vstr.32	s15, [r3]
- 154:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
- 595              		.loc 1 154 3 is_stmt 1 view .LVU163
- 154:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
- 596              		.loc 1 154 15 is_stmt 0 view .LVU164
+ 153:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
+ 595              		.loc 1 153 3 is_stmt 1 view .LVU163
+ 153:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
+ 596              		.loc 1 153 15 is_stmt 0 view .LVU164
  597 0068 1C4B     		ldr	r3, .L44+28
  598 006a B3F90030 		ldrsh	r3, [r3]
  599 006e 07EE903A 		vmov	s15, r3	@ int
  600 0072 F8EEE77A 		vcvt.f32.s32	s15, s15
  601 0076 9FED1A7A 		vldr.32	s14, .L44+32
  602 007a 67EE877A 		vmul.f32	s15, s15, s14
- 154:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
- 603              		.loc 1 154 10 view .LVU165
+ 153:MyHardWare/Src/mpu6050.c ****   ay_dps = ay * (2.0f / 32768.0f);
+ 603              		.loc 1 153 10 view .LVU165
  604 007e 194B     		ldr	r3, .L44+36
  605 0080 C3ED007A 		vstr.32	s15, [r3]
- 155:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
- 606              		.loc 1 155 3 is_stmt 1 view .LVU166
- 155:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
- 607              		.loc 1 155 15 is_stmt 0 view .LVU167
+ 154:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
+ 606              		.loc 1 154 3 is_stmt 1 view .LVU166
+ 154:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
+ 607              		.loc 1 154 15 is_stmt 0 view .LVU167
  608 0084 184B     		ldr	r3, .L44+40
  609 0086 B3F90030 		ldrsh	r3, [r3]
  610 008a 07EE903A 		vmov	s15, r3	@ int
-ARM GAS  /tmp/ccMNcKfD.s 			page 18
-
-
  611 008e F8EEE77A 		vcvt.f32.s32	s15, s15
+ARM GAS  /tmp/cckZvbMk.s 			page 18
+
+
  612 0092 67EE877A 		vmul.f32	s15, s15, s14
- 155:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
- 613              		.loc 1 155 10 view .LVU168
+ 154:MyHardWare/Src/mpu6050.c ****   az_dps = az * (2.0f / 32768.0f);
+ 613              		.loc 1 154 10 view .LVU168
  614 0096 154B     		ldr	r3, .L44+44
  615 0098 C3ED007A 		vstr.32	s15, [r3]
- 156:MyHardWare/Src/mpu6050.c ****   return 0;
- 616              		.loc 1 156 3 is_stmt 1 view .LVU169
- 156:MyHardWare/Src/mpu6050.c ****   return 0;
- 617              		.loc 1 156 15 is_stmt 0 view .LVU170
+ 155:MyHardWare/Src/mpu6050.c ****   return 0;
+ 616              		.loc 1 155 3 is_stmt 1 view .LVU169
+ 155:MyHardWare/Src/mpu6050.c ****   return 0;
+ 617              		.loc 1 155 15 is_stmt 0 view .LVU170
  618 009c 144B     		ldr	r3, .L44+48
  619 009e B3F90030 		ldrsh	r3, [r3]
  620 00a2 07EE903A 		vmov	s15, r3	@ int
  621 00a6 F8EEE77A 		vcvt.f32.s32	s15, s15
  622 00aa 67EE877A 		vmul.f32	s15, s15, s14
- 156:MyHardWare/Src/mpu6050.c ****   return 0;
- 623              		.loc 1 156 10 view .LVU171
+ 155:MyHardWare/Src/mpu6050.c ****   return 0;
+ 623              		.loc 1 155 10 view .LVU171
  624 00ae 114B     		ldr	r3, .L44+52
  625 00b0 C3ED007A 		vstr.32	s15, [r3]
- 157:MyHardWare/Src/mpu6050.c **** }
- 626              		.loc 1 157 3 is_stmt 1 view .LVU172
- 157:MyHardWare/Src/mpu6050.c **** }
- 627              		.loc 1 157 10 is_stmt 0 view .LVU173
+ 156:MyHardWare/Src/mpu6050.c **** }
+ 626              		.loc 1 156 3 is_stmt 1 view .LVU172
+ 156:MyHardWare/Src/mpu6050.c **** }
+ 627              		.loc 1 156 10 is_stmt 0 view .LVU173
  628 00b4 A9E7     		b	.L38
  629              	.L40:
- 145:MyHardWare/Src/mpu6050.c ****   }
- 630              		.loc 1 145 12 view .LVU174
+ 144:MyHardWare/Src/mpu6050.c ****   }
+ 630              		.loc 1 144 12 view .LVU174
  631 00b6 0220     		movs	r0, #2
  632 00b8 A7E7     		b	.L38
  633              	.L41:
- 148:MyHardWare/Src/mpu6050.c ****   }
- 634              		.loc 1 148 12 view .LVU175
+ 147:MyHardWare/Src/mpu6050.c ****   }
+ 634              		.loc 1 147 12 view .LVU175
  635 00ba 0320     		movs	r0, #3
  636 00bc A5E7     		b	.L38
  637              	.L45:
@@ -1078,10 +1077,10 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  658              		.align	2
  659              	.LC0:
  660 0000 4D5055E6 		.ascii	"MPU\346\225\260\346\215\256\346\233\264\346\226\260"
-ARM GAS  /tmp/ccMNcKfD.s 			page 19
-
-
  660      95B0E68D 
+ARM GAS  /tmp/cckZvbMk.s 			page 19
+
+
  660      AEE69BB4 
  660      E696B0
  661 000f E5A4B1E8 		.ascii	"\345\244\261\350\264\245%d\015\012\000"
@@ -1098,8 +1097,8 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  670              		.thumb_func
  672              	MPU_Proc:
  673              	.LFB135:
- 159:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
- 674              		.loc 1 159 21 is_stmt 1 view -0
+ 158:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
+ 674              		.loc 1 158 21 is_stmt 1 view -0
  675              		.cfi_startproc
  676              		@ args = 0, pretend = 0, frame = 0
  677              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1119,39 +1118,39 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  691              		.cfi_offset 83, -28
  692              		.cfi_offset 84, -24
  693              		.cfi_offset 85, -20
- 160:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
- 694              		.loc 1 160 3 view .LVU177
+ 159:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
+ 694              		.loc 1 159 3 view .LVU177
  695              	.LVL52:
- 161:MyHardWare/Src/mpu6050.c ****   if (res) {
- 696              		.loc 1 161 3 view .LVU178
- 161:MyHardWare/Src/mpu6050.c ****   if (res) {
- 697              		.loc 1 161 9 is_stmt 0 view .LVU179
+ 160:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 696              		.loc 1 160 3 view .LVU178
+ 160:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 697              		.loc 1 160 9 is_stmt 0 view .LVU179
  698 0006 FFF7FEFF 		bl	MPU_Updata
  699              	.LVL53:
- 162:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
- 700              		.loc 1 162 3 is_stmt 1 view .LVU180
- 162:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
- 701              		.loc 1 162 6 is_stmt 0 view .LVU181
+ 161:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
+ 700              		.loc 1 161 3 is_stmt 1 view .LVU180
+ 161:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
+ 701              		.loc 1 161 6 is_stmt 0 view .LVU181
  702 000a 0028     		cmp	r0, #0
  703 000c 40F0AA80 		bne	.L50
- 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 704              		.loc 1 167 3 is_stmt 1 view .LVU182
- 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 705              		.loc 1 167 31 is_stmt 0 view .LVU183
-ARM GAS  /tmp/ccMNcKfD.s 			page 20
-
-
+ 166:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 704              		.loc 1 166 3 is_stmt 1 view .LVU182
+ 166:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 705              		.loc 1 166 31 is_stmt 0 view .LVU183
  706 0010 5B4C     		ldr	r4, .L51+16
+ARM GAS  /tmp/cckZvbMk.s 			page 20
+
+
  707 0012 2068     		ldr	r0, [r4]	@ float
  708              	.LVL54:
- 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 709              		.loc 1 167 31 view .LVU184
+ 166:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 709              		.loc 1 166 31 view .LVU184
  710 0014 FFF7FEFF 		bl	__aeabi_f2d
  711              	.LVL55:
  712 0018 0646     		mov	r6, r0
  713 001a 0F46     		mov	r7, r1
- 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 714              		.loc 1 167 47 view .LVU185
+ 166:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 714              		.loc 1 166 47 view .LVU185
  715 001c 594B     		ldr	r3, .L51+20
  716 001e 1868     		ldr	r0, [r3]	@ float
  717 0020 FFF7FEFF 		bl	__aeabi_f2d
@@ -1162,32 +1161,32 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  722              	.LVL57:
  723 002e 0246     		mov	r2, r0
  724 0030 0B46     		mov	r3, r1
- 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 725              		.loc 1 167 38 view .LVU186
+ 166:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 725              		.loc 1 166 38 view .LVU186
  726 0032 3046     		mov	r0, r6
  727 0034 3946     		mov	r1, r7
  728 0036 FFF7FEFF 		bl	__aeabi_dadd
  729              	.LVL58:
- 167:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
- 730              		.loc 1 167 9 view .LVU187
+ 166:MyHardWare/Src/mpu6050.c ****   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
+ 730              		.loc 1 166 9 view .LVU187
  731 003a FFF7FEFF 		bl	__aeabi_d2f
  732              	.LVL59:
  733 003e 08EE900A 		vmov	s17, r0
  734              	.LVL60:
- 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 735              		.loc 1 168 3 is_stmt 1 view .LVU188
- 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 736              		.loc 1 168 30 is_stmt 0 view .LVU189
+ 167:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ 735              		.loc 1 167 3 is_stmt 1 view .LVU188
+ 167:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ 736              		.loc 1 167 30 is_stmt 0 view .LVU189
  737 0042 6068     		ldr	r0, [r4, #4]	@ float
  738              	.LVL61:
- 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 739              		.loc 1 168 30 view .LVU190
+ 167:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ 739              		.loc 1 167 30 view .LVU190
  740 0044 FFF7FEFF 		bl	__aeabi_f2d
  741              	.LVL62:
  742 0048 0646     		mov	r6, r0
  743 004a 0F46     		mov	r7, r1
- 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 744              		.loc 1 168 45 view .LVU191
+ 167:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ 744              		.loc 1 167 45 view .LVU191
  745 004c 4E4B     		ldr	r3, .L51+24
  746 004e 1868     		ldr	r0, [r3]	@ float
  747 0050 FFF7FEFF 		bl	__aeabi_f2d
@@ -1198,35 +1197,35 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  752              	.LVL64:
  753 005e 0246     		mov	r2, r0
  754 0060 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccMNcKfD.s 			page 21
+ 167:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ARM GAS  /tmp/cckZvbMk.s 			page 21
 
 
- 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 755              		.loc 1 168 36 view .LVU192
+ 755              		.loc 1 167 36 view .LVU192
  756 0062 3046     		mov	r0, r6
  757 0064 3946     		mov	r1, r7
  758 0066 FFF7FEFF 		bl	__aeabi_dadd
  759              	.LVL65:
- 168:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
- 760              		.loc 1 168 9 view .LVU193
+ 167:MyHardWare/Src/mpu6050.c ****   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+ 760              		.loc 1 167 9 view .LVU193
  761 006a FFF7FEFF 		bl	__aeabi_d2f
  762              	.LVL66:
  763 006e 08EE100A 		vmov	s16, r0
  764              	.LVL67:
- 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 765              		.loc 1 169 3 is_stmt 1 view .LVU194
- 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 766              		.loc 1 169 29 is_stmt 0 view .LVU195
+ 168:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 765              		.loc 1 168 3 is_stmt 1 view .LVU194
+ 168:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 766              		.loc 1 168 29 is_stmt 0 view .LVU195
  767 0072 A068     		ldr	r0, [r4, #8]	@ float
  768              	.LVL68:
- 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 769              		.loc 1 169 29 view .LVU196
+ 168:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 769              		.loc 1 168 29 view .LVU196
  770 0074 FFF7FEFF 		bl	__aeabi_f2d
  771              	.LVL69:
  772 0078 0646     		mov	r6, r0
  773 007a 0F46     		mov	r7, r1
- 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 774              		.loc 1 169 43 view .LVU197
+ 168:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 774              		.loc 1 168 43 view .LVU197
  775 007c 434B     		ldr	r3, .L51+28
  776 007e 1868     		ldr	r0, [r3]	@ float
  777 0080 FFF7FEFF 		bl	__aeabi_f2d
@@ -1237,31 +1236,31 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  782              	.LVL71:
  783 008e 0246     		mov	r2, r0
  784 0090 0B46     		mov	r3, r1
- 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 785              		.loc 1 169 34 view .LVU198
+ 168:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 785              		.loc 1 168 34 view .LVU198
  786 0092 3046     		mov	r0, r6
  787 0094 3946     		mov	r1, r7
  788 0096 FFF7FEFF 		bl	__aeabi_dadd
  789              	.LVL72:
- 169:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
- 790              		.loc 1 169 9 view .LVU199
+ 168:MyHardWare/Src/mpu6050.c ****   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
+ 790              		.loc 1 168 9 view .LVU199
  791 009a FFF7FEFF 		bl	__aeabi_d2f
  792              	.LVL73:
  793 009e 09EE100A 		vmov	s18, r0
  794              	.LVL74:
- 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 795              		.loc 1 170 3 is_stmt 1 view .LVU200
- 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 796              		.loc 1 170 19 is_stmt 0 view .LVU201
+ 169:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 795              		.loc 1 169 3 is_stmt 1 view .LVU200
+ 169:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 796              		.loc 1 169 19 is_stmt 0 view .LVU201
  797 00a2 3B4B     		ldr	r3, .L51+32
  798 00a4 1868     		ldr	r0, [r3]	@ float
  799              	.LVL75:
- 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 800              		.loc 1 170 19 view .LVU202
-ARM GAS  /tmp/ccMNcKfD.s 			page 22
-
-
+ 169:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 800              		.loc 1 169 19 view .LVU202
  801 00a6 FFF7FEFF 		bl	__aeabi_f2d
+ARM GAS  /tmp/cckZvbMk.s 			page 22
+
+
  802              	.LVL76:
  803 00aa 41EC1A0B 		vmov	d10, r0, r1
  804 00ae 394B     		ldr	r3, .L51+36
@@ -1274,33 +1273,33 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  811 00c2 FFF7FEFF 		bl	atan2
  812              	.LVL78:
  813 00c6 51EC100B 		vmov	r0, r1, d0
- 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 814              		.loc 1 170 41 discriminator 1 view .LVU203
+ 169:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 814              		.loc 1 169 41 discriminator 1 view .LVU203
  815 00ca 2BA3     		adr	r3, .L51+8
  816 00cc D3E90023 		ldrd	r2, [r3]
  817 00d0 FFF7FEFF 		bl	__aeabi_ddiv
  818              	.LVL79:
- 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 819              		.loc 1 170 48 discriminator 1 view .LVU204
+ 169:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 819              		.loc 1 169 48 discriminator 1 view .LVU204
  820 00d4 0022     		movs	r2, #0
  821 00d6 304B     		ldr	r3, .L51+40
  822 00d8 FFF7FEFF 		bl	__aeabi_dmul
  823              	.LVL80:
- 170:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
- 824              		.loc 1 170 9 discriminator 1 view .LVU205
+ 169:MyHardWare/Src/mpu6050.c ****   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
+ 824              		.loc 1 169 9 discriminator 1 view .LVU205
  825 00dc FFF7FEFF 		bl	__aeabi_d2f
  826              	.LVL81:
  827 00e0 09EE900A 		vmov	s19, r0
  828              	.LVL82:
- 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 829              		.loc 1 171 3 is_stmt 1 view .LVU206
- 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 830              		.loc 1 171 18 is_stmt 0 view .LVU207
+ 170:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 829              		.loc 1 170 3 is_stmt 1 view .LVU206
+ 170:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 830              		.loc 1 170 18 is_stmt 0 view .LVU207
  831 00e4 2D4B     		ldr	r3, .L51+44
  832 00e6 1868     		ldr	r0, [r3]	@ float
  833              	.LVL83:
- 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 834              		.loc 1 171 18 view .LVU208
+ 170:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 834              		.loc 1 170 18 view .LVU208
  835 00e8 FFF7FEFF 		bl	__aeabi_f2d
  836              	.LVL84:
  837 00ec B0EE4A1A 		vmov.f32	s2, s20
@@ -1309,91 +1308,91 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  840 00f8 FFF7FEFF 		bl	atan2
  841              	.LVL85:
  842 00fc 51EC100B 		vmov	r0, r1, d0
- 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 843              		.loc 1 171 40 discriminator 1 view .LVU209
+ 170:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 843              		.loc 1 170 40 discriminator 1 view .LVU209
  844 0100 1DA3     		adr	r3, .L51+8
  845 0102 D3E90023 		ldrd	r2, [r3]
  846 0106 FFF7FEFF 		bl	__aeabi_ddiv
  847              	.LVL86:
- 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 848              		.loc 1 171 47 discriminator 1 view .LVU210
+ 170:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 848              		.loc 1 170 47 discriminator 1 view .LVU210
  849 010a 0022     		movs	r2, #0
-ARM GAS  /tmp/ccMNcKfD.s 			page 23
-
-
  850 010c 224B     		ldr	r3, .L51+40
+ARM GAS  /tmp/cckZvbMk.s 			page 23
+
+
  851 010e FFF7FEFF 		bl	__aeabi_dmul
  852              	.LVL87:
- 171:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
- 853              		.loc 1 171 9 discriminator 1 view .LVU211
+ 170:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
+ 853              		.loc 1 170 9 discriminator 1 view .LVU211
  854 0112 FFF7FEFF 		bl	__aeabi_d2f
  855              	.LVL88:
  856 0116 07EE900A 		vmov	s15, r0
  857              	.LVL89:
- 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 858              		.loc 1 172 3 is_stmt 1 view .LVU212
- 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 859              		.loc 1 172 34 is_stmt 0 view .LVU213
+ 171:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 858              		.loc 1 171 3 is_stmt 1 view .LVU212
+ 171:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 859              		.loc 1 171 34 is_stmt 0 view .LVU213
  860 011a DFED216A 		vldr.32	s13, .L51+48
  861 011e 68EEA68A 		vmul.f32	s17, s17, s13
  862              	.LVL90:
- 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 863              		.loc 1 172 65 view .LVU214
+ 171:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 863              		.loc 1 171 65 view .LVU214
  864 0122 9FED207A 		vldr.32	s14, .L51+52
  865 0126 69EE879A 		vmul.f32	s19, s19, s14
  866              	.LVL91:
- 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 867              		.loc 1 172 44 view .LVU215
+ 171:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 867              		.loc 1 171 44 view .LVU215
  868 012a 78EEA98A 		vadd.f32	s17, s17, s19
- 173:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.roll = MPU_ALPHA * roll_g + (1.0f - MPU_ALPHA) * roll_a -
- 869              		.loc 1 173 53 view .LVU216
+ 172:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.roll = MPU_ALPHA * roll_g + (1.0f - MPU_ALPHA) * roll_a -
+ 869              		.loc 1 172 53 view .LVU216
  870 012e 94ED036A 		vldr.32	s12, [r4, #12]
- 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 871              		.loc 1 172 75 view .LVU217
+ 171:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 871              		.loc 1 171 75 view .LVU217
  872 0132 78EEC68A 		vsub.f32	s17, s17, s12
- 172:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
- 873              		.loc 1 172 22 view .LVU218
+ 171:MyHardWare/Src/mpu6050.c ****                        MPU_Attitude.Initial_Attitude[0];
+ 873              		.loc 1 171 22 view .LVU218
  874 0136 C4ED008A 		vstr.32	s17, [r4]
- 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 875              		.loc 1 174 3 is_stmt 1 view .LVU219
- 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 876              		.loc 1 174 33 is_stmt 0 view .LVU220
+ 173:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 875              		.loc 1 173 3 is_stmt 1 view .LVU219
+ 173:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 876              		.loc 1 173 33 is_stmt 0 view .LVU220
  877 013a 28EE268A 		vmul.f32	s16, s16, s13
  878              	.LVL92:
- 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 879              		.loc 1 174 63 view .LVU221
+ 173:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 879              		.loc 1 173 63 view .LVU221
  880 013e 67EE877A 		vmul.f32	s15, s15, s14
- 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 881              		.loc 1 174 42 view .LVU222
+ 173:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 881              		.loc 1 173 42 view .LVU222
  882 0142 38EE278A 		vadd.f32	s16, s16, s15
- 175:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.yaw = yaw_g - MPU_Attitude.Initial_Attitude[2];
- 883              		.loc 1 175 52 view .LVU223
+ 174:MyHardWare/Src/mpu6050.c ****   MPU_Attitude.yaw = yaw_g - MPU_Attitude.Initial_Attitude[2];
+ 883              		.loc 1 174 52 view .LVU223
  884 0146 D4ED047A 		vldr.32	s15, [r4, #16]
- 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 885              		.loc 1 174 72 view .LVU224
+ 173:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 885              		.loc 1 173 72 view .LVU224
  886 014a 38EE678A 		vsub.f32	s16, s16, s15
- 174:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
- 887              		.loc 1 174 21 view .LVU225
+ 173:MyHardWare/Src/mpu6050.c ****                       MPU_Attitude.Initial_Attitude[1];
+ 887              		.loc 1 173 21 view .LVU225
  888 014e 84ED018A 		vstr.32	s16, [r4, #4]
- 176:MyHardWare/Src/mpu6050.c **** }
- 889              		.loc 1 176 3 is_stmt 1 view .LVU226
- 176:MyHardWare/Src/mpu6050.c **** }
-ARM GAS  /tmp/ccMNcKfD.s 			page 24
+ 175:MyHardWare/Src/mpu6050.c **** }
+ 889              		.loc 1 175 3 is_stmt 1 view .LVU226
+ 175:MyHardWare/Src/mpu6050.c **** }
+ 890              		.loc 1 175 59 is_stmt 0 view .LVU227
+ARM GAS  /tmp/cckZvbMk.s 			page 24
 
 
- 890              		.loc 1 176 59 is_stmt 0 view .LVU227
  891 0152 D4ED057A 		vldr.32	s15, [r4, #20]
- 176:MyHardWare/Src/mpu6050.c **** }
- 892              		.loc 1 176 28 view .LVU228
+ 175:MyHardWare/Src/mpu6050.c **** }
+ 892              		.loc 1 175 28 view .LVU228
  893 0156 39EE679A 		vsub.f32	s18, s18, s15
  894              	.LVL93:
- 176:MyHardWare/Src/mpu6050.c **** }
- 895              		.loc 1 176 20 view .LVU229
+ 175:MyHardWare/Src/mpu6050.c **** }
+ 895              		.loc 1 175 20 view .LVU229
  896 015a 84ED029A 		vstr.32	s18, [r4, #8]
  897              	.LVL94:
  898              	.L46:
- 177:MyHardWare/Src/mpu6050.c **** void Get_RawData(void) {
- 899              		.loc 1 177 1 view .LVU230
+ 176:MyHardWare/Src/mpu6050.c **** void Get_RawData(void) {
+ 899              		.loc 1 176 1 view .LVU230
  900 015e BDEC068B 		vldm	sp!, {d8-d10}
  901              	.LCFI14:
  902              		.cfi_remember_state
@@ -1409,19 +1408,19 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  912              	.L50:
  913              	.LCFI15:
  914              		.cfi_restore_state
- 177:MyHardWare/Src/mpu6050.c **** void Get_RawData(void) {
- 915              		.loc 1 177 1 view .LVU231
+ 176:MyHardWare/Src/mpu6050.c **** void Get_RawData(void) {
+ 915              		.loc 1 176 1 view .LVU231
  916 0164 0146     		mov	r1, r0
- 163:MyHardWare/Src/mpu6050.c ****     return;
- 917              		.loc 1 163 5 is_stmt 1 view .LVU232
+ 162:MyHardWare/Src/mpu6050.c ****     return;
+ 917              		.loc 1 162 5 is_stmt 1 view .LVU232
  918 0166 1048     		ldr	r0, .L51+56
  919              	.LVL96:
- 163:MyHardWare/Src/mpu6050.c ****     return;
- 920              		.loc 1 163 5 is_stmt 0 view .LVU233
+ 162:MyHardWare/Src/mpu6050.c ****     return;
+ 920              		.loc 1 162 5 is_stmt 0 view .LVU233
  921 0168 FFF7FEFF 		bl	printf
  922              	.LVL97:
- 164:MyHardWare/Src/mpu6050.c ****   }
- 923              		.loc 1 164 5 is_stmt 1 view .LVU234
+ 163:MyHardWare/Src/mpu6050.c ****   }
+ 923              		.loc 1 163 5 is_stmt 1 view .LVU234
  924 016c F7E7     		b	.L46
  925              	.L52:
  926 016e 00BF     		.align	3
@@ -1438,10 +1437,10 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  937 0194 00000000 		.word	ay_dps
  938 0198 00806640 		.word	1080459264
  939 019c 00000000 		.word	ax_dps
-ARM GAS  /tmp/ccMNcKfD.s 			page 25
-
-
  940 01a0 2DCF733F 		.word	1064554285
+ARM GAS  /tmp/cckZvbMk.s 			page 25
+
+
  941 01a4 300D433D 		.word	1027804464
  942 01a8 00000000 		.word	.LC0
  943              		.cfi_endproc
@@ -1470,8 +1469,8 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  957              		.thumb_func
  959              	Get_RawData:
  960              	.LFB136:
- 178:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
- 961              		.loc 1 178 24 view -0
+ 177:MyHardWare/Src/mpu6050.c ****   u8 res = 0;
+ 961              		.loc 1 177 24 view -0
  962              		.cfi_startproc
  963              		@ args = 0, pretend = 0, frame = 0
  964              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1487,43 +1486,43 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  974 0004 90B0     		sub	sp, sp, #64
  975              	.LCFI17:
  976              		.cfi_def_cfa_offset 88
- 179:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
- 977              		.loc 1 179 3 view .LVU236
+ 178:MyHardWare/Src/mpu6050.c ****   res = MPU_Updata();
+ 977              		.loc 1 178 3 view .LVU236
  978              	.LVL98:
- 180:MyHardWare/Src/mpu6050.c ****   if (res) {
- 979              		.loc 1 180 3 view .LVU237
- 180:MyHardWare/Src/mpu6050.c ****   if (res) {
- 980              		.loc 1 180 9 is_stmt 0 view .LVU238
+ 179:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 979              		.loc 1 179 3 view .LVU237
+ 179:MyHardWare/Src/mpu6050.c ****   if (res) {
+ 980              		.loc 1 179 9 is_stmt 0 view .LVU238
  981 0006 FFF7FEFF 		bl	MPU_Updata
  982              	.LVL99:
- 181:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
- 983              		.loc 1 181 3 is_stmt 1 view .LVU239
-ARM GAS  /tmp/ccMNcKfD.s 			page 26
+ 180:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
+ 983              		.loc 1 180 3 is_stmt 1 view .LVU239
+ 180:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
+ARM GAS  /tmp/cckZvbMk.s 			page 26
 
 
- 181:MyHardWare/Src/mpu6050.c ****     printf("MPU数据更新失败%d\r\n", res);
- 984              		.loc 1 181 6 is_stmt 0 view .LVU240
+ 984              		.loc 1 180 6 is_stmt 0 view .LVU240
  985 000a 0028     		cmp	r0, #0
  986 000c 3FD1     		bne	.L57
- 185:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
- 987              		.loc 1 185 3 is_stmt 1 view .LVU241
- 187:MyHardWare/Src/mpu6050.c ****          MPU_Attitude.roll, MPU_Attitude.yaw);
- 988              		.loc 1 187 70 is_stmt 0 view .LVU242
+ 184:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
+ 987              		.loc 1 184 3 is_stmt 1 view .LVU241
+ 186:MyHardWare/Src/mpu6050.c ****          MPU_Attitude.roll, MPU_Attitude.yaw);
+ 988              		.loc 1 186 70 is_stmt 0 view .LVU242
  989 000e 224B     		ldr	r3, .L58
  990 0010 1E68     		ldr	r6, [r3]	@ float
- 188:MyHardWare/Src/mpu6050.c **** }
- 991              		.loc 1 188 22 view .LVU243
+ 187:MyHardWare/Src/mpu6050.c **** }
+ 991              		.loc 1 187 22 view .LVU243
  992 0012 5F68     		ldr	r7, [r3, #4]	@ float
- 188:MyHardWare/Src/mpu6050.c **** }
- 993              		.loc 1 188 41 view .LVU244
+ 187:MyHardWare/Src/mpu6050.c **** }
+ 993              		.loc 1 187 41 view .LVU244
  994 0014 D3F80880 		ldr	r8, [r3, #8]	@ float
- 185:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
- 995              		.loc 1 185 3 view .LVU245
+ 184:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
+ 995              		.loc 1 184 3 view .LVU245
  996 0018 204B     		ldr	r3, .L58+4
  997 001a 1868     		ldr	r0, [r3]	@ float
  998              	.LVL100:
- 185:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
- 999              		.loc 1 185 3 view .LVU246
+ 184:MyHardWare/Src/mpu6050.c ****          "             pitch:%6.2f,roll:%6.2f,yaw:%6.2f\r\n",
+ 999              		.loc 1 184 3 view .LVU246
  1000 001c FFF7FEFF 		bl	__aeabi_f2d
  1001              	.LVL101:
  1002 0020 0446     		mov	r4, r0
@@ -1558,10 +1557,10 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1031 0066 114B     		ldr	r3, .L58+20
  1032 0068 1868     		ldr	r0, [r3]	@ float
  1033 006a FFF7FEFF 		bl	__aeabi_f2d
-ARM GAS  /tmp/ccMNcKfD.s 			page 27
-
-
  1034              	.LVL108:
+ARM GAS  /tmp/cckZvbMk.s 			page 27
+
+
  1035 006e CDE90201 		strd	r0, [sp, #8]
  1036 0072 0F4B     		ldr	r3, .L58+24
  1037 0074 1868     		ldr	r0, [r3]	@ float
@@ -1574,8 +1573,8 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1044 0084 FFF7FEFF 		bl	printf
  1045              	.LVL110:
  1046              	.L53:
- 189:MyHardWare/Src/mpu6050.c **** // IIC连续写
- 1047              		.loc 1 189 1 view .LVU247
+ 188:MyHardWare/Src/mpu6050.c **** // IIC连续写
+ 1047              		.loc 1 188 1 view .LVU247
  1048 0088 10B0     		add	sp, sp, #64
  1049              	.LCFI18:
  1050              		.cfi_remember_state
@@ -1586,19 +1585,19 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1055              	.L57:
  1056              	.LCFI19:
  1057              		.cfi_restore_state
- 189:MyHardWare/Src/mpu6050.c **** // IIC连续写
- 1058              		.loc 1 189 1 view .LVU248
+ 188:MyHardWare/Src/mpu6050.c **** // IIC连续写
+ 1058              		.loc 1 188 1 view .LVU248
  1059 008e 0146     		mov	r1, r0
- 182:MyHardWare/Src/mpu6050.c ****     return;
- 1060              		.loc 1 182 5 is_stmt 1 view .LVU249
+ 181:MyHardWare/Src/mpu6050.c ****     return;
+ 1060              		.loc 1 181 5 is_stmt 1 view .LVU249
  1061 0090 0948     		ldr	r0, .L58+32
  1062              	.LVL112:
- 182:MyHardWare/Src/mpu6050.c ****     return;
- 1063              		.loc 1 182 5 is_stmt 0 view .LVU250
+ 181:MyHardWare/Src/mpu6050.c ****     return;
+ 1063              		.loc 1 181 5 is_stmt 0 view .LVU250
  1064 0092 FFF7FEFF 		bl	printf
  1065              	.LVL113:
- 183:MyHardWare/Src/mpu6050.c ****   }
- 1066              		.loc 1 183 5 is_stmt 1 view .LVU251
+ 182:MyHardWare/Src/mpu6050.c ****   }
+ 1066              		.loc 1 182 5 is_stmt 1 view .LVU251
  1067 0096 F7E7     		b	.L53
  1068              	.L59:
  1069              		.align	2
@@ -1618,25 +1617,25 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1084              		.align	1
  1085              		.global	MPU_Write_Byte
  1086              		.syntax unified
-ARM GAS  /tmp/ccMNcKfD.s 			page 28
-
-
  1087              		.thumb
+ARM GAS  /tmp/cckZvbMk.s 			page 28
+
+
  1088              		.thumb_func
  1090              	MPU_Write_Byte:
  1091              	.LVL114:
  1092              	.LFB139:
- 250:MyHardWare/Src/mpu6050.c **** // IIC写一个字节
- 251:MyHardWare/Src/mpu6050.c **** // reg:寄存器地址
- 252:MyHardWare/Src/mpu6050.c **** // data:数据
- 253:MyHardWare/Src/mpu6050.c **** // 返回值:0,正常
- 254:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
- 255:MyHardWare/Src/mpu6050.c **** u8 MPU_Write_Byte(u8 reg, u8 data) {
- 1093              		.loc 1 255 36 view -0
+ 249:MyHardWare/Src/mpu6050.c **** // IIC写一个字节
+ 250:MyHardWare/Src/mpu6050.c **** // reg:寄存器地址
+ 251:MyHardWare/Src/mpu6050.c **** // data:数据
+ 252:MyHardWare/Src/mpu6050.c **** // 返回值:0,正常
+ 253:MyHardWare/Src/mpu6050.c **** //     其他,错误代码
+ 254:MyHardWare/Src/mpu6050.c **** u8 MPU_Write_Byte(u8 reg, u8 data) {
+ 1093              		.loc 1 254 36 view -0
  1094              		.cfi_startproc
  1095              		@ args = 0, pretend = 0, frame = 0
  1096              		@ frame_needed = 0, uses_anonymous_args = 0
- 1097              		.loc 1 255 36 is_stmt 0 view .LVU253
+ 1097              		.loc 1 254 36 is_stmt 0 view .LVU253
  1098 0000 38B5     		push	{r3, r4, r5, lr}
  1099              	.LCFI20:
  1100              		.cfi_def_cfa_offset 16
@@ -1646,89 +1645,89 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1104              		.cfi_offset 14, -4
  1105 0002 0546     		mov	r5, r0
  1106 0004 0C46     		mov	r4, r1
- 256:MyHardWare/Src/mpu6050.c ****   IIC_Start();
- 1107              		.loc 1 256 3 is_stmt 1 view .LVU254
+ 255:MyHardWare/Src/mpu6050.c ****   IIC_Start();
+ 1107              		.loc 1 255 3 is_stmt 1 view .LVU254
  1108 0006 FFF7FEFF 		bl	IIC_Start
  1109              	.LVL115:
- 257:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((MPU_ADDR << 1) | 0); // 发送器件地址+写命令
- 1110              		.loc 1 257 3 view .LVU255
+ 256:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((MPU_ADDR << 1) | 0); // 发送器件地址+写命令
+ 1110              		.loc 1 256 3 view .LVU255
  1111 000a D020     		movs	r0, #208
  1112 000c FFF7FEFF 		bl	IIC_Send_Byte
  1113              	.LVL116:
- 258:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())                 // 等待应答
- 1114              		.loc 1 258 3 view .LVU256
- 1115              		.loc 1 258 7 is_stmt 0 view .LVU257
+ 257:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())                 // 等待应答
+ 1114              		.loc 1 257 3 view .LVU256
+ 1115              		.loc 1 257 7 is_stmt 0 view .LVU257
  1116 0010 FFF7FEFF 		bl	IIC_Wait_Ack
  1117              	.LVL117:
- 1118              		.loc 1 258 6 discriminator 1 view .LVU258
+ 1118              		.loc 1 257 6 discriminator 1 view .LVU258
  1119 0014 78B9     		cbnz	r0, .L65
- 259:MyHardWare/Src/mpu6050.c ****   {
- 260:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 261:MyHardWare/Src/mpu6050.c ****     return 1;
- 262:MyHardWare/Src/mpu6050.c ****   }
- 263:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg);  // 写寄存器地址
- 1120              		.loc 1 263 3 is_stmt 1 view .LVU259
+ 258:MyHardWare/Src/mpu6050.c ****   {
+ 259:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 260:MyHardWare/Src/mpu6050.c ****     return 1;
+ 261:MyHardWare/Src/mpu6050.c ****   }
+ 262:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg);  // 写寄存器地址
+ 1120              		.loc 1 262 3 is_stmt 1 view .LVU259
  1121 0016 2846     		mov	r0, r5
  1122 0018 FFF7FEFF 		bl	IIC_Send_Byte
  1123              	.LVL118:
- 264:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();      // 等待应答
- 1124              		.loc 1 264 3 view .LVU260
+ 263:MyHardWare/Src/mpu6050.c ****   IIC_Wait_Ack();      // 等待应答
+ 1124              		.loc 1 263 3 view .LVU260
  1125 001c FFF7FEFF 		bl	IIC_Wait_Ack
  1126              	.LVL119:
- 265:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(data); // 发送数据
- 1127              		.loc 1 265 3 view .LVU261
+ 264:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(data); // 发送数据
+ 1127              		.loc 1 264 3 view .LVU261
  1128 0020 2046     		mov	r0, r4
-ARM GAS  /tmp/ccMNcKfD.s 			page 29
-
-
  1129 0022 FFF7FEFF 		bl	IIC_Send_Byte
+ARM GAS  /tmp/cckZvbMk.s 			page 29
+
+
  1130              	.LVL120:
- 266:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())  // 等待ACK
- 1131              		.loc 1 266 3 view .LVU262
- 1132              		.loc 1 266 7 is_stmt 0 view .LVU263
+ 265:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack())  // 等待ACK
+ 1131              		.loc 1 265 3 view .LVU262
+ 1132              		.loc 1 265 7 is_stmt 0 view .LVU263
  1133 0026 FFF7FEFF 		bl	IIC_Wait_Ack
  1134              	.LVL121:
- 1135              		.loc 1 266 6 discriminator 1 view .LVU264
+ 1135              		.loc 1 265 6 discriminator 1 view .LVU264
  1136 002a 0446     		mov	r4, r0
  1137              	.LVL122:
- 1138              		.loc 1 266 6 discriminator 1 view .LVU265
+ 1138              		.loc 1 265 6 discriminator 1 view .LVU265
  1139 002c 38B9     		cbnz	r0, .L66
- 267:MyHardWare/Src/mpu6050.c ****   {
- 268:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 269:MyHardWare/Src/mpu6050.c ****     return 1;
- 270:MyHardWare/Src/mpu6050.c ****   }
- 271:MyHardWare/Src/mpu6050.c ****   IIC_Stop();
- 1140              		.loc 1 271 3 is_stmt 1 view .LVU266
+ 266:MyHardWare/Src/mpu6050.c ****   {
+ 267:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 268:MyHardWare/Src/mpu6050.c ****     return 1;
+ 269:MyHardWare/Src/mpu6050.c ****   }
+ 270:MyHardWare/Src/mpu6050.c ****   IIC_Stop();
+ 1140              		.loc 1 270 3 is_stmt 1 view .LVU266
  1141 002e FFF7FEFF 		bl	IIC_Stop
  1142              	.LVL123:
- 272:MyHardWare/Src/mpu6050.c ****   return 0;
- 1143              		.loc 1 272 3 view .LVU267
+ 271:MyHardWare/Src/mpu6050.c ****   return 0;
+ 1143              		.loc 1 271 3 view .LVU267
  1144              	.L62:
- 273:MyHardWare/Src/mpu6050.c **** }
- 1145              		.loc 1 273 1 is_stmt 0 view .LVU268
+ 272:MyHardWare/Src/mpu6050.c **** }
+ 1145              		.loc 1 272 1 is_stmt 0 view .LVU268
  1146 0032 2046     		mov	r0, r4
  1147 0034 38BD     		pop	{r3, r4, r5, pc}
  1148              	.LVL124:
  1149              	.L65:
- 260:MyHardWare/Src/mpu6050.c ****     return 1;
- 1150              		.loc 1 260 5 is_stmt 1 view .LVU269
+ 259:MyHardWare/Src/mpu6050.c ****     return 1;
+ 1150              		.loc 1 259 5 is_stmt 1 view .LVU269
  1151 0036 FFF7FEFF 		bl	IIC_Stop
  1152              	.LVL125:
- 261:MyHardWare/Src/mpu6050.c ****   }
- 1153              		.loc 1 261 5 view .LVU270
- 261:MyHardWare/Src/mpu6050.c ****   }
- 1154              		.loc 1 261 12 is_stmt 0 view .LVU271
+ 260:MyHardWare/Src/mpu6050.c ****   }
+ 1153              		.loc 1 260 5 view .LVU270
+ 260:MyHardWare/Src/mpu6050.c ****   }
+ 1154              		.loc 1 260 12 is_stmt 0 view .LVU271
  1155 003a 0124     		movs	r4, #1
  1156 003c F9E7     		b	.L62
  1157              	.L66:
- 268:MyHardWare/Src/mpu6050.c ****     return 1;
- 1158              		.loc 1 268 5 is_stmt 1 view .LVU272
+ 267:MyHardWare/Src/mpu6050.c ****     return 1;
+ 1158              		.loc 1 267 5 is_stmt 1 view .LVU272
  1159 003e FFF7FEFF 		bl	IIC_Stop
  1160              	.LVL126:
- 269:MyHardWare/Src/mpu6050.c ****   }
- 1161              		.loc 1 269 5 view .LVU273
- 269:MyHardWare/Src/mpu6050.c ****   }
- 1162              		.loc 1 269 12 is_stmt 0 view .LVU274
+ 268:MyHardWare/Src/mpu6050.c ****   }
+ 1161              		.loc 1 268 5 view .LVU273
+ 268:MyHardWare/Src/mpu6050.c ****   }
+ 1162              		.loc 1 268 12 is_stmt 0 view .LVU274
  1163 0042 0124     		movs	r4, #1
  1164 0044 F5E7     		b	.L62
  1165              		.cfi_endproc
@@ -1738,39 +1737,39 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1170              		.global	MPU_Set_Gyro_Fsr
  1171              		.syntax unified
  1172              		.thumb
-ARM GAS  /tmp/ccMNcKfD.s 			page 30
-
-
  1173              		.thumb_func
+ARM GAS  /tmp/cckZvbMk.s 			page 30
+
+
  1175              	MPU_Set_Gyro_Fsr:
  1176              	.LVL127:
  1177              	.LFB127:
-  48:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // 设置陀螺仪满量程范围
- 1178              		.loc 1 48 29 is_stmt 1 view -0
+  47:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // 设置陀螺仪满量程范围
+ 1178              		.loc 1 47 29 is_stmt 1 view -0
  1179              		.cfi_startproc
  1180              		@ args = 0, pretend = 0, frame = 0
  1181              		@ frame_needed = 0, uses_anonymous_args = 0
-  48:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // 设置陀螺仪满量程范围
- 1182              		.loc 1 48 29 is_stmt 0 view .LVU276
+  47:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_GYRO_CFG_REG, fsr << 3); // 设置陀螺仪满量程范围
+ 1182              		.loc 1 47 29 is_stmt 0 view .LVU276
  1183 0000 08B5     		push	{r3, lr}
  1184              	.LCFI21:
  1185              		.cfi_def_cfa_offset 8
  1186              		.cfi_offset 3, -8
  1187              		.cfi_offset 14, -4
-  49:MyHardWare/Src/mpu6050.c **** }
- 1188              		.loc 1 49 3 is_stmt 1 view .LVU277
-  49:MyHardWare/Src/mpu6050.c **** }
- 1189              		.loc 1 49 10 is_stmt 0 view .LVU278
+  48:MyHardWare/Src/mpu6050.c **** }
+ 1188              		.loc 1 48 3 is_stmt 1 view .LVU277
+  48:MyHardWare/Src/mpu6050.c **** }
+ 1189              		.loc 1 48 10 is_stmt 0 view .LVU278
  1190 0002 C100     		lsls	r1, r0, #3
  1191 0004 01F0F801 		and	r1, r1, #248
  1192 0008 1B20     		movs	r0, #27
  1193              	.LVL128:
-  49:MyHardWare/Src/mpu6050.c **** }
- 1194              		.loc 1 49 10 view .LVU279
+  48:MyHardWare/Src/mpu6050.c **** }
+ 1194              		.loc 1 48 10 view .LVU279
  1195 000a FFF7FEFF 		bl	MPU_Write_Byte
  1196              	.LVL129:
-  50:MyHardWare/Src/mpu6050.c **** // 设置MPU6050加速度传感器满量程范围
- 1197              		.loc 1 50 1 view .LVU280
+  49:MyHardWare/Src/mpu6050.c **** // 设置MPU6050加速度传感器满量程范围
+ 1197              		.loc 1 49 1 view .LVU280
  1198 000e 08BD     		pop	{r3, pc}
  1199              		.cfi_endproc
  1200              	.LFE127:
@@ -1783,35 +1782,35 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1209              	MPU_Set_Accel_Fsr:
  1210              	.LVL130:
  1211              	.LFB128:
-  55:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
- 1212              		.loc 1 55 30 is_stmt 1 view -0
+  54:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
+ 1212              		.loc 1 54 30 is_stmt 1 view -0
  1213              		.cfi_startproc
  1214              		@ args = 0, pretend = 0, frame = 0
  1215              		@ frame_needed = 0, uses_anonymous_args = 0
-  55:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
- 1216              		.loc 1 55 30 is_stmt 0 view .LVU282
+  54:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_ACCEL_CFG_REG,
+ 1216              		.loc 1 54 30 is_stmt 0 view .LVU282
  1217 0000 08B5     		push	{r3, lr}
  1218              	.LCFI22:
  1219              		.cfi_def_cfa_offset 8
  1220              		.cfi_offset 3, -8
  1221              		.cfi_offset 14, -4
-  56:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
- 1222              		.loc 1 56 3 is_stmt 1 view .LVU283
-  56:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
-ARM GAS  /tmp/ccMNcKfD.s 			page 31
+  55:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
+ 1222              		.loc 1 55 3 is_stmt 1 view .LVU283
+  55:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
+ 1223              		.loc 1 55 10 is_stmt 0 view .LVU284
+ARM GAS  /tmp/cckZvbMk.s 			page 31
 
 
- 1223              		.loc 1 56 10 is_stmt 0 view .LVU284
  1224 0002 C100     		lsls	r1, r0, #3
  1225 0004 01F0F801 		and	r1, r1, #248
  1226 0008 1C20     		movs	r0, #28
  1227              	.LVL131:
-  56:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
- 1228              		.loc 1 56 10 view .LVU285
+  55:MyHardWare/Src/mpu6050.c ****                         fsr << 3); // 设置加速度传感器满量程范围
+ 1228              		.loc 1 55 10 view .LVU285
  1229 000a FFF7FEFF 		bl	MPU_Write_Byte
  1230              	.LVL132:
-  58:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的数字低通滤波器
- 1231              		.loc 1 58 1 view .LVU286
+  57:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的数字低通滤波器
+ 1231              		.loc 1 57 1 view .LVU286
  1232 000e 08BD     		pop	{r3, pc}
  1233              		.cfi_endproc
  1234              	.LFE128:
@@ -1824,104 +1823,104 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1243              	MPU_Set_LPF:
  1244              	.LVL133:
  1245              	.LFB129:
-  63:MyHardWare/Src/mpu6050.c ****   u8 data = 0;
- 1246              		.loc 1 63 25 is_stmt 1 view -0
+  62:MyHardWare/Src/mpu6050.c ****   u8 data = 0;
+ 1246              		.loc 1 62 25 is_stmt 1 view -0
  1247              		.cfi_startproc
  1248              		@ args = 0, pretend = 0, frame = 0
  1249              		@ frame_needed = 0, uses_anonymous_args = 0
-  63:MyHardWare/Src/mpu6050.c ****   u8 data = 0;
- 1250              		.loc 1 63 25 is_stmt 0 view .LVU288
+  62:MyHardWare/Src/mpu6050.c ****   u8 data = 0;
+ 1250              		.loc 1 62 25 is_stmt 0 view .LVU288
  1251 0000 08B5     		push	{r3, lr}
  1252              	.LCFI23:
  1253              		.cfi_def_cfa_offset 8
  1254              		.cfi_offset 3, -8
  1255              		.cfi_offset 14, -4
-  64:MyHardWare/Src/mpu6050.c ****   if (lpf >= 188)
- 1256              		.loc 1 64 3 is_stmt 1 view .LVU289
+  63:MyHardWare/Src/mpu6050.c ****   if (lpf >= 188)
+ 1256              		.loc 1 63 3 is_stmt 1 view .LVU289
  1257              	.LVL134:
-  65:MyHardWare/Src/mpu6050.c ****     data = 1;
- 1258              		.loc 1 65 3 view .LVU290
-  65:MyHardWare/Src/mpu6050.c ****     data = 1;
- 1259              		.loc 1 65 6 is_stmt 0 view .LVU291
+  64:MyHardWare/Src/mpu6050.c ****     data = 1;
+ 1258              		.loc 1 64 3 view .LVU290
+  64:MyHardWare/Src/mpu6050.c ****     data = 1;
+ 1259              		.loc 1 64 6 is_stmt 0 view .LVU291
  1260 0002 BB28     		cmp	r0, #187
  1261 0004 09D8     		bhi	.L73
-  67:MyHardWare/Src/mpu6050.c ****     data = 2;
- 1262              		.loc 1 67 8 is_stmt 1 view .LVU292
-  67:MyHardWare/Src/mpu6050.c ****     data = 2;
- 1263              		.loc 1 67 11 is_stmt 0 view .LVU293
+  66:MyHardWare/Src/mpu6050.c ****     data = 2;
+ 1262              		.loc 1 66 8 is_stmt 1 view .LVU292
+  66:MyHardWare/Src/mpu6050.c ****     data = 2;
+ 1263              		.loc 1 66 11 is_stmt 0 view .LVU293
  1264 0006 6128     		cmp	r0, #97
  1265 0008 0CD8     		bhi	.L74
-  69:MyHardWare/Src/mpu6050.c ****     data = 3;
- 1266              		.loc 1 69 8 is_stmt 1 view .LVU294
-  69:MyHardWare/Src/mpu6050.c ****     data = 3;
- 1267              		.loc 1 69 11 is_stmt 0 view .LVU295
+  68:MyHardWare/Src/mpu6050.c ****     data = 3;
+ 1266              		.loc 1 68 8 is_stmt 1 view .LVU294
+  68:MyHardWare/Src/mpu6050.c ****     data = 3;
+ 1267              		.loc 1 68 11 is_stmt 0 view .LVU295
  1268 000a 2928     		cmp	r0, #41
  1269 000c 0CD8     		bhi	.L75
-  71:MyHardWare/Src/mpu6050.c ****     data = 4;
-ARM GAS  /tmp/ccMNcKfD.s 			page 32
+  70:MyHardWare/Src/mpu6050.c ****     data = 4;
+ 1270              		.loc 1 70 8 is_stmt 1 view .LVU296
+ARM GAS  /tmp/cckZvbMk.s 			page 32
 
 
- 1270              		.loc 1 71 8 is_stmt 1 view .LVU296
-  71:MyHardWare/Src/mpu6050.c ****     data = 4;
- 1271              		.loc 1 71 11 is_stmt 0 view .LVU297
+  70:MyHardWare/Src/mpu6050.c ****     data = 4;
+ 1271              		.loc 1 70 11 is_stmt 0 view .LVU297
  1272 000e 1328     		cmp	r0, #19
  1273 0010 0CD8     		bhi	.L76
-  73:MyHardWare/Src/mpu6050.c ****     data = 5;
- 1274              		.loc 1 73 8 is_stmt 1 view .LVU298
-  73:MyHardWare/Src/mpu6050.c ****     data = 5;
- 1275              		.loc 1 73 11 is_stmt 0 view .LVU299
+  72:MyHardWare/Src/mpu6050.c ****     data = 5;
+ 1274              		.loc 1 72 8 is_stmt 1 view .LVU298
+  72:MyHardWare/Src/mpu6050.c ****     data = 5;
+ 1275              		.loc 1 72 11 is_stmt 0 view .LVU299
  1276 0012 0928     		cmp	r0, #9
  1277 0014 0CD9     		bls	.L77
-  74:MyHardWare/Src/mpu6050.c ****   else
- 1278              		.loc 1 74 10 view .LVU300
+  73:MyHardWare/Src/mpu6050.c ****   else
+ 1278              		.loc 1 73 10 view .LVU300
  1279 0016 0521     		movs	r1, #5
  1280 0018 00E0     		b	.L72
  1281              	.L73:
-  66:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 98)
- 1282              		.loc 1 66 10 view .LVU301
+  65:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 98)
+ 1282              		.loc 1 65 10 view .LVU301
  1283 001a 0121     		movs	r1, #1
  1284              	.L72:
  1285              	.LVL135:
-  77:MyHardWare/Src/mpu6050.c **** }
- 1286              		.loc 1 77 3 is_stmt 1 view .LVU302
-  77:MyHardWare/Src/mpu6050.c **** }
- 1287              		.loc 1 77 10 is_stmt 0 view .LVU303
+  76:MyHardWare/Src/mpu6050.c **** }
+ 1286              		.loc 1 76 3 is_stmt 1 view .LVU302
+  76:MyHardWare/Src/mpu6050.c **** }
+ 1287              		.loc 1 76 10 is_stmt 0 view .LVU303
  1288 001c 1A20     		movs	r0, #26
  1289              	.LVL136:
-  77:MyHardWare/Src/mpu6050.c **** }
- 1290              		.loc 1 77 10 view .LVU304
+  76:MyHardWare/Src/mpu6050.c **** }
+ 1290              		.loc 1 76 10 view .LVU304
  1291 001e FFF7FEFF 		bl	MPU_Write_Byte
  1292              	.LVL137:
-  78:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的采样率(假定Fs=1KHz)
- 1293              		.loc 1 78 1 view .LVU305
+  77:MyHardWare/Src/mpu6050.c **** // 设置MPU6050的采样率(假定Fs=1KHz)
+ 1293              		.loc 1 77 1 view .LVU305
  1294 0022 08BD     		pop	{r3, pc}
  1295              	.LVL138:
  1296              	.L74:
-  68:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 42)
- 1297              		.loc 1 68 10 view .LVU306
+  67:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 42)
+ 1297              		.loc 1 67 10 view .LVU306
  1298 0024 0221     		movs	r1, #2
  1299 0026 F9E7     		b	.L72
  1300              	.L75:
-  70:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 20)
- 1301              		.loc 1 70 10 view .LVU307
+  69:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 20)
+ 1301              		.loc 1 69 10 view .LVU307
  1302 0028 0321     		movs	r1, #3
  1303 002a F7E7     		b	.L72
  1304              	.L76:
-  72:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 10)
- 1305              		.loc 1 72 10 view .LVU308
+  71:MyHardWare/Src/mpu6050.c ****   else if (lpf >= 10)
+ 1305              		.loc 1 71 10 view .LVU308
  1306 002c 0421     		movs	r1, #4
  1307 002e F5E7     		b	.L72
  1308              	.L77:
-  76:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_CFG_REG, data); // 设置数字低通滤波器
- 1309              		.loc 1 76 10 view .LVU309
+  75:MyHardWare/Src/mpu6050.c ****   return MPU_Write_Byte(MPU_CFG_REG, data); // 设置数字低通滤波器
+ 1309              		.loc 1 75 10 view .LVU309
  1310 0030 0621     		movs	r1, #6
  1311 0032 F3E7     		b	.L72
  1312              		.cfi_endproc
  1313              	.LFE129:
-ARM GAS  /tmp/ccMNcKfD.s 			page 33
-
-
  1315              		.section	.text.MPU_Set_Rate,"ax",%progbits
+ARM GAS  /tmp/cckZvbMk.s 			page 33
+
+
  1316              		.align	1
  1317              		.global	MPU_Set_Rate
  1318              		.syntax unified
@@ -1930,81 +1929,81 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1322              	MPU_Set_Rate:
  1323              	.LVL139:
  1324              	.LFB130:
-  83:MyHardWare/Src/mpu6050.c ****   u8 data;
- 1325              		.loc 1 83 27 is_stmt 1 view -0
+  82:MyHardWare/Src/mpu6050.c ****   u8 data;
+ 1325              		.loc 1 82 27 is_stmt 1 view -0
  1326              		.cfi_startproc
  1327              		@ args = 0, pretend = 0, frame = 0
  1328              		@ frame_needed = 0, uses_anonymous_args = 0
-  83:MyHardWare/Src/mpu6050.c ****   u8 data;
- 1329              		.loc 1 83 27 is_stmt 0 view .LVU311
+  82:MyHardWare/Src/mpu6050.c ****   u8 data;
+ 1329              		.loc 1 82 27 is_stmt 0 view .LVU311
  1330 0000 10B5     		push	{r4, lr}
  1331              	.LCFI24:
  1332              		.cfi_def_cfa_offset 8
  1333              		.cfi_offset 4, -8
  1334              		.cfi_offset 14, -4
-  84:MyHardWare/Src/mpu6050.c ****   if (rate > 1000)
- 1335              		.loc 1 84 3 is_stmt 1 view .LVU312
-  85:MyHardWare/Src/mpu6050.c ****     rate = 1000;
- 1336              		.loc 1 85 3 view .LVU313
-  85:MyHardWare/Src/mpu6050.c ****     rate = 1000;
- 1337              		.loc 1 85 6 is_stmt 0 view .LVU314
+  83:MyHardWare/Src/mpu6050.c ****   if (rate > 1000)
+ 1335              		.loc 1 83 3 is_stmt 1 view .LVU312
+  84:MyHardWare/Src/mpu6050.c ****     rate = 1000;
+ 1336              		.loc 1 84 3 view .LVU313
+  84:MyHardWare/Src/mpu6050.c ****     rate = 1000;
+ 1337              		.loc 1 84 6 is_stmt 0 view .LVU314
  1338 0002 B0F57A7F 		cmp	r0, #1000
  1339 0006 04D8     		bhi	.L81
  1340 0008 0446     		mov	r4, r0
-  87:MyHardWare/Src/mpu6050.c ****     rate = 4;
- 1341              		.loc 1 87 3 is_stmt 1 view .LVU315
-  87:MyHardWare/Src/mpu6050.c ****     rate = 4;
- 1342              		.loc 1 87 6 is_stmt 0 view .LVU316
+  86:MyHardWare/Src/mpu6050.c ****     rate = 4;
+ 1341              		.loc 1 86 3 is_stmt 1 view .LVU315
+  86:MyHardWare/Src/mpu6050.c ****     rate = 4;
+ 1342              		.loc 1 86 6 is_stmt 0 view .LVU316
  1343 000a 0328     		cmp	r0, #3
  1344 000c 03D8     		bhi	.L80
-  88:MyHardWare/Src/mpu6050.c ****   data = 1000 / rate - 1;
- 1345              		.loc 1 88 10 view .LVU317
+  87:MyHardWare/Src/mpu6050.c ****   data = 1000 / rate - 1;
+ 1345              		.loc 1 87 10 view .LVU317
  1346 000e 0424     		movs	r4, #4
  1347 0010 01E0     		b	.L80
  1348              	.L81:
-  86:MyHardWare/Src/mpu6050.c ****   if (rate < 4)
- 1349              		.loc 1 86 10 view .LVU318
+  85:MyHardWare/Src/mpu6050.c ****   if (rate < 4)
+ 1349              		.loc 1 85 10 view .LVU318
  1350 0012 4FF47A74 		mov	r4, #1000
  1351              	.L80:
  1352              	.LVL140:
-  89:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
- 1353              		.loc 1 89 3 is_stmt 1 view .LVU319
-  89:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
- 1354              		.loc 1 89 15 is_stmt 0 view .LVU320
+  88:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
+ 1353              		.loc 1 88 3 is_stmt 1 view .LVU319
+  88:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
+ 1354              		.loc 1 88 15 is_stmt 0 view .LVU320
  1355 0016 4FF47A71 		mov	r1, #1000
  1356 001a 91FBF4F1 		sdiv	r1, r1, r4
-  89:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
- 1357              		.loc 1 89 22 view .LVU321
+  88:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
+ 1357              		.loc 1 88 22 view .LVU321
  1358 001e C9B2     		uxtb	r1, r1
-  89:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
- 1359              		.loc 1 89 8 view .LVU322
-ARM GAS  /tmp/ccMNcKfD.s 			page 34
-
-
+  88:MyHardWare/Src/mpu6050.c ****   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
+ 1359              		.loc 1 88 8 view .LVU322
  1360 0020 0139     		subs	r1, r1, #1
+ARM GAS  /tmp/cckZvbMk.s 			page 34
+
+
  1361              	.LVL141:
-  90:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
- 1362              		.loc 1 90 3 is_stmt 1 view .LVU323
-  90:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
- 1363              		.loc 1 90 10 is_stmt 0 view .LVU324
+  89:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
+ 1362              		.loc 1 89 3 is_stmt 1 view .LVU323
+  89:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
+ 1363              		.loc 1 89 10 is_stmt 0 view .LVU324
  1364 0022 C9B2     		uxtb	r1, r1
-  90:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
- 1365              		.loc 1 90 10 view .LVU325
+  89:MyHardWare/Src/mpu6050.c ****   return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
+ 1365              		.loc 1 89 10 view .LVU325
  1366 0024 1920     		movs	r0, #25
  1367 0026 FFF7FEFF 		bl	MPU_Write_Byte
  1368              	.LVL142:
-  91:MyHardWare/Src/mpu6050.c **** }
- 1369              		.loc 1 91 3 is_stmt 1 view .LVU326
-  91:MyHardWare/Src/mpu6050.c **** }
- 1370              		.loc 1 91 10 is_stmt 0 view .LVU327
+  90:MyHardWare/Src/mpu6050.c **** }
+ 1369              		.loc 1 90 3 is_stmt 1 view .LVU326
+  90:MyHardWare/Src/mpu6050.c **** }
+ 1370              		.loc 1 90 10 is_stmt 0 view .LVU327
  1371 002a 6008     		lsrs	r0, r4, #1
  1372 002c FFF7FEFF 		bl	MPU_Set_LPF
  1373              	.LVL143:
-  92:MyHardWare/Src/mpu6050.c **** 
- 1374              		.loc 1 92 1 view .LVU328
+  91:MyHardWare/Src/mpu6050.c **** 
+ 1374              		.loc 1 91 1 view .LVU328
  1375 0030 10BD     		pop	{r4, pc}
-  92:MyHardWare/Src/mpu6050.c **** 
- 1376              		.loc 1 92 1 view .LVU329
+  91:MyHardWare/Src/mpu6050.c **** 
+ 1376              		.loc 1 91 1 view .LVU329
  1377              		.cfi_endproc
  1378              	.LFE130:
  1380              		.section	.text.MPU_Read_Byte,"ax",%progbits
@@ -2016,15 +2015,15 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1387              	MPU_Read_Byte:
  1388              	.LVL144:
  1389              	.LFB140:
- 274:MyHardWare/Src/mpu6050.c **** // IIC读一个字节
- 275:MyHardWare/Src/mpu6050.c **** // reg:寄存器地址
- 276:MyHardWare/Src/mpu6050.c **** // 返回值:读到的数据
- 277:MyHardWare/Src/mpu6050.c **** u8 MPU_Read_Byte(u8 reg, u8 *data) {
- 1390              		.loc 1 277 36 is_stmt 1 view -0
+ 273:MyHardWare/Src/mpu6050.c **** // IIC读一个字节
+ 274:MyHardWare/Src/mpu6050.c **** // reg:寄存器地址
+ 275:MyHardWare/Src/mpu6050.c **** // 返回值:读到的数据
+ 276:MyHardWare/Src/mpu6050.c **** u8 MPU_Read_Byte(u8 reg, u8 *data) {
+ 1390              		.loc 1 276 36 is_stmt 1 view -0
  1391              		.cfi_startproc
  1392              		@ args = 0, pretend = 0, frame = 0
  1393              		@ frame_needed = 0, uses_anonymous_args = 0
- 1394              		.loc 1 277 36 is_stmt 0 view .LVU331
+ 1394              		.loc 1 276 36 is_stmt 0 view .LVU331
  1395 0000 38B5     		push	{r3, r4, r5, lr}
  1396              	.LCFI25:
  1397              		.cfi_def_cfa_offset 16
@@ -2034,116 +2033,116 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1401              		.cfi_offset 14, -4
  1402 0002 0446     		mov	r4, r0
  1403 0004 0D46     		mov	r5, r1
- 278:MyHardWare/Src/mpu6050.c ****   u8 res;
- 1404              		.loc 1 278 3 is_stmt 1 view .LVU332
- 279:MyHardWare/Src/mpu6050.c ****   IIC_Start();
- 1405              		.loc 1 279 3 view .LVU333
-ARM GAS  /tmp/ccMNcKfD.s 			page 35
-
-
+ 277:MyHardWare/Src/mpu6050.c ****   u8 res;
+ 1404              		.loc 1 277 3 is_stmt 1 view .LVU332
+ 278:MyHardWare/Src/mpu6050.c ****   IIC_Start();
+ 1405              		.loc 1 278 3 view .LVU333
  1406 0006 FFF7FEFF 		bl	IIC_Start
+ARM GAS  /tmp/cckZvbMk.s 			page 35
+
+
  1407              	.LVL145:
- 280:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((MPU_ADDR << 1) | 0); // 发送器件地址+写命令
- 1408              		.loc 1 280 3 view .LVU334
+ 279:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((MPU_ADDR << 1) | 0); // 发送器件地址+写命令
+ 1408              		.loc 1 279 3 view .LVU334
  1409 000a D020     		movs	r0, #208
  1410 000c FFF7FEFF 		bl	IIC_Send_Byte
  1411              	.LVL146:
- 281:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack()) {
- 1412              		.loc 1 281 3 view .LVU335
- 1413              		.loc 1 281 7 is_stmt 0 view .LVU336
+ 280:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack()) {
+ 1412              		.loc 1 280 3 view .LVU335
+ 1413              		.loc 1 280 7 is_stmt 0 view .LVU336
  1414 0010 FFF7FEFF 		bl	IIC_Wait_Ack
  1415              	.LVL147:
- 1416              		.loc 1 281 6 discriminator 1 view .LVU337
+ 1416              		.loc 1 280 6 discriminator 1 view .LVU337
  1417 0014 A0B9     		cbnz	r0, .L90
- 282:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 283:MyHardWare/Src/mpu6050.c ****     return 1;
- 284:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 285:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg); // 写寄存器地址
- 1418              		.loc 1 285 3 is_stmt 1 view .LVU338
+ 281:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 282:MyHardWare/Src/mpu6050.c ****     return 1;
+ 283:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 284:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte(reg); // 写寄存器地址
+ 1418              		.loc 1 284 3 is_stmt 1 view .LVU338
  1419 0016 2046     		mov	r0, r4
  1420 0018 FFF7FEFF 		bl	IIC_Send_Byte
  1421              	.LVL148:
- 286:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack()) {
- 1422              		.loc 1 286 3 view .LVU339
- 1423              		.loc 1 286 7 is_stmt 0 view .LVU340
+ 285:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack()) {
+ 1422              		.loc 1 285 3 view .LVU339
+ 1423              		.loc 1 285 7 is_stmt 0 view .LVU340
  1424 001c FFF7FEFF 		bl	IIC_Wait_Ack
  1425              	.LVL149:
- 1426              		.loc 1 286 6 discriminator 1 view .LVU341
+ 1426              		.loc 1 285 6 discriminator 1 view .LVU341
  1427 0020 90B9     		cbnz	r0, .L91
- 287:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 288:MyHardWare/Src/mpu6050.c ****     return 1;
- 289:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 290:MyHardWare/Src/mpu6050.c **** 
- 291:MyHardWare/Src/mpu6050.c ****   IIC_Start();
- 1428              		.loc 1 291 3 is_stmt 1 view .LVU342
+ 286:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 287:MyHardWare/Src/mpu6050.c ****     return 1;
+ 288:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 289:MyHardWare/Src/mpu6050.c **** 
+ 290:MyHardWare/Src/mpu6050.c ****   IIC_Start();
+ 1428              		.loc 1 290 3 is_stmt 1 view .LVU342
  1429 0022 FFF7FEFF 		bl	IIC_Start
  1430              	.LVL150:
- 292:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((MPU_ADDR << 1) | 1); // 发送器件地址+读命令
- 1431              		.loc 1 292 3 view .LVU343
+ 291:MyHardWare/Src/mpu6050.c ****   IIC_Send_Byte((MPU_ADDR << 1) | 1); // 发送器件地址+读命令
+ 1431              		.loc 1 291 3 view .LVU343
  1432 0026 D120     		movs	r0, #209
  1433 0028 FFF7FEFF 		bl	IIC_Send_Byte
  1434              	.LVL151:
- 293:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack()) {
- 1435              		.loc 1 293 3 view .LVU344
- 1436              		.loc 1 293 7 is_stmt 0 view .LVU345
+ 292:MyHardWare/Src/mpu6050.c ****   if (IIC_Wait_Ack()) {
+ 1435              		.loc 1 292 3 view .LVU344
+ 1436              		.loc 1 292 7 is_stmt 0 view .LVU345
  1437 002c FFF7FEFF 		bl	IIC_Wait_Ack
  1438              	.LVL152:
- 1439              		.loc 1 293 6 discriminator 1 view .LVU346
+ 1439              		.loc 1 292 6 discriminator 1 view .LVU346
  1440 0030 68B9     		cbnz	r0, .L92
- 294:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
- 295:MyHardWare/Src/mpu6050.c ****     return 1;
- 296:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 297:MyHardWare/Src/mpu6050.c ****   *data = IIC_Read_Byte(0); // 读取数据,发送nACK
- 1441              		.loc 1 297 3 is_stmt 1 view .LVU347
- 1442              		.loc 1 297 11 is_stmt 0 view .LVU348
+ 293:MyHardWare/Src/mpu6050.c ****     IIC_Stop();
+ 294:MyHardWare/Src/mpu6050.c ****     return 1;
+ 295:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 296:MyHardWare/Src/mpu6050.c ****   *data = IIC_Read_Byte(0); // 读取数据,发送nACK
+ 1441              		.loc 1 296 3 is_stmt 1 view .LVU347
+ 1442              		.loc 1 296 11 is_stmt 0 view .LVU348
  1443 0032 0020     		movs	r0, #0
  1444 0034 FFF7FEFF 		bl	IIC_Read_Byte
-ARM GAS  /tmp/ccMNcKfD.s 			page 36
-
-
  1445              	.LVL153:
- 1446              		.loc 1 297 9 discriminator 1 view .LVU349
+ARM GAS  /tmp/cckZvbMk.s 			page 36
+
+
+ 1446              		.loc 1 296 9 discriminator 1 view .LVU349
  1447 0038 2870     		strb	r0, [r5]
- 298:MyHardWare/Src/mpu6050.c ****   IIC_Stop();               // 产生一个停止条件
- 1448              		.loc 1 298 3 is_stmt 1 view .LVU350
+ 297:MyHardWare/Src/mpu6050.c ****   IIC_Stop();               // 产生一个停止条件
+ 1448              		.loc 1 297 3 is_stmt 1 view .LVU350
  1449 003a FFF7FEFF 		bl	IIC_Stop
  1450              	.LVL154:
- 299:MyHardWare/Src/mpu6050.c ****   return res;
- 1451              		.loc 1 299 3 view .LVU351
- 1452              		.loc 1 299 10 is_stmt 0 view .LVU352
+ 298:MyHardWare/Src/mpu6050.c ****   return res;
+ 1451              		.loc 1 298 3 view .LVU351
+ 1452              		.loc 1 298 10 is_stmt 0 view .LVU352
  1453 003e 01E0     		b	.L86
  1454              	.L90:
- 282:MyHardWare/Src/mpu6050.c ****     return 1;
- 1455              		.loc 1 282 5 is_stmt 1 view .LVU353
+ 281:MyHardWare/Src/mpu6050.c ****     return 1;
+ 1455              		.loc 1 281 5 is_stmt 1 view .LVU353
  1456 0040 FFF7FEFF 		bl	IIC_Stop
  1457              	.LVL155:
- 283:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 1458              		.loc 1 283 5 view .LVU354
+ 282:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 1458              		.loc 1 282 5 view .LVU354
  1459              	.L86:
- 300:MyHardWare/Src/mpu6050.c **** }
- 1460              		.loc 1 300 1 is_stmt 0 view .LVU355
+ 299:MyHardWare/Src/mpu6050.c **** }
+ 1460              		.loc 1 299 1 is_stmt 0 view .LVU355
  1461 0044 0120     		movs	r0, #1
  1462 0046 38BD     		pop	{r3, r4, r5, pc}
  1463              	.LVL156:
  1464              	.L91:
- 287:MyHardWare/Src/mpu6050.c ****     return 1;
- 1465              		.loc 1 287 5 is_stmt 1 view .LVU356
+ 286:MyHardWare/Src/mpu6050.c ****     return 1;
+ 1465              		.loc 1 286 5 is_stmt 1 view .LVU356
  1466 0048 FFF7FEFF 		bl	IIC_Stop
  1467              	.LVL157:
- 288:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 1468              		.loc 1 288 5 view .LVU357
- 288:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 1469              		.loc 1 288 12 is_stmt 0 view .LVU358
+ 287:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 1468              		.loc 1 287 5 view .LVU357
+ 287:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 1469              		.loc 1 287 12 is_stmt 0 view .LVU358
  1470 004c FAE7     		b	.L86
  1471              	.L92:
- 294:MyHardWare/Src/mpu6050.c ****     return 1;
- 1472              		.loc 1 294 5 is_stmt 1 view .LVU359
+ 293:MyHardWare/Src/mpu6050.c ****     return 1;
+ 1472              		.loc 1 293 5 is_stmt 1 view .LVU359
  1473 004e FFF7FEFF 		bl	IIC_Stop
  1474              	.LVL158:
- 295:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 1475              		.loc 1 295 5 view .LVU360
- 295:MyHardWare/Src/mpu6050.c ****   } // 等待应答
- 1476              		.loc 1 295 12 is_stmt 0 view .LVU361
+ 294:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 1475              		.loc 1 294 5 view .LVU360
+ 294:MyHardWare/Src/mpu6050.c ****   } // 等待应答
+ 1476              		.loc 1 294 12 is_stmt 0 view .LVU361
  1477 0052 F7E7     		b	.L86
  1478              		.cfi_endproc
  1479              	.LFE140:
@@ -2158,15 +2157,15 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1486              		.align	1
  1487              		.global	MPU_Init
  1488              		.syntax unified
-ARM GAS  /tmp/ccMNcKfD.s 			page 37
-
-
  1489              		.thumb
+ARM GAS  /tmp/cckZvbMk.s 			page 37
+
+
  1490              		.thumb_func
  1492              	MPU_Init:
  1493              	.LFB126:
-  20:MyHardWare/Src/mpu6050.c ****   u8 res;
- 1494              		.loc 1 20 19 is_stmt 1 view -0
+  19:MyHardWare/Src/mpu6050.c ****   u8 res;
+ 1494              		.loc 1 19 19 is_stmt 1 view -0
  1495              		.cfi_startproc
  1496              		@ args = 0, pretend = 0, frame = 8
  1497              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2177,98 +2176,98 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1502 0002 83B0     		sub	sp, sp, #12
  1503              	.LCFI27:
  1504              		.cfi_def_cfa_offset 16
-  21:MyHardWare/Src/mpu6050.c ****   IIC_Init();                              // 初始化IIC总线
- 1505              		.loc 1 21 3 view .LVU363
-  22:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); // 复位MPU6050
- 1506              		.loc 1 22 3 view .LVU364
+  20:MyHardWare/Src/mpu6050.c ****   IIC_Init();                              // 初始化IIC总线
+ 1505              		.loc 1 20 3 view .LVU363
+  21:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X80); // 复位MPU6050
+ 1506              		.loc 1 21 3 view .LVU364
  1507 0004 FFF7FEFF 		bl	IIC_Init
  1508              	.LVL159:
-  23:MyHardWare/Src/mpu6050.c ****   delay_ms(100);
- 1509              		.loc 1 23 3 view .LVU365
+  22:MyHardWare/Src/mpu6050.c ****   delay_ms(100);
+ 1509              		.loc 1 22 3 view .LVU365
  1510 0008 8021     		movs	r1, #128
  1511 000a 6B20     		movs	r0, #107
  1512 000c FFF7FEFF 		bl	MPU_Write_Byte
  1513              	.LVL160:
-  24:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X00); // 唤醒MPU6050
- 1514              		.loc 1 24 3 view .LVU366
+  23:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_PWR_MGMT1_REG, 0X00); // 唤醒MPU6050
+ 1514              		.loc 1 23 3 view .LVU366
  1515 0010 6420     		movs	r0, #100
  1516 0012 FFF7FEFF 		bl	delay_ms
  1517              	.LVL161:
-  25:MyHardWare/Src/mpu6050.c ****   MPU_Set_Gyro_Fsr(3);                     // 陀螺仪传感器,±2000dps
- 1518              		.loc 1 25 3 view .LVU367
+  24:MyHardWare/Src/mpu6050.c ****   MPU_Set_Gyro_Fsr(3);                     // 陀螺仪传感器,±2000dps
+ 1518              		.loc 1 24 3 view .LVU367
  1519 0016 0021     		movs	r1, #0
  1520 0018 6B20     		movs	r0, #107
  1521 001a FFF7FEFF 		bl	MPU_Write_Byte
  1522              	.LVL162:
-  26:MyHardWare/Src/mpu6050.c ****   MPU_Set_Accel_Fsr(0);                    // 加速度传感器,±2g
- 1523              		.loc 1 26 3 view .LVU368
+  25:MyHardWare/Src/mpu6050.c ****   MPU_Set_Accel_Fsr(0);                    // 加速度传感器,±2g
+ 1523              		.loc 1 25 3 view .LVU368
  1524 001e 0320     		movs	r0, #3
  1525 0020 FFF7FEFF 		bl	MPU_Set_Gyro_Fsr
  1526              	.LVL163:
-  27:MyHardWare/Src/mpu6050.c ****   MPU_Set_Rate(200);                       // 设置采样率200Hz
- 1527              		.loc 1 27 3 view .LVU369
+  26:MyHardWare/Src/mpu6050.c ****   MPU_Set_Rate(200);                       // 设置采样率200Hz
+ 1527              		.loc 1 26 3 view .LVU369
  1528 0024 0020     		movs	r0, #0
  1529 0026 FFF7FEFF 		bl	MPU_Set_Accel_Fsr
  1530              	.LVL164:
-  28:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INT_EN_REG, 0X00);    // 关闭所有中断
- 1531              		.loc 1 28 3 view .LVU370
+  27:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INT_EN_REG, 0X00);    // 关闭所有中断
+ 1531              		.loc 1 27 3 view .LVU370
  1532 002a C820     		movs	r0, #200
  1533 002c FFF7FEFF 		bl	MPU_Set_Rate
  1534              	.LVL165:
-  29:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_USER_CTRL_REG, 0X00); // I2C主模式关闭
- 1535              		.loc 1 29 3 view .LVU371
+  28:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_USER_CTRL_REG, 0X00); // I2C主模式关闭
+ 1535              		.loc 1 28 3 view .LVU371
  1536 0030 0021     		movs	r1, #0
-ARM GAS  /tmp/ccMNcKfD.s 			page 38
-
-
  1537 0032 3820     		movs	r0, #56
+ARM GAS  /tmp/cckZvbMk.s 			page 38
+
+
  1538 0034 FFF7FEFF 		bl	MPU_Write_Byte
  1539              	.LVL166:
-  30:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_FIFO_EN_REG, 0X00);   // 关闭FIFO
- 1540              		.loc 1 30 3 view .LVU372
+  29:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_FIFO_EN_REG, 0X00);   // 关闭FIFO
+ 1540              		.loc 1 29 3 view .LVU372
  1541 0038 0021     		movs	r1, #0
  1542 003a 6A20     		movs	r0, #106
  1543 003c FFF7FEFF 		bl	MPU_Write_Byte
  1544              	.LVL167:
-  31:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INTBP_CFG_REG, 0X80); // INT引脚低电平有效
- 1545              		.loc 1 31 3 view .LVU373
+  30:MyHardWare/Src/mpu6050.c ****   MPU_Write_Byte(MPU_INTBP_CFG_REG, 0X80); // INT引脚低电平有效
+ 1545              		.loc 1 30 3 view .LVU373
  1546 0040 0021     		movs	r1, #0
  1547 0042 2320     		movs	r0, #35
  1548 0044 FFF7FEFF 		bl	MPU_Write_Byte
  1549              	.LVL168:
-  32:MyHardWare/Src/mpu6050.c ****   MPU_Read_Byte(MPU_DEVICE_ID_REG, &res);
- 1550              		.loc 1 32 3 view .LVU374
+  31:MyHardWare/Src/mpu6050.c ****   MPU_Read_Byte(MPU_DEVICE_ID_REG, &res);
+ 1550              		.loc 1 31 3 view .LVU374
  1551 0048 8021     		movs	r1, #128
  1552 004a 3720     		movs	r0, #55
  1553 004c FFF7FEFF 		bl	MPU_Write_Byte
  1554              	.LVL169:
-  33:MyHardWare/Src/mpu6050.c ****   printf("res is 0x%02x\r\n", res);
- 1555              		.loc 1 33 3 view .LVU375
+  32:MyHardWare/Src/mpu6050.c ****   printf("res is 0x%02x\r\n", res);
+ 1555              		.loc 1 32 3 view .LVU375
  1556 0050 0DF10701 		add	r1, sp, #7
  1557 0054 7520     		movs	r0, #117
  1558 0056 FFF7FEFF 		bl	MPU_Read_Byte
  1559              	.LVL170:
-  34:MyHardWare/Src/mpu6050.c ****   if (res == MPU_ADDR) // 器件ID正确
- 1560              		.loc 1 34 3 view .LVU376
+  33:MyHardWare/Src/mpu6050.c ****   if (res == MPU_ADDR) // 器件ID正确
+ 1560              		.loc 1 33 3 view .LVU376
  1561 005a 9DF80710 		ldrb	r1, [sp, #7]	@ zero_extendqisi2
  1562 005e 0C48     		ldr	r0, .L98
  1563 0060 FFF7FEFF 		bl	printf
  1564              	.LVL171:
-  35:MyHardWare/Src/mpu6050.c ****   {
- 1565              		.loc 1 35 3 view .LVU377
-  35:MyHardWare/Src/mpu6050.c ****   {
- 1566              		.loc 1 35 11 is_stmt 0 view .LVU378
+  34:MyHardWare/Src/mpu6050.c ****   {
+ 1565              		.loc 1 34 3 view .LVU377
+  34:MyHardWare/Src/mpu6050.c ****   {
+ 1566              		.loc 1 34 11 is_stmt 0 view .LVU378
  1567 0064 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
-  35:MyHardWare/Src/mpu6050.c ****   {
- 1568              		.loc 1 35 6 view .LVU379
+  34:MyHardWare/Src/mpu6050.c ****   {
+ 1568              		.loc 1 34 6 view .LVU379
  1569 0068 682B     		cmp	r3, #104
  1570 006a 03D0     		beq	.L97
-  41:MyHardWare/Src/mpu6050.c ****   return 0;
- 1571              		.loc 1 41 12 view .LVU380
+  40:MyHardWare/Src/mpu6050.c ****   return 0;
+ 1571              		.loc 1 40 12 view .LVU380
  1572 006c 0120     		movs	r0, #1
  1573              	.L94:
-  43:MyHardWare/Src/mpu6050.c **** // 设置MPU6050陀螺仪传感器满量程范围
- 1574              		.loc 1 43 1 view .LVU381
+  42:MyHardWare/Src/mpu6050.c **** // 设置MPU6050陀螺仪传感器满量程范围
+ 1574              		.loc 1 42 1 view .LVU381
  1575 006e 03B0     		add	sp, sp, #12
  1576              	.LCFI28:
  1577              		.cfi_remember_state
@@ -2278,30 +2277,30 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1581              	.L97:
  1582              	.LCFI29:
  1583              		.cfi_restore_state
-ARM GAS  /tmp/ccMNcKfD.s 			page 39
+  36:MyHardWare/Src/mpu6050.c ****     MPU_Write_Byte(MPU_PWR_MGMT2_REG, 0X00); // 加速度与陀螺仪都工作
+ARM GAS  /tmp/cckZvbMk.s 			page 39
 
 
-  37:MyHardWare/Src/mpu6050.c ****     MPU_Write_Byte(MPU_PWR_MGMT2_REG, 0X00); // 加速度与陀螺仪都工作
- 1584              		.loc 1 37 5 is_stmt 1 view .LVU382
+ 1584              		.loc 1 36 5 is_stmt 1 view .LVU382
  1585 0074 0121     		movs	r1, #1
  1586 0076 6B20     		movs	r0, #107
  1587 0078 FFF7FEFF 		bl	MPU_Write_Byte
  1588              	.LVL172:
-  38:MyHardWare/Src/mpu6050.c ****     MPU_Set_Rate(100);                       // 设置采样率为50Hz
- 1589              		.loc 1 38 5 view .LVU383
+  37:MyHardWare/Src/mpu6050.c ****     MPU_Set_Rate(100);                       // 设置采样率为50Hz
+ 1589              		.loc 1 37 5 view .LVU383
  1590 007c 0021     		movs	r1, #0
  1591 007e 6C20     		movs	r0, #108
  1592 0080 FFF7FEFF 		bl	MPU_Write_Byte
  1593              	.LVL173:
-  39:MyHardWare/Src/mpu6050.c ****   } else
- 1594              		.loc 1 39 5 view .LVU384
+  38:MyHardWare/Src/mpu6050.c ****   } else
+ 1594              		.loc 1 38 5 view .LVU384
  1595 0084 6420     		movs	r0, #100
  1596 0086 FFF7FEFF 		bl	MPU_Set_Rate
  1597              	.LVL174:
-  42:MyHardWare/Src/mpu6050.c **** }
- 1598              		.loc 1 42 3 view .LVU385
-  42:MyHardWare/Src/mpu6050.c **** }
- 1599              		.loc 1 42 10 is_stmt 0 view .LVU386
+  41:MyHardWare/Src/mpu6050.c **** }
+ 1598              		.loc 1 41 3 view .LVU385
+  41:MyHardWare/Src/mpu6050.c **** }
+ 1599              		.loc 1 41 10 is_stmt 0 view .LVU386
  1600 008a 0020     		movs	r0, #0
  1601 008c EFE7     		b	.L94
  1602              	.L99:
@@ -2338,10 +2337,10 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1640              		.section	.bss.gy_dps,"aw",%nobits
  1641              		.align	2
  1644              	gy_dps:
-ARM GAS  /tmp/ccMNcKfD.s 			page 40
-
-
  1645 0000 00000000 		.space	4
+ARM GAS  /tmp/cckZvbMk.s 			page 40
+
+
  1646              		.section	.bss.gx_dps,"aw",%nobits
  1647              		.align	2
  1650              	gx_dps:
@@ -2383,82 +2382,82 @@ ARM GAS  /tmp/ccMNcKfD.s 			page 1
  1700              		.file 6 "/usr/include/newlib/math.h"
  1701              		.file 7 "/usr/include/newlib/stdio.h"
  1702              		.file 8 "MyHardWare/Inc/delay.h"
-ARM GAS  /tmp/ccMNcKfD.s 			page 41
+ARM GAS  /tmp/cckZvbMk.s 			page 41
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 mpu6050.c
-     /tmp/ccMNcKfD.s:21     .text.MPU_Write_Len:00000000 $t
-     /tmp/ccMNcKfD.s:27     .text.MPU_Write_Len:00000000 MPU_Write_Len
-     /tmp/ccMNcKfD.s:129    .text.MPU_Read_Len:00000000 $t
-     /tmp/ccMNcKfD.s:135    .text.MPU_Read_Len:00000000 MPU_Read_Len
-     /tmp/ccMNcKfD.s:257    .text.MPU_Get_Temperature:00000000 $t
-     /tmp/ccMNcKfD.s:263    .text.MPU_Get_Temperature:00000000 MPU_Get_Temperature
-     /tmp/ccMNcKfD.s:345    .text.MPU_Get_Temperature:00000058 $d
-     /tmp/ccMNcKfD.s:1656   .bss.temperature:00000000 temperature
-     /tmp/ccMNcKfD.s:353    .text.MPU_Get_Gyroscope:00000000 $t
-     /tmp/ccMNcKfD.s:359    .text.MPU_Get_Gyroscope:00000000 MPU_Get_Gyroscope
-     /tmp/ccMNcKfD.s:430    .text.MPU_Get_Gyroscope:00000048 $d
-     /tmp/ccMNcKfD.s:1674   .bss.gx:00000000 gx
-     /tmp/ccMNcKfD.s:1668   .bss.gy:00000000 gy
-     /tmp/ccMNcKfD.s:1662   .bss.gz:00000000 gz
-     /tmp/ccMNcKfD.s:437    .text.MPU_Get_Accelerometer:00000000 $t
-     /tmp/ccMNcKfD.s:443    .text.MPU_Get_Accelerometer:00000000 MPU_Get_Accelerometer
-     /tmp/ccMNcKfD.s:514    .text.MPU_Get_Accelerometer:00000048 $d
-     /tmp/ccMNcKfD.s:1692   .bss.ax:00000000 ax
-     /tmp/ccMNcKfD.s:1686   .bss.ay:00000000 ay
-     /tmp/ccMNcKfD.s:1680   .bss.az:00000000 az
-     /tmp/ccMNcKfD.s:521    .text.MPU_Updata:00000000 $t
-     /tmp/ccMNcKfD.s:527    .text.MPU_Updata:00000000 MPU_Updata
-     /tmp/ccMNcKfD.s:640    .text.MPU_Updata:000000c0 $d
-     /tmp/ccMNcKfD.s:1650   .bss.gx_dps:00000000 gx_dps
-     /tmp/ccMNcKfD.s:1644   .bss.gy_dps:00000000 gy_dps
-     /tmp/ccMNcKfD.s:1638   .bss.gz_dps:00000000 gz_dps
-     /tmp/ccMNcKfD.s:1632   .bss.ax_dps:00000000 ax_dps
-     /tmp/ccMNcKfD.s:1626   .bss.ay_dps:00000000 ay_dps
-     /tmp/ccMNcKfD.s:1620   .bss.az_dps:00000000 az_dps
-     /tmp/ccMNcKfD.s:658    .rodata.MPU_Proc.str1.4:00000000 $d
-     /tmp/ccMNcKfD.s:666    .text.MPU_Proc:00000000 $t
-     /tmp/ccMNcKfD.s:672    .text.MPU_Proc:00000000 MPU_Proc
-     /tmp/ccMNcKfD.s:928    .text.MPU_Proc:00000170 $d
-     /tmp/ccMNcKfD.s:1614   .bss.MPU_Attitude:00000000 MPU_Attitude
-     /tmp/ccMNcKfD.s:947    .rodata.Get_RawData.str1.4:00000000 $d
-     /tmp/ccMNcKfD.s:953    .text.Get_RawData:00000000 $t
-     /tmp/ccMNcKfD.s:959    .text.Get_RawData:00000000 Get_RawData
-     /tmp/ccMNcKfD.s:1071   .text.Get_RawData:00000098 $d
-     /tmp/ccMNcKfD.s:1084   .text.MPU_Write_Byte:00000000 $t
-     /tmp/ccMNcKfD.s:1090   .text.MPU_Write_Byte:00000000 MPU_Write_Byte
-     /tmp/ccMNcKfD.s:1169   .text.MPU_Set_Gyro_Fsr:00000000 $t
-     /tmp/ccMNcKfD.s:1175   .text.MPU_Set_Gyro_Fsr:00000000 MPU_Set_Gyro_Fsr
-     /tmp/ccMNcKfD.s:1203   .text.MPU_Set_Accel_Fsr:00000000 $t
-     /tmp/ccMNcKfD.s:1209   .text.MPU_Set_Accel_Fsr:00000000 MPU_Set_Accel_Fsr
-     /tmp/ccMNcKfD.s:1237   .text.MPU_Set_LPF:00000000 $t
-     /tmp/ccMNcKfD.s:1243   .text.MPU_Set_LPF:00000000 MPU_Set_LPF
-     /tmp/ccMNcKfD.s:1316   .text.MPU_Set_Rate:00000000 $t
-     /tmp/ccMNcKfD.s:1322   .text.MPU_Set_Rate:00000000 MPU_Set_Rate
-     /tmp/ccMNcKfD.s:1381   .text.MPU_Read_Byte:00000000 $t
-     /tmp/ccMNcKfD.s:1387   .text.MPU_Read_Byte:00000000 MPU_Read_Byte
-     /tmp/ccMNcKfD.s:1482   .rodata.MPU_Init.str1.4:00000000 $d
-     /tmp/ccMNcKfD.s:1486   .text.MPU_Init:00000000 $t
-     /tmp/ccMNcKfD.s:1492   .text.MPU_Init:00000000 MPU_Init
-     /tmp/ccMNcKfD.s:1605   .text.MPU_Init:00000090 $d
-     /tmp/ccMNcKfD.s:1611   .bss.MPU_Attitude:00000000 $d
-ARM GAS  /tmp/ccMNcKfD.s 			page 42
+     /tmp/cckZvbMk.s:21     .text.MPU_Write_Len:00000000 $t
+     /tmp/cckZvbMk.s:27     .text.MPU_Write_Len:00000000 MPU_Write_Len
+     /tmp/cckZvbMk.s:129    .text.MPU_Read_Len:00000000 $t
+     /tmp/cckZvbMk.s:135    .text.MPU_Read_Len:00000000 MPU_Read_Len
+     /tmp/cckZvbMk.s:257    .text.MPU_Get_Temperature:00000000 $t
+     /tmp/cckZvbMk.s:263    .text.MPU_Get_Temperature:00000000 MPU_Get_Temperature
+     /tmp/cckZvbMk.s:345    .text.MPU_Get_Temperature:00000058 $d
+     /tmp/cckZvbMk.s:1656   .bss.temperature:00000000 temperature
+     /tmp/cckZvbMk.s:353    .text.MPU_Get_Gyroscope:00000000 $t
+     /tmp/cckZvbMk.s:359    .text.MPU_Get_Gyroscope:00000000 MPU_Get_Gyroscope
+     /tmp/cckZvbMk.s:430    .text.MPU_Get_Gyroscope:00000048 $d
+     /tmp/cckZvbMk.s:1674   .bss.gx:00000000 gx
+     /tmp/cckZvbMk.s:1668   .bss.gy:00000000 gy
+     /tmp/cckZvbMk.s:1662   .bss.gz:00000000 gz
+     /tmp/cckZvbMk.s:437    .text.MPU_Get_Accelerometer:00000000 $t
+     /tmp/cckZvbMk.s:443    .text.MPU_Get_Accelerometer:00000000 MPU_Get_Accelerometer
+     /tmp/cckZvbMk.s:514    .text.MPU_Get_Accelerometer:00000048 $d
+     /tmp/cckZvbMk.s:1692   .bss.ax:00000000 ax
+     /tmp/cckZvbMk.s:1686   .bss.ay:00000000 ay
+     /tmp/cckZvbMk.s:1680   .bss.az:00000000 az
+     /tmp/cckZvbMk.s:521    .text.MPU_Updata:00000000 $t
+     /tmp/cckZvbMk.s:527    .text.MPU_Updata:00000000 MPU_Updata
+     /tmp/cckZvbMk.s:640    .text.MPU_Updata:000000c0 $d
+     /tmp/cckZvbMk.s:1650   .bss.gx_dps:00000000 gx_dps
+     /tmp/cckZvbMk.s:1644   .bss.gy_dps:00000000 gy_dps
+     /tmp/cckZvbMk.s:1638   .bss.gz_dps:00000000 gz_dps
+     /tmp/cckZvbMk.s:1632   .bss.ax_dps:00000000 ax_dps
+     /tmp/cckZvbMk.s:1626   .bss.ay_dps:00000000 ay_dps
+     /tmp/cckZvbMk.s:1620   .bss.az_dps:00000000 az_dps
+     /tmp/cckZvbMk.s:658    .rodata.MPU_Proc.str1.4:00000000 $d
+     /tmp/cckZvbMk.s:666    .text.MPU_Proc:00000000 $t
+     /tmp/cckZvbMk.s:672    .text.MPU_Proc:00000000 MPU_Proc
+     /tmp/cckZvbMk.s:928    .text.MPU_Proc:00000170 $d
+     /tmp/cckZvbMk.s:1614   .bss.MPU_Attitude:00000000 MPU_Attitude
+     /tmp/cckZvbMk.s:947    .rodata.Get_RawData.str1.4:00000000 $d
+     /tmp/cckZvbMk.s:953    .text.Get_RawData:00000000 $t
+     /tmp/cckZvbMk.s:959    .text.Get_RawData:00000000 Get_RawData
+     /tmp/cckZvbMk.s:1071   .text.Get_RawData:00000098 $d
+     /tmp/cckZvbMk.s:1084   .text.MPU_Write_Byte:00000000 $t
+     /tmp/cckZvbMk.s:1090   .text.MPU_Write_Byte:00000000 MPU_Write_Byte
+     /tmp/cckZvbMk.s:1169   .text.MPU_Set_Gyro_Fsr:00000000 $t
+     /tmp/cckZvbMk.s:1175   .text.MPU_Set_Gyro_Fsr:00000000 MPU_Set_Gyro_Fsr
+     /tmp/cckZvbMk.s:1203   .text.MPU_Set_Accel_Fsr:00000000 $t
+     /tmp/cckZvbMk.s:1209   .text.MPU_Set_Accel_Fsr:00000000 MPU_Set_Accel_Fsr
+     /tmp/cckZvbMk.s:1237   .text.MPU_Set_LPF:00000000 $t
+     /tmp/cckZvbMk.s:1243   .text.MPU_Set_LPF:00000000 MPU_Set_LPF
+     /tmp/cckZvbMk.s:1316   .text.MPU_Set_Rate:00000000 $t
+     /tmp/cckZvbMk.s:1322   .text.MPU_Set_Rate:00000000 MPU_Set_Rate
+     /tmp/cckZvbMk.s:1381   .text.MPU_Read_Byte:00000000 $t
+     /tmp/cckZvbMk.s:1387   .text.MPU_Read_Byte:00000000 MPU_Read_Byte
+     /tmp/cckZvbMk.s:1482   .rodata.MPU_Init.str1.4:00000000 $d
+     /tmp/cckZvbMk.s:1486   .text.MPU_Init:00000000 $t
+     /tmp/cckZvbMk.s:1492   .text.MPU_Init:00000000 MPU_Init
+     /tmp/cckZvbMk.s:1605   .text.MPU_Init:00000090 $d
+     /tmp/cckZvbMk.s:1611   .bss.MPU_Attitude:00000000 $d
+ARM GAS  /tmp/cckZvbMk.s 			page 42
 
 
-     /tmp/ccMNcKfD.s:1617   .bss.az_dps:00000000 $d
-     /tmp/ccMNcKfD.s:1623   .bss.ay_dps:00000000 $d
-     /tmp/ccMNcKfD.s:1629   .bss.ax_dps:00000000 $d
-     /tmp/ccMNcKfD.s:1635   .bss.gz_dps:00000000 $d
-     /tmp/ccMNcKfD.s:1641   .bss.gy_dps:00000000 $d
-     /tmp/ccMNcKfD.s:1647   .bss.gx_dps:00000000 $d
-     /tmp/ccMNcKfD.s:1653   .bss.temperature:00000000 $d
-     /tmp/ccMNcKfD.s:1659   .bss.gz:00000000 $d
-     /tmp/ccMNcKfD.s:1665   .bss.gy:00000000 $d
-     /tmp/ccMNcKfD.s:1671   .bss.gx:00000000 $d
-     /tmp/ccMNcKfD.s:1677   .bss.az:00000000 $d
-     /tmp/ccMNcKfD.s:1683   .bss.ay:00000000 $d
-     /tmp/ccMNcKfD.s:1689   .bss.ax:00000000 $d
+     /tmp/cckZvbMk.s:1617   .bss.az_dps:00000000 $d
+     /tmp/cckZvbMk.s:1623   .bss.ay_dps:00000000 $d
+     /tmp/cckZvbMk.s:1629   .bss.ax_dps:00000000 $d
+     /tmp/cckZvbMk.s:1635   .bss.gz_dps:00000000 $d
+     /tmp/cckZvbMk.s:1641   .bss.gy_dps:00000000 $d
+     /tmp/cckZvbMk.s:1647   .bss.gx_dps:00000000 $d
+     /tmp/cckZvbMk.s:1653   .bss.temperature:00000000 $d
+     /tmp/cckZvbMk.s:1659   .bss.gz:00000000 $d
+     /tmp/cckZvbMk.s:1665   .bss.gy:00000000 $d
+     /tmp/cckZvbMk.s:1671   .bss.gx:00000000 $d
+     /tmp/cckZvbMk.s:1677   .bss.az:00000000 $d
+     /tmp/cckZvbMk.s:1683   .bss.ay:00000000 $d
+     /tmp/cckZvbMk.s:1689   .bss.ax:00000000 $d
 
 UNDEFINED SYMBOLS
 IIC_Start

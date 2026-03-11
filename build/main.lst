@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccASfCyB.s 			page 1
+ARM GAS  /tmp/ccwFNI0I.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -36,320 +36,466 @@ ARM GAS  /tmp/ccASfCyB.s 			page 1
   32              	.LVL0:
   33              	.LFB126:
    1:USER/Src/main.c **** #include "delay.h"
-   2:USER/Src/main.c **** #include "led.h"
-   3:USER/Src/main.c **** #include "motor.h"
-   4:USER/Src/main.c **** #include "rtc.h"
-   5:USER/Src/main.c **** #include "stm32f4xx_gpio.h"
-   6:USER/Src/main.c **** #include "stm32f4xx_usart.h"
-   7:USER/Src/main.c **** #include "ulog.h"
-   8:USER/Src/main.c **** #include "usart.h"
-   9:USER/Src/main.c **** #include <stdio.h>
-  10:USER/Src/main.c **** #include <stm32f4xx.h>
-  11:USER/Src/main.c **** #include <string.h>
-  12:USER/Src/main.c **** 
-  13:USER/Src/main.c **** void my_console_logger(ulog_level_t severity, const char *msg) {
-  34              		.loc 1 13 64 view -0
+   2:USER/Src/main.c **** #include "encoder.h" // 编码器模块
+   3:USER/Src/main.c **** #include "led.h"
+   4:USER/Src/main.c **** #include "motor.h"
+   5:USER/Src/main.c **** #include "pid_speed.h" // 添加速度环PID控制器头文件
+   6:USER/Src/main.c **** #include "rtc.h"
+   7:USER/Src/main.c **** #include "stm32f4xx_gpio.h"
+   8:USER/Src/main.c **** #include "stm32f4xx_usart.h"
+   9:USER/Src/main.c **** #include "task.h" // 任务调度模块
+  10:USER/Src/main.c **** #include "uart.h"
+  11:USER/Src/main.c **** #include "ulog.h"
+  12:USER/Src/main.c **** #include <stdint.h>
+  13:USER/Src/main.c **** #include <stdio.h>
+  14:USER/Src/main.c **** #include <stm32f4xx.h>
+  15:USER/Src/main.c **** #include <string.h>
+  16:USER/Src/main.c **** 
+  17:USER/Src/main.c **** // 删除外部声明，让pid_speed模块内部管理实例
+  18:USER/Src/main.c **** // Deleted:extern Speed_PID_Controller_t Speed_PID_Right; // 右轮速度PID控制器
+  19:USER/Src/main.c **** // Deleted:extern Speed_PID_Controller_t Speed_PID_Left;  // 左轮速度PID控制器
+  20:USER/Src/main.c **** 
+  21:USER/Src/main.c **** void my_console_logger(ulog_level_t severity, const char *msg) {
+  34              		.loc 1 21 64 view -0
   35              		.cfi_startproc
+ARM GAS  /tmp/ccwFNI0I.s 			page 2
+
+
   36              		@ args = 0, pretend = 0, frame = 0
   37              		@ frame_needed = 0, uses_anonymous_args = 0
-  38              		.loc 1 13 64 is_stmt 0 view .LVU1
+  38              		.loc 1 21 64 is_stmt 0 view .LVU1
   39 0000 70B5     		push	{r4, r5, r6, lr}
   40              	.LCFI0:
   41              		.cfi_def_cfa_offset 16
   42              		.cfi_offset 4, -16
   43              		.cfi_offset 5, -12
-ARM GAS  /tmp/ccASfCyB.s 			page 2
-
-
   44              		.cfi_offset 6, -8
   45              		.cfi_offset 14, -4
   46 0002 0646     		mov	r6, r0
   47 0004 0D46     		mov	r5, r1
-  14:USER/Src/main.c ****   printf("%s [%s]: %s",
-  48              		.loc 1 14 3 is_stmt 1 view .LVU2
+  22:USER/Src/main.c ****   printf("%s [%s]: %s",
+  48              		.loc 1 22 3 is_stmt 1 view .LVU2
   49 0006 FFF7FEFF 		bl	RTC_GetNowTime
   50              	.LVL1:
-  51              		.loc 1 14 3 is_stmt 0 view .LVU3
+  51              		.loc 1 22 3 is_stmt 0 view .LVU3
   52 000a 0446     		mov	r4, r0
-  53              		.loc 1 14 3 discriminator 1 view .LVU4
+  53              		.loc 1 22 3 discriminator 1 view .LVU4
   54 000c 3046     		mov	r0, r6
   55 000e FFF7FEFF 		bl	ulog_level_name
   56              	.LVL2:
   57 0012 0246     		mov	r2, r0
-  58              		.loc 1 14 3 discriminator 2 view .LVU5
+  58              		.loc 1 22 3 discriminator 2 view .LVU5
   59 0014 2B46     		mov	r3, r5
   60 0016 2146     		mov	r1, r4
   61 0018 0148     		ldr	r0, .L3
   62 001a FFF7FEFF 		bl	printf
   63              	.LVL3:
-  15:USER/Src/main.c ****          RTC_GetNowTime(), // user defined function
-  16:USER/Src/main.c ****          ulog_level_name(severity), msg);
-  17:USER/Src/main.c **** }
-  64              		.loc 1 17 1 view .LVU6
+  23:USER/Src/main.c ****          RTC_GetNowTime(), // user defined function
+  24:USER/Src/main.c ****          ulog_level_name(severity), msg);
+  25:USER/Src/main.c **** }
+  64              		.loc 1 25 1 view .LVU6
   65 001e 70BD     		pop	{r4, r5, r6, pc}
   66              	.LVL4:
   67              	.L4:
-  68              		.loc 1 17 1 view .LVU7
+  68              		.loc 1 25 1 view .LVU7
   69              		.align	2
   70              	.L3:
   71 0020 00000000 		.word	.LC0
   72              		.cfi_endproc
   73              	.LFE126:
-  75              		.section	.text.motor_test,"ax",%progbits
+  75              		.section	.text.speed_control_task,"ax",%progbits
   76              		.align	1
-  77              		.global	motor_test
+  77              		.global	speed_control_task
   78              		.syntax unified
   79              		.thumb
   80              		.thumb_func
-  82              	motor_test:
+  82              	speed_control_task:
   83              	.LFB127:
-  18:USER/Src/main.c **** 
-  19:USER/Src/main.c **** void motor_test(void) {
-  84              		.loc 1 19 23 is_stmt 1 view -0
+  26:USER/Src/main.c **** 
+  27:USER/Src/main.c **** // 10ms周期的速度环PID控制任务
+  28:USER/Src/main.c **** void speed_control_task(void) {
+  84              		.loc 1 28 31 is_stmt 1 view -0
   85              		.cfi_startproc
   86              		@ args = 0, pretend = 0, frame = 0
   87              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccwFNI0I.s 			page 3
+
+
   88 0000 08B5     		push	{r3, lr}
   89              	.LCFI1:
   90              		.cfi_def_cfa_offset 8
   91              		.cfi_offset 3, -8
   92              		.cfi_offset 14, -4
-  20:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
-  93              		.loc 1 20 3 view .LVU9
-  94 0002 4FF47A61 		mov	r1, #4000
-  95 0006 0120     		movs	r0, #1
-ARM GAS  /tmp/ccASfCyB.s 			page 3
+  29:USER/Src/main.c ****   // 更新右轮速度环PID控制器
+  30:USER/Src/main.c ****   Speed_PID_Update(&Speed_PID_Right);
+  93              		.loc 1 30 3 view .LVU9
+  94 0002 0348     		ldr	r0, .L7
+  95 0004 FFF7FEFF 		bl	Speed_PID_Update
+  96              	.LVL5:
+  31:USER/Src/main.c **** 
+  32:USER/Src/main.c ****   // 更新左轮速度环PID控制器
+  33:USER/Src/main.c ****   Speed_PID_Update(&Speed_PID_Left);
+  97              		.loc 1 33 3 view .LVU10
+  98 0008 0248     		ldr	r0, .L7+4
+  99 000a FFF7FEFF 		bl	Speed_PID_Update
+ 100              	.LVL6:
+  34:USER/Src/main.c **** }
+ 101              		.loc 1 34 1 is_stmt 0 view .LVU11
+ 102 000e 08BD     		pop	{r3, pc}
+ 103              	.L8:
+ 104              		.align	2
+ 105              	.L7:
+ 106 0010 00000000 		.word	Speed_PID_Right
+ 107 0014 00000000 		.word	Speed_PID_Left
+ 108              		.cfi_endproc
+ 109              	.LFE127:
+ 111              		.section	.text.motor_test,"ax",%progbits
+ 112              		.align	1
+ 113              		.global	motor_test
+ 114              		.syntax unified
+ 115              		.thumb
+ 116              		.thumb_func
+ 118              	motor_test:
+ 119              	.LFB128:
+  35:USER/Src/main.c **** 
+  36:USER/Src/main.c **** void motor_test(void) {
+ 120              		.loc 1 36 23 is_stmt 1 view -0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124 0000 08B5     		push	{r3, lr}
+ 125              	.LCFI2:
+ 126              		.cfi_def_cfa_offset 8
+ 127              		.cfi_offset 3, -8
+ 128              		.cfi_offset 14, -4
+  37:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
+ 129              		.loc 1 37 3 view .LVU13
+ 130 0002 4FF47A61 		mov	r1, #4000
+ 131 0006 0120     		movs	r0, #1
+ 132 0008 FFF7FEFF 		bl	Motor_SetSpeed
+ 133              	.LVL7:
+  38:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
+ 134              		.loc 1 38 3 view .LVU14
+ 135 000c 4FF47A61 		mov	r1, #4000
+ 136 0010 0020     		movs	r0, #0
+ARM GAS  /tmp/ccwFNI0I.s 			page 4
 
 
-  96 0008 FFF7FEFF 		bl	Motor_SetSpeed
-  97              	.LVL5:
-  21:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
-  98              		.loc 1 21 3 view .LVU10
-  99 000c 4FF47A61 		mov	r1, #4000
- 100 0010 0020     		movs	r0, #0
- 101 0012 FFF7FEFF 		bl	Motor_SetSpeed
- 102              	.LVL6:
-  22:USER/Src/main.c ****   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
- 103              		.loc 1 22 3 view .LVU11
- 104 0016 0121     		movs	r1, #1
- 105 0018 0846     		mov	r0, r1
- 106 001a FFF7FEFF 		bl	Motor_SetDirection
- 107              	.LVL7:
-  23:USER/Src/main.c ****   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
- 108              		.loc 1 23 3 view .LVU12
- 109 001e 0121     		movs	r1, #1
- 110 0020 0020     		movs	r0, #0
- 111 0022 FFF7FEFF 		bl	Motor_SetDirection
- 112              	.LVL8:
-  24:USER/Src/main.c **** 
-  25:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
-  26:USER/Src/main.c ****   Motor_Update(MOTOR_LEFT);
- 113              		.loc 1 26 3 view .LVU13
- 114 0026 0120     		movs	r0, #1
- 115 0028 FFF7FEFF 		bl	Motor_Update
- 116              	.LVL9:
-  27:USER/Src/main.c ****   Motor_Update(MOTOR_RIGHT);
- 117              		.loc 1 27 3 view .LVU14
- 118 002c 0020     		movs	r0, #0
- 119 002e FFF7FEFF 		bl	Motor_Update
- 120              	.LVL10:
-  28:USER/Src/main.c **** }
- 121              		.loc 1 28 1 is_stmt 0 view .LVU15
- 122 0032 08BD     		pop	{r3, pc}
- 123              		.cfi_endproc
- 124              	.LFE127:
- 126              		.section	.rodata.main.str1.4,"aMS",%progbits,1
- 127              		.align	2
- 128              	.LC1:
- 129 0000 68656C6C 		.ascii	"hello world\015\000"
- 129      6F20776F 
- 129      726C640D 
- 129      00
- 130 000d 000000   		.align	2
- 131              	.LC2:
- 132 0010 66647366 		.ascii	"fdsfd\015\000"
- 132      640D00
- 133 0017 00       		.align	2
- 134              	.LC3:
- 135 0018 43726974 		.ascii	"Critical,arg=100\015\012\000"
- 135      6963616C 
- 135      2C617267 
- 135      3D313030 
- 135      0D0A00
- 136 002b 00       		.align	2
- 137              	.LC4:
-ARM GAS  /tmp/ccASfCyB.s 			page 4
-
-
- 138 002c 43726974 		.ascii	"Critical, arg=%d\015\012\000"
- 138      6963616C 
- 138      2C206172 
- 138      673D2564 
- 138      0D0A00
- 139              		.section	.text.main,"ax",%progbits
- 140              		.align	1
- 141              		.global	main
- 142              		.syntax unified
- 143              		.thumb
- 144              		.thumb_func
- 146              	main:
- 147              	.LFB128:
-  29:USER/Src/main.c **** int main() {
- 148              		.loc 1 29 12 is_stmt 1 view -0
- 149              		.cfi_startproc
- 150              		@ args = 0, pretend = 0, frame = 0
- 151              		@ frame_needed = 0, uses_anonymous_args = 0
- 152 0000 08B5     		push	{r3, lr}
- 153              	.LCFI2:
- 154              		.cfi_def_cfa_offset 8
- 155              		.cfi_offset 3, -8
- 156              		.cfi_offset 14, -4
-  30:USER/Src/main.c ****   int arg = 42;
- 157              		.loc 1 30 3 view .LVU17
- 158              	.LVL11:
-  31:USER/Src/main.c ****   led_Init();
- 159              		.loc 1 31 3 view .LVU18
- 160 0002 FFF7FEFF 		bl	led_Init
- 161              	.LVL12:
-  32:USER/Src/main.c ****   LED_Off();
- 162              		.loc 1 32 3 view .LVU19
- 163 0006 FFF7FEFF 		bl	LED_Off
- 164              	.LVL13:
-  33:USER/Src/main.c ****   Motor_Driver_Init();
- 165              		.loc 1 33 3 view .LVU20
- 166 000a FFF7FEFF 		bl	Motor_Driver_Init
- 167              	.LVL14:
-  34:USER/Src/main.c **** 
-  35:USER/Src/main.c ****   motor_test();
- 168              		.loc 1 35 3 view .LVU21
- 169 000e FFF7FEFF 		bl	motor_test
- 170              	.LVL15:
-  36:USER/Src/main.c ****   USART1_Init();
- 171              		.loc 1 36 3 view .LVU22
- 172 0012 FFF7FEFF 		bl	USART1_Init
- 173              	.LVL16:
-  37:USER/Src/main.c ****   printf("hello world\r\n");
- 174              		.loc 1 37 3 view .LVU23
- 175 0016 0F48     		ldr	r0, .L10
- 176 0018 FFF7FEFF 		bl	puts
- 177              	.LVL17:
-  38:USER/Src/main.c ****   printf("fdsfd\r\n");
- 178              		.loc 1 38 3 view .LVU24
- 179 001c 0E48     		ldr	r0, .L10+4
- 180 001e FFF7FEFF 		bl	puts
- 181              	.LVL18:
-ARM GAS  /tmp/ccASfCyB.s 			page 5
-
-
-  39:USER/Src/main.c ****   ULOG_INIT();
- 182              		.loc 1 39 3 view .LVU25
- 183 0022 FFF7FEFF 		bl	ulog_init
- 184              	.LVL19:
-  40:USER/Src/main.c ****   delay_init();
- 185              		.loc 1 40 3 view .LVU26
- 186 0026 FFF7FEFF 		bl	delay_init
- 187              	.LVL20:
+ 137 0012 FFF7FEFF 		bl	Motor_SetSpeed
+ 138              	.LVL8:
+  39:USER/Src/main.c ****   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
+ 139              		.loc 1 39 3 view .LVU15
+ 140 0016 0121     		movs	r1, #1
+ 141 0018 0846     		mov	r0, r1
+ 142 001a FFF7FEFF 		bl	Motor_SetDirection
+ 143              	.LVL9:
+  40:USER/Src/main.c ****   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+ 144              		.loc 1 40 3 view .LVU16
+ 145 001e 0121     		movs	r1, #1
+ 146 0020 0020     		movs	r0, #0
+ 147 0022 FFF7FEFF 		bl	Motor_SetDirection
+ 148              	.LVL10:
   41:USER/Src/main.c **** 
-  42:USER/Src/main.c ****   // log messages with a severity of WARNING or higher to the console.  The
-  43:USER/Src/main.c ****   // user must supply a method for my_console_logger, e.g. along the lines
-  44:USER/Src/main.c ****   // of what is shown above.
-  45:USER/Src/main.c **** 
-  46:USER/Src/main.c ****   ULOG_SUBSCRIBE(my_console_logger, ULOG_WARNING_LEVEL);
- 188              		.loc 1 46 3 view .LVU27
- 189 002a 6721     		movs	r1, #103
- 190 002c 0B48     		ldr	r0, .L10+8
- 191 002e FFF7FEFF 		bl	ulog_subscribe
- 192              	.LVL21:
-  47:USER/Src/main.c **** 
-  48:USER/Src/main.c ****   ULOG_CRITICAL("Critical,arg=100\r\n");
- 193              		.loc 1 48 3 view .LVU28
- 194 0032 0B49     		ldr	r1, .L10+12
- 195 0034 6920     		movs	r0, #105
- 196 0036 FFF7FEFF 		bl	ulog_message
- 197              	.LVL22:
-  49:USER/Src/main.c ****   ULOG_WARNING("Critical, arg=%d\r\n", arg); // logs to file and console
- 198              		.loc 1 49 3 view .LVU29
- 199 003a 2A22     		movs	r2, #42
- 200 003c 0949     		ldr	r1, .L10+16
- 201 003e 6720     		movs	r0, #103
- 202 0040 FFF7FEFF 		bl	ulog_message
- 203              	.LVL23:
- 204              	.L8:
-  50:USER/Src/main.c ****   while (1) {
- 205              		.loc 1 50 3 view .LVU30
-  51:USER/Src/main.c **** 
-  52:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
- 206              		.loc 1 52 5 view .LVU31
- 207 0044 0D21     		movs	r1, #13
- 208 0046 0848     		ldr	r0, .L10+20
- 209 0048 FFF7FEFF 		bl	GPIO_ToggleBits
- 210              	.LVL24:
-  53:USER/Src/main.c ****     delay_ms(100);
- 211              		.loc 1 53 5 discriminator 1 view .LVU32
- 212 004c 6420     		movs	r0, #100
- 213 004e FFF7FEFF 		bl	delay_ms
- 214              	.LVL25:
-  50:USER/Src/main.c ****   while (1) {
- 215              		.loc 1 50 9 view .LVU33
- 216 0052 F7E7     		b	.L8
- 217              	.L11:
- 218              		.align	2
- 219              	.L10:
- 220 0054 00000000 		.word	.LC1
- 221 0058 10000000 		.word	.LC2
- 222 005c 00000000 		.word	my_console_logger
-ARM GAS  /tmp/ccASfCyB.s 			page 6
+  42:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
+  43:USER/Src/main.c ****   Motor_Update(MOTOR_LEFT);
+ 149              		.loc 1 43 3 view .LVU17
+ 150 0026 0120     		movs	r0, #1
+ 151 0028 FFF7FEFF 		bl	Motor_Update
+ 152              	.LVL11:
+  44:USER/Src/main.c ****   Motor_Update(MOTOR_RIGHT);
+ 153              		.loc 1 44 3 view .LVU18
+ 154 002c 0020     		movs	r0, #0
+ 155 002e FFF7FEFF 		bl	Motor_Update
+ 156              	.LVL12:
+  45:USER/Src/main.c **** }
+ 157              		.loc 1 45 1 is_stmt 0 view .LVU19
+ 158 0032 08BD     		pop	{r3, pc}
+ 159              		.cfi_endproc
+ 160              	.LFE128:
+ 162              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 163              		.align	2
+ 164              	.LC1:
+ 165 0000 68656C6C 		.ascii	"hello world\015\000"
+ 165      6F20776F 
+ 165      726C640D 
+ 165      00
+ 166 000d 000000   		.align	2
+ 167              	.LC2:
+ 168 0010 74686973 		.ascii	"this is %d:\015\012\000"
+ 168      20697320 
+ 168      25643A0D 
+ 168      0A00
+ 169              		.global	__aeabi_f2d
+ 170 001e 0000     		.align	2
+ 171              	.LC3:
+ 172 0020 52696768 		.ascii	"Right Encoder - Count: %d, Speed: %.2f m/s\015\012\000"
+ 172      7420456E 
+ 172      636F6465 
+ 172      72202D20 
+ 172      436F756E 
+ 173 004d 000000   		.align	2
+ 174              	.LC4:
+ 175 0050 4C656674 		.ascii	"Left Encoder - Count: %d, Speed: %.2f m/s\015\012\000"
+ 175      20456E63 
+ 175      6F646572 
+ARM GAS  /tmp/ccwFNI0I.s 			page 5
 
 
- 223 0060 18000000 		.word	.LC3
- 224 0064 2C000000 		.word	.LC4
- 225 0068 00080240 		.word	1073874944
- 226              		.cfi_endproc
- 227              	.LFE128:
- 229              		.text
- 230              	.Letext0:
- 231              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
- 232              		.file 3 "CMSIS/stm32f4xx.h"
- 233              		.file 4 "MyHardWare/Inc/motor.h"
- 234              		.file 5 "MyHardWare/Inc/ulog.h"
- 235              		.file 6 "MyHardWare/Inc/delay.h"
- 236              		.file 7 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
- 237              		.file 8 "MyHardWare/Inc/usart.h"
- 238              		.file 9 "MyHardWare/Inc/led.h"
- 239              		.file 10 "/usr/include/newlib/stdio.h"
- 240              		.file 11 "MyHardWare/Inc/rtc.h"
- 241              		.file 12 "<built-in>"
-ARM GAS  /tmp/ccASfCyB.s 			page 7
+ 175      202D2043 
+ 175      6F756E74 
+ 176              		.align	2
+ 177              	.LC5:
+ 178 007c 0D00     		.ascii	"\015\000"
+ 179              		.section	.text.main,"ax",%progbits
+ 180              		.align	1
+ 181              		.global	main
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 186              	main:
+ 187              	.LFB129:
+  46:USER/Src/main.c **** 
+  47:USER/Src/main.c **** int main() {
+ 188              		.loc 1 47 12 is_stmt 1 view -0
+ 189              		.cfi_startproc
+ 190              		@ args = 0, pretend = 0, frame = 96
+ 191              		@ frame_needed = 0, uses_anonymous_args = 0
+ 192 0000 30B5     		push	{r4, r5, lr}
+ 193              	.LCFI3:
+ 194              		.cfi_def_cfa_offset 12
+ 195              		.cfi_offset 4, -12
+ 196              		.cfi_offset 5, -8
+ 197              		.cfi_offset 14, -4
+ 198 0002 99B0     		sub	sp, sp, #100
+ 199              	.LCFI4:
+ 200              		.cfi_def_cfa_offset 112
+  48:USER/Src/main.c ****   int arg = 42;
+ 201              		.loc 1 48 3 view .LVU21
+ 202              	.LVL13:
+  49:USER/Src/main.c ****   led_Init();
+ 203              		.loc 1 49 3 view .LVU22
+ 204 0004 FFF7FEFF 		bl	led_Init
+ 205              	.LVL14:
+  50:USER/Src/main.c ****   LED_Off();
+ 206              		.loc 1 50 3 view .LVU23
+ 207 0008 FFF7FEFF 		bl	LED_Off
+ 208              	.LVL15:
+  51:USER/Src/main.c ****   Motor_Driver_Init();
+ 209              		.loc 1 51 3 view .LVU24
+ 210 000c FFF7FEFF 		bl	Motor_Driver_Init
+ 211              	.LVL16:
+  52:USER/Src/main.c **** 
+  53:USER/Src/main.c ****   // 初始化编码器模块
+  54:USER/Src/main.c ****   Encoder_Driver_Init();
+ 212              		.loc 1 54 3 view .LVU25
+ 213 0010 FFF7FEFF 		bl	Encoder_Driver_Init
+ 214              	.LVL17:
+  55:USER/Src/main.c **** 
+  56:USER/Src/main.c ****   // 初始化任务调度系统
+  57:USER/Src/main.c ****   // Task_Init();
+  58:USER/Src/main.c ****   /*
+  59:USER/Src/main.c **** 
+  60:USER/Src/main.c ****     // 初始化速度环PID控制器
+  61:USER/Src/main.c ****     // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
+  62:USER/Src/main.c ****     Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
+ARM GAS  /tmp/ccwFNI0I.s 			page 6
+
+
+  63:USER/Src/main.c ****                    SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
+  64:USER/Src/main.c ****                    SPEED_PID_KD_DEFAULT);
+  65:USER/Src/main.c **** 
+  66:USER/Src/main.c ****     // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
+  67:USER/Src/main.c ****     Speed_PID_Init(&Speed_PID_Left, ENCODER_LEFT, MOTOR_LEFT,
+  68:USER/Src/main.c ****                    SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
+  69:USER/Src/main.c ****                    SPEED_PID_KD_DEFAULT);
+  70:USER/Src/main.c **** 
+  71:USER/Src/main.c ****     // 设置目标速度（例如0.5m/s）
+  72:USER/Src/main.c ****     Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.5f);
+  73:USER/Src/main.c ****     Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.5f);
+  74:USER/Src/main.c **** 
+  75:USER/Src/main.c ****     // 启用速度环PID控制
+  76:USER/Src/main.c ****     Speed_PID_Enable(&Speed_PID_Right);
+  77:USER/Src/main.c ****     Speed_PID_Enable(&Speed_PID_Left);
+  78:USER/Src/main.c **** 
+  79:USER/Src/main.c ****     // 添加10ms周期的速度控制任务
+  80:USER/Src/main.c ****     add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
+  81:USER/Src/main.c ****     */
+  82:USER/Src/main.c **** 
+  83:USER/Src/main.c ****   UART1_Init();
+ 215              		.loc 1 83 3 view .LVU26
+ 216 0014 FFF7FEFF 		bl	UART1_Init
+ 217              	.LVL18:
+  84:USER/Src/main.c ****   printf("hello world\r\n");
+ 218              		.loc 1 84 3 view .LVU27
+ 219 0018 2148     		ldr	r0, .L14
+ 220 001a FFF7FEFF 		bl	puts
+ 221              	.LVL19:
+  85:USER/Src/main.c **** 
+  86:USER/Src/main.c ****   delay_init();
+ 222              		.loc 1 86 3 view .LVU28
+ 223 001e FFF7FEFF 		bl	delay_init
+ 224              	.LVL20:
+  87:USER/Src/main.c ****   Encoder_Data_t encoder_data;
+ 225              		.loc 1 87 3 view .LVU29
+  88:USER/Src/main.c ****   uint32_t count = 0;
+ 226              		.loc 1 88 3 view .LVU30
+ 227              		.loc 1 88 12 is_stmt 0 view .LVU31
+ 228 0022 0024     		movs	r4, #0
+ 229              	.LVL21:
+ 230              	.L12:
+  89:USER/Src/main.c ****   while (1) {
+ 231              		.loc 1 89 3 is_stmt 1 view .LVU32
+  90:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
+ 232              		.loc 1 90 5 view .LVU33
+ 233 0024 0D21     		movs	r1, #13
+ 234 0026 1F48     		ldr	r0, .L14+4
+ 235 0028 FFF7FEFF 		bl	GPIO_ToggleBits
+ 236              	.LVL22:
+  91:USER/Src/main.c ****     delay_ms(100);
+ 237              		.loc 1 91 5 view .LVU34
+ 238 002c 6420     		movs	r0, #100
+ 239 002e FFF7FEFF 		bl	delay_ms
+ 240              	.LVL23:
+  92:USER/Src/main.c ****     printf("this is %d:\r\n", count);
+ 241              		.loc 1 92 5 view .LVU35
+ARM GAS  /tmp/ccwFNI0I.s 			page 7
+
+
+ 242 0032 2146     		mov	r1, r4
+ 243 0034 1C48     		ldr	r0, .L14+8
+ 244 0036 FFF7FEFF 		bl	printf
+ 245              	.LVL24:
+  93:USER/Src/main.c ****     encoder_data = Encoder_GetData(ENCODER_RIGHT);
+ 246              		.loc 1 93 5 view .LVU36
+ 247              		.loc 1 93 20 is_stmt 0 view .LVU37
+ 248 003a 0021     		movs	r1, #0
+ 249 003c 0CA8     		add	r0, sp, #48
+ 250 003e FFF7FEFF 		bl	Encoder_GetData
+ 251              	.LVL25:
+  94:USER/Src/main.c ****     printf("Right Encoder - Count: %d, Speed: %.2f m/s\r\n", encoder_data.count,
+ 252              		.loc 1 94 5 is_stmt 1 view .LVU38
+ 253              		.loc 1 94 74 is_stmt 0 view .LVU39
+ 254 0042 BDF93050 		ldrsh	r5, [sp, #48]
+ 255              		.loc 1 94 5 view .LVU40
+ 256 0046 1198     		ldr	r0, [sp, #68]	@ float
+ 257 0048 FFF7FEFF 		bl	__aeabi_f2d
+ 258              	.LVL26:
+ 259 004c 0246     		mov	r2, r0
+ 260 004e 0B46     		mov	r3, r1
+ 261 0050 2946     		mov	r1, r5
+ 262 0052 1648     		ldr	r0, .L14+12
+ 263 0054 FFF7FEFF 		bl	printf
+ 264              	.LVL27:
+  95:USER/Src/main.c ****            encoder_data.speed_m_s);
+  96:USER/Src/main.c ****     encoder_data = Encoder_GetData(ENCODER_LEFT);
+ 265              		.loc 1 96 5 is_stmt 1 view .LVU41
+ 266              		.loc 1 96 20 is_stmt 0 view .LVU42
+ 267 0058 0121     		movs	r1, #1
+ 268 005a 6846     		mov	r0, sp
+ 269 005c FFF7FEFF 		bl	Encoder_GetData
+ 270              	.LVL28:
+ 271 0060 0DF1300C 		add	ip, sp, #48
+ 272 0064 EE46     		mov	lr, sp
+ 273 0066 BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 274 006a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 275 006e BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 276 0072 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 277 0076 9EE80F00 		ldm	lr, {r0, r1, r2, r3}
+ 278 007a 8CE80F00 		stm	ip, {r0, r1, r2, r3}
+  97:USER/Src/main.c ****     printf("Left Encoder - Count: %d, Speed: %.2f m/s\r\n", encoder_data.count,
+ 279              		.loc 1 97 5 is_stmt 1 view .LVU43
+ 280              		.loc 1 97 73 is_stmt 0 view .LVU44
+ 281 007e BDF93050 		ldrsh	r5, [sp, #48]
+ 282              		.loc 1 97 5 view .LVU45
+ 283 0082 1198     		ldr	r0, [sp, #68]	@ float
+ 284 0084 FFF7FEFF 		bl	__aeabi_f2d
+ 285              	.LVL29:
+ 286 0088 0246     		mov	r2, r0
+ 287 008a 0B46     		mov	r3, r1
+ 288 008c 2946     		mov	r1, r5
+ 289 008e 0848     		ldr	r0, .L14+16
+ 290 0090 FFF7FEFF 		bl	printf
+ 291              	.LVL30:
+  98:USER/Src/main.c ****            encoder_data.speed_m_s);
+  99:USER/Src/main.c ****     printf("\r\n");
+ARM GAS  /tmp/ccwFNI0I.s 			page 8
+
+
+ 292              		.loc 1 99 5 is_stmt 1 view .LVU46
+ 293 0094 0748     		ldr	r0, .L14+20
+ 294 0096 FFF7FEFF 		bl	puts
+ 295              	.LVL31:
+ 100:USER/Src/main.c ****     count++;
+ 296              		.loc 1 100 5 discriminator 1 view .LVU47
+ 297              		.loc 1 100 10 is_stmt 0 discriminator 1 view .LVU48
+ 298 009a 0134     		adds	r4, r4, #1
+ 299              	.LVL32:
+  89:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
+ 300              		.loc 1 89 9 is_stmt 1 view .LVU49
+ 301 009c C2E7     		b	.L12
+ 302              	.L15:
+ 303 009e 00BF     		.align	2
+ 304              	.L14:
+ 305 00a0 00000000 		.word	.LC1
+ 306 00a4 00080240 		.word	1073874944
+ 307 00a8 10000000 		.word	.LC2
+ 308 00ac 20000000 		.word	.LC3
+ 309 00b0 50000000 		.word	.LC4
+ 310 00b4 7C000000 		.word	.LC5
+ 311              		.cfi_endproc
+ 312              	.LFE129:
+ 314              		.text
+ 315              	.Letext0:
+ 316              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 317              		.file 3 "CMSIS/stm32f4xx.h"
+ 318              		.file 4 "MyHardWare/Inc/encoder.h"
+ 319              		.file 5 "MyHardWare/Inc/motor.h"
+ 320              		.file 6 "MyHardWare/Inc/pid_speed.h"
+ 321              		.file 7 "MyHardWare/Inc/ulog.h"
+ 322              		.file 8 "MyHardWare/Inc/delay.h"
+ 323              		.file 9 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
+ 324              		.file 10 "MyHardWare/Inc/uart.h"
+ 325              		.file 11 "MyHardWare/Inc/led.h"
+ 326              		.file 12 "/usr/include/newlib/stdio.h"
+ 327              		.file 13 "MyHardWare/Inc/rtc.h"
+ 328              		.file 14 "<built-in>"
+ARM GAS  /tmp/ccwFNI0I.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccASfCyB.s:21     .rodata.my_console_logger.str1.4:00000000 $d
-     /tmp/ccASfCyB.s:25     .text.my_console_logger:00000000 $t
-     /tmp/ccASfCyB.s:31     .text.my_console_logger:00000000 my_console_logger
-     /tmp/ccASfCyB.s:71     .text.my_console_logger:00000020 $d
-     /tmp/ccASfCyB.s:76     .text.motor_test:00000000 $t
-     /tmp/ccASfCyB.s:82     .text.motor_test:00000000 motor_test
-     /tmp/ccASfCyB.s:127    .rodata.main.str1.4:00000000 $d
-     /tmp/ccASfCyB.s:140    .text.main:00000000 $t
-     /tmp/ccASfCyB.s:146    .text.main:00000000 main
-     /tmp/ccASfCyB.s:220    .text.main:00000054 $d
+     /tmp/ccwFNI0I.s:21     .rodata.my_console_logger.str1.4:00000000 $d
+     /tmp/ccwFNI0I.s:25     .text.my_console_logger:00000000 $t
+     /tmp/ccwFNI0I.s:31     .text.my_console_logger:00000000 my_console_logger
+     /tmp/ccwFNI0I.s:71     .text.my_console_logger:00000020 $d
+     /tmp/ccwFNI0I.s:76     .text.speed_control_task:00000000 $t
+     /tmp/ccwFNI0I.s:82     .text.speed_control_task:00000000 speed_control_task
+     /tmp/ccwFNI0I.s:106    .text.speed_control_task:00000010 $d
+     /tmp/ccwFNI0I.s:112    .text.motor_test:00000000 $t
+     /tmp/ccwFNI0I.s:118    .text.motor_test:00000000 motor_test
+     /tmp/ccwFNI0I.s:163    .rodata.main.str1.4:00000000 $d
+     /tmp/ccwFNI0I.s:180    .text.main:00000000 $t
+     /tmp/ccwFNI0I.s:186    .text.main:00000000 main
+     /tmp/ccwFNI0I.s:305    .text.main:000000a0 $d
 
 UNDEFINED SYMBOLS
 RTC_GetNowTime
 ulog_level_name
 printf
+Speed_PID_Update
+Speed_PID_Right
+Speed_PID_Left
 Motor_SetSpeed
 Motor_SetDirection
 Motor_Update
+__aeabi_f2d
 led_Init
 LED_Off
 Motor_Driver_Init
-USART1_Init
+Encoder_Driver_Init
+UART1_Init
 puts
-ulog_init
 delay_init
-ulog_subscribe
-ulog_message
 GPIO_ToggleBits
 delay_ms
+Encoder_GetData

@@ -29,8 +29,8 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_tim.h"
 #include "task.h"
-#include "usart.h"
 #include <stdint.h>
+#include <stdio.h>
 
 /** @addtogroup Template_Project
  * @{

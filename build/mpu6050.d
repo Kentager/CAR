@@ -16,8 +16,7 @@ build/mpu6050.o: MyHardWare/Src/mpu6050.c MyHardWare/Inc/mpu6050.h \
  Lib/StdPeriphs/inc/stm32f4xx_can.h Lib/StdPeriphs/inc/stm32f4xx_dac.h \
  Lib/StdPeriphs/inc/stm32f4xx_dcmi.h Lib/StdPeriphs/inc/stm32f4xx_fsmc.h \
  MyHardWare/Inc/delay.h MyHardWare/Inc/myiic.h MyHardWare/Inc/sys.h \
- MyHardWare/Inc/task.h MyHardWare/Inc/usart.h \
- MyHardWare/Inc/ring_buffer.h
+ MyHardWare/Inc/task.h
 MyHardWare/Inc/mpu6050.h:
 MyHardWare/Inc/myiic.h:
 MyHardWare/Inc/sys.h:
@@ -58,5 +57,3 @@ MyHardWare/Inc/delay.h:
 MyHardWare/Inc/myiic.h:
 MyHardWare/Inc/sys.h:
 MyHardWare/Inc/task.h:
-MyHardWare/Inc/usart.h:
-MyHardWare/Inc/ring_buffer.h:

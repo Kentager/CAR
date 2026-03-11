@@ -1,0 +1,104 @@
+#ifndef PID_SPEED_H
+#define PID_SPEED_H
+
+#include "encoder.h"
+#include "motor.h"
+#include <stddef.h>
+
+/* ==================== 速度环PID参数配置 ==================== */
+// 默认PID参数（可根据实际调试调整）
+#define SPEED_PID_KP_DEFAULT 2.0f // 比例系数
+#define SPEED_PID_KI_DEFAULT 0.5f // 积分系数
+#define SPEED_PID_KD_DEFAULT 0.1f // 微分系数
+
+// 采样周期 (ms)
+#define SPEED_PID_SAMPLE_PERIOD_MS 10
+
+// 最大输出限制
+#define SPEED_PID_OUTPUT_MAX MOTOR_PWM_MAX_DUTY
+
+// 编码器方向映射到电机方向
+#define ENCODER_TO_MOTOR_DIR(dir)                                              \
+  ((dir) == ENCODER_DIR_FORWARD    ? MOTOR_DIR_FORWARD                         \
+   : (dir) == ENCODER_DIR_BACKWARD ? MOTOR_DIR_BACKWARD                        \
+                                   : MOTOR_DIR_STOP)
+
+/* ==================== PID内部数据结构 ==================== */
+/**
+ * @brief PID控制内部状态结构体
+ */
+typedef struct {
+  float kp;             // 比例系数
+  float ki;             // 积分系数
+  float kd;             // 微分系数
+  float target_value;   // 目标值
+  float integral_error; // 积分误差
+  float last_error;     // 上次误差
+  float prev_error;     // 前一次误差
+} PID_State_t;
+
+/* ==================== 速度环PID数据结构体 ==================== */
+/**
+ * @brief 速度环PID控制数据结构体
+ */
+typedef struct {
+  // 配置参数
+  float target_speed_m_s;  // 目标线速度 (m/s)
+  Encoder_Id_e encoder_id; // 关联的编码器ID
+  Motor_Id_e motor_id;     // 关联的电机ID
+
+  // 状态信息
+  float current_speed_m_s;   // 当前线速度 (m/s)
+  uint8_t enabled;           // 是否启用
+  uint32_t last_update_time; // 上次更新时间
+
+  // PID参数和状态
+  PID_State_t pid_state;
+} Speed_PID_Controller_t;
+
+// 在头文件中声明全局控制器实例供外部使用
+extern Speed_PID_Controller_t Speed_PID_Right;
+extern Speed_PID_Controller_t Speed_PID_Left;
+
+/* ==================== 全局函数声明 ==================== */
+
+/**
+ * @brief 初始化速度环PID控制器
+ * @param controller 控制器实例指针
+ * @param encoder_id 关联的编码器ID
+ * @param motor_id 关联的电机ID
+ * @param kp 比例系数
+ * @param ki 积分系数
+ * @param kd 微分系数
+ */
+void Speed_PID_Init(Speed_PID_Controller_t *controller, Encoder_Id_e encoder_id,
+                    Motor_Id_e motor_id, float kp, float ki, float kd);
+
+/**
+ * @brief 设置速度环PID目标速度
+ * @param controller 控制器实例指针
+ * @param speed_m_s 目标线速度 (m/s)
+ */
+void Speed_PID_SetTargetSpeed(Speed_PID_Controller_t *controller,
+                              float speed_m_s);
+
+/**
+ * @brief 启用速度环PID控制
+ * @param controller 控制器实例指针
+ */
+void Speed_PID_Enable(Speed_PID_Controller_t *controller);
+
+/**
+ * @brief 禁用速度环PID控制
+ * @param controller 控制器实例指针
+ */
+void Speed_PID_Disable(Speed_PID_Controller_t *controller);
+
+/**
+ * @brief 执行速度环PID控制计算
+ * @param controller 控制器实例指针
+ * @note 应在10ms控制循环中调用
+ */
+void Speed_PID_Update(Speed_PID_Controller_t *controller);
+
+#endif /* PID_SPEED_H */

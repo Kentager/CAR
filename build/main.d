@@ -14,10 +14,11 @@ build/main.o: USER/Src/main.c MyHardWare/Inc/delay.h CMSIS/stm32f4xx.h \
  Lib/StdPeriphs/inc/stm32f4xx_hash.h Lib/StdPeriphs/inc/stm32f4xx_rng.h \
  Lib/StdPeriphs/inc/stm32f4xx_can.h Lib/StdPeriphs/inc/stm32f4xx_dac.h \
  Lib/StdPeriphs/inc/stm32f4xx_dcmi.h Lib/StdPeriphs/inc/stm32f4xx_fsmc.h \
- MyHardWare/Inc/led.h MyHardWare/Inc/motor.h \
- MyHardWare/Inc/HardwareConfig.h MyHardWare/Inc/rtc.h \
- MyHardWare/Inc/ulog.h MyHardWare/Inc/usart.h \
- MyHardWare/Inc/ring_buffer.h
+ MyHardWare/Inc/encoder.h MyHardWare/Inc/HardwareConfig.h \
+ MyHardWare/Inc/task.h MyHardWare/Inc/led.h MyHardWare/Inc/motor.h \
+ MyHardWare/Inc/pid_speed.h MyHardWare/Inc/encoder.h \
+ MyHardWare/Inc/motor.h MyHardWare/Inc/rtc.h MyHardWare/Inc/task.h \
+ MyHardWare/Inc/uart.h MyHardWare/Inc/ulog.h
 MyHardWare/Inc/delay.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
@@ -52,10 +53,15 @@ Lib/StdPeriphs/inc/stm32f4xx_can.h:
 Lib/StdPeriphs/inc/stm32f4xx_dac.h:
 Lib/StdPeriphs/inc/stm32f4xx_dcmi.h:
 Lib/StdPeriphs/inc/stm32f4xx_fsmc.h:
+MyHardWare/Inc/encoder.h:
+MyHardWare/Inc/HardwareConfig.h:
+MyHardWare/Inc/task.h:
 MyHardWare/Inc/led.h:
 MyHardWare/Inc/motor.h:
-MyHardWare/Inc/HardwareConfig.h:
+MyHardWare/Inc/pid_speed.h:
+MyHardWare/Inc/encoder.h:
+MyHardWare/Inc/motor.h:
 MyHardWare/Inc/rtc.h:
+MyHardWare/Inc/task.h:
+MyHardWare/Inc/uart.h:
 MyHardWare/Inc/ulog.h:
-MyHardWare/Inc/usart.h:
-MyHardWare/Inc/ring_buffer.h:

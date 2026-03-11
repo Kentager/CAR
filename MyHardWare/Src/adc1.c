@@ -6,7 +6,6 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_tim.h"
-#include "usart.h"
 #include <stdint.h>
 /*
 使用TIM3
@@ -180,12 +179,6 @@ void ADC1_Init(void) {
   // 最后使能ADC
   ADC_Cmd(ADC1, ENABLE);
 }
-void Print_DataPoint(void) {
-  ADC_Cmd(ADC1, DISABLE);
-  UART1_SendData((uint16_t *)ADC_DMA_Buffer, ADC_DMA_BufferSize);
-  ADC_Cmd(ADC1, ENABLE);
-}
-
 /**
  * @brief  启动ADC DMA传输，在看门狗触发后调用
  * @param  None

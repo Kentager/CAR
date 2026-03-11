@@ -1,5 +1,6 @@
 build/inv_mpu_dmp_motion_driver.o: \
- MyHardWare/eMPL/inv_mpu_dmp_motion_driver.c MyHardWare/eMPL/inv_mpu.h \
+ MyHardWare/eMPL/inv_mpu_dmp_motion_driver.c \
+ MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h MyHardWare/Inc/delay.h \
  CMSIS/stm32f4xx.h CMSIS/core_cm4.h CMSIS/core_cmInstr.h \
  CMSIS/core_cmFunc.h CMSIS/core_cmSimd.h CMSIS/system_stm32f4xx.h \
  USER/Inc/stm32f4xx_conf.h Lib/StdPeriphs/inc/stm32f4xx_adc.h \
@@ -15,11 +16,10 @@ build/inv_mpu_dmp_motion_driver.o: \
  Lib/StdPeriphs/inc/stm32f4xx_cryp.h Lib/StdPeriphs/inc/stm32f4xx_hash.h \
  Lib/StdPeriphs/inc/stm32f4xx_rng.h Lib/StdPeriphs/inc/stm32f4xx_can.h \
  Lib/StdPeriphs/inc/stm32f4xx_dac.h Lib/StdPeriphs/inc/stm32f4xx_dcmi.h \
- Lib/StdPeriphs/inc/stm32f4xx_fsmc.h \
- MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h MyHardWare/eMPL/dmpKey.h \
- MyHardWare/eMPL/dmpmap.h MyHardWare/Inc/usart.h \
- MyHardWare/Inc/ring_buffer.h MyHardWare/Inc/delay.h
-MyHardWare/eMPL/inv_mpu.h:
+ Lib/StdPeriphs/inc/stm32f4xx_fsmc.h MyHardWare/eMPL/dmpKey.h \
+ MyHardWare/eMPL/dmpmap.h MyHardWare/eMPL/inv_mpu.h
+MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h:
+MyHardWare/Inc/delay.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
 CMSIS/core_cmInstr.h:
@@ -53,9 +53,6 @@ Lib/StdPeriphs/inc/stm32f4xx_can.h:
 Lib/StdPeriphs/inc/stm32f4xx_dac.h:
 Lib/StdPeriphs/inc/stm32f4xx_dcmi.h:
 Lib/StdPeriphs/inc/stm32f4xx_fsmc.h:
-MyHardWare/eMPL/inv_mpu_dmp_motion_driver.h:
 MyHardWare/eMPL/dmpKey.h:
 MyHardWare/eMPL/dmpmap.h:
-MyHardWare/Inc/usart.h:
-MyHardWare/Inc/ring_buffer.h:
-MyHardWare/Inc/delay.h:
+MyHardWare/eMPL/inv_mpu.h:

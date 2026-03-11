@@ -364,6 +364,7 @@ void Encoder_Update(void) {
 #endif
 }
 Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
+  Encoder_Update(); // 确保数据是最新的
   Encoder_Data_t empty_data = {0};
 
   // 参数检查

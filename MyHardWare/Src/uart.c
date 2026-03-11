@@ -192,3 +192,8 @@ void UART1_TX_Complete_Callback(void) {
   /* 发送完成回调函数 */
   /* 可以在这里添加发送完成后的处理逻辑 */
 }
+
+int __io_putchar(int ch) {
+  UART1_SendByte((uint8_t)ch);
+  return ch;
+}

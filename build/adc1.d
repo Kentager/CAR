@@ -14,8 +14,7 @@ build/adc1.o: MyHardWare/Src/adc1.c MyHardWare/Inc/adc1.h \
  Lib/StdPeriphs/inc/stm32f4xx_cryp.h Lib/StdPeriphs/inc/stm32f4xx_hash.h \
  Lib/StdPeriphs/inc/stm32f4xx_rng.h Lib/StdPeriphs/inc/stm32f4xx_can.h \
  Lib/StdPeriphs/inc/stm32f4xx_dac.h Lib/StdPeriphs/inc/stm32f4xx_dcmi.h \
- Lib/StdPeriphs/inc/stm32f4xx_fsmc.h MyHardWare/Inc/usart.h \
- MyHardWare/Inc/ring_buffer.h
+ Lib/StdPeriphs/inc/stm32f4xx_fsmc.h
 MyHardWare/Inc/adc1.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
@@ -50,5 +49,3 @@ Lib/StdPeriphs/inc/stm32f4xx_can.h:
 Lib/StdPeriphs/inc/stm32f4xx_dac.h:
 Lib/StdPeriphs/inc/stm32f4xx_dcmi.h:
 Lib/StdPeriphs/inc/stm32f4xx_fsmc.h:
-MyHardWare/Inc/usart.h:
-MyHardWare/Inc/ring_buffer.h:

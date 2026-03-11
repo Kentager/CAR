@@ -3,7 +3,6 @@
 #include "myiic.h"
 #include "sys.h"
 #include "task.h"
-#include "usart.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>

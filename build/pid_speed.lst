@@ -1,0 +1,1009 @@
+ARM GAS  /tmp/ccBv828j.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"pid_speed.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "MyHardWare/Src/pid_speed.c"
+  20              		.section	.text.pid_init,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	pid_init:
+  27              	.LVL0:
+  28              	.LFB130:
+   1:MyHardWare/Src/pid_speed.c **** #include "pid_speed.h"
+   2:MyHardWare/Src/pid_speed.c **** #include "delay.h"
+   3:MyHardWare/Src/pid_speed.c **** 
+   4:MyHardWare/Src/pid_speed.c **** /* ==================== 全局变量定义 ==================== */
+   5:MyHardWare/Src/pid_speed.c **** // 改为外部引用，在main.c中定义
+   6:MyHardWare/Src/pid_speed.c **** Speed_PID_Controller_t Speed_PID_Right; // 右轮速度PID控制器
+   7:MyHardWare/Src/pid_speed.c **** Speed_PID_Controller_t Speed_PID_Left;  // 左轮速度PID控制器
+   8:MyHardWare/Src/pid_speed.c **** 
+   9:MyHardWare/Src/pid_speed.c **** /* ==================== 私有函数声明 ==================== */
+  10:MyHardWare/Src/pid_speed.c **** static float get_encoder_speed_m_s(Encoder_Id_e encoder_id);
+  11:MyHardWare/Src/pid_speed.c **** static void update_motor_output(Speed_PID_Controller_t *controller,
+  12:MyHardWare/Src/pid_speed.c ****                                 float output);
+  13:MyHardWare/Src/pid_speed.c **** static void pid_init(PID_State_t *pid, float target, float kp, float ki,
+  14:MyHardWare/Src/pid_speed.c ****                      float kd);
+  15:MyHardWare/Src/pid_speed.c **** static float pid_realize(PID_State_t *pid, float actual_value);
+  16:MyHardWare/Src/pid_speed.c **** 
+  17:MyHardWare/Src/pid_speed.c **** /* ==================== 公有函数实现 ==================== */
+  18:MyHardWare/Src/pid_speed.c **** 
+  19:MyHardWare/Src/pid_speed.c **** /**
+  20:MyHardWare/Src/pid_speed.c ****  * @brief 初始化速度环PID控制器
+  21:MyHardWare/Src/pid_speed.c ****  * @param controller 控制器实例指针
+  22:MyHardWare/Src/pid_speed.c ****  * @param encoder_id 关联的编码器ID
+  23:MyHardWare/Src/pid_speed.c ****  * @param motor_id 关联的电机ID
+  24:MyHardWare/Src/pid_speed.c ****  * @param kp 比例系数
+  25:MyHardWare/Src/pid_speed.c ****  * @param ki 积分系数
+  26:MyHardWare/Src/pid_speed.c ****  * @param kd 微分系数
+  27:MyHardWare/Src/pid_speed.c ****  */
+  28:MyHardWare/Src/pid_speed.c **** void Speed_PID_Init(Speed_PID_Controller_t *controller, Encoder_Id_e encoder_id,
+  29:MyHardWare/Src/pid_speed.c ****                     Motor_Id_e motor_id, float kp, float ki, float kd) {
+  30:MyHardWare/Src/pid_speed.c ****   // 参数检查
+ARM GAS  /tmp/ccBv828j.s 			page 2
+
+
+  31:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || encoder_id >= ENCODER_MAX ||
+  32:MyHardWare/Src/pid_speed.c ****       motor_id >= MOTOR_MAX) {
+  33:MyHardWare/Src/pid_speed.c ****     return;
+  34:MyHardWare/Src/pid_speed.c ****   }
+  35:MyHardWare/Src/pid_speed.c **** 
+  36:MyHardWare/Src/pid_speed.c ****   // 初始化PID参数和状态
+  37:MyHardWare/Src/pid_speed.c ****   pid_init(&controller->pid_state, 0.0f, kp, ki, kd);
+  38:MyHardWare/Src/pid_speed.c **** 
+  39:MyHardWare/Src/pid_speed.c ****   // 设置关联的编码器和电机
+  40:MyHardWare/Src/pid_speed.c ****   controller->encoder_id = encoder_id;
+  41:MyHardWare/Src/pid_speed.c ****   controller->motor_id = motor_id;
+  42:MyHardWare/Src/pid_speed.c **** 
+  43:MyHardWare/Src/pid_speed.c ****   // 初始化其他参数
+  44:MyHardWare/Src/pid_speed.c ****   controller->target_speed_m_s = 0.0f;
+  45:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = 0.0f;
+  46:MyHardWare/Src/pid_speed.c ****   controller->enabled = 0;
+  47:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = GetSysTick();
+  48:MyHardWare/Src/pid_speed.c **** }
+  49:MyHardWare/Src/pid_speed.c **** 
+  50:MyHardWare/Src/pid_speed.c **** /**
+  51:MyHardWare/Src/pid_speed.c ****  * @brief 设置速度环PID目标速度
+  52:MyHardWare/Src/pid_speed.c ****  * @param controller 控制器实例指针
+  53:MyHardWare/Src/pid_speed.c ****  * @param speed_m_s 目标线速度 (m/s)
+  54:MyHardWare/Src/pid_speed.c ****  */
+  55:MyHardWare/Src/pid_speed.c **** void Speed_PID_SetTargetSpeed(Speed_PID_Controller_t *controller,
+  56:MyHardWare/Src/pid_speed.c ****                               float speed_m_s) {
+  57:MyHardWare/Src/pid_speed.c ****   // 参数检查
+  58:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+  59:MyHardWare/Src/pid_speed.c ****     return;
+  60:MyHardWare/Src/pid_speed.c ****   }
+  61:MyHardWare/Src/pid_speed.c **** 
+  62:MyHardWare/Src/pid_speed.c ****   // 设置目标速度
+  63:MyHardWare/Src/pid_speed.c ****   controller->target_speed_m_s = speed_m_s;
+  64:MyHardWare/Src/pid_speed.c ****   // 更新PID目标值
+  65:MyHardWare/Src/pid_speed.c ****   controller->pid_state.target_value = speed_m_s;
+  66:MyHardWare/Src/pid_speed.c **** }
+  67:MyHardWare/Src/pid_speed.c **** 
+  68:MyHardWare/Src/pid_speed.c **** /**
+  69:MyHardWare/Src/pid_speed.c ****  * @brief 启用速度环PID控制
+  70:MyHardWare/Src/pid_speed.c ****  * @param controller 控制器实例指针
+  71:MyHardWare/Src/pid_speed.c ****  */
+  72:MyHardWare/Src/pid_speed.c **** void Speed_PID_Enable(Speed_PID_Controller_t *controller) {
+  73:MyHardWare/Src/pid_speed.c ****   // 参数检查
+  74:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+  75:MyHardWare/Src/pid_speed.c ****     return;
+  76:MyHardWare/Src/pid_speed.c ****   }
+  77:MyHardWare/Src/pid_speed.c **** 
+  78:MyHardWare/Src/pid_speed.c ****   // 启用控制器
+  79:MyHardWare/Src/pid_speed.c ****   controller->enabled = 1;
+  80:MyHardWare/Src/pid_speed.c **** }
+  81:MyHardWare/Src/pid_speed.c **** 
+  82:MyHardWare/Src/pid_speed.c **** /**
+  83:MyHardWare/Src/pid_speed.c ****  * @brief 禁用速度环PID控制
+  84:MyHardWare/Src/pid_speed.c ****  * @param controller 控制器实例指针
+  85:MyHardWare/Src/pid_speed.c ****  */
+  86:MyHardWare/Src/pid_speed.c **** void Speed_PID_Disable(Speed_PID_Controller_t *controller) {
+  87:MyHardWare/Src/pid_speed.c ****   // 参数检查
+ARM GAS  /tmp/ccBv828j.s 			page 3
+
+
+  88:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+  89:MyHardWare/Src/pid_speed.c ****     return;
+  90:MyHardWare/Src/pid_speed.c ****   }
+  91:MyHardWare/Src/pid_speed.c **** 
+  92:MyHardWare/Src/pid_speed.c ****   // 禁用控制器
+  93:MyHardWare/Src/pid_speed.c ****   controller->enabled = 0;
+  94:MyHardWare/Src/pid_speed.c **** 
+  95:MyHardWare/Src/pid_speed.c ****   // 停止电机
+  96:MyHardWare/Src/pid_speed.c ****   update_motor_output(controller, 0.0f);
+  97:MyHardWare/Src/pid_speed.c **** 
+  98:MyHardWare/Src/pid_speed.c ****   // 重置积分项以防止积分饱和
+  99:MyHardWare/Src/pid_speed.c ****   controller->pid_state.integral_error = 0.0f;
+ 100:MyHardWare/Src/pid_speed.c **** }
+ 101:MyHardWare/Src/pid_speed.c **** 
+ 102:MyHardWare/Src/pid_speed.c **** /**
+ 103:MyHardWare/Src/pid_speed.c ****  * @brief 执行速度环PID控制计算
+ 104:MyHardWare/Src/pid_speed.c ****  * @param controller 控制器实例指针
+ 105:MyHardWare/Src/pid_speed.c ****  * @note 应在10ms控制循环中调用
+ 106:MyHardWare/Src/pid_speed.c ****  */
+ 107:MyHardWare/Src/pid_speed.c **** void Speed_PID_Update(Speed_PID_Controller_t *controller) {
+ 108:MyHardWare/Src/pid_speed.c ****   // 参数检查
+ 109:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || !controller->enabled) {
+ 110:MyHardWare/Src/pid_speed.c ****     return;
+ 111:MyHardWare/Src/pid_speed.c ****   }
+ 112:MyHardWare/Src/pid_speed.c **** 
+ 113:MyHardWare/Src/pid_speed.c ****   // 计算时间间隔（秒）
+ 114:MyHardWare/Src/pid_speed.c ****   uint32_t current_time = GetSysTick();
+ 115:MyHardWare/Src/pid_speed.c ****   float dt =
+ 116:MyHardWare/Src/pid_speed.c ****       (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
+ 117:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = current_time;
+ 118:MyHardWare/Src/pid_speed.c **** 
+ 119:MyHardWare/Src/pid_speed.c ****   // 获取当前速度
+ 120:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+ 121:MyHardWare/Src/pid_speed.c **** 
+ 122:MyHardWare/Src/pid_speed.c ****   // 使用PID算法计算输出
+ 123:MyHardWare/Src/pid_speed.c ****   float output =
+ 124:MyHardWare/Src/pid_speed.c ****       pid_realize(&controller->pid_state, controller->current_speed_m_s);
+ 125:MyHardWare/Src/pid_speed.c **** 
+ 126:MyHardWare/Src/pid_speed.c ****   // 更新电机输出
+ 127:MyHardWare/Src/pid_speed.c ****   update_motor_output(controller, output);
+ 128:MyHardWare/Src/pid_speed.c **** }
+ 129:MyHardWare/Src/pid_speed.c **** 
+ 130:MyHardWare/Src/pid_speed.c **** /* ==================== 私有函数实现 ==================== */
+ 131:MyHardWare/Src/pid_speed.c **** 
+ 132:MyHardWare/Src/pid_speed.c **** /**
+ 133:MyHardWare/Src/pid_speed.c ****  * @brief 获取编码器测量的速度 (m/s)
+ 134:MyHardWare/Src/pid_speed.c ****  * @param encoder_id 编码器ID
+ 135:MyHardWare/Src/pid_speed.c ****  * @return 当前线速度 (m/s)
+ 136:MyHardWare/Src/pid_speed.c ****  */
+ 137:MyHardWare/Src/pid_speed.c **** static float get_encoder_speed_m_s(Encoder_Id_e encoder_id) {
+ 138:MyHardWare/Src/pid_speed.c ****   // 获取编码器数据
+ 139:MyHardWare/Src/pid_speed.c ****   Encoder_Data_t encoder_data = Encoder_GetData(encoder_id);
+ 140:MyHardWare/Src/pid_speed.c **** 
+ 141:MyHardWare/Src/pid_speed.c ****   // 返回线速度
+ 142:MyHardWare/Src/pid_speed.c ****   return encoder_data.speed_m_s;
+ 143:MyHardWare/Src/pid_speed.c **** }
+ 144:MyHardWare/Src/pid_speed.c **** 
+ARM GAS  /tmp/ccBv828j.s 			page 4
+
+
+ 145:MyHardWare/Src/pid_speed.c **** /**
+ 146:MyHardWare/Src/pid_speed.c ****  * @brief 更新电机输出
+ 147:MyHardWare/Src/pid_speed.c ****  * @param controller 控制器实例指针
+ 148:MyHardWare/Src/pid_speed.c ****  * @param output PID输出值
+ 149:MyHardWare/Src/pid_speed.c ****  */
+ 150:MyHardWare/Src/pid_speed.c **** static void update_motor_output(Speed_PID_Controller_t *controller,
+ 151:MyHardWare/Src/pid_speed.c ****                                 float output) {
+ 152:MyHardWare/Src/pid_speed.c ****   // 限制输出范围
+ 153:MyHardWare/Src/pid_speed.c ****   if (output > SPEED_PID_OUTPUT_MAX) {
+ 154:MyHardWare/Src/pid_speed.c ****     output = SPEED_PID_OUTPUT_MAX;
+ 155:MyHardWare/Src/pid_speed.c ****   } else if (output < -SPEED_PID_OUTPUT_MAX) {
+ 156:MyHardWare/Src/pid_speed.c ****     output = -SPEED_PID_OUTPUT_MAX;
+ 157:MyHardWare/Src/pid_speed.c ****   }
+ 158:MyHardWare/Src/pid_speed.c **** 
+ 159:MyHardWare/Src/pid_speed.c ****   // 根据输出符号确定方向
+ 160:MyHardWare/Src/pid_speed.c ****   Motor_Direction_e direction;
+ 161:MyHardWare/Src/pid_speed.c ****   if (output > 100) { // 死区设置
+ 162:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_FORWARD;
+ 163:MyHardWare/Src/pid_speed.c ****   } else if (output < -100) {
+ 164:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_BACKWARD;
+ 165:MyHardWare/Src/pid_speed.c ****   } else {
+ 166:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_STOP;
+ 167:MyHardWare/Src/pid_speed.c ****     output = 0; // 停止时输出为0
+ 168:MyHardWare/Src/pid_speed.c ****   }
+ 169:MyHardWare/Src/pid_speed.c **** 
+ 170:MyHardWare/Src/pid_speed.c ****   // 设置电机方向和速度
+ 171:MyHardWare/Src/pid_speed.c ****   Motor_SetDirection(controller->motor_id, direction);
+ 172:MyHardWare/Src/pid_speed.c ****   Motor_SetSpeed(controller->motor_id, (int16_t)output);
+ 173:MyHardWare/Src/pid_speed.c **** 
+ 174:MyHardWare/Src/pid_speed.c ****   // 更新硬件
+ 175:MyHardWare/Src/pid_speed.c ****   Motor_Update(controller->motor_id);
+ 176:MyHardWare/Src/pid_speed.c **** }
+ 177:MyHardWare/Src/pid_speed.c **** 
+ 178:MyHardWare/Src/pid_speed.c **** /**
+ 179:MyHardWare/Src/pid_speed.c ****  * @brief PID控制器初始化函数
+ 180:MyHardWare/Src/pid_speed.c ****  * @param pid Pointer to the PID state structure
+ 181:MyHardWare/Src/pid_speed.c ****  * @param target Target value for the PID controller
+ 182:MyHardWare/Src/pid_speed.c ****  * @param kp Proportional gain
+ 183:MyHardWare/Src/pid_speed.c ****  * @param ki Integral gain
+ 184:MyHardWare/Src/pid_speed.c ****  * @param kd Derivative gain
+ 185:MyHardWare/Src/pid_speed.c ****  */
+ 186:MyHardWare/Src/pid_speed.c **** static void pid_init(PID_State_t *pid, float target, float kp, float ki,
+ 187:MyHardWare/Src/pid_speed.c ****                      float kd) {
+  29              		.loc 1 187 32 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 188:MyHardWare/Src/pid_speed.c ****   pid->target_value = target;
+  34              		.loc 1 188 3 view .LVU1
+  35              		.loc 1 188 21 is_stmt 0 view .LVU2
+  36 0000 80ED030A 		vstr.32	s0, [r0, #12]
+ 189:MyHardWare/Src/pid_speed.c ****   pid->kp = kp;
+  37              		.loc 1 189 3 is_stmt 1 view .LVU3
+  38              		.loc 1 189 11 is_stmt 0 view .LVU4
+  39 0004 C0ED000A 		vstr.32	s1, [r0]
+ 190:MyHardWare/Src/pid_speed.c ****   pid->ki = ki;
+ARM GAS  /tmp/ccBv828j.s 			page 5
+
+
+  40              		.loc 1 190 3 is_stmt 1 view .LVU5
+  41              		.loc 1 190 11 is_stmt 0 view .LVU6
+  42 0008 80ED011A 		vstr.32	s2, [r0, #4]
+ 191:MyHardWare/Src/pid_speed.c ****   pid->kd = kd;
+  43              		.loc 1 191 3 is_stmt 1 view .LVU7
+  44              		.loc 1 191 11 is_stmt 0 view .LVU8
+  45 000c C0ED021A 		vstr.32	s3, [r0, #8]
+ 192:MyHardWare/Src/pid_speed.c ****   pid->integral_error = 0.0f;
+  46              		.loc 1 192 3 is_stmt 1 view .LVU9
+  47              		.loc 1 192 23 is_stmt 0 view .LVU10
+  48 0010 0023     		movs	r3, #0
+  49 0012 0361     		str	r3, [r0, #16]	@ float
+ 193:MyHardWare/Src/pid_speed.c ****   pid->last_error = 0.0f;
+  50              		.loc 1 193 3 is_stmt 1 view .LVU11
+  51              		.loc 1 193 19 is_stmt 0 view .LVU12
+  52 0014 4361     		str	r3, [r0, #20]	@ float
+ 194:MyHardWare/Src/pid_speed.c ****   pid->prev_error = 0.0f;
+  53              		.loc 1 194 3 is_stmt 1 view .LVU13
+  54              		.loc 1 194 19 is_stmt 0 view .LVU14
+  55 0016 8361     		str	r3, [r0, #24]	@ float
+ 195:MyHardWare/Src/pid_speed.c **** }
+  56              		.loc 1 195 1 view .LVU15
+  57 0018 7047     		bx	lr
+  58              		.cfi_endproc
+  59              	.LFE130:
+  61              		.section	.text.pid_realize,"ax",%progbits
+  62              		.align	1
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	pid_realize:
+  68              	.LVL1:
+  69              	.LFB131:
+ 196:MyHardWare/Src/pid_speed.c **** 
+ 197:MyHardWare/Src/pid_speed.c **** /**
+ 198:MyHardWare/Src/pid_speed.c ****  * @brief PID控制算法实现
+ 199:MyHardWare/Src/pid_speed.c ****  * @param pid Pointer to the PID state structure
+ 200:MyHardWare/Src/pid_speed.c ****  * @param actual_value Actual measured value
+ 201:MyHardWare/Src/pid_speed.c ****  * @return Calculated output value
+ 202:MyHardWare/Src/pid_speed.c ****  */
+ 203:MyHardWare/Src/pid_speed.c **** static float pid_realize(PID_State_t *pid, float actual_value) {
+  70              		.loc 1 203 64 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+ 204:MyHardWare/Src/pid_speed.c ****   // 计算误差
+ 205:MyHardWare/Src/pid_speed.c ****   float error = pid->target_value - actual_value;
+  75              		.loc 1 205 3 view .LVU17
+  76              		.loc 1 205 20 is_stmt 0 view .LVU18
+  77 0000 D0ED037A 		vldr.32	s15, [r0, #12]
+  78              		.loc 1 205 9 view .LVU19
+  79 0004 77EEC07A 		vsub.f32	s15, s15, s0
+  80              	.LVL2:
+ 206:MyHardWare/Src/pid_speed.c **** 
+ 207:MyHardWare/Src/pid_speed.c ****   // 积分项计算（带抗积分饱和）
+ 208:MyHardWare/Src/pid_speed.c ****   pid->integral_error += error;
+ARM GAS  /tmp/ccBv828j.s 			page 6
+
+
+  81              		.loc 1 208 3 is_stmt 1 view .LVU20
+  82              		.loc 1 208 6 is_stmt 0 view .LVU21
+  83 0008 90ED047A 		vldr.32	s14, [r0, #16]
+  84              		.loc 1 208 23 view .LVU22
+  85 000c 37EE277A 		vadd.f32	s14, s14, s15
+  86 0010 80ED047A 		vstr.32	s14, [r0, #16]
+ 209:MyHardWare/Src/pid_speed.c **** 
+ 210:MyHardWare/Src/pid_speed.c ****   // 防止积分饱和（可选：可以添加积分限幅）
+ 211:MyHardWare/Src/pid_speed.c ****   // if (pid->integral_error > INTEGRAL_LIMIT) pid->integral_error =
+ 212:MyHardWare/Src/pid_speed.c ****   // INTEGRAL_LIMIT; if (pid->integral_error < -INTEGRAL_LIMIT)
+ 213:MyHardWare/Src/pid_speed.c ****   // pid->integral_error = -INTEGRAL_LIMIT;
+ 214:MyHardWare/Src/pid_speed.c **** 
+ 215:MyHardWare/Src/pid_speed.c ****   // 微分项计算
+ 216:MyHardWare/Src/pid_speed.c ****   float derivative = error - pid->last_error;
+  87              		.loc 1 216 3 is_stmt 1 view .LVU23
+  88              		.loc 1 216 33 is_stmt 0 view .LVU24
+  89 0014 D0ED056A 		vldr.32	s13, [r0, #20]
+  90              		.loc 1 216 9 view .LVU25
+  91 0018 77EEE66A 		vsub.f32	s13, s15, s13
+  92              	.LVL3:
+ 217:MyHardWare/Src/pid_speed.c **** 
+ 218:MyHardWare/Src/pid_speed.c ****   // PID输出计算
+ 219:MyHardWare/Src/pid_speed.c ****   float output =
+  93              		.loc 1 219 3 is_stmt 1 view .LVU26
+ 220:MyHardWare/Src/pid_speed.c ****       pid->kp * error + pid->ki * pid->integral_error + pid->kd * derivative;
+  94              		.loc 1 220 10 is_stmt 0 view .LVU27
+  95 001c 90ED000A 		vldr.32	s0, [r0]
+  96              	.LVL4:
+  97              		.loc 1 220 15 view .LVU28
+  98 0020 20EE270A 		vmul.f32	s0, s0, s15
+  99              		.loc 1 220 28 view .LVU29
+ 100 0024 90ED016A 		vldr.32	s12, [r0, #4]
+ 101              		.loc 1 220 33 view .LVU30
+ 102 0028 27EE067A 		vmul.f32	s14, s14, s12
+ 103              		.loc 1 220 23 view .LVU31
+ 104 002c 30EE077A 		vadd.f32	s14, s0, s14
+ 105              		.loc 1 220 60 view .LVU32
+ 106 0030 90ED020A 		vldr.32	s0, [r0, #8]
+ 107              		.loc 1 220 65 view .LVU33
+ 108 0034 20EE260A 		vmul.f32	s0, s0, s13
+ 109              	.LVL5:
+ 221:MyHardWare/Src/pid_speed.c **** 
+ 222:MyHardWare/Src/pid_speed.c ****   // 更新上次误差
+ 223:MyHardWare/Src/pid_speed.c ****   pid->last_error = error;
+ 110              		.loc 1 223 3 is_stmt 1 view .LVU34
+ 111              		.loc 1 223 19 is_stmt 0 view .LVU35
+ 112 0038 C0ED057A 		vstr.32	s15, [r0, #20]
+ 224:MyHardWare/Src/pid_speed.c **** 
+ 225:MyHardWare/Src/pid_speed.c ****   return output;
+ 113              		.loc 1 225 3 is_stmt 1 view .LVU36
+ 226:MyHardWare/Src/pid_speed.c **** }...
+ 114              		.loc 1 226 1 is_stmt 0 view .LVU37
+ 115 003c 37EE000A 		vadd.f32	s0, s14, s0
+ 116              	.LVL6:
+ 117              		.loc 1 226 1 view .LVU38
+ 118 0040 7047     		bx	lr
+ 119              		.cfi_endproc
+ARM GAS  /tmp/ccBv828j.s 			page 7
+
+
+ 120              	.LFE131:
+ 122              		.section	.text.update_motor_output,"ax",%progbits
+ 123              		.align	1
+ 124              		.syntax unified
+ 125              		.thumb
+ 126              		.thumb_func
+ 128              	update_motor_output:
+ 129              	.LVL7:
+ 130              	.LFB129:
+ 151:MyHardWare/Src/pid_speed.c ****                                 float output) {
+ 131              		.loc 1 151 47 is_stmt 1 view -0
+ 132              		.cfi_startproc
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 151:MyHardWare/Src/pid_speed.c ****                                 float output) {
+ 135              		.loc 1 151 47 is_stmt 0 view .LVU40
+ 136 0000 10B5     		push	{r4, lr}
+ 137              	.LCFI0:
+ 138              		.cfi_def_cfa_offset 8
+ 139              		.cfi_offset 4, -8
+ 140              		.cfi_offset 14, -4
+ 141 0002 2DED028B 		vpush.64	{d8}
+ 142              	.LCFI1:
+ 143              		.cfi_def_cfa_offset 16
+ 144              		.cfi_offset 80, -16
+ 145              		.cfi_offset 81, -12
+ 146 0006 0446     		mov	r4, r0
+ 153:MyHardWare/Src/pid_speed.c ****   if (output > SPEED_PID_OUTPUT_MAX) {
+ 147              		.loc 1 153 3 is_stmt 1 view .LVU41
+ 153:MyHardWare/Src/pid_speed.c ****   if (output > SPEED_PID_OUTPUT_MAX) {
+ 148              		.loc 1 153 6 is_stmt 0 view .LVU42
+ 149 0008 DFED1D7A 		vldr.32	s15, .L14
+ 150 000c B4EEE70A 		vcmpe.f32	s0, s15
+ 151 0010 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 152 0014 1CDC     		bgt	.L7
+ 153 0016 B0EE408A 		vmov.f32	s16, s0
+ 155:MyHardWare/Src/pid_speed.c ****   } else if (output < -SPEED_PID_OUTPUT_MAX) {
+ 154              		.loc 1 155 10 is_stmt 1 view .LVU43
+ 155:MyHardWare/Src/pid_speed.c ****   } else if (output < -SPEED_PID_OUTPUT_MAX) {
+ 155              		.loc 1 155 13 is_stmt 0 view .LVU44
+ 156 001a DFED1A7A 		vldr.32	s15, .L14+4
+ 157 001e B4EEE70A 		vcmpe.f32	s0, s15
+ 158 0022 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 159 0026 08D4     		bmi	.L8
+ 160:MyHardWare/Src/pid_speed.c ****   Motor_Direction_e direction;
+ 160              		.loc 1 160 3 is_stmt 1 view .LVU45
+ 161:MyHardWare/Src/pid_speed.c ****   if (output > 100) { // 死区设置
+ 161              		.loc 1 161 3 view .LVU46
+ 161:MyHardWare/Src/pid_speed.c ****   if (output > 100) { // 死区设置
+ 162              		.loc 1 161 6 is_stmt 0 view .LVU47
+ 163 0028 DFED177A 		vldr.32	s15, .L14+8
+ 164 002c B4EEE70A 		vcmpe.f32	s0, s15
+ 165 0030 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 166 0034 03DD     		ble	.L5
+ 162:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_FORWARD;
+ 167              		.loc 1 162 15 view .LVU48
+ 168 0036 0121     		movs	r1, #1
+ARM GAS  /tmp/ccBv828j.s 			page 8
+
+
+ 169 0038 0DE0     		b	.L4
+ 170              	.L8:
+ 156:MyHardWare/Src/pid_speed.c ****     output = -SPEED_PID_OUTPUT_MAX;
+ 171              		.loc 1 156 12 view .LVU49
+ 172 003a 9FED128A 		vldr.32	s16, .L14+4
+ 173              	.L5:
+ 174              	.LVL8:
+ 163:MyHardWare/Src/pid_speed.c ****   } else if (output < -100) {
+ 175              		.loc 1 163 10 is_stmt 1 view .LVU50
+ 163:MyHardWare/Src/pid_speed.c ****   } else if (output < -100) {
+ 176              		.loc 1 163 13 is_stmt 0 view .LVU51
+ 177 003e DFED137A 		vldr.32	s15, .L14+12
+ 178 0042 B4EEE78A 		vcmpe.f32	s16, s15
+ 179 0046 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 180 004a 15D5     		bpl	.L12
+ 164:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_BACKWARD;
+ 181              		.loc 1 164 15 view .LVU52
+ 182 004c 0221     		movs	r1, #2
+ 183 004e 02E0     		b	.L4
+ 184              	.LVL9:
+ 185              	.L7:
+ 162:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_FORWARD;
+ 186              		.loc 1 162 15 view .LVU53
+ 187 0050 0121     		movs	r1, #1
+ 154:MyHardWare/Src/pid_speed.c ****     output = SPEED_PID_OUTPUT_MAX;
+ 188              		.loc 1 154 12 view .LVU54
+ 189 0052 9FED0B8A 		vldr.32	s16, .L14
+ 190              	.LVL10:
+ 191              	.L4:
+ 171:MyHardWare/Src/pid_speed.c ****   Motor_SetDirection(controller->motor_id, direction);
+ 192              		.loc 1 171 3 is_stmt 1 view .LVU55
+ 193 0056 6079     		ldrb	r0, [r4, #5]	@ zero_extendqisi2
+ 194              	.LVL11:
+ 171:MyHardWare/Src/pid_speed.c ****   Motor_SetDirection(controller->motor_id, direction);
+ 195              		.loc 1 171 3 is_stmt 0 view .LVU56
+ 196 0058 FFF7FEFF 		bl	Motor_SetDirection
+ 197              	.LVL12:
+ 172:MyHardWare/Src/pid_speed.c ****   Motor_SetSpeed(controller->motor_id, (int16_t)output);
+ 198              		.loc 1 172 3 is_stmt 1 view .LVU57
+ 199 005c BDEEC88A 		vcvt.s32.f32	s16, s16
+ 200              	.LVL13:
+ 172:MyHardWare/Src/pid_speed.c ****   Motor_SetSpeed(controller->motor_id, (int16_t)output);
+ 201              		.loc 1 172 3 is_stmt 0 view .LVU58
+ 202 0060 18EE103A 		vmov	r3, s16	@ int
+ 203 0064 19B2     		sxth	r1, r3
+ 204 0066 6079     		ldrb	r0, [r4, #5]	@ zero_extendqisi2
+ 205 0068 FFF7FEFF 		bl	Motor_SetSpeed
+ 206              	.LVL14:
+ 175:MyHardWare/Src/pid_speed.c ****   Motor_Update(controller->motor_id);
+ 207              		.loc 1 175 3 is_stmt 1 view .LVU59
+ 208 006c 6079     		ldrb	r0, [r4, #5]	@ zero_extendqisi2
+ 209 006e FFF7FEFF 		bl	Motor_Update
+ 210              	.LVL15:
+ 176:MyHardWare/Src/pid_speed.c **** }
+ 211              		.loc 1 176 1 is_stmt 0 view .LVU60
+ 212 0072 BDEC028B 		vldm	sp!, {d8}
+ 213              	.LCFI2:
+ARM GAS  /tmp/ccBv828j.s 			page 9
+
+
+ 214              		.cfi_remember_state
+ 215              		.cfi_restore 80
+ 216              		.cfi_restore 81
+ 217              		.cfi_def_cfa_offset 8
+ 218 0076 10BD     		pop	{r4, pc}
+ 219              	.LVL16:
+ 220              	.L12:
+ 221              	.LCFI3:
+ 222              		.cfi_restore_state
+ 166:MyHardWare/Src/pid_speed.c ****     direction = MOTOR_DIR_STOP;
+ 223              		.loc 1 166 15 view .LVU61
+ 224 0078 0021     		movs	r1, #0
+ 167:MyHardWare/Src/pid_speed.c ****     output = 0; // 停止时输出为0
+ 225              		.loc 1 167 12 view .LVU62
+ 226 007a 9FED058A 		vldr.32	s16, .L14+16
+ 227 007e EAE7     		b	.L4
+ 228              	.L15:
+ 229              		.align	2
+ 230              	.L14:
+ 231 0080 003C0346 		.word	1174617088
+ 232 0084 003C03C6 		.word	-972866560
+ 233 0088 0000C842 		.word	1120403456
+ 234 008c 0000C8C2 		.word	-1027080192
+ 235 0090 00000000 		.word	0
+ 236              		.cfi_endproc
+ 237              	.LFE129:
+ 239              		.section	.text.get_encoder_speed_m_s,"ax",%progbits
+ 240              		.align	1
+ 241              		.syntax unified
+ 242              		.thumb
+ 243              		.thumb_func
+ 245              	get_encoder_speed_m_s:
+ 246              	.LVL17:
+ 247              	.LFB128:
+ 137:MyHardWare/Src/pid_speed.c **** static float get_encoder_speed_m_s(Encoder_Id_e encoder_id) {
+ 248              		.loc 1 137 61 is_stmt 1 view -0
+ 249              		.cfi_startproc
+ 250              		@ args = 0, pretend = 0, frame = 48
+ 251              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137:MyHardWare/Src/pid_speed.c **** static float get_encoder_speed_m_s(Encoder_Id_e encoder_id) {
+ 252              		.loc 1 137 61 is_stmt 0 view .LVU64
+ 253 0000 00B5     		push	{lr}
+ 254              	.LCFI4:
+ 255              		.cfi_def_cfa_offset 4
+ 256              		.cfi_offset 14, -4
+ 257 0002 8DB0     		sub	sp, sp, #52
+ 258              	.LCFI5:
+ 259              		.cfi_def_cfa_offset 56
+ 260 0004 0146     		mov	r1, r0
+ 139:MyHardWare/Src/pid_speed.c ****   Encoder_Data_t encoder_data = Encoder_GetData(encoder_id);
+ 261              		.loc 1 139 3 is_stmt 1 view .LVU65
+ 139:MyHardWare/Src/pid_speed.c ****   Encoder_Data_t encoder_data = Encoder_GetData(encoder_id);
+ 262              		.loc 1 139 33 is_stmt 0 view .LVU66
+ 263 0006 6846     		mov	r0, sp
+ 264              	.LVL18:
+ 139:MyHardWare/Src/pid_speed.c ****   Encoder_Data_t encoder_data = Encoder_GetData(encoder_id);
+ 265              		.loc 1 139 33 view .LVU67
+ARM GAS  /tmp/ccBv828j.s 			page 10
+
+
+ 266 0008 FFF7FEFF 		bl	Encoder_GetData
+ 267              	.LVL19:
+ 142:MyHardWare/Src/pid_speed.c ****   return encoder_data.speed_m_s;
+ 268              		.loc 1 142 3 is_stmt 1 view .LVU68
+ 143:MyHardWare/Src/pid_speed.c **** }
+ 269              		.loc 1 143 1 is_stmt 0 view .LVU69
+ 270 000c 9DED050A 		vldr.32	s0, [sp, #20]
+ 271 0010 0DB0     		add	sp, sp, #52
+ 272              	.LCFI6:
+ 273              		.cfi_def_cfa_offset 4
+ 274              		@ sp needed
+ 275 0012 5DF804FB 		ldr	pc, [sp], #4
+ 276              		.cfi_endproc
+ 277              	.LFE128:
+ 279              		.section	.text.Speed_PID_Init,"ax",%progbits
+ 280              		.align	1
+ 281              		.global	Speed_PID_Init
+ 282              		.syntax unified
+ 283              		.thumb
+ 284              		.thumb_func
+ 286              	Speed_PID_Init:
+ 287              	.LVL20:
+ 288              	.LFB123:
+  29:MyHardWare/Src/pid_speed.c ****                     Motor_Id_e motor_id, float kp, float ki, float kd) {
+ 289              		.loc 1 29 72 is_stmt 1 view -0
+ 290              		.cfi_startproc
+ 291              		@ args = 0, pretend = 0, frame = 0
+ 292              		@ frame_needed = 0, uses_anonymous_args = 0
+  31:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || encoder_id >= ENCODER_MAX ||
+ 293              		.loc 1 31 3 view .LVU71
+  31:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || encoder_id >= ENCODER_MAX ||
+ 294              		.loc 1 31 6 is_stmt 0 view .LVU72
+ 295 0000 28B3     		cbz	r0, .L21
+  29:MyHardWare/Src/pid_speed.c ****                     Motor_Id_e motor_id, float kp, float ki, float kd) {
+ 296              		.loc 1 29 72 view .LVU73
+ 297 0002 70B5     		push	{r4, r5, r6, lr}
+ 298              	.LCFI7:
+ 299              		.cfi_def_cfa_offset 16
+ 300              		.cfi_offset 4, -16
+ 301              		.cfi_offset 5, -12
+ 302              		.cfi_offset 6, -8
+ 303              		.cfi_offset 14, -4
+ 304 0004 2DED028B 		vpush.64	{d8}
+ 305              	.LCFI8:
+ 306              		.cfi_def_cfa_offset 24
+ 307              		.cfi_offset 80, -24
+ 308              		.cfi_offset 81, -20
+ 309 0008 0C46     		mov	r4, r1
+ 310 000a 1546     		mov	r5, r2
+ 311 000c 0646     		mov	r6, r0
+  31:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || encoder_id >= ENCODER_MAX ||
+ 312              		.loc 1 31 26 discriminator 1 view .LVU74
+ 313 000e 0129     		cmp	r1, #1
+ 314 0010 01D8     		bhi	.L18
+  31:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || encoder_id >= ENCODER_MAX ||
+ 315              		.loc 1 31 55 discriminator 2 view .LVU75
+ 316 0012 012A     		cmp	r2, #1
+ARM GAS  /tmp/ccBv828j.s 			page 11
+
+
+ 317 0014 02D9     		bls	.L24
+ 318              	.LVL21:
+ 319              	.L18:
+  48:MyHardWare/Src/pid_speed.c **** }
+ 320              		.loc 1 48 1 view .LVU76
+ 321 0016 BDEC028B 		vldm	sp!, {d8}
+ 322              	.LCFI9:
+ 323              		.cfi_remember_state
+ 324              		.cfi_restore 80
+ 325              		.cfi_restore 81
+ 326              		.cfi_def_cfa_offset 16
+ 327 001a 70BD     		pop	{r4, r5, r6, pc}
+ 328              	.LVL22:
+ 329              	.L24:
+ 330              	.LCFI10:
+ 331              		.cfi_restore_state
+  37:MyHardWare/Src/pid_speed.c ****   pid_init(&controller->pid_state, 0.0f, kp, ki, kd);
+ 332              		.loc 1 37 3 is_stmt 1 view .LVU77
+ 333 001c 9FED0C8A 		vldr.32	s16, .L25
+ 334 0020 F0EE411A 		vmov.f32	s3, s2
+ 335 0024 B0EE601A 		vmov.f32	s2, s1
+ 336              	.LVL23:
+  37:MyHardWare/Src/pid_speed.c ****   pid_init(&controller->pid_state, 0.0f, kp, ki, kd);
+ 337              		.loc 1 37 3 is_stmt 0 view .LVU78
+ 338 0028 F0EE400A 		vmov.f32	s1, s0
+ 339              	.LVL24:
+  37:MyHardWare/Src/pid_speed.c ****   pid_init(&controller->pid_state, 0.0f, kp, ki, kd);
+ 340              		.loc 1 37 3 view .LVU79
+ 341 002c B0EE480A 		vmov.f32	s0, s16
+ 342              	.LVL25:
+  37:MyHardWare/Src/pid_speed.c ****   pid_init(&controller->pid_state, 0.0f, kp, ki, kd);
+ 343              		.loc 1 37 3 view .LVU80
+ 344 0030 1430     		adds	r0, r0, #20
+ 345              	.LVL26:
+  37:MyHardWare/Src/pid_speed.c ****   pid_init(&controller->pid_state, 0.0f, kp, ki, kd);
+ 346              		.loc 1 37 3 view .LVU81
+ 347 0032 FFF7FEFF 		bl	pid_init
+ 348              	.LVL27:
+  40:MyHardWare/Src/pid_speed.c ****   controller->encoder_id = encoder_id;
+ 349              		.loc 1 40 3 is_stmt 1 view .LVU82
+  40:MyHardWare/Src/pid_speed.c ****   controller->encoder_id = encoder_id;
+ 350              		.loc 1 40 26 is_stmt 0 view .LVU83
+ 351 0036 3471     		strb	r4, [r6, #4]
+  41:MyHardWare/Src/pid_speed.c ****   controller->motor_id = motor_id;
+ 352              		.loc 1 41 3 is_stmt 1 view .LVU84
+  41:MyHardWare/Src/pid_speed.c ****   controller->motor_id = motor_id;
+ 353              		.loc 1 41 24 is_stmt 0 view .LVU85
+ 354 0038 7571     		strb	r5, [r6, #5]
+  44:MyHardWare/Src/pid_speed.c ****   controller->target_speed_m_s = 0.0f;
+ 355              		.loc 1 44 3 is_stmt 1 view .LVU86
+  44:MyHardWare/Src/pid_speed.c ****   controller->target_speed_m_s = 0.0f;
+ 356              		.loc 1 44 32 is_stmt 0 view .LVU87
+ 357 003a 86ED008A 		vstr.32	s16, [r6]
+  45:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = 0.0f;
+ 358              		.loc 1 45 3 is_stmt 1 view .LVU88
+  45:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = 0.0f;
+ 359              		.loc 1 45 33 is_stmt 0 view .LVU89
+ARM GAS  /tmp/ccBv828j.s 			page 12
+
+
+ 360 003e 86ED028A 		vstr.32	s16, [r6, #8]
+  46:MyHardWare/Src/pid_speed.c ****   controller->enabled = 0;
+ 361              		.loc 1 46 3 is_stmt 1 view .LVU90
+  46:MyHardWare/Src/pid_speed.c ****   controller->enabled = 0;
+ 362              		.loc 1 46 23 is_stmt 0 view .LVU91
+ 363 0042 0023     		movs	r3, #0
+ 364 0044 3373     		strb	r3, [r6, #12]
+  47:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = GetSysTick();
+ 365              		.loc 1 47 3 is_stmt 1 view .LVU92
+  47:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = GetSysTick();
+ 366              		.loc 1 47 34 is_stmt 0 view .LVU93
+ 367 0046 FFF7FEFF 		bl	GetSysTick
+ 368              	.LVL28:
+  47:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = GetSysTick();
+ 369              		.loc 1 47 32 discriminator 1 view .LVU94
+ 370 004a 3061     		str	r0, [r6, #16]
+ 371 004c E3E7     		b	.L18
+ 372              	.LVL29:
+ 373              	.L21:
+ 374              	.LCFI11:
+ 375              		.cfi_def_cfa_offset 0
+ 376              		.cfi_restore 4
+ 377              		.cfi_restore 5
+ 378              		.cfi_restore 6
+ 379              		.cfi_restore 14
+ 380              		.cfi_restore 80
+ 381              		.cfi_restore 81
+  47:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = GetSysTick();
+ 382              		.loc 1 47 32 discriminator 1 view .LVU95
+ 383 004e 7047     		bx	lr
+ 384              	.L26:
+ 385              		.align	2
+ 386              	.L25:
+ 387 0050 00000000 		.word	0
+ 388              		.cfi_endproc
+ 389              	.LFE123:
+ 391              		.section	.text.Speed_PID_SetTargetSpeed,"ax",%progbits
+ 392              		.align	1
+ 393              		.global	Speed_PID_SetTargetSpeed
+ 394              		.syntax unified
+ 395              		.thumb
+ 396              		.thumb_func
+ 398              	Speed_PID_SetTargetSpeed:
+ 399              	.LVL30:
+ 400              	.LFB124:
+  56:MyHardWare/Src/pid_speed.c ****                               float speed_m_s) {
+ 401              		.loc 1 56 48 is_stmt 1 view -0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 0
+ 404              		@ frame_needed = 0, uses_anonymous_args = 0
+ 405              		@ link register save eliminated.
+  58:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+ 406              		.loc 1 58 3 view .LVU97
+  58:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+ 407              		.loc 1 58 6 is_stmt 0 view .LVU98
+ 408 0000 18B1     		cbz	r0, .L27
+  63:MyHardWare/Src/pid_speed.c ****   controller->target_speed_m_s = speed_m_s;
+ARM GAS  /tmp/ccBv828j.s 			page 13
+
+
+ 409              		.loc 1 63 3 is_stmt 1 view .LVU99
+  63:MyHardWare/Src/pid_speed.c ****   controller->target_speed_m_s = speed_m_s;
+ 410              		.loc 1 63 32 is_stmt 0 view .LVU100
+ 411 0002 80ED000A 		vstr.32	s0, [r0]
+  65:MyHardWare/Src/pid_speed.c ****   controller->pid_state.target_value = speed_m_s;
+ 412              		.loc 1 65 3 is_stmt 1 view .LVU101
+  65:MyHardWare/Src/pid_speed.c ****   controller->pid_state.target_value = speed_m_s;
+ 413              		.loc 1 65 38 is_stmt 0 view .LVU102
+ 414 0006 80ED080A 		vstr.32	s0, [r0, #32]
+ 415              	.L27:
+  66:MyHardWare/Src/pid_speed.c **** }
+ 416              		.loc 1 66 1 view .LVU103
+ 417 000a 7047     		bx	lr
+ 418              		.cfi_endproc
+ 419              	.LFE124:
+ 421              		.section	.text.Speed_PID_Enable,"ax",%progbits
+ 422              		.align	1
+ 423              		.global	Speed_PID_Enable
+ 424              		.syntax unified
+ 425              		.thumb
+ 426              		.thumb_func
+ 428              	Speed_PID_Enable:
+ 429              	.LVL31:
+ 430              	.LFB125:
+  72:MyHardWare/Src/pid_speed.c **** void Speed_PID_Enable(Speed_PID_Controller_t *controller) {
+ 431              		.loc 1 72 59 is_stmt 1 view -0
+ 432              		.cfi_startproc
+ 433              		@ args = 0, pretend = 0, frame = 0
+ 434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 435              		@ link register save eliminated.
+  74:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+ 436              		.loc 1 74 3 view .LVU105
+  74:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+ 437              		.loc 1 74 6 is_stmt 0 view .LVU106
+ 438 0000 08B1     		cbz	r0, .L29
+  79:MyHardWare/Src/pid_speed.c ****   controller->enabled = 1;
+ 439              		.loc 1 79 3 is_stmt 1 view .LVU107
+  79:MyHardWare/Src/pid_speed.c ****   controller->enabled = 1;
+ 440              		.loc 1 79 23 is_stmt 0 view .LVU108
+ 441 0002 0122     		movs	r2, #1
+ 442 0004 0273     		strb	r2, [r0, #12]
+ 443              	.L29:
+  80:MyHardWare/Src/pid_speed.c **** }
+ 444              		.loc 1 80 1 view .LVU109
+ 445 0006 7047     		bx	lr
+ 446              		.cfi_endproc
+ 447              	.LFE125:
+ 449              		.section	.text.Speed_PID_Disable,"ax",%progbits
+ 450              		.align	1
+ 451              		.global	Speed_PID_Disable
+ 452              		.syntax unified
+ 453              		.thumb
+ 454              		.thumb_func
+ 456              	Speed_PID_Disable:
+ 457              	.LVL32:
+ 458              	.LFB126:
+  86:MyHardWare/Src/pid_speed.c **** void Speed_PID_Disable(Speed_PID_Controller_t *controller) {
+ARM GAS  /tmp/ccBv828j.s 			page 14
+
+
+ 459              		.loc 1 86 60 is_stmt 1 view -0
+ 460              		.cfi_startproc
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+  88:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+ 463              		.loc 1 88 3 view .LVU111
+  88:MyHardWare/Src/pid_speed.c ****   if (controller == NULL) {
+ 464              		.loc 1 88 6 is_stmt 0 view .LVU112
+ 465 0000 80B1     		cbz	r0, .L34
+  86:MyHardWare/Src/pid_speed.c **** void Speed_PID_Disable(Speed_PID_Controller_t *controller) {
+ 466              		.loc 1 86 60 view .LVU113
+ 467 0002 10B5     		push	{r4, lr}
+ 468              	.LCFI12:
+ 469              		.cfi_def_cfa_offset 8
+ 470              		.cfi_offset 4, -8
+ 471              		.cfi_offset 14, -4
+ 472 0004 2DED028B 		vpush.64	{d8}
+ 473              	.LCFI13:
+ 474              		.cfi_def_cfa_offset 16
+ 475              		.cfi_offset 80, -16
+ 476              		.cfi_offset 81, -12
+ 477 0008 0446     		mov	r4, r0
+  93:MyHardWare/Src/pid_speed.c ****   controller->enabled = 0;
+ 478              		.loc 1 93 3 is_stmt 1 view .LVU114
+  93:MyHardWare/Src/pid_speed.c ****   controller->enabled = 0;
+ 479              		.loc 1 93 23 is_stmt 0 view .LVU115
+ 480 000a 0023     		movs	r3, #0
+ 481 000c 0373     		strb	r3, [r0, #12]
+  96:MyHardWare/Src/pid_speed.c ****   update_motor_output(controller, 0.0f);
+ 482              		.loc 1 96 3 is_stmt 1 view .LVU116
+ 483 000e 9FED068A 		vldr.32	s16, .L37
+ 484 0012 B0EE480A 		vmov.f32	s0, s16
+ 485 0016 FFF7FEFF 		bl	update_motor_output
+ 486              	.LVL33:
+  99:MyHardWare/Src/pid_speed.c ****   controller->pid_state.integral_error = 0.0f;
+ 487              		.loc 1 99 3 view .LVU117
+  99:MyHardWare/Src/pid_speed.c ****   controller->pid_state.integral_error = 0.0f;
+ 488              		.loc 1 99 40 is_stmt 0 view .LVU118
+ 489 001a 84ED098A 		vstr.32	s16, [r4, #36]
+ 100:MyHardWare/Src/pid_speed.c **** }
+ 490              		.loc 1 100 1 view .LVU119
+ 491 001e BDEC028B 		vldm	sp!, {d8}
+ 492              	.LCFI14:
+ 493              		.cfi_restore 80
+ 494              		.cfi_restore 81
+ 495              		.cfi_def_cfa_offset 8
+ 496 0022 10BD     		pop	{r4, pc}
+ 497              	.LVL34:
+ 498              	.L34:
+ 499              	.LCFI15:
+ 500              		.cfi_def_cfa_offset 0
+ 501              		.cfi_restore 4
+ 502              		.cfi_restore 14
+ 100:MyHardWare/Src/pid_speed.c **** }
+ 503              		.loc 1 100 1 view .LVU120
+ 504 0024 7047     		bx	lr
+ 505              	.L38:
+ARM GAS  /tmp/ccBv828j.s 			page 15
+
+
+ 506 0026 00BF     		.align	2
+ 507              	.L37:
+ 508 0028 00000000 		.word	0
+ 509              		.cfi_endproc
+ 510              	.LFE126:
+ 512              		.section	.text.Speed_PID_Update,"ax",%progbits
+ 513              		.align	1
+ 514              		.global	Speed_PID_Update
+ 515              		.syntax unified
+ 516              		.thumb
+ 517              		.thumb_func
+ 519              	Speed_PID_Update:
+ 520              	.LVL35:
+ 521              	.LFB127:
+ 107:MyHardWare/Src/pid_speed.c **** void Speed_PID_Update(Speed_PID_Controller_t *controller) {
+ 522              		.loc 1 107 59 is_stmt 1 view -0
+ 523              		.cfi_startproc
+ 524              		@ args = 0, pretend = 0, frame = 0
+ 525              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || !controller->enabled) {
+ 526              		.loc 1 109 3 view .LVU122
+ 109:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || !controller->enabled) {
+ 527              		.loc 1 109 6 is_stmt 0 view .LVU123
+ 528 0000 A0B1     		cbz	r0, .L42
+ 107:MyHardWare/Src/pid_speed.c **** void Speed_PID_Update(Speed_PID_Controller_t *controller) {
+ 529              		.loc 1 107 59 view .LVU124
+ 530 0002 10B5     		push	{r4, lr}
+ 531              	.LCFI16:
+ 532              		.cfi_def_cfa_offset 8
+ 533              		.cfi_offset 4, -8
+ 534              		.cfi_offset 14, -4
+ 535 0004 0446     		mov	r4, r0
+ 109:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || !controller->enabled) {
+ 536              		.loc 1 109 40 discriminator 1 view .LVU125
+ 537 0006 037B     		ldrb	r3, [r0, #12]	@ zero_extendqisi2
+ 109:MyHardWare/Src/pid_speed.c ****   if (controller == NULL || !controller->enabled) {
+ 538              		.loc 1 109 26 discriminator 1 view .LVU126
+ 539 0008 03B9     		cbnz	r3, .L45
+ 540              	.LVL36:
+ 541              	.L39:
+ 128:MyHardWare/Src/pid_speed.c **** }
+ 542              		.loc 1 128 1 view .LVU127
+ 543 000a 10BD     		pop	{r4, pc}
+ 544              	.LVL37:
+ 545              	.L45:
+ 114:MyHardWare/Src/pid_speed.c ****   uint32_t current_time = GetSysTick();
+ 546              		.loc 1 114 3 is_stmt 1 view .LVU128
+ 114:MyHardWare/Src/pid_speed.c ****   uint32_t current_time = GetSysTick();
+ 547              		.loc 1 114 27 is_stmt 0 view .LVU129
+ 548 000c FFF7FEFF 		bl	GetSysTick
+ 549              	.LVL38:
+ 115:MyHardWare/Src/pid_speed.c ****   float dt =
+ 550              		.loc 1 115 3 is_stmt 1 view .LVU130
+ 117:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = current_time;
+ 551              		.loc 1 117 3 view .LVU131
+ 117:MyHardWare/Src/pid_speed.c ****   controller->last_update_time = current_time;
+ 552              		.loc 1 117 32 is_stmt 0 view .LVU132
+ARM GAS  /tmp/ccBv828j.s 			page 16
+
+
+ 553 0010 2061     		str	r0, [r4, #16]
+ 554              	.LVL39:
+ 120:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+ 555              		.loc 1 120 3 is_stmt 1 view .LVU133
+ 120:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+ 556              		.loc 1 120 35 is_stmt 0 view .LVU134
+ 557 0012 2079     		ldrb	r0, [r4, #4]	@ zero_extendqisi2
+ 558              	.LVL40:
+ 120:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+ 559              		.loc 1 120 35 view .LVU135
+ 560 0014 FFF7FEFF 		bl	get_encoder_speed_m_s
+ 561              	.LVL41:
+ 120:MyHardWare/Src/pid_speed.c ****   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+ 562              		.loc 1 120 33 discriminator 1 view .LVU136
+ 563 0018 84ED020A 		vstr.32	s0, [r4, #8]
+ 123:MyHardWare/Src/pid_speed.c ****   float output =
+ 564              		.loc 1 123 3 is_stmt 1 view .LVU137
+ 124:MyHardWare/Src/pid_speed.c ****       pid_realize(&controller->pid_state, controller->current_speed_m_s);
+ 565              		.loc 1 124 7 is_stmt 0 view .LVU138
+ 566 001c 04F11400 		add	r0, r4, #20
+ 567 0020 FFF7FEFF 		bl	pid_realize
+ 568              	.LVL42:
+ 127:MyHardWare/Src/pid_speed.c ****   update_motor_output(controller, output);
+ 569              		.loc 1 127 3 is_stmt 1 view .LVU139
+ 570 0024 2046     		mov	r0, r4
+ 571 0026 FFF7FEFF 		bl	update_motor_output
+ 572              	.LVL43:
+ 127:MyHardWare/Src/pid_speed.c ****   update_motor_output(controller, output);
+ 573              		.loc 1 127 3 is_stmt 0 view .LVU140
+ 574 002a EEE7     		b	.L39
+ 575              	.LVL44:
+ 576              	.L42:
+ 577              	.LCFI17:
+ 578              		.cfi_def_cfa_offset 0
+ 579              		.cfi_restore 4
+ 580              		.cfi_restore 14
+ 127:MyHardWare/Src/pid_speed.c ****   update_motor_output(controller, output);
+ 581              		.loc 1 127 3 view .LVU141
+ 582 002c 7047     		bx	lr
+ 583              		.cfi_endproc
+ 584              	.LFE127:
+ 586              		.global	Speed_PID_Left
+ 587              		.section	.bss.Speed_PID_Left,"aw",%nobits
+ 588              		.align	2
+ 591              	Speed_PID_Left:
+ 592 0000 00000000 		.space	48
+ 592      00000000 
+ 592      00000000 
+ 592      00000000 
+ 592      00000000 
+ 593              		.global	Speed_PID_Right
+ 594              		.section	.bss.Speed_PID_Right,"aw",%nobits
+ 595              		.align	2
+ 598              	Speed_PID_Right:
+ 599 0000 00000000 		.space	48
+ 599      00000000 
+ 599      00000000 
+ARM GAS  /tmp/ccBv828j.s 			page 17
+
+
+ 599      00000000 
+ 599      00000000 
+ 600              		.text
+ 601              	.Letext0:
+ 602              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 603              		.file 3 "MyHardWare/Inc/encoder.h"
+ 604              		.file 4 "MyHardWare/Inc/motor.h"
+ 605              		.file 5 "MyHardWare/Inc/pid_speed.h"
+ 606              		.file 6 "MyHardWare/Inc/task.h"
+ARM GAS  /tmp/ccBv828j.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pid_speed.c
+     /tmp/ccBv828j.s:21     .text.pid_init:00000000 $t
+     /tmp/ccBv828j.s:26     .text.pid_init:00000000 pid_init
+     /tmp/ccBv828j.s:62     .text.pid_realize:00000000 $t
+     /tmp/ccBv828j.s:67     .text.pid_realize:00000000 pid_realize
+     /tmp/ccBv828j.s:123    .text.update_motor_output:00000000 $t
+     /tmp/ccBv828j.s:128    .text.update_motor_output:00000000 update_motor_output
+     /tmp/ccBv828j.s:231    .text.update_motor_output:00000080 $d
+     /tmp/ccBv828j.s:240    .text.get_encoder_speed_m_s:00000000 $t
+     /tmp/ccBv828j.s:245    .text.get_encoder_speed_m_s:00000000 get_encoder_speed_m_s
+     /tmp/ccBv828j.s:280    .text.Speed_PID_Init:00000000 $t
+     /tmp/ccBv828j.s:286    .text.Speed_PID_Init:00000000 Speed_PID_Init
+     /tmp/ccBv828j.s:387    .text.Speed_PID_Init:00000050 $d
+     /tmp/ccBv828j.s:392    .text.Speed_PID_SetTargetSpeed:00000000 $t
+     /tmp/ccBv828j.s:398    .text.Speed_PID_SetTargetSpeed:00000000 Speed_PID_SetTargetSpeed
+     /tmp/ccBv828j.s:422    .text.Speed_PID_Enable:00000000 $t
+     /tmp/ccBv828j.s:428    .text.Speed_PID_Enable:00000000 Speed_PID_Enable
+     /tmp/ccBv828j.s:450    .text.Speed_PID_Disable:00000000 $t
+     /tmp/ccBv828j.s:456    .text.Speed_PID_Disable:00000000 Speed_PID_Disable
+     /tmp/ccBv828j.s:508    .text.Speed_PID_Disable:00000028 $d
+     /tmp/ccBv828j.s:513    .text.Speed_PID_Update:00000000 $t
+     /tmp/ccBv828j.s:519    .text.Speed_PID_Update:00000000 Speed_PID_Update
+     /tmp/ccBv828j.s:591    .bss.Speed_PID_Left:00000000 Speed_PID_Left
+     /tmp/ccBv828j.s:588    .bss.Speed_PID_Left:00000000 $d
+     /tmp/ccBv828j.s:598    .bss.Speed_PID_Right:00000000 Speed_PID_Right
+     /tmp/ccBv828j.s:595    .bss.Speed_PID_Right:00000000 $d
+
+UNDEFINED SYMBOLS
+Motor_SetDirection
+Motor_SetSpeed
+Motor_Update
+Encoder_GetData
+GetSysTick

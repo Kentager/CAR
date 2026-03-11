@@ -1,4 +1,5 @@
-build/stm32f4xx_it.o: USER/Src/stm32f4xx_it.c USER/Inc/stm32f4xx_it.h \
+build/pid_speed.o: MyHardWare/Src/pid_speed.c MyHardWare/Inc/pid_speed.h \
+ MyHardWare/Inc/encoder.h MyHardWare/Inc/HardwareConfig.h \
  CMSIS/stm32f4xx.h CMSIS/core_cm4.h CMSIS/core_cmInstr.h \
  CMSIS/core_cmFunc.h CMSIS/core_cmSimd.h CMSIS/system_stm32f4xx.h \
  USER/Inc/stm32f4xx_conf.h Lib/StdPeriphs/inc/stm32f4xx_adc.h \
@@ -14,9 +15,11 @@ build/stm32f4xx_it.o: USER/Src/stm32f4xx_it.c USER/Inc/stm32f4xx_it.h \
  Lib/StdPeriphs/inc/stm32f4xx_cryp.h Lib/StdPeriphs/inc/stm32f4xx_hash.h \
  Lib/StdPeriphs/inc/stm32f4xx_rng.h Lib/StdPeriphs/inc/stm32f4xx_can.h \
  Lib/StdPeriphs/inc/stm32f4xx_dac.h Lib/StdPeriphs/inc/stm32f4xx_dcmi.h \
- Lib/StdPeriphs/inc/stm32f4xx_fsmc.h MyHardWare/Inc/sdio_sd.h \
- MyHardWare/Inc/task.h
-USER/Inc/stm32f4xx_it.h:
+ Lib/StdPeriphs/inc/stm32f4xx_fsmc.h MyHardWare/Inc/task.h \
+ MyHardWare/Inc/motor.h MyHardWare/Inc/delay.h
+MyHardWare/Inc/pid_speed.h:
+MyHardWare/Inc/encoder.h:
+MyHardWare/Inc/HardwareConfig.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
 CMSIS/core_cmInstr.h:
@@ -50,5 +53,6 @@ Lib/StdPeriphs/inc/stm32f4xx_can.h:
 Lib/StdPeriphs/inc/stm32f4xx_dac.h:
 Lib/StdPeriphs/inc/stm32f4xx_dcmi.h:
 Lib/StdPeriphs/inc/stm32f4xx_fsmc.h:
-MyHardWare/Inc/sdio_sd.h:
 MyHardWare/Inc/task.h:
+MyHardWare/Inc/motor.h:
+MyHardWare/Inc/delay.h:

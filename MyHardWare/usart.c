@@ -21,10 +21,12 @@ USART1_BaudRate。
 ***/
 
 #include "usart.h"
+#include "delay.h"
 #include "led.h"
 #include "oled.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
+#include <stdint.h>
 #include <stdio.h>
 
 // DMA 发送缓冲区，大小为 256 字节
@@ -77,7 +79,7 @@ static void USART1_DMA_Init(void) {
   while (DMA_GetCmdStatus(DMA2_Stream7) != DISABLE)
     ;
   DMA_InitStructure.DMA_Channel = DMA_Channel_4;
-  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) & (USART1->DR);
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(USART1->DR);
   DMA_InitStructure.DMA_Memory0BaseAddr = 0;
   DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
   DMA_InitStructure.DMA_BufferSize = 0;
@@ -98,7 +100,7 @@ static void USART1_DMA_Init(void) {
   while (DMA_GetCmdStatus(DMA2_Stream7) != DISABLE)
     ;
   DMA_InitStructure.DMA_Channel = DMA_Channel_4;
-  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) & (USART1->DR);
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&(USART1->DR);
   DMA_InitStructure.DMA_Memory0BaseAddr = 0;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
   DMA_InitStructure.DMA_BufferSize = 0;
@@ -222,7 +224,7 @@ void Usart_Config(void) {
   USART_GPIO_Config();
 
   // 配置串口各项参数
-  USART_InitStructure.USART_BaudRate = USART1_BaudRate; // 波特率 115200
+  USART_InitStructure.USART_BaudRate = USART1_BaudRate;       // 波特率 115200
   USART_InitStructure.USART_WordLength = USART_WordLength_8b; // 数据位 8 位
   USART_InitStructure.USART_StopBits = USART_StopBits_1;      // 停止位 1 位
   USART_InitStructure.USART_Parity = USART_Parity_No;         // 无校验
@@ -284,10 +286,16 @@ void UART1_SendByte(uint8_t data) {
  * @param  ch: 要发送的字符
  * @retval 返回发送的字符
  */
+/**/
 int __io_putchar(int ch) {
   // 尝试将数据写入环形缓冲区
+  uint16_t count = 0;
   while (RingBuffer_Push(&tx_queue, (uint8_t)ch) == 0) {
     // 缓冲区满，等待有空闲空间
+    delay_us(1); // 等待 100 微秒
+    if ((count++) >= 1000) {
+      break; // 等待超过 1ms，放弃发送
+    }
     // RingBuffer_Push 会在有空间时自动写入并返回 1
   }
 
@@ -327,9 +335,9 @@ void UART1_SendData(uint16_t *buffer, uint16_t size) {
  *         配置 DMA2 Stream5 将 USART1 DR 寄存器的数据传输到 rx_queue 缓冲区
  */
 void UART1_DMA_Start_RX(void) {
-  DMA2_Stream5->M0AR = (uint32_t)rx_queue.buffer;
-  DMA2_Stream5->NDTR = rx_queue.size;
-  DMA_Cmd(DMA2_Stream5, ENABLE);
+  DMA2_Stream2->M0AR = (uint32_t)rx_queue.buffer;
+  DMA2_Stream2->NDTR = rx_queue.size;
+  DMA_Cmd(DMA2_Stream2, ENABLE);
   rx_queue.is_dma_enabled = 1;
 }
 
