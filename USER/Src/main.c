@@ -86,17 +86,17 @@ int main() {
   delay_init();
   Encoder_Data_t encoder_data;
   uint32_t count = 0;
-  motor_test();
+  // motor_test();
   while (1) {
     GPIO_ToggleBits(GPIOC, 13);
     delay_ms(100);
     printf("this is %d:\r\n", count);
     encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    printf("Right Encoder - Count: %d, speed: %.2f m/s\r\n", encoder_data.count,
-           encoder_data.speed_m_s);
+    printf("Right Encoder - Count: %d, total_count:%d, total_distance: %.2f m\r\n", encoder_data.last_count,encoder_data.total_count,
+           encoder_data.total_distance);
     encoder_data = Encoder_GetData(ENCODER_LEFT);
-    printf("Left Encoder - Count: %d, speed: %.2f m/s\r\n", encoder_data.count,
-           encoder_data.speed_m_s);
+    printf("Left Encoder - Count: %d, total_count:%d, total_distance: %.2f m\r\n", encoder_data.last_count,encoder_data.total_count,
+           encoder_data.total_distance);
     printf("\r\n");
     count++;
   }

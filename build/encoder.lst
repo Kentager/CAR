@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -56,9 +56,9 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
   27:MyHardWare/Src/encoder.c **** #else
   28:MyHardWare/Src/encoder.c **** // 双驱模式编码器实例
   29:MyHardWare/Src/encoder.c **** static Encoder_Class_t Encoder_Right = {
-  30:MyHardWare/Src/encoder.c ****     ._data = {.count = 0,
+  30:MyHardWare/Src/encoder.c ****     ._data = {
   31:MyHardWare/Src/encoder.c ****               .last_count = 0,
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 2
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 2
 
 
   32:MyHardWare/Src/encoder.c ****               .delta_count = 0,
@@ -77,7 +77,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
   45:MyHardWare/Src/encoder.c ****     .tim = TIM2};
   46:MyHardWare/Src/encoder.c **** 
   47:MyHardWare/Src/encoder.c **** static Encoder_Class_t Encoder_Left = {
-  48:MyHardWare/Src/encoder.c ****     ._data = {.count = 0,
+  48:MyHardWare/Src/encoder.c ****     ._data = {
   49:MyHardWare/Src/encoder.c ****               .last_count = 0,
   50:MyHardWare/Src/encoder.c ****               .delta_count = 0,
   51:MyHardWare/Src/encoder.c ****               .speed_rpm = 0.0f,
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
   39              		.cfi_offset 8, -8
   40              		.cfi_offset 14, -4
   41 0004 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 3
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 3
 
 
   42              	.LCFI1:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
   51              		.loc 1 119 31 is_stmt 0 view .LVU4
   52 000e 0326     		movs	r6, #3
   53 0010 0096     		str	r6, [sp]
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 4
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 4
 
 
  120:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
  131:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_LEFT_CH1_PIN | ENCODER_LEFT_CH2_PIN;
   97              		.loc 1 131 3 view .LVU18
   98              		.loc 1 131 31 is_stmt 0 view .LVU19
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 5
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 5
 
 
   99 0058 2823     		movs	r3, #40
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
  140:MyHardWare/Src/encoder.c **** /**
  141:MyHardWare/Src/encoder.c ****  * @brief 编码器定时器初始化（根据硬件配置直接初始化）
  142:MyHardWare/Src/encoder.c ****  * @note  通过条件编译直接初始化对应的定时器，无需运行时判断
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 6
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 6
 
 
  143:MyHardWare/Src/encoder.c ****  */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
  197:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
  198:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM4, &TIM_IC_InitStructure);
  199:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 7
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 7
 
 
  200:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM4, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising,
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
  254:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
  255:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
  256:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 8
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 8
 
 
  257:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM5, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
  295:MyHardWare/Src/encoder.c ****     } else if (delta < -32767) {
  296:MyHardWare/Src/encoder.c ****       // 计数器从 0 回绕到 65535，需要加上 65536
  297:MyHardWare/Src/encoder.c ****       delta += 65536;
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 9
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 9
 
 
  298:MyHardWare/Src/encoder.c ****     }
@@ -538,698 +538,712 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 1
  335:MyHardWare/Src/encoder.c ****     // 读取当前计数值 (支持 32 位定时器)
  336:MyHardWare/Src/encoder.c ****     int32_t current_count = (int32_t)TIM_GetCounter(instance->tim);
  337:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 10
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 10
 
 
  338:MyHardWare/Src/encoder.c ****     // 计算增量并处理计数器溢出/下溢
  339:MyHardWare/Src/encoder.c ****     int32_t delta = current_count - instance->_data.last_count;
  340:MyHardWare/Src/encoder.c **** 
  341:MyHardWare/Src/encoder.c ****     // 检测是否发生溢出或下溢（ARR=200000）
- 342:MyHardWare/Src/encoder.c ****     if (delta > 1000000) {
+ 342:MyHardWare/Src/encoder.c ****     if (delta > 100000) {
  343:MyHardWare/Src/encoder.c ****       // 计数器从 200000 回绕到 0，需要减去 200001
- 344:MyHardWare/Src/encoder.c ****       delta -= 2000001;
- 345:MyHardWare/Src/encoder.c ****     } else if (delta < -1000000) {
+ 344:MyHardWare/Src/encoder.c ****       delta -= 200001;
+ 345:MyHardWare/Src/encoder.c ****     } else if (delta < -100000) {
  180              		.loc 1 345 12 is_stmt 1 view .LVU33
  181              		.loc 1 345 15 is_stmt 0 view .LVU34
  182 0014 324A     		ldr	r2, .L16+4
  183 0016 9342     		cmp	r3, r2
  184 0018 03DA     		bge	.L8
  346:MyHardWare/Src/encoder.c ****       // 计数器从 0 回绕到 200000，需要加上 200001
- 347:MyHardWare/Src/encoder.c ****       delta += 2000001;
+ 347:MyHardWare/Src/encoder.c ****       delta += 200001;
  185              		.loc 1 347 7 is_stmt 1 view .LVU35
  186              		.loc 1 347 13 is_stmt 0 view .LVU36
- 187 001a 03F5F413 		add	r3, r3, #1998848
+ 187 001a 03F54333 		add	r3, r3, #199680
  188              	.LVL13:
  189              		.loc 1 347 13 view .LVU37
- 190 001e 03F28143 		addw	r3, r3, #1153
+ 190 001e 03F24113 		addw	r3, r3, #321
  191              	.LVL14:
  192              	.L8:
  348:MyHardWare/Src/encoder.c ****     }
  349:MyHardWare/Src/encoder.c **** 
  350:MyHardWare/Src/encoder.c ****     // 更新数据结构
- 351:MyHardWare/Src/encoder.c ****     instance->_data.last_count = instance->_data.count;
+ 351:MyHardWare/Src/encoder.c ****     instance->_data.last_count = current_count;
  193              		.loc 1 351 5 is_stmt 1 view .LVU38
- 194              		.loc 1 351 49 is_stmt 0 view .LVU39
- 195 0022 2268     		ldr	r2, [r4]
- 196              		.loc 1 351 32 view .LVU40
- 197 0024 6260     		str	r2, [r4, #4]
- 352:MyHardWare/Src/encoder.c ****     instance->_data.count = current_count;
- 198              		.loc 1 352 5 is_stmt 1 view .LVU41
- 199              		.loc 1 352 27 is_stmt 0 view .LVU42
- 200 0026 2060     		str	r0, [r4]
- 353:MyHardWare/Src/encoder.c ****     instance->_data.delta_count = delta;
- 201              		.loc 1 353 5 is_stmt 1 view .LVU43
- 202              		.loc 1 353 33 is_stmt 0 view .LVU44
- 203 0028 A360     		str	r3, [r4, #8]
- 354:MyHardWare/Src/encoder.c ****     instance->_data.total_count += delta;
- 204              		.loc 1 354 5 is_stmt 1 view .LVU45
- 205              		.loc 1 354 20 is_stmt 0 view .LVU46
- 206 002a E269     		ldr	r2, [r4, #28]
- 207              		.loc 1 354 33 view .LVU47
- 208 002c 1A44     		add	r2, r2, r3
- 209 002e E261     		str	r2, [r4, #28]
- 355:MyHardWare/Src/encoder.c **** 
- 356:MyHardWare/Src/encoder.c ****     // 计算速度
- 357:MyHardWare/Src/encoder.c ****     instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
- 210              		.loc 1 357 5 is_stmt 1 view .LVU48
- 211              		.loc 1 357 33 is_stmt 0 view .LVU49
- 212 0030 07EE903A 		vmov	s15, r3	@ int
- 213 0034 F8EEE76A 		vcvt.f32.s32	s13, s15
- 214              		.loc 1 357 46 view .LVU50
- 215 0038 DFED2A7A 		vldr.32	s15, .L16+8
- 216 003c 86EEA77A 		vdiv.f32	s14, s13, s15
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 11
-
-
- 217              		.loc 1 357 67 view .LVU51
- 218 0040 DFED296A 		vldr.32	s13, .L16+12
- 219 0044 C7EE267A 		vdiv.f32	s15, s14, s13
- 220              		.loc 1 357 31 view .LVU52
- 221 0048 C4ED047A 		vstr.32	s15, [r4, #16]
- 358:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
- 222              		.loc 1 358 5 is_stmt 1 view .LVU53
- 223              		.loc 1 358 59 is_stmt 0 view .LVU54
- 224 004c 9FED276A 		vldr.32	s12, .L16+16
- 225 0050 87EE867A 		vdiv.f32	s14, s15, s12
- 226              		.loc 1 358 31 view .LVU55
- 227 0054 84ED037A 		vstr.32	s14, [r4, #12]
- 359:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
- 228              		.loc 1 359 5 is_stmt 1 view .LVU56
- 229              		.loc 1 359 61 is_stmt 0 view .LVU57
- 230 0058 9FED257A 		vldr.32	s14, .L16+20
- 231 005c 67EE877A 		vmul.f32	s15, s15, s14
- 232              		.loc 1 359 33 view .LVU58
- 233 0060 C4ED057A 		vstr.32	s15, [r4, #20]
- 360:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
- 234              		.loc 1 360 5 is_stmt 1 view .LVU59
- 361:MyHardWare/Src/encoder.c ****         instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
- 235              		.loc 1 361 55 is_stmt 0 view .LVU60
- 236 0064 94ED0A7A 		vldr.32	s14, [r4, #40]
- 237              		.loc 1 361 71 view .LVU61
- 238 0068 B6EE006A 		vmov.f32	s12, #5.0e-1
- 239 006c 27EE067A 		vmul.f32	s14, s14, s12
- 240              		.loc 1 361 37 view .LVU62
- 241 0070 67EE877A 		vmul.f32	s15, s15, s14
- 360:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =
- 242              		.loc 1 360 31 view .LVU63
- 243 0074 C4ED067A 		vstr.32	s15, [r4, #24]
- 362:MyHardWare/Src/encoder.c **** 
- 363:MyHardWare/Src/encoder.c ****     // 更新总里程
- 364:MyHardWare/Src/encoder.c ****     instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
- 244              		.loc 1 364 5 is_stmt 1 view .LVU64
- 245              		.loc 1 364 20 is_stmt 0 view .LVU65
- 246 0078 94ED087A 		vldr.32	s14, [r4, #32]
- 247              		.loc 1 364 65 view .LVU66
- 248 007c 67EEA67A 		vmul.f32	s15, s15, s13
- 249              		.loc 1 364 36 view .LVU67
- 250 0080 77EE277A 		vadd.f32	s15, s14, s15
- 251 0084 C4ED087A 		vstr.32	s15, [r4, #32]
+ 194              		.loc 1 351 32 is_stmt 0 view .LVU39
+ 195 0022 2060     		str	r0, [r4]
+ 352:MyHardWare/Src/encoder.c ****     instance->_data.delta_count = delta;
+ 196              		.loc 1 352 5 is_stmt 1 view .LVU40
+ 197              		.loc 1 352 33 is_stmt 0 view .LVU41
+ 198 0024 6360     		str	r3, [r4, #4]
+ 353:MyHardWare/Src/encoder.c ****     instance->_data.total_count += delta;
+ 199              		.loc 1 353 5 is_stmt 1 view .LVU42
+ 200              		.loc 1 353 20 is_stmt 0 view .LVU43
+ 201 0026 A269     		ldr	r2, [r4, #24]
+ 202              		.loc 1 353 33 view .LVU44
+ 203 0028 1A44     		add	r2, r2, r3
+ 204 002a A261     		str	r2, [r4, #24]
+ 354:MyHardWare/Src/encoder.c **** 
+ 355:MyHardWare/Src/encoder.c ****     // // 计算速度
+ 356:MyHardWare/Src/encoder.c ****     // instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
+ 357:MyHardWare/Src/encoder.c ****     // instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 358:MyHardWare/Src/encoder.c ****     // instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 359:MyHardWare/Src/encoder.c ****     // instance->_data.speed_m_s =
+ 360:MyHardWare/Src/encoder.c ****     //     instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+ 361:MyHardWare/Src/encoder.c **** 
+ 362:MyHardWare/Src/encoder.c ****     // // 更新总里程
+ 363:MyHardWare/Src/encoder.c ****     // instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+ 364:MyHardWare/Src/encoder.c **** 
  365:MyHardWare/Src/encoder.c **** 
- 366:MyHardWare/Src/encoder.c ****     // 判断方向
- 367:MyHardWare/Src/encoder.c ****     if (delta > 0) {
- 252              		.loc 1 367 5 is_stmt 1 view .LVU68
- 253              		.loc 1 367 8 is_stmt 0 view .LVU69
- 254 0088 002B     		cmp	r3, #0
- 255 008a 1BDD     		ble	.L9
- 368:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_FORWARD;
- 256              		.loc 1 368 7 is_stmt 1 view .LVU70
- 257              		.loc 1 368 33 is_stmt 0 view .LVU71
- 258 008c 0123     		movs	r3, #1
- 259              	.LVL15:
- 260              		.loc 1 368 33 view .LVU72
- 261 008e 84F82430 		strb	r3, [r4, #36]
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 12
+ 366:MyHardWare/Src/encoder.c **** 
+ 367:MyHardWare/Src/encoder.c **** 
+ 368:MyHardWare/Src/encoder.c **** 
+ 369:MyHardWare/Src/encoder.c ****     instance->_data.speed_rps = (float)delta / 28000.0f / dt_seconds;
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 11
 
 
- 262              	.L10:
- 369:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
- 370:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
- 371:MyHardWare/Src/encoder.c ****     } else {
- 372:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_STOPPED;
- 373:MyHardWare/Src/encoder.c ****     }
+ 205              		.loc 1 369 5 is_stmt 1 view .LVU45
+ 206              		.loc 1 369 33 is_stmt 0 view .LVU46
+ 207 002c 07EE903A 		vmov	s15, r3	@ int
+ 208 0030 F8EEE76A 		vcvt.f32.s32	s13, s15
+ 209              		.loc 1 369 46 view .LVU47
+ 210 0034 DFED2B7A 		vldr.32	s15, .L16+8
+ 211 0038 86EEA77A 		vdiv.f32	s14, s13, s15
+ 212              		.loc 1 369 57 view .LVU48
+ 213 003c DFED2A6A 		vldr.32	s13, .L16+12
+ 214 0040 C7EE267A 		vdiv.f32	s15, s14, s13
+ 215              		.loc 1 369 31 view .LVU49
+ 216 0044 C4ED037A 		vstr.32	s15, [r4, #12]
+ 370:MyHardWare/Src/encoder.c **** 
+ 371:MyHardWare/Src/encoder.c ****     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+ 217              		.loc 1 371 5 is_stmt 1 view .LVU50
+ 218              		.loc 1 371 59 is_stmt 0 view .LVU51
+ 219 0048 9FED286A 		vldr.32	s12, .L16+16
+ 220 004c C7EE866A 		vdiv.f32	s13, s15, s12
+ 221              		.loc 1 371 31 view .LVU52
+ 222 0050 C4ED026A 		vstr.32	s13, [r4, #8]
+ 372:MyHardWare/Src/encoder.c **** 
+ 373:MyHardWare/Src/encoder.c ****     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+ 223              		.loc 1 373 5 is_stmt 1 view .LVU53
+ 224              		.loc 1 373 61 is_stmt 0 view .LVU54
+ 225 0054 DFED266A 		vldr.32	s13, .L16+20
+ 226 0058 67EEA67A 		vmul.f32	s15, s15, s13
+ 227              		.loc 1 373 33 view .LVU55
+ 228 005c C4ED047A 		vstr.32	s15, [r4, #16]
  374:MyHardWare/Src/encoder.c **** 
- 375:MyHardWare/Src/encoder.c ****     // 更新时间戳
- 376:MyHardWare/Src/encoder.c ****     instance->_data.last_update_time = current_time;
- 263              		.loc 1 376 5 is_stmt 1 view .LVU73
- 264              		.loc 1 376 38 is_stmt 0 view .LVU74
- 265 0092 2663     		str	r6, [r4, #48]
- 266              	.LBE3:
- 331:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
- 267              		.loc 1 331 27 is_stmt 1 discriminator 2 view .LVU75
- 268 0094 0135     		adds	r5, r5, #1
- 269              	.LVL16:
- 270              	.L6:
- 331:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
- 271              		.loc 1 331 21 discriminator 1 view .LVU76
- 272 0096 012D     		cmp	r5, #1
- 273 0098 1EDC     		bgt	.L14
- 274              	.LBB4:
- 332:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
- 275              		.loc 1 332 5 view .LVU77
- 332:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
- 276              		.loc 1 332 29 is_stmt 0 view .LVU78
- 277 009a FFF7FEFF 		bl	GetSysTick
- 278              	.LVL17:
- 279 009e 0646     		mov	r6, r0
- 280              	.LVL18:
- 333:MyHardWare/Src/encoder.c **** 
- 281              		.loc 1 333 5 is_stmt 1 view .LVU79
- 333:MyHardWare/Src/encoder.c **** 
- 282              		.loc 1 333 22 is_stmt 0 view .LVU80
- 283 00a0 02AB     		add	r3, sp, #8
- 284 00a2 03EB8503 		add	r3, r3, r5, lsl #2
- 285 00a6 53F8084C 		ldr	r4, [r3, #-8]
- 286              	.LVL19:
- 336:MyHardWare/Src/encoder.c **** 
- 287              		.loc 1 336 5 is_stmt 1 view .LVU81
- 336:MyHardWare/Src/encoder.c **** 
- 288              		.loc 1 336 38 is_stmt 0 view .LVU82
- 289 00aa A06B     		ldr	r0, [r4, #56]
- 290              	.LVL20:
- 336:MyHardWare/Src/encoder.c **** 
- 291              		.loc 1 336 38 view .LVU83
- 292 00ac FFF7FEFF 		bl	TIM_GetCounter
- 293              	.LVL21:
- 339:MyHardWare/Src/encoder.c **** 
- 294              		.loc 1 339 5 is_stmt 1 view .LVU84
- 339:MyHardWare/Src/encoder.c **** 
- 295              		.loc 1 339 52 is_stmt 0 view .LVU85
- 296 00b0 6368     		ldr	r3, [r4, #4]
- 339:MyHardWare/Src/encoder.c **** 
- 297              		.loc 1 339 13 view .LVU86
- 298 00b2 C31A     		subs	r3, r0, r3
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 13
-
-
- 299              	.LVL22:
- 342:MyHardWare/Src/encoder.c ****       // 计数器从 200000 回绕到 0，需要减去 200001
- 300              		.loc 1 342 5 is_stmt 1 view .LVU87
- 342:MyHardWare/Src/encoder.c ****       // 计数器从 200000 回绕到 0，需要减去 200001
- 301              		.loc 1 342 8 is_stmt 0 view .LVU88
- 302 00b4 0F4A     		ldr	r2, .L16+24
- 303 00b6 9342     		cmp	r3, r2
- 304 00b8 ACDD     		ble	.L7
- 344:MyHardWare/Src/encoder.c ****     } else if (delta < -1000000) {
- 305              		.loc 1 344 7 is_stmt 1 view .LVU89
- 344:MyHardWare/Src/encoder.c ****     } else if (delta < -1000000) {
- 306              		.loc 1 344 13 is_stmt 0 view .LVU90
- 307 00ba A3F5F413 		sub	r3, r3, #1998848
- 308              	.LVL23:
- 344:MyHardWare/Src/encoder.c ****     } else if (delta < -1000000) {
- 309              		.loc 1 344 13 view .LVU91
- 310 00be A3F28143 		subw	r3, r3, #1153
- 311              	.LVL24:
- 344:MyHardWare/Src/encoder.c ****     } else if (delta < -1000000) {
- 312              		.loc 1 344 13 view .LVU92
- 313 00c2 AEE7     		b	.L8
- 314              	.L9:
- 369:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
- 315              		.loc 1 369 12 is_stmt 1 view .LVU93
- 369:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
- 316              		.loc 1 369 15 is_stmt 0 view .LVU94
- 317 00c4 002B     		cmp	r3, #0
- 318 00c6 03DB     		blt	.L15
- 372:MyHardWare/Src/encoder.c ****     }
- 319              		.loc 1 372 7 is_stmt 1 view .LVU95
- 372:MyHardWare/Src/encoder.c ****     }
- 320              		.loc 1 372 33 is_stmt 0 view .LVU96
- 321 00c8 0023     		movs	r3, #0
- 322              	.LVL25:
- 372:MyHardWare/Src/encoder.c ****     }
- 323              		.loc 1 372 33 view .LVU97
- 324 00ca 84F82430 		strb	r3, [r4, #36]
- 325 00ce E0E7     		b	.L10
- 326              	.LVL26:
- 327              	.L15:
- 370:MyHardWare/Src/encoder.c ****     } else {
- 328              		.loc 1 370 7 is_stmt 1 view .LVU98
- 370:MyHardWare/Src/encoder.c ****     } else {
- 329              		.loc 1 370 33 is_stmt 0 view .LVU99
- 330 00d0 0223     		movs	r3, #2
- 331              	.LVL27:
- 370:MyHardWare/Src/encoder.c ****     } else {
- 332              		.loc 1 370 33 view .LVU100
- 333 00d2 84F82430 		strb	r3, [r4, #36]
- 334 00d6 DCE7     		b	.L10
- 335              	.LVL28:
- 336              	.L14:
- 370:MyHardWare/Src/encoder.c ****     } else {
- 337              		.loc 1 370 33 view .LVU101
- 338              	.LBE4:
- 339              	.LBE2:
- 377:MyHardWare/Src/encoder.c ****   }
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 14
-
-
- 378:MyHardWare/Src/encoder.c **** #endif
- 379:MyHardWare/Src/encoder.c **** }
- 340              		.loc 1 379 1 view .LVU102
- 341 00d8 02B0     		add	sp, sp, #8
- 342              	.LCFI5:
- 343              		.cfi_def_cfa_offset 16
- 344              		@ sp needed
- 345 00da 70BD     		pop	{r4, r5, r6, pc}
- 346              	.LVL29:
- 347              	.L17:
- 348              		.loc 1 379 1 view .LVU103
- 349              		.align	2
- 350              	.L16:
- 351 00dc 00000000 		.word	.LANCHOR0
- 352 00e0 C0BDF0FF 		.word	-1000000
- 353 00e4 00C0DA46 		.word	1188741120
- 354 00e8 CDCCCC3D 		.word	1036831949
- 355 00ec 8988883C 		.word	1015580809
- 356 00f0 D00FC940 		.word	1086918608
- 357 00f4 40420F00 		.word	1000000
- 358              		.cfi_endproc
- 359              	.LFE126:
- 361              		.section	.text.Encoder_TIM_Init,"ax",%progbits
- 362              		.align	1
- 363              		.syntax unified
- 364              		.thumb
- 365              		.thumb_func
- 367              	Encoder_TIM_Init:
- 368              	.LFB124:
- 144:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
- 369              		.loc 1 144 36 is_stmt 1 view -0
- 370              		.cfi_startproc
- 371              		@ args = 0, pretend = 0, frame = 24
- 372              		@ frame_needed = 0, uses_anonymous_args = 0
- 373 0000 F0B5     		push	{r4, r5, r6, r7, lr}
- 374              	.LCFI6:
- 375              		.cfi_def_cfa_offset 20
- 376              		.cfi_offset 4, -20
- 377              		.cfi_offset 5, -16
- 378              		.cfi_offset 6, -12
- 379              		.cfi_offset 7, -8
- 380              		.cfi_offset 14, -4
- 381 0002 87B0     		sub	sp, sp, #28
- 382              	.LCFI7:
- 383              		.cfi_def_cfa_offset 48
- 221:MyHardWare/Src/encoder.c **** 
- 384              		.loc 1 221 3 view .LVU105
- 385 0004 0121     		movs	r1, #1
- 386 0006 0920     		movs	r0, #9
- 387 0008 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
- 388              	.LVL30:
- 224:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Period = 200000;
- 389              		.loc 1 224 3 view .LVU106
- 225:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
- 390              		.loc 1 225 3 view .LVU107
- 225:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
- 391              		.loc 1 225 36 is_stmt 0 view .LVU108
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 15
-
-
- 392 000c 284B     		ldr	r3, .L20
- 393 000e 0493     		str	r3, [sp, #16]
- 226:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
- 394              		.loc 1 226 3 is_stmt 1 view .LVU109
- 226:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
- 395              		.loc 1 226 39 is_stmt 0 view .LVU110
- 396 0010 0024     		movs	r4, #0
- 397 0012 ADF80C40 		strh	r4, [sp, #12]	@ movhi
- 227:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
- 398              		.loc 1 227 3 is_stmt 1 view .LVU111
- 227:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
- 399              		.loc 1 227 43 is_stmt 0 view .LVU112
- 400 0016 ADF81440 		strh	r4, [sp, #20]	@ movhi
- 228:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
- 401              		.loc 1 228 3 is_stmt 1 view .LVU113
- 228:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
- 402              		.loc 1 228 41 is_stmt 0 view .LVU114
- 403 001a ADF80E40 		strh	r4, [sp, #14]	@ movhi
- 229:MyHardWare/Src/encoder.c **** 
- 404              		.loc 1 229 3 is_stmt 1 view .LVU115
- 405 001e 03A9     		add	r1, sp, #12
- 406 0020 4FF08040 		mov	r0, #1073741824
- 407 0024 FFF7FEFF 		bl	TIM_TimeBaseInit
- 408              	.LVL31:
- 232:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
- 409              		.loc 1 232 3 view .LVU116
- 233:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
- 410              		.loc 1 233 3 view .LVU117
- 233:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
- 411              		.loc 1 233 36 is_stmt 0 view .LVU118
- 412 0028 ADF80040 		strh	r4, [sp]	@ movhi
- 234:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
- 413              		.loc 1 234 3 is_stmt 1 view .LVU119
- 234:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
- 414              		.loc 1 234 39 is_stmt 0 view .LVU120
- 415 002c ADF80240 		strh	r4, [sp, #2]	@ movhi
- 235:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
- 416              		.loc 1 235 3 is_stmt 1 view .LVU121
- 235:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
- 417              		.loc 1 235 40 is_stmt 0 view .LVU122
- 418 0030 0126     		movs	r6, #1
- 419 0032 ADF80460 		strh	r6, [sp, #4]	@ movhi
- 236:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
- 420              		.loc 1 236 3 is_stmt 1 view .LVU123
- 236:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
- 421              		.loc 1 236 40 is_stmt 0 view .LVU124
- 422 0036 ADF80640 		strh	r4, [sp, #6]	@ movhi
- 237:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
- 423              		.loc 1 237 3 is_stmt 1 view .LVU125
- 237:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
- 424              		.loc 1 237 37 is_stmt 0 view .LVU126
- 425 003a 0523     		movs	r3, #5
- 426 003c ADF80830 		strh	r3, [sp, #8]	@ movhi
- 238:MyHardWare/Src/encoder.c **** 
- 427              		.loc 1 238 3 is_stmt 1 view .LVU127
- 428 0040 6946     		mov	r1, sp
- 429 0042 4FF08040 		mov	r0, #1073741824
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 16
-
-
- 430 0046 FFF7FEFF 		bl	TIM_ICInit
- 431              	.LVL32:
- 240:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
- 432              		.loc 1 240 3 view .LVU128
- 240:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
- 433              		.loc 1 240 36 is_stmt 0 view .LVU129
- 434 004a 0427     		movs	r7, #4
- 435 004c ADF80070 		strh	r7, [sp]	@ movhi
- 241:MyHardWare/Src/encoder.c **** 
- 436              		.loc 1 241 3 is_stmt 1 view .LVU130
- 437 0050 6946     		mov	r1, sp
- 438 0052 4FF08040 		mov	r0, #1073741824
- 439 0056 FFF7FEFF 		bl	TIM_ICInit
- 440              	.LVL33:
- 244:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
- 441              		.loc 1 244 3 view .LVU131
- 442 005a 2346     		mov	r3, r4
- 443 005c 2246     		mov	r2, r4
- 444 005e 3146     		mov	r1, r6
- 445 0060 4FF08040 		mov	r0, #1073741824
- 446 0064 FFF7FEFF 		bl	TIM_EncoderInterfaceConfig
- 447              	.LVL34:
- 246:MyHardWare/Src/encoder.c **** 
- 448              		.loc 1 246 3 view .LVU132
- 449 0068 3146     		mov	r1, r6
- 450 006a 4FF08040 		mov	r0, #1073741824
- 451 006e FFF7FEFF 		bl	TIM_Cmd
- 452              	.LVL35:
- 249:MyHardWare/Src/encoder.c **** 
- 453              		.loc 1 249 3 view .LVU133
- 454 0072 104D     		ldr	r5, .L20+4
- 455 0074 03A9     		add	r1, sp, #12
- 456 0076 2846     		mov	r0, r5
- 457 0078 FFF7FEFF 		bl	TIM_TimeBaseInit
- 458              	.LVL36:
- 251:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
- 459              		.loc 1 251 3 view .LVU134
- 251:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
- 460              		.loc 1 251 36 is_stmt 0 view .LVU135
- 461 007c ADF80040 		strh	r4, [sp]	@ movhi
- 252:MyHardWare/Src/encoder.c **** 
- 462              		.loc 1 252 3 is_stmt 1 view .LVU136
- 463 0080 6946     		mov	r1, sp
- 464 0082 2846     		mov	r0, r5
- 465 0084 FFF7FEFF 		bl	TIM_ICInit
- 466              	.LVL37:
- 254:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
- 467              		.loc 1 254 3 view .LVU137
- 254:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
- 468              		.loc 1 254 36 is_stmt 0 view .LVU138
- 469 0088 ADF80070 		strh	r7, [sp]	@ movhi
- 255:MyHardWare/Src/encoder.c **** 
- 470              		.loc 1 255 3 is_stmt 1 view .LVU139
- 471 008c 6946     		mov	r1, sp
- 472 008e 2846     		mov	r0, r5
- 473 0090 FFF7FEFF 		bl	TIM_ICInit
- 474              	.LVL38:
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 17
-
-
- 257:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
- 475              		.loc 1 257 3 view .LVU140
- 476 0094 2346     		mov	r3, r4
- 477 0096 2246     		mov	r2, r4
- 478 0098 3146     		mov	r1, r6
- 479 009a 2846     		mov	r0, r5
- 480 009c FFF7FEFF 		bl	TIM_EncoderInterfaceConfig
- 481              	.LVL39:
- 259:MyHardWare/Src/encoder.c **** #endif
- 482              		.loc 1 259 3 view .LVU141
- 483 00a0 3146     		mov	r1, r6
- 484 00a2 2846     		mov	r0, r5
- 485 00a4 FFF7FEFF 		bl	TIM_Cmd
- 486              	.LVL40:
- 261:MyHardWare/Src/encoder.c **** }
- 487              		.loc 1 261 3 view .LVU142
- 488 00a8 FFF7FEFF 		bl	Encoder_Update
- 489              	.LVL41:
- 262:MyHardWare/Src/encoder.c **** 
- 490              		.loc 1 262 1 is_stmt 0 view .LVU143
- 491 00ac 07B0     		add	sp, sp, #28
- 492              	.LCFI8:
- 493              		.cfi_def_cfa_offset 20
- 494              		@ sp needed
- 495 00ae F0BD     		pop	{r4, r5, r6, r7, pc}
- 496              	.L21:
- 497              		.align	2
- 498              	.L20:
- 499 00b0 400D0300 		.word	200000
- 500 00b4 000C0040 		.word	1073744896
- 501              		.cfi_endproc
- 502              	.LFE124:
- 504              		.section	.text.Encoder_Driver_Init,"ax",%progbits
- 505              		.align	1
- 506              		.global	Encoder_Driver_Init
- 507              		.syntax unified
- 508              		.thumb
- 509              		.thumb_func
- 511              	Encoder_Driver_Init:
- 512              	.LFB125:
- 264:MyHardWare/Src/encoder.c ****   Encoder_GPIO_Init();
- 513              		.loc 1 264 32 is_stmt 1 view -0
- 514              		.cfi_startproc
- 515              		@ args = 0, pretend = 0, frame = 0
- 516              		@ frame_needed = 0, uses_anonymous_args = 0
- 517 0000 08B5     		push	{r3, lr}
- 518              	.LCFI9:
- 519              		.cfi_def_cfa_offset 8
- 520              		.cfi_offset 3, -8
- 521              		.cfi_offset 14, -4
- 265:MyHardWare/Src/encoder.c ****   Encoder_TIM_Init();
- 522              		.loc 1 265 3 view .LVU145
- 523 0002 FFF7FEFF 		bl	Encoder_GPIO_Init
- 524              	.LVL42:
- 266:MyHardWare/Src/encoder.c **** }
- 525              		.loc 1 266 3 view .LVU146
- 526 0006 FFF7FEFF 		bl	Encoder_TIM_Init
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 18
-
-
- 527              	.LVL43:
- 267:MyHardWare/Src/encoder.c **** 
- 528              		.loc 1 267 1 is_stmt 0 view .LVU147
- 529 000a 08BD     		pop	{r3, pc}
- 530              		.cfi_endproc
- 531              	.LFE125:
- 533              		.section	.text.Encoder_GetData,"ax",%progbits
- 534              		.align	1
- 535              		.global	Encoder_GetData
- 536              		.syntax unified
- 537              		.thumb
- 538              		.thumb_func
- 540              	Encoder_GetData:
- 541              	.LVL44:
- 542              	.LFB127:
- 380:MyHardWare/Src/encoder.c **** Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
- 543              		.loc 1 380 54 is_stmt 1 view -0
- 544              		.cfi_startproc
- 545              		@ args = 0, pretend = 0, frame = 64
- 546              		@ frame_needed = 0, uses_anonymous_args = 0
- 547              		.loc 1 380 54 is_stmt 0 view .LVU149
- 548 0000 30B5     		push	{r4, r5, lr}
- 549              	.LCFI10:
- 550              		.cfi_def_cfa_offset 12
- 551              		.cfi_offset 4, -12
- 552              		.cfi_offset 5, -8
- 553              		.cfi_offset 14, -4
- 554 0002 91B0     		sub	sp, sp, #68
- 555              	.LCFI11:
- 556              		.cfi_def_cfa_offset 80
- 557 0004 0546     		mov	r5, r0
- 558 0006 0C46     		mov	r4, r1
- 381:MyHardWare/Src/encoder.c ****   Encoder_Update(); // 确保数据是最新的
- 559              		.loc 1 381 3 is_stmt 1 view .LVU150
- 560 0008 FFF7FEFF 		bl	Encoder_Update
- 561              	.LVL45:
- 382:MyHardWare/Src/encoder.c ****   Encoder_Data_t empty_data = {0};
- 562              		.loc 1 382 3 view .LVU151
- 563              		.loc 1 382 18 is_stmt 0 view .LVU152
- 564 000c 3422     		movs	r2, #52
- 565 000e 0021     		movs	r1, #0
- 566 0010 03A8     		add	r0, sp, #12
- 567 0012 FFF7FEFF 		bl	memset
- 568              	.LVL46:
+ 375:MyHardWare/Src/encoder.c ****     instance->_data.speed_m_s =instance->_data.speed_rad_s * (0.065f / 2.0f);
+ 229              		.loc 1 375 5 is_stmt 1 view .LVU56
+ 230              		.loc 1 375 60 is_stmt 0 view .LVU57
+ 231 0060 DFED246A 		vldr.32	s13, .L16+24
+ 232 0064 67EEA67A 		vmul.f32	s15, s15, s13
+ 233              		.loc 1 375 31 view .LVU58
+ 234 0068 C4ED057A 		vstr.32	s15, [r4, #20]
+ 376:MyHardWare/Src/encoder.c **** 
+ 377:MyHardWare/Src/encoder.c ****     // 更新总里程
+ 378:MyHardWare/Src/encoder.c ****     // instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+ 379:MyHardWare/Src/encoder.c ****     instance->_data.total_distance += (float)delta / 28000.0f * 3.14159f * 0.065f;
+ 235              		.loc 1 379 5 is_stmt 1 view .LVU59
+ 236              		.loc 1 379 20 is_stmt 0 view .LVU60
+ 237 006c D4ED077A 		vldr.32	s15, [r4, #28]
+ 238              		.loc 1 379 63 view .LVU61
+ 239 0070 DFED216A 		vldr.32	s13, .L16+28
+ 240 0074 27EE267A 		vmul.f32	s14, s14, s13
+ 241              		.loc 1 379 74 view .LVU62
+ 242 0078 DFED206A 		vldr.32	s13, .L16+32
+ 243 007c 27EE267A 		vmul.f32	s14, s14, s13
+ 244              		.loc 1 379 36 view .LVU63
+ 245 0080 77EE877A 		vadd.f32	s15, s15, s14
+ 246 0084 C4ED077A 		vstr.32	s15, [r4, #28]
+ 380:MyHardWare/Src/encoder.c **** 
+ 381:MyHardWare/Src/encoder.c **** 
+ 382:MyHardWare/Src/encoder.c **** 
  383:MyHardWare/Src/encoder.c **** 
- 384:MyHardWare/Src/encoder.c ****   // 参数检查
- 385:MyHardWare/Src/encoder.c ****   if (encoder >= ENCODER_MAX) {
- 569              		.loc 1 385 3 is_stmt 1 view .LVU153
- 570              		.loc 1 385 6 is_stmt 0 view .LVU154
- 571 0016 012C     		cmp	r4, #1
- 572 0018 1AD8     		bhi	.L28
- 386:MyHardWare/Src/encoder.c ****     return empty_data;
- 387:MyHardWare/Src/encoder.c ****   }
- 388:MyHardWare/Src/encoder.c **** 
- 389:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
- 390:MyHardWare/Src/encoder.c ****   // 四驱模式：返回 4 个编码器的数据
- 391:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_FR, &Encoder_FL, &Encoder_BR,
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 19
+ 384:MyHardWare/Src/encoder.c **** 
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 12
 
 
- 392:MyHardWare/Src/encoder.c ****                                  &Encoder_BL};
- 393:MyHardWare/Src/encoder.c **** #else
- 394:MyHardWare/Src/encoder.c ****   // 双驱模式：返回 2 个编码器的数据
- 395:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
- 573              		.loc 1 395 3 is_stmt 1 view .LVU155
- 574              		.loc 1 395 20 is_stmt 0 view .LVU156
- 575 001a 104A     		ldr	r2, .L29
- 576 001c 01AB     		add	r3, sp, #4
- 577 001e 92E80300 		ldm	r2, {r0, r1}
- 578 0022 83E80300 		stm	r3, {r0, r1}
- 396:MyHardWare/Src/encoder.c **** #endif
- 397:MyHardWare/Src/encoder.c **** 
- 398:MyHardWare/Src/encoder.c ****   // 返回对应编码器的数据副本
- 399:MyHardWare/Src/encoder.c ****   return encoders[encoder]->_data;
- 579              		.loc 1 399 3 is_stmt 1 view .LVU157
- 580              		.loc 1 399 18 is_stmt 0 view .LVU158
- 581 0026 10AB     		add	r3, sp, #64
- 582 0028 03EB8404 		add	r4, r3, r4, lsl #2
- 583              	.LVL47:
- 584              		.loc 1 399 27 view .LVU159
- 585 002c AC46     		mov	ip, r5
- 586 002e 54F83C4C 		ldr	r4, [r4, #-60]
- 587 0032 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
- 588 0034 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 589 0038 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
- 590 003a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 591 003e 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
- 592 0040 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 593 0044 2368     		ldr	r3, [r4]
- 594 0046 CCF80030 		str	r3, [ip]
- 595              	.L24:
+ 385:MyHardWare/Src/encoder.c **** 
+ 386:MyHardWare/Src/encoder.c **** 
+ 387:MyHardWare/Src/encoder.c ****     // 判断方向
+ 388:MyHardWare/Src/encoder.c ****     if (delta > 0) {
+ 247              		.loc 1 388 5 is_stmt 1 view .LVU64
+ 248              		.loc 1 388 8 is_stmt 0 view .LVU65
+ 249 0088 002B     		cmp	r3, #0
+ 250 008a 1BDD     		ble	.L9
+ 389:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_FORWARD;
+ 251              		.loc 1 389 7 is_stmt 1 view .LVU66
+ 252              		.loc 1 389 33 is_stmt 0 view .LVU67
+ 253 008c 0123     		movs	r3, #1
+ 254              	.LVL15:
+ 255              		.loc 1 389 33 view .LVU68
+ 256 008e 84F82030 		strb	r3, [r4, #32]
+ 257              	.L10:
+ 390:MyHardWare/Src/encoder.c ****     } else if (delta < 0) {
+ 391:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
+ 392:MyHardWare/Src/encoder.c ****     } else {
+ 393:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_STOPPED;
+ 394:MyHardWare/Src/encoder.c ****     }
+ 395:MyHardWare/Src/encoder.c **** 
+ 396:MyHardWare/Src/encoder.c ****     // 更新时间戳
+ 397:MyHardWare/Src/encoder.c ****     instance->_data.last_update_time = current_time;
+ 258              		.loc 1 397 5 is_stmt 1 view .LVU69
+ 259              		.loc 1 397 38 is_stmt 0 view .LVU70
+ 260 0092 E662     		str	r6, [r4, #44]
+ 261              	.LBE3:
+ 331:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
+ 262              		.loc 1 331 27 is_stmt 1 discriminator 2 view .LVU71
+ 263 0094 0135     		adds	r5, r5, #1
+ 264              	.LVL16:
+ 265              	.L6:
+ 331:MyHardWare/Src/encoder.c ****     uint32_t current_time = GetSysTick();
+ 266              		.loc 1 331 21 discriminator 1 view .LVU72
+ 267 0096 012D     		cmp	r5, #1
+ 268 0098 1EDC     		bgt	.L14
+ 269              	.LBB4:
+ 332:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
+ 270              		.loc 1 332 5 view .LVU73
+ 332:MyHardWare/Src/encoder.c ****     Encoder_Class_t *instance = encoders[i];
+ 271              		.loc 1 332 29 is_stmt 0 view .LVU74
+ 272 009a FFF7FEFF 		bl	GetSysTick
+ 273              	.LVL17:
+ 274 009e 0646     		mov	r6, r0
+ 275              	.LVL18:
+ 333:MyHardWare/Src/encoder.c **** 
+ 276              		.loc 1 333 5 is_stmt 1 view .LVU75
+ 333:MyHardWare/Src/encoder.c **** 
+ 277              		.loc 1 333 22 is_stmt 0 view .LVU76
+ 278 00a0 02AB     		add	r3, sp, #8
+ 279 00a2 03EB8503 		add	r3, r3, r5, lsl #2
+ 280 00a6 53F8084C 		ldr	r4, [r3, #-8]
+ 281              	.LVL19:
+ 336:MyHardWare/Src/encoder.c **** 
+ 282              		.loc 1 336 5 is_stmt 1 view .LVU77
+ 336:MyHardWare/Src/encoder.c **** 
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 13
+
+
+ 283              		.loc 1 336 38 is_stmt 0 view .LVU78
+ 284 00aa 606B     		ldr	r0, [r4, #52]
+ 285              	.LVL20:
+ 336:MyHardWare/Src/encoder.c **** 
+ 286              		.loc 1 336 38 view .LVU79
+ 287 00ac FFF7FEFF 		bl	TIM_GetCounter
+ 288              	.LVL21:
+ 339:MyHardWare/Src/encoder.c **** 
+ 289              		.loc 1 339 5 is_stmt 1 view .LVU80
+ 339:MyHardWare/Src/encoder.c **** 
+ 290              		.loc 1 339 52 is_stmt 0 view .LVU81
+ 291 00b0 2368     		ldr	r3, [r4]
+ 339:MyHardWare/Src/encoder.c **** 
+ 292              		.loc 1 339 13 view .LVU82
+ 293 00b2 C31A     		subs	r3, r0, r3
+ 294              	.LVL22:
+ 342:MyHardWare/Src/encoder.c ****       // 计数器从 200000 回绕到 0，需要减去 200001
+ 295              		.loc 1 342 5 is_stmt 1 view .LVU83
+ 342:MyHardWare/Src/encoder.c ****       // 计数器从 200000 回绕到 0，需要减去 200001
+ 296              		.loc 1 342 8 is_stmt 0 view .LVU84
+ 297 00b4 124A     		ldr	r2, .L16+36
+ 298 00b6 9342     		cmp	r3, r2
+ 299 00b8 ACDD     		ble	.L7
+ 344:MyHardWare/Src/encoder.c ****     } else if (delta < -100000) {
+ 300              		.loc 1 344 7 is_stmt 1 view .LVU85
+ 344:MyHardWare/Src/encoder.c ****     } else if (delta < -100000) {
+ 301              		.loc 1 344 13 is_stmt 0 view .LVU86
+ 302 00ba A3F54333 		sub	r3, r3, #199680
+ 303              	.LVL23:
+ 344:MyHardWare/Src/encoder.c ****     } else if (delta < -100000) {
+ 304              		.loc 1 344 13 view .LVU87
+ 305 00be A3F24113 		subw	r3, r3, #321
+ 306              	.LVL24:
+ 344:MyHardWare/Src/encoder.c ****     } else if (delta < -100000) {
+ 307              		.loc 1 344 13 view .LVU88
+ 308 00c2 AEE7     		b	.L8
+ 309              	.L9:
+ 390:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
+ 310              		.loc 1 390 12 is_stmt 1 view .LVU89
+ 390:MyHardWare/Src/encoder.c ****       instance->_data.direction = ENCODER_DIR_BACKWARD;
+ 311              		.loc 1 390 15 is_stmt 0 view .LVU90
+ 312 00c4 002B     		cmp	r3, #0
+ 313 00c6 03DB     		blt	.L15
+ 393:MyHardWare/Src/encoder.c ****     }
+ 314              		.loc 1 393 7 is_stmt 1 view .LVU91
+ 393:MyHardWare/Src/encoder.c ****     }
+ 315              		.loc 1 393 33 is_stmt 0 view .LVU92
+ 316 00c8 0023     		movs	r3, #0
+ 317              	.LVL25:
+ 393:MyHardWare/Src/encoder.c ****     }
+ 318              		.loc 1 393 33 view .LVU93
+ 319 00ca 84F82030 		strb	r3, [r4, #32]
+ 320 00ce E0E7     		b	.L10
+ 321              	.LVL26:
+ 322              	.L15:
+ 391:MyHardWare/Src/encoder.c ****     } else {
+ 323              		.loc 1 391 7 is_stmt 1 view .LVU94
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 14
+
+
+ 391:MyHardWare/Src/encoder.c ****     } else {
+ 324              		.loc 1 391 33 is_stmt 0 view .LVU95
+ 325 00d0 0223     		movs	r3, #2
+ 326              	.LVL27:
+ 391:MyHardWare/Src/encoder.c ****     } else {
+ 327              		.loc 1 391 33 view .LVU96
+ 328 00d2 84F82030 		strb	r3, [r4, #32]
+ 329 00d6 DCE7     		b	.L10
+ 330              	.LVL28:
+ 331              	.L14:
+ 391:MyHardWare/Src/encoder.c ****     } else {
+ 332              		.loc 1 391 33 view .LVU97
+ 333              	.LBE4:
+ 334              	.LBE2:
+ 398:MyHardWare/Src/encoder.c ****   }
+ 399:MyHardWare/Src/encoder.c **** #endif
  400:MyHardWare/Src/encoder.c **** }
- 596              		.loc 1 400 1 view .LVU160
- 597 004a 2846     		mov	r0, r5
- 598 004c 11B0     		add	sp, sp, #68
- 599              	.LCFI12:
- 600              		.cfi_remember_state
- 601              		.cfi_def_cfa_offset 12
- 602              		@ sp needed
- 603 004e 30BD     		pop	{r4, r5, pc}
- 604              	.LVL48:
- 605              	.L28:
- 606              	.LCFI13:
- 607              		.cfi_restore_state
- 386:MyHardWare/Src/encoder.c ****     return empty_data;
- 608              		.loc 1 386 5 is_stmt 1 view .LVU161
- 386:MyHardWare/Src/encoder.c ****     return empty_data;
- 609              		.loc 1 386 12 is_stmt 0 view .LVU162
- 610 0050 3422     		movs	r2, #52
- 611 0052 0021     		movs	r1, #0
- 612 0054 2846     		mov	r0, r5
- 613 0056 FFF7FEFF 		bl	memset
- 614              	.LVL49:
- 615 005a F6E7     		b	.L24
- 616              	.L30:
- 617              		.align	2
- 618              	.L29:
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 20
+ 335              		.loc 1 400 1 view .LVU98
+ 336 00d8 02B0     		add	sp, sp, #8
+ 337              	.LCFI5:
+ 338              		.cfi_def_cfa_offset 16
+ 339              		@ sp needed
+ 340 00da 70BD     		pop	{r4, r5, r6, pc}
+ 341              	.LVL29:
+ 342              	.L17:
+ 343              		.loc 1 400 1 view .LVU99
+ 344              		.align	2
+ 345              	.L16:
+ 346 00dc 00000000 		.word	.LANCHOR0
+ 347 00e0 6079FEFF 		.word	-100000
+ 348 00e4 00C0DA46 		.word	1188741120
+ 349 00e8 CDCCCC3D 		.word	1036831949
+ 350 00ec 8988883C 		.word	1015580809
+ 351 00f0 D00FC940 		.word	1086918608
+ 352 00f4 B81E053D 		.word	1023745720
+ 353 00f8 D00F4940 		.word	1078530000
+ 354 00fc B81E853D 		.word	1032134328
+ 355 0100 A0860100 		.word	100000
+ 356              		.cfi_endproc
+ 357              	.LFE126:
+ 359              		.section	.text.Encoder_TIM_Init,"ax",%progbits
+ 360              		.align	1
+ 361              		.syntax unified
+ 362              		.thumb
+ 363              		.thumb_func
+ 365              	Encoder_TIM_Init:
+ 366              	.LFB124:
+ 144:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+ 367              		.loc 1 144 36 is_stmt 1 view -0
+ 368              		.cfi_startproc
+ 369              		@ args = 0, pretend = 0, frame = 24
+ 370              		@ frame_needed = 0, uses_anonymous_args = 0
+ 371 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 372              	.LCFI6:
+ 373              		.cfi_def_cfa_offset 20
+ 374              		.cfi_offset 4, -20
+ 375              		.cfi_offset 5, -16
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 15
 
 
- 619 005c 00000000 		.word	.LANCHOR0
- 620              		.cfi_endproc
- 621              	.LFE127:
- 623              		.section	.data.Encoder_Left,"aw"
- 624              		.align	2
- 627              	Encoder_Left:
- 628 0000 00000000 		.word	0
- 629 0004 00000000 		.word	0
- 630 0008 00000000 		.word	0
- 631 000c 00000000 		.word	0
- 632 0010 00000000 		.word	0
- 633 0014 00000000 		.word	0
- 634 0018 00000000 		.word	0
- 635 001c 00000000 		.word	0
- 636 0020 00000000 		.word	0
- 637 0024 00       		.byte	0
- 638 0025 000000   		.space	3
- 639 0028 B81E853D 		.word	1032134328
- 640 002c 0000803F 		.word	1065353216
- 641 0030 00000000 		.word	0
- 642 0034 00       		.byte	0
- 643 0035 01       		.byte	1
- 644 0036 0000     		.space	2
- 645 0038 000C0040 		.word	1073744896
- 646              		.section	.data.Encoder_Right,"aw"
- 647              		.align	2
- 650              	Encoder_Right:
- 651 0000 00000000 		.word	0
- 652 0004 00000000 		.word	0
- 653 0008 00000000 		.word	0
- 654 000c 00000000 		.word	0
- 655 0010 00000000 		.word	0
- 656 0014 00000000 		.word	0
- 657 0018 00000000 		.word	0
- 658 001c 00000000 		.word	0
- 659 0020 00000000 		.word	0
- 660 0024 00       		.byte	0
- 661 0025 000000   		.space	3
- 662 0028 B81E853D 		.word	1032134328
- 663 002c 0000803F 		.word	1065353216
- 664 0030 00000000 		.word	0
- 665 0034 00       		.byte	0
- 666 0035 00       		.byte	0
- 667 0036 0000     		.space	2
- 668 0038 00000040 		.word	1073741824
- 669              		.section	.rodata
- 670              		.align	2
- 671              		.set	.LANCHOR0,. + 0
- 672              	.LC0:
- 673 0000 00000000 		.word	Encoder_Right
- 674 0004 00000000 		.word	Encoder_Left
- 675              		.text
- 676              	.Letext0:
- 677              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
- 678              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
- 679              		.file 4 "CMSIS/stm32f4xx.h"
- 680              		.file 5 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 21
+ 376              		.cfi_offset 6, -12
+ 377              		.cfi_offset 7, -8
+ 378              		.cfi_offset 14, -4
+ 379 0002 87B0     		sub	sp, sp, #28
+ 380              	.LCFI7:
+ 381              		.cfi_def_cfa_offset 48
+ 221:MyHardWare/Src/encoder.c **** 
+ 382              		.loc 1 221 3 view .LVU101
+ 383 0004 0121     		movs	r1, #1
+ 384 0006 0920     		movs	r0, #9
+ 385 0008 FFF7FEFF 		bl	RCC_APB1PeriphClockCmd
+ 386              	.LVL30:
+ 224:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Period = 200000;
+ 387              		.loc 1 224 3 view .LVU102
+ 225:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
+ 388              		.loc 1 225 3 view .LVU103
+ 225:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_Prescaler = 0;
+ 389              		.loc 1 225 36 is_stmt 0 view .LVU104
+ 390 000c 284B     		ldr	r3, .L20
+ 391 000e 0493     		str	r3, [sp, #16]
+ 226:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+ 392              		.loc 1 226 3 is_stmt 1 view .LVU105
+ 226:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+ 393              		.loc 1 226 39 is_stmt 0 view .LVU106
+ 394 0010 0024     		movs	r4, #0
+ 395 0012 ADF80C40 		strh	r4, [sp, #12]	@ movhi
+ 227:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 396              		.loc 1 227 3 is_stmt 1 view .LVU107
+ 227:MyHardWare/Src/encoder.c ****   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 397              		.loc 1 227 43 is_stmt 0 view .LVU108
+ 398 0016 ADF81440 		strh	r4, [sp, #20]	@ movhi
+ 228:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+ 399              		.loc 1 228 3 is_stmt 1 view .LVU109
+ 228:MyHardWare/Src/encoder.c ****   TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+ 400              		.loc 1 228 41 is_stmt 0 view .LVU110
+ 401 001a ADF80E40 		strh	r4, [sp, #14]	@ movhi
+ 229:MyHardWare/Src/encoder.c **** 
+ 402              		.loc 1 229 3 is_stmt 1 view .LVU111
+ 403 001e 03A9     		add	r1, sp, #12
+ 404 0020 4FF08040 		mov	r0, #1073741824
+ 405 0024 FFF7FEFF 		bl	TIM_TimeBaseInit
+ 406              	.LVL31:
+ 232:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
+ 407              		.loc 1 232 3 view .LVU112
+ 233:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+ 408              		.loc 1 233 3 view .LVU113
+ 233:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPolarity = TIM_ICPolarity_Rising;
+ 409              		.loc 1 233 36 is_stmt 0 view .LVU114
+ 410 0028 ADF80040 		strh	r4, [sp]	@ movhi
+ 234:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+ 411              		.loc 1 234 3 is_stmt 1 view .LVU115
+ 234:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICSelection = TIM_ICSelection_DirectTI;
+ 412              		.loc 1 234 39 is_stmt 0 view .LVU116
+ 413 002c ADF80240 		strh	r4, [sp, #2]	@ movhi
+ 235:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+ 414              		.loc 1 235 3 is_stmt 1 view .LVU117
+ 235:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 16
 
 
- 681              		.file 6 "Lib/StdPeriphs/inc/stm32f4xx_tim.h"
- 682              		.file 7 "MyHardWare/Inc/encoder.h"
- 683              		.file 8 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
- 684              		.file 9 "MyHardWare/Inc/task.h"
- 685              		.file 10 "<built-in>"
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s 			page 22
+ 415              		.loc 1 235 40 is_stmt 0 view .LVU118
+ 416 0030 0126     		movs	r6, #1
+ 417 0032 ADF80460 		strh	r6, [sp, #4]	@ movhi
+ 236:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
+ 418              		.loc 1 236 3 is_stmt 1 view .LVU119
+ 236:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICFilter = 0x05; // 滤波器设置
+ 419              		.loc 1 236 40 is_stmt 0 view .LVU120
+ 420 0036 ADF80640 		strh	r4, [sp, #6]	@ movhi
+ 237:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 421              		.loc 1 237 3 is_stmt 1 view .LVU121
+ 237:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 422              		.loc 1 237 37 is_stmt 0 view .LVU122
+ 423 003a 0523     		movs	r3, #5
+ 424 003c ADF80830 		strh	r3, [sp, #8]	@ movhi
+ 238:MyHardWare/Src/encoder.c **** 
+ 425              		.loc 1 238 3 is_stmt 1 view .LVU123
+ 426 0040 6946     		mov	r1, sp
+ 427 0042 4FF08040 		mov	r0, #1073741824
+ 428 0046 FFF7FEFF 		bl	TIM_ICInit
+ 429              	.LVL32:
+ 240:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 430              		.loc 1 240 3 view .LVU124
+ 240:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM2, &TIM_IC_InitStructure);
+ 431              		.loc 1 240 36 is_stmt 0 view .LVU125
+ 432 004a 0427     		movs	r7, #4
+ 433 004c ADF80070 		strh	r7, [sp]	@ movhi
+ 241:MyHardWare/Src/encoder.c **** 
+ 434              		.loc 1 241 3 is_stmt 1 view .LVU126
+ 435 0050 6946     		mov	r1, sp
+ 436 0052 4FF08040 		mov	r0, #1073741824
+ 437 0056 FFF7FEFF 		bl	TIM_ICInit
+ 438              	.LVL33:
+ 244:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 439              		.loc 1 244 3 view .LVU127
+ 440 005a 2346     		mov	r3, r4
+ 441 005c 2246     		mov	r2, r4
+ 442 005e 3146     		mov	r1, r6
+ 443 0060 4FF08040 		mov	r0, #1073741824
+ 444 0064 FFF7FEFF 		bl	TIM_EncoderInterfaceConfig
+ 445              	.LVL34:
+ 246:MyHardWare/Src/encoder.c **** 
+ 446              		.loc 1 246 3 view .LVU128
+ 447 0068 3146     		mov	r1, r6
+ 448 006a 4FF08040 		mov	r0, #1073741824
+ 449 006e FFF7FEFF 		bl	TIM_Cmd
+ 450              	.LVL35:
+ 249:MyHardWare/Src/encoder.c **** 
+ 451              		.loc 1 249 3 view .LVU129
+ 452 0072 104D     		ldr	r5, .L20+4
+ 453 0074 03A9     		add	r1, sp, #12
+ 454 0076 2846     		mov	r0, r5
+ 455 0078 FFF7FEFF 		bl	TIM_TimeBaseInit
+ 456              	.LVL36:
+ 251:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
+ 457              		.loc 1 251 3 view .LVU130
+ 251:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
+ 458              		.loc 1 251 36 is_stmt 0 view .LVU131
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 17
+
+
+ 459 007c ADF80040 		strh	r4, [sp]	@ movhi
+ 252:MyHardWare/Src/encoder.c **** 
+ 460              		.loc 1 252 3 is_stmt 1 view .LVU132
+ 461 0080 6946     		mov	r1, sp
+ 462 0082 2846     		mov	r0, r5
+ 463 0084 FFF7FEFF 		bl	TIM_ICInit
+ 464              	.LVL37:
+ 254:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
+ 465              		.loc 1 254 3 view .LVU133
+ 254:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
+ 466              		.loc 1 254 36 is_stmt 0 view .LVU134
+ 467 0088 ADF80070 		strh	r7, [sp]	@ movhi
+ 255:MyHardWare/Src/encoder.c **** 
+ 468              		.loc 1 255 3 is_stmt 1 view .LVU135
+ 469 008c 6946     		mov	r1, sp
+ 470 008e 2846     		mov	r0, r5
+ 471 0090 FFF7FEFF 		bl	TIM_ICInit
+ 472              	.LVL38:
+ 257:MyHardWare/Src/encoder.c ****                              TIM_ICPolarity_Rising);
+ 473              		.loc 1 257 3 view .LVU136
+ 474 0094 2346     		mov	r3, r4
+ 475 0096 2246     		mov	r2, r4
+ 476 0098 3146     		mov	r1, r6
+ 477 009a 2846     		mov	r0, r5
+ 478 009c FFF7FEFF 		bl	TIM_EncoderInterfaceConfig
+ 479              	.LVL39:
+ 259:MyHardWare/Src/encoder.c **** #endif
+ 480              		.loc 1 259 3 view .LVU137
+ 481 00a0 3146     		mov	r1, r6
+ 482 00a2 2846     		mov	r0, r5
+ 483 00a4 FFF7FEFF 		bl	TIM_Cmd
+ 484              	.LVL40:
+ 261:MyHardWare/Src/encoder.c **** }
+ 485              		.loc 1 261 3 view .LVU138
+ 486 00a8 FFF7FEFF 		bl	Encoder_Update
+ 487              	.LVL41:
+ 262:MyHardWare/Src/encoder.c **** 
+ 488              		.loc 1 262 1 is_stmt 0 view .LVU139
+ 489 00ac 07B0     		add	sp, sp, #28
+ 490              	.LCFI8:
+ 491              		.cfi_def_cfa_offset 20
+ 492              		@ sp needed
+ 493 00ae F0BD     		pop	{r4, r5, r6, r7, pc}
+ 494              	.L21:
+ 495              		.align	2
+ 496              	.L20:
+ 497 00b0 400D0300 		.word	200000
+ 498 00b4 000C0040 		.word	1073744896
+ 499              		.cfi_endproc
+ 500              	.LFE124:
+ 502              		.section	.text.Encoder_Driver_Init,"ax",%progbits
+ 503              		.align	1
+ 504              		.global	Encoder_Driver_Init
+ 505              		.syntax unified
+ 506              		.thumb
+ 507              		.thumb_func
+ 509              	Encoder_Driver_Init:
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 18
+
+
+ 510              	.LFB125:
+ 264:MyHardWare/Src/encoder.c ****   Encoder_GPIO_Init();
+ 511              		.loc 1 264 32 is_stmt 1 view -0
+ 512              		.cfi_startproc
+ 513              		@ args = 0, pretend = 0, frame = 0
+ 514              		@ frame_needed = 0, uses_anonymous_args = 0
+ 515 0000 08B5     		push	{r3, lr}
+ 516              	.LCFI9:
+ 517              		.cfi_def_cfa_offset 8
+ 518              		.cfi_offset 3, -8
+ 519              		.cfi_offset 14, -4
+ 265:MyHardWare/Src/encoder.c ****   Encoder_TIM_Init();
+ 520              		.loc 1 265 3 view .LVU141
+ 521 0002 FFF7FEFF 		bl	Encoder_GPIO_Init
+ 522              	.LVL42:
+ 266:MyHardWare/Src/encoder.c **** }
+ 523              		.loc 1 266 3 view .LVU142
+ 524 0006 FFF7FEFF 		bl	Encoder_TIM_Init
+ 525              	.LVL43:
+ 267:MyHardWare/Src/encoder.c **** 
+ 526              		.loc 1 267 1 is_stmt 0 view .LVU143
+ 527 000a 08BD     		pop	{r3, pc}
+ 528              		.cfi_endproc
+ 529              	.LFE125:
+ 531              		.section	.text.Encoder_GetData,"ax",%progbits
+ 532              		.align	1
+ 533              		.global	Encoder_GetData
+ 534              		.syntax unified
+ 535              		.thumb
+ 536              		.thumb_func
+ 538              	Encoder_GetData:
+ 539              	.LVL44:
+ 540              	.LFB127:
+ 401:MyHardWare/Src/encoder.c **** Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
+ 541              		.loc 1 401 54 is_stmt 1 view -0
+ 542              		.cfi_startproc
+ 543              		@ args = 0, pretend = 0, frame = 56
+ 544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 545              		.loc 1 401 54 is_stmt 0 view .LVU145
+ 546 0000 30B5     		push	{r4, r5, lr}
+ 547              	.LCFI10:
+ 548              		.cfi_def_cfa_offset 12
+ 549              		.cfi_offset 4, -12
+ 550              		.cfi_offset 5, -8
+ 551              		.cfi_offset 14, -4
+ 552 0002 8FB0     		sub	sp, sp, #60
+ 553              	.LCFI11:
+ 554              		.cfi_def_cfa_offset 72
+ 555 0004 0546     		mov	r5, r0
+ 556 0006 0C46     		mov	r4, r1
+ 402:MyHardWare/Src/encoder.c ****   Encoder_Update(); // 确保数据是最新的
+ 557              		.loc 1 402 3 is_stmt 1 view .LVU146
+ 558 0008 FFF7FEFF 		bl	Encoder_Update
+ 559              	.LVL45:
+ 403:MyHardWare/Src/encoder.c ****   Encoder_Data_t empty_data = {0};
+ 560              		.loc 1 403 3 view .LVU147
+ 561              		.loc 1 403 18 is_stmt 0 view .LVU148
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 19
+
+
+ 562 000c 3022     		movs	r2, #48
+ 563 000e 0021     		movs	r1, #0
+ 564 0010 02A8     		add	r0, sp, #8
+ 565 0012 FFF7FEFF 		bl	memset
+ 566              	.LVL46:
+ 404:MyHardWare/Src/encoder.c **** 
+ 405:MyHardWare/Src/encoder.c ****   // 参数检查
+ 406:MyHardWare/Src/encoder.c ****   if (encoder >= ENCODER_MAX) {
+ 567              		.loc 1 406 3 is_stmt 1 view .LVU149
+ 568              		.loc 1 406 6 is_stmt 0 view .LVU150
+ 569 0016 012C     		cmp	r4, #1
+ 570 0018 18D8     		bhi	.L28
+ 407:MyHardWare/Src/encoder.c ****     return empty_data;
+ 408:MyHardWare/Src/encoder.c ****   }
+ 409:MyHardWare/Src/encoder.c **** 
+ 410:MyHardWare/Src/encoder.c **** #ifdef QUAD_MOTOR_DRIVE
+ 411:MyHardWare/Src/encoder.c ****   // 四驱模式：返回 4 个编码器的数据
+ 412:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_FR, &Encoder_FL, &Encoder_BR,
+ 413:MyHardWare/Src/encoder.c ****                                  &Encoder_BL};
+ 414:MyHardWare/Src/encoder.c **** #else
+ 415:MyHardWare/Src/encoder.c ****   // 双驱模式：返回 2 个编码器的数据
+ 416:MyHardWare/Src/encoder.c ****   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
+ 571              		.loc 1 416 3 is_stmt 1 view .LVU151
+ 572              		.loc 1 416 20 is_stmt 0 view .LVU152
+ 573 001a 0F4A     		ldr	r2, .L29
+ 574 001c 6B46     		mov	r3, sp
+ 575 001e 92E80300 		ldm	r2, {r0, r1}
+ 576 0022 83E80300 		stm	r3, {r0, r1}
+ 417:MyHardWare/Src/encoder.c **** #endif
+ 418:MyHardWare/Src/encoder.c **** 
+ 419:MyHardWare/Src/encoder.c ****   // 返回对应编码器的数据副本
+ 420:MyHardWare/Src/encoder.c ****   return encoders[encoder]->_data;
+ 577              		.loc 1 420 3 is_stmt 1 view .LVU153
+ 578              		.loc 1 420 18 is_stmt 0 view .LVU154
+ 579 0026 0EAB     		add	r3, sp, #56
+ 580 0028 03EB8404 		add	r4, r3, r4, lsl #2
+ 581              	.LVL47:
+ 582              		.loc 1 420 27 view .LVU155
+ 583 002c AC46     		mov	ip, r5
+ 584 002e 54F8384C 		ldr	r4, [r4, #-56]
+ 585 0032 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 586 0034 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 587 0038 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 588 003a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 589 003e 94E80F00 		ldm	r4, {r0, r1, r2, r3}
+ 590 0042 8CE80F00 		stm	ip, {r0, r1, r2, r3}
+ 591              	.L24:
+ 421:MyHardWare/Src/encoder.c **** }
+ 592              		.loc 1 421 1 view .LVU156
+ 593 0046 2846     		mov	r0, r5
+ 594 0048 0FB0     		add	sp, sp, #60
+ 595              	.LCFI12:
+ 596              		.cfi_remember_state
+ 597              		.cfi_def_cfa_offset 12
+ 598              		@ sp needed
+ 599 004a 30BD     		pop	{r4, r5, pc}
+ 600              	.LVL48:
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 20
+
+
+ 601              	.L28:
+ 602              	.LCFI13:
+ 603              		.cfi_restore_state
+ 407:MyHardWare/Src/encoder.c ****     return empty_data;
+ 604              		.loc 1 407 5 is_stmt 1 view .LVU157
+ 407:MyHardWare/Src/encoder.c ****     return empty_data;
+ 605              		.loc 1 407 12 is_stmt 0 view .LVU158
+ 606 004c 3022     		movs	r2, #48
+ 607 004e 0021     		movs	r1, #0
+ 608 0050 2846     		mov	r0, r5
+ 609 0052 FFF7FEFF 		bl	memset
+ 610              	.LVL49:
+ 611 0056 F6E7     		b	.L24
+ 612              	.L30:
+ 613              		.align	2
+ 614              	.L29:
+ 615 0058 00000000 		.word	.LANCHOR0
+ 616              		.cfi_endproc
+ 617              	.LFE127:
+ 619              		.section	.data.Encoder_Left,"aw"
+ 620              		.align	2
+ 623              	Encoder_Left:
+ 624 0000 00000000 		.word	0
+ 625 0004 00000000 		.word	0
+ 626 0008 00000000 		.word	0
+ 627 000c 00000000 		.word	0
+ 628 0010 00000000 		.word	0
+ 629 0014 00000000 		.word	0
+ 630 0018 00000000 		.word	0
+ 631 001c 00000000 		.word	0
+ 632 0020 00       		.byte	0
+ 633 0021 000000   		.space	3
+ 634 0024 B81E853D 		.word	1032134328
+ 635 0028 0000803F 		.word	1065353216
+ 636 002c 00000000 		.word	0
+ 637 0030 00       		.byte	0
+ 638 0031 01       		.byte	1
+ 639 0032 0000     		.space	2
+ 640 0034 000C0040 		.word	1073744896
+ 641              		.section	.data.Encoder_Right,"aw"
+ 642              		.align	2
+ 645              	Encoder_Right:
+ 646 0000 00000000 		.word	0
+ 647 0004 00000000 		.word	0
+ 648 0008 00000000 		.word	0
+ 649 000c 00000000 		.word	0
+ 650 0010 00000000 		.word	0
+ 651 0014 00000000 		.word	0
+ 652 0018 00000000 		.word	0
+ 653 001c 00000000 		.word	0
+ 654 0020 00       		.byte	0
+ 655 0021 000000   		.space	3
+ 656 0024 B81E853D 		.word	1032134328
+ 657 0028 0000803F 		.word	1065353216
+ 658 002c 00000000 		.word	0
+ 659 0030 00       		.byte	0
+ 660 0031 00       		.byte	0
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 21
+
+
+ 661 0032 0000     		.space	2
+ 662 0034 00000040 		.word	1073741824
+ 663              		.section	.rodata
+ 664              		.align	2
+ 665              		.set	.LANCHOR0,. + 0
+ 666              	.LC0:
+ 667 0000 00000000 		.word	Encoder_Right
+ 668 0004 00000000 		.word	Encoder_Left
+ 669              		.text
+ 670              	.Letext0:
+ 671              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
+ 672              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
+ 673              		.file 4 "CMSIS/stm32f4xx.h"
+ 674              		.file 5 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
+ 675              		.file 6 "Lib/StdPeriphs/inc/stm32f4xx_tim.h"
+ 676              		.file 7 "MyHardWare/Inc/encoder.h"
+ 677              		.file 8 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
+ 678              		.file 9 "MyHardWare/Inc/task.h"
+ 679              		.file 10 "<built-in>"
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 encoder.c
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:21     .text.Encoder_GPIO_Init:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:26     .text.Encoder_GPIO_Init:00000000 Encoder_GPIO_Init
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:133    .text.Encoder_GPIO_Init:00000088 $d
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:139    .text.Encoder_Update:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:145    .text.Encoder_Update:00000000 Encoder_Update
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:351    .text.Encoder_Update:000000dc $d
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:362    .text.Encoder_TIM_Init:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:367    .text.Encoder_TIM_Init:00000000 Encoder_TIM_Init
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:499    .text.Encoder_TIM_Init:000000b0 $d
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:505    .text.Encoder_Driver_Init:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:511    .text.Encoder_Driver_Init:00000000 Encoder_Driver_Init
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:534    .text.Encoder_GetData:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:540    .text.Encoder_GetData:00000000 Encoder_GetData
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:619    .text.Encoder_GetData:0000005c $d
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:624    .data.Encoder_Left:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:627    .data.Encoder_Left:00000000 Encoder_Left
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:647    .data.Encoder_Right:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:650    .data.Encoder_Right:00000000 Encoder_Right
-C:\Users\asus\AppData\Local\Temp\ccVlv7DU.s:670    .rodata:00000000 $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:21     .text.Encoder_GPIO_Init:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:26     .text.Encoder_GPIO_Init:00000000 Encoder_GPIO_Init
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:133    .text.Encoder_GPIO_Init:00000088 $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:139    .text.Encoder_Update:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:145    .text.Encoder_Update:00000000 Encoder_Update
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:346    .text.Encoder_Update:000000dc $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:360    .text.Encoder_TIM_Init:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:365    .text.Encoder_TIM_Init:00000000 Encoder_TIM_Init
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:497    .text.Encoder_TIM_Init:000000b0 $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:503    .text.Encoder_Driver_Init:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:509    .text.Encoder_Driver_Init:00000000 Encoder_Driver_Init
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:532    .text.Encoder_GetData:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:538    .text.Encoder_GetData:00000000 Encoder_GetData
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:615    .text.Encoder_GetData:00000058 $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:620    .data.Encoder_Left:00000000 $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:623    .data.Encoder_Left:00000000 Encoder_Left
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:642    .data.Encoder_Right:00000000 $d
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:645    .data.Encoder_Right:00000000 Encoder_Right
+C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:664    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 RCC_AHB1PeriphClockCmd

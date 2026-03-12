@@ -55,7 +55,7 @@ typedef enum {
 #define ENCODER_LINES 500          // 编码器线数
 #define ENCODER_REDUCTION_RATIO 28 // 减速比
 #define ENCODER_PPR                                                            \
-  (ENCODER_LINES * 2 * ENCODER_REDUCTION_RATIO) // 每转脉冲数 (500*2*28=2800)
+  (ENCODER_LINES * 2 * ENCODER_REDUCTION_RATIO) // 每转脉冲数 (500*2*28=28000)
 
 // 轮子参数
 #define WHEEL_DIAMETER 0.065f // 轮子直径 65mm（根据实际修改）
@@ -140,7 +140,6 @@ typedef enum {
  */
 typedef struct {
   // 当前状态
-  int32_t count;       // 当前计数值 (支持 32 位定时器)
   int32_t last_count;  // 上次计数值
   int32_t delta_count; // 计数增量
 
