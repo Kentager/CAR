@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccEFg7VL.s 			page 1
+ARM GAS  /tmp/ccqlwEoo.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
   28:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   */
   29:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** 
   30:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** /* Includes ------------------------------------------------------------------*/
-ARM GAS  /tmp/ccEFg7VL.s 			page 2
+ARM GAS  /tmp/ccqlwEoo.s 			page 2
 
 
   31:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** #include "stm32f4xx_pwr.h"
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
   85:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** #if defined(STM32F401xx) || defined(STM32F410xx) || defined(STM32F411xE) || defined(STM32F412xG) ||
   86:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** /* Alias word address of MRLVDS bit */
   87:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** #define MRLVDS_BitNumber         0x0B
-ARM GAS  /tmp/ccEFg7VL.s 			page 3
+ARM GAS  /tmp/ccqlwEoo.s 			page 3
 
 
   88:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** #define CR_MRLVDS_BB             (PERIPH_BB_BASE + (CR_OFFSET * 32) + (MRLVDS_BitNumber * 4))
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  142:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****  ===============================================================================  
  143:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****     [..]
  144:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****       After reset, the backup domain (RTC registers, RTC backup data 
-ARM GAS  /tmp/ccEFg7VL.s 			page 4
+ARM GAS  /tmp/ccqlwEoo.s 			page 4
 
 
  145:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****       registers and backup SRAM) is protected against possible unwanted 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  167:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** /**
  168:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @brief  Enables or disables access to the backup domain (RTC registers, RTC 
  169:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   *         backup data registers and backup SRAM).
-ARM GAS  /tmp/ccEFg7VL.s 			page 5
+ARM GAS  /tmp/ccqlwEoo.s 			page 5
 
 
  170:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @note   If the HSE divided by 2, 3, ..31 is used as the RTC clock, the 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  197:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           threshold selected by the PVD Level (PLS[2:0] bits in the PWR_CR).
  198:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****       (+) A PVDO flag is available to indicate if VDD/VDDA is higher or lower 
  199:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           than the PVD threshold. This event is internally connected to the EXTI 
-ARM GAS  /tmp/ccEFg7VL.s 			page 6
+ARM GAS  /tmp/ccqlwEoo.s 			page 6
 
 
  200:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           line16 and can generate an interrupt if enabled through the EXTI registers.
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  108              		.loc 1 237 3 is_stmt 1 view .LVU16
  109              		.loc 1 237 10 is_stmt 0 view .LVU17
  110 0008 0343     		orrs	r3, r3, r0
-ARM GAS  /tmp/ccEFg7VL.s 			page 7
+ARM GAS  /tmp/ccqlwEoo.s 			page 7
 
 
  111              	.LVL6:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  149 0008 00000E42 		.word	1108213760
  150              		.cfi_endproc
  151              	.LFE126:
-ARM GAS  /tmp/ccEFg7VL.s 			page 8
+ARM GAS  /tmp/ccqlwEoo.s 			page 8
 
 
  153              		.section	.text.PWR_WakeUpPinCmd,"ax",%progbits
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  173              		.loc 1 290 1 view .LVU30
  174 0006 7047     		bx	lr
  175              	.L14:
-ARM GAS  /tmp/ccEFg7VL.s 			page 9
+ARM GAS  /tmp/ccqlwEoo.s 			page 9
 
 
  176              		.align	2
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  331:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** /** @defgroup PWR_Group4 Main and Backup Regulators configuration functions
  332:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   *  @brief   Main and Backup Regulators configuration functions 
  333:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   *
-ARM GAS  /tmp/ccEFg7VL.s 			page 10
+ARM GAS  /tmp/ccqlwEoo.s 			page 10
 
 
  334:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** @verbatim   
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  388:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****         (++) Normal mode: The CPU and core logic operate at maximum frequency at a given 
  389:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****              voltage scaling (scale 1, scale 2 or scale 3)
  390:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****         (++) Over-drive mode: This mode allows the CPU and the core logic to operate at a 
-ARM GAS  /tmp/ccEFg7VL.s 			page 11
+ARM GAS  /tmp/ccqlwEoo.s 			page 11
 
 
  391:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****             higher frequency than the normal mode for a given voltage scaling (scale 1,  
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  215              		.thumb
  216              		.thumb_func
  218              	PWR_MainRegulatorModeConfig:
-ARM GAS  /tmp/ccEFg7VL.s 			page 12
+ARM GAS  /tmp/ccqlwEoo.s 			page 12
 
 
  219              	.LVL10:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  241              		.loc 1 454 3 is_stmt 1 view .LVU45
  242              		.loc 1 454 11 is_stmt 0 view .LVU46
  243 000a 1360     		str	r3, [r2]
-ARM GAS  /tmp/ccEFg7VL.s 			page 13
+ARM GAS  /tmp/ccqlwEoo.s 			page 13
 
 
  455:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** }
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  274 0004 7047     		bx	lr
  275              	.L23:
  276 0006 00BF     		.align	2
-ARM GAS  /tmp/ccEFg7VL.s 			page 14
+ARM GAS  /tmp/ccqlwEoo.s 			page 14
 
 
  277              	.L22:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  316              		.thumb_func
  318              	PWR_UnderDriveCmd:
  319              	.LVL16:
-ARM GAS  /tmp/ccEFg7VL.s 			page 15
+ARM GAS  /tmp/ccqlwEoo.s 			page 15
 
 
  320              	.LFB132:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  341 000e 034A     		ldr	r2, .L30
  342 0010 1368     		ldr	r3, [r2]
  343              		.loc 1 531 13 view .LVU67
-ARM GAS  /tmp/ccEFg7VL.s 			page 16
+ARM GAS  /tmp/ccqlwEoo.s 			page 16
 
 
  344 0012 23F44023 		bic	r3, r3, #786432
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  567:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @retval None
  568:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   */
  569:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** void PWR_LowRegulatorUnderDriveCmd(FunctionalState NewState)
-ARM GAS  /tmp/ccEFg7VL.s 			page 17
+ARM GAS  /tmp/ccqlwEoo.s 			page 17
 
 
  570:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** {
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  624:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   if (NewState != DISABLE)
  625:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   {
  626:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****     *(__IO uint32_t *) CR_LPLVDS_BB = (uint32_t)ENABLE;
-ARM GAS  /tmp/ccEFg7VL.s 			page 18
+ARM GAS  /tmp/ccqlwEoo.s 			page 18
 
 
  627:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   }
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  377              	.L34:
  378 0006 00BF     		.align	2
  379              	.L33:
-ARM GAS  /tmp/ccEFg7VL.s 			page 19
+ARM GAS  /tmp/ccqlwEoo.s 			page 19
 
 
  380 0008 00000E42 		.word	1108213760
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  711:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           (+++) Main regulator ON.
  712:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           (+++) Low Power regulator ON.
  713:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****       (+) Exit:
-ARM GAS  /tmp/ccEFg7VL.s 			page 20
+ARM GAS  /tmp/ccqlwEoo.s 			page 20
 
 
  714:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****         (++) Any EXTI Line (Internal or External) configured in Interrupt/Event mode.
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  768:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           (+++) Enable the RTC Alarm Interrupt using the RTC_ITConfig() function
  769:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****           (+++) Configure the RTC to generate the RTC alarm using the RTC_SetAlarm() 
  770:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****                 and RTC_AlarmCmd() functions.
-ARM GAS  /tmp/ccEFg7VL.s 			page 21
+ARM GAS  /tmp/ccqlwEoo.s 			page 21
 
 
  771:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****         (++) To wake up from the Standby mode with an RTC Tamper or time stamp event, it 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  817:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   tmpreg = PWR->CR;
  402              		.loc 1 817 3 view .LVU78
  403              		.loc 1 817 10 is_stmt 0 view .LVU79
-ARM GAS  /tmp/ccEFg7VL.s 			page 22
+ARM GAS  /tmp/ccqlwEoo.s 			page 22
 
 
  404 0000 0B4A     		ldr	r2, .L39
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  436              	.LBI12:
  437              		.file 2 "CMSIS/core_cmInstr.h"
    1:CMSIS/core_cmInstr.h **** /**************************************************************************//**
-ARM GAS  /tmp/ccEFg7VL.s 			page 23
+ARM GAS  /tmp/ccqlwEoo.s 			page 23
 
 
    2:CMSIS/core_cmInstr.h ****  * @file     core_cmInstr.h
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
   56:CMSIS/core_cmInstr.h **** /** \brief  No Operation
   57:CMSIS/core_cmInstr.h **** 
   58:CMSIS/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
-ARM GAS  /tmp/ccEFg7VL.s 			page 24
+ARM GAS  /tmp/ccqlwEoo.s 			page 24
 
 
   59:CMSIS/core_cmInstr.h ****  */
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  113:CMSIS/core_cmInstr.h ****  */
  114:CMSIS/core_cmInstr.h **** #define __DMB() do {\
  115:CMSIS/core_cmInstr.h ****                    __schedule_barrier();\
-ARM GAS  /tmp/ccEFg7VL.s 			page 25
+ARM GAS  /tmp/ccqlwEoo.s 			page 25
 
 
  116:CMSIS/core_cmInstr.h ****                    __dmb(0xF);\
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  170:CMSIS/core_cmInstr.h **** 
  171:CMSIS/core_cmInstr.h **** 
  172:CMSIS/core_cmInstr.h **** /** \brief  Breakpoint
-ARM GAS  /tmp/ccEFg7VL.s 			page 26
+ARM GAS  /tmp/ccqlwEoo.s 			page 26
 
 
  173:CMSIS/core_cmInstr.h **** 
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  227:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
  228:CMSIS/core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
  229:CMSIS/core_cmInstr.h ****  */
-ARM GAS  /tmp/ccEFg7VL.s 			page 27
+ARM GAS  /tmp/ccqlwEoo.s 			page 27
 
 
  230:CMSIS/core_cmInstr.h **** #define __LDREXB(ptr)                     ((uint8_t ) __ldrex(ptr))
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  284:CMSIS/core_cmInstr.h ****     \return          1  Function failed
  285:CMSIS/core_cmInstr.h ****  */
  286:CMSIS/core_cmInstr.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
-ARM GAS  /tmp/ccEFg7VL.s 			page 28
+ARM GAS  /tmp/ccqlwEoo.s 			page 28
 
 
  287:CMSIS/core_cmInstr.h **** 
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  341:CMSIS/core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
  342:CMSIS/core_cmInstr.h ****  */
  343:CMSIS/core_cmInstr.h **** #define __LDRBT(ptr)                      ((uint8_t )  __ldrt(ptr))
-ARM GAS  /tmp/ccEFg7VL.s 			page 29
+ARM GAS  /tmp/ccqlwEoo.s 			page 29
 
 
  344:CMSIS/core_cmInstr.h **** 
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  398:CMSIS/core_cmInstr.h **** #elif defined ( __GNUC__ ) /*------------------ GNU Compiler ---------------------*/
  399:CMSIS/core_cmInstr.h **** /* GNU gcc specific functions */
  400:CMSIS/core_cmInstr.h **** 
-ARM GAS  /tmp/ccEFg7VL.s 			page 30
+ARM GAS  /tmp/ccqlwEoo.s 			page 30
 
 
  401:CMSIS/core_cmInstr.h **** /* Define macros for porting to both thumb1 and thumb2.
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  842:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   SCB->SCR &= (uint32_t)~((uint32_t)SCB_SCR_SLEEPDEEP_Msk);  
  450              		.loc 1 842 3 view .LVU95
  451              		.loc 1 842 6 is_stmt 0 view .LVU96
-ARM GAS  /tmp/ccEFg7VL.s 			page 31
+ARM GAS  /tmp/ccqlwEoo.s 			page 31
 
 
  452 0020 044A     		ldr	r2, .L39+4
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  853:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @note   When exiting Stop mode by issuing an interrupt or a wakeup event, 
  854:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   *         the HSI RC oscillator is selected as system clock.
  855:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @note   When the voltage regulator operates in low power mode, an additional 
-ARM GAS  /tmp/ccEFg7VL.s 			page 32
+ARM GAS  /tmp/ccqlwEoo.s 			page 32
 
 
  856:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   *         startup delay is incurred when waking up from Stop mode. 
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  517              	.LVL29:
  887:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   
  888:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   /* Store the new value */
-ARM GAS  /tmp/ccEFg7VL.s 			page 33
+ARM GAS  /tmp/ccqlwEoo.s 			page 33
 
 
  889:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   PWR->CR = tmpreg;
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  553              		.loc 1 906 12 view .LVU126
  554 0024 23F00403 		bic	r3, r3, #4
  555 0028 1361     		str	r3, [r2, #16]
-ARM GAS  /tmp/ccEFg7VL.s 			page 34
+ARM GAS  /tmp/ccqlwEoo.s 			page 34
 
 
  907:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** }
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  592              		.loc 1 922 1 is_stmt 1 view -0
  593              		.cfi_startproc
  594              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccEFg7VL.s 			page 35
+ARM GAS  /tmp/ccqlwEoo.s 			page 35
 
 
  595              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  635              		.section	.text.PWR_GetFlagStatus,"ax",%progbits
  636              		.align	1
  637              		.global	PWR_GetFlagStatus
-ARM GAS  /tmp/ccEFg7VL.s 			page 36
+ARM GAS  /tmp/ccqlwEoo.s 			page 36
 
 
  638              		.syntax unified
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  646              		.cfi_startproc
  647              		@ args = 0, pretend = 0, frame = 0
  648              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccEFg7VL.s 			page 37
+ARM GAS  /tmp/ccqlwEoo.s 			page 37
 
 
  649              		@ link register save eliminated.
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  999:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** 
 1000:Lib/StdPeriphs/src/stm32f4xx_pwr.c **** /**
 1001:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @brief  Clears the PWR's pending flags.
-ARM GAS  /tmp/ccEFg7VL.s 			page 38
+ARM GAS  /tmp/ccqlwEoo.s 			page 38
 
 
 1002:Lib/StdPeriphs/src/stm32f4xx_pwr.c ****   * @param  PWR_FLAG: specifies the flag to clear.
@@ -2275,58 +2275,58 @@ ARM GAS  /tmp/ccEFg7VL.s 			page 1
  714              		.file 4 "CMSIS/core_cm4.h"
  715              		.file 5 "CMSIS/stm32f4xx.h"
  716              		.file 6 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
-ARM GAS  /tmp/ccEFg7VL.s 			page 39
+ARM GAS  /tmp/ccqlwEoo.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_pwr.c
-     /tmp/ccEFg7VL.s:21     .text.PWR_DeInit:00000000 $t
-     /tmp/ccEFg7VL.s:27     .text.PWR_DeInit:00000000 PWR_DeInit
-     /tmp/ccEFg7VL.s:54     .text.PWR_BackupAccessCmd:00000000 $t
-     /tmp/ccEFg7VL.s:60     .text.PWR_BackupAccessCmd:00000000 PWR_BackupAccessCmd
-     /tmp/ccEFg7VL.s:78     .text.PWR_BackupAccessCmd:00000008 $d
-     /tmp/ccEFg7VL.s:83     .text.PWR_PVDLevelConfig:00000000 $t
-     /tmp/ccEFg7VL.s:89     .text.PWR_PVDLevelConfig:00000000 PWR_PVDLevelConfig
-     /tmp/ccEFg7VL.s:120    .text.PWR_PVDLevelConfig:00000010 $d
-     /tmp/ccEFg7VL.s:125    .text.PWR_PVDCmd:00000000 $t
-     /tmp/ccEFg7VL.s:131    .text.PWR_PVDCmd:00000000 PWR_PVDCmd
-     /tmp/ccEFg7VL.s:149    .text.PWR_PVDCmd:00000008 $d
-     /tmp/ccEFg7VL.s:154    .text.PWR_WakeUpPinCmd:00000000 $t
-     /tmp/ccEFg7VL.s:160    .text.PWR_WakeUpPinCmd:00000000 PWR_WakeUpPinCmd
-     /tmp/ccEFg7VL.s:178    .text.PWR_WakeUpPinCmd:00000008 $d
-     /tmp/ccEFg7VL.s:183    .text.PWR_BackupRegulatorCmd:00000000 $t
-     /tmp/ccEFg7VL.s:189    .text.PWR_BackupRegulatorCmd:00000000 PWR_BackupRegulatorCmd
-     /tmp/ccEFg7VL.s:207    .text.PWR_BackupRegulatorCmd:00000008 $d
-     /tmp/ccEFg7VL.s:212    .text.PWR_MainRegulatorModeConfig:00000000 $t
-     /tmp/ccEFg7VL.s:218    .text.PWR_MainRegulatorModeConfig:00000000 PWR_MainRegulatorModeConfig
-     /tmp/ccEFg7VL.s:249    .text.PWR_MainRegulatorModeConfig:00000010 $d
-     /tmp/ccEFg7VL.s:254    .text.PWR_OverDriveCmd:00000000 $t
-     /tmp/ccEFg7VL.s:260    .text.PWR_OverDriveCmd:00000000 PWR_OverDriveCmd
-     /tmp/ccEFg7VL.s:278    .text.PWR_OverDriveCmd:00000008 $d
-     /tmp/ccEFg7VL.s:283    .text.PWR_OverDriveSWCmd:00000000 $t
-     /tmp/ccEFg7VL.s:289    .text.PWR_OverDriveSWCmd:00000000 PWR_OverDriveSWCmd
-     /tmp/ccEFg7VL.s:307    .text.PWR_OverDriveSWCmd:00000008 $d
-     /tmp/ccEFg7VL.s:312    .text.PWR_UnderDriveCmd:00000000 $t
-     /tmp/ccEFg7VL.s:318    .text.PWR_UnderDriveCmd:00000000 PWR_UnderDriveCmd
-     /tmp/ccEFg7VL.s:351    .text.PWR_UnderDriveCmd:0000001c $d
-     /tmp/ccEFg7VL.s:356    .text.PWR_FlashPowerDownCmd:00000000 $t
-     /tmp/ccEFg7VL.s:362    .text.PWR_FlashPowerDownCmd:00000000 PWR_FlashPowerDownCmd
-     /tmp/ccEFg7VL.s:380    .text.PWR_FlashPowerDownCmd:00000008 $d
-     /tmp/ccEFg7VL.s:385    .text.PWR_EnterSTOPMode:00000000 $t
-     /tmp/ccEFg7VL.s:391    .text.PWR_EnterSTOPMode:00000000 PWR_EnterSTOPMode
-     /tmp/ccEFg7VL.s:477    .text.PWR_EnterSTOPMode:00000030 $d
-     /tmp/ccEFg7VL.s:485    .text.PWR_EnterUnderDriveSTOPMode:00000000 $t
-     /tmp/ccEFg7VL.s:491    .text.PWR_EnterUnderDriveSTOPMode:00000000 PWR_EnterUnderDriveSTOPMode
-     /tmp/ccEFg7VL.s:576    .text.PWR_EnterUnderDriveSTOPMode:00000030 $d
-     /tmp/ccEFg7VL.s:584    .text.PWR_EnterSTANDBYMode:00000000 $t
-     /tmp/ccEFg7VL.s:590    .text.PWR_EnterSTANDBYMode:00000000 PWR_EnterSTANDBYMode
-     /tmp/ccEFg7VL.s:630    .text.PWR_EnterSTANDBYMode:00000018 $d
-     /tmp/ccEFg7VL.s:636    .text.PWR_GetFlagStatus:00000000 $t
-     /tmp/ccEFg7VL.s:642    .text.PWR_GetFlagStatus:00000000 PWR_GetFlagStatus
-     /tmp/ccEFg7VL.s:675    .text.PWR_GetFlagStatus:00000010 $d
-     /tmp/ccEFg7VL.s:680    .text.PWR_ClearFlag:00000000 $t
-     /tmp/ccEFg7VL.s:686    .text.PWR_ClearFlag:00000000 PWR_ClearFlag
-     /tmp/ccEFg7VL.s:707    .text.PWR_ClearFlag:0000000c $d
+     /tmp/ccqlwEoo.s:21     .text.PWR_DeInit:00000000 $t
+     /tmp/ccqlwEoo.s:27     .text.PWR_DeInit:00000000 PWR_DeInit
+     /tmp/ccqlwEoo.s:54     .text.PWR_BackupAccessCmd:00000000 $t
+     /tmp/ccqlwEoo.s:60     .text.PWR_BackupAccessCmd:00000000 PWR_BackupAccessCmd
+     /tmp/ccqlwEoo.s:78     .text.PWR_BackupAccessCmd:00000008 $d
+     /tmp/ccqlwEoo.s:83     .text.PWR_PVDLevelConfig:00000000 $t
+     /tmp/ccqlwEoo.s:89     .text.PWR_PVDLevelConfig:00000000 PWR_PVDLevelConfig
+     /tmp/ccqlwEoo.s:120    .text.PWR_PVDLevelConfig:00000010 $d
+     /tmp/ccqlwEoo.s:125    .text.PWR_PVDCmd:00000000 $t
+     /tmp/ccqlwEoo.s:131    .text.PWR_PVDCmd:00000000 PWR_PVDCmd
+     /tmp/ccqlwEoo.s:149    .text.PWR_PVDCmd:00000008 $d
+     /tmp/ccqlwEoo.s:154    .text.PWR_WakeUpPinCmd:00000000 $t
+     /tmp/ccqlwEoo.s:160    .text.PWR_WakeUpPinCmd:00000000 PWR_WakeUpPinCmd
+     /tmp/ccqlwEoo.s:178    .text.PWR_WakeUpPinCmd:00000008 $d
+     /tmp/ccqlwEoo.s:183    .text.PWR_BackupRegulatorCmd:00000000 $t
+     /tmp/ccqlwEoo.s:189    .text.PWR_BackupRegulatorCmd:00000000 PWR_BackupRegulatorCmd
+     /tmp/ccqlwEoo.s:207    .text.PWR_BackupRegulatorCmd:00000008 $d
+     /tmp/ccqlwEoo.s:212    .text.PWR_MainRegulatorModeConfig:00000000 $t
+     /tmp/ccqlwEoo.s:218    .text.PWR_MainRegulatorModeConfig:00000000 PWR_MainRegulatorModeConfig
+     /tmp/ccqlwEoo.s:249    .text.PWR_MainRegulatorModeConfig:00000010 $d
+     /tmp/ccqlwEoo.s:254    .text.PWR_OverDriveCmd:00000000 $t
+     /tmp/ccqlwEoo.s:260    .text.PWR_OverDriveCmd:00000000 PWR_OverDriveCmd
+     /tmp/ccqlwEoo.s:278    .text.PWR_OverDriveCmd:00000008 $d
+     /tmp/ccqlwEoo.s:283    .text.PWR_OverDriveSWCmd:00000000 $t
+     /tmp/ccqlwEoo.s:289    .text.PWR_OverDriveSWCmd:00000000 PWR_OverDriveSWCmd
+     /tmp/ccqlwEoo.s:307    .text.PWR_OverDriveSWCmd:00000008 $d
+     /tmp/ccqlwEoo.s:312    .text.PWR_UnderDriveCmd:00000000 $t
+     /tmp/ccqlwEoo.s:318    .text.PWR_UnderDriveCmd:00000000 PWR_UnderDriveCmd
+     /tmp/ccqlwEoo.s:351    .text.PWR_UnderDriveCmd:0000001c $d
+     /tmp/ccqlwEoo.s:356    .text.PWR_FlashPowerDownCmd:00000000 $t
+     /tmp/ccqlwEoo.s:362    .text.PWR_FlashPowerDownCmd:00000000 PWR_FlashPowerDownCmd
+     /tmp/ccqlwEoo.s:380    .text.PWR_FlashPowerDownCmd:00000008 $d
+     /tmp/ccqlwEoo.s:385    .text.PWR_EnterSTOPMode:00000000 $t
+     /tmp/ccqlwEoo.s:391    .text.PWR_EnterSTOPMode:00000000 PWR_EnterSTOPMode
+     /tmp/ccqlwEoo.s:477    .text.PWR_EnterSTOPMode:00000030 $d
+     /tmp/ccqlwEoo.s:485    .text.PWR_EnterUnderDriveSTOPMode:00000000 $t
+     /tmp/ccqlwEoo.s:491    .text.PWR_EnterUnderDriveSTOPMode:00000000 PWR_EnterUnderDriveSTOPMode
+     /tmp/ccqlwEoo.s:576    .text.PWR_EnterUnderDriveSTOPMode:00000030 $d
+     /tmp/ccqlwEoo.s:584    .text.PWR_EnterSTANDBYMode:00000000 $t
+     /tmp/ccqlwEoo.s:590    .text.PWR_EnterSTANDBYMode:00000000 PWR_EnterSTANDBYMode
+     /tmp/ccqlwEoo.s:630    .text.PWR_EnterSTANDBYMode:00000018 $d
+     /tmp/ccqlwEoo.s:636    .text.PWR_GetFlagStatus:00000000 $t
+     /tmp/ccqlwEoo.s:642    .text.PWR_GetFlagStatus:00000000 PWR_GetFlagStatus
+     /tmp/ccqlwEoo.s:675    .text.PWR_GetFlagStatus:00000010 $d
+     /tmp/ccqlwEoo.s:680    .text.PWR_ClearFlag:00000000 $t
+     /tmp/ccqlwEoo.s:686    .text.PWR_ClearFlag:00000000 PWR_ClearFlag
+     /tmp/ccqlwEoo.s:707    .text.PWR_ClearFlag:0000000c $d
 
 UNDEFINED SYMBOLS
 RCC_APB1PeriphResetCmd

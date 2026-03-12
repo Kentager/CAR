@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczs5ZMW.s 			page 1
+ARM GAS  /tmp/cc26YGbF.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
   28:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****  ===================================================================
   29:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****  [..] The real-time clock (RTC), the RTC backup registers, and the backup 
   30:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       SRAM (BKP SRAM) can be powered from the VBAT voltage when the main 
-ARM GAS  /tmp/cczs5ZMW.s 			page 2
+ARM GAS  /tmp/cc26YGbF.s 			page 2
 
 
   31:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       VDD supply is powered off.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
   85:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    (+) Enable the RTC domain access (see description in the section above)
   86:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    (+) Configure the RTC Prescaler (Asynchronous and Synchronous) and RTC hour 
   87:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****        format using the RTC_Init() function.
-ARM GAS  /tmp/cczs5ZMW.s 			page 3
+ARM GAS  /tmp/cc26YGbF.s 			page 3
 
 
   88:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  142:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    (+) Configure the RTC_AF1 trigger and enables the RTC TimeStamp using the RTC
  143:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       _TimeStampCmd() function.
  144:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    (+) To read the RTC TimeStamp Time and Date register, use the RTC_GetTimeStamp()
-ARM GAS  /tmp/cczs5ZMW.s 			page 4
+ARM GAS  /tmp/cc26YGbF.s 			page 4
 
 
  145:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****        function.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  199:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  200:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****           ##### Selection of RTC_AF1 alternate functions #####
  201:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****  ===================================================================
-ARM GAS  /tmp/cczs5ZMW.s 			page 5
+ARM GAS  /tmp/cc26YGbF.s 			page 5
 
 
  202:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****  [..] The RTC_AF1 pin (PC13) can be used for the following purposes:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  256:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    |    floating     |     0     |      1       |    care    |      1       |  Don't care  |
  257:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    |-----------------|-----------|--------------|------------|--------------|--------------|
  258:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    |  Standard GPIO  |     0     |      0       | Don't care |  Don't care  |  Don't care  |
-ARM GAS  /tmp/cczs5ZMW.s 			page 6
+ARM GAS  /tmp/cc26YGbF.s 			page 6
 
 
  259:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****    +---------------------------------------------------------------------------------------+   
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  313:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  314:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /* Private functions ---------------------------------------------------------*/
  315:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 7
+ARM GAS  /tmp/cc26YGbF.s 			page 7
 
 
  316:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /** @defgroup RTC_Private_Functions
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  370:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   __IO uint32_t wutcounter = 0x00;
  371:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t wutwfstatus = 0x00;
  372:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   ErrorStatus status = ERROR;
-ARM GAS  /tmp/cczs5ZMW.s 			page 8
+ARM GAS  /tmp/cc26YGbF.s 			page 8
 
 
  373:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  427:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       {
  428:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****         status = SUCCESS;      
  429:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       }
-ARM GAS  /tmp/cczs5ZMW.s 			page 9
+ARM GAS  /tmp/cc26YGbF.s 			page 9
 
 
  430:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  484:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Enable the write protection for RTC registers */
  485:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->WPR = 0xFF; 
  486:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
-ARM GAS  /tmp/cczs5ZMW.s 			page 10
+ARM GAS  /tmp/cc26YGbF.s 			page 10
 
 
  487:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   return status;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  541:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @retval An ErrorStatus enumeration value:
  542:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          - SUCCESS: RTC is in Init mode
  543:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          - ERROR: RTC is not in Init mode  
-ARM GAS  /tmp/cczs5ZMW.s 			page 11
+ARM GAS  /tmp/cc26YGbF.s 			page 11
 
 
  544:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  598:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *         synchronized with RTC APB clock.
  599:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @note   The RTC Resynchronization mode is write protected, use the 
  600:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *         RTC_WriteProtectionCmd(DISABLE) before calling this function. 
-ARM GAS  /tmp/cczs5ZMW.s 			page 12
+ARM GAS  /tmp/cc26YGbF.s 			page 12
 
 
  601:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @note   To read the calendar through the shadow registers after Calendar 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  655:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** ErrorStatus RTC_RefClockCmd(FunctionalState NewState)
  656:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** { 
  657:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   ErrorStatus status = ERROR;
-ARM GAS  /tmp/cczs5ZMW.s 			page 13
+ARM GAS  /tmp/cc26YGbF.s 			page 13
 
 
  658:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  712:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   if (NewState != DISABLE)
  713:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  714:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Set the BYPSHAD bit */
-ARM GAS  /tmp/cczs5ZMW.s 			page 14
+ARM GAS  /tmp/cc26YGbF.s 			page 14
 
 
  715:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC->CR |= (uint8_t)RTC_CR_BYPSHAD;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  769:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
  770:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       assert_param(IS_RTC_HOUR12(RTC_TimeStruct->RTC_Hours));
  771:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       assert_param(IS_RTC_H12(RTC_TimeStruct->RTC_H12));
-ARM GAS  /tmp/cczs5ZMW.s 			page 15
+ARM GAS  /tmp/cc26YGbF.s 			page 15
 
 
  772:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     } 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  826:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC->TR = (uint32_t)(tmpreg & RTC_TR_RESERVED_MASK);
  827:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  828:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Exit Initialization mode */
-ARM GAS  /tmp/cczs5ZMW.s 			page 16
+ARM GAS  /tmp/cc26YGbF.s 			page 16
 
 
  829:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC_ExitInitMode(); 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  883:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  884:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
  885:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   assert_param(IS_RTC_FORMAT(RTC_Format));
-ARM GAS  /tmp/cczs5ZMW.s 			page 17
+ARM GAS  /tmp/cc26YGbF.s 			page 17
 
 
  886:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  940:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t tmpreg = 0;
  941:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   ErrorStatus status = ERROR;
  942:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
-ARM GAS  /tmp/cczs5ZMW.s 			page 18
+ARM GAS  /tmp/cc26YGbF.s 			page 18
 
 
  943:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  997:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC_ExitInitMode(); 
  998:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  999:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* If  RTC_CR_BYPSHAD bit = 0, wait for synchro else this check is not needed */
-ARM GAS  /tmp/cczs5ZMW.s 			page 19
+ARM GAS  /tmp/cc26YGbF.s 			page 19
 
 
 1000:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     if ((RTC->CR & RTC_CR_BYPSHAD) == RESET)
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1054:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
 1055:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Get the RTC_TR register */
 1056:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   tmpreg = (uint32_t)(RTC->DR & RTC_DR_RESERVED_MASK); 
-ARM GAS  /tmp/cczs5ZMW.s 			page 20
+ARM GAS  /tmp/cc26YGbF.s 			page 20
 
 
 1057:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1111:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
 1112:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
 1113:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   assert_param(IS_RTC_FORMAT(RTC_Format));
-ARM GAS  /tmp/cczs5ZMW.s 			page 21
+ARM GAS  /tmp/cc26YGbF.s 			page 21
 
 
 1114:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   assert_param(IS_RTC_ALARM(RTC_Alarm));
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1168:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     }    
 1169:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
 1170:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 22
+ARM GAS  /tmp/cc26YGbF.s 			page 22
 
 
 1171:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the input parameters format */
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1225:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC_AlarmStruct->RTC_AlarmTime.RTC_Seconds = 0;
 1226:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 1227:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Alarm Date Settings : Date = 1st day of the month */
-ARM GAS  /tmp/cczs5ZMW.s 			page 23
+ARM GAS  /tmp/cc26YGbF.s 			page 23
 
 
 1228:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC_AlarmStruct->RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_Date;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1282:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****                                                         RTC_AlarmTime.RTC_Hours);
 1283:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC_AlarmStruct->RTC_AlarmTime.RTC_Minutes = RTC_Bcd2ToByte(RTC_AlarmStruct-> \
 1284:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****                                                         RTC_AlarmTime.RTC_Minutes);
-ARM GAS  /tmp/cczs5ZMW.s 			page 24
+ARM GAS  /tmp/cc26YGbF.s 			page 24
 
 
 1285:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC_AlarmStruct->RTC_AlarmTime.RTC_Seconds = RTC_Bcd2ToByte(RTC_AlarmStruct-> \
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1339:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     } 
 1340:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     else
 1341:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
-ARM GAS  /tmp/cczs5ZMW.s 			page 25
+ARM GAS  /tmp/cc26YGbF.s 			page 25
 
 
 1342:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       status = SUCCESS;
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1396:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   */
 1397:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** void RTC_AlarmSubSecondConfig(uint32_t RTC_Alarm, uint32_t RTC_AlarmSubSecondValue, uint32_t RTC_Al
 1398:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** {
-ARM GAS  /tmp/cczs5ZMW.s 			page 26
+ARM GAS  /tmp/cc26YGbF.s 			page 26
 
 
 1399:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t tmpreg = 0;
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1453:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
 1454:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 1455:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /**
-ARM GAS  /tmp/cczs5ZMW.s 			page 27
+ARM GAS  /tmp/cc26YGbF.s 			page 27
 
 
 1456:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @}
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1510:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @param  RTC_WakeUpCounter: specifies the WakeUp counter.
 1511:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          This parameter can be a value from 0x0000 to 0xFFFF. 
 1512:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @retval None
-ARM GAS  /tmp/cczs5ZMW.s 			page 28
+ARM GAS  /tmp/cc26YGbF.s 			page 28
 
 
 1513:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   */
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1567:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
 1568:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Disable the Wakeup Timer */
 1569:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC->CR &= (uint32_t)~RTC_CR_WUTE;
-ARM GAS  /tmp/cczs5ZMW.s 			page 29
+ARM GAS  /tmp/cc26YGbF.s 			page 29
 
 
 1570:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Wait till RTC WUTWF flag is set and if Time out is reached exit */
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1624:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** void RTC_DayLightSavingConfig(uint32_t RTC_DayLightSaving, uint32_t RTC_StoreOperation)
 1625:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** {
 1626:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
-ARM GAS  /tmp/cczs5ZMW.s 			page 30
+ARM GAS  /tmp/cc26YGbF.s 			page 30
 
 
 1627:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   assert_param(IS_RTC_DAYLIGHT_SAVING(RTC_DayLightSaving));
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1681:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_Output_WakeUp: signal of WakeUp mapped to output
 1682:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @param  RTC_OutputPolarity: Specifies the polarity of the output signal. 
 1683:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          This parameter can be one of the following:
-ARM GAS  /tmp/cczs5ZMW.s 			page 31
+ARM GAS  /tmp/cc26YGbF.s 			page 31
 
 
 1684:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_OutputPolarity_High: The output pin is high when the 
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1738:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *         sign with a 4-ppm step.
 1739:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *           
 1740:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @retval An ErrorStatus enumeration value:
-ARM GAS  /tmp/cczs5ZMW.s 			page 32
+ARM GAS  /tmp/cc26YGbF.s 			page 32
 
 
 1741:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          - SUCCESS: RTC Coarse calibration are initialized
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1795:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
 1796:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Set Initialization mode */
 1797:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   if (RTC_EnterInitMode() == ERROR)
-ARM GAS  /tmp/cczs5ZMW.s 			page 33
+ARM GAS  /tmp/cc26YGbF.s 			page 33
 
 
 1798:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1852:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->WPR = 0xFF; 
 1853:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
 1854:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 34
+ARM GAS  /tmp/cc26YGbF.s 			page 34
 
 
 1855:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /**
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1909:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   assert_param(IS_RTC_SMOOTH_CALIB_MINUS(RTC_SmouthCalibMinusPulsesValue));
 1910:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 1911:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Disable the write protection for RTC registers */
-ARM GAS  /tmp/cczs5ZMW.s 			page 35
+ARM GAS  /tmp/cc26YGbF.s 			page 35
 
 
 1912:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->WPR = 0xCA;
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1966:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          This parameter can be one of the following:
 1967:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_TimeStampEdge_Rising: the Time stamp event occurs on the rising 
 1968:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *                                    edge of the related pin.
-ARM GAS  /tmp/cczs5ZMW.s 			page 36
+ARM GAS  /tmp/cc26YGbF.s 			page 36
 
 
 1969:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_TimeStampEdge_Falling: the Time stamp event occurs on the 
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2023:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 2024:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
 2025:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   assert_param(IS_RTC_FORMAT(RTC_Format));
-ARM GAS  /tmp/cczs5ZMW.s 			page 37
+ARM GAS  /tmp/cc26YGbF.s 			page 37
 
 
 2026:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2080:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 2081:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** @endverbatim
 2082:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @{
-ARM GAS  /tmp/cczs5ZMW.s 			page 38
+ARM GAS  /tmp/cc26YGbF.s 			page 38
 
 
 2083:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   */
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2137:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Disable the selected Tamper pin */
 2138:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC->TAFCR &= (uint32_t)~RTC_Tamper;    
 2139:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }  
-ARM GAS  /tmp/cczs5ZMW.s 			page 39
+ARM GAS  /tmp/cc26YGbF.s 			page 39
 
 
 2140:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2194:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Clear TAMPFREQ[2:0] bits in the RTC_TAFCR register */
 2195:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->TAFCR &= (uint32_t)~(RTC_TAFCR_TAMPFREQ);
 2196:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 40
+ARM GAS  /tmp/cc26YGbF.s 			page 40
 
 
 2197:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Configure the RTC_TAFCR register */
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2251:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @param  NewState: new state of tamper pull up.
 2252:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *   This parameter can be: ENABLE or DISABLE.                   
 2253:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @retval None
-ARM GAS  /tmp/cczs5ZMW.s 			page 41
+ARM GAS  /tmp/cc26YGbF.s 			page 41
 
 
 2254:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   */
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2308:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
 2309:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 2310:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /**
-ARM GAS  /tmp/cczs5ZMW.s 			page 42
+ARM GAS  /tmp/cc26YGbF.s 			page 42
 
 
 2311:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @brief  Reads data from the specified RTC Backup data Register.
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2365:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /**
 2366:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @brief  Selects the RTC TimeStamp Pin.
 2367:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @param  RTC_TimeStampPin: specifies the RTC TimeStamp Pin.
-ARM GAS  /tmp/cczs5ZMW.s 			page 43
+ARM GAS  /tmp/cc26YGbF.s 			page 43
 
 
 2368:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *          This parameter can be one of the following values:
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2422:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *     @arg RTC_ShiftAdd1S_Set  : Add one second to the clock calendar. 
 2423:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *     @arg RTC_ShiftAdd1S_Reset: No effect.
 2424:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @param  RTC_ShiftSubFS: Select the number of Second Fractions to Substitute.
-ARM GAS  /tmp/cczs5ZMW.s 			page 44
+ARM GAS  /tmp/cc26YGbF.s 			page 44
 
 
 2425:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *         This parameter can be one any value from 0 to 0x7FFF.
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2479:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
 2480:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 2481:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Enable the write protection for RTC registers */
-ARM GAS  /tmp/cczs5ZMW.s 			page 45
+ARM GAS  /tmp/cc26YGbF.s 			page 45
 
 
 2482:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->WPR = 0xFF;
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2536:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 2537:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** /**
 2538:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @brief  Enables or disables the specified RTC interrupts.
-ARM GAS  /tmp/cczs5ZMW.s 			page 46
+ARM GAS  /tmp/cc26YGbF.s 			page 46
 
 
 2539:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   * @param  RTC_IT: specifies the RTC interrupt sources to be enabled or disabled. 
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2593:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_FLAG_SHPF: Shift operation pending flag.
 2594:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_FLAG_WUTWF: WakeUp Timer Write flag
 2595:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_FLAG_ALRBWF: Alarm B Write flag
-ARM GAS  /tmp/cczs5ZMW.s 			page 47
+ARM GAS  /tmp/cc26YGbF.s 			page 47
 
 
 2596:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_FLAG_ALRAWF: Alarm A write flag
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2650:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_IT_WUT: WakeUp Timer interrupt 
 2651:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_IT_ALRB: Alarm B interrupt 
 2652:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_IT_ALRA: Alarm A interrupt 
-ARM GAS  /tmp/cczs5ZMW.s 			page 48
+ARM GAS  /tmp/cc26YGbF.s 			page 48
 
 
 2653:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   *            @arg RTC_IT_TAMP1: Tamper 1 event interrupt
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2707:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
 2708:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Clear the interrupt pending bits in the RTC_ISR register */
 2709:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->ISR = (uint32_t)((uint32_t)(~((tmpreg | RTC_ISR_INIT)& 0x0000FFFF) | (uint32_t)(RTC->ISR & R
-ARM GAS  /tmp/cczs5ZMW.s 			page 49
+ARM GAS  /tmp/cc26YGbF.s 			page 49
 
 
 2710:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2731:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   return  ((uint8_t)(bcdhigh << 4) | Value);
   60              		.loc 1 2731 3 view .LVU12
   61              		.loc 1 2731 12 is_stmt 0 view .LVU13
-ARM GAS  /tmp/cczs5ZMW.s 			page 50
+ARM GAS  /tmp/cc26YGbF.s 			page 50
 
 
   62 0010 1B01     		lsls	r3, r3, #4
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  105              	.LFE179:
  107              		.section	.text.RTC_StructInit,"ax",%progbits
  108              		.align	1
-ARM GAS  /tmp/cczs5ZMW.s 			page 51
+ARM GAS  /tmp/cc26YGbF.s 			page 51
 
 
  109              		.global	RTC_StructInit
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  155              		.loc 1 523 3 view .LVU36
  523:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  156              		.loc 1 523 6 is_stmt 0 view .LVU37
-ARM GAS  /tmp/cczs5ZMW.s 			page 52
+ARM GAS  /tmp/cc26YGbF.s 			page 52
 
 
  157 0000 18B1     		cbz	r0, .L7
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  203 0004 0193     		str	r3, [sp, #4]
  548:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t initstatus = 0x00;
  204              		.loc 1 548 3 is_stmt 1 view .LVU48
-ARM GAS  /tmp/cczs5ZMW.s 			page 53
+ARM GAS  /tmp/cc26YGbF.s 			page 53
 
 
  205              	.LVL13:
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  243              	.L13:
  564:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
  244              		.loc 1 564 5 is_stmt 1 view .LVU65
-ARM GAS  /tmp/cczs5ZMW.s 			page 54
+ARM GAS  /tmp/cc26YGbF.s 			page 54
 
 
  564:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  293              		@ args = 0, pretend = 0, frame = 0
  294              		@ frame_needed = 0, uses_anonymous_args = 0
  295              		@ link register save eliminated.
-ARM GAS  /tmp/cczs5ZMW.s 			page 55
+ARM GAS  /tmp/cc26YGbF.s 			page 55
 
 
  593:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  340 0004 0F4B     		ldr	r3, .L27
  341 0006 CA22     		movs	r2, #202
  342 0008 5A62     		str	r2, [r3, #36]
-ARM GAS  /tmp/cczs5ZMW.s 			page 56
+ARM GAS  /tmp/cc26YGbF.s 			page 56
 
 
  461:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  380              		.loc 1 476 5 is_stmt 1 view .LVU102
  476:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC->PRER |= (uint32_t)(RTC_InitStruct->RTC_AsynchPrediv << 16);
  381              		.loc 1 476 42 is_stmt 0 view .LVU103
-ARM GAS  /tmp/cczs5ZMW.s 			page 57
+ARM GAS  /tmp/cc26YGbF.s 			page 57
 
 
  382 002e A268     		ldr	r2, [r4, #8]
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  427 0004 0193     		str	r3, [sp, #4]
  615:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t synchrostatus = 0x00;
  428              		.loc 1 615 3 is_stmt 1 view .LVU115
-ARM GAS  /tmp/cczs5ZMW.s 			page 58
+ARM GAS  /tmp/cc26YGbF.s 			page 58
 
 
  429              	.LVL25:
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  466 002c 01D0     		beq	.L30
  630:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     
  467              		.loc 1 630 47 discriminator 1 view .LVU133
-ARM GAS  /tmp/cczs5ZMW.s 			page 59
+ARM GAS  /tmp/cc26YGbF.s 			page 59
 
 
  468 002e 002A     		cmp	r2, #0
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  513              		.global	RTC_DeInit
  514              		.syntax unified
  515              		.thumb
-ARM GAS  /tmp/cczs5ZMW.s 			page 60
+ARM GAS  /tmp/cc26YGbF.s 			page 60
 
 
  516              		.thumb_func
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  557 001c 1A60     		str	r2, [r3]
  387:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Reset All CR bits except CR[2:0] */
  558              		.loc 1 387 5 is_stmt 1 view .LVU158
-ARM GAS  /tmp/cczs5ZMW.s 			page 61
+ARM GAS  /tmp/cc26YGbF.s 			page 61
 
 
  387:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Reset All CR bits except CR[2:0] */
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  398:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
  597              		.loc 1 398 8 view .LVU175
  598 004a 13F0040F 		tst	r3, #4
-ARM GAS  /tmp/cczs5ZMW.s 			page 62
+ARM GAS  /tmp/cc26YGbF.s 			page 62
 
 
  599 004e 06D1     		bne	.L44
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  639 0070 9A61     		str	r2, [r3, #24]
  409:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       RTC->ALRMBR = (uint32_t)0x00000000;
  640              		.loc 1 409 7 is_stmt 1 view .LVU190
-ARM GAS  /tmp/cczs5ZMW.s 			page 63
+ARM GAS  /tmp/cc26YGbF.s 			page 63
 
 
  409:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       RTC->ALRMBR = (uint32_t)0x00000000;
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  676              	.L45:
  677 0090 00280040 		.word	1073752064
  678 0094 FF007F00 		.word	8323327
-ARM GAS  /tmp/cczs5ZMW.s 			page 64
+ARM GAS  /tmp/cc26YGbF.s 			page 64
 
 
  679              		.cfi_endproc
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  722              		.loc 1 673 8 is_stmt 0 view .LVU222
  723 0014 5CB1     		cbz	r4, .L49
  676:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     }
-ARM GAS  /tmp/cczs5ZMW.s 			page 65
+ARM GAS  /tmp/cc26YGbF.s 			page 65
 
 
  724              		.loc 1 676 7 is_stmt 1 view .LVU223
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  767              		.global	RTC_BypassShadowCmd
  768              		.syntax unified
  769              		.thumb
-ARM GAS  /tmp/cczs5ZMW.s 			page 66
+ARM GAS  /tmp/cc26YGbF.s 			page 66
 
 
  770              		.thumb_func
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  720:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
  810              		.loc 1 720 8 is_stmt 0 view .LVU251
  811 001e 034A     		ldr	r2, .L57
-ARM GAS  /tmp/cczs5ZMW.s 			page 67
+ARM GAS  /tmp/cc26YGbF.s 			page 67
 
 
  812 0020 9368     		ldr	r3, [r2, #8]
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  858 000a 9268     		ldr	r2, [r2, #8]
  768:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
  859              		.loc 1 768 8 view .LVU262
-ARM GAS  /tmp/cczs5ZMW.s 			page 68
+ARM GAS  /tmp/cc26YGbF.s 			page 68
 
 
  860 000c 12F0400F 		tst	r2, #64
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  896 002e CA22     		movs	r2, #202
  897 0030 5A62     		str	r2, [r3, #36]
  816:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 69
+ARM GAS  /tmp/cc26YGbF.s 			page 69
 
 
  898              		.loc 1 816 3 is_stmt 1 view .LVU281
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  937              	.LVL54:
  808:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****                    ((uint32_t)RTC_ByteToBcd2(RTC_TimeStruct->RTC_Minutes) << 8) | \
  938              		.loc 1 808 36 view .LVU297
-ARM GAS  /tmp/cczs5ZMW.s 			page 70
+ARM GAS  /tmp/cc26YGbF.s 			page 70
 
 
  939 0056 FFF7FEFF 		bl	RTC_ByteToBcd2
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  832:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
  978              		.loc 1 832 13 is_stmt 0 view .LVU313
  979 0086 AB68     		ldr	r3, [r5, #8]
-ARM GAS  /tmp/cczs5ZMW.s 			page 71
+ARM GAS  /tmp/cc26YGbF.s 			page 71
 
 
  832:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1025 0004 0370     		strb	r3, [r0]
  866:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC_TimeStruct->RTC_Seconds = 0; 
  1026              		.loc 1 866 3 is_stmt 1 view .LVU325
-ARM GAS  /tmp/cczs5ZMW.s 			page 72
+ARM GAS  /tmp/cc26YGbF.s 			page 72
 
 
  866:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC_TimeStruct->RTC_Seconds = 0; 
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1071 000c C5F30541 		ubfx	r1, r5, #16, #6
  1072              	.LVL67:
  891:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC_TimeStruct->RTC_Minutes = (uint8_t)((tmpreg & (RTC_TR_MNT | RTC_TR_MNU)) >>8);
-ARM GAS  /tmp/cczs5ZMW.s 			page 73
+ARM GAS  /tmp/cc26YGbF.s 			page 73
 
 
  1073              		.loc 1 891 29 view .LVU338
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1109 0034 6070     		strb	r0, [r4, #1]
  902:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
  1110              		.loc 1 902 5 is_stmt 1 view .LVU357
-ARM GAS  /tmp/cczs5ZMW.s 			page 74
+ARM GAS  /tmp/cc26YGbF.s 			page 74
 
 
  902:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1156              		.align	2
  1157              	.L79:
  1158 0008 00280040 		.word	1073752064
-ARM GAS  /tmp/cczs5ZMW.s 			page 75
+ARM GAS  /tmp/cc26YGbF.s 			page 75
 
 
  1159              		.cfi_endproc
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1201 0008 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
  962:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
  1202              		.loc 1 962 5 is_stmt 1 view .LVU383
-ARM GAS  /tmp/cczs5ZMW.s 			page 76
+ARM GAS  /tmp/cc26YGbF.s 			page 76
 
 
  964:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1239 002a 184B     		ldr	r3, .L91
  1240 002c FF22     		movs	r2, #255
  1241 002e 5A62     		str	r2, [r3, #36]
-ARM GAS  /tmp/cczs5ZMW.s 			page 77
+ARM GAS  /tmp/cc26YGbF.s 			page 77
 
 
 1019:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1278 0050 44EA0024 		orr	r4, r4, r0, lsl #8
  978:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****               ((uint32_t)RTC_DateStruct->RTC_WeekDay << 13));
  1279              		.loc 1 978 26 view .LVU420
-ARM GAS  /tmp/cczs5ZMW.s 			page 78
+ARM GAS  /tmp/cc26YGbF.s 			page 78
 
 
  1280 0054 A878     		ldrb	r0, [r5, #2]	@ zero_extendqisi2
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1318              		.loc 1 1002 8 is_stmt 0 view .LVU436
  1319 0080 FFF7FEFF 		bl	RTC_WaitForSynchro
  1320              	.LVL91:
-ARM GAS  /tmp/cczs5ZMW.s 			page 79
+ARM GAS  /tmp/cc26YGbF.s 			page 79
 
 
 1002:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1365              		.cfi_endproc
  1366              	.LFE137:
  1368              		.section	.text.RTC_GetDate,"ax",%progbits
-ARM GAS  /tmp/cczs5ZMW.s 			page 80
+ARM GAS  /tmp/cc26YGbF.s 			page 80
 
 
  1369              		.align	1
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1410 0012 03F03F05 		and	r5, r3, #63
 1061:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC_DateStruct->RTC_WeekDay = (uint8_t)((tmpreg & (RTC_DR_WDU)) >> 13);
  1411              		.loc 1 1061 28 view .LVU463
-ARM GAS  /tmp/cczs5ZMW.s 			page 81
+ARM GAS  /tmp/cc26YGbF.s 			page 81
 
 
  1412 0016 8D70     		strb	r5, [r1, #2]
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1450              	.L98:
  1451              		.align	2
  1452              	.L97:
-ARM GAS  /tmp/cczs5ZMW.s 			page 82
+ARM GAS  /tmp/cc26YGbF.s 			page 82
 
 
  1453 003c 00280040 		.word	1073752064
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1120:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
  1497              		.loc 1 1120 8 view .LVU492
  1498 000e 12F0400F 		tst	r2, #64
-ARM GAS  /tmp/cczs5ZMW.s 			page 83
+ARM GAS  /tmp/cc26YGbF.s 			page 83
 
 
  1499 0012 01D1     		bne	.L102
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1533 002a 40EA0340 		orr	r0, r0, r3, lsl #16
 1178:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****               ((uint32_t)RTC_AlarmStruct->RTC_AlarmDateWeekDaySel) | \
  1534              		.loc 1 1178 42 view .LVU513
-ARM GAS  /tmp/cczs5ZMW.s 			page 84
+ARM GAS  /tmp/cc26YGbF.s 			page 84
 
 
  1535 002e 337B     		ldrb	r3, [r6, #12]	@ zero_extendqisi2
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1573              	.LVL108:
  1574              	.L100:
 1144:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     {
-ARM GAS  /tmp/cczs5ZMW.s 			page 85
+ARM GAS  /tmp/cc26YGbF.s 			page 85
 
 
  1575              		.loc 1 1144 5 is_stmt 1 view .LVU530
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1612 007a B078     		ldrb	r0, [r6, #2]	@ zero_extendqisi2
  1613 007c FFF7FEFF 		bl	RTC_ByteToBcd2
  1614              	.LVL114:
-ARM GAS  /tmp/cczs5ZMW.s 			page 86
+ARM GAS  /tmp/cc26YGbF.s 			page 86
 
 
 1185:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****               ((uint32_t)RTC_ByteToBcd2(RTC_AlarmStruct->RTC_AlarmTime.RTC_Seconds)) | \
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1659              	.LFB140:
 1220:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Alarm Time Settings : Time = 00h:00mn:00sec */
  1660              		.loc 1 1220 1 is_stmt 1 view -0
-ARM GAS  /tmp/cczs5ZMW.s 			page 87
+ARM GAS  /tmp/cc26YGbF.s 			page 87
 
 
  1661              		.cfi_startproc
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1702              	.LFB141:
 1250:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t tmpreg = 0;
  1703              		.loc 1 1250 1 is_stmt 1 view -0
-ARM GAS  /tmp/cczs5ZMW.s 			page 88
+ARM GAS  /tmp/cc26YGbF.s 			page 88
 
 
  1704              		.cfi_startproc
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1744 001c C3F30627 		ubfx	r7, r3, #8, #7
 1270:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****                                                      RTC_ALRMAR_MNU)) >> 8);
  1745              		.loc 1 1270 46 view .LVU591
-ARM GAS  /tmp/cczs5ZMW.s 			page 89
+ARM GAS  /tmp/cc26YGbF.s 			page 89
 
 
  1746 0020 6770     		strb	r7, [r4, #1]
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1780              		.loc 1 1281 46 discriminator 1 view .LVU611
  1781 0048 2070     		strb	r0, [r4]
 1283:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****                                                         RTC_AlarmTime.RTC_Minutes);
-ARM GAS  /tmp/cczs5ZMW.s 			page 90
+ARM GAS  /tmp/cc26YGbF.s 			page 90
 
 
  1782              		.loc 1 1283 5 is_stmt 1 view .LVU612
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1825              		.syntax unified
  1826              		.thumb
  1827              		.thumb_func
-ARM GAS  /tmp/cczs5ZMW.s 			page 91
+ARM GAS  /tmp/cc26YGbF.s 			page 91
 
 
  1829              	RTC_AlarmCmd:
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1866              		.loc 1 1320 13 view .LVU641
  1867 0016 0343     		orrs	r3, r3, r0
  1868 0018 9360     		str	r3, [r2, #8]
-ARM GAS  /tmp/cczs5ZMW.s 			page 92
+ARM GAS  /tmp/cc26YGbF.s 			page 92
 
 
 1322:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1909 0036 010A     		lsrs	r1, r0, #8
 1332:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****       alarmcounter++;  
  1910              		.loc 1 1332 19 view .LVU656
-ARM GAS  /tmp/cczs5ZMW.s 			page 93
+ARM GAS  /tmp/cc26YGbF.s 			page 93
 
 
  1911 0038 02EA1022 		and	r2, r2, r0, lsr #8
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1952              	.LFE142:
  1954              		.section	.text.RTC_AlarmSubSecondConfig,"ax",%progbits
  1955              		.align	1
-ARM GAS  /tmp/cczs5ZMW.s 			page 94
+ARM GAS  /tmp/cc26YGbF.s 			page 94
 
 
  1956              		.global	RTC_AlarmSubSecondConfig
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  1996              		.loc 1 1421 5 is_stmt 1 view .LVU684
 1421:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
  1997              		.loc 1 1421 19 is_stmt 0 view .LVU685
-ARM GAS  /tmp/cczs5ZMW.s 			page 95
+ARM GAS  /tmp/cc26YGbF.s 			page 95
 
 
  1998 0014 044B     		ldr	r3, .L135
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1443:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  2046              		.loc 1 1443 3 view .LVU694
 1443:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
-ARM GAS  /tmp/cczs5ZMW.s 			page 96
+ARM GAS  /tmp/cc26YGbF.s 			page 96
 
 
  2047              		.loc 1 1443 6 is_stmt 0 view .LVU695
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2093              		@ frame_needed = 0, uses_anonymous_args = 0
  2094              		@ link register save eliminated.
 1490:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 97
+ARM GAS  /tmp/cc26YGbF.s 			page 97
 
 
  2095              		.loc 1 1490 3 view .LVU706
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2138              	.LVL152:
  2139              	.LFB146:
 1515:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
-ARM GAS  /tmp/cczs5ZMW.s 			page 98
+ARM GAS  /tmp/cc26YGbF.s 			page 98
 
 
  2140              		.loc 1 1515 1 is_stmt 1 view -0
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1538:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
  2185              		.loc 1 1538 3 view .LVU732
 1538:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
-ARM GAS  /tmp/cczs5ZMW.s 			page 99
+ARM GAS  /tmp/cc26YGbF.s 			page 99
 
 
  2186              		.loc 1 1538 25 is_stmt 0 view .LVU733
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2231              		.loc 1 1558 3 is_stmt 1 view .LVU744
 1558:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  2232              		.loc 1 1558 12 is_stmt 0 view .LVU745
-ARM GAS  /tmp/cczs5ZMW.s 			page 100
+ARM GAS  /tmp/cc26YGbF.s 			page 100
 
 
  2233 000c 5322     		movs	r2, #83
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2273 002c 9368     		ldr	r3, [r2, #8]
 1569:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     /* Wait till RTC WUTWF flag is set and if Time out is reached exit */
  2274              		.loc 1 1569 13 view .LVU760
-ARM GAS  /tmp/cczs5ZMW.s 			page 101
+ARM GAS  /tmp/cc26YGbF.s 			page 101
 
 
  2275 002e 23F48063 		bic	r3, r3, #1024
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2314              	.LVL161:
  2315              	.L157:
 1583:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     }    
-ARM GAS  /tmp/cczs5ZMW.s 			page 102
+ARM GAS  /tmp/cc26YGbF.s 			page 102
 
 
  2316              		.loc 1 1583 14 view .LVU776
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2360              		.loc 1 1638 3 is_stmt 1 view .LVU788
 1638:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  2361              		.loc 1 1638 6 is_stmt 0 view .LVU789
-ARM GAS  /tmp/cczs5ZMW.s 			page 103
+ARM GAS  /tmp/cc26YGbF.s 			page 103
 
 
  2362 0012 9A68     		ldr	r2, [r3, #8]
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2410              		.section	.text.RTC_OutputConfig,"ax",%progbits
  2411              		.align	1
  2412              		.global	RTC_OutputConfig
-ARM GAS  /tmp/cczs5ZMW.s 			page 104
+ARM GAS  /tmp/cc26YGbF.s 			page 104
 
 
  2413              		.syntax unified
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2452              		.loc 1 1707 12 is_stmt 0 view .LVU814
  2453 001a FF22     		movs	r2, #255
  2454 001c 5A62     		str	r2, [r3, #36]
-ARM GAS  /tmp/cczs5ZMW.s 			page 105
+ARM GAS  /tmp/cc26YGbF.s 			page 105
 
 
 1708:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1757:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  2501              		.loc 1 1757 3 is_stmt 1 view .LVU825
 1757:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
-ARM GAS  /tmp/cczs5ZMW.s 			page 106
+ARM GAS  /tmp/cc26YGbF.s 			page 106
 
 
  2502              		.loc 1 1757 7 is_stmt 0 view .LVU826
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2547              	RTC_CoarseCalibCmd:
  2548              	.LVL174:
  2549              	.LFB153:
-ARM GAS  /tmp/cczs5ZMW.s 			page 107
+ARM GAS  /tmp/cc26YGbF.s 			page 107
 
 
 1786:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   ErrorStatus status = ERROR;
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2588 001e 9360     		str	r3, [r2, #8]
  2589              	.L179:
 1814:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     
-ARM GAS  /tmp/cczs5ZMW.s 			page 108
+ARM GAS  /tmp/cc26YGbF.s 			page 108
 
 
  2590              		.loc 1 1814 5 is_stmt 1 view .LVU854
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2636              		@ frame_needed = 0, uses_anonymous_args = 0
  2637              		@ link register save eliminated.
 1834:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
-ARM GAS  /tmp/cczs5ZMW.s 			page 109
+ARM GAS  /tmp/cc26YGbF.s 			page 109
 
 
  2638              		.loc 1 1834 3 view .LVU865
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2677              	.L186:
  2678 002c 00280040 		.word	1073752064
  2679              		.cfi_endproc
-ARM GAS  /tmp/cczs5ZMW.s 			page 110
+ARM GAS  /tmp/cc26YGbF.s 			page 110
 
 
  2680              	.LFE154:
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2722 001a 5A62     		str	r2, [r3, #36]
 1880:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  2723              		.loc 1 1880 1 view .LVU895
-ARM GAS  /tmp/cczs5ZMW.s 			page 111
+ARM GAS  /tmp/cc26YGbF.s 			page 111
 
 
  2724 001c 7047     		bx	lr
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 1916:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  2768              		.loc 1 1916 11 is_stmt 0 view .LVU908
  2769 000c DB68     		ldr	r3, [r3, #12]
-ARM GAS  /tmp/cczs5ZMW.s 			page 112
+ARM GAS  /tmp/cc26YGbF.s 			page 112
 
 
 1916:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2809              		.cfi_restore 4
  2810              		.cfi_def_cfa_offset 0
  2811 0032 7047     		bx	lr
-ARM GAS  /tmp/cczs5ZMW.s 			page 113
+ARM GAS  /tmp/cc26YGbF.s 			page 113
 
 
  2812              	.LVL189:
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2858              	.LVL194:
  2859              	.LFB157:
 1976:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t tmpreg = 0;
-ARM GAS  /tmp/cczs5ZMW.s 			page 114
+ARM GAS  /tmp/cc26YGbF.s 			page 114
 
 
  2860              		.loc 1 1976 1 is_stmt 1 view -0
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2001:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  2898              		.loc 1 2001 3 is_stmt 1 view .LVU951
 2001:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
-ARM GAS  /tmp/cczs5ZMW.s 			page 115
+ARM GAS  /tmp/cc26YGbF.s 			page 115
 
 
  2899              		.loc 1 2001 11 is_stmt 0 view .LVU952
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2946              		.cfi_offset 14, -4
  2947 0002 0D46     		mov	r5, r1
  2948 0004 1446     		mov	r4, r2
-ARM GAS  /tmp/cczs5ZMW.s 			page 116
+ARM GAS  /tmp/cc26YGbF.s 			page 116
 
 
 2022:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  2984 0026 01F04003 		and	r3, r1, #64
 2035:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** 
  2985              		.loc 1 2035 32 view .LVU981
-ARM GAS  /tmp/cczs5ZMW.s 			page 117
+ARM GAS  /tmp/cc26YGbF.s 			page 117
 
 
  2986 002a EB70     		strb	r3, [r5, #3]
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3021 004c 6878     		ldrb	r0, [r5, #1]	@ zero_extendqisi2
  3022 004e FFF7FEFF 		bl	RTC_Bcd2ToByte
  3023              	.LVL213:
-ARM GAS  /tmp/cczs5ZMW.s 			page 118
+ARM GAS  /tmp/cc26YGbF.s 			page 118
 
 
 2048:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     RTC_StampTimeStruct->RTC_Seconds = (uint8_t)RTC_Bcd2ToByte(RTC_StampTimeStruct->RTC_Seconds);
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3063              		.cfi_endproc
  3064              	.LFE158:
  3066              		.section	.text.RTC_GetTimeStampSubSecond,"ax",%progbits
-ARM GAS  /tmp/cczs5ZMW.s 			page 119
+ARM GAS  /tmp/cc26YGbF.s 			page 119
 
 
  3067              		.align	1
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2107:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
  3114              		.loc 1 2107 8 is_stmt 0 view .LVU1026
  3115 0002 064A     		ldr	r2, .L217
-ARM GAS  /tmp/cczs5ZMW.s 			page 120
+ARM GAS  /tmp/cc26YGbF.s 			page 120
 
 
  3116 0004 136C     		ldr	r3, [r2, #64]
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3160 0002 054A     		ldr	r2, .L222
  3161 0004 136C     		ldr	r3, [r2, #64]
 2133:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
-ARM GAS  /tmp/cczs5ZMW.s 			page 121
+ARM GAS  /tmp/cc26YGbF.s 			page 121
 
 
  3162              		.loc 1 2133 16 view .LVU1039
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3207              		.loc 1 2164 6 is_stmt 0 view .LVU1050
  3208 000a 1A6C     		ldr	r2, [r3, #64]
 2164:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
-ARM GAS  /tmp/cczs5ZMW.s 			page 122
+ARM GAS  /tmp/cc26YGbF.s 			page 122
 
 
  3209              		.loc 1 2164 14 view .LVU1051
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3255 0014 00280040 		.word	1073752064
  3256              		.cfi_endproc
  3257              	.LFE163:
-ARM GAS  /tmp/cczs5ZMW.s 			page 123
+ARM GAS  /tmp/cc26YGbF.s 			page 123
 
 
  3259              		.section	.text.RTC_TamperPinsPrechargeDuration,"ax",%progbits
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2233:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
  3307              		.loc 1 2233 1 is_stmt 1 view -0
  3308              		.cfi_startproc
-ARM GAS  /tmp/cczs5ZMW.s 			page 124
+ARM GAS  /tmp/cc26YGbF.s 			page 124
 
 
  3309              		@ args = 0, pretend = 0, frame = 0
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3354              		@ frame_needed = 0, uses_anonymous_args = 0
  3355              		@ link register save eliminated.
 2258:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
-ARM GAS  /tmp/cczs5ZMW.s 			page 125
+ARM GAS  /tmp/cc26YGbF.s 			page 125
 
 
  3356              		.loc 1 2258 3 view .LVU1083
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3401 0000 82B0     		sub	sp, sp, #8
  3402              	.LCFI33:
  3403              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cczs5ZMW.s 			page 126
+ARM GAS  /tmp/cc26YGbF.s 			page 126
 
 
 2298:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3448              		@ args = 0, pretend = 0, frame = 8
  3449              		@ frame_needed = 0, uses_anonymous_args = 0
  3450              		@ link register save eliminated.
-ARM GAS  /tmp/cczs5ZMW.s 			page 127
+ARM GAS  /tmp/cc26YGbF.s 			page 127
 
 
 2318:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   __IO uint32_t tmp = 0;
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3495              	RTC_TamperPinSelection:
  3496              	.LVL229:
  3497              	.LFB169:
-ARM GAS  /tmp/cczs5ZMW.s 			page 128
+ARM GAS  /tmp/cc26YGbF.s 			page 128
 
 
 2357:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   /* Check the parameters */
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3542              		.loc 1 2378 3 view .LVU1130
 2378:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   RTC->TAFCR |= (uint32_t)(RTC_TimeStampPin);  
  3543              		.loc 1 2378 6 is_stmt 0 view .LVU1131
-ARM GAS  /tmp/cczs5ZMW.s 			page 129
+ARM GAS  /tmp/cc26YGbF.s 			page 129
 
 
  3544 0000 044B     		ldr	r3, .L255
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3588              		.loc 1 2398 6 is_stmt 0 view .LVU1143
  3589 000a 1A6C     		ldr	r2, [r3, #64]
 2398:Lib/StdPeriphs/src/stm32f4xx_rtc.c **** }
-ARM GAS  /tmp/cczs5ZMW.s 			page 130
+ARM GAS  /tmp/cc26YGbF.s 			page 130
 
 
  3590              		.loc 1 2398 14 view .LVU1144
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3635 000a 5A62     		str	r2, [r3, #36]
 2444:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  3636              		.loc 1 2444 3 is_stmt 1 view .LVU1156
-ARM GAS  /tmp/cczs5ZMW.s 			page 131
+ARM GAS  /tmp/cc26YGbF.s 			page 131
 
 
 2444:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3676              		.loc 1 2447 49 discriminator 1 view .LVU1171
  3677 0038 B3F5805F 		cmp	r3, #4096
  3678 003c EAD0     		beq	.L262
-ARM GAS  /tmp/cczs5ZMW.s 			page 132
+ARM GAS  /tmp/cc26YGbF.s 			page 132
 
 
 2449:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****     }
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3718              		.align	2
  3719              	.L271:
  3720 005c 00280040 		.word	1073752064
-ARM GAS  /tmp/cczs5ZMW.s 			page 133
+ARM GAS  /tmp/cc26YGbF.s 			page 133
 
 
  3721              		.cfi_endproc
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2565:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
  3763              		.loc 1 2565 8 is_stmt 0 view .LVU1201
  3764 0016 1A6C     		ldr	r2, [r3, #64]
-ARM GAS  /tmp/cczs5ZMW.s 			page 134
+ARM GAS  /tmp/cc26YGbF.s 			page 134
 
 
 2565:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   }
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3806              	.LFE173:
  3808              		.section	.text.RTC_GetFlagStatus,"ax",%progbits
  3809              		.align	1
-ARM GAS  /tmp/cczs5ZMW.s 			page 135
+ARM GAS  /tmp/cc26YGbF.s 			page 135
 
 
  3810              		.global	RTC_GetFlagStatus
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3851              		.loc 1 2620 1 is_stmt 0 view .LVU1228
  3852 001e 7047     		bx	lr
  3853              	.L282:
-ARM GAS  /tmp/cczs5ZMW.s 			page 136
+ARM GAS  /tmp/cc26YGbF.s 			page 136
 
 
  3854              		.align	2
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3901              		.align	1
  3902              		.global	RTC_GetITStatus
  3903              		.syntax unified
-ARM GAS  /tmp/cczs5ZMW.s 			page 137
+ARM GAS  /tmp/cc26YGbF.s 			page 137
 
 
  3904              		.thumb
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
 2675:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
  3943              		.loc 1 2675 3 is_stmt 1 view .LVU1255
 2675:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   {
-ARM GAS  /tmp/cczs5ZMW.s 			page 138
+ARM GAS  /tmp/cc26YGbF.s 			page 138
 
 
  3944              		.loc 1 2675 6 is_stmt 0 view .LVU1256
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  3990              	.LFB177:
 2699:Lib/StdPeriphs/src/stm32f4xx_rtc.c ****   uint32_t tmpreg = 0;
  3991              		.loc 1 2699 1 is_stmt 1 view -0
-ARM GAS  /tmp/cczs5ZMW.s 			page 139
+ARM GAS  /tmp/cc26YGbF.s 			page 139
 
 
  3992              		.cfi_startproc
@@ -8327,181 +8327,181 @@ ARM GAS  /tmp/cczs5ZMW.s 			page 1
  4025              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
  4026              		.file 3 "CMSIS/stm32f4xx.h"
  4027              		.file 4 "Lib/StdPeriphs/inc/stm32f4xx_rtc.h"
-ARM GAS  /tmp/cczs5ZMW.s 			page 140
+ARM GAS  /tmp/cc26YGbF.s 			page 140
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f4xx_rtc.c
-     /tmp/cczs5ZMW.s:21     .text.RTC_ByteToBcd2:00000000 $t
-     /tmp/cczs5ZMW.s:26     .text.RTC_ByteToBcd2:00000000 RTC_ByteToBcd2
-     /tmp/cczs5ZMW.s:75     .text.RTC_Bcd2ToByte:00000000 $t
-     /tmp/cczs5ZMW.s:80     .text.RTC_Bcd2ToByte:00000000 RTC_Bcd2ToByte
-     /tmp/cczs5ZMW.s:108    .text.RTC_StructInit:00000000 $t
-     /tmp/cczs5ZMW.s:114    .text.RTC_StructInit:00000000 RTC_StructInit
-     /tmp/cczs5ZMW.s:140    .text.RTC_WriteProtectionCmd:00000000 $t
-     /tmp/cczs5ZMW.s:146    .text.RTC_WriteProtectionCmd:00000000 RTC_WriteProtectionCmd
-     /tmp/cczs5ZMW.s:179    .text.RTC_WriteProtectionCmd:00000018 $d
-     /tmp/cczs5ZMW.s:184    .text.RTC_EnterInitMode:00000000 $t
-     /tmp/cczs5ZMW.s:190    .text.RTC_EnterInitMode:00000000 RTC_EnterInitMode
-     /tmp/cczs5ZMW.s:278    .text.RTC_EnterInitMode:0000004c $d
-     /tmp/cczs5ZMW.s:283    .text.RTC_ExitInitMode:00000000 $t
-     /tmp/cczs5ZMW.s:289    .text.RTC_ExitInitMode:00000000 RTC_ExitInitMode
-     /tmp/cczs5ZMW.s:308    .text.RTC_ExitInitMode:0000000c $d
-     /tmp/cczs5ZMW.s:313    .text.RTC_Init:00000000 $t
-     /tmp/cczs5ZMW.s:319    .text.RTC_Init:00000000 RTC_Init
-     /tmp/cczs5ZMW.s:403    .text.RTC_Init:00000044 $d
-     /tmp/cczs5ZMW.s:408    .text.RTC_WaitForSynchro:00000000 $t
-     /tmp/cczs5ZMW.s:414    .text.RTC_WaitForSynchro:00000000 RTC_WaitForSynchro
-     /tmp/cczs5ZMW.s:507    .text.RTC_WaitForSynchro:0000004c $d
-     /tmp/cczs5ZMW.s:512    .text.RTC_DeInit:00000000 $t
-     /tmp/cczs5ZMW.s:518    .text.RTC_DeInit:00000000 RTC_DeInit
-     /tmp/cczs5ZMW.s:677    .text.RTC_DeInit:00000090 $d
-     /tmp/cczs5ZMW.s:683    .text.RTC_RefClockCmd:00000000 $t
-     /tmp/cczs5ZMW.s:689    .text.RTC_RefClockCmd:00000000 RTC_RefClockCmd
-     /tmp/cczs5ZMW.s:761    .text.RTC_RefClockCmd:0000003c $d
-     /tmp/cczs5ZMW.s:766    .text.RTC_BypassShadowCmd:00000000 $t
-     /tmp/cczs5ZMW.s:772    .text.RTC_BypassShadowCmd:00000000 RTC_BypassShadowCmd
-     /tmp/cczs5ZMW.s:820    .text.RTC_BypassShadowCmd:0000002c $d
-     /tmp/cczs5ZMW.s:825    .text.RTC_SetTime:00000000 $t
-     /tmp/cczs5ZMW.s:831    .text.RTC_SetTime:00000000 RTC_SetTime
-     /tmp/cczs5ZMW.s:1000   .text.RTC_SetTime:000000a0 $d
-     /tmp/cczs5ZMW.s:1005   .text.RTC_TimeStructInit:00000000 $t
-     /tmp/cczs5ZMW.s:1011   .text.RTC_TimeStructInit:00000000 RTC_TimeStructInit
-     /tmp/cczs5ZMW.s:1038   .text.RTC_GetTime:00000000 $t
-     /tmp/cczs5ZMW.s:1044   .text.RTC_GetTime:00000000 RTC_GetTime
-     /tmp/cczs5ZMW.s:1125   .text.RTC_GetTime:00000040 $d
-     /tmp/cczs5ZMW.s:1130   .text.RTC_GetSubSecond:00000000 $t
-     /tmp/cczs5ZMW.s:1136   .text.RTC_GetSubSecond:00000000 RTC_GetSubSecond
-     /tmp/cczs5ZMW.s:1158   .text.RTC_GetSubSecond:00000008 $d
-     /tmp/cczs5ZMW.s:1163   .text.RTC_SetDate:00000000 $t
-     /tmp/cczs5ZMW.s:1169   .text.RTC_SetDate:00000000 RTC_SetDate
-     /tmp/cczs5ZMW.s:1330   .text.RTC_SetDate:0000008c $d
-     /tmp/cczs5ZMW.s:1335   .text.RTC_DateStructInit:00000000 $t
-     /tmp/cczs5ZMW.s:1341   .text.RTC_DateStructInit:00000000 RTC_DateStructInit
-     /tmp/cczs5ZMW.s:1369   .text.RTC_GetDate:00000000 $t
-     /tmp/cczs5ZMW.s:1375   .text.RTC_GetDate:00000000 RTC_GetDate
-     /tmp/cczs5ZMW.s:1453   .text.RTC_GetDate:0000003c $d
-     /tmp/cczs5ZMW.s:1458   .text.RTC_SetAlarm:00000000 $t
-     /tmp/cczs5ZMW.s:1464   .text.RTC_SetAlarm:00000000 RTC_SetAlarm
-     /tmp/cczs5ZMW.s:1646   .text.RTC_SetAlarm:000000a0 $d
-     /tmp/cczs5ZMW.s:1651   .text.RTC_AlarmStructInit:00000000 $t
-     /tmp/cczs5ZMW.s:1657   .text.RTC_AlarmStructInit:00000000 RTC_AlarmStructInit
-     /tmp/cczs5ZMW.s:1694   .text.RTC_GetAlarm:00000000 $t
-ARM GAS  /tmp/cczs5ZMW.s 			page 141
+     /tmp/cc26YGbF.s:21     .text.RTC_ByteToBcd2:00000000 $t
+     /tmp/cc26YGbF.s:26     .text.RTC_ByteToBcd2:00000000 RTC_ByteToBcd2
+     /tmp/cc26YGbF.s:75     .text.RTC_Bcd2ToByte:00000000 $t
+     /tmp/cc26YGbF.s:80     .text.RTC_Bcd2ToByte:00000000 RTC_Bcd2ToByte
+     /tmp/cc26YGbF.s:108    .text.RTC_StructInit:00000000 $t
+     /tmp/cc26YGbF.s:114    .text.RTC_StructInit:00000000 RTC_StructInit
+     /tmp/cc26YGbF.s:140    .text.RTC_WriteProtectionCmd:00000000 $t
+     /tmp/cc26YGbF.s:146    .text.RTC_WriteProtectionCmd:00000000 RTC_WriteProtectionCmd
+     /tmp/cc26YGbF.s:179    .text.RTC_WriteProtectionCmd:00000018 $d
+     /tmp/cc26YGbF.s:184    .text.RTC_EnterInitMode:00000000 $t
+     /tmp/cc26YGbF.s:190    .text.RTC_EnterInitMode:00000000 RTC_EnterInitMode
+     /tmp/cc26YGbF.s:278    .text.RTC_EnterInitMode:0000004c $d
+     /tmp/cc26YGbF.s:283    .text.RTC_ExitInitMode:00000000 $t
+     /tmp/cc26YGbF.s:289    .text.RTC_ExitInitMode:00000000 RTC_ExitInitMode
+     /tmp/cc26YGbF.s:308    .text.RTC_ExitInitMode:0000000c $d
+     /tmp/cc26YGbF.s:313    .text.RTC_Init:00000000 $t
+     /tmp/cc26YGbF.s:319    .text.RTC_Init:00000000 RTC_Init
+     /tmp/cc26YGbF.s:403    .text.RTC_Init:00000044 $d
+     /tmp/cc26YGbF.s:408    .text.RTC_WaitForSynchro:00000000 $t
+     /tmp/cc26YGbF.s:414    .text.RTC_WaitForSynchro:00000000 RTC_WaitForSynchro
+     /tmp/cc26YGbF.s:507    .text.RTC_WaitForSynchro:0000004c $d
+     /tmp/cc26YGbF.s:512    .text.RTC_DeInit:00000000 $t
+     /tmp/cc26YGbF.s:518    .text.RTC_DeInit:00000000 RTC_DeInit
+     /tmp/cc26YGbF.s:677    .text.RTC_DeInit:00000090 $d
+     /tmp/cc26YGbF.s:683    .text.RTC_RefClockCmd:00000000 $t
+     /tmp/cc26YGbF.s:689    .text.RTC_RefClockCmd:00000000 RTC_RefClockCmd
+     /tmp/cc26YGbF.s:761    .text.RTC_RefClockCmd:0000003c $d
+     /tmp/cc26YGbF.s:766    .text.RTC_BypassShadowCmd:00000000 $t
+     /tmp/cc26YGbF.s:772    .text.RTC_BypassShadowCmd:00000000 RTC_BypassShadowCmd
+     /tmp/cc26YGbF.s:820    .text.RTC_BypassShadowCmd:0000002c $d
+     /tmp/cc26YGbF.s:825    .text.RTC_SetTime:00000000 $t
+     /tmp/cc26YGbF.s:831    .text.RTC_SetTime:00000000 RTC_SetTime
+     /tmp/cc26YGbF.s:1000   .text.RTC_SetTime:000000a0 $d
+     /tmp/cc26YGbF.s:1005   .text.RTC_TimeStructInit:00000000 $t
+     /tmp/cc26YGbF.s:1011   .text.RTC_TimeStructInit:00000000 RTC_TimeStructInit
+     /tmp/cc26YGbF.s:1038   .text.RTC_GetTime:00000000 $t
+     /tmp/cc26YGbF.s:1044   .text.RTC_GetTime:00000000 RTC_GetTime
+     /tmp/cc26YGbF.s:1125   .text.RTC_GetTime:00000040 $d
+     /tmp/cc26YGbF.s:1130   .text.RTC_GetSubSecond:00000000 $t
+     /tmp/cc26YGbF.s:1136   .text.RTC_GetSubSecond:00000000 RTC_GetSubSecond
+     /tmp/cc26YGbF.s:1158   .text.RTC_GetSubSecond:00000008 $d
+     /tmp/cc26YGbF.s:1163   .text.RTC_SetDate:00000000 $t
+     /tmp/cc26YGbF.s:1169   .text.RTC_SetDate:00000000 RTC_SetDate
+     /tmp/cc26YGbF.s:1330   .text.RTC_SetDate:0000008c $d
+     /tmp/cc26YGbF.s:1335   .text.RTC_DateStructInit:00000000 $t
+     /tmp/cc26YGbF.s:1341   .text.RTC_DateStructInit:00000000 RTC_DateStructInit
+     /tmp/cc26YGbF.s:1369   .text.RTC_GetDate:00000000 $t
+     /tmp/cc26YGbF.s:1375   .text.RTC_GetDate:00000000 RTC_GetDate
+     /tmp/cc26YGbF.s:1453   .text.RTC_GetDate:0000003c $d
+     /tmp/cc26YGbF.s:1458   .text.RTC_SetAlarm:00000000 $t
+     /tmp/cc26YGbF.s:1464   .text.RTC_SetAlarm:00000000 RTC_SetAlarm
+     /tmp/cc26YGbF.s:1646   .text.RTC_SetAlarm:000000a0 $d
+     /tmp/cc26YGbF.s:1651   .text.RTC_AlarmStructInit:00000000 $t
+     /tmp/cc26YGbF.s:1657   .text.RTC_AlarmStructInit:00000000 RTC_AlarmStructInit
+     /tmp/cc26YGbF.s:1694   .text.RTC_GetAlarm:00000000 $t
+ARM GAS  /tmp/cc26YGbF.s 			page 141
 
 
-     /tmp/cczs5ZMW.s:1700   .text.RTC_GetAlarm:00000000 RTC_GetAlarm
-     /tmp/cczs5ZMW.s:1818   .text.RTC_GetAlarm:0000006c $d
-     /tmp/cczs5ZMW.s:1823   .text.RTC_AlarmCmd:00000000 $t
-     /tmp/cczs5ZMW.s:1829   .text.RTC_AlarmCmd:00000000 RTC_AlarmCmd
-     /tmp/cczs5ZMW.s:1950   .text.RTC_AlarmCmd:00000060 $d
-     /tmp/cczs5ZMW.s:1955   .text.RTC_AlarmSubSecondConfig:00000000 $t
-     /tmp/cczs5ZMW.s:1961   .text.RTC_AlarmSubSecondConfig:00000000 RTC_AlarmSubSecondConfig
-     /tmp/cczs5ZMW.s:2026   .text.RTC_AlarmSubSecondConfig:00000028 $d
-     /tmp/cczs5ZMW.s:2031   .text.RTC_GetAlarmSubSecond:00000000 $t
-     /tmp/cczs5ZMW.s:2037   .text.RTC_GetAlarmSubSecond:00000000 RTC_GetAlarmSubSecond
-     /tmp/cczs5ZMW.s:2076   .text.RTC_GetAlarmSubSecond:0000001c $d
-     /tmp/cczs5ZMW.s:2081   .text.RTC_WakeUpClockConfig:00000000 $t
-     /tmp/cczs5ZMW.s:2087   .text.RTC_WakeUpClockConfig:00000000 RTC_WakeUpClockConfig
-     /tmp/cczs5ZMW.s:2126   .text.RTC_WakeUpClockConfig:00000020 $d
-     /tmp/cczs5ZMW.s:2131   .text.RTC_SetWakeUpCounter:00000000 $t
-     /tmp/cczs5ZMW.s:2137   .text.RTC_SetWakeUpCounter:00000000 RTC_SetWakeUpCounter
-     /tmp/cczs5ZMW.s:2167   .text.RTC_SetWakeUpCounter:00000014 $d
-     /tmp/cczs5ZMW.s:2172   .text.RTC_GetWakeUpCounter:00000000 $t
-     /tmp/cczs5ZMW.s:2178   .text.RTC_GetWakeUpCounter:00000000 RTC_GetWakeUpCounter
-     /tmp/cczs5ZMW.s:2195   .text.RTC_GetWakeUpCounter:00000008 $d
-     /tmp/cczs5ZMW.s:2200   .text.RTC_WakeUpCmd:00000000 $t
-     /tmp/cczs5ZMW.s:2206   .text.RTC_WakeUpCmd:00000000 RTC_WakeUpCmd
-     /tmp/cczs5ZMW.s:2324   .text.RTC_WakeUpCmd:00000060 $d
-     /tmp/cczs5ZMW.s:2329   .text.RTC_DayLightSavingConfig:00000000 $t
-     /tmp/cczs5ZMW.s:2335   .text.RTC_DayLightSavingConfig:00000000 RTC_DayLightSavingConfig
-     /tmp/cczs5ZMW.s:2378   .text.RTC_DayLightSavingConfig:00000020 $d
-     /tmp/cczs5ZMW.s:2383   .text.RTC_GetStoreOperation:00000000 $t
-     /tmp/cczs5ZMW.s:2389   .text.RTC_GetStoreOperation:00000000 RTC_GetStoreOperation
-     /tmp/cczs5ZMW.s:2406   .text.RTC_GetStoreOperation:0000000c $d
-     /tmp/cczs5ZMW.s:2411   .text.RTC_OutputConfig:00000000 $t
-     /tmp/cczs5ZMW.s:2417   .text.RTC_OutputConfig:00000000 RTC_OutputConfig
-     /tmp/cczs5ZMW.s:2460   .text.RTC_OutputConfig:00000020 $d
-     /tmp/cczs5ZMW.s:2465   .text.RTC_CoarseCalibConfig:00000000 $t
-     /tmp/cczs5ZMW.s:2471   .text.RTC_CoarseCalibConfig:00000000 RTC_CoarseCalibConfig
-     /tmp/cczs5ZMW.s:2536   .text.RTC_CoarseCalibConfig:0000002c $d
-     /tmp/cczs5ZMW.s:2541   .text.RTC_CoarseCalibCmd:00000000 $t
-     /tmp/cczs5ZMW.s:2547   .text.RTC_CoarseCalibCmd:00000000 RTC_CoarseCalibCmd
-     /tmp/cczs5ZMW.s:2619   .text.RTC_CoarseCalibCmd:0000003c $d
-     /tmp/cczs5ZMW.s:2624   .text.RTC_CalibOutputCmd:00000000 $t
-     /tmp/cczs5ZMW.s:2630   .text.RTC_CalibOutputCmd:00000000 RTC_CalibOutputCmd
-     /tmp/cczs5ZMW.s:2678   .text.RTC_CalibOutputCmd:0000002c $d
-     /tmp/cczs5ZMW.s:2683   .text.RTC_CalibOutputConfig:00000000 $t
-     /tmp/cczs5ZMW.s:2689   .text.RTC_CalibOutputConfig:00000000 RTC_CalibOutputConfig
-     /tmp/cczs5ZMW.s:2728   .text.RTC_CalibOutputConfig:00000020 $d
-     /tmp/cczs5ZMW.s:2733   .text.RTC_SmoothCalibConfig:00000000 $t
-     /tmp/cczs5ZMW.s:2739   .text.RTC_SmoothCalibConfig:00000000 RTC_SmoothCalibConfig
-     /tmp/cczs5ZMW.s:2846   .text.RTC_SmoothCalibConfig:00000050 $d
-     /tmp/cczs5ZMW.s:2851   .text.RTC_TimeStampCmd:00000000 $t
-     /tmp/cczs5ZMW.s:2857   .text.RTC_TimeStampCmd:00000000 RTC_TimeStampCmd
-     /tmp/cczs5ZMW.s:2921   .text.RTC_TimeStampCmd:0000002c $d
-     /tmp/cczs5ZMW.s:2926   .text.RTC_GetTimeStamp:00000000 $t
-     /tmp/cczs5ZMW.s:2932   .text.RTC_GetTimeStamp:00000000 RTC_GetTimeStamp
-     /tmp/cczs5ZMW.s:3062   .text.RTC_GetTimeStamp:00000078 $d
-     /tmp/cczs5ZMW.s:3067   .text.RTC_GetTimeStampSubSecond:00000000 $t
-     /tmp/cczs5ZMW.s:3073   .text.RTC_GetTimeStampSubSecond:00000000 RTC_GetTimeStampSubSecond
-     /tmp/cczs5ZMW.s:3089   .text.RTC_GetTimeStampSubSecond:00000008 $d
-     /tmp/cczs5ZMW.s:3094   .text.RTC_TamperTriggerConfig:00000000 $t
-ARM GAS  /tmp/cczs5ZMW.s 			page 142
+     /tmp/cc26YGbF.s:1700   .text.RTC_GetAlarm:00000000 RTC_GetAlarm
+     /tmp/cc26YGbF.s:1818   .text.RTC_GetAlarm:0000006c $d
+     /tmp/cc26YGbF.s:1823   .text.RTC_AlarmCmd:00000000 $t
+     /tmp/cc26YGbF.s:1829   .text.RTC_AlarmCmd:00000000 RTC_AlarmCmd
+     /tmp/cc26YGbF.s:1950   .text.RTC_AlarmCmd:00000060 $d
+     /tmp/cc26YGbF.s:1955   .text.RTC_AlarmSubSecondConfig:00000000 $t
+     /tmp/cc26YGbF.s:1961   .text.RTC_AlarmSubSecondConfig:00000000 RTC_AlarmSubSecondConfig
+     /tmp/cc26YGbF.s:2026   .text.RTC_AlarmSubSecondConfig:00000028 $d
+     /tmp/cc26YGbF.s:2031   .text.RTC_GetAlarmSubSecond:00000000 $t
+     /tmp/cc26YGbF.s:2037   .text.RTC_GetAlarmSubSecond:00000000 RTC_GetAlarmSubSecond
+     /tmp/cc26YGbF.s:2076   .text.RTC_GetAlarmSubSecond:0000001c $d
+     /tmp/cc26YGbF.s:2081   .text.RTC_WakeUpClockConfig:00000000 $t
+     /tmp/cc26YGbF.s:2087   .text.RTC_WakeUpClockConfig:00000000 RTC_WakeUpClockConfig
+     /tmp/cc26YGbF.s:2126   .text.RTC_WakeUpClockConfig:00000020 $d
+     /tmp/cc26YGbF.s:2131   .text.RTC_SetWakeUpCounter:00000000 $t
+     /tmp/cc26YGbF.s:2137   .text.RTC_SetWakeUpCounter:00000000 RTC_SetWakeUpCounter
+     /tmp/cc26YGbF.s:2167   .text.RTC_SetWakeUpCounter:00000014 $d
+     /tmp/cc26YGbF.s:2172   .text.RTC_GetWakeUpCounter:00000000 $t
+     /tmp/cc26YGbF.s:2178   .text.RTC_GetWakeUpCounter:00000000 RTC_GetWakeUpCounter
+     /tmp/cc26YGbF.s:2195   .text.RTC_GetWakeUpCounter:00000008 $d
+     /tmp/cc26YGbF.s:2200   .text.RTC_WakeUpCmd:00000000 $t
+     /tmp/cc26YGbF.s:2206   .text.RTC_WakeUpCmd:00000000 RTC_WakeUpCmd
+     /tmp/cc26YGbF.s:2324   .text.RTC_WakeUpCmd:00000060 $d
+     /tmp/cc26YGbF.s:2329   .text.RTC_DayLightSavingConfig:00000000 $t
+     /tmp/cc26YGbF.s:2335   .text.RTC_DayLightSavingConfig:00000000 RTC_DayLightSavingConfig
+     /tmp/cc26YGbF.s:2378   .text.RTC_DayLightSavingConfig:00000020 $d
+     /tmp/cc26YGbF.s:2383   .text.RTC_GetStoreOperation:00000000 $t
+     /tmp/cc26YGbF.s:2389   .text.RTC_GetStoreOperation:00000000 RTC_GetStoreOperation
+     /tmp/cc26YGbF.s:2406   .text.RTC_GetStoreOperation:0000000c $d
+     /tmp/cc26YGbF.s:2411   .text.RTC_OutputConfig:00000000 $t
+     /tmp/cc26YGbF.s:2417   .text.RTC_OutputConfig:00000000 RTC_OutputConfig
+     /tmp/cc26YGbF.s:2460   .text.RTC_OutputConfig:00000020 $d
+     /tmp/cc26YGbF.s:2465   .text.RTC_CoarseCalibConfig:00000000 $t
+     /tmp/cc26YGbF.s:2471   .text.RTC_CoarseCalibConfig:00000000 RTC_CoarseCalibConfig
+     /tmp/cc26YGbF.s:2536   .text.RTC_CoarseCalibConfig:0000002c $d
+     /tmp/cc26YGbF.s:2541   .text.RTC_CoarseCalibCmd:00000000 $t
+     /tmp/cc26YGbF.s:2547   .text.RTC_CoarseCalibCmd:00000000 RTC_CoarseCalibCmd
+     /tmp/cc26YGbF.s:2619   .text.RTC_CoarseCalibCmd:0000003c $d
+     /tmp/cc26YGbF.s:2624   .text.RTC_CalibOutputCmd:00000000 $t
+     /tmp/cc26YGbF.s:2630   .text.RTC_CalibOutputCmd:00000000 RTC_CalibOutputCmd
+     /tmp/cc26YGbF.s:2678   .text.RTC_CalibOutputCmd:0000002c $d
+     /tmp/cc26YGbF.s:2683   .text.RTC_CalibOutputConfig:00000000 $t
+     /tmp/cc26YGbF.s:2689   .text.RTC_CalibOutputConfig:00000000 RTC_CalibOutputConfig
+     /tmp/cc26YGbF.s:2728   .text.RTC_CalibOutputConfig:00000020 $d
+     /tmp/cc26YGbF.s:2733   .text.RTC_SmoothCalibConfig:00000000 $t
+     /tmp/cc26YGbF.s:2739   .text.RTC_SmoothCalibConfig:00000000 RTC_SmoothCalibConfig
+     /tmp/cc26YGbF.s:2846   .text.RTC_SmoothCalibConfig:00000050 $d
+     /tmp/cc26YGbF.s:2851   .text.RTC_TimeStampCmd:00000000 $t
+     /tmp/cc26YGbF.s:2857   .text.RTC_TimeStampCmd:00000000 RTC_TimeStampCmd
+     /tmp/cc26YGbF.s:2921   .text.RTC_TimeStampCmd:0000002c $d
+     /tmp/cc26YGbF.s:2926   .text.RTC_GetTimeStamp:00000000 $t
+     /tmp/cc26YGbF.s:2932   .text.RTC_GetTimeStamp:00000000 RTC_GetTimeStamp
+     /tmp/cc26YGbF.s:3062   .text.RTC_GetTimeStamp:00000078 $d
+     /tmp/cc26YGbF.s:3067   .text.RTC_GetTimeStampSubSecond:00000000 $t
+     /tmp/cc26YGbF.s:3073   .text.RTC_GetTimeStampSubSecond:00000000 RTC_GetTimeStampSubSecond
+     /tmp/cc26YGbF.s:3089   .text.RTC_GetTimeStampSubSecond:00000008 $d
+     /tmp/cc26YGbF.s:3094   .text.RTC_TamperTriggerConfig:00000000 $t
+ARM GAS  /tmp/cc26YGbF.s 			page 142
 
 
-     /tmp/cczs5ZMW.s:3100   .text.RTC_TamperTriggerConfig:00000000 RTC_TamperTriggerConfig
-     /tmp/cczs5ZMW.s:3134   .text.RTC_TamperTriggerConfig:0000001c $d
-     /tmp/cczs5ZMW.s:3139   .text.RTC_TamperCmd:00000000 $t
-     /tmp/cczs5ZMW.s:3145   .text.RTC_TamperCmd:00000000 RTC_TamperCmd
-     /tmp/cczs5ZMW.s:3179   .text.RTC_TamperCmd:00000018 $d
-     /tmp/cczs5ZMW.s:3184   .text.RTC_TamperFilterConfig:00000000 $t
-     /tmp/cczs5ZMW.s:3190   .text.RTC_TamperFilterConfig:00000000 RTC_TamperFilterConfig
-     /tmp/cczs5ZMW.s:3217   .text.RTC_TamperFilterConfig:00000014 $d
-     /tmp/cczs5ZMW.s:3222   .text.RTC_TamperSamplingFreqConfig:00000000 $t
-     /tmp/cczs5ZMW.s:3228   .text.RTC_TamperSamplingFreqConfig:00000000 RTC_TamperSamplingFreqConfig
-     /tmp/cczs5ZMW.s:3255   .text.RTC_TamperSamplingFreqConfig:00000014 $d
-     /tmp/cczs5ZMW.s:3260   .text.RTC_TamperPinsPrechargeDuration:00000000 $t
-     /tmp/cczs5ZMW.s:3266   .text.RTC_TamperPinsPrechargeDuration:00000000 RTC_TamperPinsPrechargeDuration
-     /tmp/cczs5ZMW.s:3293   .text.RTC_TamperPinsPrechargeDuration:00000014 $d
-     /tmp/cczs5ZMW.s:3298   .text.RTC_TimeStampOnTamperDetectionCmd:00000000 $t
-     /tmp/cczs5ZMW.s:3304   .text.RTC_TimeStampOnTamperDetectionCmd:00000000 RTC_TimeStampOnTamperDetectionCmd
-     /tmp/cczs5ZMW.s:3337   .text.RTC_TimeStampOnTamperDetectionCmd:0000001c $d
-     /tmp/cczs5ZMW.s:3342   .text.RTC_TamperPullUpCmd:00000000 $t
-     /tmp/cczs5ZMW.s:3348   .text.RTC_TamperPullUpCmd:00000000 RTC_TamperPullUpCmd
-     /tmp/cczs5ZMW.s:3381   .text.RTC_TamperPullUpCmd:0000001c $d
-     /tmp/cczs5ZMW.s:3386   .text.RTC_WriteBackupRegister:00000000 $t
-     /tmp/cczs5ZMW.s:3392   .text.RTC_WriteBackupRegister:00000000 RTC_WriteBackupRegister
-     /tmp/cczs5ZMW.s:3432   .text.RTC_WriteBackupRegister:0000001c $d
-     /tmp/cczs5ZMW.s:3437   .text.RTC_ReadBackupRegister:00000000 $t
-     /tmp/cczs5ZMW.s:3443   .text.RTC_ReadBackupRegister:00000000 RTC_ReadBackupRegister
-     /tmp/cczs5ZMW.s:3484   .text.RTC_ReadBackupRegister:0000001c $d
-     /tmp/cczs5ZMW.s:3489   .text.RTC_TamperPinSelection:00000000 $t
-     /tmp/cczs5ZMW.s:3495   .text.RTC_TamperPinSelection:00000000 RTC_TamperPinSelection
-     /tmp/cczs5ZMW.s:3522   .text.RTC_TamperPinSelection:00000014 $d
-     /tmp/cczs5ZMW.s:3527   .text.RTC_TimeStampPinSelection:00000000 $t
-     /tmp/cczs5ZMW.s:3533   .text.RTC_TimeStampPinSelection:00000000 RTC_TimeStampPinSelection
-     /tmp/cczs5ZMW.s:3560   .text.RTC_TimeStampPinSelection:00000014 $d
-     /tmp/cczs5ZMW.s:3565   .text.RTC_OutputTypeConfig:00000000 $t
-     /tmp/cczs5ZMW.s:3571   .text.RTC_OutputTypeConfig:00000000 RTC_OutputTypeConfig
-     /tmp/cczs5ZMW.s:3598   .text.RTC_OutputTypeConfig:00000014 $d
-     /tmp/cczs5ZMW.s:3603   .text.RTC_SynchroShiftConfig:00000000 $t
-     /tmp/cczs5ZMW.s:3609   .text.RTC_SynchroShiftConfig:00000000 RTC_SynchroShiftConfig
-     /tmp/cczs5ZMW.s:3720   .text.RTC_SynchroShiftConfig:0000005c $d
-     /tmp/cczs5ZMW.s:3725   .text.RTC_ITConfig:00000000 $t
-     /tmp/cczs5ZMW.s:3731   .text.RTC_ITConfig:00000000 RTC_ITConfig
-     /tmp/cczs5ZMW.s:3804   .text.RTC_ITConfig:00000044 $d
-     /tmp/cczs5ZMW.s:3809   .text.RTC_GetFlagStatus:00000000 $t
-     /tmp/cczs5ZMW.s:3815   .text.RTC_GetFlagStatus:00000000 RTC_GetFlagStatus
-     /tmp/cczs5ZMW.s:3856   .text.RTC_GetFlagStatus:00000020 $d
-     /tmp/cczs5ZMW.s:3861   .text.RTC_ClearFlag:00000000 $t
-     /tmp/cczs5ZMW.s:3867   .text.RTC_ClearFlag:00000000 RTC_ClearFlag
-     /tmp/cczs5ZMW.s:3896   .text.RTC_ClearFlag:00000018 $d
-     /tmp/cczs5ZMW.s:3901   .text.RTC_GetITStatus:00000000 $t
-     /tmp/cczs5ZMW.s:3907   .text.RTC_GetITStatus:00000000 RTC_GetITStatus
-     /tmp/cczs5ZMW.s:3977   .text.RTC_GetITStatus:00000034 $d
-     /tmp/cczs5ZMW.s:3982   .text.RTC_ClearITPendingBit:00000000 $t
-     /tmp/cczs5ZMW.s:3988   .text.RTC_ClearITPendingBit:00000000 RTC_ClearITPendingBit
-     /tmp/cczs5ZMW.s:4019   .text.RTC_ClearITPendingBit:00000018 $d
+     /tmp/cc26YGbF.s:3100   .text.RTC_TamperTriggerConfig:00000000 RTC_TamperTriggerConfig
+     /tmp/cc26YGbF.s:3134   .text.RTC_TamperTriggerConfig:0000001c $d
+     /tmp/cc26YGbF.s:3139   .text.RTC_TamperCmd:00000000 $t
+     /tmp/cc26YGbF.s:3145   .text.RTC_TamperCmd:00000000 RTC_TamperCmd
+     /tmp/cc26YGbF.s:3179   .text.RTC_TamperCmd:00000018 $d
+     /tmp/cc26YGbF.s:3184   .text.RTC_TamperFilterConfig:00000000 $t
+     /tmp/cc26YGbF.s:3190   .text.RTC_TamperFilterConfig:00000000 RTC_TamperFilterConfig
+     /tmp/cc26YGbF.s:3217   .text.RTC_TamperFilterConfig:00000014 $d
+     /tmp/cc26YGbF.s:3222   .text.RTC_TamperSamplingFreqConfig:00000000 $t
+     /tmp/cc26YGbF.s:3228   .text.RTC_TamperSamplingFreqConfig:00000000 RTC_TamperSamplingFreqConfig
+     /tmp/cc26YGbF.s:3255   .text.RTC_TamperSamplingFreqConfig:00000014 $d
+     /tmp/cc26YGbF.s:3260   .text.RTC_TamperPinsPrechargeDuration:00000000 $t
+     /tmp/cc26YGbF.s:3266   .text.RTC_TamperPinsPrechargeDuration:00000000 RTC_TamperPinsPrechargeDuration
+     /tmp/cc26YGbF.s:3293   .text.RTC_TamperPinsPrechargeDuration:00000014 $d
+     /tmp/cc26YGbF.s:3298   .text.RTC_TimeStampOnTamperDetectionCmd:00000000 $t
+     /tmp/cc26YGbF.s:3304   .text.RTC_TimeStampOnTamperDetectionCmd:00000000 RTC_TimeStampOnTamperDetectionCmd
+     /tmp/cc26YGbF.s:3337   .text.RTC_TimeStampOnTamperDetectionCmd:0000001c $d
+     /tmp/cc26YGbF.s:3342   .text.RTC_TamperPullUpCmd:00000000 $t
+     /tmp/cc26YGbF.s:3348   .text.RTC_TamperPullUpCmd:00000000 RTC_TamperPullUpCmd
+     /tmp/cc26YGbF.s:3381   .text.RTC_TamperPullUpCmd:0000001c $d
+     /tmp/cc26YGbF.s:3386   .text.RTC_WriteBackupRegister:00000000 $t
+     /tmp/cc26YGbF.s:3392   .text.RTC_WriteBackupRegister:00000000 RTC_WriteBackupRegister
+     /tmp/cc26YGbF.s:3432   .text.RTC_WriteBackupRegister:0000001c $d
+     /tmp/cc26YGbF.s:3437   .text.RTC_ReadBackupRegister:00000000 $t
+     /tmp/cc26YGbF.s:3443   .text.RTC_ReadBackupRegister:00000000 RTC_ReadBackupRegister
+     /tmp/cc26YGbF.s:3484   .text.RTC_ReadBackupRegister:0000001c $d
+     /tmp/cc26YGbF.s:3489   .text.RTC_TamperPinSelection:00000000 $t
+     /tmp/cc26YGbF.s:3495   .text.RTC_TamperPinSelection:00000000 RTC_TamperPinSelection
+     /tmp/cc26YGbF.s:3522   .text.RTC_TamperPinSelection:00000014 $d
+     /tmp/cc26YGbF.s:3527   .text.RTC_TimeStampPinSelection:00000000 $t
+     /tmp/cc26YGbF.s:3533   .text.RTC_TimeStampPinSelection:00000000 RTC_TimeStampPinSelection
+     /tmp/cc26YGbF.s:3560   .text.RTC_TimeStampPinSelection:00000014 $d
+     /tmp/cc26YGbF.s:3565   .text.RTC_OutputTypeConfig:00000000 $t
+     /tmp/cc26YGbF.s:3571   .text.RTC_OutputTypeConfig:00000000 RTC_OutputTypeConfig
+     /tmp/cc26YGbF.s:3598   .text.RTC_OutputTypeConfig:00000014 $d
+     /tmp/cc26YGbF.s:3603   .text.RTC_SynchroShiftConfig:00000000 $t
+     /tmp/cc26YGbF.s:3609   .text.RTC_SynchroShiftConfig:00000000 RTC_SynchroShiftConfig
+     /tmp/cc26YGbF.s:3720   .text.RTC_SynchroShiftConfig:0000005c $d
+     /tmp/cc26YGbF.s:3725   .text.RTC_ITConfig:00000000 $t
+     /tmp/cc26YGbF.s:3731   .text.RTC_ITConfig:00000000 RTC_ITConfig
+     /tmp/cc26YGbF.s:3804   .text.RTC_ITConfig:00000044 $d
+     /tmp/cc26YGbF.s:3809   .text.RTC_GetFlagStatus:00000000 $t
+     /tmp/cc26YGbF.s:3815   .text.RTC_GetFlagStatus:00000000 RTC_GetFlagStatus
+     /tmp/cc26YGbF.s:3856   .text.RTC_GetFlagStatus:00000020 $d
+     /tmp/cc26YGbF.s:3861   .text.RTC_ClearFlag:00000000 $t
+     /tmp/cc26YGbF.s:3867   .text.RTC_ClearFlag:00000000 RTC_ClearFlag
+     /tmp/cc26YGbF.s:3896   .text.RTC_ClearFlag:00000018 $d
+     /tmp/cc26YGbF.s:3901   .text.RTC_GetITStatus:00000000 $t
+     /tmp/cc26YGbF.s:3907   .text.RTC_GetITStatus:00000000 RTC_GetITStatus
+     /tmp/cc26YGbF.s:3977   .text.RTC_GetITStatus:00000034 $d
+     /tmp/cc26YGbF.s:3982   .text.RTC_ClearITPendingBit:00000000 $t
+     /tmp/cc26YGbF.s:3988   .text.RTC_ClearITPendingBit:00000000 RTC_ClearITPendingBit
+     /tmp/cc26YGbF.s:4019   .text.RTC_ClearITPendingBit:00000018 $d
 
 NO UNDEFINED SYMBOLS

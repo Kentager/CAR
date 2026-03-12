@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccJocEdl.s 			page 1
+ARM GAS  /tmp/ccJ3D96X.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
   21:USER/Src/main.c **** void my_console_logger(ulog_level_t severity, const char *msg) {
   34              		.loc 1 21 64 view -0
   35              		.cfi_startproc
-ARM GAS  /tmp/ccJocEdl.s 			page 2
+ARM GAS  /tmp/ccJ3D96X.s 			page 2
 
 
   36              		@ args = 0, pretend = 0, frame = 0
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
   85              		.cfi_startproc
   86              		@ args = 0, pretend = 0, frame = 0
   87              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccJocEdl.s 			page 3
+ARM GAS  /tmp/ccJ3D96X.s 			page 3
 
 
   88 0000 08B5     		push	{r3, lr}
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
  134              		.loc 1 38 3 view .LVU14
  135 000c 4FF47A61 		mov	r1, #4000
  136 0010 0020     		movs	r0, #0
-ARM GAS  /tmp/ccJocEdl.s 			page 4
+ARM GAS  /tmp/ccJ3D96X.s 			page 4
 
 
  137 0012 FFF7FEFF 		bl	Motor_SetSpeed
@@ -228,24 +228,24 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
  169              		.global	__aeabi_f2d
  170 001e 0000     		.align	2
  171              	.LC3:
- 172 0020 52696768 		.ascii	"Right Encoder - Count: %d, Speed: %.2f m/s\015\012\000"
+ 172 0020 52696768 		.ascii	"Right Encoder - Count: %d, X: %.2f m/s\015\012\000"
  172      7420456E 
  172      636F6465 
  172      72202D20 
  172      436F756E 
- 173 004d 000000   		.align	2
+ 173 0049 000000   		.align	2
  174              	.LC4:
- 175 0050 4C656674 		.ascii	"Left Encoder - Count: %d, Speed: %.2f m/s\015\012\000"
+ 175 004c 4C656674 		.ascii	"Left Encoder - Count: %d, X: %.2f m/s\015\012\000"
  175      20456E63 
  175      6F646572 
-ARM GAS  /tmp/ccJocEdl.s 			page 5
+ARM GAS  /tmp/ccJ3D96X.s 			page 5
 
 
  175      202D2043 
  175      6F756E74 
  176              		.align	2
  177              	.LC5:
- 178 007c 0D00     		.ascii	"\015\000"
+ 178 0074 0D00     		.ascii	"\015\000"
  179              		.section	.text.main,"ax",%progbits
  180              		.align	1
  181              		.global	main
@@ -258,38 +258,37 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
   47:USER/Src/main.c **** int main() {
  188              		.loc 1 47 12 is_stmt 1 view -0
  189              		.cfi_startproc
- 190              		@ args = 0, pretend = 0, frame = 96
+ 190              		@ args = 0, pretend = 0, frame = 112
  191              		@ frame_needed = 0, uses_anonymous_args = 0
- 192 0000 30B5     		push	{r4, r5, lr}
+ 192 0000 10B5     		push	{r4, lr}
  193              	.LCFI3:
- 194              		.cfi_def_cfa_offset 12
- 195              		.cfi_offset 4, -12
- 196              		.cfi_offset 5, -8
- 197              		.cfi_offset 14, -4
- 198 0002 99B0     		sub	sp, sp, #100
- 199              	.LCFI4:
- 200              		.cfi_def_cfa_offset 112
+ 194              		.cfi_def_cfa_offset 8
+ 195              		.cfi_offset 4, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 9CB0     		sub	sp, sp, #112
+ 198              	.LCFI4:
+ 199              		.cfi_def_cfa_offset 120
   48:USER/Src/main.c ****   int arg = 42;
- 201              		.loc 1 48 3 view .LVU21
- 202              	.LVL13:
+ 200              		.loc 1 48 3 view .LVU21
+ 201              	.LVL13:
   49:USER/Src/main.c ****   led_Init();
- 203              		.loc 1 49 3 view .LVU22
- 204 0004 FFF7FEFF 		bl	led_Init
- 205              	.LVL14:
+ 202              		.loc 1 49 3 view .LVU22
+ 203 0004 FFF7FEFF 		bl	led_Init
+ 204              	.LVL14:
   50:USER/Src/main.c ****   LED_Off();
- 206              		.loc 1 50 3 view .LVU23
- 207 0008 FFF7FEFF 		bl	LED_Off
- 208              	.LVL15:
+ 205              		.loc 1 50 3 view .LVU23
+ 206 0008 FFF7FEFF 		bl	LED_Off
+ 207              	.LVL15:
   51:USER/Src/main.c ****   Motor_Driver_Init();
- 209              		.loc 1 51 3 view .LVU24
- 210 000c FFF7FEFF 		bl	Motor_Driver_Init
- 211              	.LVL16:
+ 208              		.loc 1 51 3 view .LVU24
+ 209 000c FFF7FEFF 		bl	Motor_Driver_Init
+ 210              	.LVL16:
   52:USER/Src/main.c **** 
   53:USER/Src/main.c ****   // 初始化编码器模块
   54:USER/Src/main.c ****   Encoder_Driver_Init();
- 212              		.loc 1 54 3 view .LVU25
- 213 0010 FFF7FEFF 		bl	Encoder_Driver_Init
- 214              	.LVL17:
+ 211              		.loc 1 54 3 view .LVU25
+ 212 0010 FFF7FEFF 		bl	Encoder_Driver_Init
+ 213              	.LVL17:
   55:USER/Src/main.c **** 
   56:USER/Src/main.c ****   // 初始化任务调度系统
   57:USER/Src/main.c ****   // Task_Init();
@@ -298,10 +297,10 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
   60:USER/Src/main.c ****     // 初始化速度环PID控制器
   61:USER/Src/main.c ****     // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
   62:USER/Src/main.c ****     Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
-ARM GAS  /tmp/ccJocEdl.s 			page 6
-
-
   63:USER/Src/main.c ****                    SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
+ARM GAS  /tmp/ccJ3D96X.s 			page 6
+
+
   64:USER/Src/main.c ****                    SPEED_PID_KD_DEFAULT);
   65:USER/Src/main.c **** 
   66:USER/Src/main.c ****     // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
@@ -322,161 +321,158 @@ ARM GAS  /tmp/ccJocEdl.s 			page 1
   81:USER/Src/main.c ****     */
   82:USER/Src/main.c **** 
   83:USER/Src/main.c ****   USART1_Init();
- 215              		.loc 1 83 3 view .LVU26
- 216 0014 FFF7FEFF 		bl	USART1_Init
- 217              	.LVL18:
+ 214              		.loc 1 83 3 view .LVU26
+ 215 0014 FFF7FEFF 		bl	USART1_Init
+ 216              	.LVL18:
   84:USER/Src/main.c ****   printf("hello world\r\n");
- 218              		.loc 1 84 3 view .LVU27
- 219 0018 2148     		ldr	r0, .L14
- 220 001a FFF7FEFF 		bl	puts
- 221              	.LVL19:
+ 217              		.loc 1 84 3 view .LVU27
+ 218 0018 2148     		ldr	r0, .L14
+ 219 001a FFF7FEFF 		bl	puts
+ 220              	.LVL19:
   85:USER/Src/main.c **** 
   86:USER/Src/main.c ****   delay_init();
- 222              		.loc 1 86 3 view .LVU28
- 223 001e FFF7FEFF 		bl	delay_init
- 224              	.LVL20:
+ 221              		.loc 1 86 3 view .LVU28
+ 222 001e FFF7FEFF 		bl	delay_init
+ 223              	.LVL20:
   87:USER/Src/main.c ****   Encoder_Data_t encoder_data;
- 225              		.loc 1 87 3 view .LVU29
+ 224              		.loc 1 87 3 view .LVU29
   88:USER/Src/main.c ****   uint32_t count = 0;
- 226              		.loc 1 88 3 view .LVU30
- 227              		.loc 1 88 12 is_stmt 0 view .LVU31
- 228 0022 0024     		movs	r4, #0
- 229              	.LVL21:
- 230              	.L12:
-  89:USER/Src/main.c ****   while (1) {
- 231              		.loc 1 89 3 is_stmt 1 view .LVU32
+ 225              		.loc 1 88 3 view .LVU30
+ 226              		.loc 1 88 12 is_stmt 0 view .LVU31
+ 227 0022 0024     		movs	r4, #0
+ 228              	.LVL21:
+ 229              	.L12:
+  89:USER/Src/main.c ****   // motor_test();
+  90:USER/Src/main.c ****   while (1) {
+ 230              		.loc 1 90 3 is_stmt 1 view .LVU32
+  91:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
+ 231              		.loc 1 91 5 view .LVU33
+ 232 0024 0D21     		movs	r1, #13
+ 233 0026 1F48     		ldr	r0, .L14+4
+ 234 0028 FFF7FEFF 		bl	GPIO_ToggleBits
+ 235              	.LVL22:
+  92:USER/Src/main.c ****     delay_ms(100);
+ 236              		.loc 1 92 5 view .LVU34
+ 237 002c 6420     		movs	r0, #100
+ 238 002e FFF7FEFF 		bl	delay_ms
+ 239              	.LVL23:
+  93:USER/Src/main.c ****     printf("this is %d:\r\n", count);
+ 240              		.loc 1 93 5 view .LVU35
+ARM GAS  /tmp/ccJ3D96X.s 			page 7
+
+
+ 241 0032 2146     		mov	r1, r4
+ 242 0034 1C48     		ldr	r0, .L14+8
+ 243 0036 FFF7FEFF 		bl	printf
+ 244              	.LVL24:
+  94:USER/Src/main.c ****     encoder_data = Encoder_GetData(ENCODER_RIGHT);
+ 245              		.loc 1 94 5 view .LVU36
+ 246              		.loc 1 94 20 is_stmt 0 view .LVU37
+ 247 003a 0021     		movs	r1, #0
+ 248 003c 0FA8     		add	r0, sp, #60
+ 249 003e FFF7FEFF 		bl	Encoder_GetData
+ 250              	.LVL25:
+  95:USER/Src/main.c ****     printf("Right Encoder - Count: %d, X: %.2f m/s\r\n", encoder_data.count,
+ 251              		.loc 1 95 5 is_stmt 1 view .LVU38
+ 252 0042 1798     		ldr	r0, [sp, #92]	@ float
+ 253 0044 FFF7FEFF 		bl	__aeabi_f2d
+ 254              	.LVL26:
+ 255 0048 0246     		mov	r2, r0
+ 256 004a 0B46     		mov	r3, r1
+ 257 004c 0F99     		ldr	r1, [sp, #60]
+ 258 004e 1748     		ldr	r0, .L14+12
+ 259 0050 FFF7FEFF 		bl	printf
+ 260              	.LVL27:
+  96:USER/Src/main.c ****            encoder_data.total_distance);
+  97:USER/Src/main.c ****     encoder_data = Encoder_GetData(ENCODER_LEFT);
+ 261              		.loc 1 97 5 view .LVU39
+ 262              		.loc 1 97 20 is_stmt 0 view .LVU40
+ 263 0054 0121     		movs	r1, #1
+ 264 0056 6846     		mov	r0, sp
+ 265 0058 FFF7FEFF 		bl	Encoder_GetData
+ 266              	.LVL28:
+ 267 005c 0DF13C0C 		add	ip, sp, #60
+ 268 0060 EE46     		mov	lr, sp
+ 269 0062 BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 270 0066 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 271 006a BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 272 006e ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 273 0072 BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
+ 274 0076 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 275 007a DEF80030 		ldr	r3, [lr]
+ 276 007e CCF80030 		str	r3, [ip]
+  98:USER/Src/main.c ****     printf("Left Encoder - Count: %d, X: %.2f m/s\r\n", encoder_data.count,
+ 277              		.loc 1 98 5 is_stmt 1 view .LVU41
+ 278 0082 1798     		ldr	r0, [sp, #92]	@ float
+ 279 0084 FFF7FEFF 		bl	__aeabi_f2d
+ 280              	.LVL29:
+ 281 0088 0246     		mov	r2, r0
+ 282 008a 0B46     		mov	r3, r1
+ 283 008c 0F99     		ldr	r1, [sp, #60]
+ 284 008e 0848     		ldr	r0, .L14+16
+ 285 0090 FFF7FEFF 		bl	printf
+ 286              	.LVL30:
+  99:USER/Src/main.c ****            encoder_data.total_distance);
+ 100:USER/Src/main.c ****     printf("\r\n");
+ 287              		.loc 1 100 5 view .LVU42
+ 288 0094 0748     		ldr	r0, .L14+20
+ 289 0096 FFF7FEFF 		bl	puts
+ 290              	.LVL31:
+ARM GAS  /tmp/ccJ3D96X.s 			page 8
+
+
+ 101:USER/Src/main.c ****     count++;
+ 291              		.loc 1 101 5 discriminator 1 view .LVU43
+ 292              		.loc 1 101 10 is_stmt 0 discriminator 1 view .LVU44
+ 293 009a 0134     		adds	r4, r4, #1
+ 294              	.LVL32:
   90:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
- 232              		.loc 1 90 5 view .LVU33
- 233 0024 0D21     		movs	r1, #13
- 234 0026 1F48     		ldr	r0, .L14+4
- 235 0028 FFF7FEFF 		bl	GPIO_ToggleBits
- 236              	.LVL22:
-  91:USER/Src/main.c ****     delay_ms(100);
- 237              		.loc 1 91 5 view .LVU34
- 238 002c 6420     		movs	r0, #100
- 239 002e FFF7FEFF 		bl	delay_ms
- 240              	.LVL23:
-  92:USER/Src/main.c ****     printf("this is %d:\r\n", count);
- 241              		.loc 1 92 5 view .LVU35
-ARM GAS  /tmp/ccJocEdl.s 			page 7
-
-
- 242 0032 2146     		mov	r1, r4
- 243 0034 1C48     		ldr	r0, .L14+8
- 244 0036 FFF7FEFF 		bl	printf
- 245              	.LVL24:
-  93:USER/Src/main.c ****     encoder_data = Encoder_GetData(ENCODER_RIGHT);
- 246              		.loc 1 93 5 view .LVU36
- 247              		.loc 1 93 20 is_stmt 0 view .LVU37
- 248 003a 0021     		movs	r1, #0
- 249 003c 0CA8     		add	r0, sp, #48
- 250 003e FFF7FEFF 		bl	Encoder_GetData
- 251              	.LVL25:
-  94:USER/Src/main.c ****     printf("Right Encoder - Count: %d, Speed: %.2f m/s\r\n", encoder_data.count,
- 252              		.loc 1 94 5 is_stmt 1 view .LVU38
- 253              		.loc 1 94 74 is_stmt 0 view .LVU39
- 254 0042 BDF93050 		ldrsh	r5, [sp, #48]
- 255              		.loc 1 94 5 view .LVU40
- 256 0046 1198     		ldr	r0, [sp, #68]	@ float
- 257 0048 FFF7FEFF 		bl	__aeabi_f2d
- 258              	.LVL26:
- 259 004c 0246     		mov	r2, r0
- 260 004e 0B46     		mov	r3, r1
- 261 0050 2946     		mov	r1, r5
- 262 0052 1648     		ldr	r0, .L14+12
- 263 0054 FFF7FEFF 		bl	printf
- 264              	.LVL27:
-  95:USER/Src/main.c ****            encoder_data.speed_m_s);
-  96:USER/Src/main.c ****     encoder_data = Encoder_GetData(ENCODER_LEFT);
- 265              		.loc 1 96 5 is_stmt 1 view .LVU41
- 266              		.loc 1 96 20 is_stmt 0 view .LVU42
- 267 0058 0121     		movs	r1, #1
- 268 005a 6846     		mov	r0, sp
- 269 005c FFF7FEFF 		bl	Encoder_GetData
- 270              	.LVL28:
- 271 0060 0DF1300C 		add	ip, sp, #48
- 272 0064 EE46     		mov	lr, sp
- 273 0066 BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
- 274 006a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 275 006e BEE80F00 		ldmia	lr!, {r0, r1, r2, r3}
- 276 0072 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
- 277 0076 9EE80F00 		ldm	lr, {r0, r1, r2, r3}
- 278 007a 8CE80F00 		stm	ip, {r0, r1, r2, r3}
-  97:USER/Src/main.c ****     printf("Left Encoder - Count: %d, Speed: %.2f m/s\r\n", encoder_data.count,
- 279              		.loc 1 97 5 is_stmt 1 view .LVU43
- 280              		.loc 1 97 73 is_stmt 0 view .LVU44
- 281 007e BDF93050 		ldrsh	r5, [sp, #48]
- 282              		.loc 1 97 5 view .LVU45
- 283 0082 1198     		ldr	r0, [sp, #68]	@ float
- 284 0084 FFF7FEFF 		bl	__aeabi_f2d
- 285              	.LVL29:
- 286 0088 0246     		mov	r2, r0
- 287 008a 0B46     		mov	r3, r1
- 288 008c 2946     		mov	r1, r5
- 289 008e 0848     		ldr	r0, .L14+16
- 290 0090 FFF7FEFF 		bl	printf
- 291              	.LVL30:
-  98:USER/Src/main.c ****            encoder_data.speed_m_s);
-  99:USER/Src/main.c ****     printf("\r\n");
-ARM GAS  /tmp/ccJocEdl.s 			page 8
-
-
- 292              		.loc 1 99 5 is_stmt 1 view .LVU46
- 293 0094 0748     		ldr	r0, .L14+20
- 294 0096 FFF7FEFF 		bl	puts
- 295              	.LVL31:
- 100:USER/Src/main.c ****     count++;
- 296              		.loc 1 100 5 discriminator 1 view .LVU47
- 297              		.loc 1 100 10 is_stmt 0 discriminator 1 view .LVU48
- 298 009a 0134     		adds	r4, r4, #1
- 299              	.LVL32:
-  89:USER/Src/main.c ****     GPIO_ToggleBits(GPIOC, 13);
- 300              		.loc 1 89 9 is_stmt 1 view .LVU49
- 301 009c C2E7     		b	.L12
- 302              	.L15:
- 303 009e 00BF     		.align	2
- 304              	.L14:
- 305 00a0 00000000 		.word	.LC1
- 306 00a4 00080240 		.word	1073874944
- 307 00a8 10000000 		.word	.LC2
- 308 00ac 20000000 		.word	.LC3
- 309 00b0 50000000 		.word	.LC4
- 310 00b4 7C000000 		.word	.LC5
- 311              		.cfi_endproc
- 312              	.LFE129:
- 314              		.text
- 315              	.Letext0:
- 316              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
- 317              		.file 3 "CMSIS/stm32f4xx.h"
- 318              		.file 4 "MyHardWare/Inc/encoder.h"
- 319              		.file 5 "MyHardWare/Inc/motor.h"
- 320              		.file 6 "MyHardWare/Inc/pid_speed.h"
- 321              		.file 7 "MyHardWare/Inc/ulog.h"
- 322              		.file 8 "MyHardWare/Inc/delay.h"
- 323              		.file 9 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
- 324              		.file 10 "MyHardWare/Inc/usart.h"
- 325              		.file 11 "MyHardWare/Inc/led.h"
- 326              		.file 12 "/usr/include/newlib/stdio.h"
- 327              		.file 13 "MyHardWare/Inc/rtc.h"
- 328              		.file 14 "<built-in>"
-ARM GAS  /tmp/ccJocEdl.s 			page 9
+ 295              		.loc 1 90 9 is_stmt 1 view .LVU45
+ 296 009c C2E7     		b	.L12
+ 297              	.L15:
+ 298 009e 00BF     		.align	2
+ 299              	.L14:
+ 300 00a0 00000000 		.word	.LC1
+ 301 00a4 00080240 		.word	1073874944
+ 302 00a8 10000000 		.word	.LC2
+ 303 00ac 20000000 		.word	.LC3
+ 304 00b0 4C000000 		.word	.LC4
+ 305 00b4 74000000 		.word	.LC5
+ 306              		.cfi_endproc
+ 307              	.LFE129:
+ 309              		.text
+ 310              	.Letext0:
+ 311              		.file 2 "/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h"
+ 312              		.file 3 "CMSIS/stm32f4xx.h"
+ 313              		.file 4 "MyHardWare/Inc/encoder.h"
+ 314              		.file 5 "MyHardWare/Inc/motor.h"
+ 315              		.file 6 "MyHardWare/Inc/pid_speed.h"
+ 316              		.file 7 "MyHardWare/Inc/ulog.h"
+ 317              		.file 8 "MyHardWare/Inc/delay.h"
+ 318              		.file 9 "Lib/StdPeriphs/inc/stm32f4xx_gpio.h"
+ 319              		.file 10 "MyHardWare/Inc/usart.h"
+ 320              		.file 11 "MyHardWare/Inc/led.h"
+ 321              		.file 12 "/usr/include/newlib/stdio.h"
+ 322              		.file 13 "MyHardWare/Inc/rtc.h"
+ 323              		.file 14 "<built-in>"
+ARM GAS  /tmp/ccJ3D96X.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-     /tmp/ccJocEdl.s:21     .rodata.my_console_logger.str1.4:00000000 $d
-     /tmp/ccJocEdl.s:25     .text.my_console_logger:00000000 $t
-     /tmp/ccJocEdl.s:31     .text.my_console_logger:00000000 my_console_logger
-     /tmp/ccJocEdl.s:71     .text.my_console_logger:00000020 $d
-     /tmp/ccJocEdl.s:76     .text.speed_control_task:00000000 $t
-     /tmp/ccJocEdl.s:82     .text.speed_control_task:00000000 speed_control_task
-     /tmp/ccJocEdl.s:106    .text.speed_control_task:00000010 $d
-     /tmp/ccJocEdl.s:112    .text.motor_test:00000000 $t
-     /tmp/ccJocEdl.s:118    .text.motor_test:00000000 motor_test
-     /tmp/ccJocEdl.s:163    .rodata.main.str1.4:00000000 $d
-     /tmp/ccJocEdl.s:180    .text.main:00000000 $t
-     /tmp/ccJocEdl.s:186    .text.main:00000000 main
-     /tmp/ccJocEdl.s:305    .text.main:000000a0 $d
+     /tmp/ccJ3D96X.s:21     .rodata.my_console_logger.str1.4:00000000 $d
+     /tmp/ccJ3D96X.s:25     .text.my_console_logger:00000000 $t
+     /tmp/ccJ3D96X.s:31     .text.my_console_logger:00000000 my_console_logger
+     /tmp/ccJ3D96X.s:71     .text.my_console_logger:00000020 $d
+     /tmp/ccJ3D96X.s:76     .text.speed_control_task:00000000 $t
+     /tmp/ccJ3D96X.s:82     .text.speed_control_task:00000000 speed_control_task
+     /tmp/ccJ3D96X.s:106    .text.speed_control_task:00000010 $d
+     /tmp/ccJ3D96X.s:112    .text.motor_test:00000000 $t
+     /tmp/ccJ3D96X.s:118    .text.motor_test:00000000 motor_test
+     /tmp/ccJ3D96X.s:163    .rodata.main.str1.4:00000000 $d
+     /tmp/ccJ3D96X.s:180    .text.main:00000000 $t
+     /tmp/ccJ3D96X.s:186    .text.main:00000000 main
+     /tmp/ccJ3D96X.s:300    .text.main:000000a0 $d
 
 UNDEFINED SYMBOLS
 RTC_GetNowTime

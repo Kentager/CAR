@@ -1,5 +1,11 @@
 
+//=============================================================================
+// NOTE:
+// 注意，encoder会自动解算speed,需要在头文件中确定采样周期ENCODER_SAMPLE_PERIOD_MS和采样频率ENCODER_SAMPLE_FREQ_HZ
+//=============================================================================
+
 /**
+ *
  * @file encoder.c
  * @brief 编码器驱动实现文件 - 智能车专用（面向对象风格）
  * @version 2.0
@@ -54,7 +60,7 @@ static Encoder_Class_t Encoder_Left = {
               .last_update_time = 0},
     ._initialized = 0,
     .id = ENCODER_LEFT,
-    .tim = TIM3};
+    .tim = TIM5}; // 修改为 TIM5
 #endif
 
 /* ==================== 私有函数：硬件初始化 ==================== */
@@ -69,8 +75,8 @@ static void Encoder_GPIO_Init(void) {
   GPIO_InitTypeDef GPIO_InitStructure;
 
 #ifdef QUAD_MOTOR_DRIVE
-  // 四驱模式：直接初始化所有4个编码器的GPIO
-  // 前右编码器
+  // 四驱模式：直接初始化所有 4 个编码器的 GPIO
+  // 前右编码器 (TIM2)
   RCC_AHB1PeriphClockCmd(ENCODER_FR_GPIO_CLK, ENABLE);
   GPIO_InitStructure.GPIO_Pin = ENCODER_FR_CH1_PIN | ENCODER_FR_CH2_PIN;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -79,8 +85,8 @@ static void Encoder_GPIO_Init(void) {
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
   GPIO_Init(ENCODER_FR_CH1_PORT, &GPIO_InitStructure);
   GPIO_Init(ENCODER_FR_CH2_PORT, &GPIO_InitStructure);
-  GPIO_PinAFConfig(ENCODER_FR_CH1_PORT, GPIO_PinSource0, ENCODER_FR_AF);
-  GPIO_PinAFConfig(ENCODER_FR_CH2_PORT, GPIO_PinSource1, ENCODER_FR_AF);
+  GPIO_PinAFConfig(ENCODER_FR_CH1_PORT, GPIO_PinSource15, ENCODER_FR_AF);
+  GPIO_PinAFConfig(ENCODER_FR_CH2_PORT, GPIO_PinSource3, ENCODER_FR_AF);
 
   // 前左编码器
   RCC_AHB1PeriphClockCmd(ENCODER_FL_GPIO_CLK, ENABLE);
@@ -98,35 +104,35 @@ static void Encoder_GPIO_Init(void) {
   GPIO_PinAFConfig(ENCODER_BR_CH1_PORT, GPIO_PinSource12, ENCODER_BR_AF);
   GPIO_PinAFConfig(ENCODER_BR_CH2_PORT, GPIO_PinSource13, ENCODER_BR_AF);
 
-  // 后左编码器
+  // 后左编码器 (TIM5)
   RCC_AHB1PeriphClockCmd(ENCODER_BL_GPIO_CLK, ENABLE);
   GPIO_InitStructure.GPIO_Pin = ENCODER_BL_CH1_PIN | ENCODER_BL_CH2_PIN;
   GPIO_Init(ENCODER_BL_CH1_PORT, &GPIO_InitStructure);
   GPIO_Init(ENCODER_BL_CH2_PORT, &GPIO_InitStructure);
-  GPIO_PinAFConfig(ENCODER_BL_CH1_PORT, GPIO_PinSource0, ENCODER_BL_AF);
-  GPIO_PinAFConfig(ENCODER_BL_CH2_PORT, GPIO_PinSource1, ENCODER_BL_AF);
+  GPIO_PinAFConfig(ENCODER_BL_CH1_PORT, GPIO_PinSource10, ENCODER_BL_AF);
+  GPIO_PinAFConfig(ENCODER_BL_CH2_PORT, GPIO_PinSource11, ENCODER_BL_AF);
 
 #else
-  // 双驱模式：只初始化前轮2个编码器的GPIO
-  // 前右编码器
-  RCC_AHB1PeriphClockCmd(ENCODER_FR_GPIO_CLK, ENABLE);
-  GPIO_InitStructure.GPIO_Pin = ENCODER_FR_CH1_PIN | ENCODER_FR_CH2_PIN;
+  // 双驱模式：只初始化 2 个编码器的 GPIO
+  // 右编码器 (TIM5)
+  RCC_AHB1PeriphClockCmd(ENCODER_RIGHT_GPIO_CLK, ENABLE);
+  GPIO_InitStructure.GPIO_Pin = ENCODER_RIGHT_CH1_PIN | ENCODER_RIGHT_CH2_PIN;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-  GPIO_Init(ENCODER_FR_CH1_PORT, &GPIO_InitStructure);
-  GPIO_Init(ENCODER_FR_CH2_PORT, &GPIO_InitStructure);
-  GPIO_PinAFConfig(ENCODER_FR_CH1_PORT, GPIO_PinSource0, ENCODER_FR_AF);
-  GPIO_PinAFConfig(ENCODER_FR_CH2_PORT, GPIO_PinSource1, ENCODER_FR_AF);
+  GPIO_Init(ENCODER_RIGHT_CH1_PORT, &GPIO_InitStructure);
+  GPIO_Init(ENCODER_RIGHT_CH2_PORT, &GPIO_InitStructure);
+  GPIO_PinAFConfig(ENCODER_RIGHT_CH1_PORT, GPIO_PinSource0, ENCODER_RIGHT_AF);
+  GPIO_PinAFConfig(ENCODER_RIGHT_CH2_PORT, GPIO_PinSource1, ENCODER_RIGHT_AF);
 
-  // 前左编码器
-  RCC_AHB1PeriphClockCmd(ENCODER_FL_GPIO_CLK, ENABLE);
-  GPIO_InitStructure.GPIO_Pin = ENCODER_FL_CH1_PIN | ENCODER_FL_CH2_PIN;
-  GPIO_Init(ENCODER_FL_CH1_PORT, &GPIO_InitStructure);
-  GPIO_Init(ENCODER_FL_CH2_PORT, &GPIO_InitStructure);
-  GPIO_PinAFConfig(ENCODER_FL_CH1_PORT, GPIO_PinSource6, ENCODER_FL_AF);
-  GPIO_PinAFConfig(ENCODER_FL_CH2_PORT, GPIO_PinSource7, ENCODER_FL_AF);
+  // 左编码器 (TIM2)
+  RCC_AHB1PeriphClockCmd(ENCODER_LEFT_GPIO_CLK, ENABLE);
+  GPIO_InitStructure.GPIO_Pin = ENCODER_LEFT_CH1_PIN | ENCODER_LEFT_CH2_PIN;
+  GPIO_Init(ENCODER_LEFT_CH1_PORT, &GPIO_InitStructure);
+  GPIO_Init(ENCODER_LEFT_CH2_PORT, &GPIO_InitStructure);
+  GPIO_PinAFConfig(ENCODER_LEFT_CH1_PORT, GPIO_PinSource5, ENCODER_LEFT_AF);
+  GPIO_PinAFConfig(ENCODER_LEFT_CH2_PORT, GPIO_PinSource3, ENCODER_LEFT_AF);
 
 #endif
 }
@@ -209,14 +215,14 @@ static void Encoder_TIM_Init(void) {
   TIM_Cmd(TIM5, ENABLE);
 
 #else
-  // 双驱模式：只初始化 TIM2, TIM3
+  // 双驱模式：只初始化 TIM2, TIM5
 
   // 使能定时器时钟
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM3, ENABLE);
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM5, ENABLE);
 
   // TIM2 配置 (右编码器)
   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-  TIM_TimeBaseStructure.TIM_Period = 65535;
+  TIM_TimeBaseStructure.TIM_Period = 200000;
   TIM_TimeBaseStructure.TIM_Prescaler = 0;
   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
@@ -239,18 +245,18 @@ static void Encoder_TIM_Init(void) {
                              TIM_ICPolarity_Rising);
   TIM_Cmd(TIM2, ENABLE);
 
-  // TIM3 配置 (左编码器)
-  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+  // TIM5 配置 (左编码器)
+  TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
 
   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
-  TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+  TIM_ICInit(TIM5, &TIM_IC_InitStructure);
 
   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
-  TIM_ICInit(TIM3, &TIM_IC_InitStructure);
+  TIM_ICInit(TIM5, &TIM_IC_InitStructure);
 
-  TIM_EncoderInterfaceConfig(TIM3, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
+  TIM_EncoderInterfaceConfig(TIM5, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
                              TIM_ICPolarity_Rising);
-  TIM_Cmd(TIM3, ENABLE);
+  TIM_Cmd(TIM5, ENABLE);
 #endif
   Encoder_Update();
 }
@@ -270,20 +276,24 @@ void Encoder_Update(void) {
   float dt_seconds = ENCODER_SAMPLE_PERIOD_MS / 1000.0f; // 转换为秒
 
 #ifdef QUAD_MOTOR_DRIVE
-  // 四驱模式：处理4个编码器
+  // 四驱模式：处理 4 个编码器
   Encoder_Class_t *encoders[] = {&Encoder_FR, &Encoder_FL, &Encoder_BR,
                                  &Encoder_BL};
   for (int i = 0; i < 4; i++) {
     Encoder_Class_t *instance = encoders[i];
 
     // 读取当前计数值
-    int16_t current_count = (int16_t)TIM_GetCounter(instance->tim);
+    int32_t current_count = (int32_t)TIM_GetCounter(instance->tim);
 
-    // 计算增量并处理溢出
-    int16_t delta = current_count - instance->_data.last_count;
+    // 计算增量并处理计数器溢出/下溢
+    int32_t delta = current_count - instance->_data.last_count;
+
+    // 检测是否发生溢出或下溢（ARR=65535）
     if (delta > 32767) {
+      // 计数器从 65535 回绕到 0，需要减去 65536
       delta -= 65536;
-    } else if (delta < -32768) {
+    } else if (delta < -32767) {
+      // 计数器从 0 回绕到 65535，需要加上 65536
       delta += 65536;
     }
 
@@ -316,21 +326,25 @@ void Encoder_Update(void) {
     instance->_data.last_update_time = current_time;
   }
 #else
-  // 双驱模式：处理2个编码器
+  // 双驱模式：处理 2 个编码器
   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
   for (int i = 0; i < 2; i++) {
     uint32_t current_time = GetSysTick();
     Encoder_Class_t *instance = encoders[i];
 
-    // 读取当前计数值
-    int16_t current_count = (int16_t)TIM_GetCounter(instance->tim);
+    // 读取当前计数值 (支持 32 位定时器)
+    int32_t current_count = (int32_t)TIM_GetCounter(instance->tim);
 
-    // 计算增量并处理溢出
-    int16_t delta = current_count - instance->_data.last_count;
-    if (delta > 32767) {
-      delta -= 65536;
-    } else if (delta < -32768) {
-      delta += 65536;
+    // 计算增量并处理计数器溢出/下溢
+    int32_t delta = current_count - instance->_data.last_count;
+
+    // 检测是否发生溢出或下溢（ARR=200000）
+    if (delta > 100000) {
+      // 计数器从 200000 回绕到 0，需要减去 200001
+      delta -= 200001;
+    } else if (delta < -100000) {
+      // 计数器从 0 回绕到 200000，需要加上 200001
+      delta += 200001;
     }
 
     // 更新数据结构

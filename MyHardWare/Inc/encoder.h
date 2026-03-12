@@ -36,7 +36,7 @@ typedef enum {
   ENCODER_MAX = 4 // 编码器总数
 #else
   ENCODER_RIGHT = 0, // 右电机编码器 (对应前右) - TIM2
-  ENCODER_LEFT = 1,  // 左电机编码器 (对应前左) - TIM3
+  ENCODER_LEFT = 1,  // 左电机编码器 (对应前左) - TIM5
   ENCODER_MAX = 2    // 编码器总数
 #endif
 } Encoder_Id_e;
@@ -53,30 +53,54 @@ typedef enum {
 /* ==================== 编码器参数配置 ==================== */
 // 编码器硬件参数
 #define ENCODER_LINES 500          // 编码器线数
-#define ENCODER_REDUCTION_RATIO 30 // 减速比
+#define ENCODER_REDUCTION_RATIO 28 // 减速比
 #define ENCODER_PPR                                                            \
-  (ENCODER_LINES * 4 * ENCODER_REDUCTION_RATIO) // 每转脉冲数 (500*4*30=1320)
+  (ENCODER_LINES * 2 * ENCODER_REDUCTION_RATIO) // 每转脉冲数 (500*2*28=2800)
 
 // 轮子参数
 #define WHEEL_DIAMETER 0.065f // 轮子直径 65mm（根据实际修改）
 #define GEAR_RATIO 1.0f       // 齿轮比（根据实际修改）
 
 // 测速相关参数
-#define ENCODER_SAMPLE_PERIOD_MS 1 // 采样周期 (ms)
-#define ENCODER_SAMPLE_FREQ_HZ 100 // 采样频率 (Hz) (Hz)
+#define ENCODER_SAMPLE_PERIOD_MS 1  // 采样周期 (ms)
+#define ENCODER_SAMPLE_FREQ_HZ 1000 // 采样频率 (Hz) (Hz)
 
 // 速度计算相关
 #define RPM_TO_RPS (1.0f / 60.0f)             // RPM转RPS
 #define PULSE_TO_RAD (6.28318f / ENCODER_PPR) // 脉冲转弧度
 
+/* ==================== 右编码器 (ENCODER_RIGHT) - TIM5 ==================== */
+// 双驱模式下使用 TIM5（32 位定时器）
+#define ENCODER_RIGHT_TIM TIM5
+#define ENCODER_RIGHT_TIM_CLK RCC_APB1Periph_TIM5
+#define ENCODER_RIGHT_CH1_PORT GPIOA
+#define ENCODER_RIGHT_CH1_PIN GPIO_Pin_0 // TIM5_CH1
+#define ENCODER_RIGHT_CH2_PORT GPIOA
+#define ENCODER_RIGHT_CH2_PIN GPIO_Pin_1 // TIM5_CH2
+#define ENCODER_RIGHT_GPIO_CLK RCC_AHB1Periph_GPIOA
+#define ENCODER_RIGHT_AF GPIO_AF_TIM5
+
+/* ==================== 左编码器 (ENCODER_LEFT) - TIM5 ==================== */
+// 双驱模式下使用 TIM2（32 位定时器）
+#define ENCODER_LEFT_TIM TIM2
+#define ENCODER_LEFT_TIM_CLK RCC_APB1Periph_TIM2
+#define ENCODER_LEFT_CH1_PORT GPIOA
+#define ENCODER_LEFT_CH1_PIN GPIO_Pin_5 // TIM2_CH1
+#define ENCODER_LEFT_CH2_PORT GPIOB
+#define ENCODER_LEFT_CH2_PIN GPIO_Pin_3 // TIM2_CH2
+#define ENCODER_LEFT_GPIO_CLK (RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB)
+#define ENCODER_LEFT_AF GPIO_AF_TIM2
+
+/* ==================== 四驱模式专用编码器定义 ==================== */
+#ifdef QUAD_MOTOR_DRIVE
 /* ==================== 前右编码器 (ENCODER_FR) - TIM2 ==================== */
 #define ENCODER_FR_TIM TIM2
 #define ENCODER_FR_TIM_CLK RCC_APB1Periph_TIM2
 #define ENCODER_FR_CH1_PORT GPIOA
-#define ENCODER_FR_CH1_PIN GPIO_Pin_0 // TIM2_CH1
-#define ENCODER_FR_CH2_PORT GPIOA
-#define ENCODER_FR_CH2_PIN GPIO_Pin_1 // TIM2_CH2
-#define ENCODER_FR_GPIO_CLK RCC_AHB1Periph_GPIOA
+#define ENCODER_FR_CH1_PIN GPIO_Pin_15 // TIM2_CH1
+#define ENCODER_FR_CH2_PORT GPIOB
+#define ENCODER_FR_CH2_PIN GPIO_Pin_3 // TIM2_CH2
+#define ENCODER_FR_GPIO_CLK (RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB)
 #define ENCODER_FR_AF GPIO_AF_TIM2
 
 /* ==================== 前左编码器 (ENCODER_FL) - TIM3 ==================== */
@@ -90,7 +114,6 @@ typedef enum {
 #define ENCODER_FL_AF GPIO_AF_TIM3
 
 /* ==================== 后右编码器 (ENCODER_BR) - TIM4 ==================== */
-#ifdef QUAD_MOTOR_DRIVE
 #define ENCODER_BR_TIM TIM4
 #define ENCODER_BR_TIM_CLK RCC_APB1Periph_TIM4
 #define ENCODER_BR_CH1_PORT GPIOD
@@ -99,17 +122,15 @@ typedef enum {
 #define ENCODER_BR_CH2_PIN GPIO_Pin_13 // TIM4_CH2
 #define ENCODER_BR_GPIO_CLK RCC_AHB1Periph_GPIOD
 #define ENCODER_BR_AF GPIO_AF_TIM4
-#endif
 
 /* ==================== 后左编码器 (ENCODER_BL) - TIM5 ==================== */
-#ifdef QUAD_MOTOR_DRIVE
 #define ENCODER_BL_TIM TIM5
 #define ENCODER_BL_TIM_CLK RCC_APB1Periph_TIM5
-#define ENCODER_BL_CH1_PORT GPIOA
-#define ENCODER_BL_CH1_PIN GPIO_Pin_0 // TIM5_CH1
-#define ENCODER_BL_CH2_PORT GPIOA
-#define ENCODER_BL_CH2_PIN GPIO_Pin_1 // TIM5_CH2
-#define ENCODER_BL_GPIO_CLK RCC_AHB1Periph_GPIOA
+#define ENCODER_BL_CH1_PORT GPIOH
+#define ENCODER_BL_CH1_PIN GPIO_Pin_10 // TIM5_CH1
+#define ENCODER_BL_CH2_PORT GPIOH
+#define ENCODER_BL_CH2_PIN GPIO_Pin_11 // TIM5_CH2
+#define ENCODER_BL_GPIO_CLK RCC_AHB1Periph_GPIOH
 #define ENCODER_BL_AF GPIO_AF_TIM5
 #endif
 
@@ -119,9 +140,9 @@ typedef enum {
  */
 typedef struct {
   // 当前状态
-  int16_t count;       // 当前计数值
-  int16_t last_count;  // 上次计数值
-  int16_t delta_count; // 计数增量
+  int32_t count;       // 当前计数值 (支持 32 位定时器)
+  int32_t last_count;  // 上次计数值
+  int32_t delta_count; // 计数增量
 
   // 速度相关
   float speed_rpm;   // 转速 (RPM)

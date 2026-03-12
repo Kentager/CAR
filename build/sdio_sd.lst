@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccV6oIJX.s 			page 1
+ARM GAS  /tmp/ccgCa6Kb.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
   29:MyHardWare/Src/sdio_sd.c ****   *              for data transfer). This function provides the following operations:
   30:MyHardWare/Src/sdio_sd.c ****   *
   31:MyHardWare/Src/sdio_sd.c ****   *              1 - Apply the SD Card initialization process at 400KHz and check
-ARM GAS  /tmp/ccV6oIJX.s 			page 2
+ARM GAS  /tmp/ccgCa6Kb.s 			page 2
 
 
   32:MyHardWare/Src/sdio_sd.c ****   *                  the SD Card type (Standard Capacity or High Capacity). You 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
   86:MyHardWare/Src/sdio_sd.c ****   *                controller has finished all data transfer.
   87:MyHardWare/Src/sdio_sd.c ****   *              - SD_GetStatus(): to check that the SD Card has finished the 
   88:MyHardWare/Src/sdio_sd.c ****   *                data transfer and it is ready for data.
-ARM GAS  /tmp/ccV6oIJX.s 			page 3
+ARM GAS  /tmp/ccgCa6Kb.s 			page 3
 
 
   89:MyHardWare/Src/sdio_sd.c ****   *
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  143:MyHardWare/Src/sdio_sd.c ****   *             NVIC_InitStructure.NVIC_IRQChannel = SD_SDIO_DMA_IRQn;
  144:MyHardWare/Src/sdio_sd.c ****   *             NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
  145:MyHardWare/Src/sdio_sd.c ****   *             NVIC_Init(&NVIC_InitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 4
+ARM GAS  /tmp/ccgCa6Kb.s 			page 4
 
 
  146:MyHardWare/Src/sdio_sd.c ****   *               
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  200:MyHardWare/Src/sdio_sd.c ****   *          |      SDIO D1                |   D1          |    8        |
  201:MyHardWare/Src/sdio_sd.c ****   *          +-----------------------------+---------------+-------------+
  202:MyHardWare/Src/sdio_sd.c ****   *
-ARM GAS  /tmp/ccV6oIJX.s 			page 5
+ARM GAS  /tmp/ccgCa6Kb.s 			page 5
 
 
  203:MyHardWare/Src/sdio_sd.c ****   *  @endverbatim
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  257:MyHardWare/Src/sdio_sd.c **** 
  258:MyHardWare/Src/sdio_sd.c **** 
  259:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 6
+ARM GAS  /tmp/ccgCa6Kb.s 			page 6
 
 
  260:MyHardWare/Src/sdio_sd.c **** /** 
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  314:MyHardWare/Src/sdio_sd.c **** #define SD_24TO31BITS                   ((uint32_t)0xFF000000)
  315:MyHardWare/Src/sdio_sd.c **** #define SD_MAX_DATA_LENGTH              ((uint32_t)0x01FFFFFF)
  316:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 7
+ARM GAS  /tmp/ccgCa6Kb.s 			page 7
 
 
  317:MyHardWare/Src/sdio_sd.c **** #define SD_HALFFIFO                     ((uint32_t)0x00000008)
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  371:MyHardWare/Src/sdio_sd.c **** static SD_Error CmdResp2Error(void);
  372:MyHardWare/Src/sdio_sd.c **** static SD_Error CmdResp6Error(uint8_t cmd, uint16_t *prca);
  373:MyHardWare/Src/sdio_sd.c **** static SD_Error SDEnWideBus(FunctionalState NewState);
-ARM GAS  /tmp/ccV6oIJX.s 			page 8
+ARM GAS  /tmp/ccgCa6Kb.s 			page 8
 
 
  374:MyHardWare/Src/sdio_sd.c **** static SD_Error IsCardProgramming(uint8_t *pstatus);
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  428:MyHardWare/Src/sdio_sd.c ****   *         data transfer).
  429:MyHardWare/Src/sdio_sd.c ****   * @param  None
  430:MyHardWare/Src/sdio_sd.c ****   * @retval None
-ARM GAS  /tmp/ccV6oIJX.s 			page 9
+ARM GAS  /tmp/ccgCa6Kb.s 			page 9
 
 
  431:MyHardWare/Src/sdio_sd.c ****   */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  485:MyHardWare/Src/sdio_sd.c ****   /* DMA2 Stream3  or Stream6 Config */
  486:MyHardWare/Src/sdio_sd.c ****   DMA_DeInit(SD_SDIO_DMA_STREAM);
  487:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 10
+ARM GAS  /tmp/ccgCa6Kb.s 			page 10
 
 
  488:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_Channel = SD_SDIO_DMA_CHANNEL;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  542:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
  543:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_INC4;
  544:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_INC4;
-ARM GAS  /tmp/ccV6oIJX.s 			page 11
+ARM GAS  /tmp/ccgCa6Kb.s 			page 11
 
 
  545:MyHardWare/Src/sdio_sd.c ****   DMA_Init(SD_SDIO_DMA_STREAM, &SDDMA_InitStructure);
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  599:MyHardWare/Src/sdio_sd.c ****     /*!< CMD Response TimeOut (wait for CMDSENT flag) */
  600:MyHardWare/Src/sdio_sd.c ****     return(errorstatus);
  601:MyHardWare/Src/sdio_sd.c ****   }
-ARM GAS  /tmp/ccV6oIJX.s 			page 12
+ARM GAS  /tmp/ccgCa6Kb.s 			page 12
 
 
  602:MyHardWare/Src/sdio_sd.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  656:MyHardWare/Src/sdio_sd.c ****   }
  657:MyHardWare/Src/sdio_sd.c ****   else if(cardstate == SD_CARD_ERROR)
  658:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 13
+ARM GAS  /tmp/ccgCa6Kb.s 			page 13
 
 
  659:MyHardWare/Src/sdio_sd.c ****     return (SD_TRANSFER_ERROR);
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  713:MyHardWare/Src/sdio_sd.c ****   * @param  None
  714:MyHardWare/Src/sdio_sd.c ****   * @retval SD_Error: SD Card Error code.
  715:MyHardWare/Src/sdio_sd.c ****   */
-ARM GAS  /tmp/ccV6oIJX.s 			page 14
+ARM GAS  /tmp/ccgCa6Kb.s 			page 14
 
 
  716:MyHardWare/Src/sdio_sd.c **** SD_Error SD_PowerON(void)
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  770:MyHardWare/Src/sdio_sd.c **** 
  771:MyHardWare/Src/sdio_sd.c ****   errorstatus = CmdResp7Error();
  772:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 15
+ARM GAS  /tmp/ccgCa6Kb.s 			page 15
 
 
  773:MyHardWare/Src/sdio_sd.c ****   if (errorstatus == SD_OK)
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  827:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
  828:MyHardWare/Src/sdio_sd.c **** 
  829:MyHardWare/Src/sdio_sd.c ****       errorstatus = CmdResp3Error();
-ARM GAS  /tmp/ccV6oIJX.s 			page 16
+ARM GAS  /tmp/ccgCa6Kb.s 			page 16
 
 
  830:MyHardWare/Src/sdio_sd.c ****       if (errorstatus != SD_OK)
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  884:MyHardWare/Src/sdio_sd.c ****     return(errorstatus);
  885:MyHardWare/Src/sdio_sd.c ****   }
  886:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 17
+ARM GAS  /tmp/ccgCa6Kb.s 			page 17
 
 
  887:MyHardWare/Src/sdio_sd.c ****   if (SDIO_SECURE_DIGITAL_IO_CARD != CardType)
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  941:MyHardWare/Src/sdio_sd.c ****     errorstatus = CmdResp2Error();
  942:MyHardWare/Src/sdio_sd.c **** 
  943:MyHardWare/Src/sdio_sd.c ****     if (SD_OK != errorstatus)
-ARM GAS  /tmp/ccV6oIJX.s 			page 18
+ARM GAS  /tmp/ccgCa6Kb.s 			page 18
 
 
  944:MyHardWare/Src/sdio_sd.c ****     {
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  998:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.RdBlockLen = tmp & 0x0F;
  999:MyHardWare/Src/sdio_sd.c **** 
 1000:MyHardWare/Src/sdio_sd.c ****   /*!< Byte 6 */
-ARM GAS  /tmp/ccV6oIJX.s 			page 19
+ARM GAS  /tmp/ccgCa6Kb.s 			page 19
 
 
 1001:MyHardWare/Src/sdio_sd.c ****   tmp = (uint8_t)((CSD_Tab[1] & 0x0000FF00) >> 8);
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1055:MyHardWare/Src/sdio_sd.c ****     
 1056:MyHardWare/Src/sdio_sd.c ****     cardinfo->CardCapacity = ((uint64_t)cardinfo->SD_csd.DeviceSize + 1) * 512 * 1024;
 1057:MyHardWare/Src/sdio_sd.c ****     cardinfo->CardBlockSize = 512;    
-ARM GAS  /tmp/ccV6oIJX.s 			page 20
+ARM GAS  /tmp/ccgCa6Kb.s 			page 20
 
 
 1058:MyHardWare/Src/sdio_sd.c ****   }
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1112:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_cid.ProdName1 = tmp << 24;
 1113:MyHardWare/Src/sdio_sd.c **** 
 1114:MyHardWare/Src/sdio_sd.c ****   /*!< Byte 4 */
-ARM GAS  /tmp/ccV6oIJX.s 			page 21
+ARM GAS  /tmp/ccgCa6Kb.s 			page 21
 
 
 1115:MyHardWare/Src/sdio_sd.c ****   tmp = (uint8_t)((CID_Tab[1] & 0xFF000000) >> 24);
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1169:MyHardWare/Src/sdio_sd.c ****   *         card.
 1170:MyHardWare/Src/sdio_sd.c ****   * @param  WideMode: Specifies the SD card wide bus mode. 
 1171:MyHardWare/Src/sdio_sd.c ****   *   This parameter can be one of the following values:
-ARM GAS  /tmp/ccV6oIJX.s 			page 22
+ARM GAS  /tmp/ccgCa6Kb.s 			page 22
 
 
 1172:MyHardWare/Src/sdio_sd.c ****   *     @arg SDIO_BusWide_8b: 8-bit data transfer (Only for MMC)
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1226:MyHardWare/Src/sdio_sd.c ****   tmp = (uint8_t)((SDSTATUS_Tab[9] & 0xFF));
 1227:MyHardWare/Src/sdio_sd.c ****   cardstatus->PERFORMANCE_MOVE = tmp;
 1228:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 23
+ARM GAS  /tmp/ccgCa6Kb.s 			page 23
 
 
 1229:MyHardWare/Src/sdio_sd.c ****   /*!< Byte 10 */
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1283:MyHardWare/Src/sdio_sd.c ****       if (SD_OK == errorstatus)
 1284:MyHardWare/Src/sdio_sd.c ****       {
 1285:MyHardWare/Src/sdio_sd.c ****         /*!< Configure the SDIO peripheral */
-ARM GAS  /tmp/ccV6oIJX.s 			page 24
+ARM GAS  /tmp/ccgCa6Kb.s 			page 24
 
 
 1286:MyHardWare/Src/sdio_sd.c ****         SDIO_InitStructure.SDIO_ClockDiv = SDIO_TRANSFER_CLK_DIV; 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1340:MyHardWare/Src/sdio_sd.c ****   *         transfer can be managed by DMA mode or Polling mode. 
 1341:MyHardWare/Src/sdio_sd.c ****   * @note   This operation should be followed by two functions to check if the 
 1342:MyHardWare/Src/sdio_sd.c ****   *         DMA Controller and SD Card status.
-ARM GAS  /tmp/ccV6oIJX.s 			page 25
+ARM GAS  /tmp/ccgCa6Kb.s 			page 25
 
 
 1343:MyHardWare/Src/sdio_sd.c ****   *          - SD_ReadWaitOperation(): this function insure that the DMA
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1397:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_DPSM = SDIO_DPSM_Enable;
 1398:MyHardWare/Src/sdio_sd.c ****   SDIO_DataConfig(&SDIO_DataInitStructure);
 1399:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 26
+ARM GAS  /tmp/ccgCa6Kb.s 			page 26
 
 
 1400:MyHardWare/Src/sdio_sd.c ****   /*!< Send CMD17 READ_SINGLE_BLOCK */
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1454:MyHardWare/Src/sdio_sd.c ****   count = SD_DATATIMEOUT;
 1455:MyHardWare/Src/sdio_sd.c ****   while ((SDIO_GetFlagStatus(SDIO_FLAG_RXDAVL) != RESET) && (count > 0))
 1456:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 27
+ARM GAS  /tmp/ccgCa6Kb.s 			page 27
 
 
 1457:MyHardWare/Src/sdio_sd.c ****     *tempbuff = SDIO_ReadData();
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1511:MyHardWare/Src/sdio_sd.c **** 
 1512:MyHardWare/Src/sdio_sd.c ****   errorstatus = CmdResp1Error(SD_CMD_SET_BLOCKLEN);
 1513:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 28
+ARM GAS  /tmp/ccgCa6Kb.s 			page 28
 
 
 1514:MyHardWare/Src/sdio_sd.c ****   if (SD_OK != errorstatus)
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1568:MyHardWare/Src/sdio_sd.c ****   
 1569:MyHardWare/Src/sdio_sd.c ****   while(((SDIO->STA & SDIO_FLAG_RXACT)) && (timeout > 0))
 1570:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 29
+ARM GAS  /tmp/ccgCa6Kb.s 			page 29
 
 
 1571:MyHardWare/Src/sdio_sd.c ****     timeout--;  
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1625:MyHardWare/Src/sdio_sd.c ****   SDIO->DCTRL = 0x0;
 1626:MyHardWare/Src/sdio_sd.c **** 
 1627:MyHardWare/Src/sdio_sd.c **** #if defined (SD_DMA_MODE)
-ARM GAS  /tmp/ccV6oIJX.s 			page 30
+ARM GAS  /tmp/ccgCa6Kb.s 			page 30
 
 
 1628:MyHardWare/Src/sdio_sd.c ****   SDIO_ITConfig(SDIO_IT_DCRCFAIL | SDIO_IT_DTIMEOUT | SDIO_IT_DATAEND | SDIO_IT_RXOVERR | SDIO_IT_S
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1682:MyHardWare/Src/sdio_sd.c ****     {
 1683:MyHardWare/Src/sdio_sd.c ****       if ((512 - bytestransferred) < 32)
 1684:MyHardWare/Src/sdio_sd.c ****       {
-ARM GAS  /tmp/ccV6oIJX.s 			page 31
+ARM GAS  /tmp/ccgCa6Kb.s 			page 31
 
 
 1685:MyHardWare/Src/sdio_sd.c ****         restwords = ((512 - bytestransferred) % 4 == 0) ? ((512 - bytestransferred) / 4) : (( 512 -
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1739:MyHardWare/Src/sdio_sd.c ****   *          - SD_GetStatus(): to check that the SD Card has finished the 
 1740:MyHardWare/Src/sdio_sd.c ****   *            data transfer and it is ready for data.     
 1741:MyHardWare/Src/sdio_sd.c ****   * @param  WriteAddr: Address from where data are to be read.
-ARM GAS  /tmp/ccV6oIJX.s 			page 32
+ARM GAS  /tmp/ccgCa6Kb.s 			page 32
 
 
 1742:MyHardWare/Src/sdio_sd.c ****   * @param  writebuff: pointer to the buffer that contain the data to be transferred.
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1796:MyHardWare/Src/sdio_sd.c ****   /*!< To improve performance */
 1797:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Argument = (uint32_t)NumberOfBlocks;
 1798:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_SET_BLOCK_COUNT;
-ARM GAS  /tmp/ccV6oIJX.s 			page 33
+ARM GAS  /tmp/ccgCa6Kb.s 			page 33
 
 
 1799:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1853:MyHardWare/Src/sdio_sd.c ****   while ((DMAEndOfTransfer == 0x00) && (TransferEnd == 0) && (TransferError == SD_OK) && (timeout >
 1854:MyHardWare/Src/sdio_sd.c ****   {
 1855:MyHardWare/Src/sdio_sd.c ****     timeout--;
-ARM GAS  /tmp/ccV6oIJX.s 			page 34
+ARM GAS  /tmp/ccgCa6Kb.s 			page 34
 
 
 1856:MyHardWare/Src/sdio_sd.c ****   }
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1910:MyHardWare/Src/sdio_sd.c **** 
 1911:MyHardWare/Src/sdio_sd.c **** /**
 1912:MyHardWare/Src/sdio_sd.c ****   * @brief  Aborts an ongoing data transfer.
-ARM GAS  /tmp/ccV6oIJX.s 			page 35
+ARM GAS  /tmp/ccgCa6Kb.s 			page 35
 
 
 1913:MyHardWare/Src/sdio_sd.c ****   * @param  None
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1967:MyHardWare/Src/sdio_sd.c ****   /*!< According to sd-card spec 1.0 ERASE_GROUP_START (CMD32) and erase_group_end(CMD33) */
 1968:MyHardWare/Src/sdio_sd.c ****   if ((SDIO_STD_CAPACITY_SD_CARD_V1_1 == CardType) || (SDIO_STD_CAPACITY_SD_CARD_V2_0 == CardType) 
 1969:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 36
+ARM GAS  /tmp/ccgCa6Kb.s 			page 36
 
 
 1970:MyHardWare/Src/sdio_sd.c ****     /*!< Send CMD32 SD_ERASE_GRP_START with argument as addr  */
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2024:MyHardWare/Src/sdio_sd.c ****   }
 2025:MyHardWare/Src/sdio_sd.c **** 
 2026:MyHardWare/Src/sdio_sd.c ****   return(errorstatus);
-ARM GAS  /tmp/ccV6oIJX.s 			page 37
+ARM GAS  /tmp/ccgCa6Kb.s 			page 37
 
 
 2027:MyHardWare/Src/sdio_sd.c **** }
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2081:MyHardWare/Src/sdio_sd.c ****   /*!< Set block size for card if it is not equal to current block size for card. */
 2082:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Argument = 64;
 2083:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_SET_BLOCKLEN;
-ARM GAS  /tmp/ccV6oIJX.s 			page 38
+ARM GAS  /tmp/ccgCa6Kb.s 			page 38
 
 
 2084:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2138:MyHardWare/Src/sdio_sd.c ****         *(psdstatus + count) = SDIO_ReadData();
 2139:MyHardWare/Src/sdio_sd.c ****       }
 2140:MyHardWare/Src/sdio_sd.c ****       psdstatus += 8;
-ARM GAS  /tmp/ccV6oIJX.s 			page 39
+ARM GAS  /tmp/ccgCa6Kb.s 			page 39
 
 
 2141:MyHardWare/Src/sdio_sd.c ****     }
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2195:MyHardWare/Src/sdio_sd.c ****   else if (SDIO_GetITStatus(SDIO_IT_DCRCFAIL) != RESET)
 2196:MyHardWare/Src/sdio_sd.c ****   {
 2197:MyHardWare/Src/sdio_sd.c ****     SDIO_ClearITPendingBit(SDIO_IT_DCRCFAIL);
-ARM GAS  /tmp/ccV6oIJX.s 			page 40
+ARM GAS  /tmp/ccgCa6Kb.s 			page 40
 
 
 2198:MyHardWare/Src/sdio_sd.c ****     TransferError = SD_DATA_CRC_FAIL;
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
   32 0000 10B5     		push	{r4, lr}
   33              	.LCFI0:
   34              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccV6oIJX.s 			page 41
+ARM GAS  /tmp/ccgCa6Kb.s 			page 41
 
 
   35              		.cfi_offset 4, -8
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
   67 0018 40F2FF50 		movw	r0, #1535
   68 001c FFF7FEFF 		bl	SDIO_ClearFlag
   69              	.LVL4:
-ARM GAS  /tmp/ccV6oIJX.s 			page 42
+ARM GAS  /tmp/ccgCa6Kb.s 			page 42
 
 
 2266:MyHardWare/Src/sdio_sd.c **** 
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  109 0004 5A6B     		ldr	r2, [r3, #52]
  110              	.LVL8:
 2282:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 43
+ARM GAS  /tmp/ccgCa6Kb.s 			page 43
 
 
 2283:MyHardWare/Src/sdio_sd.c ****   while (!(status & (SDIO_FLAG_CCRCFAIL | SDIO_FLAG_CMDREND | SDIO_FLAG_CTIMEOUT)) && (timeout > 0)
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2302:MyHardWare/Src/sdio_sd.c ****     return(errorstatus);
 2303:MyHardWare/Src/sdio_sd.c ****   }
 2304:MyHardWare/Src/sdio_sd.c ****   return(errorstatus);
-ARM GAS  /tmp/ccV6oIJX.s 			page 44
+ARM GAS  /tmp/ccgCa6Kb.s 			page 44
 
 
  145              		.loc 1 2304 9 view .LVU40
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2310:MyHardWare/Src/sdio_sd.c ****   * @retval SD_Error: SD Card Error code.
 2311:MyHardWare/Src/sdio_sd.c ****   */
 2312:MyHardWare/Src/sdio_sd.c **** static SD_Error CmdResp1Error(uint8_t cmd)
-ARM GAS  /tmp/ccV6oIJX.s 			page 45
+ARM GAS  /tmp/ccgCa6Kb.s 			page 45
 
 
 2313:MyHardWare/Src/sdio_sd.c **** {
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2367:MyHardWare/Src/sdio_sd.c ****   {
 2368:MyHardWare/Src/sdio_sd.c ****     return(SD_BLOCK_LEN_ERR);
 2369:MyHardWare/Src/sdio_sd.c ****   }
-ARM GAS  /tmp/ccV6oIJX.s 			page 46
+ARM GAS  /tmp/ccgCa6Kb.s 			page 46
 
 
 2370:MyHardWare/Src/sdio_sd.c **** 
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2424:MyHardWare/Src/sdio_sd.c ****   }
 2425:MyHardWare/Src/sdio_sd.c **** 
 2426:MyHardWare/Src/sdio_sd.c ****   if (response_r1 & SD_OCR_CID_CSD_OVERWRIETE)
-ARM GAS  /tmp/ccV6oIJX.s 			page 47
+ARM GAS  /tmp/ccgCa6Kb.s 			page 47
 
 
 2427:MyHardWare/Src/sdio_sd.c ****   {
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2464:MyHardWare/Src/sdio_sd.c **** 
 2465:MyHardWare/Src/sdio_sd.c ****   while (!(status & (SDIO_FLAG_CCRCFAIL | SDIO_FLAG_CMDREND | SDIO_FLAG_CTIMEOUT)))
  205              		.loc 1 2465 3 is_stmt 1 view .LVU55
-ARM GAS  /tmp/ccV6oIJX.s 			page 48
+ARM GAS  /tmp/ccgCa6Kb.s 			page 48
 
 
  206              		.loc 1 2465 9 is_stmt 0 view .LVU56
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  242              		.loc 1 2474 5 view .LVU69
 2474:MyHardWare/Src/sdio_sd.c ****   }
  243              		.loc 1 2474 11 is_stmt 0 view .LVU70
-ARM GAS  /tmp/ccV6oIJX.s 			page 49
+ARM GAS  /tmp/ccgCa6Kb.s 			page 49
 
 
  244 002a 0320     		movs	r0, #3
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  284 0008 0D4B     		ldr	r3, .L38
  285              	.LVL28:
  286              		.loc 1 2495 12 view .LVU80
-ARM GAS  /tmp/ccV6oIJX.s 			page 50
+ARM GAS  /tmp/ccgCa6Kb.s 			page 50
 
 
  287 000a 5B6B     		ldr	r3, [r3, #52]
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  318              	.LVL33:
 2502:MyHardWare/Src/sdio_sd.c ****   }
  319              		.loc 1 2502 5 view .LVU92
-ARM GAS  /tmp/ccV6oIJX.s 			page 51
+ARM GAS  /tmp/ccgCa6Kb.s 			page 51
 
 
 2502:MyHardWare/Src/sdio_sd.c ****   }
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  365              		.loc 1 2318 3 view .LVU103
 2318:MyHardWare/Src/sdio_sd.c **** 
  366              		.loc 1 2318 10 is_stmt 0 view .LVU104
-ARM GAS  /tmp/ccV6oIJX.s 			page 52
+ARM GAS  /tmp/ccgCa6Kb.s 			page 52
 
 
  367 0004 444B     		ldr	r3, .L71
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  406              	.LVL43:
  407              	.L68:
 2327:MyHardWare/Src/sdio_sd.c ****     SDIO_ClearFlag(SDIO_FLAG_CTIMEOUT);
-ARM GAS  /tmp/ccV6oIJX.s 			page 53
+ARM GAS  /tmp/ccgCa6Kb.s 			page 53
 
 
  408              		.loc 1 2327 5 is_stmt 1 view .LVU120
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  447              		.loc 1 2351 6 view .LVU135
  448 0052 CBB3     		cbz	r3, .L47
 2356:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 54
+ARM GAS  /tmp/ccgCa6Kb.s 			page 54
 
 
  449              		.loc 1 2356 3 is_stmt 1 view .LVU136
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  485              		.loc 1 2401 3 is_stmt 1 view .LVU154
 2401:MyHardWare/Src/sdio_sd.c ****   {
  486              		.loc 1 2401 6 is_stmt 0 view .LVU155
-ARM GAS  /tmp/ccV6oIJX.s 			page 55
+ARM GAS  /tmp/ccgCa6Kb.s 			page 55
 
 
  487 0088 10F4001F 		tst	r0, #2097152
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  523 00be 10F0080F 		tst	r0, #8
  524 00c2 27D1     		bne	.L66
 2450:MyHardWare/Src/sdio_sd.c **** }
-ARM GAS  /tmp/ccV6oIJX.s 			page 56
+ARM GAS  /tmp/ccgCa6Kb.s 			page 56
 
 
  525              		.loc 1 2450 9 view .LVU174
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  567              		.loc 1 2378 11 view .LVU186
  568 00dc 0C20     		movs	r0, #12
  569              	.LVL64:
-ARM GAS  /tmp/ccV6oIJX.s 			page 57
+ARM GAS  /tmp/ccgCa6Kb.s 			page 57
 
 
 2378:MyHardWare/Src/sdio_sd.c ****   }
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2408:MyHardWare/Src/sdio_sd.c ****   }
  612              		.loc 1 2408 11 view .LVU199
  613 00f6 98E7     		b	.L44
-ARM GAS  /tmp/ccV6oIJX.s 			page 58
+ARM GAS  /tmp/ccgCa6Kb.s 			page 58
 
 
  614              	.LVL77:
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  656              	.LVL89:
  657              	.L65:
 2443:MyHardWare/Src/sdio_sd.c ****   }
-ARM GAS  /tmp/ccV6oIJX.s 			page 59
+ARM GAS  /tmp/ccgCa6Kb.s 			page 59
 
 
  658              		.loc 1 2443 11 view .LVU212
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2526:MyHardWare/Src/sdio_sd.c ****   SD_Error errorstatus = SD_OK;
  701              		.loc 1 2526 3 is_stmt 1 view .LVU218
  702              	.LVL94:
-ARM GAS  /tmp/ccV6oIJX.s 			page 60
+ARM GAS  /tmp/ccgCa6Kb.s 			page 60
 
 
 2527:MyHardWare/Src/sdio_sd.c ****   uint32_t status;
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2550:MyHardWare/Src/sdio_sd.c ****   /*!< Check response received is of desired command */
 2551:MyHardWare/Src/sdio_sd.c ****   if (SDIO_GetCommandResponse() != cmd)
  733              		.loc 1 2551 3 is_stmt 1 view .LVU233
-ARM GAS  /tmp/ccV6oIJX.s 			page 61
+ARM GAS  /tmp/ccgCa6Kb.s 			page 61
 
 
  734              		.loc 1 2551 7 is_stmt 0 view .LVU234
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2540:MyHardWare/Src/sdio_sd.c ****     return(errorstatus);
  752              		.loc 1 2540 5 is_stmt 0 view .LVU240
  753 0030 FFF7FEFF 		bl	SDIO_ClearFlag
-ARM GAS  /tmp/ccV6oIJX.s 			page 62
+ARM GAS  /tmp/ccgCa6Kb.s 			page 62
 
 
  754              	.LVL102:
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  792              		.loc 1 2574 6 is_stmt 0 view .LVU256
  793 005c 10F4804F 		tst	r0, #16384
  794 0060 0AD1     		bne	.L82
-ARM GAS  /tmp/ccV6oIJX.s 			page 63
+ARM GAS  /tmp/ccgCa6Kb.s 			page 63
 
 
 2579:MyHardWare/Src/sdio_sd.c ****   {
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2581:MyHardWare/Src/sdio_sd.c ****   }
  835              		.loc 1 2581 11 view .LVU271
  836 007e D5E7     		b	.L77
-ARM GAS  /tmp/ccV6oIJX.s 			page 64
+ARM GAS  /tmp/ccgCa6Kb.s 			page 64
 
 
  837              	.L90:
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2626:MyHardWare/Src/sdio_sd.c **** 
 2627:MyHardWare/Src/sdio_sd.c ****       errorstatus = CmdResp1Error(SD_CMD_APP_CMD);
 2628:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 65
+ARM GAS  /tmp/ccgCa6Kb.s 			page 65
 
 
 2629:MyHardWare/Src/sdio_sd.c ****       if (errorstatus != SD_OK)
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2683:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
 2684:MyHardWare/Src/sdio_sd.c **** 
 2685:MyHardWare/Src/sdio_sd.c ****       errorstatus = CmdResp1Error(SD_CMD_APP_SD_SET_BUSWIDTH);
-ARM GAS  /tmp/ccV6oIJX.s 			page 66
+ARM GAS  /tmp/ccgCa6Kb.s 			page 66
 
 
 2686:MyHardWare/Src/sdio_sd.c **** 
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  880 0010 1204     		lsls	r2, r2, #16
  881              		.loc 1 2712 39 view .LVU281
  882 0012 5D48     		ldr	r0, .L122+4
-ARM GAS  /tmp/ccV6oIJX.s 			page 67
+ARM GAS  /tmp/ccgCa6Kb.s 			page 67
 
 
  883              	.LVL120:
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  924              		.loc 1 2720 10 view .LVU302
  925 003a 13F0450F 		tst	r3, #69
  926 003e F8D0     		beq	.L93
-ARM GAS  /tmp/ccV6oIJX.s 			page 68
+ARM GAS  /tmp/ccgCa6Kb.s 			page 68
 
 
 2723:MyHardWare/Src/sdio_sd.c ****   }
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2749:MyHardWare/Src/sdio_sd.c **** 
 2750:MyHardWare/Src/sdio_sd.c **** 
 2751:MyHardWare/Src/sdio_sd.c ****   /*!< We have received response, retrieve it for analysis  */
-ARM GAS  /tmp/ccV6oIJX.s 			page 69
+ARM GAS  /tmp/ccgCa6Kb.s 			page 69
 
 
 2752:MyHardWare/Src/sdio_sd.c ****   respR1 = SDIO_GetResponse(SDIO_RESP1);
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2806:MyHardWare/Src/sdio_sd.c **** 
 2807:MyHardWare/Src/sdio_sd.c ****   if (respR1 & SD_OCR_CARD_ECC_FAILED)
 2808:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 70
+ARM GAS  /tmp/ccgCa6Kb.s 			page 70
 
 
 2809:MyHardWare/Src/sdio_sd.c ****     return(SD_CARD_ECC_FAILED);
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  959              		.cfi_def_cfa_offset 8
  960              		@ sp needed
  961 0060 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccV6oIJX.s 			page 71
+ARM GAS  /tmp/ccgCa6Kb.s 			page 71
 
 
  962              	.LVL124:
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2755:MyHardWare/Src/sdio_sd.c **** 
  1002              		.loc 1 2755 14 view .LVU331
  1003 0088 C3F34323 		ubfx	r3, r3, #9, #4
-ARM GAS  /tmp/ccV6oIJX.s 			page 72
+ARM GAS  /tmp/ccgCa6Kb.s 			page 72
 
 
 2755:MyHardWare/Src/sdio_sd.c **** 
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1040 00b6 019B     		ldr	r3, [sp, #4]
 2782:MyHardWare/Src/sdio_sd.c ****   {
  1041              		.loc 1 2782 6 view .LVU350
-ARM GAS  /tmp/ccV6oIJX.s 			page 73
+ARM GAS  /tmp/ccgCa6Kb.s 			page 73
 
 
  1042 00b8 13F0006F 		tst	r3, #134217728
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1078 00e8 13F4801F 		tst	r3, #1048576
  1079 00ec 37D1     		bne	.L109
 2817:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 74
+ARM GAS  /tmp/ccgCa6Kb.s 			page 74
 
 
  1080              		.loc 1 2817 3 is_stmt 1 view .LVU369
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1116              		.loc 1 2847 3 is_stmt 1 view .LVU387
 2847:MyHardWare/Src/sdio_sd.c ****   {
  1117              		.loc 1 2847 14 is_stmt 0 view .LVU388
-ARM GAS  /tmp/ccV6oIJX.s 			page 75
+ARM GAS  /tmp/ccgCa6Kb.s 			page 75
 
 
  1118 011e 019B     		ldr	r3, [sp, #4]
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2794:MyHardWare/Src/sdio_sd.c ****   }
  1160              		.loc 1 2794 11 view .LVU401
  1161 014e 0E20     		movs	r0, #14
-ARM GAS  /tmp/ccV6oIJX.s 			page 76
+ARM GAS  /tmp/ccgCa6Kb.s 			page 76
 
 
  1162 0150 85E7     		b	.L95
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1205 017a 1920     		movs	r0, #25
  1206 017c 6FE7     		b	.L95
  1207              	.L117:
-ARM GAS  /tmp/ccV6oIJX.s 			page 77
+ARM GAS  /tmp/ccgCa6Kb.s 			page 77
 
 
 2854:MyHardWare/Src/sdio_sd.c ****   }
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1251 0006 0023     		movs	r3, #0
  1252 0008 0093     		str	r3, [sp]
  1253 000a 0193     		str	r3, [sp, #4]
-ARM GAS  /tmp/ccV6oIJX.s 			page 78
+ARM GAS  /tmp/ccgCa6Kb.s 			page 78
 
 
 2871:MyHardWare/Src/sdio_sd.c **** 
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2889:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Argument = (uint32_t) RCA << 16;
 2890:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_APP_CMD;
 2891:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
-ARM GAS  /tmp/ccV6oIJX.s 			page 79
+ARM GAS  /tmp/ccgCa6Kb.s 			page 79
 
 
 2892:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2946:MyHardWare/Src/sdio_sd.c ****   }
 2947:MyHardWare/Src/sdio_sd.c ****   else if (SDIO_GetFlagStatus(SDIO_FLAG_RXOVERR) != RESET)
 2948:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 80
+ARM GAS  /tmp/ccgCa6Kb.s 			page 80
 
 
 2949:MyHardWare/Src/sdio_sd.c ****     SDIO_ClearFlag(SDIO_FLAG_RXOVERR);
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2890:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
  1317              		.loc 1 2890 39 view .LVU444
  1318 0042 4560     		str	r5, [r0, #4]
-ARM GAS  /tmp/ccV6oIJX.s 			page 81
+ARM GAS  /tmp/ccgCa6Kb.s 			page 81
 
 
 2891:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2904:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_TransferDir = SDIO_TransferDir_ToSDIO;
  1356              		.loc 1 2904 45 is_stmt 0 view .LVU462
  1357 006e 3023     		movs	r3, #48
-ARM GAS  /tmp/ccV6oIJX.s 			page 82
+ARM GAS  /tmp/ccgCa6Kb.s 			page 82
 
 
  1358 0070 8360     		str	r3, [r0, #8]
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1394 0094 0361     		str	r3, [r0, #16]
 2917:MyHardWare/Src/sdio_sd.c **** 
  1395              		.loc 1 2917 3 is_stmt 1 view .LVU481
-ARM GAS  /tmp/ccV6oIJX.s 			page 83
+ARM GAS  /tmp/ccgCa6Kb.s 			page 83
 
 
  1396 0096 FFF7FEFF 		bl	SDIO_SendCommand
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2931:MyHardWare/Src/sdio_sd.c ****     }
  1435              		.loc 1 2931 12 is_stmt 0 view .LVU497
  1436 00c8 0136     		adds	r6, r6, #1
-ARM GAS  /tmp/ccV6oIJX.s 			page 84
+ARM GAS  /tmp/ccgCa6Kb.s 			page 84
 
 
  1437              	.LVL150:
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1475 00f6 009A     		ldr	r2, [sp]
 2963:MyHardWare/Src/sdio_sd.c **** 
  1476              		.loc 1 2963 83 view .LVU514
-ARM GAS  /tmp/ccV6oIJX.s 			page 85
+ARM GAS  /tmp/ccgCa6Kb.s 			page 85
 
 
  1477 00f8 1302     		lsls	r3, r2, #8
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2938:MyHardWare/Src/sdio_sd.c ****     return(errorstatus);
  1515              		.loc 1 2938 5 view .LVU531
 2939:MyHardWare/Src/sdio_sd.c ****   }
-ARM GAS  /tmp/ccV6oIJX.s 			page 86
+ARM GAS  /tmp/ccgCa6Kb.s 			page 86
 
 
  1516              		.loc 1 2939 5 view .LVU532
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1557 015c 00000000 		.word	RCA
  1558 0160 00000000 		.word	SDIO_DataInitStructure
  1559 0164 002C0140 		.word	1073818624
-ARM GAS  /tmp/ccV6oIJX.s 			page 87
+ARM GAS  /tmp/ccgCa6Kb.s 			page 87
 
 
  1560              		.cfi_endproc
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1605 0018 314B     		ldr	r3, .L150
  1606 001a 1888     		ldrh	r0, [r3]
  1607 001c FFF7FEFF 		bl	FindSCR
-ARM GAS  /tmp/ccV6oIJX.s 			page 88
+ARM GAS  /tmp/ccgCa6Kb.s 			page 88
 
 
  1608              	.LVL167:
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1644              		.loc 1 2665 39 is_stmt 0 view .LVU574
  1645 0042 0023     		movs	r3, #0
  1646 0044 C360     		str	r3, [r0, #12]
-ARM GAS  /tmp/ccV6oIJX.s 			page 89
+ARM GAS  /tmp/ccgCa6Kb.s 			page 89
 
 
 2666:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1683              		.loc 1 2682 39 is_stmt 0 view .LVU592
  1684 006a 4FF48063 		mov	r3, #1024
  1685 006e 0361     		str	r3, [r0, #16]
-ARM GAS  /tmp/ccV6oIJX.s 			page 90
+ARM GAS  /tmp/ccgCa6Kb.s 			page 90
 
 
 2683:MyHardWare/Src/sdio_sd.c **** 
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2623:MyHardWare/Src/sdio_sd.c ****       SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
  1723              		.loc 1 2623 39 is_stmt 0 view .LVU610
  1724 0096 0023     		movs	r3, #0
-ARM GAS  /tmp/ccV6oIJX.s 			page 91
+ARM GAS  /tmp/ccgCa6Kb.s 			page 91
 
 
  1725 0098 C360     		str	r3, [r0, #12]
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1761              		.loc 1 2639 39 is_stmt 0 view .LVU628
  1762 00be 4FF48063 		mov	r3, #1024
  1763 00c2 0361     		str	r3, [r0, #16]
-ARM GAS  /tmp/ccV6oIJX.s 			page 92
+ARM GAS  /tmp/ccgCa6Kb.s 			page 92
 
 
 2640:MyHardWare/Src/sdio_sd.c **** 
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1807 00e0 00000000 		.word	RCA
  1808 00e4 00000000 		.word	SDIO_CmdInitStructure
  1809              		.cfi_endproc
-ARM GAS  /tmp/ccV6oIJX.s 			page 93
+ARM GAS  /tmp/ccgCa6Kb.s 			page 93
 
 
  1810              	.LFE158:
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1858              		.loc 1 404 3 view .LVU647
  1859 002a 0022     		movs	r2, #0
  1860 002c 0921     		movs	r1, #9
-ARM GAS  /tmp/ccV6oIJX.s 			page 94
+ARM GAS  /tmp/ccgCa6Kb.s 			page 94
 
 
  1861 002e 2046     		mov	r0, r4
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1904              	.LVL198:
  417:MyHardWare/Src/sdio_sd.c ****   GPIO_Init(GPIOD, &GPIO_InitStructure);
  1905              		.loc 1 417 3 view .LVU659
-ARM GAS  /tmp/ccV6oIJX.s 			page 95
+ARM GAS  /tmp/ccgCa6Kb.s 			page 95
 
 
  417:MyHardWare/Src/sdio_sd.c ****   GPIO_Init(GPIOD, &GPIO_InitStructure);
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  1955              		.cfi_offset 6, -12
  1956              		.cfi_offset 7, -8
  1957              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccV6oIJX.s 			page 96
+ARM GAS  /tmp/ccgCa6Kb.s 			page 96
 
 
  1958 0002 83B0     		sub	sp, sp, #12
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2004              	.LVL207:
  447:MyHardWare/Src/sdio_sd.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
  2005              		.loc 1 447 3 view .LVU675
-ARM GAS  /tmp/ccV6oIJX.s 			page 97
+ARM GAS  /tmp/ccgCa6Kb.s 			page 97
 
 
  447:MyHardWare/Src/sdio_sd.c ****   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2043              		.loc 1 460 32 is_stmt 0 view .LVU692
  2044 0082 8DF80760 		strb	r6, [sp, #7]
  461:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 98
+ARM GAS  /tmp/ccgCa6Kb.s 			page 98
 
 
  2045              		.loc 1 461 3 is_stmt 1 view .LVU693
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2096              	.LCFI25:
  2097              		.cfi_def_cfa_offset 80
  2098 0004 0546     		mov	r5, r0
-ARM GAS  /tmp/ccV6oIJX.s 			page 99
+ARM GAS  /tmp/ccgCa6Kb.s 			page 99
 
 
  478:MyHardWare/Src/sdio_sd.c **** 
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2137              	.LVL219:
  492:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
  2138              		.loc 1 492 38 view .LVU715
-ARM GAS  /tmp/ccV6oIJX.s 			page 100
+ARM GAS  /tmp/ccgCa6Kb.s 			page 100
 
 
  2139 0032 0595     		str	r5, [sp, #20]
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  502:MyHardWare/Src/sdio_sd.c ****   DMA_Init(SD_SDIO_DMA_STREAM, &SDDMA_InitStructure);
  2175              		.loc 1 502 3 is_stmt 1 view .LVU734
  502:MyHardWare/Src/sdio_sd.c ****   DMA_Init(SD_SDIO_DMA_STREAM, &SDDMA_InitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 101
+ARM GAS  /tmp/ccgCa6Kb.s 			page 101
 
 
  2176              		.loc 1 502 43 is_stmt 0 view .LVU735
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2226              		@ args = 0, pretend = 0, frame = 64
  2227              		@ frame_needed = 0, uses_anonymous_args = 0
  519:MyHardWare/Src/sdio_sd.c ****   DMA_InitTypeDef SDDMA_InitStructure;
-ARM GAS  /tmp/ccV6oIJX.s 			page 102
+ARM GAS  /tmp/ccgCa6Kb.s 			page 102
 
 
  2228              		.loc 1 519 1 is_stmt 0 view .LVU742
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  533:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_BufferSize = 1;
  2270              		.loc 1 533 3 is_stmt 1 view .LVU755
  533:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_BufferSize = 1;
-ARM GAS  /tmp/ccV6oIJX.s 			page 103
+ARM GAS  /tmp/ccgCa6Kb.s 			page 103
 
 
  2271              		.loc 1 533 31 is_stmt 0 view .LVU756
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  542:MyHardWare/Src/sdio_sd.c ****   SDDMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_INC4;
  2307              		.loc 1 542 41 is_stmt 0 view .LVU775
  2308 0054 0323     		movs	r3, #3
-ARM GAS  /tmp/ccV6oIJX.s 			page 104
+ARM GAS  /tmp/ccgCa6Kb.s 			page 104
 
 
  2309 0056 0D93     		str	r3, [sp, #52]
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2355              		.global	SD_DeInit
  2356              		.syntax unified
  2357              		.thumb
-ARM GAS  /tmp/ccV6oIJX.s 			page 105
+ARM GAS  /tmp/ccgCa6Kb.s 			page 105
 
 
  2358              		.thumb_func
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2406              		.cfi_def_cfa_offset 0
  2407              		@ sp needed
  2408 000e 7047     		bx	lr
-ARM GAS  /tmp/ccV6oIJX.s 			page 106
+ARM GAS  /tmp/ccgCa6Kb.s 			page 106
 
 
  2409              		.cfi_endproc
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2453              		.loc 1 730 3 is_stmt 1 view .LVU805
  730:MyHardWare/Src/sdio_sd.c ****   SDIO_InitStructure.SDIO_BusWide = SDIO_BusWide_1b;
  2454              		.loc 1 730 42 is_stmt 0 view .LVU806
-ARM GAS  /tmp/ccV6oIJX.s 			page 107
+ARM GAS  /tmp/ccgCa6Kb.s 			page 107
 
 
  2455 0014 8460     		str	r4, [r0, #8]
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2491 003a FFF7FEFF 		bl	SDIO_SendCommand
  2492              	.LVL240:
  750:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 108
+ARM GAS  /tmp/ccgCa6Kb.s 			page 108
 
 
  2493              		.loc 1 750 3 view .LVU825
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2533 0064 8360     		str	r3, [r0, #8]
  767:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
  2534              		.loc 1 767 3 is_stmt 1 view .LVU840
-ARM GAS  /tmp/ccV6oIJX.s 			page 109
+ARM GAS  /tmp/ccgCa6Kb.s 			page 109
 
 
  767:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2572              		.loc 1 791 3 is_stmt 1 view .LVU857
  791:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
  2573              		.loc 1 791 39 is_stmt 0 view .LVU858
-ARM GAS  /tmp/ccV6oIJX.s 			page 110
+ARM GAS  /tmp/ccgCa6Kb.s 			page 110
 
 
  2574 0092 3724     		movs	r4, #55
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2612              		.loc 1 781 5 is_stmt 1 view .LVU874
  781:MyHardWare/Src/sdio_sd.c ****     SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_APP_CMD;
  2613              		.loc 1 781 41 is_stmt 0 view .LVU875
-ARM GAS  /tmp/ccV6oIJX.s 			page 111
+ARM GAS  /tmp/ccgCa6Kb.s 			page 111
 
 
  2614 00c0 3648     		ldr	r0, .L188+4
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2652              		.loc 1 835 18 is_stmt 0 view .LVU891
  2653 00ee 0020     		movs	r0, #0
  2654 00f0 FFF7FEFF 		bl	SDIO_GetResponse
-ARM GAS  /tmp/ccV6oIJX.s 			page 112
+ARM GAS  /tmp/ccgCa6Kb.s 			page 112
 
 
  2655              	.LVL255:
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  813:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
  2693              		.loc 1 813 7 is_stmt 1 view .LVU908
  813:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 113
+ARM GAS  /tmp/ccgCa6Kb.s 			page 113
 
 
  2694              		.loc 1 813 39 is_stmt 0 view .LVU909
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  826:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
  2732              		.loc 1 826 7 is_stmt 1 view .LVU926
  826:MyHardWare/Src/sdio_sd.c ****       SDIO_SendCommand(&SDIO_CmdInitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 114
+ARM GAS  /tmp/ccgCa6Kb.s 			page 114
 
 
  2733              		.loc 1 826 39 is_stmt 0 view .LVU927
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2772              		.loc 1 845 5 is_stmt 1 view .LVU942
  2773              	.LVL266:
  845:MyHardWare/Src/sdio_sd.c ****     {
-ARM GAS  /tmp/ccV6oIJX.s 			page 115
+ARM GAS  /tmp/ccgCa6Kb.s 			page 115
 
 
  2774              		.loc 1 845 8 is_stmt 0 view .LVU943
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2821              	.LCFI37:
  2822              		.cfi_def_cfa_offset 8
  2823              		.cfi_offset 3, -8
-ARM GAS  /tmp/ccV6oIJX.s 			page 116
+ARM GAS  /tmp/ccgCa6Kb.s 			page 116
 
 
  2824              		.cfi_offset 14, -4
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  881:MyHardWare/Src/sdio_sd.c ****   {
  2870              		.loc 1 881 6 discriminator 1 view .LVU963
  2871 000e 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccV6oIJX.s 			page 117
+ARM GAS  /tmp/ccgCa6Kb.s 			page 117
 
 
  2872 0010 72D0     		beq	.L197
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2910              		.loc 1 917 37 is_stmt 0 view .LVU979
  2911 0038 C360     		str	r3, [r0, #12]
  918:MyHardWare/Src/sdio_sd.c ****     SDIO_SendCommand(&SDIO_CmdInitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 118
+ARM GAS  /tmp/ccgCa6Kb.s 			page 118
 
 
  2912              		.loc 1 918 5 is_stmt 1 view .LVU980
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  890:MyHardWare/Src/sdio_sd.c ****     SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_ALL_SEND_CID;
  2954              		.loc 1 890 41 is_stmt 0 view .LVU993
  2955 0062 2748     		ldr	r0, .L202+4
-ARM GAS  /tmp/ccV6oIJX.s 			page 119
+ARM GAS  /tmp/ccgCa6Kb.s 			page 119
 
 
  2956 0064 0023     		movs	r3, #0
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  2993 008c 2060     		str	r0, [r4]
  905:MyHardWare/Src/sdio_sd.c ****     CID_Tab[2] = SDIO_GetResponse(SDIO_RESP3);
  2994              		.loc 1 905 5 is_stmt 1 view .LVU1011
-ARM GAS  /tmp/ccV6oIJX.s 			page 120
+ARM GAS  /tmp/ccgCa6Kb.s 			page 120
 
 
  905:MyHardWare/Src/sdio_sd.c ****     CID_Tab[2] = SDIO_GetResponse(SDIO_RESP3);
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3033              		.loc 1 936 5 is_stmt 1 view .LVU1027
  936:MyHardWare/Src/sdio_sd.c ****     SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
  3034              		.loc 1 936 41 is_stmt 0 view .LVU1028
-ARM GAS  /tmp/ccV6oIJX.s 			page 121
+ARM GAS  /tmp/ccgCa6Kb.s 			page 121
 
 
  3035 00ba C023     		movs	r3, #192
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3072              		.loc 1 950 18 is_stmt 0 view .LVU1045
  3073 00e6 0820     		movs	r0, #8
  3074 00e8 FFF7FEFF 		bl	SDIO_GetResponse
-ARM GAS  /tmp/ccV6oIJX.s 			page 122
+ARM GAS  /tmp/ccgCa6Kb.s 			page 122
 
 
  3075              	.LVL291:
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  967:MyHardWare/Src/sdio_sd.c ****   uint8_t tmp = 0;
  3124              		.loc 1 967 3 is_stmt 1 view .LVU1053
  3125              	.LVL295:
-ARM GAS  /tmp/ccV6oIJX.s 			page 123
+ARM GAS  /tmp/ccgCa6Kb.s 			page 123
 
 
  968:MyHardWare/Src/sdio_sd.c **** 
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  980:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.TAAC = tmp;
  3161              		.loc 1 980 7 is_stmt 0 view .LVU1073
  3162 0028 C2F30744 		ubfx	r4, r2, #16, #8
-ARM GAS  /tmp/ccV6oIJX.s 			page 124
+ARM GAS  /tmp/ccgCa6Kb.s 			page 124
 
 
  3163              	.LVL298:
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3198 0040 D988     		ldrh	r1, [r3, #6]
  3199 0042 89B2     		uxth	r1, r1
  997:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.RdBlockLen = tmp & 0x0F;
-ARM GAS  /tmp/ccV6oIJX.s 			page 125
+ARM GAS  /tmp/ccgCa6Kb.s 			page 125
 
 
  3200              		.loc 1 997 52 view .LVU1093
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1006:MyHardWare/Src/sdio_sd.c **** 
  3235              		.loc 1 1006 30 is_stmt 0 view .LVU1113
  3236 006e 0024     		movs	r4, #0
-ARM GAS  /tmp/ccV6oIJX.s 			page 126
+ARM GAS  /tmp/ccgCa6Kb.s 			page 126
 
 
  3237 0070 5C73     		strb	r4, [r3, #13]
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3273              		.loc 1 1051 5 view .LVU1131
 1051:MyHardWare/Src/sdio_sd.c **** 
  3274              		.loc 1 1051 21 is_stmt 0 view .LVU1132
-ARM GAS  /tmp/ccV6oIJX.s 			page 127
+ARM GAS  /tmp/ccgCa6Kb.s 			page 127
 
 
  3275 0092 1869     		ldr	r0, [r3, #16]
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3314              	.LVL312:
 1014:MyHardWare/Src/sdio_sd.c **** 
  3315              		.loc 1 1014 5 view .LVU1148
-ARM GAS  /tmp/ccV6oIJX.s 			page 128
+ARM GAS  /tmp/ccgCa6Kb.s 			page 128
 
 
 1014:MyHardWare/Src/sdio_sd.c **** 
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3351              		.loc 1 1025 56 is_stmt 0 view .LVU1167
  3352 00ec C2F34250 		ubfx	r0, r2, #21, #3
 1025:MyHardWare/Src/sdio_sd.c ****     cardinfo->SD_csd.MaxWrCurrentVDDMax = (tmp & 0x1C) >> 2;
-ARM GAS  /tmp/ccV6oIJX.s 			page 129
+ARM GAS  /tmp/ccgCa6Kb.s 			page 129
 
 
  3353              		.loc 1 1025 41 view .LVU1168
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3389              		.loc 1 1033 5 is_stmt 1 view .LVU1186
 1033:MyHardWare/Src/sdio_sd.c ****     cardinfo->CardBlockSize = 1 << (cardinfo->SD_csd.RdBlockLen);
  3390              		.loc 1 1033 54 is_stmt 0 view .LVU1187
-ARM GAS  /tmp/ccV6oIJX.s 			page 130
+ARM GAS  /tmp/ccgCa6Kb.s 			page 130
 
 
  3391 0118 1A7E     		ldrb	r2, [r3, #24]	@ zero_extendqisi2
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3429              		.loc 1 1062 31 view .LVU1203
  3430 0150 9976     		strb	r1, [r3, #26]
 1065:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.EraseGrMul |= (tmp & 0x80) >> 7;
-ARM GAS  /tmp/ccV6oIJX.s 			page 131
+ARM GAS  /tmp/ccgCa6Kb.s 			page 131
 
 
  3431              		.loc 1 1065 3 is_stmt 1 view .LVU1204
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3466              		.loc 1 1073 47 is_stmt 0 view .LVU1223
  3467 0172 C2F38260 		ubfx	r0, r2, #26, #3
 1073:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.MaxWrBlockLen = (tmp & 0x03) << 2;
-ARM GAS  /tmp/ccV6oIJX.s 			page 132
+ARM GAS  /tmp/ccgCa6Kb.s 			page 132
 
 
  3468              		.loc 1 1073 32 view .LVU1224
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1085:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.CopyFlag = (tmp & 0x40) >> 6;
  3504              		.loc 1 1085 3 view .LVU1243
 1085:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.CopyFlag = (tmp & 0x40) >> 6;
-ARM GAS  /tmp/ccV6oIJX.s 			page 133
+ARM GAS  /tmp/ccgCa6Kb.s 			page 133
 
 
  3505              		.loc 1 1085 52 is_stmt 0 view .LVU1244
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1094:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_csd.Reserved4 = 1;
  3540              		.loc 1 1094 28 view .LVU1264
  3541 01d4 83F82920 		strb	r2, [r3, #41]
-ARM GAS  /tmp/ccV6oIJX.s 			page 134
+ARM GAS  /tmp/ccgCa6Kb.s 			page 134
 
 
 1095:MyHardWare/Src/sdio_sd.c **** 
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3578 0202 DC85     		strh	r4, [r3, #46]	@ movhi
 1111:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_cid.ProdName1 = tmp << 24;
  3579              		.loc 1 1111 3 is_stmt 1 view .LVU1283
-ARM GAS  /tmp/ccV6oIJX.s 			page 135
+ARM GAS  /tmp/ccgCa6Kb.s 			page 135
 
 
  3580              	.LVL332:
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3616 0226 2C43     		orrs	r4, r4, r5
  3617 0228 1C63     		str	r4, [r3, #48]
 1127:MyHardWare/Src/sdio_sd.c ****   cardinfo->SD_cid.ProdName2 = tmp;
-ARM GAS  /tmp/ccV6oIJX.s 			page 136
+ARM GAS  /tmp/ccgCa6Kb.s 			page 136
 
 
  3618              		.loc 1 1127 3 is_stmt 1 view .LVU1302
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3654              	.LVL342:
 1144:MyHardWare/Src/sdio_sd.c **** 
  3655              		.loc 1 1144 3 view .LVU1321
-ARM GAS  /tmp/ccV6oIJX.s 			page 137
+ARM GAS  /tmp/ccgCa6Kb.s 			page 137
 
 
 1144:MyHardWare/Src/sdio_sd.c **** 
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3692 0276 01F47061 		and	r1, r1, #3840
 1153:MyHardWare/Src/sdio_sd.c **** 
  3693              		.loc 1 1153 33 view .LVU1340
-ARM GAS  /tmp/ccV6oIJX.s 			page 138
+ARM GAS  /tmp/ccgCa6Kb.s 			page 138
 
 
  3694 027a D987     		strh	r1, [r3, #62]	@ movhi
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3735              		.syntax unified
  3736              		.thumb
  3737              		.thumb_func
-ARM GAS  /tmp/ccV6oIJX.s 			page 139
+ARM GAS  /tmp/ccgCa6Kb.s 			page 139
 
 
  3739              	SD_EnableWideBusOperation:
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3778 001c FFF7FEFF 		bl	SDEnWideBus
  3779              	.LVL354:
 1299:MyHardWare/Src/sdio_sd.c ****       {
-ARM GAS  /tmp/ccV6oIJX.s 			page 140
+ARM GAS  /tmp/ccgCa6Kb.s 			page 140
 
 
  3780              		.loc 1 1299 7 is_stmt 1 view .LVU1370
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3816              		.loc 1 1281 21 view .LVU1388
  3817 003c FFF7FEFF 		bl	SDEnWideBus
  3818              	.LVL359:
-ARM GAS  /tmp/ccV6oIJX.s 			page 141
+ARM GAS  /tmp/ccgCa6Kb.s 			page 141
 
 
 1283:MyHardWare/Src/sdio_sd.c ****       {
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1264:MyHardWare/Src/sdio_sd.c **** 
  3856              		.loc 1 1264 12 view .LVU1406
  3857 0062 0024     		movs	r4, #0
-ARM GAS  /tmp/ccV6oIJX.s 			page 142
+ARM GAS  /tmp/ccgCa6Kb.s 			page 142
 
 
  3858              	.LVL363:
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3905 0008 5C60     		str	r4, [r3, #4]
 1328:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
  3906              		.loc 1 1328 3 is_stmt 1 view .LVU1416
-ARM GAS  /tmp/ccV6oIJX.s 			page 143
+ARM GAS  /tmp/ccgCa6Kb.s 			page 143
 
 
 1328:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3951              		@ frame_needed = 0, uses_anonymous_args = 0
  3952 0000 30B5     		push	{r4, r5, lr}
  3953              	.LCFI45:
-ARM GAS  /tmp/ccV6oIJX.s 			page 144
+ARM GAS  /tmp/ccgCa6Kb.s 			page 144
 
 
  3954              		.cfi_def_cfa_offset 12
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  3992              		.loc 1 587 2 is_stmt 1 view .LVU1444
  587:MyHardWare/Src/sdio_sd.c **** 	NVIC_Init (&NVIC_InitStructure);
  3993              		.loc 1 587 55 is_stmt 0 view .LVU1445
-ARM GAS  /tmp/ccV6oIJX.s 			page 145
+ARM GAS  /tmp/ccgCa6Kb.s 			page 145
 
 
  3994 0032 8DF80140 		strb	r4, [sp, #1]
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4034              	.LVL376:
  603:MyHardWare/Src/sdio_sd.c **** 
  4035              		.loc 1 603 15 discriminator 1 view .LVU1460
-ARM GAS  /tmp/ccV6oIJX.s 			page 146
+ARM GAS  /tmp/ccgCa6Kb.s 			page 146
 
 
  4036 0060 8DF80700 		strb	r0, [sp, #7]
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4071              		.loc 1 623 3 view .LVU1479
  623:MyHardWare/Src/sdio_sd.c **** 
  4072              		.loc 1 623 17 is_stmt 0 view .LVU1480
-ARM GAS  /tmp/ccV6oIJX.s 			page 147
+ARM GAS  /tmp/ccgCa6Kb.s 			page 147
 
 
  4073 0086 1148     		ldr	r0, .L234+4
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4112 00bc FFF7FEFF 		bl	SD_EnableWideBusOperation
  4113              	.LVL380:
  633:MyHardWare/Src/sdio_sd.c ****   }  
-ARM GAS  /tmp/ccV6oIJX.s 			page 148
+ARM GAS  /tmp/ccgCa6Kb.s 			page 148
 
 
  4114              		.loc 1 633 17 discriminator 1 view .LVU1496
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4163 0014 1960     		str	r1, [r3]
 1361:MyHardWare/Src/sdio_sd.c ****   
  4164              		.loc 1 1361 3 is_stmt 1 view .LVU1504
-ARM GAS  /tmp/ccV6oIJX.s 			page 149
+ARM GAS  /tmp/ccgCa6Kb.s 			page 149
 
 
 1361:MyHardWare/Src/sdio_sd.c ****   
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4205              	.LVL389:
 1379:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
  4206              		.loc 1 1379 39 view .LVU1519
-ARM GAS  /tmp/ccV6oIJX.s 			page 150
+ARM GAS  /tmp/ccgCa6Kb.s 			page 150
 
 
  4207 0044 4560     		str	r5, [r0, #4]
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4245              	.LVL394:
  4246              	.L241:
 1392:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_DataLength = BlockSize;
-ARM GAS  /tmp/ccV6oIJX.s 			page 151
+ARM GAS  /tmp/ccgCa6Kb.s 			page 151
 
 
  4247              		.loc 1 1392 3 is_stmt 1 view .LVU1536
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4283              		.loc 1 1402 39 view .LVU1554
  4284 0092 4460     		str	r4, [r0, #4]
 1403:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
-ARM GAS  /tmp/ccV6oIJX.s 			page 152
+ARM GAS  /tmp/ccgCa6Kb.s 			page 152
 
 
  4285              		.loc 1 1403 3 is_stmt 1 view .LVU1555
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4330              		.loc 1 1486 1 view -0
  4331              		.cfi_startproc
  4332              		@ args = 8, pretend = 0, frame = 0
-ARM GAS  /tmp/ccV6oIJX.s 			page 153
+ARM GAS  /tmp/ccgCa6Kb.s 			page 153
 
 
  4333              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4375 0026 3146     		mov	r1, r6
  4376 0028 40F22A30 		movw	r0, #810
  4377              	.LVL403:
-ARM GAS  /tmp/ccV6oIJX.s 			page 154
+ARM GAS  /tmp/ccgCa6Kb.s 			page 154
 
 
 1494:MyHardWare/Src/sdio_sd.c ****   SD_LowLevel_DMA_RxConfig((uint32_t *)readbuff, (NumberOfBlocks * BlockSize));
@@ -9238,7 +9238,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4416              		.loc 1 1509 35 is_stmt 0 view .LVU1594
  4417 0058 4FF48063 		mov	r3, #1024
  4418 005c 0361     		str	r3, [r0, #16]
-ARM GAS  /tmp/ccV6oIJX.s 			page 155
+ARM GAS  /tmp/ccgCa6Kb.s 			page 155
 
 
 1510:MyHardWare/Src/sdio_sd.c **** 
@@ -9298,7 +9298,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1520:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_DataBlockSize = (uint32_t) 9 << 4;
  4458              		.loc 1 1520 42 view .LVU1610
  4459 0086 4560     		str	r5, [r0, #4]
-ARM GAS  /tmp/ccV6oIJX.s 			page 156
+ARM GAS  /tmp/ccgCa6Kb.s 			page 156
 
 
 1521:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_TransferDir = SDIO_TransferDir_ToSDIO;
@@ -9358,7 +9358,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4495              		.loc 1 1532 3 is_stmt 1 view .LVU1629
 1532:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
  4496              		.loc 1 1532 35 is_stmt 0 view .LVU1630
-ARM GAS  /tmp/ccV6oIJX.s 			page 157
+ARM GAS  /tmp/ccgCa6Kb.s 			page 157
 
 
  4497 00aa 4FF48063 		mov	r3, #1024
@@ -9418,7 +9418,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4546              		.cfi_offset 14, -4
  4547 0002 0646     		mov	r6, r0
  4548 0004 1446     		mov	r4, r2
-ARM GAS  /tmp/ccV6oIJX.s 			page 158
+ARM GAS  /tmp/ccgCa6Kb.s 			page 158
 
 
  4549 0006 1F46     		mov	r7, r3
@@ -9478,7 +9478,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4588              		.loc 1 1633 16 is_stmt 0 view .LVU1652
  4589 0036 244B     		ldr	r3, .L258+16
  4590 0038 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccV6oIJX.s 			page 159
+ARM GAS  /tmp/ccgCa6Kb.s 			page 159
 
 
 1633:MyHardWare/Src/sdio_sd.c ****   {
@@ -9538,7 +9538,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1649:MyHardWare/Src/sdio_sd.c ****   {
  4629              		.loc 1 1649 3 is_stmt 1 view .LVU1669
 1649:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 160
+ARM GAS  /tmp/ccgCa6Kb.s 			page 160
 
 
  4630              		.loc 1 1649 6 is_stmt 0 view .LVU1670
@@ -9598,7 +9598,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4669 0082 C360     		str	r3, [r0, #12]
 1659:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
  4670              		.loc 1 1659 3 is_stmt 1 view .LVU1686
-ARM GAS  /tmp/ccV6oIJX.s 			page 161
+ARM GAS  /tmp/ccgCa6Kb.s 			page 161
 
 
 1659:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
@@ -9658,7 +9658,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1674:MyHardWare/Src/sdio_sd.c ****   SDIO_DataConfig(&SDIO_DataInitStructure);
  4708              		.loc 1 1674 3 is_stmt 1 view .LVU1704
 1674:MyHardWare/Src/sdio_sd.c ****   SDIO_DataConfig(&SDIO_DataInitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 162
+ARM GAS  /tmp/ccgCa6Kb.s 			page 162
 
 
  4709              		.loc 1 1674 36 is_stmt 0 view .LVU1705
@@ -9718,7 +9718,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4760 000a BDF82050 		ldrh	r5, [sp, #32]
  4761 000e DDF82480 		ldr	r8, [sp, #36]
 1749:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 163
+ARM GAS  /tmp/ccgCa6Kb.s 			page 163
 
 
  4762              		.loc 1 1749 3 is_stmt 1 view .LVU1711
@@ -9778,7 +9778,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1760:MyHardWare/Src/sdio_sd.c ****   {
  4802              		.loc 1 1760 16 is_stmt 0 view .LVU1726
  4803 0040 3A4B     		ldr	r3, .L266+16
-ARM GAS  /tmp/ccV6oIJX.s 			page 164
+ARM GAS  /tmp/ccgCa6Kb.s 			page 164
 
 
  4804 0042 1B68     		ldr	r3, [r3]
@@ -9838,7 +9838,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1776:MyHardWare/Src/sdio_sd.c ****   {
  4842              		.loc 1 1776 3 is_stmt 1 view .LVU1743
 1776:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 165
+ARM GAS  /tmp/ccgCa6Kb.s 			page 165
 
 
  4843              		.loc 1 1776 6 is_stmt 0 view .LVU1744
@@ -9898,7 +9898,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4882              		.loc 1 1784 39 is_stmt 0 view .LVU1759
  4883 008e 4023     		movs	r3, #64
  4884 0090 8360     		str	r3, [r0, #8]
-ARM GAS  /tmp/ccV6oIJX.s 			page 166
+ARM GAS  /tmp/ccgCa6Kb.s 			page 166
 
 
 1785:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
@@ -9958,7 +9958,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1800:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
  4922              		.loc 1 1800 3 is_stmt 1 view .LVU1777
 1800:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
-ARM GAS  /tmp/ccV6oIJX.s 			page 167
+ARM GAS  /tmp/ccgCa6Kb.s 			page 167
 
 
  4923              		.loc 1 1800 35 is_stmt 0 view .LVU1778
@@ -10018,7 +10018,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  4960 00e0 0023     		movs	r3, #0
  4961 00e2 C360     		str	r3, [r0, #12]
 1817:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 168
+ARM GAS  /tmp/ccgCa6Kb.s 			page 168
 
 
  4962              		.loc 1 1817 3 is_stmt 1 view .LVU1796
@@ -10078,7 +10078,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1831:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_DPSM = SDIO_DPSM_Enable;
  5000              		.loc 1 1831 3 is_stmt 1 view .LVU1813
 1831:MyHardWare/Src/sdio_sd.c ****   SDIO_DataInitStructure.SDIO_DPSM = SDIO_DPSM_Enable;
-ARM GAS  /tmp/ccV6oIJX.s 			page 169
+ARM GAS  /tmp/ccgCa6Kb.s 			page 169
 
 
  5001              		.loc 1 1831 44 is_stmt 0 view .LVU1814
@@ -10138,7 +10138,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1903:MyHardWare/Src/sdio_sd.c ****   }
  5048              		.loc 1 1903 11 view .LVU1824
  5049 000a 0120     		movs	r0, #1
-ARM GAS  /tmp/ccV6oIJX.s 			page 170
+ARM GAS  /tmp/ccgCa6Kb.s 			page 170
 
 
  5050 000c 7047     		bx	lr
@@ -10198,7 +10198,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1924:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
  5096              		.loc 1 1924 3 is_stmt 1 view .LVU1835
 1924:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
-ARM GAS  /tmp/ccV6oIJX.s 			page 171
+ARM GAS  /tmp/ccgCa6Kb.s 			page 171
 
 
  5097              		.loc 1 1924 35 is_stmt 0 view .LVU1836
@@ -10258,7 +10258,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5143              		.loc 1 1556 3 view .LVU1846
 1558:MyHardWare/Src/sdio_sd.c ****   
  5144              		.loc 1 1558 3 view .LVU1847
-ARM GAS  /tmp/ccV6oIJX.s 			page 172
+ARM GAS  /tmp/ccgCa6Kb.s 			page 172
 
 
 1560:MyHardWare/Src/sdio_sd.c ****   {
@@ -10318,7 +10318,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5182              		.loc 1 1567 3 is_stmt 1 view .LVU1864
  5183              	.LVL477:
 1569:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 173
+ARM GAS  /tmp/ccgCa6Kb.s 			page 173
 
 
  5184              		.loc 1 1569 3 view .LVU1865
@@ -10378,7 +10378,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1582:MyHardWare/Src/sdio_sd.c ****   }
  5223              		.loc 1 1582 17 view .LVU1881
  5224 0048 0425     		movs	r5, #4
-ARM GAS  /tmp/ccV6oIJX.s 			page 174
+ARM GAS  /tmp/ccgCa6Kb.s 			page 174
 
 
  5225              	.LVL481:
@@ -10438,7 +10438,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5267 0078 00000000 		.word	TransferError
  5268 007c 002C0140 		.word	1073818624
  5269 0080 00000000 		.word	StopCondition
-ARM GAS  /tmp/ccV6oIJX.s 			page 175
+ARM GAS  /tmp/ccgCa6Kb.s 			page 175
 
 
  5270              		.cfi_endproc
@@ -10498,7 +10498,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5314 0012 194A     		ldr	r2, .L307+8
  5315 0014 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
 1853:MyHardWare/Src/sdio_sd.c ****   {
-ARM GAS  /tmp/ccV6oIJX.s 			page 176
+ARM GAS  /tmp/ccgCa6Kb.s 			page 176
 
 
  5316              		.loc 1 1853 59 discriminator 2 view .LVU1906
@@ -10558,7 +10558,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5354 0034 01D0     		beq	.L298
 1862:MyHardWare/Src/sdio_sd.c ****   {
  5355              		.loc 1 1862 41 discriminator 1 view .LVU1923
-ARM GAS  /tmp/ccV6oIJX.s 			page 177
+ARM GAS  /tmp/ccgCa6Kb.s 			page 177
 
 
  5356 0036 002C     		cmp	r4, #0
@@ -10618,7 +10618,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5395 005c EDB2     		uxtb	r5, r5
  5396              	.L302:
 1889:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 178
+ARM GAS  /tmp/ccgCa6Kb.s 			page 178
 
 
  5397              		.loc 1 1889 1 view .LVU1939
@@ -10678,7 +10678,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5447              		.cfi_offset 8, -8
  5448              		.cfi_offset 14, -4
  5449 0004 82B0     		sub	sp, sp, #8
-ARM GAS  /tmp/ccV6oIJX.s 			page 179
+ARM GAS  /tmp/ccgCa6Kb.s 			page 179
 
 
  5450              	.LCFI57:
@@ -10738,7 +10738,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1955:MyHardWare/Src/sdio_sd.c ****   {
  5488              		.loc 1 1955 7 is_stmt 0 view .LVU1962
  5489 0030 0020     		movs	r0, #0
-ARM GAS  /tmp/ccV6oIJX.s 			page 180
+ARM GAS  /tmp/ccgCa6Kb.s 			page 180
 
 
  5490 0032 FFF7FEFF 		bl	SDIO_GetResponse
@@ -10798,7 +10798,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5527 0058 4FF48063 		mov	r3, #1024
  5528 005c 0361     		str	r3, [r0, #16]
 1976:MyHardWare/Src/sdio_sd.c **** 
-ARM GAS  /tmp/ccV6oIJX.s 			page 181
+ARM GAS  /tmp/ccgCa6Kb.s 			page 181
 
 
  5529              		.loc 1 1976 5 is_stmt 1 view .LVU1980
@@ -10858,7 +10858,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5566              		.loc 1 1992 5 view .LVU1997
 1992:MyHardWare/Src/sdio_sd.c ****     if (errorstatus != SD_OK)
  5567              		.loc 1 1992 19 is_stmt 0 view .LVU1998
-ARM GAS  /tmp/ccV6oIJX.s 			page 182
+ARM GAS  /tmp/ccgCa6Kb.s 			page 182
 
 
  5568 0086 2846     		mov	r0, r5
@@ -10918,7 +10918,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5605              		.loc 1 2009 6 is_stmt 0 view .LVU2015
  5606 00ae 40B1     		cbz	r0, .L313
  5607 00b0 1FE0     		b	.L310
-ARM GAS  /tmp/ccV6oIJX.s 			page 183
+ARM GAS  /tmp/ccgCa6Kb.s 			page 183
 
 
  5608              	.LVL514:
@@ -10978,7 +10978,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5647 00d4 6CB1     		cbz	r4, .L310
 2020:MyHardWare/Src/sdio_sd.c ****   {
  5648              		.loc 1 2020 22 is_stmt 0 discriminator 1 view .LVU2031
-ARM GAS  /tmp/ccV6oIJX.s 			page 184
+ARM GAS  /tmp/ccgCa6Kb.s 			page 184
 
 
  5649 00d6 60B9     		cbnz	r0, .L310
@@ -11038,7 +11038,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5692              	.L321:
  5693 00fc 00000000 		.word	CSD_Tab
  5694 0100 002C0140 		.word	1073818624
-ARM GAS  /tmp/ccV6oIJX.s 			page 185
+ARM GAS  /tmp/ccgCa6Kb.s 			page 185
 
 
  5695 0104 C0D40100 		.word	120000
@@ -11098,7 +11098,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5740              		.loc 1 2046 3 is_stmt 1 view .LVU2053
 2046:MyHardWare/Src/sdio_sd.c ****   SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
  5741              		.loc 1 2046 39 is_stmt 0 view .LVU2054
-ARM GAS  /tmp/ccV6oIJX.s 			page 186
+ARM GAS  /tmp/ccgCa6Kb.s 			page 186
 
 
  5742 0010 0D24     		movs	r4, #13
@@ -11158,7 +11158,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2061:MyHardWare/Src/sdio_sd.c **** }
  5781              		.loc 1 2061 3 is_stmt 1 view .LVU2070
 2061:MyHardWare/Src/sdio_sd.c **** }
-ARM GAS  /tmp/ccV6oIJX.s 			page 187
+ARM GAS  /tmp/ccgCa6Kb.s 			page 187
 
 
  5782              		.loc 1 2061 9 is_stmt 0 view .LVU2071
@@ -11218,7 +11218,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5830              	.L331:
  691:MyHardWare/Src/sdio_sd.c **** 
  5831              		.loc 1 691 1 view .LVU2080
-ARM GAS  /tmp/ccV6oIJX.s 			page 188
+ARM GAS  /tmp/ccgCa6Kb.s 			page 188
 
 
  5832 0012 03B0     		add	sp, sp, #12
@@ -11278,7 +11278,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  651:MyHardWare/Src/sdio_sd.c ****   
  5880              		.loc 1 651 3 view .LVU2089
  651:MyHardWare/Src/sdio_sd.c ****   
-ARM GAS  /tmp/ccV6oIJX.s 			page 189
+ARM GAS  /tmp/ccgCa6Kb.s 			page 189
 
 
  5881              		.loc 1 651 15 is_stmt 0 view .LVU2090
@@ -11338,7 +11338,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5926              		.cfi_startproc
  5927              		@ args = 0, pretend = 0, frame = 0
  5928              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccV6oIJX.s 			page 190
+ARM GAS  /tmp/ccgCa6Kb.s 			page 190
 
 
 2071:MyHardWare/Src/sdio_sd.c ****   SD_Error errorstatus = SD_OK;
@@ -11398,7 +11398,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  5968 0020 C360     		str	r3, [r0, #12]
 2086:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
  5969              		.loc 1 2086 3 is_stmt 1 view .LVU2117
-ARM GAS  /tmp/ccV6oIJX.s 			page 191
+ARM GAS  /tmp/ccgCa6Kb.s 			page 191
 
 
 2086:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
@@ -11458,7 +11458,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6007 004c 0023     		movs	r3, #0
  6008 004e C360     		str	r3, [r0, #12]
 2101:MyHardWare/Src/sdio_sd.c ****   SDIO_SendCommand(&SDIO_CmdInitStructure);
-ARM GAS  /tmp/ccV6oIJX.s 			page 192
+ARM GAS  /tmp/ccgCa6Kb.s 			page 192
 
 
  6009              		.loc 1 2101 3 is_stmt 1 view .LVU2135
@@ -11518,7 +11518,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6046              		.loc 1 2114 44 is_stmt 0 view .LVU2152
  6047 007a 0024     		movs	r4, #0
  6048 007c 0461     		str	r4, [r0, #16]
-ARM GAS  /tmp/ccV6oIJX.s 			page 193
+ARM GAS  /tmp/ccgCa6Kb.s 			page 193
 
 
 2115:MyHardWare/Src/sdio_sd.c ****   SDIO_DataConfig(&SDIO_DataInitStructure);
@@ -11578,7 +11578,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2127:MyHardWare/Src/sdio_sd.c ****   {
  6085              		.loc 1 2127 6 is_stmt 0 view .LVU2171
  6086 00a2 0646     		mov	r6, r0
-ARM GAS  /tmp/ccV6oIJX.s 			page 194
+ARM GAS  /tmp/ccgCa6Kb.s 			page 194
 
 
  6087 00a4 0028     		cmp	r0, #0
@@ -11638,7 +11638,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6127              	.LVL565:
 2140:MyHardWare/Src/sdio_sd.c ****     }
  6128              		.loc 1 2140 17 view .LVU2186
-ARM GAS  /tmp/ccV6oIJX.s 			page 195
+ARM GAS  /tmp/ccgCa6Kb.s 			page 195
 
 
  6129 00d2 E9E7     		b	.L346
@@ -11698,7 +11698,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6168              		.loc 1 2147 5 view .LVU2201
 2148:MyHardWare/Src/sdio_sd.c ****   }
  6169              		.loc 1 2148 5 view .LVU2202
-ARM GAS  /tmp/ccV6oIJX.s 			page 196
+ARM GAS  /tmp/ccgCa6Kb.s 			page 196
 
 
 2148:MyHardWare/Src/sdio_sd.c ****   }
@@ -11758,7 +11758,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6209              		.loc 1 2172 18 is_stmt 0 view .LVU2217
  6210 0126 FFF7FEFF 		bl	SDIO_ReadData
  6211              	.LVL579:
-ARM GAS  /tmp/ccV6oIJX.s 			page 197
+ARM GAS  /tmp/ccgCa6Kb.s 			page 197
 
 
 2172:MyHardWare/Src/sdio_sd.c ****     psdstatus++;
@@ -11818,7 +11818,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6252              	.L363:
  6253 0150 00000000 		.word	SDIO_CmdInitStructure
  6254 0154 00000000 		.word	RCA
-ARM GAS  /tmp/ccV6oIJX.s 			page 198
+ARM GAS  /tmp/ccgCa6Kb.s 			page 198
 
 
  6255 0158 00000000 		.word	SDIO_DataInitStructure
@@ -11878,7 +11878,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6299              		.loc 1 1190 7 view .LVU2243
  6300 0012 9209     		lsrs	r2, r2, #6
  6301              	.LVL591:
-ARM GAS  /tmp/ccV6oIJX.s 			page 199
+ARM GAS  /tmp/ccgCa6Kb.s 			page 199
 
 
 1191:MyHardWare/Src/sdio_sd.c **** 
@@ -11938,7 +11938,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 1206:MyHardWare/Src/sdio_sd.c ****   cardstatus->SIZE_OF_PROTECTED_AREA = tmp << 24;
  6338              		.loc 1 1206 7 is_stmt 0 view .LVU2262
  6339 002e 1A79     		ldrb	r2, [r3, #4]	@ zero_extendqisi2
-ARM GAS  /tmp/ccV6oIJX.s 			page 200
+ARM GAS  /tmp/ccgCa6Kb.s 			page 200
 
 
  6340              	.LVL598:
@@ -11998,7 +11998,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6376              		.loc 1 1219 38 view .LVU2280
  6377 004c 0A43     		orrs	r2, r2, r1
  6378 004e 6260     		str	r2, [r4, #4]
-ARM GAS  /tmp/ccV6oIJX.s 			page 201
+ARM GAS  /tmp/ccgCa6Kb.s 			page 201
 
 
  6379              	.LVL605:
@@ -12058,7 +12058,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6414              		.loc 1 1238 3 is_stmt 1 view .LVU2299
 1238:MyHardWare/Src/sdio_sd.c ****   cardstatus->ERASE_SIZE |= tmp;
  6415              		.loc 1 1238 7 is_stmt 0 view .LVU2300
-ARM GAS  /tmp/ccV6oIJX.s 			page 202
+ARM GAS  /tmp/ccgCa6Kb.s 			page 202
 
 
  6416 0064 1A7B     		ldrb	r2, [r3, #12]	@ zero_extendqisi2
@@ -12118,7 +12118,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6456              		.section	.text.SD_ProcessIRQSrc,"ax",%progbits
  6457              		.align	1
  6458              		.global	SD_ProcessIRQSrc
-ARM GAS  /tmp/ccV6oIJX.s 			page 203
+ARM GAS  /tmp/ccgCa6Kb.s 			page 203
 
 
  6459              		.syntax unified
@@ -12178,7 +12178,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6502              		.loc 1 2224 9 is_stmt 0 view .LVU2327
  6503 002a 1E4B     		ldr	r3, .L378
  6504 002c 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
-ARM GAS  /tmp/ccV6oIJX.s 			page 204
+ARM GAS  /tmp/ccgCa6Kb.s 			page 204
 
 
 2225:MyHardWare/Src/sdio_sd.c **** 
@@ -12238,7 +12238,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2205:MyHardWare/Src/sdio_sd.c ****   {
  6545              		.loc 1 2205 12 is_stmt 0 view .LVU2342
  6546 005c 2020     		movs	r0, #32
-ARM GAS  /tmp/ccV6oIJX.s 			page 205
+ARM GAS  /tmp/ccgCa6Kb.s 			page 205
 
 
  6547 005e FFF7FEFF 		bl	SDIO_GetITStatus
@@ -12298,7 +12298,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 2217:MyHardWare/Src/sdio_sd.c ****     TransferError = SD_START_BIT_ERR;
  6588              		.loc 1 2217 5 is_stmt 1 view .LVU2356
  6589 0094 4FF40070 		mov	r0, #512
-ARM GAS  /tmp/ccV6oIJX.s 			page 206
+ARM GAS  /tmp/ccgCa6Kb.s 			page 206
 
 
  6590 0098 FFF7FEFF 		bl	SDIO_ClearITPendingBit
@@ -12358,7 +12358,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6637 000e 054B     		ldr	r3, .L384+4
  6638 0010 0122     		movs	r2, #1
  6639 0012 1A60     		str	r2, [r3]
-ARM GAS  /tmp/ccV6oIJX.s 			page 207
+ARM GAS  /tmp/ccgCa6Kb.s 			page 207
 
 
 2237:MyHardWare/Src/sdio_sd.c ****   }
@@ -12418,7 +12418,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6682              	.L388:
 2980:MyHardWare/Src/sdio_sd.c ****   {
 2981:MyHardWare/Src/sdio_sd.c ****     NumberOfBytes >>= 1;
-ARM GAS  /tmp/ccV6oIJX.s 			page 208
+ARM GAS  /tmp/ccgCa6Kb.s 			page 208
 
 
  6683              		.loc 1 2981 5 is_stmt 1 view .LVU2374
@@ -12478,7 +12478,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6723              		.cfi_offset 14, -4
  6724 0002 92B0     		sub	sp, sp, #72
  6725              	.LCFI71:
-ARM GAS  /tmp/ccV6oIJX.s 			page 209
+ARM GAS  /tmp/ccgCa6Kb.s 			page 209
 
 
  6726              		.cfi_def_cfa_offset 88
@@ -12538,7 +12538,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 3010:MyHardWare/Src/sdio_sd.c **** 
 3011:MyHardWare/Src/sdio_sd.c ****   if (errorstatus != SD_OK)
  6767              		.loc 1 3011 3 is_stmt 1 view .LVU2400
-ARM GAS  /tmp/ccV6oIJX.s 			page 210
+ARM GAS  /tmp/ccgCa6Kb.s 			page 210
 
 
  6768              		.loc 1 3011 6 is_stmt 0 view .LVU2401
@@ -12598,7 +12598,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 3054:MyHardWare/Src/sdio_sd.c ****     while (!(SDIO->STA &(SDIO_FLAG_RXOVERR | SDIO_FLAG_DCRCFAIL | SDIO_FLAG_DTIMEOUT | SDIO_FLAG_DB
 3055:MyHardWare/Src/sdio_sd.c ****     {
 3056:MyHardWare/Src/sdio_sd.c ****       if (SDIO_GetFlagStatus(SDIO_FLAG_RXFIFOHF) != RESET)
-ARM GAS  /tmp/ccV6oIJX.s 			page 211
+ARM GAS  /tmp/ccgCa6Kb.s 			page 211
 
 
 3057:MyHardWare/Src/sdio_sd.c ****       {
@@ -12658,7 +12658,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 3111:MyHardWare/Src/sdio_sd.c ****   return(errorstatus);
 3112:MyHardWare/Src/sdio_sd.c **** }
  6780              		.loc 1 3112 1 view .LVU2405
-ARM GAS  /tmp/ccV6oIJX.s 			page 212
+ARM GAS  /tmp/ccgCa6Kb.s 			page 212
 
 
  6781 003a 2046     		mov	r0, r4
@@ -12718,7 +12718,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 3028:MyHardWare/Src/sdio_sd.c ****     if (errorstatus != SD_OK)
  6821              		.loc 1 3028 5 view .LVU2420
 3028:MyHardWare/Src/sdio_sd.c ****     if (errorstatus != SD_OK)
-ARM GAS  /tmp/ccV6oIJX.s 			page 213
+ARM GAS  /tmp/ccgCa6Kb.s 			page 213
 
 
  6822              		.loc 1 3028 19 is_stmt 0 view .LVU2421
@@ -12778,7 +12778,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6860              	.LVL652:
 3042:MyHardWare/Src/sdio_sd.c ****     SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_HS_SWITCH;
  6861              		.loc 1 3042 5 view .LVU2438
-ARM GAS  /tmp/ccV6oIJX.s 			page 214
+ARM GAS  /tmp/ccgCa6Kb.s 			page 214
 
 
 3042:MyHardWare/Src/sdio_sd.c ****     SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_HS_SWITCH;
@@ -12838,7 +12838,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6899              		.loc 1 3054 12 is_stmt 1 view .LVU2455
 3054:MyHardWare/Src/sdio_sd.c ****     {
  6900              		.loc 1 3054 18 is_stmt 0 view .LVU2456
-ARM GAS  /tmp/ccV6oIJX.s 			page 215
+ARM GAS  /tmp/ccgCa6Kb.s 			page 215
 
 
  6901 00ac 2E4B     		ldr	r3, .L411+12
@@ -12898,7 +12898,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 3066:MyHardWare/Src/sdio_sd.c ****     {
  6941              		.loc 1 3066 9 is_stmt 0 view .LVU2471
  6942 00d8 0820     		movs	r0, #8
-ARM GAS  /tmp/ccV6oIJX.s 			page 216
+ARM GAS  /tmp/ccgCa6Kb.s 			page 216
 
 
  6943 00da FFF7FEFF 		bl	SDIO_GetFlagStatus
@@ -12958,7 +12958,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  6982              	.LVL668:
  6983              	.L408:
 3074:MyHardWare/Src/sdio_sd.c ****       errorstatus = SD_DATA_CRC_FAIL;
-ARM GAS  /tmp/ccV6oIJX.s 			page 217
+ARM GAS  /tmp/ccgCa6Kb.s 			page 217
 
 
  6984              		.loc 1 3074 7 is_stmt 1 view .LVU2487
@@ -13018,7 +13018,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
 3094:MyHardWare/Src/sdio_sd.c ****       count--;
  7024              		.loc 1 3094 7 is_stmt 1 view .LVU2502
 3095:MyHardWare/Src/sdio_sd.c ****     }
-ARM GAS  /tmp/ccV6oIJX.s 			page 218
+ARM GAS  /tmp/ccgCa6Kb.s 			page 218
 
 
  7025              		.loc 1 3095 7 view .LVU2503
@@ -13078,7 +13078,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  7070              		.align	2
  7073              	SDIO_DataInitStructure:
  7074 0000 00000000 		.space	24
-ARM GAS  /tmp/ccV6oIJX.s 			page 219
+ARM GAS  /tmp/ccgCa6Kb.s 			page 219
 
 
  7074      00000000 
@@ -13138,7 +13138,7 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  7128      00000000 
  7128      00000000 
  7128      00000000 
-ARM GAS  /tmp/ccV6oIJX.s 			page 220
+ARM GAS  /tmp/ccgCa6Kb.s 			page 220
 
 
  7129              		.section	.bss.RCA,"aw",%nobits
@@ -13174,156 +13174,156 @@ ARM GAS  /tmp/ccV6oIJX.s 			page 1
  7161              		.file 8 "MyHardWare/Inc/sdio_sd.h"
  7162              		.file 9 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
  7163              		.file 10 "<built-in>"
-ARM GAS  /tmp/ccV6oIJX.s 			page 221
+ARM GAS  /tmp/ccgCa6Kb.s 			page 221
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 sdio_sd.c
-     /tmp/ccV6oIJX.s:21     .text.CmdError:00000000 $t
-     /tmp/ccV6oIJX.s:26     .text.CmdError:00000000 CmdError
-     /tmp/ccV6oIJX.s:86     .text.CmdResp7Error:00000000 $t
-     /tmp/ccV6oIJX.s:91     .text.CmdResp7Error:00000000 CmdResp7Error
-     /tmp/ccV6oIJX.s:176    .text.CmdResp7Error:00000040 $d
-     /tmp/ccV6oIJX.s:181    .text.CmdResp3Error:00000000 $t
-     /tmp/ccV6oIJX.s:186    .text.CmdResp3Error:00000000 CmdResp3Error
-     /tmp/ccV6oIJX.s:249    .text.CmdResp3Error:00000030 $d
-     /tmp/ccV6oIJX.s:254    .text.CmdResp2Error:00000000 $t
-     /tmp/ccV6oIJX.s:259    .text.CmdResp2Error:00000000 CmdResp2Error
-     /tmp/ccV6oIJX.s:337    .text.CmdResp2Error:00000040 $d
-     /tmp/ccV6oIJX.s:342    .text.CmdResp1Error:00000000 $t
-     /tmp/ccV6oIJX.s:347    .text.CmdResp1Error:00000000 CmdResp1Error
-     /tmp/ccV6oIJX.s:673    .text.CmdResp1Error:00000118 $d
-     /tmp/ccV6oIJX.s:679    .text.CmdResp6Error:00000000 $t
-     /tmp/ccV6oIJX.s:684    .text.CmdResp6Error:00000000 CmdResp6Error
-     /tmp/ccV6oIJX.s:840    .text.CmdResp6Error:00000080 $d
-     /tmp/ccV6oIJX.s:845    .text.IsCardProgramming:00000000 $t
-     /tmp/ccV6oIJX.s:850    .text.IsCardProgramming:00000000 IsCardProgramming
-     /tmp/ccV6oIJX.s:1214   .text.IsCardProgramming:00000184 $d
-     /tmp/ccV6oIJX.s:7133   .bss.RCA:00000000 RCA
-     /tmp/ccV6oIJX.s:7080   .bss.SDIO_CmdInitStructure:00000000 SDIO_CmdInitStructure
-     /tmp/ccV6oIJX.s:1222   .text.FindSCR:00000000 $t
-     /tmp/ccV6oIJX.s:1227   .text.FindSCR:00000000 FindSCR
-     /tmp/ccV6oIJX.s:1556   .text.FindSCR:00000158 $d
-     /tmp/ccV6oIJX.s:7073   .bss.SDIO_DataInitStructure:00000000 SDIO_DataInitStructure
-     /tmp/ccV6oIJX.s:1564   .text.SDEnWideBus:00000000 $t
-     /tmp/ccV6oIJX.s:1569   .text.SDEnWideBus:00000000 SDEnWideBus
-     /tmp/ccV6oIJX.s:1807   .text.SDEnWideBus:000000e0 $d
-     /tmp/ccV6oIJX.s:1813   .text.SD_LowLevel_DeInit:00000000 $t
-     /tmp/ccV6oIJX.s:1819   .text.SD_LowLevel_DeInit:00000000 SD_LowLevel_DeInit
-     /tmp/ccV6oIJX.s:1932   .text.SD_LowLevel_DeInit:00000094 $d
-     /tmp/ccV6oIJX.s:1938   .text.SD_LowLevel_Init:00000000 $t
-     /tmp/ccV6oIJX.s:1944   .text.SD_LowLevel_Init:00000000 SD_LowLevel_Init
-     /tmp/ccV6oIJX.s:2069   .text.SD_LowLevel_Init:000000a8 $d
-     /tmp/ccV6oIJX.s:2075   .text.SD_LowLevel_DMA_TxConfig:00000000 $t
-     /tmp/ccV6oIJX.s:2081   .text.SD_LowLevel_DMA_TxConfig:00000000 SD_LowLevel_DMA_TxConfig
-     /tmp/ccV6oIJX.s:2209   .text.SD_LowLevel_DMA_TxConfig:0000008c $d
-     /tmp/ccV6oIJX.s:2215   .text.SD_LowLevel_DMA_RxConfig:00000000 $t
-     /tmp/ccV6oIJX.s:2221   .text.SD_LowLevel_DMA_RxConfig:00000000 SD_LowLevel_DMA_RxConfig
-     /tmp/ccV6oIJX.s:2348   .text.SD_LowLevel_DMA_RxConfig:0000008c $d
-     /tmp/ccV6oIJX.s:2354   .text.SD_DeInit:00000000 $t
-     /tmp/ccV6oIJX.s:2360   .text.SD_DeInit:00000000 SD_DeInit
-     /tmp/ccV6oIJX.s:2380   .text.SD_Detect:00000000 $t
-     /tmp/ccV6oIJX.s:2386   .text.SD_Detect:00000000 SD_Detect
-     /tmp/ccV6oIJX.s:2413   .text.SD_PowerON:00000000 $t
-     /tmp/ccV6oIJX.s:2419   .text.SD_PowerON:00000000 SD_PowerON
-     /tmp/ccV6oIJX.s:2801   .text.SD_PowerON:00000198 $d
-     /tmp/ccV6oIJX.s:7087   .bss.SDIO_InitStructure:00000000 SDIO_InitStructure
-     /tmp/ccV6oIJX.s:7151   .bss.CardType:00000000 CardType
-     /tmp/ccV6oIJX.s:2808   .text.SD_PowerOFF:00000000 $t
-     /tmp/ccV6oIJX.s:2814   .text.SD_PowerOFF:00000000 SD_PowerOFF
-     /tmp/ccV6oIJX.s:2839   .text.SD_InitializeCards:00000000 $t
-     /tmp/ccV6oIJX.s:2845   .text.SD_InitializeCards:00000000 SD_InitializeCards
-     /tmp/ccV6oIJX.s:3094   .text.SD_InitializeCards:000000fc $d
-ARM GAS  /tmp/ccV6oIJX.s 			page 222
+     /tmp/ccgCa6Kb.s:21     .text.CmdError:00000000 $t
+     /tmp/ccgCa6Kb.s:26     .text.CmdError:00000000 CmdError
+     /tmp/ccgCa6Kb.s:86     .text.CmdResp7Error:00000000 $t
+     /tmp/ccgCa6Kb.s:91     .text.CmdResp7Error:00000000 CmdResp7Error
+     /tmp/ccgCa6Kb.s:176    .text.CmdResp7Error:00000040 $d
+     /tmp/ccgCa6Kb.s:181    .text.CmdResp3Error:00000000 $t
+     /tmp/ccgCa6Kb.s:186    .text.CmdResp3Error:00000000 CmdResp3Error
+     /tmp/ccgCa6Kb.s:249    .text.CmdResp3Error:00000030 $d
+     /tmp/ccgCa6Kb.s:254    .text.CmdResp2Error:00000000 $t
+     /tmp/ccgCa6Kb.s:259    .text.CmdResp2Error:00000000 CmdResp2Error
+     /tmp/ccgCa6Kb.s:337    .text.CmdResp2Error:00000040 $d
+     /tmp/ccgCa6Kb.s:342    .text.CmdResp1Error:00000000 $t
+     /tmp/ccgCa6Kb.s:347    .text.CmdResp1Error:00000000 CmdResp1Error
+     /tmp/ccgCa6Kb.s:673    .text.CmdResp1Error:00000118 $d
+     /tmp/ccgCa6Kb.s:679    .text.CmdResp6Error:00000000 $t
+     /tmp/ccgCa6Kb.s:684    .text.CmdResp6Error:00000000 CmdResp6Error
+     /tmp/ccgCa6Kb.s:840    .text.CmdResp6Error:00000080 $d
+     /tmp/ccgCa6Kb.s:845    .text.IsCardProgramming:00000000 $t
+     /tmp/ccgCa6Kb.s:850    .text.IsCardProgramming:00000000 IsCardProgramming
+     /tmp/ccgCa6Kb.s:1214   .text.IsCardProgramming:00000184 $d
+     /tmp/ccgCa6Kb.s:7133   .bss.RCA:00000000 RCA
+     /tmp/ccgCa6Kb.s:7080   .bss.SDIO_CmdInitStructure:00000000 SDIO_CmdInitStructure
+     /tmp/ccgCa6Kb.s:1222   .text.FindSCR:00000000 $t
+     /tmp/ccgCa6Kb.s:1227   .text.FindSCR:00000000 FindSCR
+     /tmp/ccgCa6Kb.s:1556   .text.FindSCR:00000158 $d
+     /tmp/ccgCa6Kb.s:7073   .bss.SDIO_DataInitStructure:00000000 SDIO_DataInitStructure
+     /tmp/ccgCa6Kb.s:1564   .text.SDEnWideBus:00000000 $t
+     /tmp/ccgCa6Kb.s:1569   .text.SDEnWideBus:00000000 SDEnWideBus
+     /tmp/ccgCa6Kb.s:1807   .text.SDEnWideBus:000000e0 $d
+     /tmp/ccgCa6Kb.s:1813   .text.SD_LowLevel_DeInit:00000000 $t
+     /tmp/ccgCa6Kb.s:1819   .text.SD_LowLevel_DeInit:00000000 SD_LowLevel_DeInit
+     /tmp/ccgCa6Kb.s:1932   .text.SD_LowLevel_DeInit:00000094 $d
+     /tmp/ccgCa6Kb.s:1938   .text.SD_LowLevel_Init:00000000 $t
+     /tmp/ccgCa6Kb.s:1944   .text.SD_LowLevel_Init:00000000 SD_LowLevel_Init
+     /tmp/ccgCa6Kb.s:2069   .text.SD_LowLevel_Init:000000a8 $d
+     /tmp/ccgCa6Kb.s:2075   .text.SD_LowLevel_DMA_TxConfig:00000000 $t
+     /tmp/ccgCa6Kb.s:2081   .text.SD_LowLevel_DMA_TxConfig:00000000 SD_LowLevel_DMA_TxConfig
+     /tmp/ccgCa6Kb.s:2209   .text.SD_LowLevel_DMA_TxConfig:0000008c $d
+     /tmp/ccgCa6Kb.s:2215   .text.SD_LowLevel_DMA_RxConfig:00000000 $t
+     /tmp/ccgCa6Kb.s:2221   .text.SD_LowLevel_DMA_RxConfig:00000000 SD_LowLevel_DMA_RxConfig
+     /tmp/ccgCa6Kb.s:2348   .text.SD_LowLevel_DMA_RxConfig:0000008c $d
+     /tmp/ccgCa6Kb.s:2354   .text.SD_DeInit:00000000 $t
+     /tmp/ccgCa6Kb.s:2360   .text.SD_DeInit:00000000 SD_DeInit
+     /tmp/ccgCa6Kb.s:2380   .text.SD_Detect:00000000 $t
+     /tmp/ccgCa6Kb.s:2386   .text.SD_Detect:00000000 SD_Detect
+     /tmp/ccgCa6Kb.s:2413   .text.SD_PowerON:00000000 $t
+     /tmp/ccgCa6Kb.s:2419   .text.SD_PowerON:00000000 SD_PowerON
+     /tmp/ccgCa6Kb.s:2801   .text.SD_PowerON:00000198 $d
+     /tmp/ccgCa6Kb.s:7087   .bss.SDIO_InitStructure:00000000 SDIO_InitStructure
+     /tmp/ccgCa6Kb.s:7151   .bss.CardType:00000000 CardType
+     /tmp/ccgCa6Kb.s:2808   .text.SD_PowerOFF:00000000 $t
+     /tmp/ccgCa6Kb.s:2814   .text.SD_PowerOFF:00000000 SD_PowerOFF
+     /tmp/ccgCa6Kb.s:2839   .text.SD_InitializeCards:00000000 $t
+     /tmp/ccgCa6Kb.s:2845   .text.SD_InitializeCards:00000000 SD_InitializeCards
+     /tmp/ccgCa6Kb.s:3094   .text.SD_InitializeCards:000000fc $d
+ARM GAS  /tmp/ccgCa6Kb.s 			page 222
 
 
-     /tmp/ccV6oIJX.s:7139   .bss.CID_Tab:00000000 CID_Tab
-     /tmp/ccV6oIJX.s:7145   .bss.CSD_Tab:00000000 CSD_Tab
-     /tmp/ccV6oIJX.s:3103   .text.SD_GetCardInfo:00000000 $t
-     /tmp/ccV6oIJX.s:3109   .text.SD_GetCardInfo:00000000 SD_GetCardInfo
-     /tmp/ccV6oIJX.s:3725   .text.SD_GetCardInfo:0000029c $d
-     /tmp/ccV6oIJX.s:3733   .text.SD_EnableWideBusOperation:00000000 $t
-     /tmp/ccV6oIJX.s:3739   .text.SD_EnableWideBusOperation:00000000 SD_EnableWideBusOperation
-     /tmp/ccV6oIJX.s:3871   .text.SD_EnableWideBusOperation:0000006c $d
-     /tmp/ccV6oIJX.s:3877   .text.SD_SelectDeselect:00000000 $t
-     /tmp/ccV6oIJX.s:3883   .text.SD_SelectDeselect:00000000 SD_SelectDeselect
-     /tmp/ccV6oIJX.s:3935   .text.SD_SelectDeselect:00000028 $d
-     /tmp/ccV6oIJX.s:3940   .text.SD_Init:00000000 $t
-     /tmp/ccV6oIJX.s:3946   .text.SD_Init:00000000 SD_Init
-     /tmp/ccV6oIJX.s:4120   .text.SD_Init:000000c8 $d
-     /tmp/ccV6oIJX.s:7094   .bss.SDCardInfo:00000000 SDCardInfo
-     /tmp/ccV6oIJX.s:4126   .text.SD_ReadBlock:00000000 $t
-     /tmp/ccV6oIJX.s:4132   .text.SD_ReadBlock:00000000 SD_ReadBlock
-     /tmp/ccV6oIJX.s:4310   .text.SD_ReadBlock:000000ac $d
-     /tmp/ccV6oIJX.s:7114   .bss.TransferError:00000000 TransferError
-     /tmp/ccV6oIJX.s:7108   .bss.TransferEnd:00000000 TransferEnd
-     /tmp/ccV6oIJX.s:7121   .bss.StopCondition:00000000 StopCondition
-     /tmp/ccV6oIJX.s:4321   .text.SD_ReadMultiBlocks:00000000 $t
-     /tmp/ccV6oIJX.s:4327   .text.SD_ReadMultiBlocks:00000000 SD_ReadMultiBlocks
-     /tmp/ccV6oIJX.s:4513   .text.SD_ReadMultiBlocks:000000bc $d
-     /tmp/ccV6oIJX.s:4524   .text.SD_WriteBlock:00000000 $t
-     /tmp/ccV6oIJX.s:4530   .text.SD_WriteBlock:00000000 SD_WriteBlock
-     /tmp/ccV6oIJX.s:4721   .text.SD_WriteBlock:000000b8 $d
-     /tmp/ccV6oIJX.s:4732   .text.SD_WriteMultiBlocks:00000000 $t
-     /tmp/ccV6oIJX.s:4738   .text.SD_WriteMultiBlocks:00000000 SD_WriteMultiBlocks
-     /tmp/ccV6oIJX.s:5016   .text.SD_WriteMultiBlocks:0000011c $d
-     /tmp/ccV6oIJX.s:5028   .text.SD_GetTransferState:00000000 $t
-     /tmp/ccV6oIJX.s:5034   .text.SD_GetTransferState:00000000 SD_GetTransferState
-     /tmp/ccV6oIJX.s:5059   .text.SD_GetTransferState:00000014 $d
-     /tmp/ccV6oIJX.s:5064   .text.SD_StopTransfer:00000000 $t
-     /tmp/ccV6oIJX.s:5070   .text.SD_StopTransfer:00000000 SD_StopTransfer
-     /tmp/ccV6oIJX.s:5117   .text.SD_StopTransfer:00000024 $d
-     /tmp/ccV6oIJX.s:5122   .text.SD_WaitReadOperation:00000000 $t
-     /tmp/ccV6oIJX.s:5128   .text.SD_WaitReadOperation:00000000 SD_WaitReadOperation
-     /tmp/ccV6oIJX.s:5265   .text.SD_WaitReadOperation:00000070 $d
-     /tmp/ccV6oIJX.s:7101   .bss.DMAEndOfTransfer:00000000 DMAEndOfTransfer
-     /tmp/ccV6oIJX.s:5274   .text.SD_WaitWriteOperation:00000000 $t
-     /tmp/ccV6oIJX.s:5280   .text.SD_WaitWriteOperation:00000000 SD_WaitWriteOperation
-     /tmp/ccV6oIJX.s:5417   .text.SD_WaitWriteOperation:00000070 $d
-     /tmp/ccV6oIJX.s:5426   .text.SD_Erase:00000000 $t
-     /tmp/ccV6oIJX.s:5432   .text.SD_Erase:00000000 SD_Erase
-     /tmp/ccV6oIJX.s:5693   .text.SD_Erase:000000fc $d
-     /tmp/ccV6oIJX.s:5702   .text.SD_SendStatus:00000000 $t
-     /tmp/ccV6oIJX.s:5708   .text.SD_SendStatus:00000000 SD_SendStatus
-     /tmp/ccV6oIJX.s:5792   .text.SD_SendStatus:00000040 $d
-     /tmp/ccV6oIJX.s:5798   .text.SD_GetState:00000000 $t
-     /tmp/ccV6oIJX.s:5804   .text.SD_GetState:00000000 SD_GetState
-     /tmp/ccV6oIJX.s:5861   .text.SD_GetStatus:00000000 $t
-     /tmp/ccV6oIJX.s:5867   .text.SD_GetStatus:00000000 SD_GetStatus
-     /tmp/ccV6oIJX.s:5916   .text.SD_SendSDStatus:00000000 $t
-     /tmp/ccV6oIJX.s:5922   .text.SD_SendSDStatus:00000000 SD_SendSDStatus
-     /tmp/ccV6oIJX.s:6253   .text.SD_SendSDStatus:00000150 $d
-     /tmp/ccV6oIJX.s:6261   .text.SD_GetCardStatus:00000000 $t
-ARM GAS  /tmp/ccV6oIJX.s 			page 223
+     /tmp/ccgCa6Kb.s:7139   .bss.CID_Tab:00000000 CID_Tab
+     /tmp/ccgCa6Kb.s:7145   .bss.CSD_Tab:00000000 CSD_Tab
+     /tmp/ccgCa6Kb.s:3103   .text.SD_GetCardInfo:00000000 $t
+     /tmp/ccgCa6Kb.s:3109   .text.SD_GetCardInfo:00000000 SD_GetCardInfo
+     /tmp/ccgCa6Kb.s:3725   .text.SD_GetCardInfo:0000029c $d
+     /tmp/ccgCa6Kb.s:3733   .text.SD_EnableWideBusOperation:00000000 $t
+     /tmp/ccgCa6Kb.s:3739   .text.SD_EnableWideBusOperation:00000000 SD_EnableWideBusOperation
+     /tmp/ccgCa6Kb.s:3871   .text.SD_EnableWideBusOperation:0000006c $d
+     /tmp/ccgCa6Kb.s:3877   .text.SD_SelectDeselect:00000000 $t
+     /tmp/ccgCa6Kb.s:3883   .text.SD_SelectDeselect:00000000 SD_SelectDeselect
+     /tmp/ccgCa6Kb.s:3935   .text.SD_SelectDeselect:00000028 $d
+     /tmp/ccgCa6Kb.s:3940   .text.SD_Init:00000000 $t
+     /tmp/ccgCa6Kb.s:3946   .text.SD_Init:00000000 SD_Init
+     /tmp/ccgCa6Kb.s:4120   .text.SD_Init:000000c8 $d
+     /tmp/ccgCa6Kb.s:7094   .bss.SDCardInfo:00000000 SDCardInfo
+     /tmp/ccgCa6Kb.s:4126   .text.SD_ReadBlock:00000000 $t
+     /tmp/ccgCa6Kb.s:4132   .text.SD_ReadBlock:00000000 SD_ReadBlock
+     /tmp/ccgCa6Kb.s:4310   .text.SD_ReadBlock:000000ac $d
+     /tmp/ccgCa6Kb.s:7114   .bss.TransferError:00000000 TransferError
+     /tmp/ccgCa6Kb.s:7108   .bss.TransferEnd:00000000 TransferEnd
+     /tmp/ccgCa6Kb.s:7121   .bss.StopCondition:00000000 StopCondition
+     /tmp/ccgCa6Kb.s:4321   .text.SD_ReadMultiBlocks:00000000 $t
+     /tmp/ccgCa6Kb.s:4327   .text.SD_ReadMultiBlocks:00000000 SD_ReadMultiBlocks
+     /tmp/ccgCa6Kb.s:4513   .text.SD_ReadMultiBlocks:000000bc $d
+     /tmp/ccgCa6Kb.s:4524   .text.SD_WriteBlock:00000000 $t
+     /tmp/ccgCa6Kb.s:4530   .text.SD_WriteBlock:00000000 SD_WriteBlock
+     /tmp/ccgCa6Kb.s:4721   .text.SD_WriteBlock:000000b8 $d
+     /tmp/ccgCa6Kb.s:4732   .text.SD_WriteMultiBlocks:00000000 $t
+     /tmp/ccgCa6Kb.s:4738   .text.SD_WriteMultiBlocks:00000000 SD_WriteMultiBlocks
+     /tmp/ccgCa6Kb.s:5016   .text.SD_WriteMultiBlocks:0000011c $d
+     /tmp/ccgCa6Kb.s:5028   .text.SD_GetTransferState:00000000 $t
+     /tmp/ccgCa6Kb.s:5034   .text.SD_GetTransferState:00000000 SD_GetTransferState
+     /tmp/ccgCa6Kb.s:5059   .text.SD_GetTransferState:00000014 $d
+     /tmp/ccgCa6Kb.s:5064   .text.SD_StopTransfer:00000000 $t
+     /tmp/ccgCa6Kb.s:5070   .text.SD_StopTransfer:00000000 SD_StopTransfer
+     /tmp/ccgCa6Kb.s:5117   .text.SD_StopTransfer:00000024 $d
+     /tmp/ccgCa6Kb.s:5122   .text.SD_WaitReadOperation:00000000 $t
+     /tmp/ccgCa6Kb.s:5128   .text.SD_WaitReadOperation:00000000 SD_WaitReadOperation
+     /tmp/ccgCa6Kb.s:5265   .text.SD_WaitReadOperation:00000070 $d
+     /tmp/ccgCa6Kb.s:7101   .bss.DMAEndOfTransfer:00000000 DMAEndOfTransfer
+     /tmp/ccgCa6Kb.s:5274   .text.SD_WaitWriteOperation:00000000 $t
+     /tmp/ccgCa6Kb.s:5280   .text.SD_WaitWriteOperation:00000000 SD_WaitWriteOperation
+     /tmp/ccgCa6Kb.s:5417   .text.SD_WaitWriteOperation:00000070 $d
+     /tmp/ccgCa6Kb.s:5426   .text.SD_Erase:00000000 $t
+     /tmp/ccgCa6Kb.s:5432   .text.SD_Erase:00000000 SD_Erase
+     /tmp/ccgCa6Kb.s:5693   .text.SD_Erase:000000fc $d
+     /tmp/ccgCa6Kb.s:5702   .text.SD_SendStatus:00000000 $t
+     /tmp/ccgCa6Kb.s:5708   .text.SD_SendStatus:00000000 SD_SendStatus
+     /tmp/ccgCa6Kb.s:5792   .text.SD_SendStatus:00000040 $d
+     /tmp/ccgCa6Kb.s:5798   .text.SD_GetState:00000000 $t
+     /tmp/ccgCa6Kb.s:5804   .text.SD_GetState:00000000 SD_GetState
+     /tmp/ccgCa6Kb.s:5861   .text.SD_GetStatus:00000000 $t
+     /tmp/ccgCa6Kb.s:5867   .text.SD_GetStatus:00000000 SD_GetStatus
+     /tmp/ccgCa6Kb.s:5916   .text.SD_SendSDStatus:00000000 $t
+     /tmp/ccgCa6Kb.s:5922   .text.SD_SendSDStatus:00000000 SD_SendSDStatus
+     /tmp/ccgCa6Kb.s:6253   .text.SD_SendSDStatus:00000150 $d
+     /tmp/ccgCa6Kb.s:6261   .text.SD_GetCardStatus:00000000 $t
+ARM GAS  /tmp/ccgCa6Kb.s 			page 223
 
 
-     /tmp/ccV6oIJX.s:6267   .text.SD_GetCardStatus:00000000 SD_GetCardStatus
-     /tmp/ccV6oIJX.s:6452   .text.SD_GetCardStatus:0000007c $d
-     /tmp/ccV6oIJX.s:7127   .bss.SDSTATUS_Tab:00000000 SDSTATUS_Tab
-     /tmp/ccV6oIJX.s:6457   .text.SD_ProcessIRQSrc:00000000 $t
-     /tmp/ccV6oIJX.s:6463   .text.SD_ProcessIRQSrc:00000000 SD_ProcessIRQSrc
-     /tmp/ccV6oIJX.s:6601   .text.SD_ProcessIRQSrc:000000a4 $d
-     /tmp/ccV6oIJX.s:6607   .text.SD_ProcessDMAIRQ:00000000 $t
-     /tmp/ccV6oIJX.s:6613   .text.SD_ProcessDMAIRQ:00000000 SD_ProcessDMAIRQ
-     /tmp/ccV6oIJX.s:6650   .text.SD_ProcessDMAIRQ:00000020 $d
-     /tmp/ccV6oIJX.s:6657   .text.convert_from_bytes_to_power_of_two:00000000 $t
-     /tmp/ccV6oIJX.s:6663   .text.convert_from_bytes_to_power_of_two:00000000 convert_from_bytes_to_power_of_two
-     /tmp/ccV6oIJX.s:6705   .text.SD_HighSpeed:00000000 $t
-     /tmp/ccV6oIJX.s:6711   .text.SD_HighSpeed:00000000 SD_HighSpeed
-     /tmp/ccV6oIJX.s:7057   .text.SD_HighSpeed:0000015c $d
-     /tmp/ccV6oIJX.s:7070   .bss.SDIO_DataInitStructure:00000000 $d
-     /tmp/ccV6oIJX.s:7077   .bss.SDIO_CmdInitStructure:00000000 $d
-     /tmp/ccV6oIJX.s:7084   .bss.SDIO_InitStructure:00000000 $d
-     /tmp/ccV6oIJX.s:7091   .bss.SDCardInfo:00000000 $d
-     /tmp/ccV6oIJX.s:7098   .bss.DMAEndOfTransfer:00000000 $d
-     /tmp/ccV6oIJX.s:7105   .bss.TransferEnd:00000000 $d
-     /tmp/ccV6oIJX.s:7115   .bss.TransferError:00000000 $d
-     /tmp/ccV6oIJX.s:7118   .bss.StopCondition:00000000 $d
-     /tmp/ccV6oIJX.s:7124   .bss.SDSTATUS_Tab:00000000 $d
-     /tmp/ccV6oIJX.s:7130   .bss.RCA:00000000 $d
-     /tmp/ccV6oIJX.s:7136   .bss.CID_Tab:00000000 $d
-     /tmp/ccV6oIJX.s:7142   .bss.CSD_Tab:00000000 $d
-     /tmp/ccV6oIJX.s:7148   .bss.CardType:00000000 $d
+     /tmp/ccgCa6Kb.s:6267   .text.SD_GetCardStatus:00000000 SD_GetCardStatus
+     /tmp/ccgCa6Kb.s:6452   .text.SD_GetCardStatus:0000007c $d
+     /tmp/ccgCa6Kb.s:7127   .bss.SDSTATUS_Tab:00000000 SDSTATUS_Tab
+     /tmp/ccgCa6Kb.s:6457   .text.SD_ProcessIRQSrc:00000000 $t
+     /tmp/ccgCa6Kb.s:6463   .text.SD_ProcessIRQSrc:00000000 SD_ProcessIRQSrc
+     /tmp/ccgCa6Kb.s:6601   .text.SD_ProcessIRQSrc:000000a4 $d
+     /tmp/ccgCa6Kb.s:6607   .text.SD_ProcessDMAIRQ:00000000 $t
+     /tmp/ccgCa6Kb.s:6613   .text.SD_ProcessDMAIRQ:00000000 SD_ProcessDMAIRQ
+     /tmp/ccgCa6Kb.s:6650   .text.SD_ProcessDMAIRQ:00000020 $d
+     /tmp/ccgCa6Kb.s:6657   .text.convert_from_bytes_to_power_of_two:00000000 $t
+     /tmp/ccgCa6Kb.s:6663   .text.convert_from_bytes_to_power_of_two:00000000 convert_from_bytes_to_power_of_two
+     /tmp/ccgCa6Kb.s:6705   .text.SD_HighSpeed:00000000 $t
+     /tmp/ccgCa6Kb.s:6711   .text.SD_HighSpeed:00000000 SD_HighSpeed
+     /tmp/ccgCa6Kb.s:7057   .text.SD_HighSpeed:0000015c $d
+     /tmp/ccgCa6Kb.s:7070   .bss.SDIO_DataInitStructure:00000000 $d
+     /tmp/ccgCa6Kb.s:7077   .bss.SDIO_CmdInitStructure:00000000 $d
+     /tmp/ccgCa6Kb.s:7084   .bss.SDIO_InitStructure:00000000 $d
+     /tmp/ccgCa6Kb.s:7091   .bss.SDCardInfo:00000000 $d
+     /tmp/ccgCa6Kb.s:7098   .bss.DMAEndOfTransfer:00000000 $d
+     /tmp/ccgCa6Kb.s:7105   .bss.TransferEnd:00000000 $d
+     /tmp/ccgCa6Kb.s:7115   .bss.TransferError:00000000 $d
+     /tmp/ccgCa6Kb.s:7118   .bss.StopCondition:00000000 $d
+     /tmp/ccgCa6Kb.s:7124   .bss.SDSTATUS_Tab:00000000 $d
+     /tmp/ccgCa6Kb.s:7130   .bss.RCA:00000000 $d
+     /tmp/ccgCa6Kb.s:7136   .bss.CID_Tab:00000000 $d
+     /tmp/ccgCa6Kb.s:7142   .bss.CSD_Tab:00000000 $d
+     /tmp/ccgCa6Kb.s:7148   .bss.CardType:00000000 $d
 
 UNDEFINED SYMBOLS
 SDIO_GetFlagStatus
@@ -13354,7 +13354,7 @@ SDIO_ITConfig
 SDIO_DMACmd
 SDIO_GetITStatus
 SDIO_ClearITPendingBit
-ARM GAS  /tmp/ccV6oIJX.s 			page 224
+ARM GAS  /tmp/ccgCa6Kb.s 			page 224
 
 
 memset

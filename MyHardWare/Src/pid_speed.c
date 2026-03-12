@@ -12,13 +12,12 @@ static void update_motor_output(Speed_PID_Controller_t *controller,
                                 float output);
 static void pid_init(PID_State_t *pid, float target, float kp, float ki,
                      float kd);
-static float pid_realize(PID_State_t *pid, float actual_value);
 
 /* ==================== 公有函数实现 ==================== */
 
 /**
  * @brief 初始化速度环PID控制器
- * @param controller 控制器实例指针
+ * @param controller 控制器实例指针 
  * @param encoder_id 关联的编码器ID
  * @param motor_id 关联的电机ID
  * @param kp 比例系数
@@ -96,7 +95,7 @@ void Speed_PID_Disable(Speed_PID_Controller_t *controller) {
   update_motor_output(controller, 0.0f);
 
   // 重置积分项以防止积分饱和
-  controller->pid_state.integral_error = 0.0f;
+  controller->pid_state.last_integral_error = 0.0f;
 }
 
 /**
@@ -112,16 +111,23 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
 
   // 计算时间间隔（秒）
   uint32_t current_time = GetSysTick();
-  float dt =
-      (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
-  controller->last_update_time = current_time;
+  float dt = (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
+  
 
   // 获取当前速度
   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
 
   // 使用PID算法计算输出
-  float output =
-      pid_realize(&controller->pid_state, controller->current_speed_m_s);
+  
+  float error = controller->pid_state.target_value - controller->current_speed_m_s;//计算误差值
+  float derivative = (error - controller->pid_state.last_error) / dt;//计算微分项
+  float integral = (controller->pid_state.last_integral_error + error) * dt * 0.5f;//计算积分项
+  float output = controller->pid_state.kp * error + controller->pid_state.ki *integral + controller->pid_state.kd * derivative;//计算输出值
+
+  // 更新PID状态
+  controller->last_update_time = current_time; // 更新时间
+  controller->pid_state.last_integral_error = integral;//更新上次积分项
+  controller->pid_state.last_error = error;//更新上次误差项
 
   // 更新电机输出
   update_motor_output(controller, output);
@@ -189,9 +195,8 @@ static void pid_init(PID_State_t *pid, float target, float kp, float ki,
   pid->kp = kp;
   pid->ki = ki;
   pid->kd = kd;
-  pid->integral_error = 0.0f;
+  pid->last_integral_error = 0.0f;
   pid->last_error = 0.0f;
-  pid->prev_error = 0.0f;
 }
 
 /**
@@ -200,27 +205,26 @@ static void pid_init(PID_State_t *pid, float target, float kp, float ki,
  * @param actual_value Actual measured value
  * @return Calculated output value
  */
-static float pid_realize(PID_State_t *pid, float actual_value) {
-  // 计算误差
-  float error = pid->target_value - actual_value;
+// static float pid_realize(PID_State_t *pid, float actual_value) {
+//   // 计算误差
+//   float error = pid->target_value - actual_value;
 
-  // 积分项计算（带抗积分饱和）
-  pid->integral_error += error;
+//   // 积分项计算（带抗积分饱和）
+//   pid->integral_error += error;
+//   // 防止积分饱和（可选：可以添加积分限幅）
+//   // if (pid->integral_error > INTEGRAL_LIMIT) pid->integral_error =
+//   // INTEGRAL_LIMIT; if (pid->integral_error < -INTEGRAL_LIMIT)
+//   // pid->integral_error = -INTEGRAL_LIMIT;
 
-  // 防止积分饱和（可选：可以添加积分限幅）
-  // if (pid->integral_error > INTEGRAL_LIMIT) pid->integral_error =
-  // INTEGRAL_LIMIT; if (pid->integral_error < -INTEGRAL_LIMIT)
-  // pid->integral_error = -INTEGRAL_LIMIT;
+//   // 微分项计算
+//   float derivative = error - pid->last_error;
 
-  // 微分项计算
-  float derivative = error - pid->last_error;
+//   // PID输出计算
+//   float output =
+//       pid->kp * error + pid->ki * pid->integral_error + pid->kd * derivative;
 
-  // PID输出计算
-  float output =
-      pid->kp * error + pid->ki * pid->integral_error + pid->kd * derivative;
+//   // 更新上次误差
+//   pid->last_error = error;
 
-  // 更新上次误差
-  pid->last_error = error;
-
-  return output;
-}
+//   return output;
+// }
