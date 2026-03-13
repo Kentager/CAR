@@ -15,6 +15,9 @@
   - 四路编码器独立反馈转速，闭环控制保证四轮转速同步，提升直线行驶精度
   - JY61P卡尔曼滤波解算偏航角，实时修正行驶偏航，结合编码器做二次校准
   - 结合编码器+卡尔曼滤波后的姿态角实现精准转弯（差速转弯/原地转弯，四轮独立调速）
+  - **双环PID控制架构**：
+    - **速度环**：采用**增量式PID算法**，基于编码器反馈的线速度进行控制，具有抗积分饱和、误动作影响小的优点
+    - **角度环**：采用**位置式PID算法**，基于JY61P卡尔曼滤波后的姿态角进行控制，提供高精度的角度定位
 
 ### 1.3 关键系统约束
 - **电源与驱动**：
@@ -26,7 +29,7 @@
   - **调试限制**：串口日志输出频率限制在10Hz（100ms）以内，防止阻塞式printf影响控制回路实时性。
   - **编译限制**：不许编辑makefil文件
 - **四驱/双驱切换**：
-  - 配置文件：`MyHardWare/Inc/HardwareConfig.h`
+  - 配置文件：[MyHardWare/Inc/HardwareConfig.h](file:///home/sword/STM32/CAR/MyHardWare/Inc/HardwareConfig.h)
   - 切换方法：取消/注释 `#define QUAD_MOTOR_DRIVE` 宏
   - **注意**：切换后需要重新编译项目，无需修改 Makefile
 
@@ -90,12 +93,25 @@
 - 调试输出：串口打印使用自定义printf重定向（重映射fputc到USART_SendData）
   - 调试内容：每100ms输出一次卡尔曼滤波后的偏航角、四路电机转速
 - 标准库宏定义：需在编译时添加 -DSTM32F407_ZX -DUSE_STDPERIPH_DRIVER -DKALMAN_FILTER_JY61P
-  - **驱动模式**：通过修改 `MyHardWare/Inc/HardwareConfig.h` 文件切换四驱/双驱模式：
+  - **驱动模式**：通过修改 [MyHardWare/Inc/HardwareConfig.h](file:///home/sword/STM32/CAR/MyHardWare/Inc/HardwareConfig.h) 文件切换四驱/双驱模式：
     - **四驱模式**：取消注释 `#define QUAD_MOTOR_DRIVE` 宏
     - **双驱模式**：注释掉 `#define QUAD_MOTOR_DRIVE` 宏
     - 无需修改 Makefile，宏定义在头文件中配置即可自动生效
 
 ### 2.4 核心算法逻辑
+- **双环PID控制架构**：
+  - **速度环（增量式PID）**：
+    - 控制目标：电机线速度（m/s）
+    - 算法特点：输出控制量增量 Δu(k)，具有抗积分饱和特性，适合速度控制
+    - 更新频率：10ms（100Hz）
+    - 反馈源：四路编码器独立测速
+    - 公式：Δu(k) = Kp·[e(k)-e(k-1)] + Ki·e(k)·dt + Kd·[e(k)-2e(k-1)+e(k-2)]/dt
+  - **角度环（位置式PID）**：
+    - 控制目标：车体姿态角度（度）
+    - 算法特点：直接输出绝对控制量 u(k)，精度高，适合角度/位置控制
+    - 更新频率：5ms（200Hz）
+    - 反馈源：JY61P卡尔曼滤波后的姿态角
+    - 公式：u(k) = Kp·e(k) + Ki·∫e(t)dt + Kd·de(t)/dt
 - 循迹算法：8路TCRT数据归一化后，采用加权平均法计算偏差值，PID调节四轮转速（外侧电机增速/内侧电机减速）
 - 直线行驶：
   - 基础层：四路编码器反馈转速，计算每路与基准转速的差值，PID独立补偿
@@ -112,6 +128,7 @@
 - `encoder_JY61P`：四路/双路编码器计数（标准库正交解码）、JY61P I2C读写、卡尔曼滤波实现（标准库C代码）、轮转速同步算法
 - `kalman_filter`：卡尔曼滤波核心公式、参数调优方法、偏航角解算实战（适配智能车场景）
 - `debug_log`：四路/双路电机状态+卡尔曼滤波姿态角输出规范
+- `pid_control`：**新增** - 速度环增量式PID与角度环位置式PID详细实现说明
 
 ## 4. 四驱/双驱切换详细说明
 ### 4.1 硬件配置差异
@@ -124,30 +141,37 @@
 | 编码器定时器 | TIM2 + TIM3 + TIM4 + TIM5 | TIM2 + TIM3 |
 
 ### 4.2 切换步骤
-1. 打开配置文件：`MyHardWare/Inc/HardwareConfig.h`
+1. 打开配置文件：[MyHardWare/Inc/HardwareConfig.h](file:///home/sword/STM32/CAR/MyHardWare/Inc/HardwareConfig.h)
 2. 找到 `QUAD_MOTOR_DRIVE` 宏定义
 3. **切换到四驱模式**：取消注释
    ```c
    #define QUAD_MOTOR_DRIVE
-   ```
-4. **切换到双驱模式**：注释掉
+4. **切换到双电机模式**：注释掉
    ```c
-   // #define QUAD_MOTOR_DRIVE
-   ```
-5. 保存文件，重新编译项目
+   #define QUAD_MOTOR_DRIVE
+5. **保存并编译**
 
 ### 4.3 代码接口差异
 **四驱模式：**
-- 电机ID：`MOTOR_FR`, `MOTOR_FL`, `MOTOR_BR`, `MOTOR_BL`
-- 编码器ID：`ENCODER_FR`, `ENCODER_FL`, `ENCODER_BR`, `ENCODER_BL`
-- 快捷函数：`Motor_FR_SetSpeed()`, `Motor_BR_SetSpeed()` 等
+- 电机ID：MOTOR_FR(前右)、MOTOR_FL(前左)、MOTOR_BR(后右)、MOTOR_BL(后左)
+- 编码器ID：ENCODER_FR、ENCODER_FL、ENCODER_BR、ENCODER_BL
+- PID控制器：
+  - 速度环：Speed_PID_FR、Speed_PID_FL、Speed_PID_BR、Speed_PID_BL（四个独立的增量式PID控制器）
+  - 角度环：Angle_PID（单个位置式PID控制器，控制整体车体姿态）
+- 快捷函数：Motor_FR_SetSpeed()、Motor_FL_SetSpeed()、Motor_BR_SetSpeed()、Motor_BL_SetSpeed()
 
 **双驱模式：**
-- 电机ID：`MOTOR_RIGHT`, `MOTOR_LEFT`
-- 编码器ID：`ENCODER_RIGHT`, `ENCODER_LEFT`
-- 快捷函数：`Motor_RIGHT_SetSpeed()`, `Motor_LEFT_SetSpeed()` 等
+- 电机ID：MOTOR_RIGHT(右轮)、MOTOR_LEFT(左轮)
+- 编码器ID：ENCODER_RIGHT、ENCODER_LEFT  
+- PID控制器：
+  - 速度环：Speed_PID_Right、Speed_PID_Left（两个独立的增量式PID控制器）
+  - 角度环：Angle_PID（单个位置式PID控制器，控制整体车体姿态）
+- 快捷函数：Motor_RIGHT_SetSpeed()、Motor_LEFT_SetSpeed()
 
 ### 4.4 注意事项
-- 切换模式后需要重新编译，无需修改 Makefile
-- 双驱模式下，硬件仅使用前轮电机和编码器（MOTOR_FR/MOTOR_FL，ENCODER_FR/ENCODER_FL）
-- 所有电机和编码器的API接口保持一致，只是枚举值不同
+- **PID控制器适配**：切换模式后，PID控制器的数量会自动适配。四驱模式有4个速度环PID控制器，双驱模式有2个速度环PID控制器，角度环PID控制器始终为1个。
+- **编译要求**：切换模式后必须重新编译整个项目，以确保所有条件编译宏正确生效。
+- **硬件连接**：双驱模式下，硬件仅使用前轮电机和编码器（MOTOR_FR/MOTOR_FL 对应 MOTOR_RIGHT/MOTOR_LEFT，ENCODER_FR/ENCODER_FL 对应 ENCODER_RIGHT/ENCODER_LEFT）。
+- **API兼容性**：所有电机和编码器的API接口保持一致，只是枚举值和控制器实例数量不同。上层应用代码无需修改，底层会根据宏定义自动适配。
+- **性能考虑**：四驱模式下计算负载更高，需要确保主循环执行时间不超过控制周期要求（速度环10ms，角度环5ms）。
+- **调试建议**：首次切换模式后，建议重新调试PID参数，因为机械特性和负载分布可能发生变化。

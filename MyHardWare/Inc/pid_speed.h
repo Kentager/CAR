@@ -25,15 +25,18 @@
 
 /* ==================== PID内部数据结构 ==================== */
 /**
- * @brief PID控制内部状态结构体
+ * @brief 增量式PID控制内部状态结构体
+ * @note 增量式PID公式: Δu(k) = Kp·[e(k)-e(k-1)] + Ki·e(k)·dt + Kd·[e(k)-2e(k-1)+e(k-2)]/dt
+ *       输出: u(k) = u(k-1) + Δu(k)
  */
 typedef struct {
-  float kp;             // 比例系数
-  float ki;             // 积分系数
-  float kd;             // 微分系数
-  float target_value;   // 目标值
-  float last_integral_error; // 上次的积分值
-  float last_error;     // 上次误差值
+  float kp;              // 比例系数
+  float ki;              // 积分系数
+  float kd;              // 微分系数
+  float target_value;    // 目标值
+  float last_error;      // 上次误差值 e(k-1)
+  float last_error2;     // 上上次误差值 e(k-2)
+  float last_output;     // 上次输出值 u(k-1)
 } PID_State_t;
 
 /* ==================== 速度环PID数据结构体 ==================== */

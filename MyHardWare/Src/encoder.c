@@ -16,9 +16,7 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_tim.h"
-#include <stdint.h>
-#include <stdio.h>
-static uint16_t debug_step = 0;
+
 /* ==================== 全局编码器实例定义 ==================== */
 // 四驱模式编码器实例
 #ifdef QUAD_MOTOR_DRIVE
@@ -44,7 +42,7 @@ static Encoder_Class_t Encoder_Right = {
               .last_update_time = 0},
     ._initialized = 0,
     .id = ENCODER_RIGHT,
-    .tim = TIM5};
+    .tim = TIM2};
 
 static Encoder_Class_t Encoder_Left = {
     ._data = {.count = 0,
@@ -62,7 +60,7 @@ static Encoder_Class_t Encoder_Left = {
               .last_update_time = 0},
     ._initialized = 0,
     .id = ENCODER_LEFT,
-    .tim = TIM2}; // 修改为 TIM2
+    .tim = TIM5}; // 修改为 TIM5
 #endif
 
 /* ==================== 私有函数：硬件初始化 ==================== */
@@ -224,8 +222,7 @@ static void Encoder_TIM_Init(void) {
 
   // TIM2 配置 (右编码器)
   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-  TIM_TimeBaseStructure.TIM_Period =
-      2000000; // 200万计数周期，适合高分辨率编码器
+  TIM_TimeBaseStructure.TIM_Period = 200000;
   TIM_TimeBaseStructure.TIM_Prescaler = 0;
   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
@@ -248,7 +245,7 @@ static void Encoder_TIM_Init(void) {
                              TIM_ICPolarity_Rising);
   TIM_Cmd(TIM2, ENABLE);
 
-  // TIM5 配置 (右编码器)
+  // TIM5 配置 (左编码器)
   TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
 
   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
@@ -331,48 +328,37 @@ void Encoder_Update(void) {
 #else
   // 双驱模式：处理 2 个编码器
   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
-  int32_t current_count[2];
-  current_count[0] = (int32_t)TIM_GetCounter(Encoder_Right.tim);
-  current_count[1] = (int32_t)TIM_GetCounter(Encoder_Left.tim);
-
   for (int i = 0; i < 2; i++) {
     uint32_t current_time = GetSysTick();
     Encoder_Class_t *instance = encoders[i];
 
     // 读取当前计数值 (支持 32 位定时器)
+    int32_t current_count = (int32_t)TIM_GetCounter(instance->tim);
 
     // 计算增量并处理计数器溢出/下溢
-    int32_t delta = current_count[i] - instance->_data.last_count;
+    int32_t delta = current_count - instance->_data.last_count;
 
-    // 检测是否发生溢出或下溢（ARR=2000000）
-    if (delta > 1000000) {
-      // 计数器从 2000000 回绕到 0，需要减去 2000001
-      delta -= 2000001;
-    } else if (delta < -1000000) {
-      // 计数器从 0 回绕到 2000000，需要加上 2000001
-      delta += 2000001;
+    // 检测是否发生溢出或下溢（ARR=200000）
+    if (delta > 100000) {
+      // 计数器从 200000 回绕到 0，需要减去 200001
+      delta -= 200001;
+    } else if (delta < -100000) {
+      // 计数器从 0 回绕到 200000，需要加上 200001
+      delta += 200001;
     }
 
     // 更新数据结构
-    instance->_data.count = current_count[i];
+    instance->_data.count = current_count;
     instance->_data.delta_count = delta;
-    instance->_data.last_count = current_count[i];
+    instance->_data.last_count = current_count;
     instance->_data.total_count += delta;
+
     // 计算速度
     instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
     instance->_data.speed_m_s =
         instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
-    // if (debug_step > 10) {
-    // if (i) {
-    //   printf("LEFT:delta:%d,speed:%f\r\n", delta,
-    //   instance->_data.speed_m_s);
-    // } else {
-    //   printf("RIGHT:delta:%d,speed:%f\r\n", delta,
-    //   instance->_data.speed_m_s);
-    // }
-    // }
 
     // 更新总里程
     instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;

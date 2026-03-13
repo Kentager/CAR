@@ -50,37 +50,20 @@ void encoder_upgrade(void) {
   encoder_data_LEFT = Encoder_GetData(ENCODER_LEFT);
   encoder_data_RIGHT = Encoder_GetData(ENCODER_RIGHT);
 }
-// ... existing code ...
 void print_encoderData(void) {
-  // printf("tim:%d Left Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
-  //        GetSysTick(), encoder_data_LEFT.count, encoder_data_LEFT.speed_m_s,
-  //        encoder_data_LEFT.total_distance);
-  // printf("tim:%d Right Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
-  //        GetSysTick(), encoder_data_RIGHT.count,
-  //        encoder_data_RIGHT.speed_m_s, encoder_data_RIGHT.total_distance);
-
   // 调试信息：打印详细的编码器数据
   printf("=== LEFT ENCODER DEBUG ===\r\n");
-  printf("Count: %d, Last_Count: %d, Delta: %d\r\n", encoder_data_LEFT.count,
-         encoder_data_LEFT.last_count, encoder_data_LEFT.delta_count);
-  printf("Speed - RPM: %.2f, RPS: %.4f, rad/s: %.4f, m/s: %.4f\r\n",
-         encoder_data_LEFT.speed_rpm, encoder_data_LEFT.speed_rps,
-         encoder_data_LEFT.speed_rad_s, encoder_data_LEFT.speed_m_s);
-  printf("Direction: %d, distance: %.4fm\r\n", encoder_data_LEFT.direction,
-         encoder_data_LEFT.total_distance);
+  printf("tim:%d Left Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
+         GetSysTick(), encoder_data_LEFT.total_count,
+         encoder_data_LEFT.speed_m_s, encoder_data_LEFT.total_distance);
 
   printf("=== RIGHT ENCODER DEBUG ===\r\n");
-  printf("Count: %d, Last_Count: %d, Delta: %d\r\n", encoder_data_RIGHT.count,
-         encoder_data_RIGHT.last_count, encoder_data_RIGHT.delta_count);
-  printf("Speed - RPM: %.2f, RPS: %.4f, rad/s: %.4f, m/s: %.4f\r\n",
-         encoder_data_RIGHT.speed_rpm, encoder_data_RIGHT.speed_rps,
-         encoder_data_RIGHT.speed_rad_s, encoder_data_RIGHT.speed_m_s);
-  printf("Direction: %d, distance: %.4fm\r\n\r\n", encoder_data_RIGHT.direction,
-         encoder_data_RIGHT.total_distance);
+  printf("tim:%d Right Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
+         GetSysTick(), encoder_data_RIGHT.total_count,
+         encoder_data_RIGHT.speed_m_s, encoder_data_RIGHT.total_distance);
 
   printf("\r\n");
 }
-// ... existing code ...
 int main() {
   int arg = 42;
   led_Init();
@@ -118,7 +101,7 @@ int main() {
     add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
     */
 
-  UART1_Init();
+  USART1_Init();
   printf("hello world\r\n");
 
   delay_init();
@@ -134,9 +117,5 @@ int main() {
 
   while (1) {
     Task_Scheduler(); // 调度器执行就绪态任务
-
-    // 其他主循环任务...
-    GPIO_ToggleBits(GPIOC, 13);
-    delay_ms(1000);
   }
 }

@@ -94,14 +94,18 @@ void Speed_PID_Disable(Speed_PID_Controller_t *controller) {
   // 停止电机
   update_motor_output(controller, 0.0f);
 
-  // 重置积分项以防止积分饱和
-  controller->pid_state.last_integral_error = 0.0f;
+  // 重置PID状态以防止积分饱和
+  controller->pid_state.last_error = 0.0f;
+  controller->pid_state.last_error2 = 0.0f;
+  controller->pid_state.last_output = 0.0f;
 }
 
 /**
- * @brief 执行速度环PID控制计算
+ * @brief 执行速度环PID控制计算（增量式PID）
  * @param controller 控制器实例指针
  * @note 应在10ms控制循环中调用
+ *       增量式PID公式: Δu(k) = Kp·[e(k)-e(k-1)] + Ki·e(k)·dt + Kd·[e(k)-2e(k-1)+e(k-2)]/dt
+ *       输出: u(k) = u(k-1) + Δu(k)
  */
 void Speed_PID_Update(Speed_PID_Controller_t *controller) {
   // 参数检查
@@ -112,22 +116,27 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
   // 计算时间间隔（秒）
   uint32_t current_time = GetSysTick();
   float dt = (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
-  
 
   // 获取当前速度
   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
 
-  // 使用PID算法计算输出
-  
-  float error = controller->pid_state.target_value - controller->current_speed_m_s;//计算误差值
-  float derivative = (error - controller->pid_state.last_error) / dt;//计算微分项
-  float integral = (controller->pid_state.last_integral_error + error) * dt * 0.5f;//计算积分项
-  float output = controller->pid_state.kp * error + controller->pid_state.ki *integral + controller->pid_state.kd * derivative;//计算输出值
+  // 计算当前误差 e(k)
+  float error = controller->pid_state.target_value - controller->current_speed_m_s;
+
+  // 增量式PID算法
+  // Δu(k) = Kp·[e(k)-e(k-1)] + Ki·e(k)·dt + Kd·[e(k)-2e(k-1)+e(k-2)]/dt
+  float delta_u = controller->pid_state.kp * (error - controller->pid_state.last_error) +
+                  controller->pid_state.ki * error * dt +
+                  controller->pid_state.kd * (error - 2.0f * controller->pid_state.last_error + controller->pid_state.last_error2) / dt;
+
+  // 计算当前输出: u(k) = u(k-1) + Δu(k)
+  float output = controller->pid_state.last_output + delta_u;
 
   // 更新PID状态
-  controller->last_update_time = current_time; // 更新时间
-  controller->pid_state.last_integral_error = integral;//更新上次积分项
-  controller->pid_state.last_error = error;//更新上次误差项
+  controller->last_update_time = current_time;
+  controller->pid_state.last_error2 = controller->pid_state.last_error; // e(k-2) = e(k-1)
+  controller->pid_state.last_error = error;                           // e(k-1) = e(k)
+  controller->pid_state.last_output = output;                          // u(k-1) = u(k)
 
   // 更新电机输出
   update_motor_output(controller, output);
@@ -182,7 +191,7 @@ static void update_motor_output(Speed_PID_Controller_t *controller,
 }
 
 /**
- * @brief PID控制器初始化函数
+ * @brief 增量式PID控制器初始化函数
  * @param pid Pointer to the PID state structure
  * @param target Target value for the PID controller
  * @param kp Proportional gain
@@ -195,8 +204,9 @@ static void pid_init(PID_State_t *pid, float target, float kp, float ki,
   pid->kp = kp;
   pid->ki = ki;
   pid->kd = kd;
-  pid->last_integral_error = 0.0f;
-  pid->last_error = 0.0f;
+  pid->last_error = 0.0f;      // e(k-1)
+  pid->last_error2 = 0.0f;     // e(k-2)
+  pid->last_output = 0.0f;     // u(k-1)
 }
 
 /**

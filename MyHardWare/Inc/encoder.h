@@ -62,8 +62,8 @@ typedef enum {
 #define GEAR_RATIO 1.0f       // 齿轮比（根据实际修改）
 
 // 测速相关参数
-#define ENCODER_SAMPLE_PERIOD_MS 5  // 采样周期 (ms)
-#define ENCODER_SAMPLE_FREQ_HZ 1000 // 采样频率 (Hz) (Hz)
+#define ENCODER_SAMPLE_PERIOD_MS 5 // 采样周期 (ms)
+#define ENCODER_SAMPLE_FREQ_HZ 200 // 采样频率 (Hz) (Hz)
 
 // 速度计算相关
 #define RPM_TO_RPS (1.0f / 60.0f)             // RPM转RPS
@@ -140,22 +140,22 @@ typedef enum {
  */
 typedef struct {
   // 当前状态
-  int32_t count;                // 当前计数值 (支持 32 位定时器)
-  volatile int32_t last_count;  // 上次计数值
-  volatile int32_t delta_count; // 计数增量
+  int32_t count;       // 当前计数值 (支持 32 位定时器)
+  int32_t last_count;  // 上次计数值
+  int32_t delta_count; // 计数增量
 
   // 速度相关
-  volatile float speed_rpm; // 转速 (RPM)
-  float speed_rps;          // 转速 (RPS)
-  float speed_rad_s;        // 角速度 (rad/s)
-  volatile float speed_m_s; // 线速度 (m/s)
+  float speed_rpm;   // 转速 (RPM)
+  float speed_rps;   // 转速 (RPS)
+  float speed_rad_s; // 角速度 (rad/s)
+  float speed_m_s;   // 线速度 (m/s)
 
   // 里程相关
   int32_t total_count;  // 总计数值（累计）
   float total_distance; // 总里程 (m)
 
   // 方向
-  volatile Encoder_Direction_e direction; // 当前方向
+  Encoder_Direction_e direction; // 当前方向
 
   // 参数
   float wheel_diameter; // 轮子直径 (m)

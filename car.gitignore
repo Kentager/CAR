@@ -1,0 +1,38 @@
+# 编译输出目录
+build/
+Build/
+BUILD/
+
+# 启动文件目录
+START/
+Start/
+start/
+
+# 编译生成的文件
+*.o
+*.d
+*.elf
+*.map
+*.lst
+*.srec
+*.bin
+*.hex
+
+# 编译中间文件
+compile_commands.json
+
+# IDE 和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 调试文件
+*.log
+*.dump
+
+# 临时文件
+*.tmp
+*.bak
