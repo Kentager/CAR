@@ -17,7 +17,7 @@
         "runToEntryPoint": "main",
         "showDevDebugOutput": "raw",
         "svdFile": "${workspaceFolder}/STM32F407.svd",
-        "gdbPath": "gdb-multiarch",
+        "gdbPath": "arm-none-eabi-gdb",
         "liveWatch": {
             "enabled": true,
             "samplesPerSecond": 10

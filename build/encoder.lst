@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
   29:MyHardWare/Src/encoder.c **** static Encoder_Class_t Encoder_Right = {
   30:MyHardWare/Src/encoder.c ****     ._data = {
   31:MyHardWare/Src/encoder.c ****               .last_count = 0,
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 2
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 2
 
 
   32:MyHardWare/Src/encoder.c ****               .delta_count = 0,
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
   39              		.cfi_offset 8, -8
   40              		.cfi_offset 14, -4
   41 0004 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 3
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 3
 
 
   42              	.LCFI1:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
   51              		.loc 1 119 31 is_stmt 0 view .LVU4
   52 000e 0326     		movs	r6, #3
   53 0010 0096     		str	r6, [sp]
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 4
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 4
 
 
  120:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  131:MyHardWare/Src/encoder.c ****   GPIO_InitStructure.GPIO_Pin = ENCODER_LEFT_CH1_PIN | ENCODER_LEFT_CH2_PIN;
   97              		.loc 1 131 3 view .LVU18
   98              		.loc 1 131 31 is_stmt 0 view .LVU19
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 5
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 5
 
 
   99 0058 2823     		movs	r3, #40
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  140:MyHardWare/Src/encoder.c **** /**
  141:MyHardWare/Src/encoder.c ****  * @brief 编码器定时器初始化（根据硬件配置直接初始化）
  142:MyHardWare/Src/encoder.c ****  * @note  通过条件编译直接初始化对应的定时器，无需运行时判断
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 6
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 6
 
 
  143:MyHardWare/Src/encoder.c ****  */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  197:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
  198:MyHardWare/Src/encoder.c ****   TIM_IC_Init(TIM4, &TIM_IC_InitStructure);
  199:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 7
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 7
 
 
  200:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM4, TIM_EncoderMode_TI12, TIM_ICPolarity_Rising,
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  254:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
  255:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
  256:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 8
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 8
 
 
  257:MyHardWare/Src/encoder.c ****   TIM_EncoderInterfaceConfig(TIM5, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  295:MyHardWare/Src/encoder.c ****     } else if (delta < -32767) {
  296:MyHardWare/Src/encoder.c ****       // 计数器从 0 回绕到 65535，需要加上 65536
  297:MyHardWare/Src/encoder.c ****       delta += 65536;
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 9
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 9
 
 
  298:MyHardWare/Src/encoder.c ****     }
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  335:MyHardWare/Src/encoder.c ****     // 读取当前计数值 (支持 32 位定时器)
  336:MyHardWare/Src/encoder.c ****     int32_t current_count = (int32_t)TIM_GetCounter(instance->tim);
  337:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 10
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 10
 
 
  338:MyHardWare/Src/encoder.c ****     // 计算增量并处理计数器溢出/下溢
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  367:MyHardWare/Src/encoder.c **** 
  368:MyHardWare/Src/encoder.c **** 
  369:MyHardWare/Src/encoder.c ****     instance->_data.speed_rps = (float)delta / 28000.0f / dt_seconds;
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 11
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 11
 
 
  205              		.loc 1 369 5 is_stmt 1 view .LVU45
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  382:MyHardWare/Src/encoder.c **** 
  383:MyHardWare/Src/encoder.c **** 
  384:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 12
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 12
 
 
  385:MyHardWare/Src/encoder.c **** 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  336:MyHardWare/Src/encoder.c **** 
  282              		.loc 1 336 5 is_stmt 1 view .LVU77
  336:MyHardWare/Src/encoder.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 13
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 13
 
 
  283              		.loc 1 336 38 is_stmt 0 view .LVU78
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  322              	.L15:
  391:MyHardWare/Src/encoder.c ****     } else {
  323              		.loc 1 391 7 is_stmt 1 view .LVU94
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 14
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 14
 
 
  391:MyHardWare/Src/encoder.c ****     } else {
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  373              		.cfi_def_cfa_offset 20
  374              		.cfi_offset 4, -20
  375              		.cfi_offset 5, -16
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 15
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 15
 
 
  376              		.cfi_offset 6, -12
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  235:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
  414              		.loc 1 235 3 is_stmt 1 view .LVU117
  235:MyHardWare/Src/encoder.c ****   TIM_IC_InitStructure.TIM_ICPrescaler = TIM_ICPSC_DIV1;
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 16
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 16
 
 
  415              		.loc 1 235 40 is_stmt 0 view .LVU118
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  457              		.loc 1 251 3 view .LVU130
  251:MyHardWare/Src/encoder.c ****   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
  458              		.loc 1 251 36 is_stmt 0 view .LVU131
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 17
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 17
 
 
  459 007c ADF80040 		strh	r4, [sp]	@ movhi
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  506              		.thumb
  507              		.thumb_func
  509              	Encoder_Driver_Init:
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 18
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 18
 
 
  510              	.LFB125:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  403:MyHardWare/Src/encoder.c ****   Encoder_Data_t empty_data = {0};
  560              		.loc 1 403 3 view .LVU147
  561              		.loc 1 403 18 is_stmt 0 view .LVU148
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 19
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 19
 
 
  562 000c 3022     		movs	r2, #48
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  598              		@ sp needed
  599 004a 30BD     		pop	{r4, r5, pc}
  600              	.LVL48:
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 20
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 20
 
 
  601              	.L28:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  658 002c 00000000 		.word	0
  659 0030 00       		.byte	0
  660 0031 00       		.byte	0
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 21
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 21
 
 
  661 0032 0000     		.space	2
@@ -1220,30 +1220,30 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 1
  677              		.file 8 "Lib/StdPeriphs/inc/stm32f4xx_rcc.h"
  678              		.file 9 "MyHardWare/Inc/task.h"
  679              		.file 10 "<built-in>"
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s 			page 22
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 encoder.c
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:21     .text.Encoder_GPIO_Init:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:26     .text.Encoder_GPIO_Init:00000000 Encoder_GPIO_Init
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:133    .text.Encoder_GPIO_Init:00000088 $d
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:139    .text.Encoder_Update:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:145    .text.Encoder_Update:00000000 Encoder_Update
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:346    .text.Encoder_Update:000000dc $d
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:360    .text.Encoder_TIM_Init:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:365    .text.Encoder_TIM_Init:00000000 Encoder_TIM_Init
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:497    .text.Encoder_TIM_Init:000000b0 $d
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:503    .text.Encoder_Driver_Init:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:509    .text.Encoder_Driver_Init:00000000 Encoder_Driver_Init
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:532    .text.Encoder_GetData:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:538    .text.Encoder_GetData:00000000 Encoder_GetData
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:615    .text.Encoder_GetData:00000058 $d
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:620    .data.Encoder_Left:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:623    .data.Encoder_Left:00000000 Encoder_Left
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:642    .data.Encoder_Right:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:645    .data.Encoder_Right:00000000 Encoder_Right
-C:\Users\asus\AppData\Local\Temp\ccCcJhmF.s:664    .rodata:00000000 $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:21     .text.Encoder_GPIO_Init:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:26     .text.Encoder_GPIO_Init:00000000 Encoder_GPIO_Init
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:133    .text.Encoder_GPIO_Init:00000088 $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:139    .text.Encoder_Update:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:145    .text.Encoder_Update:00000000 Encoder_Update
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:346    .text.Encoder_Update:000000dc $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:360    .text.Encoder_TIM_Init:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:365    .text.Encoder_TIM_Init:00000000 Encoder_TIM_Init
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:497    .text.Encoder_TIM_Init:000000b0 $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:503    .text.Encoder_Driver_Init:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:509    .text.Encoder_Driver_Init:00000000 Encoder_Driver_Init
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:532    .text.Encoder_GetData:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:538    .text.Encoder_GetData:00000000 Encoder_GetData
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:615    .text.Encoder_GetData:00000058 $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:620    .data.Encoder_Left:00000000 $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:623    .data.Encoder_Left:00000000 Encoder_Left
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:642    .data.Encoder_Right:00000000 $d
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:645    .data.Encoder_Right:00000000 Encoder_Right
+C:\Users\asus\AppData\Local\Temp\ccRZZoZk.s:664    .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 RCC_AHB1PeriphClockCmd
