@@ -1,0 +1,74 @@
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccXYV1Jq.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"text.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "MyHardWare/Src/text.c"
+  20              		.section	.text.Text,"ax",%progbits
+  21              		.align	1
+  22              		.global	Text
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	Text:
+  28              	.LVL0:
+  29              	.LFB123:
+   1:MyHardWare/Src/text.c **** #include "text.h"
+   2:MyHardWare/Src/text.c **** #include "motor.h"
+   3:MyHardWare/Src/text.c **** #include "pid_speed.h"
+   4:MyHardWare/Src/text.c **** 
+   5:MyHardWare/Src/text.c **** float Text(float speed_set_text) {
+  30              		.loc 1 5 34 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+   6:MyHardWare/Src/text.c ****   
+   7:MyHardWare/Src/text.c ****     // Motor_SetSpeed(MOTOR_LEFT, 3000);  // 左电机正转，速度 4000
+   8:MyHardWare/Src/text.c ****     // Motor_SetSpeed(MOTOR_RIGHT, 3000); // 右电机正转，速度 4000
+   9:MyHardWare/Src/text.c **** 
+  10:MyHardWare/Src/text.c ****     // Speed_PID_Init(&Speed_PID_Right, Speed_PID_Right.encoder_id, Speed_PID_Right.motor_id, 0.0f,
+  11:MyHardWare/Src/text.c **** 
+  12:MyHardWare/Src/text.c ****     // Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
+  13:MyHardWare/Src/text.c ****     // Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+  14:MyHardWare/Src/text.c **** 
+  15:MyHardWare/Src/text.c ****     // // 更新电机状态，将配置应用到硬件
+  16:MyHardWare/Src/text.c ****     // Motor_Update(MOTOR_LEFT);
+  17:MyHardWare/Src/text.c ****     // Motor_Update(MOTOR_RIGHT);
+  18:MyHardWare/Src/text.c **** }
+  35              		.loc 1 18 1 view .LVU1
+  36              	.LVL1:
+  37              		.loc 1 18 1 is_stmt 0 view .LVU2
+  38 0000 7047     		bx	lr
+  39              		.cfi_endproc
+  40              	.LFE123:
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccXYV1Jq.s 			page 2
+
+
+  42              		.text
+  43              	.Letext0:
+ARM GAS  C:\Users\asus\AppData\Local\Temp\ccXYV1Jq.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 text.c
+C:\Users\asus\AppData\Local\Temp\ccXYV1Jq.s:21     .text.Text:00000000 $t
+C:\Users\asus\AppData\Local\Temp\ccXYV1Jq.s:27     .text.Text:00000000 Text
+
+NO UNDEFINED SYMBOLS

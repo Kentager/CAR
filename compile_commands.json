@@ -1583,5 +1583,38 @@
    "build/startup_stm32f40xx.o"
   ],
   "file": "START/startup_stm32f40xx.s"
+ },
+ {
+  "directory": "C:\\Users\\asus\\Desktop\\gwt\\CAR",
+  "arguments": [
+   "arm-none-eabi-gcc",
+   "-c",
+   "-mcpu=cortex-m4",
+   "-mthumb",
+   "-mfpu=fpv4-sp-d16",
+   "-mfloat-abi=hard",
+   "-DULOG_ENABLED",
+   "-DUSE_STDPERIPH_DRIVER",
+   "-DSTM32F40_41xxx",
+   "-IMyHardWare/Inc",
+   "-ILib/StdPeriphs/inc",
+   "-IUSER/Inc",
+   "-ICMSIS",
+   "-IMyHardWare/eMPL",
+   "-Og",
+   "-Wall",
+   "-fdata-sections",
+   "-ffunction-sections",
+   "-g",
+   "-gdwarf-2",
+   "-MMD",
+   "-MP",
+   "-MFbuild/text.d",
+   "-Wa,-a,-ad,-alms=build/text.lst",
+   "MyHardWare/Src/text.c",
+   "-o",
+   "build/text.o"
+  ],
+  "file": "MyHardWare/Src/text.c"
  }
 ]

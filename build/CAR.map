@@ -1896,6 +1896,22 @@ Discarded input sections
  .debug_frame   0x00000000       0xa0 build/TCRT5000.o
  .ARM.attributes
                 0x00000000       0x34 build/TCRT5000.o
+ .text          0x00000000        0x0 build/text.o
+ .data          0x00000000        0x0 build/text.o
+ .bss           0x00000000        0x0 build/text.o
+ .text.Text     0x00000000        0x2 build/text.o
+ .debug_info    0x00000000       0xad build/text.o
+ .debug_abbrev  0x00000000       0x5c build/text.o
+ .debug_loc     0x00000000       0x28 build/text.o
+ .debug_aranges
+                0x00000000       0x20 build/text.o
+ .debug_ranges  0x00000000       0x10 build/text.o
+ .debug_line    0x00000000       0x4c build/text.o
+ .debug_str     0x00000000      0x179 build/text.o
+ .comment       0x00000000       0x45 build/text.o
+ .debug_frame   0x00000000       0x20 build/text.o
+ .ARM.attributes
+                0x00000000       0x34 build/text.o
  .text          0x00000000        0x0 build/ulog.o
  .data          0x00000000        0x0 build/ulog.o
  .bss           0x00000000        0x0 build/ulog.o
@@ -2664,6 +2680,7 @@ LOAD build/Stack.o
 LOAD build/sys.o
 LOAD build/task.o
 LOAD build/TCRT5000.o
+LOAD build/text.o
 LOAD build/ulog.o
 LOAD build/usart.o
 LOAD build/inv_mpu.o
@@ -5029,6 +5046,7 @@ Task_Handler                                      build/task.o
                                                   build/stm32f4xx_it.o
 Task_Init                                         build/task.o
 Tcrt                                              build/TCRT5000.o
+Text                                              build/text.o
 TransferEnd                                       build/sdio_sd.o
 TransferError                                     build/sdio_sd.o
 UART1_DMA_Start_RX                                build/usart.o
