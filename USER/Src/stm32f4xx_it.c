@@ -262,6 +262,9 @@ void TIM3_IRQHandler(void) {
  */
 void TIM4_IRQHandler(void) {}
 
+// DMA传输错误标志（在主循环中处理）
+volatile uint8_t DMA_Error_Flag = 0;
+
 void DMA2_Stream0_IRQHandler(void) {
   // 传输完成中断
   if (DMA_GetITStatus(DMA2_Stream0, DMA_IT_TCIF0) != RESET) {
@@ -272,10 +275,10 @@ void DMA2_Stream0_IRQHandler(void) {
     // ADC_ITConfig(ADC1, ADC_IT_AWD, ENABLE);
   }
 
-  // 传输错误中断
+  // 传输错误中断 - 仅设置标志位（快进快出）
   if (DMA_GetITStatus(DMA2_Stream0, DMA_IT_TEIF0) != RESET) {
     DMA_ClearITPendingBit(DMA2_Stream0, DMA_IT_TEIF0);
-    printf("DMA transer erro\n");
+    DMA_Error_Flag = 1; // 设置错误标志，在主循环中处理
   }
 }
 
@@ -294,8 +297,10 @@ void ADC_IRQHandler(void) {
     // 启动DMA传输，记录接下来的1024个采样点
     // ADC_DMA_Start();
   }
+  // 检查转换结束中断（快进快出，不调用printf）
   if (ADC_GetITStatus(ADC1, ADC_IT_EOC) != RESET) {
     ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
+    // 仅清除标志位，不进行耗时操作
     // Led_flag = ~Led_flag;
     // GPIO_WriteBit(GPIOB, GPIO_Pin_8, Led_flag);
   }

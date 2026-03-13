@@ -18,8 +18,7 @@ build/main.o: USER/Src/main.c MyHardWare/Inc/delay.h CMSIS/stm32f4xx.h \
  MyHardWare/Inc/task.h MyHardWare/Inc/led.h MyHardWare/Inc/motor.h \
  MyHardWare/Inc/pid_speed.h MyHardWare/Inc/encoder.h \
  MyHardWare/Inc/motor.h MyHardWare/Inc/rtc.h MyHardWare/Inc/task.h \
- MyHardWare/Inc/ulog.h MyHardWare/Inc/usart.h \
- MyHardWare/Inc/ring_buffer.h
+ MyHardWare/Inc/ulog.h MyHardWare/Inc/usart.h
 MyHardWare/Inc/delay.h:
 CMSIS/stm32f4xx.h:
 CMSIS/core_cm4.h:
@@ -66,4 +65,3 @@ MyHardWare/Inc/rtc.h:
 MyHardWare/Inc/task.h:
 MyHardWare/Inc/ulog.h:
 MyHardWare/Inc/usart.h:
-MyHardWare/Inc/ring_buffer.h:

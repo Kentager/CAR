@@ -37,24 +37,62 @@ void motor_test(void) {
   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
-  Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+  Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_BACKWARD);
 
   // 更新电机状态，将配置应用到硬件
   Motor_Update(MOTOR_LEFT);
   Motor_Update(MOTOR_RIGHT);
 }
 
+Encoder_Data_t encoder_data_LEFT;
+Encoder_Data_t encoder_data_RIGHT;
+void encoder_upgrade(void) {
+  encoder_data_LEFT = Encoder_GetData(ENCODER_LEFT);
+  encoder_data_RIGHT = Encoder_GetData(ENCODER_RIGHT);
+}
+// ... existing code ...
+void print_encoderData(void) {
+  // printf("tim:%d Left Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
+  //        GetSysTick(), encoder_data_LEFT.count, encoder_data_LEFT.speed_m_s,
+  //        encoder_data_LEFT.total_distance);
+  // printf("tim:%d Right Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
+  //        GetSysTick(), encoder_data_RIGHT.count,
+  //        encoder_data_RIGHT.speed_m_s, encoder_data_RIGHT.total_distance);
+
+  // 调试信息：打印详细的编码器数据
+  printf("=== LEFT ENCODER DEBUG ===\r\n");
+  printf("Count: %d, Last_Count: %d, Delta: %d\r\n", encoder_data_LEFT.count,
+         encoder_data_LEFT.last_count, encoder_data_LEFT.delta_count);
+  printf("Speed - RPM: %.2f, RPS: %.4f, rad/s: %.4f, m/s: %.4f\r\n",
+         encoder_data_LEFT.speed_rpm, encoder_data_LEFT.speed_rps,
+         encoder_data_LEFT.speed_rad_s, encoder_data_LEFT.speed_m_s);
+  printf("Direction: %d, distance: %.4fm\r\n", encoder_data_LEFT.direction,
+         encoder_data_LEFT.total_distance);
+
+  printf("=== RIGHT ENCODER DEBUG ===\r\n");
+  printf("Count: %d, Last_Count: %d, Delta: %d\r\n", encoder_data_RIGHT.count,
+         encoder_data_RIGHT.last_count, encoder_data_RIGHT.delta_count);
+  printf("Speed - RPM: %.2f, RPS: %.4f, rad/s: %.4f, m/s: %.4f\r\n",
+         encoder_data_RIGHT.speed_rpm, encoder_data_RIGHT.speed_rps,
+         encoder_data_RIGHT.speed_rad_s, encoder_data_RIGHT.speed_m_s);
+  printf("Direction: %d, distance: %.4fm\r\n\r\n", encoder_data_RIGHT.direction,
+         encoder_data_RIGHT.total_distance);
+
+  printf("\r\n");
+}
+// ... existing code ...
 int main() {
   int arg = 42;
   led_Init();
   LED_Off();
   Motor_Driver_Init();
+  // motor_test();
 
   // 初始化编码器模块
   Encoder_Driver_Init();
 
   // 初始化任务调度系统
-  // Task_Init();
+  Task_Init();
   /*
 
     // 初始化速度环PID控制器
@@ -80,24 +118,25 @@ int main() {
     add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
     */
 
-  USART1_Init();
+  UART1_Init();
   printf("hello world\r\n");
 
   delay_init();
   Encoder_Data_t encoder_data;
-  uint32_t count = 0;
-  // motor_test();
+
+  // 添加任务
+  add_task(print_encoderData, 200); // 每200ms执行一次
+  add_task(encoder_upgrade, 5);     // 每5ms执行一次
+
+  // 启动任务（将任务标记为就绪态）
+  start_task(0); // print_encoderData
+  start_task(1); // encoder_upgrade
+
   while (1) {
+    Task_Scheduler(); // 调度器执行就绪态任务
+
+    // 其他主循环任务...
     GPIO_ToggleBits(GPIOC, 13);
-    delay_ms(1);
-    printf("this is %d:\r\n", count);
-    encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    printf("Right Encoder - Count: %d, X: %.2f m/s\r\n", encoder_data.count,
-           encoder_data.total_distance);
-    encoder_data = Encoder_GetData(ENCODER_LEFT);
-    printf("Left Encoder - Count: %d, X: %.2f m/s\r\n", encoder_data.count,
-           encoder_data.total_distance);
-    printf("\r\n");
-    count++;
+    delay_ms(1000);
   }
 }
