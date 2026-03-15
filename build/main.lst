@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
   21:USER/Src/main.c **** void my_console_logger(ulog_level_t severity, const char *msg) {
   34              		.loc 1 21 64 view -0
   35              		.cfi_startproc
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 2
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 2
 
 
   36              		@ args = 0, pretend = 0, frame = 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
   86              	speed_control_task:
   87              	.LFB127:
   26:USER/Src/main.c **** 
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 3
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 3
 
 
   27:USER/Src/main.c **** // 10ms周期的速度环PID控制任务
@@ -135,93 +135,93 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
   29:USER/Src/main.c ****   // 更新右轮速度环PID控制器
   30:USER/Src/main.c ****   Speed_PID_Update(&Speed_PID_Right);
   97              		.loc 1 30 3 view .LVU9
-  98 0002 0548     		ldr	r0, .L7
+  98 0002 0848     		ldr	r0, .L7
   99 0004 FFF7FEFF 		bl	Speed_PID_Update
  100              	.LVL5:
   31:USER/Src/main.c ****   
   32:USER/Src/main.c ****   // 更新左轮速度环PID控制器
   33:USER/Src/main.c ****   Speed_PID_Update(&Speed_PID_Left);
  101              		.loc 1 33 3 view .LVU10
- 102 0008 0448     		ldr	r0, .L7+4
+ 102 0008 0748     		ldr	r0, .L7+4
  103 000a FFF7FEFF 		bl	Speed_PID_Update
  104              	.LVL6:
-  34:USER/Src/main.c ****   printf("finlish//\r\n");
+  34:USER/Src/main.c ****   Motor_Update(MOTOR_LEFT);
  105              		.loc 1 34 3 view .LVU11
- 106 000e 0448     		ldr	r0, .L7+8
- 107 0010 FFF7FEFF 		bl	puts
+ 106 000e 0120     		movs	r0, #1
+ 107 0010 FFF7FEFF 		bl	Motor_Update
  108              	.LVL7:
-  35:USER/Src/main.c **** }
- 109              		.loc 1 35 1 is_stmt 0 view .LVU12
- 110 0014 08BD     		pop	{r3, pc}
- 111              	.L8:
- 112 0016 00BF     		.align	2
- 113              	.L7:
- 114 0018 00000000 		.word	Speed_PID_Right
- 115 001c 00000000 		.word	Speed_PID_Left
- 116 0020 00000000 		.word	.LC1
- 117              		.cfi_endproc
- 118              	.LFE127:
- 120              		.section	.text.motor_test,"ax",%progbits
- 121              		.align	1
- 122              		.global	motor_test
- 123              		.syntax unified
- 124              		.thumb
- 125              		.thumb_func
- 127              	motor_test:
- 128              	.LFB128:
-  36:USER/Src/main.c **** 
-  37:USER/Src/main.c **** void motor_test(void) {
- 129              		.loc 1 37 23 is_stmt 1 view -0
- 130              		.cfi_startproc
- 131              		@ args = 0, pretend = 0, frame = 0
- 132              		@ frame_needed = 0, uses_anonymous_args = 0
- 133 0000 08B5     		push	{r3, lr}
- 134              	.LCFI2:
- 135              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 4
+  35:USER/Src/main.c ****   Motor_Update(MOTOR_RIGHT);
+ 109              		.loc 1 35 3 view .LVU12
+ 110 0014 0020     		movs	r0, #0
+ 111 0016 FFF7FEFF 		bl	Motor_Update
+ 112              	.LVL8:
+  36:USER/Src/main.c ****   printf("finlish//\r\n");
+ 113              		.loc 1 36 3 view .LVU13
+ 114 001a 0448     		ldr	r0, .L7+8
+ 115 001c FFF7FEFF 		bl	puts
+ 116              	.LVL9:
+  37:USER/Src/main.c **** }
+ 117              		.loc 1 37 1 is_stmt 0 view .LVU14
+ 118 0020 08BD     		pop	{r3, pc}
+ 119              	.L8:
+ 120 0022 00BF     		.align	2
+ 121              	.L7:
+ 122 0024 00000000 		.word	Speed_PID_Right
+ 123 0028 00000000 		.word	Speed_PID_Left
+ 124 002c 00000000 		.word	.LC1
+ 125              		.cfi_endproc
+ 126              	.LFE127:
+ 128              		.section	.text.motor_test,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	motor_test
+ 131              		.syntax unified
+ 132              		.thumb
+ 133              		.thumb_func
+ 135              	motor_test:
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 4
 
 
- 136              		.cfi_offset 3, -8
- 137              		.cfi_offset 14, -4
-  38:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
- 138              		.loc 1 38 3 view .LVU14
- 139 0002 4FF47A61 		mov	r1, #4000
- 140 0006 0120     		movs	r0, #1
- 141 0008 FFF7FEFF 		bl	Motor_SetSpeed
- 142              	.LVL8:
-  39:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
- 143              		.loc 1 39 3 view .LVU15
- 144 000c 4FF47A61 		mov	r1, #4000
- 145 0010 0020     		movs	r0, #0
- 146 0012 FFF7FEFF 		bl	Motor_SetSpeed
- 147              	.LVL9:
-  40:USER/Src/main.c ****   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
- 148              		.loc 1 40 3 view .LVU16
- 149 0016 0121     		movs	r1, #1
- 150 0018 0846     		mov	r0, r1
- 151 001a FFF7FEFF 		bl	Motor_SetDirection
- 152              	.LVL10:
-  41:USER/Src/main.c ****   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
- 153              		.loc 1 41 3 view .LVU17
- 154 001e 0121     		movs	r1, #1
- 155 0020 0020     		movs	r0, #0
- 156 0022 FFF7FEFF 		bl	Motor_SetDirection
- 157              	.LVL11:
-  42:USER/Src/main.c **** 
-  43:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
-  44:USER/Src/main.c ****   Motor_Update(MOTOR_LEFT);
- 158              		.loc 1 44 3 view .LVU18
- 159 0026 0120     		movs	r0, #1
- 160 0028 FFF7FEFF 		bl	Motor_Update
- 161              	.LVL12:
-  45:USER/Src/main.c ****   Motor_Update(MOTOR_RIGHT);
- 162              		.loc 1 45 3 view .LVU19
- 163 002c 0020     		movs	r0, #0
- 164 002e FFF7FEFF 		bl	Motor_Update
+ 136              	.LFB128:
+  38:USER/Src/main.c **** 
+  39:USER/Src/main.c **** void motor_test(void) {
+ 137              		.loc 1 39 23 is_stmt 1 view -0
+ 138              		.cfi_startproc
+ 139              		@ args = 0, pretend = 0, frame = 0
+ 140              		@ frame_needed = 0, uses_anonymous_args = 0
+ 141 0000 08B5     		push	{r3, lr}
+ 142              	.LCFI2:
+ 143              		.cfi_def_cfa_offset 8
+ 144              		.cfi_offset 3, -8
+ 145              		.cfi_offset 14, -4
+  40:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
+ 146              		.loc 1 40 3 view .LVU16
+ 147 0002 4FF47A61 		mov	r1, #4000
+ 148 0006 0120     		movs	r0, #1
+ 149 0008 FFF7FEFF 		bl	Motor_SetSpeed
+ 150              	.LVL10:
+  41:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
+ 151              		.loc 1 41 3 view .LVU17
+ 152 000c 4FF47A61 		mov	r1, #4000
+ 153 0010 0020     		movs	r0, #0
+ 154 0012 FFF7FEFF 		bl	Motor_SetSpeed
+ 155              	.LVL11:
+  42:USER/Src/main.c ****   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
+ 156              		.loc 1 42 3 view .LVU18
+ 157 0016 0121     		movs	r1, #1
+ 158 0018 0846     		mov	r0, r1
+ 159 001a FFF7FEFF 		bl	Motor_SetDirection
+ 160              	.LVL12:
+  43:USER/Src/main.c ****   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+ 161              		.loc 1 43 3 view .LVU19
+ 162 001e 0121     		movs	r1, #1
+ 163 0020 0020     		movs	r0, #0
+ 164 0022 FFF7FEFF 		bl	Motor_SetDirection
  165              	.LVL13:
+  44:USER/Src/main.c **** 
+  45:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
   46:USER/Src/main.c **** }
  166              		.loc 1 46 1 is_stmt 0 view .LVU20
- 167 0032 08BD     		pop	{r3, pc}
+ 167 0026 08BD     		pop	{r3, pc}
  168              		.cfi_endproc
  169              	.LFE128:
  171              		.section	.rodata.main.str1.4,"aMS",%progbits,1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
  177      2F00
  178              		.section	.text.main,"ax",%progbits
  179              		.align	1
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 5
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 5
 
 
  180              		.global	main
@@ -298,11 +298,11 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
   62:USER/Src/main.c ****     // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
   63:USER/Src/main.c ****     Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
  220              		.loc 1 63 5 view .LVU28
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 6
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 6
 
 
- 221 001a 9FED298A 		vldr.32	s16, .L14
- 222 001e 294D     		ldr	r5, .L14+4
+ 221 001a 9FED1D8A 		vldr.32	s16, .L14
+ 222 001e 1D4D     		ldr	r5, .L14+4
  223 0020 B0EE481A 		vmov.f32	s2, s16
  224 0024 F6EE000A 		vmov.f32	s1, #5.0e-1
  225 0028 B0EE000A 		vmov.f32	s0, #2.0e+0
@@ -317,7 +317,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
   67:USER/Src/main.c ****     // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
   68:USER/Src/main.c ****     Speed_PID_Init(&Speed_PID_Left, ENCODER_LEFT, MOTOR_LEFT,
  231              		.loc 1 68 5 view .LVU29
- 232 0036 244C     		ldr	r4, .L14+8
+ 232 0036 184C     		ldr	r4, .L14+8
  233 0038 B0EE481A 		vmov.f32	s2, s16
  234 003c F6EE000A 		vmov.f32	s1, #5.0e-1
  235 0040 B0EE000A 		vmov.f32	s0, #2.0e+0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
   80:USER/Src/main.c ****     // // 添加10ms周期的速度控制任务
   81:USER/Src/main.c ****     // add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
   82:USER/Src/main.c ****   
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 7
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 7
 
 
   83:USER/Src/main.c **** 
@@ -368,7 +368,7 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
  261              	.LVL26:
   85:USER/Src/main.c ****   printf("hello world\r\n");
  262              		.loc 1 85 3 view .LVU35
- 263 0072 1648     		ldr	r0, .L14+12
+ 263 0072 0A48     		ldr	r0, .L14+12
  264 0074 FFF7FEFF 		bl	puts
  265              	.LVL27:
   86:USER/Src/main.c **** 
@@ -376,128 +376,98 @@ ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 1
  266              		.loc 1 87 3 view .LVU36
  267 0078 FFF7FEFF 		bl	delay_init
  268              	.LVL28:
+ 269              	.L12:
   88:USER/Src/main.c ****   Encoder_Data_t encoder_data;
- 269              		.loc 1 88 3 view .LVU37
+ 270              		.loc 1 88 3 view .LVU37
   89:USER/Src/main.c ****   // uint32_t count = 0;
   90:USER/Src/main.c ****   // motor_test();
   91:USER/Src/main.c **** 
-  92:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
- 270              		.loc 1 92 3 view .LVU38
- 271 007c 4FF47A61 		mov	r1, #4000
- 272 0080 0120     		movs	r0, #1
- 273 0082 FFF7FEFF 		bl	Motor_SetSpeed
+  92:USER/Src/main.c **** 
+  93:USER/Src/main.c **** 
+  94:USER/Src/main.c **** 
+  95:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
+  96:USER/Src/main.c ****   while (1) {
+ 271              		.loc 1 96 3 view .LVU38
+  97:USER/Src/main.c ****     // speed_control_task();
+  98:USER/Src/main.c ****     // GPIO_ToggleBits(GPIOC, 13);
+  99:USER/Src/main.c **** 
+ 100:USER/Src/main.c ****     speed_control_task();
+ 272              		.loc 1 100 5 view .LVU39
+ 273 007c FFF7FEFF 		bl	speed_control_task
  274              	.LVL29:
-  93:USER/Src/main.c ****   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
- 275              		.loc 1 93 3 view .LVU39
- 276 0086 4FF47A61 		mov	r1, #4000
- 277 008a 0020     		movs	r0, #0
- 278 008c FFF7FEFF 		bl	Motor_SetSpeed
- 279              	.LVL30:
-  94:USER/Src/main.c ****   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
- 280              		.loc 1 94 3 view .LVU40
- 281 0090 0121     		movs	r1, #1
- 282 0092 0846     		mov	r0, r1
- 283 0094 FFF7FEFF 		bl	Motor_SetDirection
- 284              	.LVL31:
-  95:USER/Src/main.c ****   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
- 285              		.loc 1 95 3 view .LVU41
- 286 0098 0121     		movs	r1, #1
- 287 009a 0020     		movs	r0, #0
- 288 009c FFF7FEFF 		bl	Motor_SetDirection
- 289              	.LVL32:
-  96:USER/Src/main.c **** 
-  97:USER/Src/main.c ****   // 更新电机状态，将配置应用到硬件
-  98:USER/Src/main.c ****   Motor_Update(MOTOR_LEFT);
- 290              		.loc 1 98 3 view .LVU42
- 291 00a0 0120     		movs	r0, #1
- 292 00a2 FFF7FEFF 		bl	Motor_Update
- 293              	.LVL33:
-  99:USER/Src/main.c ****   Motor_Update(MOTOR_RIGHT);
- 294              		.loc 1 99 3 view .LVU43
- 295 00a6 0020     		movs	r0, #0
- 296 00a8 FFF7FEFF 		bl	Motor_Update
- 297              	.LVL34:
- 298              	.L12:
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 8
+ 101:USER/Src/main.c **** 
+ 102:USER/Src/main.c ****     printf("in task//");
+ 275              		.loc 1 102 5 view .LVU40
+ 276 0080 0748     		ldr	r0, .L14+16
+ 277 0082 FFF7FEFF 		bl	printf
+ 278              	.LVL30:
+ 103:USER/Src/main.c ****     delay_ms(10);
+ 279              		.loc 1 103 5 discriminator 1 view .LVU41
+ 280 0086 0A20     		movs	r0, #10
+ 281 0088 FFF7FEFF 		bl	delay_ms
+ 282              	.LVL31:
+  96:USER/Src/main.c ****     // speed_control_task();
+ 283              		.loc 1 96 9 view .LVU42
+ 284 008c F6E7     		b	.L12
+ 285              	.L15:
+ 286 008e 00BF     		.align	2
+ 287              	.L14:
+ 288 0090 CDCCCC3D 		.word	1036831949
+ 289 0094 00000000 		.word	Speed_PID_Right
+ 290 0098 00000000 		.word	Speed_PID_Left
+ 291 009c 00000000 		.word	.LC2
+ 292 00a0 10000000 		.word	.LC3
+ 293              		.cfi_endproc
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 8
 
 
- 100:USER/Src/main.c ****   while (1) {
- 299              		.loc 1 100 3 view .LVU44
- 101:USER/Src/main.c ****     // speed_control_task();
- 102:USER/Src/main.c ****     // GPIO_ToggleBits(GPIOC, 13);
- 103:USER/Src/main.c ****     speed_control_task();
- 300              		.loc 1 103 5 view .LVU45
- 301 00ac FFF7FEFF 		bl	speed_control_task
- 302              	.LVL35:
- 104:USER/Src/main.c ****     printf("in task//");
- 303              		.loc 1 104 5 view .LVU46
- 304 00b0 0748     		ldr	r0, .L14+16
- 305 00b2 FFF7FEFF 		bl	printf
- 306              	.LVL36:
- 105:USER/Src/main.c ****     delay_ms(10);
- 307              		.loc 1 105 5 discriminator 1 view .LVU47
- 308 00b6 0A20     		movs	r0, #10
- 309 00b8 FFF7FEFF 		bl	delay_ms
- 310              	.LVL37:
- 100:USER/Src/main.c ****     // speed_control_task();
- 311              		.loc 1 100 9 view .LVU48
- 312 00bc F6E7     		b	.L12
- 313              	.L15:
- 314 00be 00BF     		.align	2
- 315              	.L14:
- 316 00c0 CDCCCC3D 		.word	1036831949
- 317 00c4 00000000 		.word	Speed_PID_Right
- 318 00c8 00000000 		.word	Speed_PID_Left
- 319 00cc 00000000 		.word	.LC2
- 320 00d0 10000000 		.word	.LC3
- 321              		.cfi_endproc
- 322              	.LFE129:
- 324              		.text
- 325              	.Letext0:
- 326              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
- 327              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
- 328              		.file 4 "MyHardWare/Inc/encoder.h"
- 329              		.file 5 "MyHardWare/Inc/motor.h"
- 330              		.file 6 "MyHardWare/Inc/pid_speed.h"
- 331              		.file 7 "MyHardWare/Inc/ulog.h"
- 332              		.file 8 "MyHardWare/Inc/delay.h"
- 333              		.file 9 "MyHardWare/Inc/usart.h"
- 334              		.file 10 "MyHardWare/Inc/task.h"
- 335              		.file 11 "MyHardWare/Inc/led.h"
- 336              		.file 12 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/s
- 337              		.file 13 "MyHardWare/Inc/rtc.h"
- 338              		.file 14 "<built-in>"
-ARM GAS  C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s 			page 9
+ 294              	.LFE129:
+ 296              		.text
+ 297              	.Letext0:
+ 298              		.file 2 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/ma
+ 299              		.file 3 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/sy
+ 300              		.file 4 "MyHardWare/Inc/encoder.h"
+ 301              		.file 5 "MyHardWare/Inc/motor.h"
+ 302              		.file 6 "MyHardWare/Inc/pid_speed.h"
+ 303              		.file 7 "MyHardWare/Inc/ulog.h"
+ 304              		.file 8 "MyHardWare/Inc/delay.h"
+ 305              		.file 9 "MyHardWare/Inc/usart.h"
+ 306              		.file 10 "MyHardWare/Inc/task.h"
+ 307              		.file 11 "MyHardWare/Inc/led.h"
+ 308              		.file 12 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.2 Rel1/arm-none-eabi/include/s
+ 309              		.file 13 "MyHardWare/Inc/rtc.h"
+ 310              		.file 14 "<built-in>"
+ARM GAS  C:\Users\asus\AppData\Local\Temp\cceyX9qF.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:21     .rodata.my_console_logger.str1.4:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:25     .text.my_console_logger:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:31     .text.my_console_logger:00000000 my_console_logger
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:71     .text.my_console_logger:00000020 $d
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:76     .rodata.speed_control_task.str1.4:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:80     .text.speed_control_task:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:86     .text.speed_control_task:00000000 speed_control_task
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:114    .text.speed_control_task:00000018 $d
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:121    .text.motor_test:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:127    .text.motor_test:00000000 motor_test
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:172    .rodata.main.str1.4:00000000 $d
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:179    .text.main:00000000 $t
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:185    .text.main:00000000 main
-C:\Users\asus\AppData\Local\Temp\ccmoIlO1.s:316    .text.main:000000c0 $d
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:21     .rodata.my_console_logger.str1.4:00000000 $d
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:25     .text.my_console_logger:00000000 $t
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:31     .text.my_console_logger:00000000 my_console_logger
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:71     .text.my_console_logger:00000020 $d
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:76     .rodata.speed_control_task.str1.4:00000000 $d
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:80     .text.speed_control_task:00000000 $t
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:86     .text.speed_control_task:00000000 speed_control_task
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:122    .text.speed_control_task:00000024 $d
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:129    .text.motor_test:00000000 $t
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:135    .text.motor_test:00000000 motor_test
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:172    .rodata.main.str1.4:00000000 $d
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:179    .text.main:00000000 $t
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:185    .text.main:00000000 main
+C:\Users\asus\AppData\Local\Temp\cceyX9qF.s:288    .text.main:00000090 $d
 
 UNDEFINED SYMBOLS
 RTC_GetNowTime
 ulog_level_name
 printf
 Speed_PID_Update
+Motor_Update
 puts
 Speed_PID_Right
 Speed_PID_Left
 Motor_SetSpeed
 Motor_SetDirection
-Motor_Update
 led_Init
 LED_Off
 Motor_Driver_Init

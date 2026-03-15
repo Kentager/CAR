@@ -31,6 +31,8 @@ void speed_control_task(void) {
   
   // 更新左轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Left);
+  Motor_Update(MOTOR_LEFT);
+  Motor_Update(MOTOR_RIGHT);
   printf("finlish//\r\n");
 }
 
@@ -41,8 +43,6 @@ void motor_test(void) {
   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
 
   // 更新电机状态，将配置应用到硬件
-  Motor_Update(MOTOR_LEFT);
-  Motor_Update(MOTOR_RIGHT);
 }
 
 int main() {
@@ -89,18 +89,16 @@ int main() {
   // uint32_t count = 0;
   // motor_test();
 
-  Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
-  Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
-  Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
-  Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+
+
 
   // 更新电机状态，将配置应用到硬件
-  Motor_Update(MOTOR_LEFT);
-  Motor_Update(MOTOR_RIGHT);
   while (1) {
     // speed_control_task();
     // GPIO_ToggleBits(GPIOC, 13);
+
     speed_control_task();
+
     printf("in task//");
     delay_ms(10);
     // printf("this is %d:\r\n", count);

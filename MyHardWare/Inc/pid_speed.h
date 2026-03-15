@@ -32,6 +32,8 @@ typedef struct {
   float ki;             // 积分系数
   float kd;             // 微分系数
   float target_value;   // 目标值
+  float integral_error; //////////////////////////////////////////////////////////////////////////////////////积分误差
+  
   float last_integral_error; // 上次的积分值
   float last_error;     // 上次误差值
 } PID_State_t;
