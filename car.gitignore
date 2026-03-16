@@ -2,7 +2,9 @@
 build/
 Build/
 BUILD/
-
+# 缓存目录
+.cache/
+.claude/
 # 启动文件目录
 START/
 Start/
