@@ -28,9 +28,12 @@ void my_console_logger(ulog_level_t severity, const char *msg) {
 void speed_control_task(void) {
   // 更新右轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Right);
-
+  
   // 更新左轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Left);
+  Motor_Update(MOTOR_LEFT);
+  Motor_Update(MOTOR_RIGHT);
+  printf("finlish//\r\n");
 }
 
 void motor_test(void) {
@@ -40,30 +43,8 @@ void motor_test(void) {
   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_BACKWARD);
 
   // 更新电机状态，将配置应用到硬件
-  Motor_Update(MOTOR_LEFT);
-  Motor_Update(MOTOR_RIGHT);
 }
 
-Encoder_Data_t encoder_data_LEFT;
-Encoder_Data_t encoder_data_RIGHT;
-void encoder_upgrade(void) {
-  encoder_data_LEFT = Encoder_GetData(ENCODER_LEFT);
-  encoder_data_RIGHT = Encoder_GetData(ENCODER_RIGHT);
-}
-void print_encoderData(void) {
-  // 调试信息：打印详细的编码器数据
-  printf("=== LEFT ENCODER DEBUG ===\r\n");
-  printf("tim:%d Left Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
-         GetSysTick(), encoder_data_LEFT.total_count,
-         encoder_data_LEFT.speed_m_s, encoder_data_LEFT.total_distance);
-
-  printf("=== RIGHT ENCODER DEBUG ===\r\n");
-  printf("tim:%d Right Encoder - Count: %d, speed:%.2f m/s X: %.2f m\r\n",
-         GetSysTick(), encoder_data_RIGHT.total_count,
-         encoder_data_RIGHT.speed_m_s, encoder_data_RIGHT.total_distance);
-
-  printf("\r\n");
-}
 int main() {
   int arg = 42;
   led_Init();
@@ -76,7 +57,7 @@ int main() {
 
   // 初始化任务调度系统
   Task_Init();
-  /*
+  
 
     // 初始化速度环PID控制器
     // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
@@ -97,25 +78,38 @@ int main() {
     Speed_PID_Enable(&Speed_PID_Right);
     Speed_PID_Enable(&Speed_PID_Left);
 
-    // 添加10ms周期的速度控制任务
-    add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
-    */
+    // // 添加10ms周期的速度控制任务
+    // add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
+  
 
   USART1_Init();
   printf("hello world\r\n");
 
   delay_init();
   Encoder_Data_t encoder_data;
+  // uint32_t count = 0;
+  // motor_test();
 
-  // 添加任务
-  add_task(print_encoderData, 200); // 每200ms执行一次
-  add_task(encoder_upgrade, 5);     // 每5ms执行一次
 
-  // 启动任务（将任务标记为就绪态）
-  start_task(0); // print_encoderData
-  start_task(1); // encoder_upgrade
 
+
+  // 更新电机状态，将配置应用到硬件
   while (1) {
-    Task_Scheduler(); // 调度器执行就绪态任务
+    // speed_control_task();
+    // GPIO_ToggleBits(GPIOC, 13);
+
+    speed_control_task();
+
+    printf("in task//");
+    delay_ms(10);
+    // printf("this is %d:\r\n", count);
+    // encoder_data = Encoder_GetData(ENCODER_RIGHT);
+    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2f m\r\n", encoder_data.last_count,encoder_data.speed_m_s,
+    //        encoder_data.total_distance);
+    // encoder_data = Encoder_GetData(ENCODER_LEFT);
+    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2f m\r\n", encoder_data.last_count,encoder_data.speed_m_s,
+    //        encoder_data.total_distance);
+    // printf("\r\n");
+    // count++;
   }
 }
