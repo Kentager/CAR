@@ -9,6 +9,7 @@
 #include "task.h" // 任务调度模块
 #include "ulog.h"
 #include "usart.h"
+#include <math.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stm32f4xx.h>
@@ -46,6 +47,7 @@ void motor_test(void) {
 }
 
 int main() {
+  double a = sin(3.14);
   int arg = 42;
   led_Init();
   LED_Off();

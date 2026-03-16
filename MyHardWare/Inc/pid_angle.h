@@ -52,7 +52,7 @@ typedef struct {
   float target_value; // 目标角度值（度）
   float integral_sum; // 积分累积值 ∫e(t)dt
   float last_error;   // 上次误差值 e(k-1)
-} Angle_PID_State_t;
+} PositionalPID_State_t;
 
 /* ==================== 角度环PID数据结构体 ==================== */
 /**
@@ -71,7 +71,7 @@ typedef struct {
   uint32_t last_update_time; // 上次更新时间
 
   // PID参数和状态
-  Angle_PID_State_t pid_state;
+  PositionalPID_State_t pid_state;
 } Angle_PID_Controller_t;
 
 /* ==================== 角度轴枚举 ==================== */

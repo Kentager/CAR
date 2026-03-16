@@ -14,7 +14,7 @@ Angle_PID_Controller_t Angle_PID_Roll;  // 横滚角PID控制器
 
 /* ==================== 私有函数声明 ==================== */
 static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis);
-static void pid_init(Angle_PID_State_t *pid, float target, float kp, float ki,
+static void pid_init(PositionalPID_State_t *pid, float target, float kp, float ki,
                      float kd);
 
 /* ==================== 公有函数实现 ==================== */
@@ -222,13 +222,13 @@ static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis) {
 
 /**
  * @brief 位置式PID控制器初始化函数
- * @param pid Pointer to the PID state structure
+ * @param pid Pointer to the PositionalPID state structure
  * @param target Target value for the PID controller
  * @param kp Proportional gain
  * @param ki Integral gain
  * @param kd Derivative gain
  */
-static void pid_init(Angle_PID_State_t *pid, float target, float kp, float ki,
+static void pid_init(PositionalPID_State_t *pid, float target, float kp, float ki,
                      float kd) {
   pid->target_value = target;
   pid->kp = kp;

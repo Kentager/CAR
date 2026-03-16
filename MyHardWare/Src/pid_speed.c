@@ -10,7 +10,7 @@ Speed_PID_Controller_t Speed_PID_Left;  // 左轮速度PID控制器
 static float get_encoder_speed_m_s(Encoder_Id_e encoder_id);
 static void update_motor_output(Speed_PID_Controller_t *controller,
                                 float output);
-static void pid_init(Speed_PID_State_t *pid, float target, float kp, float ki,
+static void pid_init(IncrementalPID_State_t *pid, float target, float kp, float ki,
                      float kd);
 
 /* ==================== 公有函数实现 ==================== */
@@ -205,7 +205,7 @@ static void update_motor_output(Speed_PID_Controller_t *controller,
  * @param ki Integral gain
  * @param kd Derivative gain
  */
-static void pid_init(Speed_PID_State_t *pid, float target, float kp, float ki,
+static void pid_init(IncrementalPID_State_t *pid, float target, float kp, float ki,
                      float kd) {
   pid->target_value = target;
   pid->kp = kp;

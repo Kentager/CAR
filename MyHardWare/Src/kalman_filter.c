@@ -6,8 +6,10 @@
  */
 
 #include "kalman_filter.h"
-#include "jy61p.h"
 #include "delay.h"
+#include "jy61p.h"
+#include "task.h"
+
 #include <string.h>
 
 /* ==================== 全局变量定义 ==================== */
@@ -62,7 +64,7 @@ void KalmanFilter_Init(KalmanFilter_t *kf, float Q, float R, float dt,
  *          - 协方差更新：P(k|k) = [1 - K(k)]·P(k|k-1)
  */
 float KalmanFilter_Update(KalmanFilter_t *kf, float measurement,
-                           float control_input) {
+                          float control_input) {
   // 参数检查
   if (kf == NULL || !kf->initialized) {
     return 0.0f;
@@ -119,11 +121,11 @@ void AttitudeSolver_Init(void) {
 
   // 初始化三个卡尔曼滤波器（偏航角、俯仰角、横滚角）
   KalmanFilter_Init(&AttitudeSolver.kalman_yaw, KALMAN_Q_DEFAULT,
-                     KALMAN_R_DEFAULT, KALMAN_DT_DEFAULT, 0.0f);  // 偏航角
+                    KALMAN_R_DEFAULT, KALMAN_DT_DEFAULT, 0.0f); // 偏航角
   KalmanFilter_Init(&AttitudeSolver.kalman_pitch, KALMAN_Q_DEFAULT,
-                     KALMAN_R_DEFAULT, KALMAN_DT_DEFAULT, 0.0f); // 俯仰角
+                    KALMAN_R_DEFAULT, KALMAN_DT_DEFAULT, 0.0f); // 俯仰角
   KalmanFilter_Init(&AttitudeSolver.kalman_roll, KALMAN_Q_DEFAULT,
-                     KALMAN_R_DEFAULT, KALMAN_DT_DEFAULT, 0.0f);  // 横滚角
+                    KALMAN_R_DEFAULT, KALMAN_DT_DEFAULT, 0.0f); // 横滚角
 
   // 清零原始数据
   memset(&AttitudeSolver.acc_raw, 0, sizeof(Acc_Param));
@@ -188,14 +190,10 @@ EulerAngle_Param *AttitudeSolver_GetRawAngle(void) {
  * @brief 获取加速度数据
  * @return 加速度数据结构体指针
  */
-Acc_Param *AttitudeSolver_GetAcc(void) {
-  return &AttitudeSolver.acc_raw;
-}
+Acc_Param *AttitudeSolver_GetAcc(void) { return &AttitudeSolver.acc_raw; }
 
 /**
  * @brief 获取角速度数据
  * @return 角速度数据结构体指针
  */
-Gyro_Param *AttitudeSolver_GetGyro(void) {
-  return &AttitudeSolver.gyro_raw;
-}
+Gyro_Param *AttitudeSolver_GetGyro(void) { return &AttitudeSolver.gyro_raw; }
