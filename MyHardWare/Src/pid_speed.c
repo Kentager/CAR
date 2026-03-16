@@ -117,7 +117,7 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
   uint32_t current_time = GetSysTick();
   float dt = (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
 
-  // 获取当前速度
+  // 获取当前速度 (m/s)
   controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
 
   // 计算当前误差 e(k)
@@ -177,7 +177,8 @@ static void update_motor_output(Speed_PID_Controller_t *controller,
     direction = MOTOR_DIR_FORWARD;
   } else if (output < -100) {
     direction = MOTOR_DIR_BACKWARD;
-  } else {
+  }
+  else{
     direction = MOTOR_DIR_STOP;
     output = 0; // 停止时输出为0
   }

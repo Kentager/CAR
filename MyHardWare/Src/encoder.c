@@ -27,7 +27,7 @@ Encoder_Class_t Encoder_BL = {0};
 #else
 // 双驱模式编码器实例
 static Encoder_Class_t Encoder_Right = {
-    ._data = {.count = 0,
+    ._data = {
               .last_count = 0,
               .delta_count = 0,
               .speed_rpm = 0.0f,
@@ -45,7 +45,7 @@ static Encoder_Class_t Encoder_Right = {
     .tim = TIM2};
 
 static Encoder_Class_t Encoder_Left = {
-    ._data = {.count = 0,
+    ._data = {
               .last_count = 0,
               .delta_count = 0,
               .speed_rpm = 0.0f,
@@ -348,20 +348,41 @@ void Encoder_Update(void) {
     }
 
     // 更新数据结构
-    instance->_data.count = current_count;
-    instance->_data.delta_count = delta;
     instance->_data.last_count = current_count;
+    instance->_data.delta_count = delta;
     instance->_data.total_count += delta;
 
-    // 计算速度
-    instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
+    // // 计算速度
+    // instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
+    // instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+    // instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
+    // instance->_data.speed_m_s =
+    //     instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+
+    // // 更新总里程
+    // instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+
+
+
+
+
+    instance->_data.speed_rps = (float)delta / 28000.0f / dt_seconds;
+
     instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
+
     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
-    instance->_data.speed_m_s =
-        instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+
+    instance->_data.speed_m_s =instance->_data.speed_rad_s * (0.065f / 2.0f);
 
     // 更新总里程
-    instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+    // instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
+    instance->_data.total_distance += (float)delta / 28000.0f * 3.14159f * 0.065f;
+
+
+
+
+
+
 
     // 判断方向
     if (delta > 0) {
