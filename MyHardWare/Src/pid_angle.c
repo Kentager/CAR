@@ -6,17 +6,15 @@
  */
 
 #include "pid_angle.h"
-#include "delay.h"
-#include <math.h>
 
 /* ==================== 全局变量定义 ==================== */
 Angle_PID_Controller_t Angle_PID_Yaw;   // 偏航角PID控制器
 Angle_PID_Controller_t Angle_PID_Pitch; // 俯仰角PID控制器
-Angle_PID_Controller_t Angle_PID_Roll;   // 横滚角PID控制器
+Angle_PID_Controller_t Angle_PID_Roll;  // 横滚角PID控制器
 
 /* ==================== 私有函数声明 ==================== */
 static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis);
-static void pid_init(PID_State_t *pid, float target, float kp, float ki,
+static void pid_init(Angle_PID_State_t *pid, float target, float kp, float ki,
                      float kd);
 
 /* ==================== 公有函数实现 ==================== */
@@ -120,14 +118,16 @@ float Angle_PID_Update(Angle_PID_Controller_t *controller,
 
   // 计算时间间隔（秒）
   uint32_t current_time = GetSysTick();
-  float dt = (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
+  float dt =
+      (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
 
   // 获取当前角度（根据控制轴）
   controller->current_angle_deg = get_axis_angle(euler_angle, controller->axis);
 
   // 计算角度偏差 e(k) = 目标值 - 当前值
   // 对于偏航角，通常目标为0度（直线行驶）
-  float error = controller->pid_state.target_value - controller->current_angle_deg;
+  float error =
+      controller->pid_state.target_value - controller->current_angle_deg;
 
   // 保存角度偏差供外部使用
   controller->angle_error_deg = error;
@@ -155,10 +155,12 @@ float Angle_PID_Update(Angle_PID_Controller_t *controller,
     controller->pid_state.integral_sum = -ANGLE_INTEGRAL_LIMIT;
   }
 
-  float integral = controller->pid_state.ki * controller->pid_state.integral_sum;
+  float integral =
+      controller->pid_state.ki * controller->pid_state.integral_sum;
 
   // 微分项：Kd·de(t)/dt
-  float derivative = controller->pid_state.kd * (error - controller->pid_state.last_error) / dt;
+  float derivative = controller->pid_state.kd *
+                     (error - controller->pid_state.last_error) / dt;
 
   // 计算PID输出
   float output = proportional + integral + derivative;
@@ -207,14 +209,14 @@ void Angle_PID_Reset(Angle_PID_Controller_t *controller) {
  */
 static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis) {
   switch (axis) {
-    case ANGLE_AXIS_YAW:
-      return euler_angle->Yaw;
-    case ANGLE_AXIS_PITCH:
-      return euler_angle->Pitch;
-    case ANGLE_AXIS_ROLL:
-      return euler_angle->Roll;
-    default:
-      return 0.0f;
+  case ANGLE_AXIS_YAW:
+    return euler_angle->Yaw;
+  case ANGLE_AXIS_PITCH:
+    return euler_angle->Pitch;
+  case ANGLE_AXIS_ROLL:
+    return euler_angle->Roll;
+  default:
+    return 0.0f;
   }
 }
 
@@ -226,12 +228,12 @@ static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis) {
  * @param ki Integral gain
  * @param kd Derivative gain
  */
-static void pid_init(PID_State_t *pid, float target, float kp, float ki,
+static void pid_init(Angle_PID_State_t *pid, float target, float kp, float ki,
                      float kd) {
   pid->target_value = target;
   pid->kp = kp;
   pid->ki = ki;
   pid->kd = kd;
-  pid->integral_sum = 0.0f;  // ∫e(t)dt
-  pid->last_error = 0.0f;     // e(k-1)
+  pid->integral_sum = 0.0f; // ∫e(t)dt
+  pid->last_error = 0.0f;   // e(k-1)
 }

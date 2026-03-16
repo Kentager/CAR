@@ -9,6 +9,8 @@ BUILD/
 START/
 Start/
 start/
+#忽略makefile,windows和linux的makefile有区别
+Makefile
 
 # 编译生成的文件
 *.o
@@ -22,7 +24,6 @@ start/
 
 # 编译中间文件
 compile_commands.json
-
 # IDE 和编辑器文件
 .vscode/
 .idea/

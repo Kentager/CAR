@@ -17,8 +17,12 @@
 #ifndef __PID_ANGLE_H
 #define __PID_ANGLE_H
 
+#include "delay.h"
 #include "jy61p.h"
 #include "stm32f4xx.h"
+#include "task.h"
+#include <math.h>
+
 
 /* ==================== 角度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
@@ -33,8 +37,8 @@
 #define ANGLE_PID_OUTPUT_MAX 1000.0f // 最大补偿值
 
 // 角度阈值（度）
-#define ANGLE_THRESHOLD_DEG 1.0f     // 角度偏差阈值，小于此值不进行补偿
-#define ANGLE_INTEGRAL_LIMIT 100.0f  // 积分限幅值，防止积分饱和
+#define ANGLE_THRESHOLD_DEG 1.0f // 角度偏差阈值，小于此值不进行补偿
+#define ANGLE_INTEGRAL_LIMIT 100.0f // 积分限幅值，防止积分饱和
 
 /* ==================== PID内部数据结构 ==================== */
 /**
@@ -48,7 +52,7 @@ typedef struct {
   float target_value; // 目标角度值（度）
   float integral_sum; // 积分累积值 ∫e(t)dt
   float last_error;   // 上次误差值 e(k-1)
-} PID_State_t;
+} Angle_PID_State_t;
 
 /* ==================== 角度环PID数据结构体 ==================== */
 /**
@@ -57,17 +61,17 @@ typedef struct {
 typedef struct {
   // 配置参数
   float target_angle_deg; // 目标角度（度，通常为0表示直线）
-  uint8_t axis;           // 控制轴：0=Yaw(偏航), 1=Pitch(俯仰), 2=Roll(横滚)
+  uint8_t axis; // 控制轴：0=Yaw(偏航), 1=Pitch(俯仰), 2=Roll(横滚)
 
   // 状态信息
   float current_angle_deg;   // 当前角度（度）
   float angle_error_deg;     // 角度偏差（度）
   float compensation_value;  // 补偿值（用于调整电机转速差）
-  uint8_t enabled;          // 是否启用
+  uint8_t enabled;           // 是否启用
   uint32_t last_update_time; // 上次更新时间
 
   // PID参数和状态
-  PID_State_t pid_state;
+  Angle_PID_State_t pid_state;
 } Angle_PID_Controller_t;
 
 /* ==================== 角度轴枚举 ==================== */
@@ -83,7 +87,7 @@ typedef enum {
 // 在头文件中声明全局控制器实例供外部使用
 extern Angle_PID_Controller_t Angle_PID_Yaw;   // 偏航角PID控制器
 extern Angle_PID_Controller_t Angle_PID_Pitch; // 俯仰角PID控制器
-extern Angle_PID_Controller_t Angle_PID_Roll;   // 横滚角PID控制器
+extern Angle_PID_Controller_t Angle_PID_Roll;  // 横滚角PID控制器
 
 /* ==================== 全局函数声明 ==================== */
 
