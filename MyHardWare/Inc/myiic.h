@@ -37,6 +37,12 @@ u8 IIC_Read_One_Byte(u8 daddr,u8 addr);
 void Write_IIC_Byte(unsigned char txd);
 void Write_IIC_Command(unsigned char IIC_Command);
 void Write_IIC_Data(unsigned char IIC_Data);
+
+//新增 AK09911C 传感器支持函数
+u8 IIC_Write_1_Byte(u8 slave_addr, u8 reg_addr, u8 data);
+u8 IIC_Read_1_Byte(u8 slave_addr, u8 reg_addr, u8 *data);
+u8 IIC_Read_N_Bytes(u8 slave_addr, u8 start_reg, u8 n_bytes, u8 *r_data);
+void IIC_Stop_Hang(void);  //发送多次停止信号，确保总线释放
 #endif
 
 

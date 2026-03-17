@@ -31,6 +31,15 @@ typedef struct {
   uint16_t tail;
   uint8_t is_dma_enabled;
 } CircularQueue;
+/*---------------------- 接收缓冲区配置------------------------*/
+
+typedef struct {
+  volatile uint8_t *buffer;
+  uint16_t size;
+  uint16_t count;
+  uint16_t index;
+} RX_BUFF;
+extern RX_BUFF rx_buff;
 
 /*---------------------- 函数声明 ----------------------------*/
 

@@ -4,16 +4,12 @@
 #include "motor.h"
 #include "pid_speed.h" // 添加速度环PID控制器头文件
 #include "rtc.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_usart.h"
 #include "task.h" // 任务调度模块
 #include "ulog.h"
 #include "usart.h"
 #include <math.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <stm32f4xx.h>
-#include <string.h>
 
 // 删除外部声明，让pid_speed模块内部管理实例
 // Deleted:extern Speed_PID_Controller_t Speed_PID_Right; // 右轮速度PID控制器
@@ -29,7 +25,7 @@ void my_console_logger(ulog_level_t severity, const char *msg) {
 void speed_control_task(void) {
   // 更新右轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Right);
-  
+
   // 更新左轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Left);
   Motor_Update(MOTOR_LEFT);
@@ -59,30 +55,28 @@ int main() {
 
   // 初始化任务调度系统
   Task_Init();
-  
 
-    // 初始化速度环PID控制器
-    // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
-    Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
-                   SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
-                   SPEED_PID_KD_DEFAULT);
+  // 初始化速度环PID控制器
+  // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
+  Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
+                 SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
+                 SPEED_PID_KD_DEFAULT);
 
-    // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
-    Speed_PID_Init(&Speed_PID_Left, ENCODER_LEFT, MOTOR_LEFT,
-                   SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
-                   SPEED_PID_KD_DEFAULT);
+  // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
+  Speed_PID_Init(&Speed_PID_Left, ENCODER_LEFT, MOTOR_LEFT,
+                 SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
+                 SPEED_PID_KD_DEFAULT);
 
-    // 设置目标速度（例如0.5m/s）
-    Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.5f);
-    Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.5f);
+  // 设置目标速度（例如0.5m/s）
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.5f);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.5f);
 
-    // 启用速度环PID控制
-    Speed_PID_Enable(&Speed_PID_Right);
-    Speed_PID_Enable(&Speed_PID_Left);
+  // 启用速度环PID控制
+  Speed_PID_Enable(&Speed_PID_Right);
+  Speed_PID_Enable(&Speed_PID_Left);
 
-    // // 添加10ms周期的速度控制任务
-    // add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
-  
+  // // 添加10ms周期的速度控制任务
+  // add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
 
   USART1_Init();
   printf("hello world\r\n");
@@ -91,9 +85,6 @@ int main() {
   Encoder_Data_t encoder_data;
   // uint32_t count = 0;
   // motor_test();
-
-
-
 
   // 更新电机状态，将配置应用到硬件
   while (1) {
@@ -106,10 +97,12 @@ int main() {
     delay_ms(10);
     // printf("this is %d:\r\n", count);
     // encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2f m\r\n", encoder_data.last_count,encoder_data.speed_m_s,
+    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2f
+    // m\r\n", encoder_data.last_count,encoder_data.speed_m_s,
     //        encoder_data.total_distance);
     // encoder_data = Encoder_GetData(ENCODER_LEFT);
-    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2f m\r\n", encoder_data.last_count,encoder_data.speed_m_s,
+    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2f
+    // m\r\n", encoder_data.last_count,encoder_data.speed_m_s,
     //        encoder_data.total_distance);
     // printf("\r\n");
     // count++;

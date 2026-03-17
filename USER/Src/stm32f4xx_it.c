@@ -28,7 +28,9 @@
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_tim.h"
+#include "stm32f4xx_usart.h"
 #include "task.h"
+#include "usart.h"
 #include <stdint.h>
 #include <stdio.h>
 
@@ -281,7 +283,18 @@ void DMA2_Stream0_IRQHandler(void) {
     DMA_Error_Flag = 1; // 设置错误标志，在主循环中处理
   }
 }
-
+void USART1_IRQHandler(void) {
+  if (USART_GetITStatus(USART1, USART_IT_IDLE) != RESET) {
+    volatile uint32_t sr = USART1->SR;
+    volatile uint32_t dr = USART1->DR;
+    (void)sr;
+    (void)dr;
+    rx_buff.count = USART_DMA_RX_BUFFER_SIZE -
+                    DMA_GetCurrDataCounter(DMA2_Stream2) -
+                    rx_buff.index; // 只能接收256个字节
+    // 处理空闲中断
+  }
+}
 void ADC_IRQHandler(void) {
   // 检查模拟看门狗中断
   if (ADC_GetITStatus(ADC1, ADC_IT_AWD) != RESET) {
@@ -329,6 +342,24 @@ void SDIO_IRQHandler(void) {
 }
 
 /**
+ TIM_TimeBaseInitStruct.TIM_Period =
+     10 - 1; // 自动重装载值，10kHz / 1 = 10kHz (100us)
+ TIM_TimeBaseInitStruct.TIM_ClockDivision = TIM_CKD_DIV1;
+ TIM_TimeBaseInit(TIM7, &TIM_TimeBaseInitStruct);
+
+ // 清除更新中断标志，防止立即触发中断
+ TIM_ClearFlag(TIM7, TIM_FLAG_Update);
+
+ // 使能更新中断
+ TIM_ITConfig(TIM7, TIM_IT_Update, ENABLE);
+
+ // 配置 NVIC 中断优先级
+ NVIC_InitStructure.NVIC_IRQChannel = TIM7_IRQn;
+ NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+ NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
+ NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+ NVIC_Init(&NVIC_InitStructure);
+}
  * @brief  This function handles DMA2 Stream3 or DMA2 Stream6 global interrupts
  *         requests.
  * @param  None

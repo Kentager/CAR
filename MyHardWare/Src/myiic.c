@@ -90,6 +90,13 @@ void IIC_NAck(void) {
   delay_us(2);
   IIC_SCL = 0;
 }
+void IIC_Hang() {
+  uint8_t i;
+  for (i = 0; i < 3; i++) {
+    IIC_Stop();
+    delay_us(10);
+  }
+}
 // IIC发送一个字节
 // 返回从机有无应答
 // 1，有应答
@@ -171,4 +178,119 @@ void Write_IIC_Data(unsigned char IIC_Data) {
   Write_IIC_Byte(IIC_Data);
   IIC_Wait_Ack();
   IIC_Stop();
+}
+
+/**********************************************
+// AK09911C 传感器支持函数
+**********************************************/
+/**
+ * @brief 向 I2C 设备写入一个字节数据
+ * @param slave_addr 从机地址
+ * @param reg_addr 寄存器地址
+ * @param data 要写入的数据
+ * @return 0:成功; 1:失败
+ */
+u8 IIC_Write_1_Byte(u8 slave_addr, u8 reg_addr, u8 data) {
+  IIC_Start();
+  IIC_Send_Byte(slave_addr << 1); // 发送器件地址 + 写命令
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  IIC_Send_Byte(reg_addr); // 发送寄存器地址
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  IIC_Send_Byte(data); // 发送数据
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  IIC_Stop();
+  return 0;
+}
+
+/**
+ * @brief 从 I2C 设备读取一个字节数据
+ * @param slave_addr 从机地址
+ * @param reg_addr 寄存器地址
+ * @param data 存储读取到的数据
+ * @return 0:成功; 1:失败
+ */
+u8 IIC_Read_1_Byte(u8 slave_addr, u8 reg_addr, u8 *data) {
+  IIC_Start();
+  IIC_Send_Byte(slave_addr << 1); // 发送器件地址 + 写命令
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  IIC_Send_Byte(reg_addr); // 发送寄存器地址
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  
+  IIC_Start();
+  IIC_Send_Byte((slave_addr << 1) | 0x01); // 发送器件地址 + 读命令
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  *data = IIC_Read_Byte(0); // 读取数据，发送 NACK
+  IIC_Stop();
+  return 0;
+}
+
+/**
+ * @brief 从 I2C 设备连续读取多个字节数据
+ * @param slave_addr 从机地址
+ * @param start_reg 起始寄存器地址
+ * @param n_bytes 要读取的字节数
+ * @param r_data 存储读取到的数据缓冲区
+ * @return 0:成功; 1:失败
+ */
+u8 IIC_Read_N_Bytes(u8 slave_addr, u8 start_reg, u8 n_bytes, u8 *r_data) {
+  u8 i;
+  
+  IIC_Start();
+  IIC_Send_Byte(slave_addr << 1); // 发送器件地址 + 写命令
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  IIC_Send_Byte(start_reg); // 发送起始寄存器地址
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  
+  IIC_Start();
+  IIC_Send_Byte((slave_addr << 1) | 0x01); // 发送器件地址 + 读命令
+  if (IIC_Wait_Ack()) {
+    IIC_Stop();
+    return 1;
+  }
+  
+  for (i = 0; i < n_bytes; i++) {
+    if (i == n_bytes - 1) {
+      r_data[i] = IIC_Read_Byte(0); // 最后一个字节，发送 NACK
+    } else {
+      r_data[i] = IIC_Read_Byte(1); // 非最后一个字节，发送 ACK
+    }
+  }
+  IIC_Stop();
+  return 0;
+}
+
+/**
+ * @brief 发送多次停止信号，确保 I2C 总线释放
+ * @note 用于处理 I2C 总线挂死的情况
+ */
+void IIC_Stop_Hang(void) {
+  u8 i;
+  for (i = 0; i <= 3; i++) {
+    IIC_Stop();
+    delay_us(80);
+  }
 }

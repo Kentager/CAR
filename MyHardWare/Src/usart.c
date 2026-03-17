@@ -23,27 +23,30 @@ USART1_BaudRate。
 #include "usart.h"
 #include "delay.h"
 #include "led.h"
+#include "misc.h"
 #include "oled.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
+#include "stm32f4xx_usart.h"
 #include <stdint.h>
 #include <stdio.h>
 
 // DMA 发送缓冲区，大小为 256 字节
-static uint8_t dma_tx_buffer[USART_DMA_TX_BUFFER_SIZE];
+static volatile uint8_t dma_tx_buffer[USART_DMA_TX_BUFFER_SIZE];
 // DMA 接收缓冲区，大小为 256 字节
-static uint8_t dma_rx_buffer[USART_DMA_RX_BUFFER_SIZE];
+static volatile uint8_t dma_rx_buffer[USART_DMA_RX_BUFFER_SIZE];
 // 发送环形缓冲区，用于存储待发送的数据
 RingBuffer tx_queue;
 // 接收环形缓冲区，用于存储接收到的数据
 RingBuffer rx_queue;
-
 // DMA 发送完成标志位
 volatile uint8_t dma_tx_transfer_complete = 0;
 // DMA 接收完成标志位
 volatile uint8_t dma_rx_transfer_complete = 0;
 // 记录上次 DMA 传输的数据量
 static uint16_t last_dma_tx_count = 0;
+
+RX_BUFF rx_buff;
 // 函数声明
 static void USART1_DMA_Init(void);
 static void TIM7_Config(void);
@@ -102,14 +105,14 @@ static void USART1_DMA_Init(void) {
     ;
   DMA_InitStructure.DMA_Channel = DMA_Channel_4;
   DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) & (USART1->DR);
-  DMA_InitStructure.DMA_Memory0BaseAddr = 0;
+  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)dma_rx_buffer;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
   DMA_InitStructure.DMA_BufferSize = 0;
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
   DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
-  DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
   DMA_InitStructure.DMA_Priority = DMA_Priority_High;
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;
   DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
@@ -226,7 +229,16 @@ void Usart_Config(void) {
   USART_DMACmd(USART1, USART_DMAReq_Rx, ENABLE);
 
   USART_Init(USART1, &USART_InitStructure); // 初始化串口 1
-  USART_Cmd(USART1, ENABLE);                // 使能串口 1
+
+  NVIC_InitTypeDef NVIC_InitStructure;
+  NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure); // 配置 USART1 中断优先级
+  USART_ITConfig(USART1, USART_IT_IDLE,
+                 ENABLE); // 使能 USART1 空闲中断，用于检测接收完成
+  USART_Cmd(USART1, ENABLE); // 使能串口 1
 }
 
 /**
@@ -241,12 +253,10 @@ void USART1_Init(void) {
 
   // 初始化 USART1 DMA
   USART1_DMA_Init();
-
   // 配置 USART1 串口参数和 GPIO
   Usart_Config();
-
   // 启动 DMA 接收
-  UART1_DMA_Start_RX();
+  // UART1_DMA_Start_RX();
 }
 
 /**
@@ -406,4 +416,39 @@ void DMA2_Stream7_IRQHandler(void) {
  */
 uint16_t UART1_ReadAvailable_DMA(void) {
   return RingBuffer_Available(&rx_queue);
+}
+/**
+ * @brief  从 USART1 接收一个字节
+ * @param  data: 指向接收数据的指针
+ * @retval 1 表示成功接收，0 表示失败
+ */
+int8_t USART1_ReceiveByte(uint8_t *data) {
+  // 从环形缓冲区读取一个字节
+  if (rx_buff.count == 0) {
+    return 0; // 没有数据可读
+  }
+  *data = rx_buff.buffer[rx_buff.index];
+  rx_buff.index = (rx_buff.index + 1) % rx_buff.size;
+  rx_buff.count--;
+  return 1;
+}
+int8_t USART1_ReceiveLine(uint8_t *data) {
+  if (rx_buff.count == 0) {
+    return 0; // 没有数据可读
+  }
+  for(uint16_t i = 0; i < rx_buff.count; i++) {
+    uint8_t byte = rx_buff.buffer[(rx_buff.index + i) % rx_buff.size];
+    if (byte == '\n') {
+      // 找到换行符，提取这一行数据
+      uint16_t line_length = i + 1; // 包括换行符
+      for (uint16_t j = 0; j < line_length; j++) {
+        data[j] = rx_buff.buffer[(rx_buff.index + j) % rx_buff.size];
+      }
+      data[line_length] = '\0'; // 添加字符串结束符
+      // 更新缓冲区状态
+      rx_buff.index = (rx_buff.index + line_length) % rx_buff.size;
+      rx_buff.count -= line_length;
+      return 1; // 成功接收一行数据
+    }
+  }
 }
