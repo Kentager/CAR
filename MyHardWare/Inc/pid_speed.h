@@ -7,12 +7,12 @@
 
 /* ==================== 速度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define SPEED_PID_KP_DEFAULT 2.0f // 比例系数
-#define SPEED_PID_KI_DEFAULT 0.5f // 积分系数
-#define SPEED_PID_KD_DEFAULT 0.1f // 微分系数
-
+#define SPEED_PID_KP_DEFAULT 36000.0f // 比例系数
+#define SPEED_PID_KI_DEFAULT 500000.0f // 积分系数
+#define SPEED_PID_KD_DEFAULT 100.0f // 微分系数
+#define SPEED_PID_BUFFER_SIZE 10 // 滤波缓冲区大小
 // 采样周期 (ms)
-#define SPEED_PID_SAMPLE_PERIOD_MS 10
+#define SPEED_PID_SAMPLE_PERIOD_MS 5
 
 // 最大输出限制
 #define SPEED_PID_OUTPUT_MAX MOTOR_PWM_MAX_DUTY
@@ -53,6 +53,10 @@ typedef struct {
   float current_speed_m_s;   // 当前线速度 (m/s)
   uint8_t enabled;           // 是否启用
   uint32_t last_update_time; // 上次更新时间
+
+  float filtered_speed_m_s;  // 滤波后的速度
+  float speed_buffer[SPEED_PID_BUFFER_SIZE];     // 速度缓冲区（用于滑动平均滤波）
+  uint8_t speed_buffer_index; // 缓冲区索引
 
   // PID参数和状态
   IncrementalPID_State_t pid_state;
