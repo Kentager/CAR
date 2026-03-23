@@ -8,8 +8,12 @@
  * @param  size: 缓冲区大小
  * @retval 成功返回 1，失败返回 0
  */
+<<<<<<< HEAD
 uint8_t RingBuffer_Init(RingBuffer *rb, volatile uint8_t *buffer,
                         uint16_t size) {
+=======
+uint8_t RingBuffer_Init(RingBuffer *rb,volatile uint8_t *buffer, uint16_t size) {
+>>>>>>> 58e72f2 (PID参数调整 和 新增平滑滤波)
   if (rb == NULL || buffer == NULL || size == 0) {
     return 0;
   }
@@ -148,7 +152,7 @@ uint16_t RingBuffer_ContiguousRead(RingBuffer *rb, uint8_t **ptr) {
     return 0;
   }
 
-  *ptr = &rb->buffer[rb->tail];
+  *ptr = (volatile uint8_t *)&rb->buffer[rb->tail];
 
   if (rb->head > rb->tail) {
     return rb->head - rb->tail;
@@ -176,7 +180,7 @@ uint16_t RingBuffer_ContiguousWrite(RingBuffer *rb, uint8_t **ptr) {
     return 0;
   }
 
-  *ptr = &rb->buffer[rb->head];
+  *ptr = (volatile uint8_t *)&rb->buffer[rb->head];
 
   if (rb->head >= rb->tail) {
     return rb->size - rb->head;
