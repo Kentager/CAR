@@ -22,6 +22,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
+#include "led.h"
 #include "sdio_sd.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_adc.h"
@@ -289,6 +290,7 @@ void USART1_IRQHandler(void) {
     volatile uint32_t dr = USART1->DR;
     (void)sr;
     (void)dr;
+    LED_On();
     rx_buff.count = USART_DMA_RX_BUFFER_SIZE -
                     DMA_GetCurrDataCounter(DMA2_Stream2) -
                     rx_buff.index; // 只能接收256个字节

@@ -8,7 +8,8 @@
  * @param  size: 缓冲区大小
  * @retval 成功返回 1，失败返回 0
  */
-uint8_t RingBuffer_Init(RingBuffer *rb,volatile uint8_t *buffer, uint16_t size) {
+uint8_t RingBuffer_Init(RingBuffer *rb, volatile uint8_t *buffer,
+                        uint16_t size) {
   if (rb == NULL || buffer == NULL || size == 0) {
     return 0;
   }

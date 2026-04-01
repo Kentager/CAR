@@ -1,9 +1,11 @@
 #include "SENSOR_AK09911C.h"
 #include "delay.h"
 #include "jy61p.h"
+#include "led.h"
 #include "stdio.h"
 #include "stm32f4xx.h"
 #include "usart.h"
+#include <stdint.h>
 
 // 全局变量用于存储传感器数据
 Acc_Param acc_data;
@@ -322,11 +324,12 @@ int main(void) {
 
   // 延时函数初始化
   delay_init();
-
+  led_Init();
   // USART1 初始化 (用于打印调试信息)
   USART1_Init();
-
+  uint8_t data;
   printf("\r\n=== 传感器测试程序 ===\r\n");
+
   printf("1. JY61P 六轴 IMU 传感器\r\n");
   printf("2. AK09911C 地磁传感器\r\n\r\n");
 
@@ -340,6 +343,7 @@ int main(void) {
 
   // 选项 2: AK09911C 快速测试（简单验证）
   ak0911c_test();
+
 
   // 选项 3: AK09911C 综合测试（完整功能）
   // AK09911C_Test_Example();

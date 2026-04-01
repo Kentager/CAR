@@ -1,6 +1,8 @@
 #include "jy61p.h"
 #include "delay.h"
 #include "myiic.h"
+#include <stdint.h>
+#include <stdio.h>
 
 #define delay_3us() Delay_us(1)
 
@@ -19,7 +21,7 @@ void JY61p_Init(void) {
   JY61p_IIC_Init();
   u16 i = 0;
   // 检测 JY61p 是否存在
-  while (JY61p_Check() && i > 1000) {
+  while (JY61p_Check() && i < 1000) {
     i++;
     delay_ms(1);
   }
@@ -64,16 +66,20 @@ void JY61p_IIC_Stop(void) { IIC_Stop(); }
 /***********************************************************
  *@fuction	: JY61p_IIC_SendAck
  *@brief		: 发送 ACK 应答
- *@param		: None
+ *@param		: AckBit - ACK信号
  *@return	: None
  *@author	: HongScholar
  *@date		: 2025.04.02
  ***********************************************************/
 uint8_t JY61p_IIC_SendAck(uint8_t AckBit) {
-  if (!AckBit)
+  if (!AckBit) {
+
+    printf("send ACK %d\r\n", AckBit);
     IIC_Ack();
-  else
+  } else {
+    printf("send NACK %d\r\n", AckBit);
     IIC_NAck();
+  }
   return 0;
 }
 
@@ -149,11 +155,9 @@ u8 JY61p_Read(u8 addr, u8 reg, u8 len, u8 *buf) {
   JY61p_IIC_WaitAck();
   while (len) {
     if (len == 1) {
-      *buf = JY61p_IIC_ReceiveByte();
-      JY61p_IIC_SendAck(1);
+      *buf = IIC_Read_Byte(1); // 最后一个字节,发送nack
     } else {
-      *buf = JY61p_IIC_ReceiveByte(); // 1
-      JY61p_IIC_SendAck(0);
+      *buf = IIC_Read_Byte(0); // 非最后一个字节,发送ack
     }
     len--;
     buf++;
@@ -190,7 +194,20 @@ uint8_t JY61p_Check(void) {
  ***********************************************************/
 void JY61p_Get(Acc_Param *a, EulerAngle_Param *p, Gyro_Param *v) {
   uint8_t tmp[30];
-  JY61p_Read(JY61p_DeviceAddr, JY61p_AX, 24, tmp);
+  if (JY61p_Read(JY61p_DeviceAddr, JY61p_AX, 24, tmp) == 0) {
+    // 读取成功，继续处理数据
+  } else {
+    // 读取失败，处理错误（例如：返回默认值或记录错误日志）
+    a->Ax = a->Ay = a->Az = 0.0f;
+    v->Gx = v->Gy = v->Gz = 0.0f;
+    p->Roll = p->Pitch = p->Yaw = 0.0f;
+    printf("get jy61p data erro\r\n");
+    return;
+  }
+  for (uint8_t i = 0; i < 24; i++) {
+    printf("%02X  ", tmp[i]);
+  }
+  printf("\r\n");
 
   /**** 加速度 ****/
   a->Ax = ((short)(tmp[1] << 8) | tmp[0]) / 32768.00f * 16;

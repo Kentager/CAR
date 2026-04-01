@@ -29,21 +29,22 @@
 #ifndef __KALMAN_FILTER_H
 #define __KALMAN_FILTER_H
 
+#include "hmc5883l.h"
 #include "jy61p.h"
 #include "stm32f4xx.h"
 
 /* ==================== 卡尔曼滤波参数配置 ==================== */
 // 过程噪声协方差（陀螺仪噪声）
-#define KALMAN_Q_DEFAULT 0.001f  // 默认值，可根据实际调试调整
+#define KALMAN_Q_DEFAULT 0.001f // 默认值，可根据实际调试调整
 
 // 测量噪声协方差（加速度计+磁力计融合噪声）
-#define KALMAN_R_DEFAULT 0.01f   // 默认值，可根据实际调试调整
+#define KALMAN_R_DEFAULT 0.01f // 默认值，可根据实际调试调整
 
 // 初始协方差值
-#define KALMAN_P_DEFAULT 1.0f   // 初始值，表示对初始状态的不确定度
+#define KALMAN_P_DEFAULT 1.0f // 初始值，表示对初始状态的不确定度
 
 // 采样周期（秒），与JY61P采样率100Hz对应
-#define KALMAN_DT_DEFAULT 0.01f  // 10ms = 0.01s
+#define KALMAN_DT_DEFAULT 0.01f // 10ms = 0.01s
 
 /* ==================== 一维卡尔曼滤波器结构体 ==================== */
 /**
@@ -57,9 +58,9 @@ typedef struct {
   float P; // 当前协方差 P(k|k)
 
   // 卡尔曼滤波参数
-  float Q; // 过程噪声协方差（陀螺仪噪声）
-  float R; // 测量噪声协方差（加速度计+磁力计融合噪声）
-  float dt;// 采样周期（秒）
+  float Q;  // 过程噪声协方差（陀螺仪噪声）
+  float R;  // 测量噪声协方差（加速度计+磁力计融合噪声）
+  float dt; // 采样周期（秒）
 
   // 初始化标志
   uint8_t initialized;
@@ -71,10 +72,12 @@ typedef struct {
  */
 typedef struct {
   // 原始JY61P数据
-  Acc_Param acc_raw;        // 原始加速度数据
-  Gyro_Param gyro_raw;      // 原始角速度数据
+  Acc_Param acc_raw;          // 原始加速度数据
+  Gyro_Param gyro_raw;        // 原始角速度数据
   EulerAngle_Param euler_raw; // 原始欧拉角数据
 
+  // 新增HMC5883L磁力计数据
+  HMC5883L_Data_t mag_data;
   // 滤波后的欧拉角数据
   EulerAngle_Param euler_filtered; // 滤波后的欧拉角数据
 
@@ -111,7 +114,7 @@ void KalmanFilter_Init(KalmanFilter_t *kf, float Q, float R, float dt,
  * @return 滤波后的状态估计值 x̂(k|k)
  */
 float KalmanFilter_Update(KalmanFilter_t *kf, float measurement,
-                           float control_input);
+                          float control_input);
 
 /**
  * @brief 重置卡尔曼滤波器

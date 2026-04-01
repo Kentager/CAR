@@ -50,6 +50,8 @@ void UART1_SendByte(uint8_t data);
 void UART1_DMA_Start_RX(void);
 uint16_t UART1_ReadAvailable_DMA(void);
 
+int8_t USART1_ReceiveLine(uint8_t *data);
+int8_t USART1_ReceiveByte(uint8_t *data);
 void USART1_Init(void);
 extern RingBuffer tx_queue;
 extern RingBuffer rx_queue;
