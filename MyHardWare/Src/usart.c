@@ -46,7 +46,10 @@ volatile uint8_t dma_rx_transfer_complete = 0;
 // 记录上次 DMA 传输的数据量
 static uint16_t last_dma_tx_count = 0;
 
-RX_BUFF rx_buff;
+RX_BUFF rx_buff = {.buffer = dma_rx_buffer,
+                   .size = USART_DMA_RX_BUFFER_SIZE,
+                   .count = 0,
+                   .index = 0};
 // 函数声明
 static void USART1_DMA_Init(void);
 static void TIM7_Config(void);
@@ -101,13 +104,13 @@ static void USART1_DMA_Init(void) {
 
   // DMA RX 配置 (DMA2 Stream2, Channel4) - 外设为内存
   DMA_DeInit(DMA2_Stream2);
-  while (DMA_GetCmdStatus(DMA2_Stream7) != DISABLE)
+  while (DMA_GetCmdStatus(DMA2_Stream2) != DISABLE)
     ;
   DMA_InitStructure.DMA_Channel = DMA_Channel_4;
   DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) & (USART1->DR);
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)dma_rx_buffer;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
-  DMA_InitStructure.DMA_BufferSize = 0;
+  DMA_InitStructure.DMA_BufferSize = USART_DMA_RX_BUFFER_SIZE;
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
@@ -126,7 +129,7 @@ static void USART1_DMA_Init(void) {
 
   // 使能 DMA 通道
   DMA_Cmd(DMA2_Stream7, DISABLE);
-  DMA_Cmd(DMA2_Stream2, DISABLE);
+  DMA_Cmd(DMA2_Stream2, ENABLE);
   // DMA_Cmd(DMA2_Stream7, ENABLE);
   // DMA_Cmd(DMA2_Stream2, ENABLE);
 }
@@ -324,7 +327,7 @@ void UART1_SendData(uint16_t *buffer, uint16_t size) {
 
 /**
  * @brief  启动 UART1 DMA 接收
- *         配置 DMA2 Stream5 将 USART1 DR 寄存器的数据传输到 rx_queue 缓冲区
+ *         配置 DMA2 Stream2 将 USART1 DR 寄存器的数据传输到 rx_queue 缓冲区
  */
 void UART1_DMA_Start_RX(void) {
   DMA2_Stream2->M0AR = (uint32_t)rx_queue.buffer;
@@ -367,15 +370,15 @@ static void USART_StartDMA_TX(void) {
 }
 
 /**
- * @brief  DMA2 Stream5 中断服务函数（USART1 RX）
+ * @brief  DMA2 Stream2中断服务函数（USART1 RX）
  *         处理 DMA 接收完成中断，重新启动 DMA 接收
  */
 void DMA2_Stream2_IRQHandler(void) {
   if (DMA_GetITStatus(DMA2_Stream2, DMA_IT_TCIF2) != RESET) {
     DMA_ClearITPendingBit(DMA2_Stream2, DMA_IT_TCIF2);
     dma_rx_transfer_complete = 1;
-    DMA_Cmd(DMA2_Stream5, DISABLE);
-    UART1_DMA_Start_RX();
+    // DMA_Cmd(DMA2_Stream2, DISABLE);
+    // UART1_DMA_Start_RX();
   }
 }
 
@@ -426,17 +429,19 @@ int8_t USART1_ReceiveByte(uint8_t *data) {
   // 从环形缓冲区读取一个字节
   if (rx_buff.count == 0) {
     return 0; // 没有数据可读
+  } else {
+
+    *data = rx_buff.buffer[rx_buff.index];
+    rx_buff.index = (rx_buff.index + 1) % rx_buff.size;
+    rx_buff.count--;
+    return 1;
   }
-  *data = rx_buff.buffer[rx_buff.index];
-  rx_buff.index = (rx_buff.index + 1) % rx_buff.size;
-  rx_buff.count--;
-  return 1;
 }
 int8_t USART1_ReceiveLine(uint8_t *data) {
   if (rx_buff.count == 0) {
     return 0; // 没有数据可读
   }
-  for(uint16_t i = 0; i < rx_buff.count; i++) {
+  for (uint16_t i = 0; i < rx_buff.count; i++) {
     uint8_t byte = rx_buff.buffer[(rx_buff.index + i) % rx_buff.size];
     if (byte == '\n') {
       // 找到换行符，提取这一行数据

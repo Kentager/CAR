@@ -7,9 +7,9 @@
 
 #include "kalman_filter.h"
 #include "delay.h"
+#include "hmc5883l.h"
 #include "jy61p.h"
 #include "task.h"
-
 #include <string.h>
 
 /* ==================== 全局变量定义 ==================== */
@@ -118,6 +118,7 @@ void KalmanFilter_Reset(KalmanFilter_t *kf, float initial_value) {
 void AttitudeSolver_Init(void) {
   // 初始化JY61P传感器
   JY61p_Init();
+  hmc5883l_init();
 
   // 初始化三个卡尔曼滤波器（偏航角、俯仰角、横滚角）
   KalmanFilter_Init(&AttitudeSolver.kalman_yaw, KALMAN_Q_DEFAULT,
@@ -139,6 +140,40 @@ void AttitudeSolver_Init(void) {
   // 读取一次初始数据，初始化滤波器
   AttitudeSolver_Update();
 }
+/**
+ * @brief 计算航向角
+ * @param roll 当前横滚角(弧度)
+ * @param pitch 当前俯仰角(弧度)
+ * @return 航向角(度)
+ */
+float AttitudeSolver_ComputeHeading(float roll, float pitch) {
+  // 获取磁力计数据
+  HMC5883L_Data_t *mag_data = hmc5883l_get_data();
+
+  // 将磁力计数据从机体坐标系转换到地理坐标系
+  float sin_roll = sinf(roll);
+  float cos_roll = cosf(roll);
+  float sin_pitch = sinf(pitch);
+  float cos_pitch = cosf(pitch);
+
+  // 旋转后的磁场分量
+  float hx = mag_data->x * cos_pitch + mag_data->y * sin_pitch * sin_roll +
+             mag_data->z * sin_pitch * cos_roll;
+  float hy = mag_data->y * cos_roll - mag_data->z * sin_roll;
+
+  // 计算航向角(弧度)
+  float heading_rad = atan2f(hy, hx);
+
+  // 转换为角度
+  float heading_deg = heading_rad * 180.0f / M_PI;
+
+  // 确保航向角在0-360度范围内
+  if (heading_deg < 0) {
+    heading_deg += 360.0f;
+  }
+
+  return heading_deg;
+}
 
 /**
  * @brief 姿态解算更新
@@ -150,21 +185,33 @@ void AttitudeSolver_Update(void) {
   JY61p_Get(&AttitudeSolver.acc_raw, &AttitudeSolver.euler_raw,
             &AttitudeSolver.gyro_raw);
 
-  // 应用卡尔曼滤波到各个角度
-  // 偏航角：使用陀螺仪角速度（Gz）作为控制输入进行预测
-  AttitudeSolver.euler_filtered.Yaw = KalmanFilter_Update(
-      &AttitudeSolver.kalman_yaw, AttitudeSolver.euler_raw.Yaw,
-      AttitudeSolver.gyro_raw.Gz);
+  // 计算横滚角和俯仰角(使用加速度计)
+  float roll_rad = atan2f(AttitudeSolver.acc_raw.Ay, AttitudeSolver.acc_raw.Az);
+  float pitch_rad =
+      atan2f(-AttitudeSolver.acc_raw.Ax,
+             sqrtf(AttitudeSolver.acc_raw.Ay * AttitudeSolver.acc_raw.Ay +
+                   AttitudeSolver.acc_raw.Az * AttitudeSolver.acc_raw.Az));
 
-  // 俯仰角：使用陀螺仪角速度（Gy）作为控制输入进行预测
+  // 读取磁力计数据
+  hmc5883l_read_data(hmc5883l_get_data());
+
+  // 计算航向角(使用磁力计)
+  float heading_deg = AttitudeSolver_ComputeHeading(roll_rad, pitch_rad);
+
+  // 应用卡尔曼滤波到各个角度
+  // 偏航角：使用陀螺仪角速度（Gz）作为控制输入进行预测，使用计算出的航向角作为测量值
+  AttitudeSolver.euler_filtered.Yaw = KalmanFilter_Update(
+      &AttitudeSolver.kalman_yaw, heading_deg, AttitudeSolver.gyro_raw.Gz);
+
+  // 俯仰角：使用陀螺仪角速度（Gy）作为控制输入进行预测，使用计算出的俯仰角作为测量值
   AttitudeSolver.euler_filtered.Pitch = KalmanFilter_Update(
-      &AttitudeSolver.kalman_pitch, AttitudeSolver.euler_raw.Pitch,
+      &AttitudeSolver.kalman_pitch, pitch_rad * 180.0f / M_PI,
       AttitudeSolver.gyro_raw.Gy);
 
-  // 横滚角：使用陀螺仪角速度（Gx）作为控制输入进行预测
-  AttitudeSolver.euler_filtered.Roll = KalmanFilter_Update(
-      &AttitudeSolver.kalman_roll, AttitudeSolver.euler_raw.Roll,
-      AttitudeSolver.gyro_raw.Gx);
+  // 横滚角：使用陀螺仪角速度（Gx）作为控制输入进行预测，使用计算出的横滚角作为测量值
+  AttitudeSolver.euler_filtered.Roll =
+      KalmanFilter_Update(&AttitudeSolver.kalman_roll, roll_rad * 180.0f / M_PI,
+                          AttitudeSolver.gyro_raw.Gx);
 
   // 更新时间戳
   AttitudeSolver.last_update_time = GetSysTick();
