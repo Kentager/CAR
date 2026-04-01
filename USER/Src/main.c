@@ -55,14 +55,14 @@ void motor_print_data(void) {
 }
 void change_pid_target_speed(void) {
   uint32_t count = GetSysTick();
-  if (count % 5000 == 0) {
+  if (count % 2000 == 0) {
     if (Speed_PID_Right.target_speed_m_s == 0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.05f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.05f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
     }
-    else if(Speed_PID_Right.target_speed_m_s == 0.05f) {
+    else if(Speed_PID_Right.target_speed_m_s == -0.1f) {
       Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
     }
   }
   
@@ -92,8 +92,8 @@ int main() {
                  SPEED_PID_KD_DEFAULT);
 
   // // 设置目标速度（例如0.5m/s）
-  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1f);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.15f);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.207f);
 
   // // 启用速度环PID控制
   Speed_PID_Enable(&Speed_PID_Right);
@@ -103,7 +103,7 @@ int main() {
   add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
   add_task(Encoder_Update, 1);
   add_task(motor_print_data, 30);
-  add_task(change_pid_target_speed, 1);
+  // add_task(change_pid_target_speed, 1);
   USART1_Init();
   // printf("hello world\r\n");
 
