@@ -57,7 +57,7 @@ u8 IIC_Wait_Ack(void) {
   u8 ucErrTime = 0;
   SDA_IN(); // SDA设置为输入
   IIC_SDA = 1;
-  delay_us(1);
+  delay_us(3);
   IIC_SCL = 1;
   delay_us(1);
   while (READ_SDA) {

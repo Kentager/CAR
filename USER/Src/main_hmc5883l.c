@@ -52,8 +52,8 @@ void JY61P_Test_Example(void) {
     // 读取传感器数据
     hmc5883l_single_measurement();
     delay_ms(10);
-    float azimuth = HMC5883L_Get_Azimuth();
-    printf("Azimuth: %6.3f\r\n", azimuth);
+    // float azimuth = HMC5883L_Get_Azimuth();
+    // printf("Azimuth: %6.3f\r\n", azimuth);
     JY61p_Get(&acc_data, &euler_data, &gyro_data);
 
     // 打印加速度数据 (单位: g)
