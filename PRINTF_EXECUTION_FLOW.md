@@ -100,7 +100,7 @@
 │  ├── if (head == tail) return;  // 空队列检查                     │
 │  │                                                               │
 │  ├── 计算连续可读长度 (处理循环缓冲区)                            │
-│  │   ├── if (head > tail)                                        │
+│  │   ├── if (head > tail)          V                              │
 │  │   │   └── data_count = head - tail;  // 情况 A: 未回绕         │
 │  │   │                                                           │
 │  │   └── else                                                    │

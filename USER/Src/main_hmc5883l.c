@@ -52,24 +52,27 @@ void JY61P_Test_Example(void) {
     // 读取传感器数据
     hmc5883l_single_measurement();
     delay_ms(10);
-    float azimuth = HMC5883L_Get_Azimuth();
-    printf("Azimuth: %6.3f\r\n", azimuth);
     JY61p_Get(&acc_data, &euler_data, &gyro_data);
+    // 从 JY61P 获取欧拉角并转换为弧度
+    float pitch_rad = euler_data.Pitch * M_PI / 180.0f;
+    float roll_rad = euler_data.Roll * M_PI / 180.0f;
+    float azimuth = HMC5883L_Get_Azimuth(pitch_rad, roll_rad);
+    printf("Azimuth: %6.3f\r\n", azimuth);
 
-    // 打印加速度数据 (单位: g)
-    printf("加速度: %.2f, %.2f, %.2f | ", acc_data.Ax, acc_data.Ay,
+    // 打印加速度数据 (单位：g)
+    printf("加速度：%.2f, %.2f, %.2f | ", acc_data.Ax, acc_data.Ay,
            acc_data.Az);
 
-    // 打印角速度数据 (单位: °/s)
-    printf("角速度: %.2f, %.2f, %.2f | ", gyro_data.Gx, gyro_data.Gy,
+    // 打印角速度数据 (单位：°/s)
+    printf("角速度：%.2f, %.2f, %.2f | ", gyro_data.Gx, gyro_data.Gy,
            gyro_data.Gz);
 
-    // 打印欧拉角数据 (单位: °)
-    printf("欧拉角: %.2f, %.2f, %.2f\r\n", euler_data.Roll, euler_data.Pitch,
+    // 打印欧拉角数据 (单位：°)
+    printf("欧拉角：%.2f, %.2f, %.2f\r\n", euler_data.Roll, euler_data.Pitch,
            euler_data.Yaw);
 
-    // 延时500ms
-    delay_ms(500);
+    // 延时 500ms
+    delay_ms(50);
   }
 }
 int main(void) {

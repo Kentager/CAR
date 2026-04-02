@@ -836,8 +836,8 @@ int mpu_init(void) {
   if (mpu_configure_fifo(0))
     return -1;
 
-  //    if (int_param)
-  //        reg_int_cb(int_param);
+    //    if (int_param)
+    //        reg_int_cb(int_param);
 
 #ifdef AK89xx_SECONDARY
   setup_compass();

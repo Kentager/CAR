@@ -194,7 +194,7 @@ uint8_t JY61p_Check(void) {
  ***********************************************************/
 void JY61p_Get(Acc_Param *a, EulerAngle_Param *p, Gyro_Param *v) {
   uint8_t tmp[30];
-  if (JY61p_Read(JY61p_DeviceAddr, JY61p_AX, 24, tmp) == 0) {
+  if (JY61p_Read(JY61p_DeviceAddr, JY61p_AX, 12, tmp) == 0) {
     // 读取成功，继续处理数据
   } else {
     // 读取失败，处理错误（例如：返回默认值或记录错误日志）
@@ -225,7 +225,7 @@ void JY61p_Get(Acc_Param *a, EulerAngle_Param *p, Gyro_Param *v) {
   //   ((short)(tmp[17]<<8) | tmp[16]);
 
   /**** 欧拉角 ****/
-  p->Roll = ((short)(tmp[19] << 8) | tmp[18]) / 32768.00f * 180;
-  p->Pitch = ((short)(tmp[21] << 8) | tmp[20]) / 32768.00f * 180;
-  p->Yaw = ((short)(tmp[23] << 8) | tmp[22]) / 32768.00f * 180;
+  // p->Roll = ((short)(tmp[19] << 8) | tmp[18]) / 32768.00f * 180;
+  // p->Pitch = ((short)(tmp[21] << 8) | tmp[20]) / 32768.00f * 180;
+  // p->Yaw = ((short)(tmp[23] << 8) | tmp[22]) / 32768.00f * 180;
 }

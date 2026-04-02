@@ -97,7 +97,7 @@ void hmc5883l_single_measurement(void);
 void set_sensor_gain(HMC5883L_Gain_t gain);
 void hmc5883l_read_data(HMC5883L_Data_t *data);
 uint8_t i2c_master_read_data(uint8_t reg_addr, uint8_t *data, uint8_t length);
-float HMC5883L_Get_Azimuth(void);
+float HMC5883L_Get_Azimuth(float pitch, float roll);
 uint8_t hmc5883l_read_id_info(void);
 HMC5883L_Data_t *hmc5883l_get_data(void);
 int hmc5883l_calibrate(uint16_t samples);

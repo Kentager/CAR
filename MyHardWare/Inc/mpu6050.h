@@ -81,7 +81,7 @@ typedef struct {
   volatile float yaw;
   float Initial_Attitude[3];
 } EulerAngles;
-
+extern int16_t raw_data[6];
 extern EulerAngles MPU_Attitude;
 u8 MPU_Init(void);                                  // 初始化MPU6050
 u8 MPU_Write_Len(u8 addr, u8 reg, u8 len, u8 *buf); // IIC连续写

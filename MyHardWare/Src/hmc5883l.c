@@ -245,19 +245,46 @@ uint8_t hmc5883l_read_id_info(void) {
     return 1;
   }
 }
-float HMC5883L_Get_Azimuth(void) {
+/**
+ * @brief 计算方位角（0-360度）
+ * @param pitch 俯仰角(弧度)
+ * @param roll 横滚角(弧度)
+ * @return 方位角(度)
+ */
+float HMC5883L_Get_Azimuth(float pitch, float roll) {
   // 计算方位角（0-360度）
   hmc5883l_read_data(&HMC5883L_Data);
-  float azimuth =
-      atan2((float)HMC5883L_Data.y, (float)HMC5883L_Data.x) * 180.0 / M_PI;
 
-  // 将角度转换到0-360度范围
-  if (azimuth < 0) {
-    azimuth += 360.0;
+  // 将磁力计数据从机体坐标系转换到地理坐标系
+  float sin_roll = sinf(roll);
+  float cos_roll = cosf(roll);
+  float sin_pitch = sinf(pitch);
+  float cos_pitch = cosf(pitch);
+  // printf("sin_pitch:%f, cos_pitch:%f, sin_roll:%f, cos_roll:%f\r\n",
+  // sin_pitch,
+  //        cos_pitch, sin_roll, cos_roll);
+  // printf("x:%.6f,y:%.6f,z:%.6f\r\n", HMC5883L_Data.x, HMC5883L_Data.y,
+  //  HMC5883L_Data.z);
+  // 旋转后的磁场分量
+  float hx = HMC5883L_Data.x * cos_pitch +
+             HMC5883L_Data.y * sin_pitch * sin_roll +
+             HMC5883L_Data.z * sin_pitch * cos_roll;
+  float hy = HMC5883L_Data.y * cos_roll - HMC5883L_Data.z * sin_roll;
+  // printf("hx:%.6f,hy:%.6f\r\n", hx, hy);
+  // 计算航向角(弧度)
+  float heading_rad = atan2f(hy, hx);
+
+  // 转换为角度
+  float heading_deg = heading_rad * 180.0f / M_PI;
+
+  // 确保航向角在0-360度范围内
+  if (heading_deg < 0) {
+    heading_deg += 360.0f;
   }
 
-  return azimuth;
+  return heading_deg;
 }
+
 /**
  * @brief 磁力计校准
  * @note 通过收集不同方向的数据计算校准参数

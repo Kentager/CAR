@@ -59,7 +59,7 @@ u8 IIC_Wait_Ack(void) {
   IIC_SDA = 1;
   delay_us(1);
   IIC_SCL = 1;
-  delay_us(1);
+  delay_us(5);
   while (READ_SDA) {
     ucErrTime++;
     if (ucErrTime > 250) {

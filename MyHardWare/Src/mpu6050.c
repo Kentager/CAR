@@ -11,6 +11,7 @@ static int16_t gx, gy, gz;
 static int16_t temperature;
 static float gx_dps, gy_dps, gz_dps;
 static float ax_dps, ay_dps, az_dps;
+int16_t raw_data[6];
 EulerAngles MPU_Attitude;
 
 // 初始化MPU6050
@@ -87,7 +88,7 @@ u8 MPU_Set_Rate(u16 rate) {
     rate = 4;
   data = 1000 / rate - 1;
   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
-  return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
+  return MPU_Set_LPF(rate / 2); // 自动设置LPF为采样率的一半
 }
 
 // 得到温度值
@@ -127,6 +128,7 @@ u8 MPU_Get_Gyroscope(void) {
 u8 MPU_Get_Accelerometer(void) {
   u8 buf[6], res;
   res = MPU_Read_Len(MPU_ADDR, MPU_ACCEL_XOUTH_REG, 6, buf);
+
   if (res == 0) {
     ax = ((u16)buf[0] << 8) | buf[1];
     ay = ((u16)buf[2] << 8) | buf[3];
@@ -153,6 +155,13 @@ u8 MPU_Updata(void) {
   ax_dps = ax * (2.0f / 32768.0f); // 或者 ax * 0.061035f
   ay_dps = ay * (2.0f / 32768.0f);
   az_dps = az * (2.0f / 32768.0f);
+  raw_data[0] = ax;
+  raw_data[1] = ay;
+  raw_data[2] = az;
+  raw_data[3] = gx;
+  raw_data[4] = gy;
+  raw_data[5] = gz;
+
   return 0;
 }
 void MPU_Proc(void) {
@@ -237,9 +246,9 @@ u8 MPU_Read_Len(u8 addr, u8 reg, u8 len, u8 *buf) {
   IIC_Wait_Ack();                 // 等待应答
   while (len) {
     if (len == 1)
-      *buf = IIC_Read_Byte(0); // 读数据,发送nACK
+      *buf = IIC_Read_Byte(1); // 读数据,发送nACK
     else
-      *buf = IIC_Read_Byte(1); // 读数据,发送ACK
+      *buf = IIC_Read_Byte(0); // 读数据,发送ACK
     len--;
     buf++;
   }
