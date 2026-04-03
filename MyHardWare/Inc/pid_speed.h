@@ -45,7 +45,9 @@ typedef struct {
  */
 typedef struct {
   // 配置参数
-  float target_speed_m_s;  // 目标线速度 (m/s)
+  float target_speed_m_s; // 目标线速度 (m/s)
+  float angle_deviation_speed_m_s; // 角度偏差速度 (m/s)
+  uint8_t angle_deviation_enabled; // 角度偏差速度启用标志
   Encoder_Id_e encoder_id; // 关联的编码器ID
   Motor_Id_e motor_id;     // 关联的电机ID
 
@@ -106,5 +108,23 @@ void Speed_PID_Disable(Speed_PID_Controller_t *controller);
  * @note 应在10ms控制循环中调用
  */
 void Speed_PID_Update(Speed_PID_Controller_t *controller);
+
+/**
+ * @brief 更改输入速度环PID控制器的目标速度（是否使用角度环）
+ * @param controller 控制器实例指针
+ * @param enabled 是否启用角度偏差速度(1:启动 0:关闭)
+ * @note 状态机中状态更新调用
+ */
+void Speed_PID_Deviation_Change(Speed_PID_Controller_t *controller,
+                                uint8_t enabled);
+
+/**
+ * @brief 更改输入速度环PID控制器的目标速度（是否使用角度环）
+ * @param controller 控制器实例指针
+ * @param angle_deviation_speed_m_s 角度偏差速度 (m/s)
+ * @note 在PID速度角度环中周期调用
+ */
+void Speed_PID_Angle_Deviation_Speed_Change(Speed_PID_Controller_t *controller, float angle_deviation_speed_m_s);
+
 
 #endif /* PID_SPEED_H */
