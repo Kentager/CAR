@@ -63,7 +63,7 @@ typedef enum {
 
 // 测速相关参数
 #define ENCODER_SAMPLE_PERIOD_MS 5 // 采样周期 (ms)
-#define ENCODER_SAMPLE_FREQ_HZ 1000  // 采样频率 (Hz) (Hz)
+#define ENCODER_SAMPLE_FREQ_HZ 200  // 采样频率 (Hz) (Hz)
 
 // 速度计算相关
 #define RPM_TO_RPS (1.0f / 60.0f)             // RPM转RPS

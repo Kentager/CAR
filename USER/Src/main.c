@@ -29,7 +29,6 @@ void speed_control_task(void) {
   // 更新左轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Left);
 
-
   Motor_Update(MOTOR_LEFT);
   Motor_Update(MOTOR_RIGHT);
   // printf("finlish//\r\n");
@@ -49,14 +48,18 @@ void motor_test(void) {
   // 更新电机状态，将配置应用到硬件
 }
 void motor_print_data(void) {
-    // Encoder_Data_t encoder_data;
-    // encoder_data = Encoder_GetData(ENCODER_LEFT);
-    printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s, Speed_PID_Right.current_speed_m_s,Speed_PID_Left.current_speed_m_s);
-    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    // printf("DATA,%.2f,%.2f\n", Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s);
-    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // printf("\r\n");
+  // Encoder_Data_t encoder_data;
+  // encoder_data = Encoder_GetData(ENCODER_LEFT);
+  printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s,
+         Speed_PID_Right.current_speed_m_s, Speed_PID_Left.current_speed_m_s);
+  // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance:
+  // %.2fm\r\n",encoder_data.last_count,
+  // encoder_data.speed_m_s,encoder_data.total_distance); encoder_data =
+  // Encoder_GetData(ENCODER_RIGHT); printf("DATA,%.2f,%.2f\n",
+  // Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s); printf("Right
+  // Encoder - Count: %d, speed_m_s:%.2f, total_distance:
+  // %.2fm\r\n",encoder_data.last_count,
+  // encoder_data.speed_m_s,encoder_data.total_distance); printf("\r\n");
 }
 void change_pid_target_speed(void) {
   uint32_t count = GetSysTick();
@@ -64,40 +67,14 @@ void change_pid_target_speed(void) {
     if (Speed_PID_Right.target_speed_m_s == 0.1f) {
       Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
       Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
-    }
-    else if(Speed_PID_Right.target_speed_m_s == -0.1f) {
+    } else if (Speed_PID_Right.target_speed_m_s == -0.1f) {
       Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
       Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
     }
   }
-  
 }
-void motor_print_data(void) {
-    // Encoder_Data_t encoder_data;
-    // encoder_data = Encoder_GetData(ENCODER_LEFT);
-    printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s, Speed_PID_Right.current_speed_m_s,Speed_PID_Left.current_speed_m_s);
-    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    // printf("DATA,%.2f,%.2f\n", Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s);
-    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // printf("\r\n");
-}
-void change_pid_target_speed(void) {
-  uint32_t count = GetSysTick();
-  if (count % 2000 == 0) {
-    if (Speed_PID_Right.target_speed_m_s == 0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
-    }
-    else if(Speed_PID_Right.target_speed_m_s == -0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
-    }
-  }
-  
-}
-int main() {
 
+int main() {
 
   led_Init();
   LED_Off();
@@ -151,7 +128,6 @@ int main() {
 
   uint32_t count = 0;
 
-  uint32_t count = 0;
   // motor_test();
   // Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
   // Motor_Update( MOTOR_LEFT);
@@ -160,9 +136,6 @@ int main() {
   // 更新电机状态，将配置应用到硬件
   while (1) {
 
-    
-
-    
     // speed_control_task();
     // GPIO_ToggleBits(GPIOC, 13);
     Task_Scheduler();
@@ -196,7 +169,5 @@ int main() {
     // encoder_data.speed_m_s,encoder_data.total_distance);
     //  printf("\r\n");
     // count++;
-
-
   }
 }
