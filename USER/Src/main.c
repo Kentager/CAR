@@ -125,8 +125,8 @@ int main() {
                  SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
                  SPEED_PID_KD_DEFAULT);
 
-  // // 设置目标速度（例如0.5m/s）
-  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.05f);
+  // 设置目标速度（例如0.5m/s）
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
   Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1f);
 
   // // 启用速度环PID控制
