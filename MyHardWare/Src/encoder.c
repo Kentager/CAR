@@ -27,8 +27,7 @@ Encoder_Class_t Encoder_BL = {0};
 #else
 // 双驱模式编码器实例
 static Encoder_Class_t Encoder_Right = {
-    ._data = {
-              .last_count = 0,
+    ._data = {.last_count = 0,
               .delta_count = 0,
               .speed_rpm = 0.0f,
               .speed_rps = 0.0f,
@@ -42,11 +41,10 @@ static Encoder_Class_t Encoder_Right = {
               .last_update_time = 0},
     ._initialized = 0,
     .id = ENCODER_RIGHT,
-    .tim = TIM2};
+    .tim = TIM5};
 
 static Encoder_Class_t Encoder_Left = {
-    ._data = {
-              .last_count = 0,
+    ._data = {.last_count = 0,
               .delta_count = 0,
               .speed_rpm = 0.0f,
               .speed_rps = 0.0f,
@@ -60,7 +58,7 @@ static Encoder_Class_t Encoder_Left = {
               .last_update_time = 0},
     ._initialized = 0,
     .id = ENCODER_LEFT,
-    .tim = TIM5}; // 修改为 TIM5
+    .tim = TIM2}; // 修改为 TIM5
 #endif
 
 /* ==================== 私有函数：硬件初始化 ==================== */
@@ -353,18 +351,15 @@ void Encoder_Update(void) {
     instance->_data.total_count += delta;
 
     // // 计算速度
-    // instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR / dt_seconds;
-    // instance->_data.speed_rpm = instance->_data.speed_rps / RPM_TO_RPS;
-    // instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
-    // instance->_data.speed_m_s =
-    //     instance->_data.speed_rad_s * (instance->_data.wheel_diameter / 2.0f);
+    // instance->_data.speed_rps = (float)delta / (float)ENCODER_PPR /
+    // dt_seconds; instance->_data.speed_rpm = instance->_data.speed_rps /
+    // RPM_TO_RPS; instance->_data.speed_rad_s = instance->_data.speed_rps
+    // * 6.28318f; instance->_data.speed_m_s =
+    //     instance->_data.speed_rad_s * (instance->_data.wheel_diameter
+    //     / 2.0f);
 
     // // 更新总里程
     // instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
-
-
-
-
 
     instance->_data.speed_rps = (float)delta / 28000.0f / dt_seconds;
 
@@ -372,17 +367,12 @@ void Encoder_Update(void) {
 
     instance->_data.speed_rad_s = instance->_data.speed_rps * 6.28318f;
 
-    instance->_data.speed_m_s =instance->_data.speed_rad_s * (0.065f / 2.0f);
+    instance->_data.speed_m_s = instance->_data.speed_rad_s * (0.065f / 2.0f);
 
     // 更新总里程
     // instance->_data.total_distance += instance->_data.speed_m_s * dt_seconds;
-    instance->_data.total_distance += (float)delta / 28000.0f * 3.14159f * 0.065f;
-
-
-
-
-
-
+    instance->_data.total_distance +=
+        (float)delta / 28000.0f * 3.14159f * 0.065f;
 
     // 判断方向
     if (delta > 0) {
@@ -399,7 +389,6 @@ void Encoder_Update(void) {
 #endif
 }
 Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
-  Encoder_Update(); // 确保数据是最新的
   Encoder_Data_t empty_data = {0};
 
   // 参数检查

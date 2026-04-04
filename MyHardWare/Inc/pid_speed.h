@@ -7,9 +7,9 @@
 
 /* ==================== 速度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define SPEED_PID_KP_DEFAULT 2.0f // 比例系数
-#define SPEED_PID_KI_DEFAULT 0.5f // 积分系数
-#define SPEED_PID_KD_DEFAULT 0.1f // 微分系数
+#define SPEED_PID_KP_DEFAULT 36000.0f  // 比例系数
+#define SPEED_PID_KI_DEFAULT 500000.0f // 积分系数
+#define SPEED_PID_KD_DEFAULT 100.0f    // 微分系数
 
 // 采样周期 (ms)
 #define SPEED_PID_SAMPLE_PERIOD_MS 10
