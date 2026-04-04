@@ -156,12 +156,12 @@ void hmc5883l_init(void) {
   // 单次装换时间最快在160hz
   delay_ms(10);
   // 初始化默认校准参数
-  HMC5883L_Data.offset[0] = 0;
-  HMC5883L_Data.offset[1] = 0;
-  HMC5883L_Data.offset[2] = 0;
-  HMC5883L_Data.scale[0] = 1.0f;
-  HMC5883L_Data.scale[1] = 1.0f;
-  HMC5883L_Data.scale[2] = 1.0f;
+  HMC5883L_Data.offset[0] = -0.177f;
+  HMC5883L_Data.offset[1] = -0.264f;
+  HMC5883L_Data.offset[2] = -0.773f;
+  HMC5883L_Data.scale[0] = 0.706f;
+  HMC5883L_Data.scale[1] = 0.683f;
+  HMC5883L_Data.scale[2] = 8.667f;
 }
 
 /**
@@ -190,18 +190,18 @@ void hmc5883l_read_data(HMC5883L_Data_t *data) {
   }
   // printf("data 1:%d,data 2:%d,data 3:%d,data 4:%d,data 5:%d,data 6:%d\r\n",
   //       temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]);
-  data->x = (int16_t)((uint16_t)temp[0] << 8 | temp[1]);
-  data->z = (int16_t)((uint16_t)temp[2] << 8 | temp[3]);
-  data->y = (int16_t)((uint16_t)temp[4] << 8 | temp[5]);
+  data->raw_data[0] = (int16_t)((uint16_t)temp[0] << 8 | temp[1]);
+  data->raw_data[2] = (int16_t)((uint16_t)temp[2] << 8 | temp[3]);
+  data->raw_data[1] = (int16_t)((uint16_t)temp[4] << 8 | temp[5]);
   /*转换为高斯单位*/
-  data->x = data->x / HMC5883L_GAIN;
-  data->y = data->y / HMC5883L_GAIN;
-  data->z = data->z / HMC5883L_GAIN;
+  data->x = data->raw_data[0] / HMC5883L_GAIN;
+  data->y = data->raw_data[1] / HMC5883L_GAIN;
+  data->z = data->raw_data[2] / HMC5883L_GAIN;
 
   /*应用硬铁/软铁补偿*/
-  data->x = (data->x - HMC5883L_Data.offset[0]) * HMC5883L_Data.scale[0];
-  data->y = (data->y - HMC5883L_Data.offset[1]) * HMC5883L_Data.scale[1];
-  data->z = (data->z - HMC5883L_Data.offset[2]) * HMC5883L_Data.scale[2];
+  // data->x = (data->x - HMC5883L_Data.offset[0]) * HMC5883L_Data.scale[0];
+  // data->y = (data->y - HMC5883L_Data.offset[1]) * HMC5883L_Data.scale[1];
+  // data->z = (data->z - HMC5883L_Data.offset[2]) * HMC5883L_Data.scale[2];
 }
 
 /**
@@ -284,6 +284,24 @@ float HMC5883L_Get_Azimuth(float pitch, float roll) {
 
   return heading_deg;
 }
+float HMC5883L_Get_Azimuth2(void) {
+  // 读取磁力计数据
+  hmc5883l_read_data(&HMC5883L_Data);
+  
+  // 假设载体处于水平状态，直接使用x和y分量计算航向角
+  // 计算航向角(弧度)
+  float heading_rad = atan2f(HMC5883L_Data.y, HMC5883L_Data.x);
+  
+  // 转换为角度
+  float heading_deg = heading_rad * 180.0f / M_PI;
+  
+  // 确保航向角在0-360度范围内
+  if (heading_deg < 0) {
+    heading_deg += 360.0f;
+  }
+  
+  return heading_deg;
+}
 
 /**
  * @brief 磁力计校准
@@ -300,7 +318,8 @@ int hmc5883l_calibrate(uint16_t samples) {
     hmc5883l_single_measurement();
     delay_ms(10);
     hmc5883l_read_data(&temp_data);
-
+    if(i%5==0)
+      printf("x:%6.3f,y:%6.3f,z:%6.3f\r\n",temp_data.x,temp_data.y,temp_data.z);
     // 更新最小值和最大值
     if (i == 0) {
       x_min = x_max = temp_data.x;

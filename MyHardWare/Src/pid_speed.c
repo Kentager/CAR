@@ -151,7 +151,7 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
   // 计算当前误差 e(k)
   // float error = controller->pid_state.target_value -
   //               controller->current_speed_m_s +
-  //               (controller == &Speed_PID_Right
+  //               (controller == &Speed_PID_Left
   //                    ? (controller->angle_deviation_enabled == 1
   //                           ? controller->angle_deviation_speed_m_s
   //                           : 0.0)
@@ -162,8 +162,8 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
 
   float error =
       controller->pid_state.target_value - controller->current_speed_m_s
-                                           +(controller->angle_deviation_enabled == 1? controller->angle_deviation_speed_m_s: 0.0);
-
+                                           + (controller->angle_deviation_enabled == 1? controller->angle_deviation_speed_m_s: 0.0);
+  
   // 增量式PID算法
   // Δu(k) = Kp·[e(k)-e(k-1)] + Ki·e(k)·dt + Kd·[e(k)-2e(k-1)+e(k-2)]/dt
   float delta_u =

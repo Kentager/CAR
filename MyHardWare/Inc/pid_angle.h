@@ -26,7 +26,7 @@
 
 /* ==================== 角度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define ANGLE_PID_KP_DEFAULT 2.0f // 比例系数
+#define ANGLE_PID_KP_DEFAULT 0.0004f // 比例系数
 #define ANGLE_PID_KI_DEFAULT 0.0f // 积分系数
 #define ANGLE_PID_KD_DEFAULT 0.0f // 微分系数
 

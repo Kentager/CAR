@@ -21,6 +21,7 @@
 // Deleted:extern Speed_PID_Controller_t Speed_PID_Left;  // 左轮速度PID控制器
 
 float yaw_angle = 0;
+float angle_set = 0.0;
 u8 MPU6050_DMP_Init(void) {
   u8 res = 0;
 
@@ -46,8 +47,9 @@ u8 MPU6050_DMP_ReadAttitude(void) {
     printf("读取MPU6050 DMP数据失败，错误码：%d\r\n", res);
     return res;
   }
-  yaw = HMC5883L_Get_Azimuth(pitch * M_PI / 180.0f, roll * M_PI / 180.0f);
-  printf("%.2f,%.2f,%.2f\r\n", pitch, roll, yaw);
+  // yaw = HMC5883L_Get_Azimuth(pitch * M_PI / 180.0f, roll * M_PI / 180.0f);
+  yaw=HMC5883L_Get_Azimuth2();
+  printf("%6.3f,%6.3f,%6.3f\r\n", pitch,roll,yaw);
   yaw_angle = yaw;
   return 0;
 }
@@ -69,6 +71,11 @@ void angle_control_task(void) {
   // //更新电机控制
   Motor_Update(MOTOR_RIGHT);
   Motor_Update(MOTOR_LEFT);
+}
+
+void angle_change(void) {
+  uint32_t count = GetSysTick();
+  angle_set = count % 2000 ? (angle_set == 350 ? 0 : angle_set + 30) : angle_set;
 }
 
 
@@ -109,21 +116,21 @@ int main() {
 
 
 
-  // 设置目标角度为0度（直线行驶）
-  Angle_PID_SetTargetAngle(&Angle_PID_Yaw, 0);
+  Angle_PID_SetTargetAngle(&Angle_PID_Yaw, 180);
+  Speed_PID_Deviation_Change(&Speed_PID_Right, 0);
+  Speed_PID_Deviation_Change(&Speed_PID_Left, 0);
 
-  // 设置基础目标速度（根据实际情况调整）
-  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.5f);  // 右轮目标速度 0.5 m/s
-  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.5f);   // 左轮目标速度 0.5 m/s
-
-  // 启用角度偏差控制
-  Speed_PID_Deviation_Change(&Speed_PID_Right, 1);
-  Speed_PID_Deviation_Change(&Speed_PID_Left, 1);
-
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.02);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.02);
+  
       
   // //初始化MPU6050和HMC5883L
-  u8 res;
-  res = MPU6050_DMP_Init();
+  u8 res;res = MPU6050_DMP_Init();
+  while (res != 0) {
+    res = MPU6050_DMP_Init();
+    delay_ms(10);
+  }
+  
   hmc5883l_init();
   if (res != 0) {
     printf("MPU6050 DMP初始化失败！程序终止。\r\n");
@@ -140,7 +147,7 @@ int main() {
   add_task(angle_control_task, ANGLE_PID_SAMPLE_PERIOD_MS);
   add_task(Encoder_Update, 1);
   add_task(mpu6050_dmp_task, 10);
-
+  // add_task(angle_change, 1);
   while (1) {
     Task_Scheduler();
   }

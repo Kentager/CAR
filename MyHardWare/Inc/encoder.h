@@ -80,7 +80,7 @@ typedef enum {
 #define ENCODER_RIGHT_GPIO_CLK RCC_AHB1Periph_GPIOA
 #define ENCODER_RIGHT_AF GPIO_AF_TIM5
 
-/* ==================== 左编码器 (ENCODER_LEFT) - TIM5 ==================== */
+/* ==================== 左编码器 (ENCODER_LEFT) - TIM2 ==================== */
 // 双驱模式下使用 TIM2（32 位定时器）
 #define ENCODER_LEFT_TIM TIM2
 #define ENCODER_LEFT_TIM_CLK RCC_APB1Periph_TIM2

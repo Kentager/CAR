@@ -82,6 +82,7 @@ typedef enum {
 
 /*HMC5883L数据结构体*/
 typedef struct {
+  int16_t raw_data[3];
   float x;
   float y;
   float z;
@@ -100,5 +101,5 @@ uint8_t i2c_master_read_data(uint8_t reg_addr, uint8_t *data, uint8_t length);
 float HMC5883L_Get_Azimuth(float pitch, float roll);
 uint8_t hmc5883l_read_id_info(void);
 HMC5883L_Data_t *hmc5883l_get_data(void);
-int hmc5883l_calibrate(uint16_t samples);
+int hmc5883l_calibrate(uint16_t samples);float HMC5883L_Get_Azimuth2(void) ;
 #endif /* __QMC5883_H */
