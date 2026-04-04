@@ -29,8 +29,10 @@ void speed_control_task(void) {
   // 更新左轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Left);
 
+
   Motor_Update(MOTOR_LEFT);
   Motor_Update(MOTOR_RIGHT);
+  // printf("finlish//\r\n");
   // printf("finlish//\r\n");
 }
 
@@ -38,6 +40,9 @@ void motor_test(void) {
   Motor_SetSpeed(MOTOR_LEFT, 4000);  // 左电机正转，速度 4000
   Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
   Motor_SetDirection(MOTOR_LEFT, MOTOR_DIR_FORWARD);
+  Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
+  // Motor_Update(MOTOR_RIGHT);
+  // Motor_Update(MOTOR_LEFT);
   Motor_SetDirection(MOTOR_RIGHT, MOTOR_DIR_FORWARD);
   // Motor_Update(MOTOR_RIGHT);
   // Motor_Update(MOTOR_LEFT);
@@ -67,7 +72,32 @@ void change_pid_target_speed(void) {
   }
   
 }
+void motor_print_data(void) {
+    // Encoder_Data_t encoder_data;
+    // encoder_data = Encoder_GetData(ENCODER_LEFT);
+    printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s, Speed_PID_Right.current_speed_m_s,Speed_PID_Left.current_speed_m_s);
+    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
+    // encoder_data = Encoder_GetData(ENCODER_RIGHT);
+    // printf("DATA,%.2f,%.2f\n", Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s);
+    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
+    // printf("\r\n");
+}
+void change_pid_target_speed(void) {
+  uint32_t count = GetSysTick();
+  if (count % 2000 == 0) {
+    if (Speed_PID_Right.target_speed_m_s == 0.1f) {
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
+    }
+    else if(Speed_PID_Right.target_speed_m_s == -0.1f) {
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
+    }
+  }
+  
+}
 int main() {
+
 
   led_Init();
   LED_Off();
@@ -78,14 +108,18 @@ int main() {
   Encoder_Driver_Init();
 
   // // 初始化任务调度系统
+  // // 初始化任务调度系统
   Task_Init();
 
+  // // 初始化速度环PID控制器
+  // // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
   // // 初始化速度环PID控制器
   // // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
   Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
                  SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
                  SPEED_PID_KD_DEFAULT);
 
+  // // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
   // // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
   Speed_PID_Init(&Speed_PID_Left, ENCODER_LEFT, MOTOR_LEFT,
                  SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
@@ -96,6 +130,7 @@ int main() {
   Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1f);
 
   // // 启用速度环PID控制
+  // // 启用速度环PID控制
   Speed_PID_Enable(&Speed_PID_Right);
   Speed_PID_Enable(&Speed_PID_Left);
 
@@ -104,17 +139,28 @@ int main() {
   add_task(Encoder_Update, 1);
   add_task(motor_print_data, 30);
   // add_task(change_pid_target_speed, 1);
+  add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
+  add_task(Encoder_Update, 1);
+  add_task(motor_print_data, 30);
+  // add_task(change_pid_target_speed, 1);
   USART1_Init();
+  // printf("hello world\r\n");
   // printf("hello world\r\n");
 
   delay_init();
 
   uint32_t count = 0;
+
+  uint32_t count = 0;
   // motor_test();
+  // Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
+  // Motor_Update( MOTOR_LEFT);
   // Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
   // Motor_Update( MOTOR_LEFT);
   // 更新电机状态，将配置应用到硬件
   while (1) {
+
+    
 
     
     // speed_control_task();
@@ -125,7 +171,14 @@ int main() {
     // Motor_Update( MOTOR_RIGHT);
     // printf("in task//");
     // delay_ms(100);
+    Task_Scheduler();
+    // speed_control_task();
+    // Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
+    // Motor_Update( MOTOR_RIGHT);
+    // printf("in task//");
+    // delay_ms(100);
     // printf("this is %d:\r\n", count);
+    // Encoder_Update();
     // Encoder_Update();
     // encoder_data = Encoder_GetData(ENCODER_LEFT);
     // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance:
@@ -135,7 +188,15 @@ int main() {
     // speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count,
     // encoder_data.speed_m_s,encoder_data.total_distance);
     //  printf("\r\n");
+    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance:
+    // %.2fm\r\n",encoder_data.last_count,
+    // encoder_data.speed_m_s,encoder_data.total_distance); encoder_data =
+    // Encoder_GetData(ENCODER_RIGHT); printf("Right Encoder - Count: %d,
+    // speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count,
+    // encoder_data.speed_m_s,encoder_data.total_distance);
+    //  printf("\r\n");
     // count++;
+
 
   }
 }

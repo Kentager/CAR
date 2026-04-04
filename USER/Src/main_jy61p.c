@@ -283,7 +283,7 @@ void AK09911C_Test_Example(void) {
 void ak0911c_test(void) {
   u8 init_result;
 
-  printf("\r\n=== AK09911C 快速测试 ===\r\n");
+  // printf("\r\n=== AK09911C 快速测试 ===\r\n");
 
   // 初始化传感器
   init_result = AK09911C_Init();
@@ -331,7 +331,7 @@ int main(void) {
   printf("\r\n=== 传感器测试程序 ===\r\n");
 
   printf("1. JY61P 六轴 IMU 传感器\r\n");
-  printf("2. AK09911C 地磁传感器\r\n\r\n");
+  printf("2. AK09911C 地磁传感器\r\n");
 
   // 运行配置示例（可选）
   // JY61P_Config_Example();
