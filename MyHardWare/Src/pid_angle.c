@@ -110,9 +110,9 @@ void Angle_PID_Disable(Angle_PID_Controller_t *controller) {
  *       位置式PID公式: u(k) = Kp·e(k) + Ki·∫e(t)dt + Kd·de(t)/dt
  */
 float Angle_PID_Update(Angle_PID_Controller_t *controller,
-                       EulerAngle_Param *euler_angle) {
+                       float euler_angle) {
   // 参数检查
-  if (controller == NULL || !controller->enabled || euler_angle == NULL) {
+  if (controller == NULL || !controller->enabled) {
     return 0.0f;
   }
 
@@ -122,7 +122,7 @@ float Angle_PID_Update(Angle_PID_Controller_t *controller,
       (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
 
   // 获取当前角度（根据控制轴）
-  controller->current_angle_deg = get_axis_angle(euler_angle, controller->axis);
+  controller->current_angle_deg = euler_angle;
 
   // 计算角度偏差 e(k) = 目标值 - 当前值
   // 对于偏航角，通常目标为0度（直线行驶）

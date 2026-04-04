@@ -42,8 +42,24 @@ void Speed_PID_Init(Speed_PID_Controller_t *controller, Encoder_Id_e encoder_id,
   // 初始化其他参数
   controller->target_speed_m_s = 0.0f;
   controller->current_speed_m_s = 0.0f;
+  controller->angle_deviation_enabled = 0;
+  controller->angle_deviation_speed_m_s = 0.0f;
   controller->enabled = 0;
   controller->last_update_time = GetSysTick();
+
+   // 初始化滤波器
+  controller->filtered_speed_m_s = 0.0f;
+  for (int i = 0; i < SPEED_PID_BUFFER_SIZE; i++) {
+    controller->speed_buffer[i] = 0.0f;
+  }
+  controller->speed_buffer_index = 0;
+
+   // 初始化滤波器
+  controller->filtered_speed_m_s = 0.0f;
+  for (int i = 0; i < SPEED_PID_BUFFER_SIZE; i++) {
+    controller->speed_buffer[i] = 0.0f;
+  }
+  controller->speed_buffer_index = 0;
 }
 
 /**
@@ -118,13 +134,62 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
   float dt =
       (current_time - controller->last_update_time) / 1000.0f; // 转换为秒
 
+  // // 获取当前速度 (m/s)
+  // controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+
+
+
+  // // 获取当前速度 (m/s)
+  // controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+
+
+
   // 获取当前速度 (m/s)
-  controller->current_speed_m_s = get_encoder_speed_m_s(controller->encoder_id);
+  float raw_speed = get_encoder_speed_m_s(controller->encoder_id);
+  
+  // 滑动平均滤波
+  controller->speed_buffer[controller->speed_buffer_index] = raw_speed;
+  controller->speed_buffer_index = (controller->speed_buffer_index + 1) % SPEED_PID_BUFFER_SIZE;
+  
+  // 计算滤波后的速度
+  float sum = 0.0f;
+  for (int i = 0; i < SPEED_PID_BUFFER_SIZE; i++) {
+    sum += controller->speed_buffer[i];
+  }
+  controller->current_speed_m_s = sum / (float)SPEED_PID_BUFFER_SIZE;
+
+
+  float raw_speed = get_encoder_speed_m_s(controller->encoder_id);
+  
+  // 滑动平均滤波
+  controller->speed_buffer[controller->speed_buffer_index] = raw_speed;
+  controller->speed_buffer_index = (controller->speed_buffer_index + 1) % SPEED_PID_BUFFER_SIZE;
+  
+  // 计算滤波后的速度
+  float sum = 0.0f;
+  for (int i = 0; i < SPEED_PID_BUFFER_SIZE; i++) {
+    sum += controller->speed_buffer[i];
+  }
+  controller->current_speed_m_s = sum / (float)SPEED_PID_BUFFER_SIZE;
+
+
 
   // 计算当前误差 e(k)
-  float error =
-      controller->pid_state.target_value - controller->current_speed_m_s;
+  // float error = controller->pid_state.target_value -
+  //               controller->current_speed_m_s +
+  //               (controller == &Speed_PID_Left
+  //                    ? (controller->angle_deviation_enabled == 1
+  //                           ? controller->angle_deviation_speed_m_s
+  //                           : 0.0)
+  //                    : (controller->angle_deviation_enabled == 1
+  //                           ? -controller->angle_deviation_speed_m_s
+  //                           :0.0)
+  //                    );
 
+  float error =
+      controller->pid_state.target_value - controller->current_speed_m_s
+                                           + (controller->angle_deviation_enabled == 1? controller->angle_deviation_speed_m_s: 0.0);
+  
   // 增量式PID算法
   // Δu(k) = Kp·[e(k)-e(k-1)] + Ki·e(k)·dt + Kd·[e(k)-2e(k-1)+e(k-2)]/dt
   float delta_u =
@@ -137,14 +202,15 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
 
   // 计算当前输出: u(k) = u(k-1) + Δu(k)
   float output = controller->pid_state.last_output + delta_u;
-
+ 
+ 
   // 更新PID状态
   controller->last_update_time = current_time;
   controller->pid_state.last_error2 =
       controller->pid_state.last_error;       // e(k-2) = e(k-1)
   controller->pid_state.last_error = error;   // e(k-1) = e(k)
-  controller->pid_state.last_output = output; // u(k-1) = u(k)
-
+  controller->pid_state.last_output = output; // u(k-1) = u(k) // 放大100倍，便于电机控制
+  controller->pid_state.last_output = output; // u(k-1) = u(k) // 放大100倍，便于电机控制
   // 更新电机输出
   update_motor_output(controller, output);
 }
@@ -180,9 +246,11 @@ static void update_motor_output(Speed_PID_Controller_t *controller,
 
   // 根据输出符号确定方向
   Motor_Direction_e direction;
-  if (output > 100) { // 死区设置
+  if (output > 50) { // 死区设置
+  if (output > 50) { // 死区设置
     direction = MOTOR_DIR_FORWARD;
-  } else if (output < -100) {
+  } else if (output < -50) {
+  } else if (output < -50) {
     direction = MOTOR_DIR_BACKWARD;
   } else {
     direction = MOTOR_DIR_STOP;
@@ -216,32 +284,13 @@ static void pid_init(IncrementalPID_State_t *pid, float target, float kp, float 
   pid->last_output = 0.0f; // u(k-1)
 }
 
-/**
- * @brief PID控制算法实现
- * @param pid Pointer to the PID state structure
- * @param actual_value Actual measured value
- * @return Calculated output value
- */
-// static float pid_realize(PID_State_t *pid, float actual_value) {
-//   // 计算误差
-//   float error = pid->target_value - actual_value;
+void Speed_PID_Deviation_Change(Speed_PID_Controller_t *controller,
+                                uint8_t enabled) {
+  controller->angle_deviation_enabled = enabled;
+}
 
-//   // 积分项计算（带抗积分饱和）
-//   pid->integral_error += error;
-//   // 防止积分饱和（可选：可以添加积分限幅）
-//   // if (pid->integral_error > INTEGRAL_LIMIT) pid->integral_error =
-//   // INTEGRAL_LIMIT; if (pid->integral_error < -INTEGRAL_LIMIT)
-//   // pid->integral_error = -INTEGRAL_LIMIT;
-
-//   // 微分项计算
-//   float derivative = error - pid->last_error;
-
-//   // PID输出计算
-//   float output =
-//       pid->kp * error + pid->ki * pid->integral_error + pid->kd * derivative;
-
-//   // 更新上次误差
-//   pid->last_error = error;
-
-//   return output;
-// }
+void Speed_PID_Angle_Deviation_Speed_Change(Speed_PID_Controller_t *controller,
+                                            float angle_deviation_speed_m_s)
+{
+  controller->angle_deviation_speed_m_s = angle_deviation_speed_m_s;
+}

@@ -26,9 +26,9 @@
 
 /* ==================== 角度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define ANGLE_PID_KP_DEFAULT 2.0f // 比例系数
-#define ANGLE_PID_KI_DEFAULT 0.1f // 积分系数
-#define ANGLE_PID_KD_DEFAULT 0.5f // 微分系数
+#define ANGLE_PID_KP_DEFAULT 0.0004f // 比例系数
+#define ANGLE_PID_KI_DEFAULT 0.0f // 积分系数
+#define ANGLE_PID_KD_DEFAULT 0.0f // 微分系数
 
 // 采样周期 (ms)
 #define ANGLE_PID_SAMPLE_PERIOD_MS 5
@@ -88,7 +88,6 @@ typedef enum {
 extern Angle_PID_Controller_t Angle_PID_Yaw;   // 偏航角PID控制器
 extern Angle_PID_Controller_t Angle_PID_Pitch; // 俯仰角PID控制器
 extern Angle_PID_Controller_t Angle_PID_Roll;  // 横滚角PID控制器
-
 /* ==================== 全局函数声明 ==================== */
 
 /**
@@ -125,12 +124,12 @@ void Angle_PID_Disable(Angle_PID_Controller_t *controller);
 /**
  * @brief 执行角度环PID控制计算
  * @param controller 控制器实例指针
- * @param euler_angle 当前欧拉角（从JY61P获取）
+ * @param euler_angle 当前欧拉角（从主函数获得）
  * @return 补偿值（正值表示右侧需加速/左侧需减速，负值相反）
  * @note 应在5ms控制循环中调用
  */
 float Angle_PID_Update(Angle_PID_Controller_t *controller,
-                       EulerAngle_Param *euler_angle);
+                       float euler_angle);
 
 /**
  * @brief 重置角度环PID积分项

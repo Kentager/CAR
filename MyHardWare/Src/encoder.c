@@ -58,7 +58,7 @@ static Encoder_Class_t Encoder_Left = {
               .last_update_time = 0},
     ._initialized = 0,
     .id = ENCODER_LEFT,
-    .tim = TIM2}; // 修改为 TIM5
+    .tim = TIM2}; // 修改为 TIM2
 #endif
 
 /* ==================== 私有函数：硬件初始化 ==================== */
@@ -218,7 +218,7 @@ static void Encoder_TIM_Init(void) {
   // 使能定时器时钟
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 | RCC_APB1Periph_TIM5, ENABLE);
 
-  // TIM2 配置 (右编码器)
+  // TIM2 配置 (左编码器)
   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
   TIM_TimeBaseStructure.TIM_Period = 200000;
   TIM_TimeBaseStructure.TIM_Prescaler = 0;
@@ -243,17 +243,16 @@ static void Encoder_TIM_Init(void) {
                              TIM_ICPolarity_Rising);
   TIM_Cmd(TIM2, ENABLE);
 
-  // TIM5 配置 (左编码器)
+  // TIM5 配置 (右编码器)
   TIM_TimeBaseInit(TIM5, &TIM_TimeBaseStructure);
 
   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_1;
   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
-
   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
-
+  
   TIM_EncoderInterfaceConfig(TIM5, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
-                             TIM_ICPolarity_Rising);
+                             TIM_ICPolarity_Falling);
   TIM_Cmd(TIM5, ENABLE);
 #endif
   Encoder_Update();
@@ -326,12 +325,13 @@ void Encoder_Update(void) {
 #else
   // 双驱模式：处理 2 个编码器
   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
+  uint32_t current_count_array[2] = {(uint32_t)TIM_GetCounter(Encoder_Right.tim),(uint32_t)TIM_GetCounter(Encoder_Left.tim)};
   for (int i = 0; i < 2; i++) {
     uint32_t current_time = GetSysTick();
     Encoder_Class_t *instance = encoders[i];
 
     // 读取当前计数值 (支持 32 位定时器)
-    int32_t current_count = (int32_t)TIM_GetCounter(instance->tim);
+    int32_t current_count = current_count_array[i];
 
     // 计算增量并处理计数器溢出/下溢
     int32_t delta = current_count - instance->_data.last_count;
