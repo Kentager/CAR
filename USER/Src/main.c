@@ -29,7 +29,6 @@ void speed_control_task(void) {
   // 更新左轮速度环PID控制器
   Speed_PID_Update(&Speed_PID_Left);
 
-
   Motor_Update(MOTOR_LEFT);
   Motor_Update(MOTOR_RIGHT);
   // printf("finlish//\r\n");
@@ -49,55 +48,35 @@ void motor_test(void) {
   // 更新电机状态，将配置应用到硬件
 }
 void motor_print_data(void) {
-    // Encoder_Data_t encoder_data;
-    // encoder_data = Encoder_GetData(ENCODER_LEFT);
-    printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s, Speed_PID_Right.current_speed_m_s,Speed_PID_Left.current_speed_m_s);
-    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    // printf("DATA,%.2f,%.2f\n", Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s);
-    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // printf("\r\n");
+  // Encoder_Data_t encoder_data;
+  // encoder_data = Encoder_GetData(ENCODER_LEFT);
+  printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s,
+         Speed_PID_Right.current_speed_m_s, Speed_PID_Left.current_speed_m_s);
+  // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance:
+  // %.2fm\r\n",encoder_data.last_count,
+  // encoder_data.speed_m_s,encoder_data.total_distance); encoder_data =
+  // Encoder_GetData(ENCODER_RIGHT); printf("DATA,%.2f,%.2f\n",
+  // Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s); printf("Right
+  // Encoder - Count: %d, speed_m_s:%.2f, total_distance:
+  // %.2fm\r\n",encoder_data.last_count,
+  // encoder_data.speed_m_s,encoder_data.total_distance); printf("\r\n");
 }
 void change_pid_target_speed(void) {
   uint32_t count = GetSysTick();
   if (count % 2000 == 0) {
-    if (Speed_PID_Right.target_speed_m_s == 0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
-    }
-    else if(Speed_PID_Right.target_speed_m_s == -0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
-    }
-  }
-  
-}
-void motor_print_data(void) {
-    // Encoder_Data_t encoder_data;
-    // encoder_data = Encoder_GetData(ENCODER_LEFT);
-    printf("%.5f,%.5f,%.5f\n", Speed_PID_Right.target_speed_m_s, Speed_PID_Right.current_speed_m_s,Speed_PID_Left.current_speed_m_s);
-    // printf("Left Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // encoder_data = Encoder_GetData(ENCODER_RIGHT);
-    // printf("DATA,%.2f,%.2f\n", Speed_PID_Left.current_speed_m_s, encoder_data.speed_m_s);
-    // printf("Right Encoder - Count: %d, speed_m_s:%.2f, total_distance: %.2fm\r\n",encoder_data.last_count, encoder_data.speed_m_s,encoder_data.total_distance);
-    // printf("\r\n");
-}
-void change_pid_target_speed(void) {
-  uint32_t count = GetSysTick();
-  if (count % 2000 == 0) {
-    if (Speed_PID_Right.target_speed_m_s == 0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
-    }
-    else if(Speed_PID_Right.target_speed_m_s == -0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
+    if (Speed_PID_Right.target_speed_m_s == 0.2f) {
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1);
+      printf("targe:0.1\r\n");
+    } else if (Speed_PID_Right.target_speed_m_s == 0.1f) {
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.2f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.2f);
+      printf("target:0.2\r\n");
     }
   }
-  
 }
-int main() {
 
+int main() {
 
   led_Init();
   LED_Off();
@@ -126,8 +105,8 @@ int main() {
                  SPEED_PID_KD_DEFAULT);
 
   // // 设置目标速度（例如0.5m/s）
-  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.05f);
-  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1f);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.2f);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.2f);
 
   // // 启用速度环PID控制
   // // 启用速度环PID控制
@@ -135,23 +114,19 @@ int main() {
   Speed_PID_Enable(&Speed_PID_Left);
 
   // // 添加10ms周期的速度控制任务
+  add_task(Encoder_Update, 5);
   add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
-  add_task(Encoder_Update, 1);
-  add_task(motor_print_data, 30);
-  // add_task(change_pid_target_speed, 1);
-  add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
-  add_task(Encoder_Update, 1);
-  add_task(motor_print_data, 30);
-  // add_task(change_pid_target_speed, 1);
+  // add_task(motor_print_data, 30);
+  add_task(change_pid_target_speed, 1);
+
   USART1_Init();
-  // printf("hello world\r\n");
+  printf("hello world   1328432u42\r\n");
   // printf("hello world\r\n");
 
   delay_init();
 
   uint32_t count = 0;
 
-  uint32_t count = 0;
   // motor_test();
   // Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
   // Motor_Update( MOTOR_LEFT);
@@ -160,9 +135,6 @@ int main() {
   // 更新电机状态，将配置应用到硬件
   while (1) {
 
-    
-
-    
     // speed_control_task();
     // GPIO_ToggleBits(GPIOC, 13);
     Task_Scheduler();
@@ -171,7 +143,7 @@ int main() {
     // Motor_Update( MOTOR_RIGHT);
     // printf("in task//");
     // delay_ms(100);
-    Task_Scheduler();
+    // Task_Scheduler();
     // speed_control_task();
     // Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
     // Motor_Update( MOTOR_RIGHT);
@@ -196,7 +168,5 @@ int main() {
     // encoder_data.speed_m_s,encoder_data.total_distance);
     //  printf("\r\n");
     // count++;
-
-
   }
 }

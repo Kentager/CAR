@@ -7,10 +7,10 @@
 
 /* ==================== 速度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define SPEED_PID_KP_DEFAULT 36000.0f // 比例系数
+#define SPEED_PID_KP_DEFAULT 36000.0f  // 比例系数
 #define SPEED_PID_KI_DEFAULT 500000.0f // 积分系数
-#define SPEED_PID_KD_DEFAULT 100.0f // 微分系数
-#define SPEED_PID_BUFFER_SIZE 10 // 滤波缓冲区大小
+#define SPEED_PID_KD_DEFAULT 100.0f    // 微分系数
+#define SPEED_PID_BUFFER_SIZE 10       // 滤波缓冲区大小
 // 采样周期 (ms)
 #define SPEED_PID_SAMPLE_PERIOD_MS 5
 
@@ -45,9 +45,7 @@ typedef struct {
  */
 typedef struct {
   // 配置参数
-  float target_speed_m_s; // 目标线速度 (m/s)
-  float angle_deviation_speed_m_s; // 角度偏差速度 (m/s)
-  uint8_t angle_deviation_enabled; // 角度偏差速度启用标志
+  float target_speed_m_s;  // 目标线速度 (m/s)
   Encoder_Id_e encoder_id; // 关联的编码器ID
   Motor_Id_e motor_id;     // 关联的电机ID
 
@@ -56,9 +54,9 @@ typedef struct {
   uint8_t enabled;           // 是否启用
   uint32_t last_update_time; // 上次更新时间
 
-  float filtered_speed_m_s;  // 滤波后的速度
-  float speed_buffer[SPEED_PID_BUFFER_SIZE];     // 速度缓冲区（用于滑动平均滤波）
-  uint8_t speed_buffer_index; // 缓冲区索引
+  float filtered_speed_m_s;                  // 滤波后的速度
+  float speed_buffer[SPEED_PID_BUFFER_SIZE]; // 速度缓冲区（用于滑动平均滤波）
+  uint8_t speed_buffer_index;                // 缓冲区索引
 
   // PID参数和状态
   IncrementalPID_State_t pid_state;
@@ -108,23 +106,5 @@ void Speed_PID_Disable(Speed_PID_Controller_t *controller);
  * @note 应在10ms控制循环中调用
  */
 void Speed_PID_Update(Speed_PID_Controller_t *controller);
-
-/**
- * @brief 更改输入速度环PID控制器的目标速度（是否使用角度环）
- * @param controller 控制器实例指针
- * @param enabled 是否启用角度偏差速度(1:启动 0:关闭)
- * @note 状态机中状态更新调用
- */
-void Speed_PID_Deviation_Change(Speed_PID_Controller_t *controller,
-                                uint8_t enabled);
-
-/**
- * @brief 更改输入速度环PID控制器的目标速度（是否使用角度环）
- * @param controller 控制器实例指针
- * @param angle_deviation_speed_m_s 角度偏差速度 (m/s)
- * @note 在PID速度角度环中周期调用
- */
-void Speed_PID_Angle_Deviation_Speed_Change(Speed_PID_Controller_t *controller, float angle_deviation_speed_m_s);
-
 
 #endif /* PID_SPEED_H */

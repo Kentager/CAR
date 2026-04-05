@@ -22,6 +22,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
+#include "key.h"
 #include "led.h"
 #include "sdio_sd.h"
 #include "stm32f4xx.h"
@@ -34,6 +35,54 @@
 #include "usart.h"
 #include <stdint.h>
 #include <stdio.h>
+
+/* Private variables ---------------------------------------------------------*/
+volatile uint8_t Key_Pressed_Flag = 0; // 按键按下标志
+
+/**
+ * @brief  This function handles EXTI Line0 interrupts request.
+ * @param  None
+ * @retval None
+ */
+void EXTI0_IRQHandler(void) {
+  // 检查是否是EXTI Line0中断（PC0按键）
+  if (EXTI_GetITStatus(EXTI_Line0) != RESET) {
+    // 清除中断标志位
+    EXTI_ClearITPendingBit(EXTI_Line0);
+
+    // 设置按键标志位，在主循环中处理
+    Key_Pressed_Flag = 1;
+  }
+}
+/**
+ * @brief  初始化按键中断
+ * @param  None
+ * @retval None
+ */
+void KEY_Interrupt_Init(void) {
+  EXTI_InitTypeDef EXTI_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  // 使能SYSCFG时钟
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+
+  // 连接EXTI Line0到PC0引脚
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC, EXTI_PinSource0);
+
+  // 配置EXTI Line0
+  EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; // 下降沿触发
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+
+  // 配置NVIC
+  NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+}
 
 /** @addtogroup Template_Project
  * @{

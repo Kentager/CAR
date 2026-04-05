@@ -1,20 +1,21 @@
 #include "delay.h"
 #include "encoder.h" // 编码器模块
+#include "hmc5883l.h"
+#include "inv_mpu.h"
+#include "inv_mpu_dmp_motion_driver.h"
 #include "led.h"
 #include "motor.h"
-#include "pid_speed.h" // 添加速度环PID控制器头文件
+#include "mpu6050.h"
 #include "pid_angle.h"
+#include "pid_speed.h" // 添加速度环PID控制器头文件
 #include "rtc.h"
 #include "task.h" // 任务调度模块
 #include "ulog.h"
 #include "usart.h"
 #include <math.h>
-#include "inv_mpu_dmp_motion_driver.h"
-#include "mpu6050.h"
-#include "inv_mpu.h"
-#include "hmc5883l.h"
 #include <stdio.h>
 #include <stm32f4xx.h>
+
 
 // 删除外部声明，让pid_speed模块内部管理实例
 // Deleted:extern Speed_PID_Controller_t Speed_PID_Right; // 右轮速度PID控制器
@@ -48,8 +49,8 @@ u8 MPU6050_DMP_ReadAttitude(void) {
     return res;
   }
   // yaw = HMC5883L_Get_Azimuth(pitch * M_PI / 180.0f, roll * M_PI / 180.0f);
-  yaw=HMC5883L_Get_Azimuth2();
-  printf("%6.3f,%6.3f,%6.3f\r\n", pitch,roll,yaw);
+  yaw = HMC5883L_Get_Azimuth2();
+  printf("%6.3f,%6.3f,%6.3f\r\n", pitch, roll, yaw);
   yaw_angle = yaw;
   return 0;
 }
@@ -61,10 +62,12 @@ void mpu6050_dmp_task(void) {
 // 10ms周期的速度环PID控制任务
 void angle_control_task(void) {
   // //获取角度环的目标差速
-  float angle_deviation_speed_m_s = Angle_PID_Update(&Angle_PID_Yaw,yaw_angle);
+  float angle_deviation_speed_m_s = Angle_PID_Update(&Angle_PID_Yaw, yaw_angle);
   // //更新角度换的目标差速到速度环PID控制器
-  Speed_PID_Angle_Deviation_Speed_Change(&Speed_PID_Right, angle_deviation_speed_m_s);
-  Speed_PID_Angle_Deviation_Speed_Change(&Speed_PID_Left, angle_deviation_speed_m_s);
+  Speed_PID_Angle_Deviation_Speed_Change(&Speed_PID_Right,
+                                         angle_deviation_speed_m_s);
+  Speed_PID_Angle_Deviation_Speed_Change(&Speed_PID_Left,
+                                         angle_deviation_speed_m_s);
   // //更新速度环PID控制器
   Speed_PID_Update(&Speed_PID_Right);
   Speed_PID_Update(&Speed_PID_Left);
@@ -75,9 +78,9 @@ void angle_control_task(void) {
 
 void angle_change(void) {
   uint32_t count = GetSysTick();
-  angle_set = count % 2000 ? (angle_set == 350 ? 0 : angle_set + 30) : angle_set;
+  angle_set =
+      count % 2000 ? (angle_set == 350 ? 0 : angle_set + 30) : angle_set;
 }
-
 
 int main() {
 
@@ -91,8 +94,6 @@ int main() {
   // // 初始化任务调度系统
   Task_Init();
 
-
-
   // // 初始化速度环PID控制器
   // // 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
   Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
@@ -105,8 +106,8 @@ int main() {
                  SPEED_PID_KD_DEFAULT);
 
   // // 初始化角度环PID控制器
-  Angle_PID_Init(&Angle_PID_Yaw, ANGLE_AXIS_YAW,
-                 ANGLE_PID_KP_DEFAULT,ANGLE_PID_KI_DEFAULT , ANGLE_PID_KD_DEFAULT);
+  Angle_PID_Init(&Angle_PID_Yaw, ANGLE_AXIS_YAW, ANGLE_PID_KP_DEFAULT,
+                 ANGLE_PID_KI_DEFAULT, ANGLE_PID_KD_DEFAULT);
 
   // // 启用速度环PID控制
   Speed_PID_Enable(&Speed_PID_Right);
@@ -114,23 +115,19 @@ int main() {
   // // 启用角度环PID控制
   Angle_PID_Enable(&Angle_PID_Yaw);
 
-
-
   Angle_PID_SetTargetAngle(&Angle_PID_Yaw, 180);
-  Speed_PID_Deviation_Change(&Speed_PID_Right, 0);
-  Speed_PID_Deviation_Change(&Speed_PID_Left, 0);
 
   Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.02);
   Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.02);
-  
-      
+
   // //初始化MPU6050和HMC5883L
-  u8 res;res = MPU6050_DMP_Init();
+  u8 res;
+  res = MPU6050_DMP_Init();
   while (res != 0) {
     res = MPU6050_DMP_Init();
     delay_ms(10);
   }
-  
+
   hmc5883l_init();
   if (res != 0) {
     printf("MPU6050 DMP初始化失败！程序终止。\r\n");
