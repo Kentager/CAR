@@ -35,6 +35,7 @@ typedef struct {
 
 State_Machine_Typedef state_machine; // 状态机结构体
 static float yaw_angle = 0.0f;
+static uint32_t count = 0;
 //===========================================初始化函数=========================================//初始化驱动和配置
 void Start_Init(void) { // 初始化所有驱动
   // 初始化延时定时器
@@ -104,12 +105,12 @@ void State_Stop_Action(void) {      // 待机 无模式 设置速度为0 0
 
 void State_GO_Forward_Action(void) {    // 前进 角度环模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_ANGLE_LOOP); // 角度环模式
-  TargetSpeed_SetSpeed(0.3f, 0.3f); // 设置目标速度（左轮为0.12，右轮为0.12）
+  TargetSpeed_SetSpeed(0.25f, 0.25f); // 设置目标速度（左轮为0.12，右轮为0.12）
 }
 
 void State_Track_Right_Action(void) { // 向右循迹 循迹模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_TRACKING); // 循迹模式
-  TargetSpeed_SetSpeed(0.3f, 0.3f);   // 设置目标速度（左轮为0.2，右轮为0.2）
+  TargetSpeed_SetSpeed(0.2f, 0.2f);   // 设置目标速度（左轮为0.2，右轮为0.2）
 }
 
 void Reset_Action(void) {         // 无模式 重置初始角度
@@ -119,7 +120,7 @@ void Reset_Action(void) {         // 无模式 重置初始角度
 
 void State_Turn_Right_Action(void) {
   TargetSpeedMode_Set(MODE_ANGLE_LOOP);
-  TargetSpeed_SetSpeed(0.3f, 0.3f);
+  TargetSpeed_SetSpeed(0.25f, 0.25f);
 }
 //===========================================状态更新函数==========================================//检测状态更新，调用指令函数
 // 状态机状态更新（状态变化后调用相应的指令函数）
@@ -144,6 +145,7 @@ void State_Update(State_Machine_Typedef *state_machine) {
 }
 // 状态机状态计数更新（按照流程完成问题）
 void State_Count_Updata(State_Machine_Typedef *state_machine) {
+
   switch (state_machine->state_count) {
     //====================待机状态====================//
   case 0:
@@ -151,15 +153,19 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (Key_Pressed_Flag_0) {
       Key_Pressed_Flag_0 = 0; // 清除标志位
       state_machine->state_count++;
+      count = 0; // 清除计数器
     }
     break;
     //====================题目1====================//
   case 1:
-    Reset_Action();                              // 重置初始角度
+    Reset_Action();    // 重置初始角度
+    if (++count < 100) // 延时1000ms
+      return;
     TargetSpeed_SetTargetAngle(0.0f);            // 设置角度为0
     state_machine->state = STATE_GO_FORWARD;     // 前进
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       state_machine->state_count++;
+      count = 0; // 清除计数器
     }
     break;
   case 2:
@@ -171,11 +177,14 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     break;
     //====================题目2====================//
   case 3:
-    Reset_Action();                              // 重置初始角度
+    Reset_Action();    // 重置初始角度
+    if (++count < 100) // 延时1000ms
+      return;
     TargetSpeed_SetTargetAngle(0.0f);            // 设置角度为0
     state_machine->state = STATE_TURN_RIGNT;     // 前进
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       state_machine->state_count++;
+      count = 0; // 清除计数器
     }
     break;
   case 4:
@@ -249,7 +258,7 @@ int main(void) {
   add_task(Encoder_Update, 2);
   add_task(PID_Speed_Updata_Task, SPEED_PID_SAMPLE_PERIOD_MS);
   add_task(TargetSpeed_Update, 2);
-  add_task(Yaw_Angle_Data_filtering, 5);
+  add_task(Yaw_Angle_Data_filtering, 10);
   // add_task(hmc5883l_single_measurement, 5);
 
   while (1) {

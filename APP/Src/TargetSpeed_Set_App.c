@@ -4,6 +4,9 @@
 #include "pid_speed.h"
 TargetSpeed_t TargetSpeed;
 
+static float speed_left_x = 0.0f;
+static float speed_right_x = 0.0f;
+static uint32_t count = 0;
 void TargetSpeed_Init(void) {
   TargetSpeed.speed_left = 0.0f;
   TargetSpeed.speed_right = 0.0f;
@@ -31,8 +34,10 @@ void TargetSpeed_SetYawAngle(float yaw_angle) {
   TargetSpeed.yaw_angle = yaw_angle;
 }
 void TargetSpeed_Update(void) {
-  float speed_left_x = TargetSpeed.speed_left;
-  float speed_right_x = TargetSpeed.speed_right;
+  if (++count % 25 == 0) {
+    speed_left_x = TargetSpeed.speed_left;
+    speed_right_x = TargetSpeed.speed_right;
+  }
   float pid_angle_diff;
   float angle_diff;
   switch (TargetSpeed.mode) {
@@ -55,7 +60,7 @@ void TargetSpeed_Update(void) {
 
     // if (angle_diff < 1.0f && angle_diff > -1.0f)
     //   angle_diff = 0.0f;
-    pid_angle_diff = angle_diff / 100.0f * 0.1f;
+    pid_angle_diff = angle_diff / 100.0f * 0.15f;
     speed_left_x -= pid_angle_diff;
     speed_right_x += pid_angle_diff;
     break;
