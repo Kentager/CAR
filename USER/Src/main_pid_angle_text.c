@@ -47,10 +47,10 @@ u8 MPU6050_DMP_ReadAttitude(void) {
     printf("读取MPU6050 DMP数据失败，错误码：%d\r\n", res);
     return res;
   }
-  // yaw = HMC5883L_Get_Azimuth(pitch * M_PI / 180.0f, roll * M_PI / 180.0f);
-  yaw=HMC5883L_Get_Azimuth2();
+  // 只使用DMP输出的yaw角度，不使用磁力计修正
+  // yaw = HMC5883L_Get_Azimuth2(); // 已禁用磁力计修正
   printf("%6.3f,%6.3f,%6.3f\r\n", pitch,roll,yaw);
-  yaw_angle = yaw;
+  yaw_angle = yaw; // 直接使用DMP输出的yaw
   return 0;
 }
 

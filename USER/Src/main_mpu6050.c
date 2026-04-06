@@ -11,7 +11,7 @@
  */
 u8 MPU6050_Init(void) {
   u8 res = 0;
-  
+
   // 初始化MPU6050
   res = MPU_Init();
   if (res != 0) {
@@ -64,8 +64,8 @@ u8 MPU6050_ReadAttitude(void) {
   MPU_Proc();
 
   // 打印姿态数据
-  printf("俯仰角: %.2f | 横滚角: %.2f | 偏航角: %.2f\r\n", MPU_Attitude.pitch,
-         MPU_Attitude.roll, MPU_Attitude.yaw);
+  printf("%.2f ,%.2f ,%.2f\r\n", MPU_Attitude.pitch, MPU_Attitude.roll,
+         MPU_Attitude.yaw);
 
   return 0;
 }
@@ -100,12 +100,12 @@ int main(void) {
   // 主循环
   while (1) {
     // 读取并打印MPU6050原始数据
-    res = MPU6050_ReadRawData();
+    // res = MPU6050_ReadRawData();
 
     // 读取并打印MPU6050姿态数据
     res = MPU6050_ReadAttitude();
 
     // 延时
-    delay_ms(100);
+    delay_ms(5);
   }
 }

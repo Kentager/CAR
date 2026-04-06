@@ -104,7 +104,7 @@ void Angle_PID_Disable(Angle_PID_Controller_t *controller) {
 /**
  * @brief 执行角度环PID控制计算（位置式PID）
  * @param controller 控制器实例指针
- * @param euler_angle 当前欧拉角（从JY61P获取）
+ * @param euler_angle 当前欧拉角（从mpu6050获取）
  * @return 补偿值（正值表示右侧需加速/左侧需减速，负值相反）
  * @note 应在5ms控制循环中调用
  *       位置式PID公式: u(k) = Kp·e(k) + Ki·∫e(t)dt + Kd·de(t)/dt

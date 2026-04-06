@@ -97,7 +97,7 @@ char *RTC_GetNowTime(void) {
   RTC_GetDate(RTC_Format_BIN, &RTC_DateStructure);
 
   // 打印日期
-  sprintf(timeBuffer, "The Date :  Y:20%0.2d - M:%0.2d - D:%0.2d - W:%0.2d",
+  sprintf(timeBuffer, "TheDate:  Y:20%0.2d - M:%0.2d - D:%0.2d - W:%0.2d",
           RTC_DateStructure.RTC_Year, RTC_DateStructure.RTC_Month,
           RTC_DateStructure.RTC_Date, RTC_DateStructure.RTC_WeekDay);
   return timeBuffer;

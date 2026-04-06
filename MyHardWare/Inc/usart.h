@@ -4,6 +4,7 @@
 #include "ring_buffer.h"
 #include "stdio.h"
 #include "stm32f4xx.h"
+#include <stdint.h>
 
 /*----------------------USART 配置宏 ------------------------*/
 

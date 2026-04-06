@@ -250,7 +250,7 @@ static void Encoder_TIM_Init(void) {
   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
   TIM_IC_InitStructure.TIM_Channel = TIM_Channel_2;
   TIM_ICInit(TIM5, &TIM_IC_InitStructure);
-  
+
   TIM_EncoderInterfaceConfig(TIM5, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising,
                              TIM_ICPolarity_Falling);
   TIM_Cmd(TIM5, ENABLE);
@@ -325,7 +325,9 @@ void Encoder_Update(void) {
 #else
   // 双驱模式：处理 2 个编码器
   Encoder_Class_t *encoders[] = {&Encoder_Right, &Encoder_Left};
-  uint32_t current_count_array[2] = {(uint32_t)TIM_GetCounter(Encoder_Right.tim),(uint32_t)TIM_GetCounter(Encoder_Left.tim)};
+  uint32_t current_count_array[2] = {
+      (uint32_t)TIM_GetCounter(Encoder_Right.tim),
+      (uint32_t)TIM_GetCounter(Encoder_Left.tim)};
   for (int i = 0; i < 2; i++) {
     uint32_t current_time = GetSysTick();
     Encoder_Class_t *instance = encoders[i];
@@ -387,8 +389,10 @@ void Encoder_Update(void) {
     instance->_data.last_update_time = current_time;
   }
 #endif
+  // printf("encoder task tim:%d\r\n", GetSysTick());
 }
 Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
+  // Encoder_Update(); // 确保数据是最新的
   Encoder_Data_t empty_data = {0};
 
   // 参数检查

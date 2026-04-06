@@ -175,6 +175,7 @@ void MPU_Proc(void) {
   float pitch_g = MPU_Attitude.pitch + gx_dps * 0.005;
   float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
   float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+  
   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -

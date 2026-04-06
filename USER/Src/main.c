@@ -125,7 +125,7 @@ int main() {
   // printf("hello world\r\n");
 
   delay_init();
-
+  delay_ms(1000);
   uint32_t count = 0;
 
   // motor_test();

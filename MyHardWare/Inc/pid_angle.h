@@ -1,17 +1,18 @@
 /**
  * @file pid_angle.h
  * @brief 角度环PID控制头文件 - 智能车专用
- * @version 1.0
+ * @version 1.1
  * @date 2026-03-13
  *
  * @details 本文件实现角度环PID控制器（位置式PID）
  *          - 控制目标：车体姿态角度（度）
  *          - 算法：位置式PID，直接输出绝对控制量 u(k)
  *          - 更新频率：5ms（200Hz）
- *          - 反馈源：JY61P卡尔曼滤波后的姿态角
+ *          - 反馈源：MPU6050 DMP输出的姿态角（不使用磁力计修正）
  *          - 应用场景：直线行驶偏航修正、转向控制
  *
  * @note   位置式PID公式：u(k) = Kp·e(k) + Ki·∫e(t)dt + Kd·de(t)/dt
+ * @note   角度反馈源：使用 mpu_dmp_get_data() 直接获取的 yaw 角度
  */
 
 #ifndef __PID_ANGLE_H
@@ -23,18 +24,17 @@
 #include "task.h"
 #include <math.h>
 
-
 /* ==================== 角度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define ANGLE_PID_KP_DEFAULT 0.0004f // 比例系数
-#define ANGLE_PID_KI_DEFAULT 0.0f // 积分系数
-#define ANGLE_PID_KD_DEFAULT 0.0f // 微分系数
+#define ANGLE_PID_KP_DEFAULT 0.01f   // 比例系数
+#define ANGLE_PID_KI_DEFAULT 0.0f    // 积分系数
+#define ANGLE_PID_KD_DEFAULT 0.0008f // 微分系数
 
 // 采样周期 (ms)
 #define ANGLE_PID_SAMPLE_PERIOD_MS 5
 
 // 最大输出限制（角度偏差补偿值）
-#define ANGLE_PID_OUTPUT_MAX 1000.0f // 最大补偿值
+#define ANGLE_PID_OUTPUT_MAX 0.4f // 最大补偿值
 
 // 角度阈值（度）
 #define ANGLE_THRESHOLD_DEG 1.0f // 角度偏差阈值，小于此值不进行补偿
@@ -128,8 +128,7 @@ void Angle_PID_Disable(Angle_PID_Controller_t *controller);
  * @return 补偿值（正值表示右侧需加速/左侧需减速，负值相反）
  * @note 应在5ms控制循环中调用
  */
-float Angle_PID_Update(Angle_PID_Controller_t *controller,
-                       float euler_angle);
+float Angle_PID_Update(Angle_PID_Controller_t *controller, float euler_angle);
 
 /**
  * @brief 重置角度环PID积分项

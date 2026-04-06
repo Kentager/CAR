@@ -14,7 +14,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /*传感器增益*/
-uint16_t HMC5883L_GAIN = 0;
+uint16_t HMC5883L_GAIN = 1090;
 /*HMC2883L数据*/
 static HMC5883L_Data_t HMC5883L_Data;
 
@@ -156,12 +156,24 @@ void hmc5883l_init(void) {
   // 单次装换时间最快在160hz
   delay_ms(10);
   // 初始化默认校准参数
-  HMC5883L_Data.offset[0] = -0.177f;
-  HMC5883L_Data.offset[1] = -0.264f;
-  HMC5883L_Data.offset[2] = -0.773f;
-  HMC5883L_Data.scale[0] = 0.706f;
-  HMC5883L_Data.scale[1] = 0.683f;
-  HMC5883L_Data.scale[2] = 8.667f;
+  // HMC5883L_Data.offset[0] = 0.019496;
+  // HMC5883L_Data.offset[1] = -0.001322;
+  // HMC5883L_Data.offset[2] = -0.000790;
+  // HMC5883L_Data.scale[0] = 1.978638f;
+  // HMC5883L_Data.scale[1] = 2.227582f;
+  // HMC5883L_Data.scale[2] = 15.861531f;
+  // HMC5883L_Data.offset[0] = -0.177f;
+  // HMC5883L_Data.offset[1] = -0.264f;
+  // HMC5883L_Data.offset[2] = -0.773f;
+  // HMC5883L_Data.scale[0] = 0.706f;
+  // HMC5883L_Data.scale[1] = 0.683f;
+  // HMC5883L_Data.scale[2] = 8.667f;
+  HMC5883L_Data.offset[0] = -67.5;
+  HMC5883L_Data.offset[1] = -97.0;
+  HMC5883L_Data.offset[2] = -306.5;
+  HMC5883L_Data.scale[0] = 1.014493f;
+  HMC5883L_Data.scale[1] = 0.972222f;
+  HMC5883L_Data.scale[2] = 1.014493f;
 }
 
 /**
@@ -178,8 +190,8 @@ void hmc5883l_single_measurement(void) {
 
 /**
  * @brief  读取测量数据
- * @note
- * @param  无
+ * @note   先在原始数据上应用硬铁/软铁补偿，再转换为高斯单位
+ * @param  data: 指向磁力计数据结构体的指针
  * @retval 无
  */
 void hmc5883l_read_data(HMC5883L_Data_t *data) {
@@ -193,15 +205,19 @@ void hmc5883l_read_data(HMC5883L_Data_t *data) {
   data->raw_data[0] = (int16_t)((uint16_t)temp[0] << 8 | temp[1]);
   data->raw_data[2] = (int16_t)((uint16_t)temp[2] << 8 | temp[3]);
   data->raw_data[1] = (int16_t)((uint16_t)temp[4] << 8 | temp[5]);
-  /*转换为高斯单位*/
-  data->x = (float)data->raw_data[0] / HMC5883L_GAIN;
-  data->y = (float)data->raw_data[1] / HMC5883L_GAIN;
-  data->z = (float)data->raw_data[2] / HMC5883L_GAIN;
 
-  /*应用硬铁/软铁补偿*/
-  data->x = (data->x - HMC5883L_Data.offset[0]) * HMC5883L_Data.scale[0];
-  data->y = (data->y - HMC5883L_Data.offset[1]) * HMC5883L_Data.scale[1];
-  data->z = (data->z - HMC5883L_Data.offset[2]) * HMC5883L_Data.scale[2];
+  /*先在原始数据上应用硬铁/软铁补偿*/
+  float compensated_x = ((float)data->raw_data[0] - HMC5883L_Data.offset[0]) *
+                        HMC5883L_Data.scale[0];
+  float compensated_y = ((float)data->raw_data[1] - HMC5883L_Data.offset[1]) *
+                        HMC5883L_Data.scale[1];
+  float compensated_z = ((float)data->raw_data[2] - HMC5883L_Data.offset[2]) *
+                        HMC5883L_Data.scale[2];
+
+  /*再转换为高斯单位*/
+  data->x = compensated_x / HMC5883L_GAIN;
+  data->y = compensated_y / HMC5883L_GAIN;
+  data->z = compensated_z / HMC5883L_GAIN;
 }
 
 /**
@@ -305,66 +321,73 @@ float HMC5883L_Get_Azimuth2(void) {
 
 /**
  * @brief 磁力计校准
- * @note 通过收集不同方向的数据计算校准参数
+ * @note 通过收集不同方向的原始数据计算校准参数（补偿参数针对原始ADC值）
  * @param samples 采样点数
  * @return 0表示成功，非0表示失败
  */
 int hmc5883l_calibrate(uint16_t samples) {
-  float x_min = 0, x_max = 0, y_min = 0, y_max = 0, z_min = 0, z_max = 0;
+  static int16_t x_min = 32767, x_max = -32768, y_min = 32767, y_max = -32768,
+                 z_min = 32767, z_max = -32768;
+  static uint16_t i = 0;
   HMC5883L_Data_t temp_data;
-
+  i++;
   // 收集数据
-  for (uint16_t i = 0; i < samples; i++) {
-    hmc5883l_single_measurement();
-    delay_ms(10);
+  if (i < samples) {
     hmc5883l_read_data(&temp_data);
     if (i % 5 == 0)
-      printf("x:%6.3f,y:%6.3f,z:%6.3f\r\n", temp_data.x, temp_data.y,
-             temp_data.z);
-    // 更新最小值和最大值
-    if (i == 0) {
-      x_min = x_max = temp_data.x;
-      y_min = y_max = temp_data.y;
-      z_min = z_max = temp_data.z;
+      printf("the number is i:%d, raw_x:%d, raw_y:%d, raw_z:%d, "
+             "x:%6.3f,y:%6.3f,z:%6.3f\r\n",
+             i, temp_data.raw_data[0], temp_data.raw_data[1],
+             temp_data.raw_data[2], temp_data.x, temp_data.y, temp_data.z);
+    // 使用原始数据进行校准（补偿参数针对原始ADC值）
+    if (i == 1) {
+      x_min = x_max = temp_data.raw_data[0];
+      y_min = y_max = temp_data.raw_data[1];
+      z_min = z_max = temp_data.raw_data[2];
     } else {
-      if (temp_data.x < x_min)
-        x_min = temp_data.x;
-      if (temp_data.x > x_max)
-        x_max = temp_data.x;
-      if (temp_data.y < y_min)
-        y_min = temp_data.y;
-      if (temp_data.y > y_max)
-        y_max = temp_data.y;
-      if (temp_data.z < z_min)
-        z_min = temp_data.z;
-      if (temp_data.z > z_max)
-        z_max = temp_data.z;
+      if (temp_data.raw_data[0] < x_min)
+        x_min = temp_data.raw_data[0];
+      if (temp_data.raw_data[0] > x_max)
+        x_max = temp_data.raw_data[0];
+      if (temp_data.raw_data[1] < y_min)
+        y_min = temp_data.raw_data[1];
+      if (temp_data.raw_data[1] > y_max)
+        y_max = temp_data.raw_data[1];
+      if (temp_data.raw_data[2] < z_min)
+        z_min = temp_data.raw_data[2];
+      if (temp_data.raw_data[2] > z_max)
+        z_max = temp_data.raw_data[2];
     }
+    return 1;
+  } else {
+
+    // 计算偏移量(硬铁补偿，针对原始ADC值)
+    HMC5883L_Data.offset[0] = (float)(x_max + x_min) / 2.0f;
+    HMC5883L_Data.offset[1] = (float)(y_max + y_min) / 2.0f;
+    HMC5883L_Data.offset[2] = (float)(z_max + z_min) / 2.0f;
+
+    // 计算缩放因子(软铁补偿，针对原始ADC值)
+    float x_range = (float)(x_max - x_min);
+    float y_range = (float)(y_max - y_min);
+    float z_range = (float)(z_max - z_min);
+    float avg_range = (x_range + y_range + z_range) / 3.0f;
+
+    HMC5883L_Data.scale[0] = avg_range / x_range;
+    HMC5883L_Data.scale[1] = avg_range / y_range;
+    HMC5883L_Data.scale[2] = avg_range / z_range;
+
+    // 打印校准参数
+    printf("磁力计校准完成:\r\n");
+    printf("原始数据范围: X[%d, %d], Y[%d, %d], Z[%d, %d]\r\n", x_min, x_max,
+           y_min, y_max, z_min, z_max);
+    printf("偏移量(原始ADC值): X=%.2f, Y=%.2f, Z=%.2f\r\n",
+           HMC5883L_Data.offset[0], HMC5883L_Data.offset[1],
+           HMC5883L_Data.offset[2]);
+    printf("缩放因子: X=%.6f, Y=%.6f, Z=%.6f\r\n", HMC5883L_Data.scale[0],
+           HMC5883L_Data.scale[1], HMC5883L_Data.scale[2]);
+
+    return 0;
   }
-
-  // 计算偏移量(硬铁补偿)
-  HMC5883L_Data.offset[0] = (x_max + x_min) / 2.0f;
-  HMC5883L_Data.offset[1] = (y_max + y_min) / 2.0f;
-  HMC5883L_Data.offset[2] = (z_max + z_min) / 2.0f;
-
-  // 计算缩放因子(软铁补偿)
-  float x_range = x_max - x_min;
-  float y_range = y_max - y_min;
-  float z_range = z_max - z_min;
-  float avg_range = (x_range + y_range + z_range) / 3.0f;
-
-  HMC5883L_Data.scale[0] = avg_range / x_range;
-  HMC5883L_Data.scale[1] = avg_range / y_range;
-  HMC5883L_Data.scale[2] = avg_range / z_range;
-
-  // 打印校准参数
-  printf("磁力计校准完成:\r\n");
-  printf("偏移量: X=%.2f, Y=%.2f, Z=%.2f\r\n", HMC5883L_Data.offset[0],
-         HMC5883L_Data.offset[1], HMC5883L_Data.offset[2]);
-  printf("缩放因子: X=%.2f, Y=%.2f, Z=%.2f\r\n", HMC5883L_Data.scale[0],
-         HMC5883L_Data.scale[1], HMC5883L_Data.scale[2]);
-
-  return 0;
 }
 /**
  * @brief 获取磁力计数据
