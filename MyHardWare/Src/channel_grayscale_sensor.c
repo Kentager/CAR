@@ -68,7 +68,8 @@ void irSensor_Update(irSensorData_t *sensor) {
   // 3. 更新差速值
   float diffSpeed = 0.0f;
   for (int i = 0; i < 8; i++) {
-    diffSpeed += sensor->sensorDiff[i] / 100.0f * (float)sensor->sensorState[i];
+    if (sensor->sensorState[i])
+      diffSpeed += sensor->sensorDiff[i] * 0.01f;
   }
   diffSpeed = diffSpeed * sensor->diffSpeedMax;
   sensor->diffSpeed = diffSpeed;

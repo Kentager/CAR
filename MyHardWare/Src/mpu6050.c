@@ -1,15 +1,18 @@
 #include "mpu6050.h"
 #include "delay.h"
+#include "hmc5883l.h"
 #include "myiic.h"
 #include "sys.h"
 #include "task.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
+
 static int16_t ax, ay, az;
 static int16_t gx, gy, gz;
 static int16_t temperature;
-static float gx_dps, gy_dps, gz_dps;
+static float gx_dps, gy_dps;
+float gz_dps;
 static float ax_dps, ay_dps, az_dps;
 int16_t raw_data[6];
 EulerAngles MPU_Attitude;
@@ -88,7 +91,7 @@ u8 MPU_Set_Rate(u16 rate) {
     rate = 4;
   data = 1000 / rate - 1;
   data = MPU_Write_Byte(MPU_SAMPLE_RATE_REG, data); // 设置数字低通滤波器
-  return MPU_Set_LPF(rate / 2); // 自动设置LPF为采样率的一半
+  return MPU_Set_LPF(rate / 2);                     // 自动设置LPF为采样率的一半
 }
 
 // 得到温度值
@@ -172,9 +175,10 @@ void MPU_Proc(void) {
     return;
   }
   // 积分计算欧拉角
-  float pitch_g = MPU_Attitude.pitch + gx_dps * 0.005;
-  float roll_g = MPU_Attitude.roll + gy_dps * 0.005;
-  float yaw_g = MPU_Attitude.yaw + gz_dps * 0.005;
+  float pitch_g = MPU_Attitude.pitch + gx_dps * 0.002;
+  float roll_g = MPU_Attitude.roll + gy_dps * 0.002;
+  float yaw_g = MPU_Attitude.yaw + gz_dps * 0.002;
+
   float pitch_a = atan2(ay_dps, az_dps) / M_PI * 180;
   float roll_a = atan2(ax_dps, az_dps) / M_PI * 180;
   MPU_Attitude.pitch = MPU_ALPHA * pitch_g + (1.0f - MPU_ALPHA) * pitch_a -
@@ -182,6 +186,10 @@ void MPU_Proc(void) {
   MPU_Attitude.roll = MPU_ALPHA * roll_g + (1.0f - MPU_ALPHA) * roll_a -
                       MPU_Attitude.Initial_Attitude[1];
   MPU_Attitude.yaw = yaw_g - MPU_Attitude.Initial_Attitude[2];
+
+  //=======================AI==================//
+
+  //=======================AI==================//
 }
 void Get_RawData(void) {
   u8 res = 0;

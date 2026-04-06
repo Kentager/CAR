@@ -90,6 +90,8 @@ typedef struct {
   float scale[3];
 } HMC5883L_Data_t;
 
+extern HMC5883L_Data_t HMC5883L_Data;
+
 /* Exported contants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
@@ -101,5 +103,6 @@ uint8_t i2c_master_read_data(uint8_t reg_addr, uint8_t *data, uint8_t length);
 float HMC5883L_Get_Azimuth(float pitch, float roll);
 uint8_t hmc5883l_read_id_info(void);
 HMC5883L_Data_t *hmc5883l_get_data(void);
-int hmc5883l_calibrate(uint16_t samples);float HMC5883L_Get_Azimuth2(void) ;
+int hmc5883l_calibrate(uint16_t samples);
+float HMC5883L_Get_Azimuth2(void);
 #endif /* __QMC5883_H */

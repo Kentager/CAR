@@ -46,7 +46,7 @@ u8 MPU6050_DMP_ReadAttitude(void) {
     printf("读取MPU6050 DMP数据失败，错误码：%d\r\n", res);
     return res;
   }
-  yaw = HMC5883L_Get_Azimuth(pitch * M_PI / 180.0f, roll * M_PI / 180.0f);
+  // yaw = HMC5883L_Get_Azimuth(pitch * M_PI / 180.0f, roll * M_PI / 180.0f);
 
   // 打印姿态数据
   printf("%.2f,%.2f,%.2f\r\n", pitch, roll, yaw);

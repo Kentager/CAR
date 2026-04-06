@@ -83,6 +83,7 @@ typedef struct {
 } EulerAngles;
 extern int16_t raw_data[6];
 extern EulerAngles MPU_Attitude;
+extern float gz_dps;
 u8 MPU_Init(void);                                  // 初始化MPU6050
 u8 MPU_Write_Len(u8 addr, u8 reg, u8 len, u8 *buf); // IIC连续写
 u8 MPU_Read_Len(u8 addr, u8 reg, u8 len, u8 *buf);  // IIC连续读

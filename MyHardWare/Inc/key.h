@@ -9,7 +9,8 @@
 
 /*---------------------- 按键配置宏 ------------------------*/
 
-#define KEY_PIN GPIO_Pin_0           // KEY 引脚
+#define KEY_PIN (GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3) // KEY 引脚
+
 #define KEY_PORT GPIOC               // KEY GPIO端口
 #define KEY_CLK RCC_AHB1Periph_GPIOC // KEY GPIO端口时钟
 

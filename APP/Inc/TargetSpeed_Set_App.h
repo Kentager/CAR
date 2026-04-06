@@ -13,6 +13,9 @@ typedef enum {
 typedef struct {
   float speed_left;
   float speed_right;
+  float start_angle;
+  float target_angle;
+  float yaw_angle;
   TargetSpeedMode_e mode;
 } TargetSpeed_t;
 
@@ -22,7 +25,14 @@ void TargetSpeed_Init(void);
 
 void TargetSpeedMode_Set(TargetSpeedMode_e mode);
 
-void TargetSpeed_Set(float speed_left, float speed_right);
+void TargetSpeed_SetSpeed(float speed_left, float speed_right);
+
+void TargetSpeed_SetStartAngle();
+
+void TargetSpeed_SetTargetAngle(float target_angle);
+
+void TargetSpeed_SetYawAngle(float yaw_angle);
 
 void TargetSpeed_Update(void);
+
 #endif

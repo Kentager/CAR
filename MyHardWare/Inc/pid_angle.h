@@ -23,12 +23,11 @@
 #include "task.h"
 #include <math.h>
 
-
 /* ==================== 角度环PID参数配置 ==================== */
 // 默认PID参数（可根据实际调试调整）
-#define ANGLE_PID_KP_DEFAULT 0.0004f // 比例系数
-#define ANGLE_PID_KI_DEFAULT 0.0f // 积分系数
-#define ANGLE_PID_KD_DEFAULT 0.0f // 微分系数
+#define ANGLE_PID_KP_DEFAULT 0.0001f // 比例系数
+#define ANGLE_PID_KI_DEFAULT 0.0f    // 积分系数
+#define ANGLE_PID_KD_DEFAULT 0.0f    // 微分系数
 
 // 采样周期 (ms)
 #define ANGLE_PID_SAMPLE_PERIOD_MS 5
@@ -37,7 +36,7 @@
 #define ANGLE_PID_OUTPUT_MAX 1000.0f // 最大补偿值
 
 // 角度阈值（度）
-#define ANGLE_THRESHOLD_DEG 1.0f // 角度偏差阈值，小于此值不进行补偿
+#define ANGLE_THRESHOLD_DEG 1.0f    // 角度偏差阈值，小于此值不进行补偿
 #define ANGLE_INTEGRAL_LIMIT 100.0f // 积分限幅值，防止积分饱和
 
 /* ==================== PID内部数据结构 ==================== */
@@ -61,7 +60,7 @@ typedef struct {
 typedef struct {
   // 配置参数
   float target_angle_deg; // 目标角度（度，通常为0表示直线）
-  uint8_t axis; // 控制轴：0=Yaw(偏航), 1=Pitch(俯仰), 2=Roll(横滚)
+  uint8_t axis;           // 控制轴：0=Yaw(偏航), 1=Pitch(俯仰), 2=Roll(横滚)
 
   // 状态信息
   float current_angle_deg;   // 当前角度（度）
@@ -128,8 +127,7 @@ void Angle_PID_Disable(Angle_PID_Controller_t *controller);
  * @return 补偿值（正值表示右侧需加速/左侧需减速，负值相反）
  * @note 应在5ms控制循环中调用
  */
-float Angle_PID_Update(Angle_PID_Controller_t *controller,
-                       float euler_angle);
+float Angle_PID_Update(Angle_PID_Controller_t *controller, float euler_angle);
 
 /**
  * @brief 重置角度环PID积分项

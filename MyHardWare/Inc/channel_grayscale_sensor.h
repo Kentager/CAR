@@ -3,9 +3,9 @@
 
 #include <stdint.h>
 
-#define DIFF_SPEED_MAX 0.05f
-static const float SENSOR_DIFF[8] = {-20.0f, -15.0f, -10.0f, -5.0f,
-                                     5.0f,   10.0f,  15.0f,  20.0f};
+#define DIFF_SPEED_MAX 0.15f
+static const float SENSOR_DIFF[8] = {-140.0f, -40.0f, -16.0f, -3.0f,
+                                     3.0f,    16.0f,  40.0f,  140.0f};
 
 typedef struct {
   uint8_t sensorFlag;     // 循迹标志位（0：不在线上 1：在线上）
