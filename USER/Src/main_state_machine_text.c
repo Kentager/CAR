@@ -58,6 +58,7 @@ void Start_Init(void) { // 初始化所有驱动
   irSensor_HwInit();
   // 初始化灰度传感器数据
   irSensor_DataInit(&irSensorData);
+  printf("ALL HardWare is ok\r\n");
   // 初始化速度环PID控制器
   //// 右轮: 关联ENCODER_RIGHT编码器和MOTOR_RIGHT电机
   Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT,
