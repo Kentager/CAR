@@ -15,7 +15,7 @@
 
 #include <stdint.h>
 
-#define ANGLE_PID_BUFFER_SIZE 1 // 滤波缓冲区大小
+#define ANGLE_PID_BUFFER_SIZE 10 // 滤波缓冲区大小
 
 /* ==================== 控制模式 ==================== */
 typedef enum {

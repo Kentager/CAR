@@ -92,6 +92,7 @@ void EXTI3_IRQHandler(void) {
 
     // 设置按键标志位，在主循环中处理
     Key_Pressed_Flag_3 = 1;
+    count_it = 13;
   }
 }
 /**
