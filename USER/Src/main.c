@@ -64,12 +64,14 @@ void motor_print_data(void) {
 void change_pid_target_speed(void) {
   uint32_t count = GetSysTick();
   if (count % 2000 == 0) {
-    if (Speed_PID_Right.target_speed_m_s == 0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, -0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, -0.087f);
-    } else if (Speed_PID_Right.target_speed_m_s == -0.1f) {
-      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.087f);
+    if (Speed_PID_Right.target_speed_m_s == 0.2f) {
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1);
+      printf("targe:0.1\r\n");
+    } else if (Speed_PID_Right.target_speed_m_s == 0.1f) {
+      Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.2f);
+      Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.2f);
+      printf("target:0.2\r\n");
     }
   }
 }
@@ -102,37 +104,34 @@ int main() {
                  SPEED_PID_KP_DEFAULT, SPEED_PID_KI_DEFAULT,
                  SPEED_PID_KD_DEFAULT);
 
-  // 设置目标速度（例如0.5m/s）
-  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.1f);
-  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.1f);
+  // // 设置目标速度（例如0.5m/s）
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, 0.2f);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Left, 0.2f);
 
-  // // 启用速度环PID控制
-  // // 启用速度环PID控制
-  Speed_PID_Enable(&Speed_PID_Right);
-  Speed_PID_Enable(&Speed_PID_Left);
+  // // // 启用速度环PID控制
+  // // // 启用速度环PID控制
+  // Speed_PID_Enable(&Speed_PID_Right);
+  // Speed_PID_Enable(&Speed_PID_Left);
 
   // // 添加10ms周期的速度控制任务
+  add_task(Encoder_Update, 5);
   add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
-  add_task(Encoder_Update, 1);
-  add_task(motor_print_data, 30);
-  // add_task(change_pid_target_speed, 1);
-  add_task(speed_control_task, SPEED_PID_SAMPLE_PERIOD_MS);
-  add_task(Encoder_Update, 1);
-  add_task(motor_print_data, 30);
-  // add_task(change_pid_target_speed, 1);
+  // add_task(motor_print_data, 30);
+  add_task(change_pid_target_speed, 1);
+
   USART1_Init();
-  // printf("hello world\r\n");
+  printf("hello world   1328432u42\r\n");
   // printf("hello world\r\n");
 
   delay_init();
-  delay_ms(1000);
+
   uint32_t count = 0;
 
-  // motor_test();
-  // Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
-  // Motor_Update( MOTOR_LEFT);
-  // Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
-  // Motor_Update( MOTOR_LEFT);
+  motor_test();
+  Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
+  Motor_Update(MOTOR_LEFT);
+  Motor_SetSpeed(MOTOR_LEFT, 4000); // 右电机正转，速度 4000
+  Motor_Update(MOTOR_LEFT);
   // 更新电机状态，将配置应用到硬件
   while (1) {
 
@@ -144,7 +143,7 @@ int main() {
     // Motor_Update( MOTOR_RIGHT);
     // printf("in task//");
     // delay_ms(100);
-    Task_Scheduler();
+    // Task_Scheduler();
     // speed_control_task();
     // Motor_SetSpeed(MOTOR_RIGHT, 4000); // 右电机正转，速度 4000
     // Motor_Update( MOTOR_RIGHT);

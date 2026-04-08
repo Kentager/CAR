@@ -178,11 +178,11 @@ void Control_Update(void) {
   // 4. 应用角度补偿到速度环
   update_speed_loop(control_state.angle_compensation);
   static uint32_t step = 0;
-  if (step % 4 == 0) {
-    printf("%f,%f,%f,%f,%f\r\n", control_state.target_angle,
-           control_state.current_angle, Angle_PID_Yaw.pid_state.kp,
-           Angle_PID_Yaw.pid_state.ki, Angle_PID_Yaw.pid_state.kd);
-  }
+  // if (step % 4 == 0) {
+  //   printf("%f,%f,%f,%f,%f\r\n", control_state.target_angle,
+  //          control_state.current_angle, Angle_PID_Yaw.pid_state.kp,
+  //          Angle_PID_Yaw.pid_state.ki, Angle_PID_Yaw.pid_state.kd);
+  // }
   //=============================================================================
   // NOTE: 速度环的更新依赖于encoder的更新，encoder
   // 2ms更新周期，速度环更新周期为5ms，将这几个更新任务放再main函数中

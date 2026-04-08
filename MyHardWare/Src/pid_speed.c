@@ -72,6 +72,10 @@ void Speed_PID_SetTargetSpeed(Speed_PID_Controller_t *controller,
   controller->pid_state.target_value = speed_m_s;
 }
 
+void Speed_PID_SetSpeed(float speedd_m_s) {
+  Speed_PID_SetTargetSpeed(&Speed_PID_Left, speedd_m_s);
+  Speed_PID_SetTargetSpeed(&Speed_PID_Right, speedd_m_s);
+}
 /**
  * @brief 启用速度环PID控制
  * @param controller 控制器实例指针
@@ -160,8 +164,41 @@ void Speed_PID_Update(Speed_PID_Controller_t *controller) {
            controller->pid_state.last_error2) /
           dt;
 
+  // 增量限幅（防止启动时速度激增）
+  if (delta_u > SPEED_PID_DELTA_MAX) {
+    delta_u = SPEED_PID_DELTA_MAX;
+  } else if (delta_u < -SPEED_PID_DELTA_MAX) {
+    delta_u = -SPEED_PID_DELTA_MAX;
+  }
+
   // 计算当前输出: u(k) = u(k-1) + Δu(k)
   float output = controller->pid_state.last_output + delta_u;
+
+  // 输出软限幅（防止接近最大值时突然饱和）
+  if (output > SPEED_PID_OUTPUT_SATURATION_START) {
+    float ratio = (SPEED_PID_OUTPUT_MAX - SPEED_PID_OUTPUT_SATURATION_START) /
+                  (SPEED_PID_OUTPUT_MAX - output + 1e-6f);
+    if (ratio < 0.5f) {
+      ratio = 0.5f;
+    }
+    output = SPEED_PID_OUTPUT_SATURATION_START +
+             (output - SPEED_PID_OUTPUT_SATURATION_START) * ratio;
+  } else if (output < -SPEED_PID_OUTPUT_SATURATION_START) {
+    float ratio = (SPEED_PID_OUTPUT_MAX - SPEED_PID_OUTPUT_SATURATION_START) /
+                  (SPEED_PID_OUTPUT_MAX + output + 1e-6f);
+    if (ratio < 0.5f) {
+      ratio = 0.5f;
+    }
+    output = -SPEED_PID_OUTPUT_SATURATION_START +
+             (output + SPEED_PID_OUTPUT_SATURATION_START) * ratio;
+  }
+
+  // 输出硬限幅（最终安全限制）
+  if (output > SPEED_PID_OUTPUT_MAX) {
+    output = SPEED_PID_OUTPUT_MAX;
+  } else if (output < -SPEED_PID_OUTPUT_MAX) {
+    output = -SPEED_PID_OUTPUT_MAX;
+  }
 
   // 更新PID状态
   controller->last_update_time = current_time;
@@ -239,4 +276,21 @@ static void pid_init(IncrementalPID_State_t *pid, float target, float kp,
   pid->last_error = 0.0f;  // e(k-1)
   pid->last_error2 = 0.0f; // e(k-2)
   pid->last_output = 0.0f; // u(k-1)
+}
+void tSpeedControl_update(void) {
+
+  // 更新右轮速度环PID控制器
+  //   printf("speed_control_task tim:%d\r\n", GetSysTick());
+  // if (step % 4 == 0) {
+
+  //   printf("%f,%f,%f,%f,%f,%f\r\n", Speed_PID_Right.target_speed_m_s,
+  //          Speed_PID_Left.current_speed_m_s,
+  //          Speed_PID_Right.current_speed_m_s, Speed_PID_Left.pid_state.kp,
+  //          Speed_PID_Left.pid_state.ki, Speed_PID_Left.pid_state.kd);
+  // }
+
+  Speed_PID_Update(&Speed_PID_Right);
+
+  // 更新左轮速度环PID控制器
+  Speed_PID_Update(&Speed_PID_Left);
 }

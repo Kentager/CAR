@@ -34,10 +34,10 @@
 #define ANGLE_PID_SAMPLE_PERIOD_MS 5
 
 // 最大输出限制（角度偏差补偿值）
-#define ANGLE_PID_OUTPUT_MAX 0.4f // 最大补偿值
+#define ANGLE_PID_OUTPUT_MAX 0.07f // 最大补偿值
 
 // 角度阈值（度）
-#define ANGLE_THRESHOLD_DEG 1.0f // 角度偏差阈值，小于此值不进行补偿
+#define ANGLE_THRESHOLD_DEG 2.0f    // 角度偏差阈值，小于此值不进行补偿
 #define ANGLE_INTEGRAL_LIMIT 100.0f // 积分限幅值，防止积分饱和
 
 /* ==================== PID内部数据结构 ==================== */
@@ -61,7 +61,7 @@ typedef struct {
 typedef struct {
   // 配置参数
   float target_angle_deg; // 目标角度（度，通常为0表示直线）
-  uint8_t axis; // 控制轴：0=Yaw(偏航), 1=Pitch(俯仰), 2=Roll(横滚)
+  uint8_t axis;           // 控制轴：0=Yaw(偏航), 1=Pitch(俯仰), 2=Roll(横滚)
 
   // 状态信息
   float current_angle_deg;   // 当前角度（度）

@@ -40,8 +40,8 @@ void system_init(void) {
   Speed_PID_Enable(&Speed_PID_Right);
   Speed_PID_Enable(&Speed_PID_Left);
   Control_Init();
-  Control_SetSpeed(0.05);             // 设置速度 0.5 m/s
-  Control_SetAngle(0.05f);            // 设置目标角度 0度
+  Control_SetSpeed(0.0f);             // 设置速度 0.5 m/s
+  Control_SetAngle(0.0f);             // 设置目标角度 0度
   Control_SetMode(CONTROL_MODE_TURN); // 设置模式
   Control_Enable();                   // 启用控制
 }
@@ -118,35 +118,14 @@ void tSpeedControl_update(void) {
 }
 void tControl_updagte(void) { Control_Update(); }
 
-void tGetAngle(void) {
-  float angle;
-  if (USART1_ReceiveLine((uint8_t *)rx_data) == 1) {
-    float kp, ki, kd;
-    printf("recieved:%s", rx_data);
-    sscanf(rx_data, "angle:%f\r\n", &angle);
-    if (angle == 0) {
-      return;
-    }
-    printf("set angle:%f", angle);
-    Control_SetAngle(angle);
-    // Speed_PID_Init(&Speed_PID_Right, ENCODER_RIGHT, MOTOR_RIGHT, kp, ki, kd);
-    // // // 左轮: 关联ENCODER_LEFT编码器和MOTOR_LEFT电机
-    // Speed_PID_Init(&Speed_PID_Left, ENCODER_LEFT, MOTOR_LEFT, kp, ki, kd);
-    // Speed_PID_Enable(&Speed_PID_Left);
-    // // Speed_PID_Enable(&Speed_PID_Right);
-    // Angle_PID_Init(&Angle_PID_Yaw, ANGLE_AXIS_YAW, kp, ki, kd);
-    // Angle_PID_Enable(&Angle_PID_Yaw);
-    // printf("PID: %.2f,%.2f,%.2f\r\n", kp, ki, kd);
-  }
-}
 void task_list(void) {
   add_task(Encoder_Update, 5);
   add_task(tSpeedControl_update, 5);
   add_task(Control_Update, 5);
   // add_task(tChangeSpeed, 800);
   // add_task(tReadYaw, 5);
-  add_task(tGetAngle, 20);
-  //   add_task(tChangeAngle, 2000);
+  add_task(tGetPID, 20);
+  add_task(tChangeAngle, 2000);
 }
 void PrintSystemClockFromRegisters(void) {
   uint32_t hse_value =

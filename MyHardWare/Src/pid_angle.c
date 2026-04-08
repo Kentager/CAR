@@ -14,8 +14,8 @@ Angle_PID_Controller_t Angle_PID_Roll;  // 横滚角PID控制器
 
 /* ==================== 私有函数声明 ==================== */
 static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis);
-static void pid_init(PositionalPID_State_t *pid, float target, float kp, float ki,
-                     float kd);
+static void pid_init(PositionalPID_State_t *pid, float target, float kp,
+                     float ki, float kd);
 
 /* ==================== 公有函数实现 ==================== */
 
@@ -109,8 +109,7 @@ void Angle_PID_Disable(Angle_PID_Controller_t *controller) {
  * @note 应在5ms控制循环中调用
  *       位置式PID公式: u(k) = Kp·e(k) + Ki·∫e(t)dt + Kd·de(t)/dt
  */
-float Angle_PID_Update(Angle_PID_Controller_t *controller,
-                       float euler_angle) {
+float Angle_PID_Update(Angle_PID_Controller_t *controller, float euler_angle) {
   // 参数检查
   if (controller == NULL || !controller->enabled) {
     return 0.0f;
@@ -128,6 +127,13 @@ float Angle_PID_Update(Angle_PID_Controller_t *controller,
   // 对于偏航角，通常目标为0度（直线行驶）
   float error =
       controller->pid_state.target_value - controller->current_angle_deg;
+
+  // 对误差进行归一化，确保在 [-180, 180] 范围内
+  while (error > 180.0f)
+    error -= 360.0f;
+
+  while (error < -180.0f)
+    error += 360.0f;
 
   // 保存角度偏差供外部使用
   controller->angle_error_deg = error;
@@ -228,8 +234,8 @@ static float get_axis_angle(EulerAngle_Param *euler_angle, uint8_t axis) {
  * @param ki Integral gain
  * @param kd Derivative gain
  */
-static void pid_init(PositionalPID_State_t *pid, float target, float kp, float ki,
-                     float kd) {
+static void pid_init(PositionalPID_State_t *pid, float target, float kp,
+                     float ki, float kd) {
   pid->target_value = target;
   pid->kp = kp;
   pid->ki = ki;

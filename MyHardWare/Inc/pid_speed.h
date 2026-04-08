@@ -17,6 +17,12 @@
 // 最大输出限制
 #define SPEED_PID_OUTPUT_MAX MOTOR_PWM_MAX_DUTY
 
+// 增量限幅（单次变化量限制，防止启动时速度激增）
+#define SPEED_PID_DELTA_MAX                                                    \
+  (MOTOR_PWM_MAX_DUTY * 0.125f) // 单次最大增量 (12.5%)
+#define SPEED_PID_OUTPUT_SATURATION_START                                      \
+  (MOTOR_PWM_MAX_DUTY * 0.75f) // 开始软限幅的输出值 (75%)
+
 // 编码器方向映射到电机方向
 #define ENCODER_TO_MOTOR_DIR(dir)                                              \
   ((dir) == ENCODER_DIR_FORWARD    ? MOTOR_DIR_FORWARD                         \
@@ -88,6 +94,7 @@ void Speed_PID_Init(Speed_PID_Controller_t *controller, Encoder_Id_e encoder_id,
 void Speed_PID_SetTargetSpeed(Speed_PID_Controller_t *controller,
                               float speed_m_s);
 
+void Speed_PID_SetSpeed(float speedd_m_s);
 /**
  * @brief 启用速度环PID控制
  * @param controller 控制器实例指针
@@ -107,4 +114,5 @@ void Speed_PID_Disable(Speed_PID_Controller_t *controller);
  */
 void Speed_PID_Update(Speed_PID_Controller_t *controller);
 
+void tSpeedControl_update(void);
 #endif /* PID_SPEED_H */

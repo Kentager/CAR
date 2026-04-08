@@ -389,10 +389,8 @@ void Encoder_Update(void) {
     instance->_data.last_update_time = current_time;
   }
 #endif
-  // printf("encoder task tim:%d\r\n", GetSysTick());
 }
 Encoder_Data_t Encoder_GetData(Encoder_Id_e encoder) {
-  // Encoder_Update(); // 确保数据是最新的
   Encoder_Data_t empty_data = {0};
 
   // 参数检查

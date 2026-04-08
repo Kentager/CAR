@@ -34,6 +34,13 @@ extern "C" {
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 
+extern volatile uint8_t Key_Pressed_Flag_0;
+extern volatile uint8_t Key_Pressed_Flag_1;
+extern volatile uint8_t Key_Pressed_Flag_2;
+extern volatile uint8_t Key_Pressed_Flag_3;
+extern volatile uint8_t count_it;
+void KEY_Interrupt_Init(void);
+
 void NMI_Handler(void);
 void HardFault_Handler(void);
 void MemManage_Handler(void);

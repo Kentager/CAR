@@ -27,8 +27,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MPU6050 // ��������ʹ�õĴ�����ΪMPU6050
-#define MOTION_DRIVER_TARGET_MSP430 // ������������,����MSP430������(��ֲ��STM32F4)
+#define MPU6050 // 定义当前使用的传感器为MPU6050
+#define MOTION_DRIVER_TARGET_MSP430 // 运动驱动目标平台,原为MSP430平台(已移植到STM32F4)
 
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
@@ -58,8 +58,8 @@
 //     int_param->lp_exit,
 //         int_param->active_low);
 // }
-#define log_i printf // ��ӡ��Ϣ
-#define log_e printf // ��ӡ��Ϣ
+#define log_i printf // 打印信息
+#define log_e printf // 打印错误信息
 /* labs is already defined by TI's toolchain. */
 /* fabs is for doubles. fabsf is for floats. */
 #define fabs fabsf
@@ -2799,14 +2799,14 @@ lp_int_restore:
 // 2014-2024 All rights reserved
 //////////////////////////////////////////////////////////////////////////////////
 
-// q30��ʽ,longתfloatʱ�ĳ���.
+// q30格式,long转float时的除数.
 #define q30 1073741824.0f
 
-// �����Ƿ�������
+// 陀螺仪方向配置
 static signed char gyro_orientation[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-// MPU6050�Բ���
-// ����ֵ:0,����
-//     ����,ʧ��
+// MPU6050自测试
+// 返回值:0,正常
+//     其他,失败
 u8 run_self_test(void) {
   int result;
   // char test_packet[4] = {0};
@@ -2832,7 +2832,7 @@ u8 run_self_test(void) {
   } else
     return 1;
 }
-// �����Ƿ������
+// 矩阵转换
 unsigned short inv_orientation_matrix_to_scalar(const signed char *mtx) {
   unsigned short scalar;
   /*
@@ -2850,7 +2850,7 @@ unsigned short inv_orientation_matrix_to_scalar(const signed char *mtx) {
 
   return scalar;
 }
-// ����ת��
+// 行转换
 unsigned short inv_row_2_scale(const signed char *row) {
   unsigned short b;
 
@@ -2870,57 +2870,57 @@ unsigned short inv_row_2_scale(const signed char *row) {
     b = 7; // error
   return b;
 }
-// �պ���,δ�õ�.
+// 空函数,未用到.
 void mget_ms(unsigned long *time) {}
-// mpu6050,dmp��ʼ��
-// ����ֵ:0,����
-//     ����,ʧ��
+// mpu6050,dmp初始化
+// 返回值:0,正常
+//     其他,失败
 u8 mpu_dmp_init(void) {
   u8 res = 0;
-  IIC_Init();          // ��ʼ��IIC����
-  if (mpu_init() == 0) // ��ʼ��MPU6050
+  IIC_Init();          // 初始化IIC总线
+  if (mpu_init() == 0) // 初始化MPU6050
   {
-    res = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL); // ��������Ҫ�Ĵ�����
+    res = mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL); // 设置所需要的传感器
     if (res)
       return 1;
-    res = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); // ����FIFO
+    res = mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL); // 配置FIFO
     if (res)
       return 2;
-    res = mpu_set_sample_rate(DEFAULT_MPU_HZ); // ���ò�����
+    res = mpu_set_sample_rate(DEFAULT_MPU_HZ); // 设置采样率
     if (res)
       return 3;
-    res = dmp_load_motion_driver_firmware(); // ����dmp�̼�
+    res = dmp_load_motion_driver_firmware(); // 加载dmp固件
     if (res)
       return 4;
     res = dmp_set_orientation(
-        inv_orientation_matrix_to_scalar(gyro_orientation)); // ���������Ƿ���
+        inv_orientation_matrix_to_scalar(gyro_orientation)); // 设置陀螺仪方向
     if (res)
       return 5;
     res = dmp_enable_feature(
-        DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP | // ����dmp����
+        DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP | // 设置dmp功能
         DMP_FEATURE_ANDROID_ORIENT | DMP_FEATURE_SEND_RAW_ACCEL |
         DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL);
     if (res)
       return 6;
     res = dmp_set_fifo_rate(
-        DEFAULT_MPU_HZ); // ����DMP�������(��󲻳���200Hz)
+        DEFAULT_MPU_HZ); // 设置DMP输出速率(最大不超过200Hz)
     if (res)
       return 7;
-    res = run_self_test(); // �Լ�
+    res = run_self_test(); // 自检
     if (res)
       return 8;
-    res = mpu_set_dmp_state(1); // ʹ��DMP
+    res = mpu_set_dmp_state(1); // 使能DMP
     if (res)
       return 9;
   }
   return 0;
 }
-// �õ�dmp�����������(ע��,��������Ҫ�Ƚ϶��ջ,�ֲ������е��)
-// pitch:������ ����:0.1��   ��Χ:-90.0�� <---> +90.0��
-// roll:�����  ����:0.1��   ��Χ:-180.0��<---> +180.0��
-// yaw:�����   ����:0.1��   ��Χ:-180.0��<---> +180.0��
-// ����ֵ:0,����
-//     ����,ʧ��
+// 得到dmp处理后的数据(注意,本函数需要比较多堆栈,局部变量有点多)
+// pitch:俯仰角 精度:0.1°   范围:-90.0° <---> +90.0°
+// roll:横滚角  精度:0.1°   范围:-180.0°<---> +180.0°
+// yaw:航向角   精度:0.1°   范围:-180.0°<---> +180.0°
+// 返回值:0,正常
+//     其他,失败
 u8 mpu_dmp_get_data(float *pitch, float *roll, float *yaw) {
   float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;
   unsigned long sensor_timestamp;
@@ -2942,11 +2942,11 @@ u8 mpu_dmp_get_data(float *pitch, float *roll, float *yaw) {
    * dmp_set_orientation during initialization.
    **/
   if (sensors & INV_WXYZ_QUAT) {
-    q0 = quat[0] / q30; // q30��ʽת��Ϊ������
+    q0 = quat[0] / q30; // q30格式转换为浮点数
     q1 = quat[1] / q30;
     q2 = quat[2] / q30;
     q3 = quat[3] / q30;
-    // ����õ�������/�����/�����
+    // 计算得到欧拉角数据
     *pitch = asin(-2 * q1 * q3 + 2 * q0 * q2) * 57.3; // pitch
     *roll = atan2(2 * q2 * q3 + 2 * q0 * q1, -2 * q1 * q1 - 2 * q2 * q2 + 1) *
             57.3; // roll
