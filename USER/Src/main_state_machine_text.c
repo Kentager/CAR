@@ -16,12 +16,14 @@
 #include "stm32f4xx_syscfg.h"
 #include "task.h"
 #include "usart.h"
+#include <stdint.h>
 #include <stdio.h>
 
 typedef enum {
-  STATE_STOP = 0,  // 待机
-  STATE_RUN = 1,   // 前进
-  STATE_TRACK = 2, // 循迹
+  STATE_STOP = 0,    // 待机
+  STATE_RUN = 1,     // 前进
+  STATE_TRACK = 2,   // 循迹
+  STATE_TRACK_X = 3, // 循迹
 } State_Machine_State_enum;
 
 typedef struct {
@@ -33,6 +35,7 @@ typedef struct {
 State_Machine_Typedef state_machine; // 状态机结构体
 static float yaw_angle = 0.0f;
 static uint32_t count = 0;
+static uint32_t count_x = 0;
 //===========================================初始化函数=========================================//初始化驱动和配置
 void Start_Init(void) { // 初始化所有驱动
   // 初始化延时定时器
@@ -109,7 +112,11 @@ void State_Run_Action(void) {           // 前进 角度环模式 设置速度�
 
 void State_Track_Action(void) {       // 循迹 循迹模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_TRACKING); // 循迹模式
-  TargetSpeed_SetSpeed(0.4f, 0.4f);   // 设置目标速度（左轮为0.2，右轮为0.2）
+  TargetSpeed_SetSpeed(0.34f, 0.45f); // 设置目标速度（左轮为0.2，右轮为0.2）
+}
+void State_Track_X_Action(void) {     // 循迹 循迹模式 设置速度为 0.2 0.2
+  TargetSpeedMode_Set(MODE_TRACKING); // 循迹模式
+  TargetSpeed_SetSpeed(0.45f, 0.34f); // 设置目标速度（左轮为0.2，右轮为0.2）
 }
 
 void Reset_Action(void) {         // 无模式 重置初始角度
@@ -133,9 +140,12 @@ void State_Update(State_Machine_Typedef *state_machine) {
   case STATE_TRACK:
     State_Track_Action();
     break;
+  case STATE_TRACK_X:
+    State_Track_X_Action();
+    break;
   }
 }
-// 状态机状态计数更新（按照流程完成问题）
+// 状态机状态计数更新（按照流程完成问题）//XXXXXXXXXXXXXXXXXXXXXXXX左左左左左左左左左左左左左左左左左左
 void State_Count_Updata(State_Machine_Typedef *state_machine) {
 
   switch (count_it) {
@@ -173,9 +183,12 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 4:
-    state_machine->state = STATE_TRACK;           // 循迹
+    state_machine->state = STATE_TRACK_X;
+    if (++count < 100)                            // 延时1000ms
+      return;                                     // 循迹
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
+      count = 0; // 清除计数器
     }
     break;
   case 5:
@@ -186,9 +199,12 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 6:
-    state_machine->state = STATE_TRACK; // 循迹
+    state_machine->state = STATE_TRACK_X; // 循迹
+    if (++count < 100)                    // 延时1000ms
+      return;                             // 循迹
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
+      count = 0; // 清除计数器
     }
     break;
   case 7:
@@ -197,48 +213,46 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     break;
     //====================题目3====================//
   case 8:
-    SENSOR_DIFF[0] = -200.0f;
-    SENSOR_DIFF[1] = -150.0f;
-    SENSOR_DIFF[2] = -100.0f;
-    SENSOR_DIFF[3] = -250.0f;
-    SENSOR_DIFF[4] = -200.0f;
-    SENSOR_DIFF[5] = -100.0f;
-    SENSOR_DIFF[6] = -150.0f;
-    SENSOR_DIFF[7] = -200.0f;
     if (++count < 100) // 延时1000ms
       return;
-    TargetSpeed_SetTargetAngle(-36.0f);          // 设置角度为-45
-    state_machine->state = STATE_RUN;            // 前进
+    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 250)
+      return;
+    TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
+      count_it++;
+      count = 0; // 清除计数器
+      count_x = 0;
+    }
+    break;
+  case 9:
+    state_machine->state = STATE_TRACK; // 循迹
+    if (++count < 100)                  // 延时1000ms
+      return;
+    if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
       count = 0; // 清除计数器
     }
     break;
-  case 9:
-    state_machine->state = STATE_TRACK;           // 循迹
-    if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
-      count_it++;
-    }
-    break;
   case 10:
-    SENSOR_DIFF[0] = 200.0f;
-    SENSOR_DIFF[1] = 150.0f;
-    SENSOR_DIFF[2] = 100.0f;
-    SENSOR_DIFF[3] = 100.0f;
-    SENSOR_DIFF[4] = 100.0f;
-    SENSOR_DIFF[5] = 100.0f;
-    SENSOR_DIFF[6] = 150.0f;
-    SENSOR_DIFF[7] = 200.0f;
-    TargetSpeed_SetTargetAngle(216.0f);          // 设置角度为225
-    state_machine->state = STATE_RUN;            // 前进
+    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 210)
+      return;
+    TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
+      count_x = 0;
     }
     break;
   case 11:
-    state_machine->state = STATE_TRACK; // 循迹
+    state_machine->state = STATE_TRACK_X; // 循迹
+    if (++count < 100)                    // 延时1000ms
+      return;
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
+      count = 0; // 清除计数器
     }
     break;
   case 12:
@@ -246,136 +260,143 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     Reset_Action();
     break;
     //====================题目4====================//
-  case 13:
-    SENSOR_DIFF[0] = -200.0f;
-    SENSOR_DIFF[1] = -150.0f;
-    SENSOR_DIFF[2] = -100.0f;
-    SENSOR_DIFF[3] = -100.0f;
-    SENSOR_DIFF[4] = -100.0f;
-    SENSOR_DIFF[5] = -100.0f;
-    SENSOR_DIFF[6] = -150.0f;
-    SENSOR_DIFF[7] = -200.0f;
+  case 13:             // 1
     if (++count < 100) // 延时1000ms
       return;
-    TargetSpeed_SetTargetAngle(-36.0f);          // 设置角度为-45
-    state_machine->state = STATE_RUN;            // 前进
+    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 250)
+      return;
+    TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
       count = 0; // 清除计数器
+      count_x = 0;
     }
     break;
   case 14:
-    state_machine->state = STATE_TRACK;           // 循迹
+    state_machine->state = STATE_TRACK; // 循迹
+    if (++count < 100)                  // 延时1000ms
+      return;
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
+      count = 0; // 清除计数器
     }
     break;
-  case 15:
-    SENSOR_DIFF[0] = 200.0f;
-    SENSOR_DIFF[1] = 150.0f;
-    SENSOR_DIFF[2] = 100.0f;
-    SENSOR_DIFF[3] = 100.0f;
-    SENSOR_DIFF[4] = 100.0f;
-    SENSOR_DIFF[5] = 100.0f;
-    SENSOR_DIFF[6] = 150.0f;
-    SENSOR_DIFF[7] = 200.0f;
-    TargetSpeed_SetTargetAngle(216.0f);          // 设置角度为225
-    state_machine->state = STATE_RUN;            // 前进
+  case 15:                              // 1.5
+    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 200)
+      return;
+    TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
+      count_x = 0;
     }
     break;
   case 16:
-    state_machine->state = STATE_TRACK; // 循迹
+    state_machine->state = STATE_TRACK_X; // 循迹
+    if (++count < 100)                    // 延时1000ms
+      return;
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
+      count = 0; // 清除计数器
     }
     break;
-  case 17:
-    SENSOR_DIFF[0] = -200.0f;
-    SENSOR_DIFF[1] = -150.0f;
-    SENSOR_DIFF[2] = -100.0f;
-    SENSOR_DIFF[3] = -100.0f;
-    SENSOR_DIFF[4] = -100.0f;
-    SENSOR_DIFF[5] = -100.0f;
-    SENSOR_DIFF[6] = -150.0f;
-    SENSOR_DIFF[7] = -200.0f;
-    TargetSpeed_SetTargetAngle(-36.0f);          // 设置角度为-45
-    state_machine->state = STATE_RUN;            // 前进
+  case 17:                              // 2
+    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 220)
+      return;
+    TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
       count = 0; // 清除计数器
+      count_x = 0;
     }
     break;
   case 18:
-    state_machine->state = STATE_TRACK;           // 循迹
-    if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
-      count_it++;
-    }
-    break;
-  case 19:
-    SENSOR_DIFF[0] = 200.0f;
-    SENSOR_DIFF[1] = 150.0f;
-    SENSOR_DIFF[2] = 100.0f;
-    SENSOR_DIFF[3] = 100.0f;
-    SENSOR_DIFF[4] = 100.0f;
-    SENSOR_DIFF[5] = 100.0f;
-    SENSOR_DIFF[6] = 150.0f;
-    SENSOR_DIFF[7] = 200.0f;
-    TargetSpeed_SetTargetAngle(216.0f);          // 设置角度为225
-    state_machine->state = STATE_RUN;            // 前进
-    if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
-      count_it++;
-    }
-    break;
-  case 20:
     state_machine->state = STATE_TRACK; // 循迹
-    if (!irSensor_GetSensorFlag(&irSensorData)) {
-      count_it++;
-    }
-    break;
-  case 21:
-    SENSOR_DIFF[0] = -200.0f;
-    SENSOR_DIFF[1] = -150.0f;
-    SENSOR_DIFF[2] = -100.0f;
-    SENSOR_DIFF[3] = -100.0f;
-    SENSOR_DIFF[4] = -100.0f;
-    SENSOR_DIFF[5] = -100.0f;
-    SENSOR_DIFF[6] = -150.0f;
-    SENSOR_DIFF[7] = -200.0f;
-    TargetSpeed_SetTargetAngle(-36.0f);          // 设置角度为-45
-    state_machine->state = STATE_RUN;            // 前进
-    if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
+    if (++count < 100)                  // 延时1000ms
+      return;
+    if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
       count = 0; // 清除计数器
     }
     break;
-  case 22:
-    state_machine->state = STATE_TRACK;           // 循迹
-    if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
-      count_it++;
-    }
-    break;
-  case 23:
-    SENSOR_DIFF[0] = 200.0f;
-    SENSOR_DIFF[1] = 150.0f;
-    SENSOR_DIFF[2] = 100.0f;
-    SENSOR_DIFF[3] = 100.0f;
-    SENSOR_DIFF[4] = 100.0f;
-    SENSOR_DIFF[5] = 100.0f;
-    SENSOR_DIFF[6] = 150.0f;
-    SENSOR_DIFF[7] = 200.0f;
-    TargetSpeed_SetTargetAngle(212.0f);          // 设置角度为225
-    state_machine->state = STATE_RUN;            // 前进
+  case 19:                              // 2.5
+    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 220)
+      return;
+    TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
+      count_x = 0;
+    }
+    break;
+  case 20:
+    state_machine->state = STATE_TRACK_X; // 循迹
+    if (++count < 100)                    // 延时1000ms
+      return;
+    if (!irSensor_GetSensorFlag(&irSensorData)) {
+      count_it++;
+      count = 0; // 清除计数器
+    }
+    break;
+  case 21:                              // 3
+    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 250)
+      return;
+    TargetSpeed_SetTargetAngle(0.0f);
+    if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
+      count_it++;
+      count = 0; // 清除计数器
+      count_x = 0;
+    }
+    break;
+  case 22:
+    state_machine->state = STATE_TRACK; // 循迹
+    if (++count < 100)                  // 延时1000ms
+      return;
+    if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
+      count_it++;
+      count = 0; // 清除计数器
+    }
+    break;
+  case 23:                              // 3.5
+    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    state_machine->state = STATE_RUN;   // 前进
+    if (++count_x < 220)
+      return;
+    TargetSpeed_SetTargetAngle(180.0f);
+    if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
+      count_it++;
+      count_x = 0;
     }
     break;
   case 24:
-    state_machine->state = STATE_TRACK; // 循迹
+    state_machine->state = STATE_TRACK_X; // 循迹
+    if (++count < 100)                    // 延时1000ms
+      return;
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
+      count = 0; // 清除计数器
     }
+    break;
+  case 28:                                // 4
+    state_machine->state = STATE_TRACK_X; // 循迹
+    if (++count < 100)                    // 延时1000ms
+      return;
+    if (!irSensor_GetSensorFlag(&irSensorData)) {
+      count_it++;
+      count = 0; // 清除计数器
+    }
+    break;
+  case 29:
+    state_machine->state = STATE_STOP; // 待机
+    Reset_Action();
     break;
   }
 }
