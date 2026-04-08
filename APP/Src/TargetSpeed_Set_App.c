@@ -36,8 +36,10 @@ void TargetSpeed_SetYawAngle(float yaw_angle) {
 void TargetSpeed_Update(void) {
   speed_left_x = TargetSpeed.speed_left;
   speed_right_x = TargetSpeed.speed_right;
+
   float pid_angle_diff;
   float angle_target_h;
+  float error;
   switch (TargetSpeed.mode) {
   case MODE_NONE:
     break;
@@ -49,8 +51,18 @@ void TargetSpeed_Update(void) {
       angle_target_h -= 360.0f;
     while (angle_target_h < -180.0f)
       angle_target_h += 360.0f;
-    Angle_PID_Yaw.pid_state.target_value = angle_target_h;
-    pid_angle_diff = Angle_PID_Update(&Angle_PID_Yaw, TargetSpeed.yaw_angle);
+
+    // Angle_PID_Yaw.pid_state.target_value = angle_target_h;
+    // pid_angle_diff = Angle_PID_Update(&Angle_PID_Yaw, TargetSpeed.yaw_angle);
+    error = angle_target_h - TargetSpeed.yaw_angle;
+    // 对误差进行归一化，确保在 [-180, 180] 范围内
+    while (error > 180.0f)
+      error -= 360.0f;
+
+    while (error < -180.0f)
+      error += 360.0f;
+
+    pid_angle_diff = error / 100 * 0.4;
 
     speed_right_x += pid_angle_diff;
     speed_left_x -= pid_angle_diff;
