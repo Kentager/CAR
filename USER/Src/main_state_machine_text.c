@@ -286,7 +286,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 15:                              // 1.5
     TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 200)
+    if (++count_x < 205)
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -306,7 +306,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 17:                              // 2
     TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 220)
+    if (++count_x < 225)
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -347,7 +347,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 21:                              // 3
     TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 250)
+    if (++count_x < 220)
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -368,7 +368,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 23:                              // 3.5
     TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 220)
+    if (++count_x < 210)
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -385,16 +385,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
       count = 0; // 清除计数器
     }
     break;
-  case 28:                                // 4
-    state_machine->state = STATE_TRACK_X; // 循迹
-    if (++count < 100)                    // 延时1000ms
-      return;
-    if (!irSensor_GetSensorFlag(&irSensorData)) {
-      count_it++;
-      count = 0; // 清除计数器
-    }
-    break;
-  case 29:
+  case 25:
     state_machine->state = STATE_STOP; // 待机
     Reset_Action();
     break;
