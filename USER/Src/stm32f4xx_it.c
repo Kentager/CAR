@@ -56,7 +56,10 @@ void EXTI0_IRQHandler(void) {
 
     // 设置按键标志位，在主循环中处理
     Key_Pressed_Flag_0 = 1;
-    count_it = 3;
+    if (count_it == 0)
+      count_it = 1;
+    if (count_it == 2)
+      count_it = 3;
   }
 }
 
