@@ -113,7 +113,7 @@ void State_Stop_Action(void) {      // 待机 无模式 设置速度为0 0
 
 void State_Run_Action(void) {           // 前进 角度环模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_ANGLE_LOOP); // 角度环模式
-  TargetSpeed_SetSpeed(0.4f, 0.4f); // 设置目标速度（左轮为0.12，右轮为0.12）
+  TargetSpeed_SetSpeed(0.45f, 0.45f); // 设置目标速度（左轮为0.12，右轮为0.12）
 }
 
 void State_Track_Action(void) {       // 循迹 循迹模式 设置速度为 0.2 0.2
@@ -197,6 +197,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     state_machine->state = STATE_STOP; // 待机
     Reset_Action();
     break;
+    count_x = 0;
     //====================题目2====================//
   case 3:
     if (++count < 100) // 延时1000ms
