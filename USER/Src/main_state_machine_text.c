@@ -39,6 +39,7 @@ static uint32_t count = 0;
 static uint32_t count_x = 0;
 static uint32_t count_led = 0;
 static uint8_t first_led_off = 0;
+static float travel_distance = 0.0f; // 距离
 //===========================================初始化函数=========================================//初始化驱动和配置
 void Start_Init(void) { // 初始化所有驱动
   // 初始化延时定时器
@@ -175,13 +176,18 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     state_machine->state_count++;
     count = 0; // 清除计数器
     Reset_Action();
+    // travel_distance = (Encoder_GetData(ENCODER_RIGHT)).total_distance;
     break;
     //====================题目1====================//
   case 1:
     if (++count < 100) // 延时1000ms
       return;
-    TargetSpeed_SetTargetAngle(0.0f);            // 设置角度为0
-    state_machine->state = STATE_RUN;            // 前进
+    TargetSpeed_SetTargetAngle(0.0f); // 设置角度为0
+    state_machine->state = STATE_RUN;
+    // if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance >
+    // 1)
+    //   state_machine->state = STATE_STOP;
+    // 前进
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
       count = 0; // 清除计数器
@@ -230,6 +236,8 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 7:
     state_machine->state = STATE_STOP; // 待机
     Reset_Action();
+    travel_distance =
+        (Encoder_GetData(ENCODER_RIGHT)).total_distance; // 初始化里程计数
     break;
     //====================题目3====================//
   case 8:
@@ -237,13 +245,13 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
       return;
     TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 250)
+    if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
+        1) // 走一米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
       count = 0; // 清除计数器
-      count_x = 0;
     }
     break;
   case 9:
@@ -253,17 +261,19 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_LEFT)).total_distance; // 初始化里程计数
     }
     break;
   case 10:
     TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 210)
+    if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
+        0.9) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
-      count_x = 0;
     }
     break;
   case 11:
@@ -278,6 +288,8 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 12:
     state_machine->state = STATE_STOP; // 待机
     Reset_Action();
+    travel_distance =
+        (Encoder_GetData(ENCODER_RIGHT)).total_distance; // 初始化里程计数
     break;
     //====================题目4====================//
   case 13:             // 1
@@ -285,13 +297,13 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
       return;
     TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 250)
+    if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
+        1) // 走1米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
       count = 0; // 清除计数器
-      count_x = 0;
     }
     break;
   case 14:
@@ -301,17 +313,19 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_LEFT)).total_distance; // 初始化里程计数
     }
     break;
   case 15:                              // 1.5
     TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 205)
+    if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
+        0.9) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
-      count_x = 0;
     }
     break;
   case 16:
@@ -321,18 +335,20 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_RIGHT)).total_distance; // 初始化里程计数
     }
     break;
   case 17:                              // 2
     TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 225)
+    if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
+        0.95) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
       count = 0; // 清除计数器
-      count_x = 0;
     }
     break;
   case 18:
@@ -342,17 +358,19 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_LEFT)).total_distance; // 初始化里程计数
     }
     break;
   case 19:                              // 2.5
     TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 220)
+    if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
+        0.9) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
-      count_x = 0;
     }
     break;
   case 20:
@@ -362,18 +380,19 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_RIGHT)).total_distance; // 初始化里程计数
     }
     break;
   case 21:                              // 3
     TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 220)
+    if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
+        0.92) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
-      count = 0; // 清除计数器
-      count_x = 0;
     }
     break;
   case 22:
@@ -383,17 +402,19 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_LEFT)).total_distance; // 初始化里程计数
     }
     break;
   case 23:                              // 3.5
     TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
-    if (++count_x < 210)
+    if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
+        0.9) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
       count_it++;
-      count_x = 0;
     }
     break;
   case 24:
@@ -403,6 +424,8 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     if (!irSensor_GetSensorFlag(&irSensorData)) {
       count_it++;
       count = 0; // 清除计数器
+      travel_distance =
+          (Encoder_GetData(ENCODER_RIGHT)).total_distance; // 初始化里程计数
     }
     break;
   case 25:
