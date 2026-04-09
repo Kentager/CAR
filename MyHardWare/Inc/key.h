@@ -14,6 +14,13 @@
 #define KEY_PORT GPIOC               // KEY GPIO端口
 #define KEY_CLK RCC_AHB1Periph_GPIOC // KEY GPIO端口时钟
 
+/*---------------------- LED和蜂鸣器配置宏 ------------------------*/
+
+#define LED_PIN GPIO_Pin_6 // LED 引脚
+
+#define LED_PORT GPIOE               // LED GPIO端口
+#define LED_CLK RCC_AHB1Periph_GPIOE // LED GPIO端口时钟
+
 /*---------------------- 函数声明 ----------------------------*/
 
 void KEY_Init(void);    // 按键IO口初始化函数

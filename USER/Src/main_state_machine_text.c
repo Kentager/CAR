@@ -12,6 +12,7 @@
 #include "pid_speed.h"
 #include "pid_timer.h"
 #include "stm32f4xx.h"
+#include "stm32f4xx_gpio.h"
 #include "stm32f4xx_it.h"
 #include "stm32f4xx_syscfg.h"
 #include "task.h"
@@ -36,6 +37,8 @@ State_Machine_Typedef state_machine; // 状态机结构体
 static float yaw_angle = 0.0f;
 static uint32_t count = 0;
 static uint32_t count_x = 0;
+static uint32_t count_led = 0;
+static uint8_t first_led_off = 0;
 //===========================================初始化函数=========================================//初始化驱动和配置
 void Start_Init(void) { // 初始化所有驱动
   // 初始化延时定时器
@@ -91,6 +94,7 @@ void Start_Init(void) { // 初始化所有驱动
   // hmc5883l_init();
   // // HMC5883L第一次测量
   // hmc5883l_single_measurement();
+  state_machine.state = STATE_STOP;
 }
 
 void State_Machine_Init(State_Machine_Typedef *state_machine) { // 状态机初始化
@@ -130,6 +134,13 @@ void Reset_Action(void) {         // 无模式 重置初始角度
 void State_Update(State_Machine_Typedef *state_machine) {
   // 更新上次状态
   state_machine->last_state = state_machine->state;
+
+  if (first_led_off == 1) {
+    count_led = 100;
+  } else {
+    first_led_off = 1;
+  }
+
   // 根据状态机状态执行不同的操作
   switch (state_machine->state) {
   case STATE_STOP:
@@ -148,6 +159,14 @@ void State_Update(State_Machine_Typedef *state_machine) {
 }
 // 状态机状态计数更新（按照流程完成问题）//XXXXXXXXXXXXXXXXXXXXXXXX左左左左左左左左左左左左左左左左左左
 void State_Count_Updata(State_Machine_Typedef *state_machine) {
+  // LED和蜂鸣器设置
+  if (count_led > 0) {
+    if (count_led == 100)
+      GPIO_ResetBits(GPIOE, GPIO_Pin_6);
+    else if (count_led == 1)
+      GPIO_SetBits(GPIOE, GPIO_Pin_6);
+    count_led--;
+  }
 
   switch (count_it) {
     //====================待机状态====================//
