@@ -113,16 +113,16 @@ void State_Stop_Action(void) {      // 待机 无模式 设置速度为0 0
 
 void State_Run_Action(void) {           // 前进 角度环模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_ANGLE_LOOP); // 角度环模式
-  TargetSpeed_SetSpeed(0.45f, 0.45f); // 设置目标速度（左轮为0.12，右轮为0.12）
+  TargetSpeed_SetSpeed(0.40f, 0.40f); // 设置目标速度（左轮为0.12，右轮为0.12）
 }
 
 void State_Track_Action(void) {       // 循迹 循迹模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_TRACKING); // 循迹模式
-  TargetSpeed_SetSpeed(0.34f, 0.45f); // 设置目标速度（左轮为0.2，右轮为0.2）
+  TargetSpeed_SetSpeed(0.4f, 0.525f); // 设置目标速度（左轮为0.2，右轮为0.2）
 }
 void State_Track_X_Action(void) {     // 循迹 循迹模式 设置速度为 0.2 0.2
   TargetSpeedMode_Set(MODE_TRACKING); // 循迹模式
-  TargetSpeed_SetSpeed(0.45f, 0.34f); // 设置目标速度（左轮为0.2，右轮为0.2）
+  TargetSpeed_SetSpeed(0.525f, 0.4f); // 设置目标速度（左轮为0.2，右轮为0.2）
 }
 
 void Reset_Action(void) {         // 无模式 重置初始角度
@@ -242,7 +242,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     break;
     //====================题目3====================//
   case 8:
-    if (++count < 100) // 延时1000ms
+    if (++count < 50) // 延时500ms
       return;
     TargetSpeed_SetTargetAngle(-45.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
@@ -257,7 +257,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     break;
   case 9:
     state_machine->state = STATE_TRACK; // 循迹
-    if (++count < 100)                  // 延时1000ms
+    if (++count < 50)                   // 延时500ms
       return;
     if (!irSensor_GetSensorFlag(&irSensorData)) { // 等待出线
       count_it++;
@@ -270,7 +270,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     TargetSpeed_SetTargetAngle(225.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
-        1) // 走0.9米
+        0.97) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线J

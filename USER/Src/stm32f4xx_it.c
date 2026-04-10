@@ -64,7 +64,7 @@ void EXTI0_IRQHandler(void) {
 }
 
 void EXTI1_IRQHandler(void) {
-  // 检查是否是EXTI Line0中断（PC0按键）
+  // 检查是否是EXTI Line1中断（PC1按键）
   if (EXTI_GetITStatus(EXTI_Line1) != RESET) {
     // 清除中断标志位
     EXTI_ClearITPendingBit(EXTI_Line1);
@@ -76,7 +76,7 @@ void EXTI1_IRQHandler(void) {
 }
 
 void EXTI2_IRQHandler(void) {
-  // 检查是否是EXTI Line0中断（PC0按键）
+  // 检查是否是EXTI Line2中断（PC2按键）
   if (EXTI_GetITStatus(EXTI_Line2) != RESET) {
     // 清除中断标志位
     EXTI_ClearITPendingBit(EXTI_Line2);
@@ -88,7 +88,7 @@ void EXTI2_IRQHandler(void) {
 }
 
 void EXTI3_IRQHandler(void) {
-  // 检查是否是EXTI Line0中断（PC0按键）
+  // 检查是否是EXTI Line3中断（PC3按键）
   if (EXTI_GetITStatus(EXTI_Line3) != RESET) {
     // 清除中断标志位
     EXTI_ClearITPendingBit(EXTI_Line3);

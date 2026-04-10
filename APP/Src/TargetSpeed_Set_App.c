@@ -62,7 +62,7 @@ void TargetSpeed_Update(void) {
     while (error < -180.0f)
       error += 360.0f;
 
-    pid_angle_diff = error / 100 * 0.4;
+    pid_angle_diff = error / 100 * 0.35;
 
     speed_right_x += pid_angle_diff;
     speed_left_x -= pid_angle_diff;
