@@ -462,7 +462,7 @@ void Yaw_Angle_Data_filtering(void) {
 
   mpu_dmp_get_data(&pitch, &roll, &yaw);
   if (yaw == 0.000f)
-    return;
+    yaw = last_yaw;
   // 计算角度变化量
   yaw_delta = yaw - last_yaw;
 
