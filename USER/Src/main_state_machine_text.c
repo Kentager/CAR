@@ -244,10 +244,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 8:
     if (++count < 100) // 延时1000ms
       return;
-    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    TargetSpeed_SetTargetAngle(-45.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
-        1) // 走一米
+        1.1) // 走一米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -267,13 +267,13 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 10:
-    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    TargetSpeed_SetTargetAngle(225.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
-        0.9) // 走0.9米
+        1) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
-    if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
+    if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线J
       count_it++;
     }
     break;
