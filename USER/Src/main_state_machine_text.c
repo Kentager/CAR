@@ -4,6 +4,7 @@
 #include "encoder.h"
 #include "hmc5883l.h"
 #include "inv_mpu.h"
+#include "jy61p.h"
 #include "key.h"
 #include "math.h"
 #include "motor.h"
@@ -39,7 +40,9 @@ static uint32_t count = 0;
 static uint32_t count_x = 0;
 static uint32_t count_led = 0;
 static uint8_t first_led_off = 0;
-static float travel_distance = 0.0f; // 距离
+static float travel_distance = 0.0f;   // 距离
+static float last_yaw = 0.0f;          // 保存上一次的yaw值
+static float yaw_calibration = 1.160f; // 角度校准系数：90/78.69 ≈ 1.144
 //===========================================初始化函数=========================================//初始化驱动和配置
 void Start_Init(void) { // 初始化所有驱动
   // 初始化延时定时器
@@ -77,20 +80,22 @@ void Start_Init(void) { // 初始化所有驱动
   Speed_PID_Enable(&Speed_PID_Right);
   Speed_PID_Enable(&Speed_PID_Left);
 
-  // 初始化角度环PID控制器
-  //// 初始化偏航角的角度环PID控制器
-  Angle_PID_Init(&Angle_PID_Yaw, ANGLE_AXIS_YAW, ANGLE_PID_KP_DEFAULT,
-                 ANGLE_PID_KI_DEFAULT, ANGLE_PID_KD_DEFAULT);
-  //// 启动偏航角的角度环PID控制器
-  Angle_PID_Enable(&Angle_PID_Yaw);
+  // // 初始化角度环PID控制器
+  // //// 初始化偏航角的角度环PID控制器
+  // Angle_PID_Init(&Angle_PID_Yaw, ANGLE_AXIS_YAW, ANGLE_PID_KP_DEFAULT,
+  //                ANGLE_PID_KI_DEFAULT, ANGLE_PID_KD_DEFAULT);
+  // //// 启动偏航角的角度环PID控制器
+  // Angle_PID_Enable(&Angle_PID_Yaw);
 
+  // 初始化JY61P
+  JY61p_Init();
   // 初始化MPU6050
   // MPU_Init();
 
-  while (mpu_dmp_init()) {
-    printf("MPU6050 init failed!\r\n");
-  }
-  printf("MPU6050 init success|\r\n");
+  // while (mpu_dmp_init()) {
+  //   printf("MPU6050 init failed!\r\n");
+  // }
+  // printf("MPU6050 init success|\r\n");
   // // 初始化HMC5883L
   // hmc5883l_init();
   // // HMC5883L第一次测量
@@ -137,7 +142,7 @@ void State_Update(State_Machine_Typedef *state_machine) {
   state_machine->last_state = state_machine->state;
 
   if (first_led_off == 1) {
-    count_led = 100;
+    count_led = 50;
   } else {
     first_led_off = 1;
   }
@@ -162,7 +167,7 @@ void State_Update(State_Machine_Typedef *state_machine) {
 void State_Count_Updata(State_Machine_Typedef *state_machine) {
   // LED和蜂鸣器设置
   if (count_led > 0) {
-    if (count_led == 100)
+    if (count_led == 50)
       GPIO_ResetBits(GPIOE, GPIO_Pin_6);
     else if (count_led == 1)
       GPIO_SetBits(GPIOE, GPIO_Pin_6);
@@ -270,7 +275,7 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     TargetSpeed_SetTargetAngle(225.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
-        0.97) // 走0.9米
+        1) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线J
@@ -296,10 +301,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
   case 13:             // 1
     if (++count < 100) // 延时1000ms
       return;
-    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    TargetSpeed_SetTargetAngle(-45.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
-        1) // 走1米
+        1.1) // 走1米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -319,10 +324,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 15:                              // 1.5
-    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    TargetSpeed_SetTargetAngle(225.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
-        0.9) // 走0.9米
+        1) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -341,10 +346,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 17:                              // 2
-    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    TargetSpeed_SetTargetAngle(-45.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
-        0.95) // 走0.9米
+        1) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -364,10 +369,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 19:                              // 2.5
-    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    TargetSpeed_SetTargetAngle(225.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
-        0.9) // 走0.9米
+        1.04) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -386,10 +391,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 21:                              // 3
-    TargetSpeed_SetTargetAngle(-50.0f); // 设置角度为-45
+    TargetSpeed_SetTargetAngle(-45.0f); // 设置角度为-45
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_RIGHT)).total_distance - travel_distance <
-        0.92) // 走0.9米
+        1) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(0.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -408,10 +413,10 @@ void State_Count_Updata(State_Machine_Typedef *state_machine) {
     }
     break;
   case 23:                              // 3.5
-    TargetSpeed_SetTargetAngle(230.0f); // 设置角度为225
+    TargetSpeed_SetTargetAngle(225.0f); // 设置角度为225
     state_machine->state = STATE_RUN;   // 前进
     if ((Encoder_GetData(ENCODER_LEFT)).total_distance - travel_distance <
-        0.9) // 走0.9米
+        1.04) // 走0.9米
       return;
     TargetSpeed_SetTargetAngle(180.0f);
     if (irSensor_GetSensorFlag(&irSensorData)) { // 等待进线
@@ -456,32 +461,29 @@ void Channel_Grayscale_Sensor_Updata_Task(void) {
 
 void Yaw_Angle_Data_filtering(void) {
   float pitch, roll, yaw;
-  static float last_yaw = 0.0f;          // 保存上一次的yaw值
-  static float yaw_calibration = 1.160f; // 角度校准系数：90/78.69 ≈ 1.144
-  float yaw_delta;                       // 角度变化量
 
-  mpu_dmp_get_data(&pitch, &roll, &yaw);
-  if (yaw == 0.000f)
+  // float yaw_delta; // 角度变化量
+
+  JY61p_GetAngle(&pitch, &roll, &yaw);
+  if (yaw < 0.01 && yaw > -0.01)
     yaw = last_yaw;
-  // 计算角度变化量
-  yaw_delta = yaw - last_yaw;
-
+  // // 计算角度变化量
+  // yaw_delta = yaw - last_yaw;
+  last_yaw = yaw;
   // 处理角度跳变（从180到-180或从-180到180）
-  if (yaw_delta > 180.0f) {
-    yaw_delta -= 360.0f;
-  } else if (yaw_delta < -180.0f) {
-    yaw_delta += 360.0f;
-  }
+  // if (yaw_delta > 180.0f) {
+  //   yaw_delta -= 360.0f;
+  // } else if (yaw_delta < -180.0f) {
+  //   yaw_delta += 360.0f;
+  // }
 
   // 对角度变化量应用校准系数并累积
-  yaw_angle += yaw_delta * yaw_calibration;
+  // yaw_angle += yaw_delta * yaw_calibration;
 
   // 更新上一次的yaw值
-  last_yaw = yaw;
 
-  TargetSpeed_SetYawAngle(yaw_angle);
-  printf("%.2f,%.2f,%.2f\r\n", TargetSpeed.start_angle,
-         TargetSpeed.target_angle, TargetSpeed.yaw_angle);
+  TargetSpeed_SetYawAngle(-yaw);
+  printf("%.2f\r\n", -yaw);
 }
 //===========================================主函数==========================================//
 // pid_speed_update和encoder_update需要定期调用

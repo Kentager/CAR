@@ -56,10 +56,7 @@ void EXTI0_IRQHandler(void) {
 
     // 设置按键标志位，在主循环中处理
     Key_Pressed_Flag_0 = 1;
-    if (count_it == 0)
-      count_it = 1;
-    if (count_it == 2)
-      count_it = 3;
+    count_it = 1;
   }
 }
 
@@ -120,7 +117,7 @@ void KEY_Interrupt_Init(void) {
   SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC, EXTI_PinSource3);
 
   // 连接EXTI Line4到PC4引脚
-  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC, EXTI_PinSource4);
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC, EXTI_PinSource1);
 
   // 配置EXTI Line0
   EXTI_InitStructure.EXTI_Line = EXTI_Line0;
@@ -144,7 +141,7 @@ void KEY_Interrupt_Init(void) {
   EXTI_Init(&EXTI_InitStructure);
 
   // 配置EXTI Line4
-  EXTI_InitStructure.EXTI_Line = EXTI_Line4;
+  EXTI_InitStructure.EXTI_Line = EXTI_Line1;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; // 下降沿触发
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
@@ -172,7 +169,7 @@ void KEY_Interrupt_Init(void) {
   NVIC_Init(&NVIC_InitStructure);
 
   // 配置NVIC for EXTI4
-  NVIC_InitStructure.NVIC_IRQChannel = EXTI4_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
